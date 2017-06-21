@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>菜单管理页</title>
+<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/plugins/bootstrap/css/font-awesome.min.css">
+<link rel="stylesheet" href="/plugins/ztree/css/metroStyle/metroStyle.css">
+<!-- Ionicons -->
+<link rel="stylesheet" href="/plugins/bootstrap/css/ionicons.min.css">
+<link rel="stylesheet" href="/plugins/bootstrap/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="/tk/ainiyue/plugin/bootstrap/css/index.css"> -->
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+   folder instead of downloading all of them to reduce the load. -->
+<!-- <link rel="stylesheet" href="/tk/ainiyue/plugin/bootstrap/css/skins/_all-skins.css"> -->
+
+<script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="/plugins/jQuery/ajax.js"></script>
+<script src="/plugins/jQuery/json2.js"></script>
+<script src="/plugins/jQuery/bootbox.min.js"></script>
+<script src="/plugins/jQuery/alert.js"></script>
+<script src="/plugins/nestable/jquery.nestable.js"></script>
+<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/plugins/ztree/js/jquery.ztree.all.min.js"></script>
+<style type="text/css">
+div#rMenu {
+	position: absolute;
+	visibility: hidden;
+	top: 0;
+	text-align: left;
+	padding: 2px;
+}
+
+div#rMenu ul li {
+	margin: 1px 0;
+	padding: 0 5px;
+	cursor: pointer;
+	list-style: none outside none;
+}
+
+.row-right {
+	text-align: right;
+}
+</style>
+</head>
+<body id="body">
+	<div>
+		<ul id="ztree" class="ztree"></ul>
+	</div>
+
+
+	<!-- ***************************其他部分******************************	 -->
+	<div id="rMenu" class="dropdown">
+		<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+			<li role="presentation"><a role="menuitem" tabindex="-1" id="m_add" onclick="addTreeNode();">增加节点</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" id="m_update" onclick="updateTreeNode();">修改节点</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" id="m_del" onclick="removeTreeNode();">删除节点</a></li>
+			<li role="presentation" class="divider"></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" id="m_expand" onclick="expand();">展开下一级节点</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" id="m_expandSon" onclick="expandSon();">展开所有子节点</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" id="m_collapse" onclick="collapse();">折叠子节点</a></li>
+			<li role="presentation" class="divider"></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" id="m_expandAll" onclick="expandAll();">全部展开</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1" id="m_collapseAll" onclick="collapseAll();">全部折叠</a></li>
+		</ul>
+	</div>
+
+	<!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> -->
+	<!-- 	开始演示模态框 -->
+	<!-- </button> -->
+	<!-- 模态框（Modal） -->
+	<div class="modal fade bs-example-modal-lg" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">新增节点</h4>
+				</div>
+				<form action="" method="post">
+					<div class="modal-body">
+						<div class="row" hidden="hidden">
+							<span class="col-md-3 row-right"> uuid : </span><input class="col-md-5" type="text" name="uuid" id="add_uuid" /> <span class="col-md-4"> *唯一主键 </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> 地址名称 : </span>
+							<div class="col-md-5 ">
+								<input class="form-control" type="text" name="name" id="add_name" />
+							</div>
+							<span class="col-md-4"> * 用户显示 </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> 图标 : </span>
+							<div class="col-md-5 btn-group " role="toolbar">
+								<input class="form-control btn" type="text" name="icon" id="add_icon" value="fa  fa-desktop" style="width: 63%;" />
+								<button type="button" id="selectIcon" class="btn btn-primary btn-sm " data-btn-type="selectIcon">
+									<span class="fa fa-hand-pointer-o">选择图标</span>
+								</button>
+							</div>
+							<span class="col-md-4" id="f_icon"> * 用户表示菜单样式 </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> 描述 : </span>
+							<div class="col-md-5 ">
+								<input class="form-control" type="text" name="description" id="add_description" />
+							</div>
+							<span class="col-md-4"> * </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> uri地址: </span>
+							<div class="col-md-5 ">
+								<input class="form-control" type="text" name="uri" id="add_uri" />
+							</div>
+							<span class="col-md-4"> * 用于调用 </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> 上一级目录: </span>
+							<div class="col-md-5 ">
+								<input class="form-control" type="text" name="parentName" id="add_parentName" value="0" disabled="disabled" /> <input type="text" name="parentsId" id="add_parentId" value="0" hidden="hidden" />
+							</div>
+							<span class="col-md-4"> * 用于指定位置 </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> 排序: </span>
+							<div class="col-md-5 ">
+								<input class="form-control" type="text" name="sort" id="add_sort" value="1" />
+							</div>
+							<span class="col-md-4"> * 用户排序 </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> 停用标识: </span>
+							<div class="col-md-5 ">
+								<input class="form-control" type="text" name="deleteFlag" id="add_deleteFlag" value="1" />
+							</div>
+							<span class="col-md-4"> * 用户排序 </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> 用户: </span>
+							<div class="col-md-5 ">
+								<input class="form-control" type="text" name="insertUser" id="add_insertUser" value="1" />
+							</div>
+							<span class="col-md-4"> * 用户排序 </span>
+						</div>
+
+					</div>
+				</form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" onclick="submit();">提交添加</button>
+				</div>
+
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+
+
+	<!-- 	修改的modal -->
+	<div class="modal fade bs-example-modal-lg" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="updateModalLabel">修改节点</h4>
+				</div>
+				<form action="" method="post">
+					<div class="modal-body">
+						<div class="row" hidden="hidden">
+							<span class="col-md-3 row-right"> uuid : </span><input class="col-md-5" type="text" name="uuid" id="upd_uuid" /> <span class="col-md-4"> *唯一主键 </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> 地址名称 : </span>
+							<div class="col-md-5 ">
+								<input class="form-control" type="text" name="name" id="upd_name" />
+							</div>
+							<span class="col-md-4"> * 用户显示 </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> 图标 : </span>
+							<div class="col-md-5 btn-group " role="toolbar">
+								<input class="form-control btn" type="text" name="icon" id="upd_icon" value="fa  fa-desktop" style="width: 63%;" />
+								<button type="button" id="selectIcon" class="btn btn-primary btn-sm " data-btn-type="selectIcon">
+									<span class="fa fa-hand-pointer-o">选择图标</span>
+								</button>
+							</div>
+							<span class="col-md-4" id="f_icon"> * 用户表示菜单样式 </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> 描述 : </span>
+							<div class="col-md-5 ">
+								<input class="form-control" type="text" name="description" id="upd_description" />
+							</div>
+							<span class="col-md-4"> * </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> uri地址: </span>
+							<div class="col-md-5 ">
+								<input class="form-control" type="text" name="uri" id="upd_uri" />
+							</div>
+							<span class="col-md-4"> * 用于调用 </span>
+						</div>
+						<div class="row" hidden="hidden">
+							<span class="col-md-3 row-right"> 上一级目录: </span>
+							<div class="col-md-5 ">
+								<input class="form-control" type="text" name="parentName" id="upd_parentName" value="0" disabled="disabled" /> <input type="text" name="parentsId" id="upd_parentId" value="0" hidden="hidden" />
+							</div>
+							<span class="col-md-4"> * 用于指定位置 </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> 排序: </span>
+							<div class="col-md-5 ">
+								<input class="form-control" type="text" name="sort" id="upd_sort" value="1" />
+							</div>
+							<span class="col-md-4"> * 用户排序 </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> 停用标识: </span>
+							<div class="col-md-5 ">
+								<input class="form-control" type="text" name="deleteFlag" id="upd_deleteFlag" value="1" />
+							</div>
+							<span class="col-md-4"> * 用户排序 </span>
+						</div>
+						<div class="row">
+							<span class="col-md-3 row-right"> 用户: </span>
+							<div class="col-md-5 ">
+								<input class="form-control" type="text" name="updateUser" id="upd_updateUser" value="1" />
+							</div>
+							<span class="col-md-4"> * 用户排序 </span>
+						</div>
+					</div>
+				</form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" onclick="updatesubmit();">提交添加</button>
+				</div>
+
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+
+
+	<script type="text/javascript" src="/pages/system/js/system_function_ztree.js"></script>
+</body>
+</html>
