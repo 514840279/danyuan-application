@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>tk.ainiyue.danyuan</groupId>
@@ -22,7 +21,7 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.4.RELEASE</version>
 	</parent>
- 
+
 	<dependencies>
 
 		<!-- spring boot web支持：mvc,aop... -->
@@ -30,8 +29,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- 包含支持UI模版（Velocity，FreeMarker，JasperReports）， 邮件服务， 脚本服务(JRuby)， 缓存Cache（EHCache）， 
-			任务计划Scheduling（uartz）。 -->
+		<!-- 包含支持UI模版（Velocity，FreeMarker，JasperReports）， 邮件服务， 脚本服务(JRuby)， 缓存Cache（EHCache）， 任务计划Scheduling（uartz）。 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
@@ -79,6 +77,22 @@
 					<source>${java-version}</source>
 					<target>${java-version}</target>
 					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.11</version>
+				<configuration>
+					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
 				</configuration>
 			</plugin>
 		</plugins>

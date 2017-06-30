@@ -221,7 +221,7 @@ function submit() {
 	uuid : $("#add_uuid").val(),
 	name : $("#add_name").val(),
 	icon : $("#add_icon").val(),
-	description : $("#add_description").val(),
+	discription : $("#add_discription").val(),
 	uri : $("#add_uri").val(),
 	parentsId : $("#add_parentId").val(),
 	sort : $("#add_sort").val(),
@@ -235,9 +235,9 @@ function submit() {
 
 function sucessAdd(result) {
 	var newNode = {
-		id : result.id,
-		name : result.name,
-		icon : result.icon
+	id : result.id,
+	name : result.name,
+	icon : result.icon
 	};
 	if (zTree.getSelectedNodes()[0] != null) {
 		newNode.checked = zTree.getSelectedNodes()[0].checked;
@@ -262,27 +262,26 @@ function loadUpdate(result) {
 	$("#upd_uuid").val(result.uuid);
 	$("#upd_name").val(result.name);
 	$("#upd_icon").val(result.icon);
-	$("#upd_description").val(result.description);
+	$("#upd_discription").val(result.discription);
 	$("#upd_uri").val(result.uri);
 	$("#upd_parentId").val(result.parentsId);
 	$("#upd_sort").val(result.sort);
 	$("#upd_deleteFlag").val(result.deleteFlag);
-	$("#upd_updateUser").val(result.updateUser);
 	
 	$("#updateModal").modal("show");
 }
 
 function updatesubmit() {
 	var param = {
-		uuid : $("#upd_uuid").val(),
-		name : $("#upd_name").val(),
-		icon : $("#upd_icon").val(),
-		description : $("#upd_description").val(),
-		uri : $("#upd_uri").val(),
-		parentsId : $("#upd_parentId").val(),
-		sort : $("#upd_sort").val(),
-		deleteFlag : $("#upd_deleteFlag").val(),
-		updateUser : $("#upd_updateUser").val()
+	uuid : $("#upd_uuid").val(),
+	name : $("#upd_name").val(),
+	icon : $("#upd_icon").val(),
+	discription : $("#upd_discription").val(),
+	uri : $("#upd_uri").val(),
+	parentsId : $("#upd_parentId").val(),
+	sort : $("#upd_sort").val(),
+	deleteFlag : $("#upd_deleteFlag").val(),
+	updateUser : $("#upd_updateUser").val()
 	}
 	var url = "/sysMenuInfo/addSysMenuInfo";
 	// 重载

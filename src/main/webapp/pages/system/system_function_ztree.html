@@ -44,6 +44,17 @@ div#rMenu ul li {
 </style>
 </head>
 <body id="body">
+	<!-- 头部设计 -->
+	<section class="content-header">
+		<h1>
+			系统设置 <small>菜单设置</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+			<li><a href="#">系统设置</a></li>
+			<li class="active">菜单设置</li>
+		</ol>
+	</section>
 	<div>
 		<ul id="ztree" class="ztree"></ul>
 	</div>
@@ -101,7 +112,7 @@ div#rMenu ul li {
 						<div class="row">
 							<span class="col-md-3 row-right"> 描述 : </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="description" id="add_description" />
+								<input class="form-control" type="text" name="discription" id="add_discription" />
 							</div>
 							<span class="col-md-4"> * </span>
 						</div>
@@ -129,16 +140,16 @@ div#rMenu ul li {
 						<div class="row">
 							<span class="col-md-3 row-right"> 停用标识: </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="deleteFlag" id="add_deleteFlag" value="1" />
+								<input class="form-control" type="text" name="deleteFlag" id="add_deleteFlag" value="0" />
 							</div>
-							<span class="col-md-4"> * 用户排序 </span>
+							<span class="col-md-4"> * 标识</span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> 用户: </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="insertUser" id="add_insertUser" value="1" />
+								<input class="form-control" type="text" name="insertUser" id="add_insertUser" value="system" />
 							</div>
-							<span class="col-md-4"> * 用户排序 </span>
+							<span class="col-md-4"> * 用户 </span>
 						</div>
 
 					</div>
@@ -188,7 +199,7 @@ div#rMenu ul li {
 						<div class="row">
 							<span class="col-md-3 row-right"> 描述 : </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="description" id="upd_description" />
+								<input class="form-control" type="text" name="discription" id="upd_discription" />
 							</div>
 							<span class="col-md-4"> * </span>
 						</div>
@@ -218,14 +229,14 @@ div#rMenu ul li {
 							<div class="col-md-5 ">
 								<input class="form-control" type="text" name="deleteFlag" id="upd_deleteFlag" value="1" />
 							</div>
-							<span class="col-md-4"> * 用户排序 </span>
+							<span class="col-md-4"> * 标识 </span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> 用户: </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="updateUser" id="upd_updateUser" value="1" />
+								<input class="form-control" type="text" name="updateUser" id="upd_updateUser" value="system" />
 							</div>
-							<span class="col-md-4"> * 用户排序 </span>
+							<span class="col-md-4"> * 用户 </span>
 						</div>
 					</div>
 				</form>
