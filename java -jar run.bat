@@ -1,1 +1,1 @@
-java -jar target/danyuan.war
+java -jar target/danyuan.jar

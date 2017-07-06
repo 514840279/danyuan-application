@@ -4,7 +4,7 @@
 	<groupId>tk.ainiyue.danyuan</groupId>
 	<artifactId>danyuan-application</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>danyuan-application</name>
 	<url>http://maven.apache.org</url>
@@ -34,7 +34,11 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
-
+		<!--模板框架 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
 		<!-- JPA操作数据库. -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
