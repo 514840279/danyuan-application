@@ -60,7 +60,7 @@
   
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><li class="fa fa-remove"></li></button>
-	<h5 class="modal-title">图标选择器</h5>
+	<h5 class="modal-title">鍥炬爣閫夋嫨鍣�</h5>
 </div>
 
 <div class="modal-body" id="iconlist"> 
@@ -2321,14 +2321,15 @@
     <!-- /.content --> 
 </div>
 <script>
+<![CDATA[
    $(function() {
 	   var iconName="${iconName}";
-	   //单击 选中样式
+	   //鍗曞嚮 閫変腑鏍峰紡
 	   $("#fa-icons div.col-md-3,#glyphicons li").click(function(){
 		   $("#fa-icons div.col-md-3,#glyphicons li").removeClass("icon-selected");
 		   $(this).addClass("icon-selected");
 	   });
-	   //双击获取图标名称 关闭窗口 并回填数据
+	   //鍙屽嚮鑾峰彇鍥炬爣鍚嶇О 鍏抽棴绐楀彛 骞跺洖濉暟鎹�
 	   var iconClass=null;
 	    $("#fa-icons div.col-md-3,#glyphicons li").dblclick(function(){
 	        var fa_len=$(this).find("i.fa").length;
@@ -2338,20 +2339,21 @@
 	        }else{
 	        	iconClass=$(this).find("span.glyphicon").eq(0).attr("class");
 	        }
-	        modals.hideWin(winId);
 	        fillBackIconName(iconClass);
+	        modals.hideWin(winId);
 	    });
-	    //选中回填的图标
-	    if(iconName&&iconName!="undefined"){
-	    	iconName=iconName.replace(" ","."); 
-	    	if(iconName.indexOf("fa")>-1){
-	    		$("#fa-icons div.col-md-3 i."+iconName).parent().addClass("icon-selected"); 
-	    	}else{ 
-	    		$("#tab-gl").click(); 
-	    		$("#glyphicons li span."+iconName).parent().addClass("icon-selected");
-	    	}
-	    }
+	    //閫変腑鍥炲～鐨勫浘鏍�
+// 	    if(iconName&&iconName!="undefined"){
+// 	    	iconName=iconName.replace(" ","."); 
+// 	    	if(iconName.indexOf("fa")>-1){
+// 	    		$("#fa-icons div.col-md-3 i."+iconName).parent().addClass("icon-selected"); 
+// 	    	}else{ 
+// 	    		$("#tab-gl").click(); 
+// 	    		$("#glyphicons li span."+iconName).parent().addClass("icon-selected");
+// 	    	}
+// 	    }
    });
-   
+
+  ]]>
   
 </script>

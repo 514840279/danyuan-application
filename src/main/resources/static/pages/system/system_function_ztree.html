@@ -45,7 +45,7 @@ div#rMenu ul li {
 </head>
 <body id="body">
 	<!-- 头部设计 -->
-	<section class="content-header">
+	<section class="content-header" >
 		<h1>
 			系统设置 <small>菜单设置</small>
 		</h1>
@@ -55,7 +55,7 @@ div#rMenu ul li {
 			<li class="active">菜单设置</li>
 		</ol>
 	</section>
-	<div>
+	<div style="margin-left: 15px;">
 		<ul id="ztree" class="ztree"></ul>
 	</div>
 
@@ -103,7 +103,7 @@ div#rMenu ul li {
 							<span class="col-md-3 row-right"> 图标 : </span>
 							<div class="col-md-5 btn-group " role="toolbar">
 								<input class="form-control btn" type="text" name="icon" id="add_icon" value="fa  fa-desktop" style="width: 63%;" />
-								<button type="button" id="selectIcon" class="btn btn-primary btn-sm " data-btn-type="selectIcon">
+								<button type="button" id="selectIcon" class="btn btn-primary btn-sm " data-btn-type="selectIcon" onclick="add_select_icon()">
 									<span class="fa fa-hand-pointer-o">选择图标</span>
 								</button>
 							</div>
@@ -190,7 +190,7 @@ div#rMenu ul li {
 							<span class="col-md-3 row-right"> 图标 : </span>
 							<div class="col-md-5 btn-group " role="toolbar">
 								<input class="form-control btn" type="text" name="icon" id="upd_icon" value="fa  fa-desktop" style="width: 63%;" />
-								<button type="button" id="selectIcon" class="btn btn-primary btn-sm " data-btn-type="selectIcon">
+								<button type="button" id="selectIcon" class="btn btn-primary btn-sm " data-btn-type="selectIcon" onclick="upd_select_icon()">
 									<span class="fa fa-hand-pointer-o">选择图标</span>
 								</button>
 							</div>

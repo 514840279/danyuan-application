@@ -216,6 +216,25 @@ function addTreeNode() {
 	// 弹出模态框
 	$("#addModal").modal("show");
 }
+var winId="";
+function add_select_icon(){
+	winId="add_icon_modal";
+	var iconName;
+	if($("#add_icon").val())
+	   iconName=encodeURIComponent($("#add_icon").val());
+	modals.openWin({
+    	winId:winId,
+    	title:'图标选择器（双击选择）',
+    	width:'1000px',
+    	url:"/icon/nodecorator/select?iconName="+iconName
+    });
+}
+//回填图标
+function fillBackIconName(icon_name){
+	$("#add_icon").val(icon_name); 
+	$("#upd_icon").val(icon_name);
+//	$("#icon_i").removeClass().addClass("form-control-feedback").addClass(icon_name);
+}
 function submit() {
 	var param = {
 	uuid : $("#add_uuid").val(),
@@ -271,6 +290,18 @@ function loadUpdate(result) {
 	$("#updateModal").modal("show");
 }
 
+function upd_select_icon(){
+	winId="upd_icon_modal";
+	var iconName;
+	if($("#upd_icon").val())
+	   iconName=encodeURIComponent($("#upd_icon").val());
+	modals.openWin({
+    	winId:winId,
+    	title:'图标选择器（双击选择）',
+    	width:'1000px',
+    	url:"/icon/nodecorator/select?iconName="+iconName
+    });
+}
 function updatesubmit() {
 	var param = {
 	uuid : $("#upd_uuid").val(),
