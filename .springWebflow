@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webflow-project-description>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.8.3.201612191259-RELEASE]]></pluginVersion>
+	<configs>
+		<config>
+			<file>src/main/resources/static/pages/crawler/seed/fd.xml</file>
+			<name><![CDATA[fd]]></name>
+			<beans-config><![CDATA[1:BeansModel|2:danyuan-application|3:java:tk.ainiyue.danyuan.App]]></beans-config>
+		</config>
+	</configs>
+</webflow-project-description>
