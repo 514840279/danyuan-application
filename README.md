@@ -2,10 +2,15 @@
 OA应用
 
 系统采用技术或开源框架：
+
 前端框架：adminLTE
+
 前端技术：bootstrap,bootstrap-table,js,juqery,ajax,ztree,
+
 后端技术：spring-boot,security
+
 数据库: mysql
+
 其他工具：maven,
 
 ## 2017/07/13
