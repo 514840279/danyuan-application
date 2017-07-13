@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import tk.ainiyue.danyuan.application.crawler.seed.po.SysSeedInfo;
 
 /**
- * 文件名 ： SysRolesDao.java
+ * 文件名 ： SysSeedDao.java
  * 包 名 ： tk.ainiyue.admin.roles.dao
  * 描 述 ： TODO(用一句话描述该文件做什么)
  * 机能名称：
@@ -17,5 +17,5 @@ import tk.ainiyue.danyuan.application.crawler.seed.po.SysSeedInfo;
  */
 @Repository("sysSeedDao")
 public interface SysSeedDao extends CrudRepository<SysSeedInfo, String> {
-	
+
 }

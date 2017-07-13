@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +13,7 @@ import tk.ainiyue.danyuan.application.crawler.seed.po.SysSeedInfo;
 import tk.ainiyue.danyuan.application.crawler.seed.service.SysSeedService;
 
 /**
- * 文件名 ： SysRolesController.java
+ * 文件名 ： SysSeedController.java
  * 包 名 ： tk.ainiyue.admin.roles.controller
  * 描 述 ： TODO(用一句话描述该文件做什么)
  * 机能名称：
@@ -35,13 +36,22 @@ public class SysSeedController {
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
 	 * 参 数： @return
-	 * 返 回： List<SysRolesJurisdictionInfo>
+	 * 返 回： List<SysSeedInfo>
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
 	@RequestMapping("/sysSeedList")
 	public List<SysSeedInfo> findAll() {
-		logger.info("sysRolesList", SysSeedController.class);
+		logger.info("sysSeedList", SysSeedController.class);
 		return sysSeedService.findAll();
 	}
+
+	@RequestMapping("/addSysMenuInfo")
+	public String addSysMenuInfo(@RequestBody SysSeedInfo sysSeedInfo) {
+
+		logger.info("addSysMenuInfo", SysSeedController.class);
+		sysSeedService.addSysMenuInfo(sysSeedInfo);
+		return "0";
+	}
+
 }

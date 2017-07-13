@@ -21,11 +21,11 @@ import tk.ainiyue.danyuan.application.softm.sysmenu.vo.AuthorityzTreeVO;
  */
 @Service("sysMenuService")
 public class SysMenuServiceImpl implements SysMenuService {
-	
+
 	//
 	@Autowired
 	private SysMenuDao sysMenuDao;
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -39,7 +39,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 		// TODO Auto-generated method stub
 		return sysMenuDao.findAll();
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -57,9 +57,9 @@ public class SysMenuServiceImpl implements SysMenuService {
 		vo.setName(authority.getName());
 		vo.setIconSkin(authority.getIcon());
 		return vo;
-		
-	}
 
+	}
+	
 	/**
 	 * 方法名 ： findzTreeByF_ParentId
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -69,7 +69,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * tk.ainiyue.danyuan.application.authority.service.AuthorityService#findzTreeByF_ParentId(java.lang.String)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public List<AuthorityzTreeVO> findzTreeByF_ParentId(String id) {
 		List<AuthorityzTreeVO> list = null;
@@ -91,7 +91,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 		}
 		return list;
 	}
-	
+
 	/**
 	 * 方法名 ： findAuthorityByUuid
 	 * 功 能 ： 查询
@@ -101,12 +101,12 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * tk.ainiyue.danyuan.application.authority.service.AuthorityService#findAuthorityByUuid(tk.ainiyue.danyuan.application.authority.po.Authority)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public SysMenuInfo findAuthorityByUuid(SysMenuInfo sysMenuInfo) {
 		return sysMenuDao.findAllByUuid(sysMenuInfo.getUuid());
 	}
-	
+
 	/**
 	 * 方法名 ： deleteAuthority
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -116,7 +116,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * tk.ainiyue.danyuan.application.authority.service.AuthorityService#deleteAuthority(tk.ainiyue.danyuan.application.authority.po.Authority)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void deleteAuthority(SysMenuInfo sysMenuInfo) {
 		List<AuthorityzTreeVO> list = findzTreeByF_ParentId(sysMenuInfo.getUuid());
@@ -127,7 +127,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 		}
 		sysMenuDao.delete(sysMenuInfo.getUuid());
 	}
-	
+
 	/**
 	 * 方法名 ： updateAuthorityName
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -137,7 +137,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * tk.ainiyue.danyuan.application.authority.service.AuthorityService#updateAuthorityName(tk.ainiyue.danyuan.application.authority.po.Authority)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public AuthorityzTreeVO updateAuthorityName(SysMenuInfo sysMenuInfo) {
 		sysMenuDao.updateSysMenuInfoName(sysMenuInfo.getName(), sysMenuInfo.getUuid());
@@ -146,9 +146,9 @@ public class SysMenuServiceImpl implements SysMenuService {
 		vo.setName(sysMenuInfo.getName());
 		vo.setIconSkin(sysMenuInfo.getIcon());
 		return vo;
-		
+
 	}
-	
+
 	/**
 	 * 方法名 ： onDropAuthority
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -158,7 +158,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * tk.ainiyue.danyuan.application.authority.service.AuthorityService#onDropAuthority(tk.ainiyue.danyuan.application.authority.vo.AuthorityzTreeVO)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public AuthorityzTreeVO onDropAuthority(SysMenuInfo sysMenuInfo) {
 		String[] str = sysMenuInfo.getUuid().split(",");
@@ -179,9 +179,9 @@ public class SysMenuServiceImpl implements SysMenuService {
 						i--;
 					}
 				}
-				
+
 			}
-			
+
 			if ("prev".equals(sysMenuInfo.getMoveType())) {
 				for (SysMenuInfo sysMenuInfo2 : list) {
 					if (temp.getUuid().equals(sysMenuInfo2.getUuid())) {
@@ -204,5 +204,5 @@ public class SysMenuServiceImpl implements SysMenuService {
 		}
 		return new AuthorityzTreeVO();
 	}
-	
+
 }

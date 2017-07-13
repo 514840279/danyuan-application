@@ -26,4 +26,6 @@ public interface SysSeedService {
 	 */
 	List<SysSeedInfo> findAll();
 
+	void addSysMenuInfo(SysSeedInfo info);
+
 }

@@ -10,7 +10,7 @@ import tk.ainiyue.danyuan.application.crawler.seed.po.SysSeedInfo;
 import tk.ainiyue.danyuan.application.crawler.seed.service.SysSeedService;
 
 /**
- * 文件名 ： SysRolesServiceImpl.java
+ * 文件名 ： SysSeedServiceImpl.java
  * 包 名 ： tk.ainiyue.admin.roles.service.impl
  * 描 述 ： TODO(用一句话描述该文件做什么)
  * 机能名称：
@@ -36,8 +36,13 @@ public class SysSeedServiceImpl implements SysSeedService {
 
 	@Override
 	public List<SysSeedInfo> findAll() {
-		// TODO Auto-generated method stub
 		return (List<SysSeedInfo>) sysSeedDao.findAll();
+	}
+
+	@Override
+	public void addSysMenuInfo(SysSeedInfo info) {
+		
+		sysSeedDao.save(info);
 	}
 
 }
