@@ -28,4 +28,8 @@ public interface SysSeedService {
 
 	void addSysMenuInfo(SysSeedInfo info);
 
+	void updateSysSeedInfo(SysSeedInfo sysSeedInfo);
+	
+	void deleteSysSeedInfo(List<SysSeedInfo> list);
+
 }

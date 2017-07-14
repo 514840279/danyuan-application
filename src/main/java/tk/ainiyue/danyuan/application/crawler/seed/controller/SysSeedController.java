@@ -47,11 +47,24 @@ public class SysSeedController {
 	}
 
 	@RequestMapping("/addSysMenuInfo")
-	public String addSysMenuInfo(@RequestBody SysSeedInfo sysSeedInfo) {
-
+	public SysSeedInfo addSysMenuInfo(@RequestBody SysSeedInfo sysSeedInfo) {
 		logger.info("addSysMenuInfo", SysSeedController.class);
 		sysSeedService.addSysMenuInfo(sysSeedInfo);
-		return "0";
+		return sysSeedInfo;
+	}
+	
+	@RequestMapping("/updateSysSeedInfo")
+	public SysSeedInfo updateSysSeedInfo(@RequestBody SysSeedInfo sysSeedInfo) {
+		logger.info("updateSysSeedInfo", SysSeedController.class);
+		sysSeedService.updateSysSeedInfo(sysSeedInfo);
+		return sysSeedInfo;
 	}
 
+	@RequestMapping("/deleteSysSeedInfo")
+	public List<SysSeedInfo> deleteSysSeedInfo(@RequestBody List<SysSeedInfo> list) {
+		logger.info("deleteSysSeedInfo", SysSeedController.class);
+		sysSeedService.deleteSysSeedInfo(list);
+		return list;
+	}
+	
 }

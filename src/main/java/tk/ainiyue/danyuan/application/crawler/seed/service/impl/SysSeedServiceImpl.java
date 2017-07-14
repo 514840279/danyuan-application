@@ -41,8 +41,17 @@ public class SysSeedServiceImpl implements SysSeedService {
 
 	@Override
 	public void addSysMenuInfo(SysSeedInfo info) {
-		
 		sysSeedDao.save(info);
+	}
+
+	@Override
+	public void updateSysSeedInfo(SysSeedInfo sysSeedInfo) {
+		sysSeedDao.save(sysSeedInfo);
+	}
+
+	@Override
+	public void deleteSysSeedInfo(List<SysSeedInfo> list) {
+		sysSeedDao.delete(list);
 	}
 
 }

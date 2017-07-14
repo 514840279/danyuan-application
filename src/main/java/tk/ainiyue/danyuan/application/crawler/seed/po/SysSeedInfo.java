@@ -36,7 +36,7 @@ public class SysSeedInfo {
 	private String	seedType;
 
 	@Column(name = "seed_name", columnDefinition = " varchar(50) COMMENT '网站名称'")
-	private String	seecName;
+	private String	seedName;
 
 	@Column(name = "seed_icon", columnDefinition = " varchar(1000) COMMENT '网站商标'")
 	private String	seedIcon;
@@ -111,25 +111,23 @@ public class SysSeedInfo {
 	public void setSeedType(String seedType) {
 		this.seedType = seedType;
 	}
-
-	/**
-	 * 方法名 ： getSeecName
-	 * 功 能 ： 返回变量 seecName 的值
-	 *
-	 * @return: String
-	 */
-	public String getSeecName() {
-		return seecName;
+	
+	public String getSeedName() {
+		return seedName;
 	}
-
-	/**
-	 * 方法名 ： setSeecName
-	 * 功 能 ： 设置变量 seecName 的值
-	 */
-	public void setSeecName(String seecName) {
-		this.seecName = seecName;
+	
+	public void setSeedName(String seedName) {
+		this.seedName = seedName;
 	}
-
+	
+	public String getSeedIcon() {
+		return seedIcon;
+	}
+	
+	public void setSeedIcon(String seedIcon) {
+		this.seedIcon = seedIcon;
+	}
+	
 	/**
 	 * 方法名 ： getSeedUrl
 	 * 功 能 ： 返回变量 seedUrl 的值

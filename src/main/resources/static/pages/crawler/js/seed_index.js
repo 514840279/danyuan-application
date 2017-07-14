@@ -5,26 +5,44 @@ $(function() {
 		});
 	});
 	$('#editold').click(function() {
-		
-		$("#updateModal").modal("show");
+		var data = $('#crawler_seed_index_datagrid').bootstrapTable('getAllSelections');
+		if(data.length == 0){
+			alert("先选中一条数据");
+		}else if(data.length > 1){
+			alert("只能选择一条");
+		}else{
+			loadUpdate(data[0]);
+		}
 	});
 	
 	$('#deleteold').click(function() {
 		
-		this.parent.bootbox.setLocale("zh_CN");
-		this.parent.bootbox.confirm({
-		message : "确定要删除选定行",
-		title : "系统提示",
-		callback : function(result) {
-			if (result) {
-				var param = {
+		var data = $('#crawler_seed_index_datagrid').bootstrapTable('getAllSelections');
+		if(data.length == 0){
+			alert("先选中一条数据");
+		}else if(data.length > 0){
+			bootbox.setLocale("zh_CN");
+			bootbox.confirm({
+			message : "确定要删除选定行",
+			title : "系统提示",
+			callback : function(result) {
+					if (result) {
+						var param = data;
+						// 重载
+						var url = "/sysSeed/deleteSysSeedInfo";
+						ajaxPost(url, param, successdelete, 1000, findError);
+					}
 				}
-				// 重载
-				var url = "/sysMenuInfo/deleteSysMenuInfo";
-				ajaxPost(url, param, successdelete, 1000, findError);
-			}
+			});
 		}
-		});
+	});
+	
+	$('#role_manager').click(function() {
+		alert("准备做点什么！");
+	});
+	
+	$('#result_manager').click(function() {
+		alert("也准备做点什么！");
 	});
 
 	// bootstrap table
@@ -51,14 +69,16 @@ $(function() {
 		detailView : false, // 是否显示父子表
 		singleSelect : false,
 		locales : "zh-CN", // 表格汉化
+		showExport: true,                     //是否显示导出
+		exportDataType: "basic",              //basic', 'all', 'selected'.
 		search : true, // 显示搜索框
 		sidePagination: "client", // 服务端处理分页
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 			{title : 'id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle'},
 			{title : '网站类型',field : 'seedType',sortable : true,align : 'center'},
-			{title : '网站名称',field : 'seecName',align : 'center',sortable : true,valign : 'middle'	},
-			{title : '网站商标',field : 'seecIcon',align : 'center',sortable : true,valign : 'middle'},
+			{title : '网站名称',field : 'seedName',align : 'center',sortable : true,valign : 'middle'	},
+			{title : '网站商标',field : 'seedIcon',align : 'center',sortable : true,valign : 'middle'},
 			{title : '链接地址',field : 'seedUrl',	align : 'center',sortable : true,valign : 'middle'},
 			{title : '字符集',	field : 'charset',	sortable : true,align : 'center'},
 			{title : '请求时间',field : 'requestDate',	sortable : true,align : 'center'},
@@ -77,7 +97,7 @@ function submit() {
 	var param = {
 		uuid : getUuid(),
 		seedType : $("#add_seedType").val(),
-		seecName : $("#add_seecName").val(),
+		seedName : $("#add_seedName").val(),
 		seedIcon : $("#add_seedIcon").val(),
 		seedUrl : $("#add_seedUrl").val(),
 		charset : $("#add_charset").val(),
@@ -95,19 +115,22 @@ function submit() {
 }
 
 function sucessAdd(result) {
-	alert(result);
 	$("#addModal").modal("hide");
+	$('#crawler_seed_index_datagrid').bootstrapTable('append', result);
 }
 //========================================================================
 // 修改信息
 function loadUpdate(result) {
 	$("#upd_uuid").val(result.uuid);
-	$("#upd_name").val(result.name);
-	$("#upd_icon").val(result.icon);
+	$("#upd_seedType").val(result.seedType);
+	$("#upd_seedName").val(result.seedName);
+	$("#upd_seedIcon").val(result.seedIcon);
+	$("#upd_seedUrl").val(result.seedUrl);
+	$("#upd_charset").val(result.charset);
+	$("#upd_requestType").val(result.requestType);
+	$("#upd_requestDate").val(result.requestDate);
+	$("#upd_requestProxy").val(result.requestProxy);
 	$("#upd_discription").val(result.discription);
-	$("#upd_uri").val(result.uri);
-	$("#upd_parentId").val(result.parentsId);
-	$("#upd_sort").val(result.sort);
 	$("#upd_deleteFlag").val(result.deleteFlag);
 	
 	$("#updateModal").modal("show");
@@ -115,31 +138,40 @@ function loadUpdate(result) {
 
 function updatesubmit() {
 	var param = {
-		uuid : getUuid(),
-		seedType : $("#add_seedType").val(),
-		seecName : $("#add_seecName").val(),
-		seedIcon : $("#add_seedIcon").val(),
-		seedUrl : $("#add_seedUrl").val(),
-		charset : $("#add_charset").val(),
-		requestType : $("#add_requestType").val(),
-		requestDate : $("#add_requestDate").val(),
-		requestProxy : $("#add_requestProxy").val(),
-		discription : $("#add_discription").val(),
+		uuid : $("#upd_uuid").val(),
+		seedType : $("#upd_seedType").val(),
+		seedName : $("#upd_seedName").val(),
+		seedIcon : $("#upd_seedIcon").val(),
+		seedUrl : $("#upd_seedUrl").val(),
+		charset : $("#upd_charset").val(),
+		requestType : $("#upd_requestType").val(),
+		requestDate : $("#upd_requestDate").val(),
+		requestProxy : $("#upd_requestProxy").val(),
+		discription : $("#upd_discription").val(),
 		insertUser : "system",
 //					insertDatetime:getNowFormatDate(),
 		deleteFlag : 0,
 	}
-	var url = "/sysMenuInfo/updateSysMenuInfo";
+	var url = "/sysSeed/updateSysSeedInfo";
 	// 重载
 	ajaxPost(url, param, successUpdate, 1000, findError);
 }
 
 function successUpdate(result) {
 	$("#updateModal").modal("hide");
+	$('#crawler_seed_index_datagrid').bootstrapTable('refresh');
+//	$('#crawler_seed_index_datagrid').bootstrapTable('updateRow', {id: result.uuid, row: result});
 }
 
 //========================================================================
-
+// 删除成功后
+function successdelete(result){
+//	j$.each(result, function(index, value) {
+//		$('#crawler_seed_index_datagrid').bootstrapTable('remove', {field: 'uuid', values: value.uuid});
+//	})
+	$('#crawler_seed_index_datagrid').bootstrapTable('refresh');
+	alert("删除数据成功！");
+}
 
 
 //========================================================================
