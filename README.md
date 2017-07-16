@@ -23,6 +23,14 @@
 8. 访问http://localhost:9999 # 端口号
 9. 输入用户名、密码 admin/admin
 
+##效果
+![登录验证](screen/7.png)
+![首页](screen/6.png)
+![ztree](screen/5.png)
+![种子管理](screen/4.png)
+![弹窗1](screen/3.png)
+![弹窗1](screen/2.png)
+![右键](screen/1.png)
 
 
 ## 2017/07/14
