@@ -78,7 +78,7 @@ $(function() {
 			{title : 'id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle'},
 			{title : '网站类型',field : 'seedType',sortable : true,align : 'center'},
 			{title : '网站名称',field : 'seedName',align : 'center',sortable : true,valign : 'middle'	},
-			{title : '网站商标',field : 'seedIcon',align : 'center',sortable : true,valign : 'middle'},
+			{title : '网站商标',field : 'seedIcon',align : 'center',sortable : true,valign : 'middle' ,formatter:imgshow},
 			{title : '链接地址',field : 'seedUrl',	align : 'center',sortable : true,valign : 'middle'},
 			{title : '字符集',	field : 'charset',	sortable : true,align : 'center'},
 			{title : '请求时间',field : 'requestDate',	sortable : true,align : 'center'},
@@ -91,6 +91,10 @@ $(function() {
 	});
 
 });
+function imgshow(value,row,index){
+	return "<img src='"+value+"'>";
+} 
+
 // ========================================================================
 // 添加数据
 function submit() {
