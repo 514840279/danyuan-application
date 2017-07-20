@@ -38,7 +38,26 @@ $(function() {
 	});
 	
 	$('#role_manager').click(function() {
-		alert("准备做点什么！");
+		var data = $('#crawler_seed_index_datagrid').bootstrapTable('getAllSelections');
+		if(data.length == 0){
+			alert("先选中一条数据");
+		}else if(data.length > 0){
+			
+			$("#role_seed_uuid").text(data[0].uuid);
+			$("#role_seed_type").text(data[0].seedType);
+			$("#role_seed_name").text(data[0].seedName);
+			$("#role_seed_icon").attr("src",data[0].seedIcon);
+			$("#role_seed_url").text(data[0].seedUrl);
+			$("#role_seed_charset").text(data[0].charset);
+			$("#role_seed_requesttype").text(data[0].requestType);
+			$("#role_seed_requesttime").text(data[0].requestDate);
+			$("#role_seed_discription").text(data[0].discription);
+			
+			$("#Modal_roler").modal({
+				show:true,
+				
+			})
+		}
 	});
 	
 	$('#result_manager').click(function() {
@@ -62,7 +81,7 @@ $(function() {
 		showRefresh : true, // 是否显示刷新按钮
 		minimumCountColumns : 2, // 最少允许的列数
 		clickToSelect : true, // 是否启用点击选中行
-		height : 500, // 行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+		height : 660, // 行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
 		uniqueId : "uuid", // 每一行的唯一标识，一般为主键列
 		showToggle : true, // 是否显示详细视图和列表视图的切换按钮
 		cardView : false, // 是否显示详细视图
@@ -81,7 +100,9 @@ $(function() {
 			{title : '网站商标',field : 'seedIcon',align : 'center',sortable : true,valign : 'middle' ,formatter:imgshow},
 			{title : '链接地址',field : 'seedUrl',	align : 'center',sortable : true,valign : 'middle'},
 			{title : '字符集',	field : 'charset',	sortable : true,align : 'center'},
+			{title : '请求类型',field : 'requestType',	sortable : true,align : 'center'},
 			{title : '请求时间',field : 'requestDate',	sortable : true,align : 'center'},
+			{title : '请求代理',field : 'requestProxy',	sortable : true,align : 'center'},
 			{title : '资源功能描述',	field : 'discription',sortable : true,align : 'center'}
 		]
 	});
@@ -176,16 +197,4 @@ function successdelete(result){
 	$('#crawler_seed_index_datagrid').bootstrapTable('refresh');
 	alert("删除数据成功！");
 }
-
-
-//========================================================================
-
-
-
-//========================================================================
-
-
-
-//========================================================================
-
 
