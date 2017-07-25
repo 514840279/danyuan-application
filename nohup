@@ -1,0 +1,1 @@
+nohup java -jar /home/server/danyuan.jsr >/dev/null 2>&1 &

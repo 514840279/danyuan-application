@@ -26,4 +26,15 @@ public interface SysRolerService {
 	 */
 	List<SysRolerInfo> findAll();
 	
+	/**
+	 * 方法名： addSysRoler
+	 * 功 能： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数： @param rolerInfo
+	 * 参 数： @return
+	 * 返 回： List<SysRolerInfo>
+	 * 作 者 ： wang
+	 * @throws
+	 */
+	void addSysRoler(SysRolerInfo rolerInfo);
+	
 }

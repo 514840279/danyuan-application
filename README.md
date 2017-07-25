@@ -23,6 +23,13 @@
 8. 访问http://localhost:9999 # 端口号
 9. 输入用户名、密码 admin/admin
 
+##演示地址
+http://www.danyuan.wang/#
+账号密码：admin/admin
+
+QQ群：314023211
+联系qq：514840279
+
 ##效果
 ![登录验证](screen/7.png)
 ![首页](screen/6.png)
@@ -32,20 +39,3 @@
 ![弹窗1](screen/2.png)
 ![右键](screen/1.png)
 
-
-## 2017/07/14
-1. 完善种子管理页面增删改
-2. 修改bootstrap-table表格汉化，添加导出文件按钮
-
-## 2017/07/13
-1. 网站采集种子配置管理模块添加
-2. 修改banner
-3. 修改软件图标
-4. 修改项目名称定义为：初学者
-
-## 2017/07/12
-调整软件模块
-
-## 2017/07/07
-1. 修改ztree完善点击选择图标
-2. 添加安全框架spring-boot-starter-security

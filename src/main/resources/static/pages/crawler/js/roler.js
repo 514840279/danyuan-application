@@ -1,4 +1,6 @@
 $(function() {
+	
+	
 	$('#addnew_roler').click(function() {
 		$("#addModal_roler").modal({
 			show:true,
@@ -37,6 +39,14 @@ $(function() {
 		}
 	});
 	
+	// add roler
+	$('#add_roler_button_apply').click(function() {
+		if($("#add_roler_subUri").val()==null){
+			alert("配对地址必须填入");
+			return;
+		}
+		add_roler_submit();
+	});
 	
 	$('#result_manager').click(function() {
 		alert("也准备做点什么！");
@@ -73,11 +83,9 @@ $(function() {
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 			{title : 'id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle'},
-			{title : '网站id',field : 'seedUuid',sortable : true,align : 'center'},
 			{title : '规则类别',field : 'type',align : 'center',sortable : true,valign : 'middle'	},
 			{title : '名称',field : 'name',align : 'center',sortable : true,valign : 'middle'},
 			{title : '配对网址段',field : 'subUri',	align : 'center',sortable : true,valign : 'middle'},
-			{title : '字符集',	field : 'contentInfo',	sortable : true,align : 'center'},
 			{title : '请求操作',field : 'requestType',	sortable : true,align : 'center'},
 			{title : '字符集',	field : 'charset',sortable : true,align : 'center'},
 			{title : '描述',	field : 'discription',sortable : true,align : 'center'}
@@ -95,4 +103,26 @@ function imgshow(value,row,index){
 
 // ========================================================================
 // 添加数据
+function add_roler_submit() {
+	var param = {
+		uuid : getUuid(),
+		seedUuid : $("#role_seed_uuid").text(),
+//		type : $("#add_seedType").val(),
+		name : $("#add_roler_name").val(),
+		subUri : $("#add_roler_subUri").val(),
+		requestType : $("#add_roler_requestType").val(),
+		charset : $("#add_roler_charset").val(),
+		discription : $("#add_roler_discription").val(),
+		insertUser : "system",
+		deleteFlag : 0,
+	}
+	var url = "/sysRoler/addSysRoler";
+	// 重载
+	ajaxPost(url, param, sucessAddRoler, 1000, findError);
+}
+
+function sucessAddRoler(){
+	
+}
+
 

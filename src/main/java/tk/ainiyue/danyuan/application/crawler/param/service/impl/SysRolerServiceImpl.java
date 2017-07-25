@@ -40,4 +40,19 @@ public class SysRolerServiceImpl implements SysRolerService {
 		return (List<SysRolerInfo>) sysSeedRolerDao.findAll();
 	}
 	
+	/**
+	 * 方法名 ： addSysRoler
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param rolerInfo
+	 * 参 数 ： @return
+	 * 参 考 ： @see
+	 * tk.ainiyue.danyuan.application.crawler.param.service.SysRolerService#addSysRoler(tk.ainiyue.danyuan.application.crawler.param.po.SysRolerInfo)
+	 * 作 者 ： wang
+	 */
+	
+	@Override
+	public void addSysRoler(SysRolerInfo rolerInfo) {
+		sysSeedRolerDao.save(rolerInfo);
+	}
+	
 }

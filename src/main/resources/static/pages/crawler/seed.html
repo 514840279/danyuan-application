@@ -271,7 +271,7 @@
 	</div>
 	
 	
-	<!-- 添加规则模态框（Modal） -->
+	<!-- 添加规则模板模态框（Modal） -->
 	<div class="modal fade bs-example-modal-lg" id="addModal_roler" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_roler" aria-hidden="true">
 		<div class="modal-dialog" style="width: 1400px">
 			<div class="modal-content">
@@ -283,36 +283,52 @@
 					<!-- Main content -->
 					<section class="content">
 						<!-- 模板 -->
-						<div>
+						<div class="row">
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-3 control-label">配对地址段</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_roler_subUri" name="subUri" placeholder="http://www.baidu.com">
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-3 control-label">名称</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_roler_name" name="seedIcon" placeholder="百度">
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-3 control-label">请求方式</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_roler_requestType" name="seedIcon" placeholder="get，post">
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-3 control-label">字符集</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_roler_charset" name="seedIcon" placeholder="utf-8">
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-3 control-label">描述</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_roler_discription" name="seedIcon" placeholder="对模板的描述">
+								</div>
+							</div>
 							<div class=" col-md-6 form-group">
 								<label class="col-sm-6 control-label">选择网页类型</label>
 								<div class="col-sm-6">
-									<label class="control-label"> <input type="radio" name="requestProxy" data-flag="icheck" class="flat-red" value="list"> 表格页面
-									</label> &nbsp; <label class="control-label"> <input type="radio" name="requestProxy" data-flag="icheck" class="flat-red" value="detail"> 内容页面
+									<label class="control-label"> <input type="radio" name="type" data-flag="icheck" class="flat-red" value="list"> 表格页面
+									</label> &nbsp; <label class="control-label"> <input type="radio" name="type" data-flag="icheck" class="flat-red" value="detail"> 内容页面
 									</label>
 								</div>
 							</div>
 							<div class=" col-md-2 form-group">
 								<div class="col-sm-6">
-									<button class="btn btn-primary" >应用</button>
-								</div>
-<!-- 								<div class="col-sm-6"> -->
-<!-- 									<button class="btn btn-warning" >编辑</button> -->
-<!-- 								</div> -->
-							</div>
-							<div class=" col-md-6 form-group">
-								<label class="col-sm-3 control-label">名称</label>
-								<div class="col-sm-9">
-									<input type="text" class="form-control" id="upd_seedIcon" name="seedIcon" placeholder="百度">
-								</div>
-							</div>
-							<div class=" col-md-6 form-group">
-								<label class="col-sm-4 control-label">配对地址段</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="upd_seedIcon" name="seedIcon" placeholder="http://www.baidu.com">
+									<button id="add_roler_button_apply" class="btn btn-primary" >应用</button>
 								</div>
 							</div>
 						</div>
+						<hr/>
 						
 						<!-- 	表格 -->
 						<div id="toolbar3">
@@ -376,6 +392,89 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button type="button" class="btn btn-primary" onclick="updatesubmit();">提交添加</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	
+	
+	<!-- 添加规则模态框（Modal） -->
+	<div class="modal fade bs-example-modal-lg" id="addModal_colum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_colum" aria-hidden="true">
+		<div class="modal-dialog" style="width: 1400px">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel_colum">字段提取规则</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class=" col-md-6 form-group">
+							<label class="col-sm-3 control-label">名称</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="add_column_name" name="name" placeholder="标题">
+							</div>
+						</div>
+						<div class=" col-md-6 form-group">
+							<label class="col-sm-3 control-label">规则</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="upd_seedIcon" name="seedIcon" placeholder="//div/span[@class='title']//text()[1]">
+							</div>
+						</div>
+						<div class=" col-md-6 form-group">
+							<label class="col-sm-3 control-label">处理方式</label>
+							<div class="col-sm-9">
+								 <input type="text" class="form-control" name="requestProxy"  id="add_column_name" name="name" placeholder="(l)提取内容，(n)直接返回规则字符串，(spl)截取字符，(arr)取数组的一个，（app）拼接字符，(str)截取字符，(rep)替换字符，。。。"> 
+							</div>
+						</div>
+						<div class=" col-md-6 form-group">
+							<label class="col-sm-3 control-label">spl1</label>
+							<div class="col-sm-9">
+								 <input type="text" class="form-control" name="requestProxy"  id="add_column_name" name="name" placeholder=""> 
+							</div>
+						</div>
+						<div class=" col-md-6 form-group">
+							<label class="col-sm-3 control-label">spl2</label>
+							<div class="col-sm-9">
+								 <input type="text" class="form-control" name="requestProxy"  id="add_column_name" name="name" placeholder=""> 
+							</div>
+						</div>
+						<div class=" col-md-6 form-group">
+							<label class="col-sm-3 control-label">app1</label>
+							<div class="col-sm-9">
+								 <input type="text" class="form-control" name="requestProxy"  id="add_column_name" name="name" placeholder=""> 
+							</div>
+						</div>
+						<div class=" col-md-6 form-group">
+							<label class="col-sm-3 control-label">app2</label>
+							<div class="col-sm-9">
+								 <input type="text" class="form-control" name="requestProxy"  id="add_column_name" name="name" placeholder=""> 
+							</div>
+						</div>
+						<div class=" col-md-6 form-group">
+							<label class="col-sm-3 control-label">arr</label>
+							<div class="col-sm-9">
+								 <input type="text" class="form-control" name="requestProxy"  id="add_column_name" name="name" placeholder=""> 
+							</div>
+						</div>
+						<div class=" col-md-6 form-group">
+							<label class="col-sm-3 control-label">str</label>
+							<div class="col-sm-9">
+								 <input type="text" class="form-control" name="requestProxy"  id="add_column_name" name="name" placeholder=""> 
+							</div>
+						</div>
+						<div class=" col-md-6 form-group">
+							<label class="col-sm-3 control-label">rep</label>
+							<div class="col-sm-9">
+								 <input type="text" class="form-control" name="requestProxy"  id="add_column_name" name="name" placeholder=""> 
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" onclick="submit();">提交添加</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->

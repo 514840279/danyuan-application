@@ -42,9 +42,6 @@ public class SysRolerInfo {
 	@Column(name = "sub_uri", columnDefinition = "varchar(200) COMMENT '配对网址段'")
 	private String	subUri;		 // sub_uri 配对网址段
 	
-	@Column(name = "content_info", columnDefinition = "varchar(20) COMMENT '规则信息'")
-	private String	contentInfo; // content_info 规则信息
-	
 	@Column(name = "request_type", columnDefinition = "varchar(20) COMMENT '请求操作'")
 	private String	requestType; // request_type 请求操作
 	
@@ -159,24 +156,6 @@ public class SysRolerInfo {
 	 */
 	public void setSubUri(String subUri) {
 		this.subUri = subUri;
-	}
-	
-	/**
-	 * 方法名 ： getContentInfo
-	 * 功 能 ： 返回变量 contentInfo 的值
-	 * 
-	 * @return: String
-	 */
-	public String getContentInfo() {
-		return contentInfo;
-	}
-	
-	/**
-	 * 方法名 ： setContentInfo
-	 * 功 能 ： 设置变量 contentInfo 的值
-	 */
-	public void setContentInfo(String contentInfo) {
-		this.contentInfo = contentInfo;
 	}
 	
 	/**
@@ -333,7 +312,7 @@ public class SysRolerInfo {
 	
 	@Override
 	public String toString() {
-		return "SysRolerInfo [uuid=" + uuid + ", seedUuid=" + seedUuid + ", type=" + type + ", name=" + name + ", subUri=" + subUri + ", contentInfo=" + contentInfo + ", requestType=" + requestType + ", charset=" + charset + ", discription=" + discription + ", createTime=" + createTime + ", createUser=" + createUser + ", updataTime=" + updataTime + ", updataUser=" + updataUser + ", deleteFlag=" + deleteFlag + "]";
+		return "SysRolerInfo [uuid=" + uuid + ", seedUuid=" + seedUuid + ", type=" + type + ", name=" + name + ", subUri=" + subUri + ", requestType=" + requestType + ", charset=" + charset + ", discription=" + discription + ", createTime=" + createTime + ", createUser=" + createUser + ", updataTime=" + updataTime + ", updataUser=" + updataUser + ", deleteFlag=" + deleteFlag + "]";
 	}
 	
 }
