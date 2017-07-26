@@ -25,5 +25,9 @@ public interface SysSeedRolerColumService {
 	 * @throws
 	 */
 	List<SysSeedRolerColumInfo> findAll();
+
+	void addSysRolerColum(SysSeedRolerColumInfo info);
+	
+	void deleteSysRolerInfo(List<SysSeedRolerColumInfo> list);
 	
 }

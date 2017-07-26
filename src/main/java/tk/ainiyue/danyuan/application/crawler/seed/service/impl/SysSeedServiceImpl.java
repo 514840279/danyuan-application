@@ -21,11 +21,11 @@ import tk.ainiyue.danyuan.application.crawler.seed.service.SysSeedService;
  */
 @Service("sysSeedService")
 public class SysSeedServiceImpl implements SysSeedService {
-
+	
 	//
 	@Autowired
 	private SysSeedDao sysSeedDao;
-
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -33,25 +33,20 @@ public class SysSeedServiceImpl implements SysSeedService {
 	 * 参 考 ： @see tk.ainiyue.admin.roles.service.SysRolesService#findAll()
 	 * 作 者 ： Tenghui.Wang
 	 */
-
+	
 	@Override
 	public List<SysSeedInfo> findAll() {
 		return (List<SysSeedInfo>) sysSeedDao.findAll();
 	}
-
+	
 	@Override
 	public void addSysMenuInfo(SysSeedInfo info) {
 		sysSeedDao.save(info);
 	}
-
-	@Override
-	public void updateSysSeedInfo(SysSeedInfo sysSeedInfo) {
-		sysSeedDao.save(sysSeedInfo);
-	}
-
+	
 	@Override
 	public void deleteSysSeedInfo(List<SysSeedInfo> list) {
 		sysSeedDao.delete(list);
 	}
-
+	
 }

@@ -1,8 +1,7 @@
 $(function() {
 	$('#addnew_colum').click(function() {
-		$("#addModal_colum").modal({
-			show:true,
-		});
+		loadUpdate_colum("");
+		
 	});
 	$('#editold_colum').click(function() {
 		var data = $('#crawler_seed_roler_colum_datagrid').bootstrapTable('getAllSelections');
@@ -11,7 +10,7 @@ $(function() {
 		}else if(data.length > 1){
 			alert("只能选择一条");
 		}else{
-			loadUpdate(data[0]);
+			loadUpdate_colum(data[0]);
 		}
 	});
 	
@@ -29,8 +28,8 @@ $(function() {
 					if (result) {
 						var param = data;
 						// 重载
-						var url = "/sysSeed/deleteSysSeedInfo";
-						ajaxPost(url, param, successdelete, 1000, findError);
+						var url = "/sysRolerColum/deleteSysRolerColum";
+						ajaxPost(url, param, sucessAddColumn, 1000, findError);
 					}
 				}
 			});
@@ -91,4 +90,65 @@ function imgshow(value,row,index){
 
 // ========================================================================
 // 添加数据
+function  submitAddColumn(){
+	var param = {
+			uuid :  $("#add_column_uuid").val(),
+			rolerUuid : $("#add_roler_uuid").val(),
+			columName : $("#add_column_name").val(),
+			roler : $("#add_column_roler").val(),
+			type : $("#add_column_type").val(),
+			spl1 : $("#add_column_spl1").val(),
+			spl2 : $("#add_column_spl2").val(),
+			app1 : $("#add_column_app1").val(),
+			app2 : $("#add_column_app2").val(),
+			arr : $("#add_column_arr").val(),
+			discription : $("#add_column_discription").val(),
+			insertUser : "system",
+			deleteFlag : 0,
+		}
+		var url = "/sysRolerColum/addSysRolerColum";
+		// 重载
+		ajaxPost(url, param, sucessAddColumn, 1000, findError);
+}
+
+function sucessAddColumn(result){
+	$("#addModal_colum").modal("hide");
+	$('#crawler_seed_roler_colum_datagrid').bootstrapTable('refresh');
+}
+
+// ========================================================================
+// 修改
+function loadUpdate_colum(result){
+	if(result!= ""){
+		$("#add_column_uuid").val(result.uuid);
+		$("#add_column_name").val(result.columName);
+		$("#add_column_roler").val(result.roler);
+		$("#add_roler_requestType").val(result.requestType);
+		$("#add_column_type").val(result.type);
+		$("#add_column_spl1").val(result.spl1);
+		$("#add_column_spl2").val(result.spl2);
+		$("#add_column_app1").val(result.app1);
+		$("#add_column_app2").val(result.app2);
+		$("#add_column_arr").val(result.arr);
+		$("#add_column_rep").val(result.rep);
+		$("#add_column_discription").val(result.discription);
+	}else{
+		$("#add_column_uuid").val(getUuid());
+		$("#add_column_name").val();
+		$("#add_column_roler").val();
+		$("#add_roler_requestType").val();
+		$("#add_column_type").val();
+		$("#add_column_spl1").val();
+		$("#add_column_spl2").val();
+		$("#add_column_app1").val();
+		$("#add_column_app2").val();
+		$("#add_column_arr").val();
+		$("#add_column_rep").val();
+		$("#add_column_discription").val();
+	}
+	
+	$("#addModal_colum").modal({
+		show:true,
+	});
+}
 

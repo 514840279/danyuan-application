@@ -52,19 +52,12 @@ public class SysSeedController {
 		sysSeedService.addSysMenuInfo(sysSeedInfo);
 		return sysSeedInfo;
 	}
-	
-	@RequestMapping("/updateSysSeedInfo")
-	public SysSeedInfo updateSysSeedInfo(@RequestBody SysSeedInfo sysSeedInfo) {
-		logger.info("updateSysSeedInfo", SysSeedController.class);
-		sysSeedService.updateSysSeedInfo(sysSeedInfo);
-		return sysSeedInfo;
-	}
 
 	@RequestMapping("/deleteSysSeedInfo")
 	public List<SysSeedInfo> deleteSysSeedInfo(@RequestBody List<SysSeedInfo> list) {
 		logger.info("deleteSysSeedInfo", SysSeedController.class);
 		sysSeedService.deleteSysSeedInfo(list);
-		return list;
+		return sysSeedService.findAll();
 	}
 	
 }

@@ -36,5 +36,7 @@ public interface SysRolerService {
 	 * @throws
 	 */
 	void addSysRoler(SysRolerInfo rolerInfo);
+
+	void deleteSysRolerInfo(List<SysRolerInfo> list);
 	
 }

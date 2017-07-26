@@ -38,10 +38,17 @@ public class SysRolerController {
 	}
 	
 	@RequestMapping("/addSysRoler")
-	public String addSysRoler(@RequestBody SysRolerInfo rolerInfo) {
+	public SysRolerInfo addSysRoler(@RequestBody SysRolerInfo rolerInfo) {
 		logger.info("addSysRoler", SysRolerController.class);
 		sysSeedRolerService.addSysRoler(rolerInfo);
-		return "0";
+		return rolerInfo;
 	}
-	
+
+	@RequestMapping("/deleteSysRolerInfo")
+	public List<SysRolerInfo> deleteSysRolerInfo(@RequestBody List<SysRolerInfo> list) {
+		logger.info("deleteSysRolerInfo", SysRolerController.class);
+		sysSeedRolerService.deleteSysRolerInfo(list);
+		return sysSeedRolerService.findAll();
+	}
+
 }

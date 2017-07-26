@@ -15,7 +15,7 @@ import tk.ainiyue.danyuan.application.crawler.seed.po.SysSeedInfo;
  * 版 本 ： V1.0
  */
 public interface SysSeedService {
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -25,11 +25,9 @@ public interface SysSeedService {
 	 * @throws
 	 */
 	List<SysSeedInfo> findAll();
-
+	
 	void addSysMenuInfo(SysSeedInfo info);
 
-	void updateSysSeedInfo(SysSeedInfo sysSeedInfo);
-	
 	void deleteSysSeedInfo(List<SysSeedInfo> list);
-
+	
 }

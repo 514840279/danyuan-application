@@ -21,11 +21,11 @@ import tk.ainiyue.danyuan.application.crawler.param.service.SysSeedRolerColumSer
  */
 @Service("sysSeedRolerColumService")
 public class SysSeedRolerColumServiceImpl implements SysSeedRolerColumService {
-	
+
 	//
 	@Autowired
 	private SysSeedRolerColumDao sysSeedRolerColumDao;
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -34,10 +34,21 @@ public class SysSeedRolerColumServiceImpl implements SysSeedRolerColumService {
 	 * tk.ainiyue.danyuan.application.crawler.param.service.SysSeedRolerColumService#findAll()
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public List<SysSeedRolerColumInfo> findAll() {
 		return (List<SysSeedRolerColumInfo>) sysSeedRolerColumDao.findAll();
 	}
 	
+	@Override
+	public void addSysRolerColum(SysSeedRolerColumInfo info) {
+		sysSeedRolerColumDao.save(info);
+	}
+	
+	@Override
+	public void deleteSysRolerInfo(List<SysSeedRolerColumInfo> list) {
+		sysSeedRolerColumDao.delete(list);
+
+	}
+
 }

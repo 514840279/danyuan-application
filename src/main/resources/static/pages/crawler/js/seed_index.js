@@ -1,8 +1,6 @@
 $(function() {
 	$('#addnew').click(function() {
-		$("#addModal").modal({
-			show:true,
-		});
+		loadUpdate("");
 	});
 	$('#editold').click(function() {
 		var data = $('#crawler_seed_index_datagrid').bootstrapTable('getAllSelections');
@@ -120,7 +118,7 @@ function imgshow(value,row,index){
 // 添加数据
 function submit() {
 	var param = {
-		uuid : getUuid(),
+		uuid :$("#add_uuid").val(),
 		seedType : $("#add_seedType").val(),
 		seedName : $("#add_seedName").val(),
 		seedIcon : $("#add_seedIcon").val(),
@@ -131,7 +129,6 @@ function submit() {
 		requestProxy : $("#add_requestProxy").val(),
 		discription : $("#add_discription").val(),
 		insertUser : "system",
-//		insertDatetime:getNowFormatDate(),
 		deleteFlag : 0,
 	}
 	var url = "/sysSeed/addSysMenuInfo";
@@ -141,59 +138,43 @@ function submit() {
 
 function sucessAdd(result) {
 	$("#addModal").modal("hide");
-	$('#crawler_seed_index_datagrid').bootstrapTable('append', result);
+	$('#crawler_seed_index_datagrid').bootstrapTable('refresh');
 }
 //========================================================================
 // 修改信息
 function loadUpdate(result) {
-	$("#upd_uuid").val(result.uuid);
-	$("#upd_seedType").val(result.seedType);
-	$("#upd_seedName").val(result.seedName);
-	$("#upd_seedIcon").val(result.seedIcon);
-	$("#upd_seedUrl").val(result.seedUrl);
-	$("#upd_charset").val(result.charset);
-	$("#upd_requestType").val(result.requestType);
-	$("#upd_requestDate").val(result.requestDate);
-	$("#upd_requestProxy").val(result.requestProxy);
-	$("#upd_discription").val(result.discription);
-	$("#upd_deleteFlag").val(result.deleteFlag);
-	
-	$("#updateModal").modal("show");
-}
-
-function updatesubmit() {
-	var param = {
-		uuid : $("#upd_uuid").val(),
-		seedType : $("#upd_seedType").val(),
-		seedName : $("#upd_seedName").val(),
-		seedIcon : $("#upd_seedIcon").val(),
-		seedUrl : $("#upd_seedUrl").val(),
-		charset : $("#upd_charset").val(),
-		requestType : $("#upd_requestType").val(),
-		requestDate : $("#upd_requestDate").val(),
-		requestProxy : $("#upd_requestProxy").val(),
-		discription : $("#upd_discription").val(),
-		insertUser : "system",
-//					insertDatetime:getNowFormatDate(),
-		deleteFlag : 0,
+	if(result!= ""){
+		$("#add_uuid").val(result.uuid);
+		$("#add_seedType").val(result.seedType);
+		$("#add_seedName").val(result.seedName);
+		$("#add_seedIcon").val(result.seedIcon);
+		$("#add_seedUrl").val(result.seedUrl);
+		$("#add_charset").val(result.charset);
+		$("#add_requestType").val(result.requestType);
+		$("#add_requestDate").val(result.requestDate);
+		$("#add_requestProxy").val(result.requestProxy);
+		$("#add_discription").val(result.discription);
+		$("#add_deleteFlag").val(result.deleteFlag);
+	}else{
+		$("#add_uuid").val(getUuid());
+		$("#add_seedType").val();
+		$("#add_seedName").val();
+		$("#add_seedIcon").val();
+		$("#add_seedUrl").val();
+		$("#add_charset").val();
+		$("#add_requestType").val();
+		$("#add_requestDate").val();
+		$("#add_requestProxy").val();
+		$("#add_discription").val();
+		$("#add_deleteFlag").val();
 	}
-	var url = "/sysSeed/updateSysSeedInfo";
-	// 重载
-	ajaxPost(url, param, successUpdate, 1000, findError);
+	$("#addModal").modal({
+		show:true,
+	});
 }
-
-function successUpdate(result) {
-	$("#updateModal").modal("hide");
-	$('#crawler_seed_index_datagrid').bootstrapTable('refresh');
-//	$('#crawler_seed_index_datagrid').bootstrapTable('updateRow', {id: result.uuid, row: result});
-}
-
 //========================================================================
 // 删除成功后
 function successdelete(result){
-//	j$.each(result, function(index, value) {
-//		$('#crawler_seed_index_datagrid').bootstrapTable('remove', {field: 'uuid', values: value.uuid});
-//	})
 	$('#crawler_seed_index_datagrid').bootstrapTable('refresh');
 	alert("删除数据成功！");
 }

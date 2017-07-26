@@ -1,10 +1,6 @@
 $(function() {
-	
-	
 	$('#addnew_roler').click(function() {
-		$("#addModal_roler").modal({
-			show:true,
-		});
+		loadUpdate_roler("");
 	});
 	$('#editold_roler').click(function() {
 		var data = $('#crawler_seed_roler_datagrid').bootstrapTable('getAllSelections');
@@ -13,13 +9,13 @@ $(function() {
 		}else if(data.length > 1){
 			alert("只能选择一条");
 		}else{
-			loadUpdate(data[0]);
+			loadUpdate_roler(data[0]);
 		}
 	});
 	
 	$('#deleteold_roler').click(function() {
 		
-		var data = $('#crawler_seed_index_datagrid').bootstrapTable('getAllSelections');
+		var data = $('#crawler_seed_roler_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length > 0){
@@ -31,8 +27,8 @@ $(function() {
 					if (result) {
 						var param = data;
 						// 重载
-						var url = "/sysSeed/deleteSysSeedInfo";
-						ajaxPost(url, param, successdelete, 1000, findError);
+						var url = "/sysRoler/deleteSysRolerInfo";
+						ajaxPost(url, param, sucessAddRoler, 1000, findError);
 					}
 				}
 			});
@@ -69,7 +65,7 @@ $(function() {
 		showRefresh : true, // 是否显示刷新按钮
 		minimumCountColumns : 2, // 最少允许的列数
 		clickToSelect : true, // 是否启用点击选中行
-		height : 200, // 行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+		height : 350, // 行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
 		uniqueId : "uuid", // 每一行的唯一标识，一般为主键列
 		showToggle : true, // 是否显示详细视图和列表视图的切换按钮
 		cardView : false, // 是否显示详细视图
@@ -93,7 +89,7 @@ $(function() {
 	});
 	// 窗口大小改变时 重设表头
 	$(window).resize(function() {
-		$('#crawler_seed_index_datagrid').bootstrapTable('resetView');
+		$('#crawler_seed_roler_datagrid').bootstrapTable('resetView');
 	});
 
 });
@@ -105,9 +101,9 @@ function imgshow(value,row,index){
 // 添加数据
 function add_roler_submit() {
 	var param = {
-		uuid : getUuid(),
+		uuid : $("#add_roler_uuid").val(),
 		seedUuid : $("#role_seed_uuid").text(),
-//		type : $("#add_seedType").val(),
+//		type : $("#role_seed_type").text(),
 		name : $("#add_roler_name").val(),
 		subUri : $("#add_roler_subUri").val(),
 		requestType : $("#add_roler_requestType").val(),
@@ -121,8 +117,28 @@ function add_roler_submit() {
 	ajaxPost(url, param, sucessAddRoler, 1000, findError);
 }
 
-function sucessAddRoler(){
-	
+function sucessAddRoler(result){
+	$('#crawler_seed_roler_datagrid').bootstrapTable('refresh');
 }
-
+// =========================================================================
+// 修改数据
+function loadUpdate_roler(result){
+	if(result!= ""){
+		$("#add_roler_uuid").val(result.uuid);
+		$("#add_roler_name").val(result.name);
+		$("#add_roler_subUri").val(result.subUri);
+		$("#add_roler_requestType").val(result.requestType);
+		$("#add_roler_charset").val(result.charset);
+		$("#add_roler_discription").val(result.discription);
+	}else{
+		$("#add_roler_uuid").val(getUuid());
+		$("#add_roler_name").val();
+		$("#add_roler_requestType").val();
+		$("#add_roler_charset").val();
+		$("#add_roler_discription").val();
+	}
+	$("#addModal_roler").modal({
+		show:true,
+	});
+}
 
