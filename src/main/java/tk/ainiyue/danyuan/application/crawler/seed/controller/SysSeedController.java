@@ -1,16 +1,16 @@
 package tk.ainiyue.danyuan.application.crawler.seed.controller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import tk.ainiyue.danyuan.application.crawler.seed.po.SysSeedInfo;
 import tk.ainiyue.danyuan.application.crawler.seed.service.SysSeedService;
+import tk.ainiyue.danyuan.application.crawler.seed.vo.SysSeedVo;
 
 /**
  * 文件名 ： SysSeedController.java
@@ -41,9 +41,10 @@ public class SysSeedController {
 	 * @throws
 	 */
 	@RequestMapping("/sysSeedList")
-	public List<SysSeedInfo> findAll() {
+	public Page<SysSeedInfo> findAll(int pageNumber, int pageSize, String searchText) {
+		logger.error(searchText);
 		logger.info("sysSeedList", SysSeedController.class);
-		return sysSeedService.findAll();
+		return sysSeedService.findAll(pageNumber, pageSize, searchText);
 	}
 
 	@RequestMapping("/addSysMenuInfo")
@@ -54,10 +55,10 @@ public class SysSeedController {
 	}
 
 	@RequestMapping("/deleteSysSeedInfo")
-	public List<SysSeedInfo> deleteSysSeedInfo(@RequestBody List<SysSeedInfo> list) {
+	public Page<SysSeedInfo> deleteSysSeedInfo(@RequestBody SysSeedVo vo) {
 		logger.info("deleteSysSeedInfo", SysSeedController.class);
-		sysSeedService.deleteSysSeedInfo(list);
-		return sysSeedService.findAll();
+		sysSeedService.deleteSysSeedInfo(vo.getList());
+		return sysSeedService.findAll(vo.getPageNumber(), vo.getPageSize(), null);
 	}
 	
 }

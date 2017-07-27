@@ -3,6 +3,8 @@ package tk.ainiyue.danyuan.application.crawler.seed.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.crawler.seed.dao.SysSeedDao;
@@ -35,8 +37,15 @@ public class SysSeedServiceImpl implements SysSeedService {
 	 */
 	
 	@Override
-	public List<SysSeedInfo> findAll() {
-		return (List<SysSeedInfo>) sysSeedDao.findAll();
+	public Page<SysSeedInfo> findAll(int pageNumber, int pageSize,String searchText) {
+		PageRequest request = this.buildPageRequest(pageNumber, pageSize);
+		Page<SysSeedInfo> sourceCodes = this.sysSeedDao.findAll(request);
+		return sourceCodes;
+	}
+	
+	// 构建PageRequest
+	private PageRequest buildPageRequest(int pageNumber, int pagzSize) {
+		return new PageRequest(pageNumber - 1, pagzSize, null);
 	}
 	
 	@Override

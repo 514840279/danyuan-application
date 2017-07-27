@@ -1,6 +1,6 @@
 package tk.ainiyue.danyuan.application.crawler.seed.dao;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import tk.ainiyue.danyuan.application.crawler.seed.po.SysSeedInfo;
@@ -16,6 +16,6 @@ import tk.ainiyue.danyuan.application.crawler.seed.po.SysSeedInfo;
  * 版 本 ： V1.0
  */
 @Repository("sysSeedDao")
-public interface SysSeedDao extends CrudRepository<SysSeedInfo, String> {
-
+public interface SysSeedDao extends PagingAndSortingRepository<SysSeedInfo, String> {
+	
 }
