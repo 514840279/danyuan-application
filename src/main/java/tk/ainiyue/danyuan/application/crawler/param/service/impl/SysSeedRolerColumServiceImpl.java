@@ -36,8 +36,8 @@ public class SysSeedRolerColumServiceImpl implements SysSeedRolerColumService {
 	 */
 
 	@Override
-	public List<SysSeedRolerColumInfo> findAll() {
-		return (List<SysSeedRolerColumInfo>) sysSeedRolerColumDao.findAll();
+	public List<SysSeedRolerColumInfo> findAllByRolerUuid(String rolerUuid) {
+		return (List<SysSeedRolerColumInfo>) sysSeedRolerColumDao.findAllByRolerUuid(rolerUuid);
 	}
 	
 	@Override

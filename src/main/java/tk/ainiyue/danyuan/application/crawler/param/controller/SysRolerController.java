@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tk.ainiyue.danyuan.application.crawler.param.po.SysRolerInfo;
 import tk.ainiyue.danyuan.application.crawler.param.service.SysRolerService;
+import tk.ainiyue.danyuan.application.crawler.param.vo.SysRolerVo;
 
 /**
  * 文件名 ： SysRolerController.java
@@ -32,9 +33,9 @@ public class SysRolerController {
 	private SysRolerService		sysSeedRolerService;
 	
 	@RequestMapping("/findAll")
-	public List<SysRolerInfo> findAll() {
+	public List<SysRolerInfo> findAll(String uuid, int pageNumber, int pageSize, String searchText) {
 		logger.info("findAll", SysRolerController.class);
-		return sysSeedRolerService.findAll();
+		return sysSeedRolerService.findAllBySeedUuid(uuid);
 	}
 	
 	@RequestMapping("/addSysRoler")
@@ -43,12 +44,13 @@ public class SysRolerController {
 		sysSeedRolerService.addSysRoler(rolerInfo);
 		return rolerInfo;
 	}
-
+	
 	@RequestMapping("/deleteSysRolerInfo")
-	public List<SysRolerInfo> deleteSysRolerInfo(@RequestBody List<SysRolerInfo> list) {
+	public List<SysRolerInfo> deleteSysRolerInfo(@RequestBody SysRolerVo vo) {
+		logger.error(vo.getList().get(0).toString());
 		logger.info("deleteSysRolerInfo", SysRolerController.class);
-		sysSeedRolerService.deleteSysRolerInfo(list);
-		return sysSeedRolerService.findAll();
+		sysSeedRolerService.deleteSysRolerInfo(vo.getList());
+		return sysSeedRolerService.findAllBySeedUuid(vo.getUuid());
 	}
-
+	
 }

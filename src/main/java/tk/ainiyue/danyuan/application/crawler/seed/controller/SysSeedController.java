@@ -27,11 +27,11 @@ import tk.ainiyue.danyuan.application.crawler.seed.vo.SysSeedVo;
 public class SysSeedController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysSeedController.class);
-	
+
 	//
 	@Autowired
 	private SysSeedService		sysSeedService;
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -42,23 +42,22 @@ public class SysSeedController {
 	 */
 	@RequestMapping("/sysSeedList")
 	public Page<SysSeedInfo> findAll(int pageNumber, int pageSize, String searchText) {
-		logger.error(searchText);
 		logger.info("sysSeedList", SysSeedController.class);
 		return sysSeedService.findAll(pageNumber, pageSize, searchText);
 	}
-
+	
 	@RequestMapping("/addSysMenuInfo")
 	public SysSeedInfo addSysMenuInfo(@RequestBody SysSeedInfo sysSeedInfo) {
 		logger.info("addSysMenuInfo", SysSeedController.class);
 		sysSeedService.addSysMenuInfo(sysSeedInfo);
 		return sysSeedInfo;
 	}
-
+	
 	@RequestMapping("/deleteSysSeedInfo")
 	public Page<SysSeedInfo> deleteSysSeedInfo(@RequestBody SysSeedVo vo) {
 		logger.info("deleteSysSeedInfo", SysSeedController.class);
 		sysSeedService.deleteSysSeedInfo(vo.getList());
 		return sysSeedService.findAll(vo.getPageNumber(), vo.getPageSize(), null);
 	}
-	
+
 }

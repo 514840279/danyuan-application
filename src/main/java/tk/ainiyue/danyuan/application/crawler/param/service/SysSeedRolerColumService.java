@@ -15,7 +15,7 @@ import tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRolerColumInfo;
  * 版 本 ： V1.0
  */
 public interface SysSeedRolerColumService {
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -24,10 +24,10 @@ public interface SysSeedRolerColumService {
 	 * 作 者 ： wang
 	 * @throws
 	 */
-	List<SysSeedRolerColumInfo> findAll();
-
+	List<SysSeedRolerColumInfo> findAllByRolerUuid(String rolerUuid);
+	
 	void addSysRolerColum(SysSeedRolerColumInfo info);
-	
+
 	void deleteSysRolerInfo(List<SysSeedRolerColumInfo> list);
-	
+
 }

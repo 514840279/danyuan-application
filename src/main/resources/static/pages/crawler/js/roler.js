@@ -25,7 +25,11 @@ $(function() {
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var param = data;
+						var uuid = $("#role_seed_uuid").text();
+						var param = {
+								list:data,
+								uuid:uuid,
+						};
 						// 重载
 						var url = "/sysRoler/deleteSysRolerInfo";
 						ajaxPost(url, param, sucessAddRoler, 1000, findError);
@@ -47,7 +51,9 @@ $(function() {
 	$('#result_manager').click(function() {
 		alert("也准备做点什么！");
 	});
-
+});
+function ruler(data) {
+	$('#crawler_seed_roler_datagrid').bootstrapTable("destroy");
 	// bootstrap table
 	$('#crawler_seed_roler_datagrid').bootstrapTable({
 		url : "/sysRoler/findAll",
@@ -75,7 +81,21 @@ $(function() {
 		showExport: true,                     //是否显示导出
 		exportDataType: "basic",              //basic', 'all', 'selected'.
 		search : true, // 显示搜索框
-		sidePagination: "client", // 服务端处理分页
+		sidePagination: "client", // 服务端处理分页 server
+		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
+        //设置为limit可以获取limit, offset, search, sort, order  
+        queryParamsType : "undefined",
+        contentType: "application/x-www-form-urlencoded",
+		method: "post",  //使用get请求到服务器获取数据  
+		queryParams: function queryParams(params) {  
+		    var param = {  
+	                 pageNumber: params.pageNumber,    
+	                 pageSize: params.pageSize,
+	                 searchText:params.searchText,
+	                 uuid:data.uuid,
+	             }; 
+             return param;
+		},
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 			{title : 'id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle'},
@@ -92,7 +112,7 @@ $(function() {
 		$('#crawler_seed_roler_datagrid').bootstrapTable('resetView');
 	});
 
-});
+};
 function imgshow(value,row,index){
 	return "<img src='"+value+"'>";
 } 
@@ -116,13 +136,13 @@ function add_roler_submit() {
 	// 重载
 	ajaxPost(url, param, sucessAddRoler, 1000, findError);
 }
-
 function sucessAddRoler(result){
 	$('#crawler_seed_roler_datagrid').bootstrapTable('refresh');
 }
 // =========================================================================
 // 修改数据
 function loadUpdate_roler(result){
+	var uuid = getUuid();
 	if(result!= ""){
 		$("#add_roler_uuid").val(result.uuid);
 		$("#add_roler_name").val(result.name);
@@ -131,12 +151,14 @@ function loadUpdate_roler(result){
 		$("#add_roler_charset").val(result.charset);
 		$("#add_roler_discription").val(result.discription);
 	}else{
-		$("#add_roler_uuid").val(getUuid());
+		$("#add_roler_uuid").val(uuid);
 		$("#add_roler_name").val();
 		$("#add_roler_requestType").val();
 		$("#add_roler_charset").val();
 		$("#add_roler_discription").val();
 	}
+	
+	roler_column();
 	$("#addModal_roler").modal({
 		show:true,
 	});

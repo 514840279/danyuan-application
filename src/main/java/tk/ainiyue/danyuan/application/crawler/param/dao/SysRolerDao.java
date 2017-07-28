@@ -1,5 +1,7 @@
 package tk.ainiyue.danyuan.application.crawler.param.dao;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,5 +19,7 @@ import tk.ainiyue.danyuan.application.crawler.param.po.SysRolerInfo;
  */
 @Repository("sysSeedRolerDao")
 public interface SysRolerDao extends CrudRepository<SysRolerInfo, String> {
+	
+	List<SysRolerInfo> findAllBySeedUuid(String seedUuid);
 	
 }

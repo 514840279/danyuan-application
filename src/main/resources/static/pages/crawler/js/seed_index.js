@@ -125,6 +125,8 @@ $(function() {
 			$("#role_seed_requesttime").text(data[0].requestDate);
 			$("#role_seed_discription").text(data[0].discription);
 			
+			ruler(data[0]);
+			
 			$("#Modal_roler").modal({
 				show:true,
 				
@@ -210,6 +212,5 @@ function loadUpdate(result) {
 // 删除成功后
 function successdelete(result){
 	$('#crawler_seed_index_datagrid').bootstrapTable('refresh');
-	alert("删除数据成功！");
 }
 

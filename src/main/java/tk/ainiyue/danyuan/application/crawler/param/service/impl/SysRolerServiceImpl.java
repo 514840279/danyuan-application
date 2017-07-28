@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import tk.ainiyue.danyuan.application.crawler.param.dao.SysRolerDao;
+import tk.ainiyue.danyuan.application.crawler.param.dao.SysSeedRolerColumDao;
 import tk.ainiyue.danyuan.application.crawler.param.po.SysRolerInfo;
 import tk.ainiyue.danyuan.application.crawler.param.service.SysRolerService;
 
@@ -21,11 +23,14 @@ import tk.ainiyue.danyuan.application.crawler.param.service.SysRolerService;
  * 版 本 ： V1.0
  */
 @Service("sysSeedRolerService")
+@Transactional
 public class SysRolerServiceImpl implements SysRolerService {
 
 	//
 	@Autowired
-	private SysRolerDao sysSeedRolerDao;
+	private SysRolerDao			 sysSeedRolerDao;
+	@Autowired
+	private SysSeedRolerColumDao sysSeedRolerColumDao;
 
 	/**
 	 * 方法名 ： findAll
@@ -37,8 +42,8 @@ public class SysRolerServiceImpl implements SysRolerService {
 	 */
 
 	@Override
-	public List<SysRolerInfo> findAll() {
-		return (List<SysRolerInfo>) sysSeedRolerDao.findAll();
+	public List<SysRolerInfo> findAllBySeedUuid(String seedUuid) {
+		return sysSeedRolerDao.findAllBySeedUuid(seedUuid);
 	}
 
 	/**
@@ -55,9 +60,12 @@ public class SysRolerServiceImpl implements SysRolerService {
 	public void addSysRoler(SysRolerInfo rolerInfo) {
 		sysSeedRolerDao.save(rolerInfo);
 	}
-	
+
 	@Override
 	public void deleteSysRolerInfo(@RequestBody List<SysRolerInfo> list) {
+		for (SysRolerInfo sysRolerInfo : list) {
+			sysSeedRolerColumDao.deleteByRolerUuid(sysRolerInfo.getUuid());
+		}
 		sysSeedRolerDao.delete(list);
 	}
 

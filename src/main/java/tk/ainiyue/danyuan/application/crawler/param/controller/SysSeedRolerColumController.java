@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRolerColumInfo;
 import tk.ainiyue.danyuan.application.crawler.param.service.SysSeedRolerColumService;
+import tk.ainiyue.danyuan.application.crawler.param.vo.SysSeedRolerColumVo;
 
 /**
  * 文件名 ： SysSeedRolerColumController.java
@@ -32,9 +33,9 @@ public class SysSeedRolerColumController {
 	private SysSeedRolerColumService sysSeedRolerColumService;
 
 	@RequestMapping("/findAll")
-	public List<SysSeedRolerColumInfo> findAll() {
+	public List<SysSeedRolerColumInfo> findAll(String uuid, int pageNumber, int pageSize, String searchText) {
 		logger.info("findAll", SysSeedRolerColumController.class);
-		return sysSeedRolerColumService.findAll();
+		return sysSeedRolerColumService.findAllByRolerUuid(uuid);
 	}
 
 	@RequestMapping("/addSysRolerColum")
@@ -45,9 +46,9 @@ public class SysSeedRolerColumController {
 	}
 
 	@RequestMapping("/deleteSysRolerColum")
-	public List<SysSeedRolerColumInfo> deleteSysRolerColum(@RequestBody List<SysSeedRolerColumInfo> list) {
+	public List<SysSeedRolerColumInfo> deleteSysRolerColum(@RequestBody SysSeedRolerColumVo vo) {
 		logger.info("deleteSysRolerColum", SysSeedRolerColumController.class);
-		sysSeedRolerColumService.deleteSysRolerInfo(list);
-		return sysSeedRolerColumService.findAll();
+		sysSeedRolerColumService.deleteSysRolerInfo(vo.getList());
+		return sysSeedRolerColumService.findAllByRolerUuid(vo.getUuid());
 	}
 }

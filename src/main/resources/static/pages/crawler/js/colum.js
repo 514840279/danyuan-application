@@ -26,7 +26,10 @@ $(function() {
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var param = data;
+						var param = {
+								list:data,
+								uuid:$("#add_roler_uuid").val(),
+						};
 						// 重载
 						var url = "/sysRolerColum/deleteSysRolerColum";
 						ajaxPost(url, param, sucessAddColumn, 1000, findError);
@@ -35,7 +38,11 @@ $(function() {
 			});
 		}
 	});
-	
+
+});
+
+function roler_column(){
+	$('#crawler_seed_roler_colum_datagrid').bootstrapTable("destroy");
 	// bootstrap table
 	$('#crawler_seed_roler_colum_datagrid').bootstrapTable({
 		url : "/sysRolerColum/findAll",
@@ -63,7 +70,21 @@ $(function() {
 		showExport: true,                     //是否显示导出
 		exportDataType: "basic",              //basic', 'all', 'selected'.
 		search : true, // 显示搜索框
-		sidePagination: "client", // 服务端处理分页
+		sidePagination: "client", // 服务端处理分页 server
+		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
+        //设置为limit可以获取limit, offset, search, sort, order  
+        queryParamsType : "undefined",
+        contentType: "application/x-www-form-urlencoded",
+		method: "post",  //使用get请求到服务器获取数据  
+		queryParams: function queryParams(params) {  
+		    var param = {  
+	                 pageNumber: params.pageNumber,    
+	                 pageSize: params.pageSize,
+	                 searchText:params.searchText,
+	                 uuid:$("#add_roler_uuid").val(),
+	             }; 
+             return param;
+		},
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 //			{title : '规则id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle'},
@@ -76,14 +97,14 @@ $(function() {
 			{title : 'apand 字符',	field : 'app2',sortable : true,align : 'center'},
 			{title : 'array 取一个 整型',	field : 'arr',sortable : true,align : 'center'},
 			{title : '描述',	field : 'discription',sortable : true,align : 'center'}
-		]
+			]
 	});
 	// 窗口大小改变时 重设表头
 	$(window).resize(function() {
 		$('#crawler_seed_index_datagrid').bootstrapTable('resetView');
 	});
-
-});
+	
+}
 function imgshow(value,row,index){
 	return "<img src='"+value+"'>";
 } 

@@ -3,10 +3,18 @@ package tk.ainiyue.danyuan.application.crawler.seed.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import tk.ainiyue.danyuan.application.crawler.param.dao.SysRolerDao;
+import tk.ainiyue.danyuan.application.crawler.param.dao.SysSeedRolerColumDao;
+import tk.ainiyue.danyuan.application.crawler.param.po.SysRolerInfo;
 import tk.ainiyue.danyuan.application.crawler.seed.dao.SysSeedDao;
 import tk.ainiyue.danyuan.application.crawler.seed.po.SysSeedInfo;
 import tk.ainiyue.danyuan.application.crawler.seed.service.SysSeedService;
@@ -22,11 +30,17 @@ import tk.ainiyue.danyuan.application.crawler.seed.service.SysSeedService;
  * 版 本 ： V1.0
  */
 @Service("sysSeedService")
+@Transactional
 public class SysSeedServiceImpl implements SysSeedService {
 	
 	//
 	@Autowired
-	private SysSeedDao sysSeedDao;
+	private SysSeedDao			 sysSeedDao;
+	//
+	@Autowired
+	private SysRolerDao			 sysSeedRolerDao;
+	@Autowired
+	private SysSeedRolerColumDao sysSeedRolerColumDao;
 	
 	/**
 	 * 方法名 ： findAll
@@ -37,15 +51,24 @@ public class SysSeedServiceImpl implements SysSeedService {
 	 */
 	
 	@Override
-	public Page<SysSeedInfo> findAll(int pageNumber, int pageSize,String searchText) {
-		PageRequest request = this.buildPageRequest(pageNumber, pageSize);
-		Page<SysSeedInfo> sourceCodes = this.sysSeedDao.findAll(request);
+	public Page<SysSeedInfo> findAll(int pageNumber, int pageSize, String searchText) {
+		Sort sort = new Sort(new Order(Direction.DESC, "seedName"));
+		PageRequest request = this.buildPageRequest(pageNumber, pageSize, sort);
+		Page<SysSeedInfo> sourceCodes = null;
+		if (searchText == null || "".equals(searchText)) {
+			sourceCodes = sysSeedDao.findAll(request);
+		} else {
+			SysSeedInfo info = new SysSeedInfo();
+			info.setSeedName(searchText);
+			Example<SysSeedInfo> example = Example.of(info);
+			sourceCodes = sysSeedDao.findAll(example, request);
+		}
 		return sourceCodes;
 	}
 	
 	// 构建PageRequest
-	private PageRequest buildPageRequest(int pageNumber, int pagzSize) {
-		return new PageRequest(pageNumber - 1, pagzSize, null);
+	private PageRequest buildPageRequest(int pageNumber, int pagzSize, Sort sort) {
+		return new PageRequest(pageNumber - 1, pagzSize, sort);
 	}
 	
 	@Override
@@ -55,6 +78,13 @@ public class SysSeedServiceImpl implements SysSeedService {
 	
 	@Override
 	public void deleteSysSeedInfo(List<SysSeedInfo> list) {
+		for (SysSeedInfo sysSeedInfo : list) {
+			List<SysRolerInfo> listroler = sysSeedRolerDao.findAllBySeedUuid(sysSeedInfo.getUuid());
+			for (SysRolerInfo sysRolerInfo : listroler) {
+				sysSeedRolerColumDao.deleteByRolerUuid(sysRolerInfo.getUuid());
+			}
+			sysSeedRolerDao.delete(listroler);
+		}
 		sysSeedDao.delete(list);
 	}
 	
