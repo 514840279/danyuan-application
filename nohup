@@ -1,1 +1,3 @@
+ps -ef | grep java
+kill -9 pid
 nohup java -jar /home/server/danyuan.jsr >/dev/null 2>&1 &

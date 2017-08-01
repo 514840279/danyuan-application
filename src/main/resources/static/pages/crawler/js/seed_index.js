@@ -51,8 +51,6 @@ function initTable(){
 			{title : '网站名称',field : 'seedName',align : 'center',sortable : true,valign : 'middle'	},
 			{title : '网站商标',field : 'seedIcon',align : 'center',sortable : true,valign : 'middle' ,formatter:imgshow},
 			{title : '链接地址',field : 'seedUrl',	align : 'center',sortable : true,valign : 'middle'},
-			{title : '字符集',	field : 'charset',	sortable : true,align : 'center'},
-			{title : '请求类型',field : 'requestType',	sortable : true,align : 'center'},
 			{title : '请求时间',field : 'requestDate',	sortable : true,align : 'center'},
 			{title : '请求代理',field : 'requestProxy',	sortable : true,align : 'center'},
 			{title : '资源功能描述',	field : 'discription',sortable : true,align : 'center'}
@@ -120,8 +118,6 @@ $(function() {
 			$("#role_seed_name").text(data[0].seedName);
 			$("#role_seed_icon").attr("src",data[0].seedIcon);
 			$("#role_seed_url").text(data[0].seedUrl);
-			$("#role_seed_charset").text(data[0].charset);
-			$("#role_seed_requesttype").text(data[0].requestType);
 			$("#role_seed_requesttime").text(data[0].requestDate);
 			$("#role_seed_discription").text(data[0].discription);
 			
@@ -159,8 +155,6 @@ function submit() {
 		seedName : $("#add_seedName").val(),
 		seedIcon : $("#add_seedIcon").val(),
 		seedUrl : $("#add_seedUrl").val(),
-		charset : $("#add_charset").val(),
-		requestType : $("#add_requestType").val(),
 		requestDate : $("#add_requestDate").val(),
 		requestProxy : $("#add_requestProxy").val(),
 		discription : $("#add_discription").val(),
@@ -185,8 +179,6 @@ function loadUpdate(result) {
 		$("#add_seedName").val(result.seedName);
 		$("#add_seedIcon").val(result.seedIcon);
 		$("#add_seedUrl").val(result.seedUrl);
-		$("#add_charset").val(result.charset);
-		$("#add_requestType").val(result.requestType);
 		$("#add_requestDate").val(result.requestDate);
 		$("#add_requestProxy").val(result.requestProxy);
 		$("#add_discription").val(result.discription);
@@ -197,8 +189,6 @@ function loadUpdate(result) {
 		$("#add_seedName").val();
 		$("#add_seedIcon").val();
 		$("#add_seedUrl").val();
-		$("#add_charset").val();
-		$("#add_requestType").val();
 		$("#add_requestDate").val();
 		$("#add_requestProxy").val();
 		$("#add_discription").val();
