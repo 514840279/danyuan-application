@@ -99,9 +99,7 @@
 					<div class=" col-md-6 form-group">
 						<label class="col-sm-3 control-label">是否使用代理</label>
 						<div class="col-sm-8">
-							<label class="control-label"> <input type="radio" name="requestProxy" data-flag="icheck" class="flat-red" value="1"> 是
-							</label> &nbsp; <label class="control-label"> <input type="radio" name="requestProxy" data-flag="icheck" class="flat-red" value="0"> 否
-							</label>
+							<input type="text" class="form-control" id="add_requestProxy" name="requestProxy" placeholder="是否使用代理1：是，0,：否">
 						</div>
 					</div>
 					<div class=" col-md-6 form-group">
@@ -146,6 +144,8 @@
 					<dl class="row">	
 						<dt class="col-xs-1 text-right">请求间隔:</dt>
 						<dd class="col-xs-2 text-left" id="role_seed_requesttime"></dd>
+						<dt class="col-xs-1 text-right">使用代理:</dt>
+						<dd class="col-xs-2 text-left" id="role_seed_requestProxy"></dd>
 						<dt class="col-xs-1 text-right">资源描述:</dt>
 						<dd class="col-xs-2 text-left" id="role_seed_discription"></dd>
 					</dl>		
@@ -209,7 +209,7 @@
 							<div class=" col-md-6 form-group">
 								<label class="col-sm-3 control-label">请求方式</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="add_roler_requestType" name="seedIcon" placeholder="get，post">
+									<input type="text" class="form-control" id="add_roler_requestType" name="seedIcon" placeholder="rg,rp,">
 								</div>
 							</div>
 							<div class=" col-md-6 form-group">
@@ -225,11 +225,9 @@
 								</div>
 							</div>
 							<div class=" col-md-6 form-group">
-								<label class="col-sm-6 control-label">选择网页类型</label>
-								<div class="col-sm-6">
-									<label class="control-label"> <input type="radio" name="type" data-flag="icheck" class="flat-red" value="list"> 表格页面
-									</label> &nbsp; <label class="control-label"> <input type="radio" name="type" data-flag="icheck" class="flat-red" value="detail"> 内容页面
-									</label>
+								<label class="col-sm-3 control-label">选择网页类型</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_roler_type" name="type" placeholder="1:表格页面；0：内容页面">
 								</div>
 							</div>
 						</div>
@@ -273,6 +271,8 @@
 						<dd class="col-xs-2 text-left" id="add_roler_charset_manager"></dd>
 						<dt class="col-xs-1 text-right">资源描述:</dt>
 						<dd class="col-xs-2 text-left" id="add_roler_discription_manager"></dd>
+						<dt class="col-xs-1 text-right">网页类型:</dt>
+						<dd class="col-xs-2 text-left" id="add_roler_type_manager"></dd>
 					</dl>		
 					<div class="text-left text-primary"><h4>字段管理</h4></div>
 					<hr/>

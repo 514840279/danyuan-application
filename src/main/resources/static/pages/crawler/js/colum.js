@@ -155,16 +155,16 @@ function loadUpdate_colum(result){
 		$("#add_column_discription").val(result.discription);
 	}else{
 		$("#add_column_uuid").val(getUuid());
-		$("#add_column_name").val();
-		$("#add_column_roler").val();
-		$("#add_roler_requestType").val();
-		$("#add_column_type").val();
-		$("#add_column_spl1").val();
-		$("#add_column_spl2").val();
-		$("#add_column_app1").val();
-		$("#add_column_app2").val();
-		$("#add_column_arr").val();
-		$("#add_column_rep").val();
+		$("#add_column_name").val("");
+		$("#add_column_roler").val("");
+		$("#add_roler_requestType").val("");
+		$("#add_column_type").val("");
+		$("#add_column_spl1").val("");
+		$("#add_column_spl2").val(0);
+		$("#add_column_app1").val("");
+		$("#add_column_app2").val("");
+		$("#add_column_arr").val(0);
+		$("#add_column_rep").val("");
 		$("#add_column_discription").val();
 	}
 	

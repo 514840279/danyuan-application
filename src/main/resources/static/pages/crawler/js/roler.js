@@ -50,7 +50,7 @@ $(function() {
 			$("#add_roler_requestType_manager").text(data[0].requestType);
 			$("#add_roler_charset_manager").text(data[0].charset);
 			$("#add_roler_discription_manager").text(data[0].discription);
-
+			$("#add_roler_type_manager").text(data[0].type);
 			roler_column(data[0]);
 			$("#addModal_roler_manager").modal({
 				show:true,
@@ -118,7 +118,7 @@ function ruler(data) {
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 			{title : 'id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle'},
-			{title : '规则类别',field : 'type',align : 'center',sortable : true,valign : 'middle'	},
+			{title : '页面类型',field : 'type',align : 'center',sortable : true,valign : 'middle'	},
 			{title : '名称',field : 'name',align : 'center',sortable : true,valign : 'middle'},
 			{title : '配对网址段',field : 'subUri',	align : 'center',sortable : true,valign : 'middle'},
 			{title : '请求操作',field : 'requestType',	sortable : true,align : 'center'},
@@ -142,7 +142,7 @@ function add_roler_submit() {
 	var param = {
 		uuid : $("#add_roler_uuid").val(),
 		seedUuid : $("#role_seed_uuid").text(),
-//		type : $("#role_seed_type").text(),
+		type : $("#add_roler_type").val(),
 		name : $("#add_roler_name").val(),
 		subUri : $("#add_roler_subUri").val(),
 		requestType : $("#add_roler_requestType").val(),
@@ -170,12 +170,15 @@ function loadUpdate_roler(result){
 		$("#add_roler_requestType").val(result.requestType);
 		$("#add_roler_charset").val(result.charset);
 		$("#add_roler_discription").val(result.discription);
+		$("#add_roler_type").val(result.type);
 	}else{
 		$("#add_roler_uuid").val(uuid);
-		$("#add_roler_name").val();
-		$("#add_roler_requestType").val();
-		$("#add_roler_charset").val();
-		$("#add_roler_discription").val();
+		$("#add_roler_name").val("");
+		$("#add_roler_requestType").val("");
+		$("#add_roler_charset").val("");
+		$("#add_roler_discription").val("");
+		$("#add_roler_type").val("");
+		$("#add_roler_subUri").val("");
 	}
 	$("#addModal_roler").modal({
 		show:true,

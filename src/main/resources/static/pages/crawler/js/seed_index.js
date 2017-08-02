@@ -120,7 +120,7 @@ $(function() {
 			$("#role_seed_url").text(data[0].seedUrl);
 			$("#role_seed_requesttime").text(data[0].requestDate);
 			$("#role_seed_discription").text(data[0].discription);
-			
+			$("#role_seed_requestProxy").text(data[0].requestProxy);
 			ruler(data[0]);
 			
 			$("#Modal_roler").modal({
@@ -185,14 +185,14 @@ function loadUpdate(result) {
 		$("#add_deleteFlag").val(result.deleteFlag);
 	}else{
 		$("#add_uuid").val(getUuid());
-		$("#add_seedType").val();
-		$("#add_seedName").val();
-		$("#add_seedIcon").val();
-		$("#add_seedUrl").val();
-		$("#add_requestDate").val();
-		$("#add_requestProxy").val();
-		$("#add_discription").val();
-		$("#add_deleteFlag").val();
+		$("#add_seedType").val("");
+		$("#add_seedName").val("");
+		$("#add_seedIcon").val("");
+		$("#add_seedUrl").val("");
+		$("#add_requestDate").val("");
+		$("#add_requestProxy").val("");
+		$("#add_discription").val("");
+		$("#add_deleteFlag").val("");
 	}
 	$("#addModal").modal({
 		show:true,
