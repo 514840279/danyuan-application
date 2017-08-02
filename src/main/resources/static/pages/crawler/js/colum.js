@@ -41,7 +41,7 @@ $(function() {
 
 });
 
-function roler_column(){
+function roler_column(data){
 	$('#crawler_seed_roler_colum_datagrid').bootstrapTable("destroy");
 	// bootstrap table
 	$('#crawler_seed_roler_colum_datagrid').bootstrapTable({
@@ -81,7 +81,7 @@ function roler_column(){
 	                 pageNumber: params.pageNumber,    
 	                 pageSize: params.pageSize,
 	                 searchText:params.searchText,
-	                 uuid:$("#add_roler_uuid").val(),
+	                 uuid:data.uuid
 	             }; 
              return param;
 		},
@@ -114,7 +114,7 @@ function imgshow(value,row,index){
 function  submitAddColumn(){
 	var param = {
 			uuid :  $("#add_column_uuid").val(),
-			rolerUuid : $("#add_roler_uuid").val(),
+			rolerUuid : $("#add_roler_uuid_manager").text(),
 			columName : $("#add_column_name").val(),
 			roler : $("#add_column_roler").val(),
 			type : $("#add_column_type").val(),

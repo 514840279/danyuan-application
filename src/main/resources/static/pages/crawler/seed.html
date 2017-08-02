@@ -139,7 +139,7 @@
 						<dt class="col-xs-1 text-right">网站地址:</dt>
 						<dd class="col-xs-2 text-left" id="role_seed_url"></dd>
 						<dt class="col-xs-1 text-right">网站名称:</dt>
-						<p class="col-xs-2 text-left"><img  id="role_seed_icon"/><span  id="role_seed_name"></span></p>
+						<dd class="col-xs-2 text-left"><p><img  id="role_seed_icon"/><span  id="role_seed_name"></span></p></dd>
 						<dt class="col-xs-1 text-right">网站类型:</dt>
 						<dd class="col-xs-2 text-left" id="role_seed_type"></dd>
 					</dl>	
@@ -179,7 +179,7 @@
 		</div>
 	</div>
 	
-	<!-- ===================================================roler列表========================================================================= -->
+	<!-- ===================================================roler添加========================================================================= -->
 	<!-- 添加规则模板模态框（Modal） -->
 	<div class="modal fade bs-example-modal-lg" id="addModal_roler" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_roler" aria-hidden="true">
 		<div class="modal-dialog" style="width: 1400px">
@@ -232,14 +232,50 @@
 									</label>
 								</div>
 							</div>
-							<div class=" col-md-2 form-group">
-								<div class="col-sm-6">
-									<button id="add_roler_button_apply" class="btn btn-primary"  >应用</button>
-								</div>
-							</div>
 						</div>
-						<hr/>
-						
+					</section>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="add_roler_button_apply">提交添加</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- ===================================================colum列表========================================================================= -->
+	<!-- 添加规则模板模态框（Modal） -->
+	<div class="modal fade bs-example-modal-lg" id="addModal_roler_manager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_roler_manager" aria-hidden="true">
+		<div class="modal-dialog" style="width: 1400px">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel_roler_manager">新增网站规则</h4>
+				</div>
+				<div class="modal-body">
+					<!-- Main content -->
+					<section class="content">
+						<div class="text-left text-primary"><h4>网站信息</h4></div>
+					<hr/>
+					<!-- 详细内容展示 -->
+					<dl class="row">
+						<dt class="col-xs-1 text-right" >uuid:</dt>
+						<dd class="col-xs-2 text-left" id="add_roler_uuid_manager"></dd>
+						<dt class="col-xs-1 text-right">模板名称:</dt>
+						<dd class="col-xs-2 text-left" id="add_roler_name_manager"></dd>
+						<dt class="col-xs-1 text-right">配对地址:</dt>
+						<dd class="col-xs-2 text-left" id="add_roler_subUri_manager"></dd>
+						<dt class="col-xs-1 text-right">请求方式:</dt>
+						<dd class="col-xs-2 text-left" id="add_roler_requestType_manager"></dd>
+					</dl>	
+					<dl class="row">	
+						<dt class="col-xs-1 text-right">字符集管理:</dt>
+						<dd class="col-xs-2 text-left" id="add_roler_charset_manager"></dd>
+						<dt class="col-xs-1 text-right">资源描述:</dt>
+						<dd class="col-xs-2 text-left" id="add_roler_discription_manager"></dd>
+					</dl>		
+					<div class="text-left text-primary"><h4>字段管理</h4></div>
+					<hr/>
 						<!-- 	表格 -->
 						<div id="toolbar3">
 							<div class="btn-group">

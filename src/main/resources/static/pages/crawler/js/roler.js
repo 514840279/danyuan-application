@@ -38,7 +38,26 @@ $(function() {
 			});
 		}
 	});
-	
+	$('#result_manager_role_manager').click(function() {
+		var data = $('#crawler_seed_roler_datagrid').bootstrapTable('getAllSelections');
+		if(data.length == 0){
+			alert("先选中一条数据");
+		}else if(data.length > 0){
+			
+			$("#add_roler_uuid_manager").text(data[0].uuid);
+			$("#add_roler_name_manager").text(data[0].name);
+			$("#add_roler_subUri_manager").text(data[0].subUri);
+			$("#add_roler_requestType_manager").text(data[0].requestType);
+			$("#add_roler_charset_manager").text(data[0].charset);
+			$("#add_roler_discription_manager").text(data[0].discription);
+
+			roler_column(data[0]);
+			$("#addModal_roler_manager").modal({
+				show:true,
+				
+			})
+		}
+	});
 	// add roler
 	$('#add_roler_button_apply').click(function() {
 		if($("#add_roler_subUri").val()==null){
@@ -138,6 +157,7 @@ function add_roler_submit() {
 }
 function sucessAddRoler(result){
 	$('#crawler_seed_roler_datagrid').bootstrapTable('refresh');
+	$("#addModal_roler").modal("hide");
 }
 // =========================================================================
 // 修改数据
@@ -157,10 +177,9 @@ function loadUpdate_roler(result){
 		$("#add_roler_charset").val();
 		$("#add_roler_discription").val();
 	}
-	
-	roler_column();
 	$("#addModal_roler").modal({
 		show:true,
 	});
 }
-
+// ============================================================================
+roler_column();
