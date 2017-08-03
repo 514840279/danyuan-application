@@ -306,8 +306,7 @@
 	        	 data: [{
 	                 id: '4c87fb94-6447-11e7-a272-0025d3a93601',
 	                 text: '系统菜单',
-	                 url: "pages/softm/sysmenu/system_function_ztree.html",
-	                 closeable: true
+	                 url: "pages/softm/sysmenu/system_function_ztree.html"
 	             }],
 	             showIndex: 0,
 	             loadAll: false
@@ -324,7 +323,7 @@
          * @returns {*}
          */
         function loadPage(url,id,name) {
-        	 console.log(url);
+//         	 console.log("url="+url+",id="+id+",name="+name);
         	$("#tabContainer").data("tabs").addTab({id: id, text: name, closeable: true, url: url});
 	        // 	url =url+ ' body' 	; 
 // 	        $("#mainDiv").load(url, function(response, status, xhr) {
