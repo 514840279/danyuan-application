@@ -324,7 +324,11 @@
          */
         function loadPage(url,id,name) {
 //         	 console.log("url="+url+",id="+id+",name="+name);
-        	$("#tabContainer").data("tabs").addTab({id: id, text: name, closeable: true, url: url});
+			if($("#tabContainer").data("tabs").find(id)!=''){
+				$("#tabContainer").data("tabs").showTab(id);
+			}else if($("#tabContainer").data("tabs").find(id) ==''){
+	        	$("#tabContainer").data("tabs").addTab({id: id, text: name, closeable: true, url: url});
+			}
 	        // 	url =url+ ' body' 	; 
 // 	        $("#mainDiv").load(url, function(response, status, xhr) {
 // 		        if (status == "success") {

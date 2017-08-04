@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="danyuan-application">
+		<class>tk.ainiyue.danyuan.application.crawler.param.po.SysRolerInfo</class>
+		<class>tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRolerColumInfo</class>
+		<class>tk.ainiyue.danyuan.application.crawler.seed.po.SysSeedInfo</class>
+		<class>tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo</class>
+		<class>tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionInfo</class>
+		<class>tk.ainiyue.danyuan.application.crm.organization.po.SysOrganizationInfo</class>
+		<class>tk.ainiyue.danyuan.application.crm.roles.po.SysRolesInfo</class>
 		<class>tk.ainiyue.danyuan.application.dbm.addr.po.SysDatabaseInfo</class>
+		<class>tk.ainiyue.danyuan.application.dbm.column.po.SysColumnInfo</class>
 		<class>tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo</class>
 		<class>tk.ainiyue.danyuan.application.dbm.type.po.SysTableTypeInfo</class>
-		<class>tk.ainiyue.danyuan.application.dbm.column.po.SysColumnInfo</class>
+		<class>tk.ainiyue.danyuan.application.rms.userrole.po.SysUserRolesInfo</class>
+		<class>tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo</class>
+		<class>tk.ainiyue.danyuan.application.softm.system.po.SysSystemInfo</class>
+		<class>tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo</class>
 	</persistence-unit>
 </persistence>

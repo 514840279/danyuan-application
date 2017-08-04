@@ -174,7 +174,10 @@
         this.$element.find(".nav-tabs a[href='#" + obj.id + "']").tab("show");
     }
 
-
+    //根据id设置活动tab页
+    BaseTab.prototype.find=function (tabId) {
+       return this.$element.find(".nav-tabs li a[href='#" + tabId + "']").text();
+    }
 
     //根据id设置活动tab页
     BaseTab.prototype.showTab=function (tabId) {

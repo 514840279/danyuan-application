@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -23,28 +22,27 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "sys_roles_jurisdiction_info")
 public class SysRolesJurisdictionInfo {
-
+	
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
-	@GeneratedValue(generator = "idGenerator")
 	@Column(name = "UUID", length = 32, nullable = false, updatable = false)
 	private String uuid;
-
+	
 	@Column(name = "role_id")
 	private String roleId;
-
+	
 	@Column(name = "menu_id")
 	private String menuId;
-
+	
 	@Column(name = "insert_datetime", nullable = false, updatable = false)
 	private Date   insertDatetime;
-
+	
 	@Column(name = "updata_datetime")
 	private Date   updataDatetime;
-
+	
 	@Column(name = "flag", length = 2)
 	private String flag;
-
+	
 	/**
 	 * 方法名 ： getUuid
 	 * 功 能 ： 返回变量 uuid 的值
@@ -54,7 +52,7 @@ public class SysRolesJurisdictionInfo {
 	public String getUuid() {
 		return uuid;
 	}
-
+	
 	/**
 	 * 方法名 ： setUuid
 	 * 功 能 ： 设置变量 uuid 的值
@@ -62,7 +60,7 @@ public class SysRolesJurisdictionInfo {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-
+	
 	/**
 	 * 方法名 ： getRoleId
 	 * 功 能 ： 返回变量 roleId 的值
@@ -72,7 +70,7 @@ public class SysRolesJurisdictionInfo {
 	public String getRoleId() {
 		return roleId;
 	}
-
+	
 	/**
 	 * 方法名 ： setRoleId
 	 * 功 能 ： 设置变量 roleId 的值
@@ -80,7 +78,7 @@ public class SysRolesJurisdictionInfo {
 	public void setRoleId(String roleId) {
 		this.roleId = roleId;
 	}
-
+	
 	/**
 	 * 方法名 ： getMenuId
 	 * 功 能 ： 返回变量 menuId 的值
@@ -90,7 +88,7 @@ public class SysRolesJurisdictionInfo {
 	public String getMenuId() {
 		return menuId;
 	}
-
+	
 	/**
 	 * 方法名 ： setMenuId
 	 * 功 能 ： 设置变量 menuId 的值
@@ -98,7 +96,7 @@ public class SysRolesJurisdictionInfo {
 	public void setMenuId(String menuId) {
 		this.menuId = menuId;
 	}
-
+	
 	/**
 	 * 方法名 ： getInsertDatetime
 	 * 功 能 ： 返回变量 insertDatetime 的值
@@ -108,7 +106,7 @@ public class SysRolesJurisdictionInfo {
 	public Date getInsertDatetime() {
 		return insertDatetime;
 	}
-
+	
 	/**
 	 * 方法名 ： setInsertDatetime
 	 * 功 能 ： 设置变量 insertDatetime 的值
@@ -116,7 +114,7 @@ public class SysRolesJurisdictionInfo {
 	public void setInsertDatetime(Date insertDatetime) {
 		this.insertDatetime = insertDatetime;
 	}
-
+	
 	/**
 	 * 方法名 ： getUpdataDatetime
 	 * 功 能 ： 返回变量 updataDatetime 的值
@@ -126,7 +124,7 @@ public class SysRolesJurisdictionInfo {
 	public Date getUpdataDatetime() {
 		return updataDatetime;
 	}
-
+	
 	/**
 	 * 方法名 ： setUpdataDatetime
 	 * 功 能 ： 设置变量 updataDatetime 的值
@@ -134,7 +132,7 @@ public class SysRolesJurisdictionInfo {
 	public void setUpdataDatetime(Date updataDatetime) {
 		this.updataDatetime = updataDatetime;
 	}
-
+	
 	/**
 	 * 方法名 ： getFlag
 	 * 功 能 ： 返回变量 flag 的值
@@ -144,7 +142,7 @@ public class SysRolesJurisdictionInfo {
 	public String getFlag() {
 		return flag;
 	}
-
+	
 	/**
 	 * 方法名 ： setFlag
 	 * 功 能 ： 设置变量 flag 的值
@@ -152,7 +150,7 @@ public class SysRolesJurisdictionInfo {
 	public void setFlag(String flag) {
 		this.flag = flag;
 	}
-
+	
 	/**
 	 * 构造方法：
 	 * 描 述： TODO(这里用一句话描述这个方法的作用)
@@ -163,7 +161,7 @@ public class SysRolesJurisdictionInfo {
 	public SysRolesJurisdictionInfo() {
 		super();
 	}
-
+	
 	/**
 	 * 构造方法：
 	 * 描 述： TODO(这里用一句话描述这个方法的作用)
@@ -175,5 +173,5 @@ public class SysRolesJurisdictionInfo {
 		super();
 		this.uuid = uuid;
 	}
-
+	
 }

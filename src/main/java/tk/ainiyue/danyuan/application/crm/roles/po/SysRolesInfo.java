@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -23,31 +22,30 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "sys_roles_info")
 public class SysRolesInfo {
-	
+
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
-	@GeneratedValue(generator = "idGenerator")
 	@Column(name = "UUID", length = 32, nullable = false, updatable = false)
 	private String uuid;
-	
+
 	@Column(name = "department_id", length = 50, nullable = false)
 	private String departmentId;
-	
+
 	@Column(name = "role_name", length = 32, nullable = false)
 	private String roleName;
-	
+
 	@Column(name = "role_discription", length = 500)
 	private String roleDiscription;
-	
+
 	@Column(name = "insert_datetime", nullable = false, updatable = false)
 	private Date   insertDatetime;
-	
+
 	@Column(name = "updata_datetime")
 	private Date   updataDatetime;
-	
+
 	@Column(name = "flag", length = 2)
 	private String flag;
-	
+
 	/**
 	 * 方法名 ： getUuid
 	 * 功 能 ： 返回变量 uuid 的值
@@ -57,7 +55,7 @@ public class SysRolesInfo {
 	public String getUuid() {
 		return uuid;
 	}
-	
+
 	/**
 	 * 方法名 ： setUuid
 	 * 功 能 ： 设置变量 uuid 的值
@@ -65,7 +63,7 @@ public class SysRolesInfo {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-	
+
 	/**
 	 * 方法名 ： getDepartmentId
 	 * 功 能 ： 返回变量 departmentId 的值
@@ -75,7 +73,7 @@ public class SysRolesInfo {
 	public String getDepartmentId() {
 		return departmentId;
 	}
-	
+
 	/**
 	 * 方法名 ： setDepartmentId
 	 * 功 能 ： 设置变量 departmentId 的值
@@ -83,7 +81,7 @@ public class SysRolesInfo {
 	public void setDepartmentId(String departmentId) {
 		this.departmentId = departmentId;
 	}
-	
+
 	/**
 	 * 方法名 ： getRoleName
 	 * 功 能 ： 返回变量 roleName 的值
@@ -93,7 +91,7 @@ public class SysRolesInfo {
 	public String getRoleName() {
 		return roleName;
 	}
-	
+
 	/**
 	 * 方法名 ： setRoleName
 	 * 功 能 ： 设置变量 roleName 的值
@@ -101,7 +99,7 @@ public class SysRolesInfo {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-	
+
 	/**
 	 * 方法名 ： getRoleDiscription
 	 * 功 能 ： 返回变量 roleDiscription 的值
@@ -111,7 +109,7 @@ public class SysRolesInfo {
 	public String getRoleDiscription() {
 		return roleDiscription;
 	}
-	
+
 	/**
 	 * 方法名 ： setRoleDiscription
 	 * 功 能 ： 设置变量 roleDiscription 的值
@@ -119,7 +117,7 @@ public class SysRolesInfo {
 	public void setRoleDiscription(String roleDiscription) {
 		this.roleDiscription = roleDiscription;
 	}
-	
+
 	/**
 	 * 方法名 ： getInsertDatetime
 	 * 功 能 ： 返回变量 insertDatetime 的值
@@ -129,7 +127,7 @@ public class SysRolesInfo {
 	public Date getInsertDatetime() {
 		return insertDatetime;
 	}
-	
+
 	/**
 	 * 方法名 ： setInsertDatetime
 	 * 功 能 ： 设置变量 insertDatetime 的值
@@ -137,7 +135,7 @@ public class SysRolesInfo {
 	public void setInsertDatetime(Date insertDatetime) {
 		this.insertDatetime = insertDatetime;
 	}
-	
+
 	/**
 	 * 方法名 ： getUpdataDatetime
 	 * 功 能 ： 返回变量 updataDatetime 的值
@@ -147,7 +145,7 @@ public class SysRolesInfo {
 	public Date getUpdataDatetime() {
 		return updataDatetime;
 	}
-	
+
 	/**
 	 * 方法名 ： setUpdataDatetime
 	 * 功 能 ： 设置变量 updataDatetime 的值
@@ -155,7 +153,7 @@ public class SysRolesInfo {
 	public void setUpdataDatetime(Date updataDatetime) {
 		this.updataDatetime = updataDatetime;
 	}
-	
+
 	/**
 	 * 方法名 ： getFlag
 	 * 功 能 ： 返回变量 flag 的值
@@ -165,7 +163,7 @@ public class SysRolesInfo {
 	public String getFlag() {
 		return flag;
 	}
-	
+
 	/**
 	 * 方法名 ： setFlag
 	 * 功 能 ： 设置变量 flag 的值
@@ -173,7 +171,7 @@ public class SysRolesInfo {
 	public void setFlag(String flag) {
 		this.flag = flag;
 	}
-	
+
 	/**
 	 * 构造方法：
 	 * 描 述： TODO(这里用一句话描述这个方法的作用)
@@ -184,7 +182,7 @@ public class SysRolesInfo {
 	public SysRolesInfo() {
 		super();
 	}
-	
+
 	/**
 	 * 构造方法：
 	 * 描 述： TODO(这里用一句话描述这个方法的作用)
@@ -196,5 +194,5 @@ public class SysRolesInfo {
 		super();
 		this.uuid = uuid;
 	}
-	
+
 }

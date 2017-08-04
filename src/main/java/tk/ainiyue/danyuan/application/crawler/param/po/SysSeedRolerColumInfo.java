@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -26,10 +25,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class SysSeedRolerColumInfo {
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
-	@GeneratedValue(generator = "idGenerator")
 	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键'")
 	private String	uuid;		 // uuid 唯一id
-	
+
 	@Column(name = "roler_uuid", columnDefinition = "varchar(32) COMMENT '规则id'")
 	private String	rolerUuid;	 // roler_uuid 规则id
 	@Column(name = "colum_name", columnDefinition = "varchar(30) COMMENT '列名称'")
@@ -48,37 +46,37 @@ public class SysSeedRolerColumInfo {
 	private String	app2;		 // app2 apand 字符
 	@Column(name = "arr", columnDefinition = "int COMMENT '取一个 整型'")
 	private String	arr;		 // arr array 取一个 整型
-	
+
 	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
 	private String	discription; // discription 描述
-	
+
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
 	private Date	createTime;	 // create_time 插入时间
-	
+
 	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
 	private String	createUser;	 // create_user 插入人
-	
+
 	@Column(name = "updata_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '更新人员'")
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
 	private String	updataTime;	 // updata_time 更新时间
-	
+
 	@Column(name = "updata_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新时间'")
 	private String	updataUser;	 // updata_user 更新人
-	
+
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
 	private Integer	deleteFlag;	 // delete_flag 标记
-	
+
 	/**
 	 * 方法名 ： getUuid
 	 * 功 能 ： 返回变量 uuid 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getUuid() {
 		return uuid;
 	}
-	
+
 	/**
 	 * 方法名 ： setUuid
 	 * 功 能 ： 设置变量 uuid 的值
@@ -86,17 +84,17 @@ public class SysSeedRolerColumInfo {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-	
+
 	/**
 	 * 方法名 ： getRolerUuid
 	 * 功 能 ： 返回变量 rolerUuid 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getRolerUuid() {
 		return rolerUuid;
 	}
-	
+
 	/**
 	 * 方法名 ： setRolerUuid
 	 * 功 能 ： 设置变量 rolerUuid 的值
@@ -104,17 +102,17 @@ public class SysSeedRolerColumInfo {
 	public void setRolerUuid(String rolerUuid) {
 		this.rolerUuid = rolerUuid;
 	}
-	
+
 	/**
 	 * 方法名 ： getColumName
 	 * 功 能 ： 返回变量 columName 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getColumName() {
 		return columName;
 	}
-	
+
 	/**
 	 * 方法名 ： setColumName
 	 * 功 能 ： 设置变量 columName 的值
@@ -122,17 +120,17 @@ public class SysSeedRolerColumInfo {
 	public void setColumName(String columName) {
 		this.columName = columName;
 	}
-	
+
 	/**
 	 * 方法名 ： getRoler
 	 * 功 能 ： 返回变量 roler 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getRoler() {
 		return roler;
 	}
-	
+
 	/**
 	 * 方法名 ： setRoler
 	 * 功 能 ： 设置变量 roler 的值
@@ -140,17 +138,17 @@ public class SysSeedRolerColumInfo {
 	public void setRoler(String roler) {
 		this.roler = roler;
 	}
-	
+
 	/**
 	 * 方法名 ： getType
 	 * 功 能 ： 返回变量 type 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getType() {
 		return type;
 	}
-	
+
 	/**
 	 * 方法名 ： setType
 	 * 功 能 ： 设置变量 type 的值
@@ -158,17 +156,17 @@ public class SysSeedRolerColumInfo {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+
 	/**
 	 * 方法名 ： getSpl1
 	 * 功 能 ： 返回变量 spl1 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getSpl1() {
 		return spl1;
 	}
-	
+
 	/**
 	 * 方法名 ： setSpl1
 	 * 功 能 ： 设置变量 spl1 的值
@@ -176,17 +174,17 @@ public class SysSeedRolerColumInfo {
 	public void setSpl1(String spl1) {
 		this.spl1 = spl1;
 	}
-	
+
 	/**
 	 * 方法名 ： getSpl2
 	 * 功 能 ： 返回变量 spl2 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getSpl2() {
 		return spl2;
 	}
-	
+
 	/**
 	 * 方法名 ： setSpl2
 	 * 功 能 ： 设置变量 spl2 的值
@@ -194,17 +192,17 @@ public class SysSeedRolerColumInfo {
 	public void setSpl2(String spl2) {
 		this.spl2 = spl2;
 	}
-	
+
 	/**
 	 * 方法名 ： getApp1
 	 * 功 能 ： 返回变量 app1 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getApp1() {
 		return app1;
 	}
-	
+
 	/**
 	 * 方法名 ： setApp1
 	 * 功 能 ： 设置变量 app1 的值
@@ -212,17 +210,17 @@ public class SysSeedRolerColumInfo {
 	public void setApp1(String app1) {
 		this.app1 = app1;
 	}
-	
+
 	/**
 	 * 方法名 ： getApp2
 	 * 功 能 ： 返回变量 app2 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getApp2() {
 		return app2;
 	}
-	
+
 	/**
 	 * 方法名 ： setApp2
 	 * 功 能 ： 设置变量 app2 的值
@@ -230,17 +228,17 @@ public class SysSeedRolerColumInfo {
 	public void setApp2(String app2) {
 		this.app2 = app2;
 	}
-	
+
 	/**
 	 * 方法名 ： getArr
 	 * 功 能 ： 返回变量 arr 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getArr() {
 		return arr;
 	}
-	
+
 	/**
 	 * 方法名 ： setArr
 	 * 功 能 ： 设置变量 arr 的值
@@ -248,17 +246,17 @@ public class SysSeedRolerColumInfo {
 	public void setArr(String arr) {
 		this.arr = arr;
 	}
-	
+
 	/**
 	 * 方法名 ： getDiscription
 	 * 功 能 ： 返回变量 discription 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getDiscription() {
 		return discription;
 	}
-	
+
 	/**
 	 * 方法名 ： setDiscription
 	 * 功 能 ： 设置变量 discription 的值
@@ -266,17 +264,17 @@ public class SysSeedRolerColumInfo {
 	public void setDiscription(String discription) {
 		this.discription = discription;
 	}
-	
+
 	/**
 	 * 方法名 ： getCreateTime
 	 * 功 能 ： 返回变量 createTime 的值
-	 * 
+	 *
 	 * @return: Date
 	 */
 	public Date getCreateTime() {
 		return createTime;
 	}
-	
+
 	/**
 	 * 方法名 ： setCreateTime
 	 * 功 能 ： 设置变量 createTime 的值
@@ -284,17 +282,17 @@ public class SysSeedRolerColumInfo {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	
+
 	/**
 	 * 方法名 ： getCreateUser
 	 * 功 能 ： 返回变量 createUser 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getCreateUser() {
 		return createUser;
 	}
-	
+
 	/**
 	 * 方法名 ： setCreateUser
 	 * 功 能 ： 设置变量 createUser 的值
@@ -302,17 +300,17 @@ public class SysSeedRolerColumInfo {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	
+
 	/**
 	 * 方法名 ： getUpdataTime
 	 * 功 能 ： 返回变量 updataTime 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getUpdataTime() {
 		return updataTime;
 	}
-	
+
 	/**
 	 * 方法名 ： setUpdataTime
 	 * 功 能 ： 设置变量 updataTime 的值
@@ -320,17 +318,17 @@ public class SysSeedRolerColumInfo {
 	public void setUpdataTime(String updataTime) {
 		this.updataTime = updataTime;
 	}
-	
+
 	/**
 	 * 方法名 ： getUpdataUser
 	 * 功 能 ： 返回变量 updataUser 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getUpdataUser() {
 		return updataUser;
 	}
-	
+
 	/**
 	 * 方法名 ： setUpdataUser
 	 * 功 能 ： 设置变量 updataUser 的值
@@ -338,17 +336,17 @@ public class SysSeedRolerColumInfo {
 	public void setUpdataUser(String updataUser) {
 		this.updataUser = updataUser;
 	}
-	
+
 	/**
 	 * 方法名 ： getDeleteFlag
 	 * 功 能 ： 返回变量 deleteFlag 的值
-	 * 
+	 *
 	 * @return: Integer
 	 */
 	public Integer getDeleteFlag() {
 		return deleteFlag;
 	}
-	
+
 	/**
 	 * 方法名 ： setDeleteFlag
 	 * 功 能 ： 设置变量 deleteFlag 的值
@@ -356,7 +354,7 @@ public class SysSeedRolerColumInfo {
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
-	
+
 	/**
 	 * 方法名 ： toString
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -364,10 +362,10 @@ public class SysSeedRolerColumInfo {
 	 * 参 考 ： @see java.lang.Object#toString()
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public String toString() {
 		return "SysSeedRolerColumInfo [uuid=" + uuid + ", rolerUuid=" + rolerUuid + ", columName=" + columName + ", roler=" + roler + ", type=" + type + ", spl1=" + spl1 + ", spl2=" + spl2 + ", app1=" + app1 + ", app2=" + app2 + ", arr=" + arr + ", discription=" + discription + ", createTime=" + createTime + ", createUser=" + createUser + ", updataTime=" + updataTime + ", updataUser=" + updataUser + ", deleteFlag=" + deleteFlag + "]";
 	}
-	
+
 }
