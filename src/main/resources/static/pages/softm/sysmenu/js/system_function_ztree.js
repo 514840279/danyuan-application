@@ -344,14 +344,14 @@ function removeTreeNode() {
 			}
 			// 重载
 			var url = "/sysMenuInfo/deleteSysMenuInfo";
-			ajaxPost(url, param, successdelete, 1000, findError);
+			ajaxPost(url, param, successdeleteMenu, 1000, findError);
 		}
 	}
 	});
 	
 }
 
-function successdelete() {
+function successdeleteMenu() {
 	var nodes = zTree.getSelectedNodes();
 	zTree.removeNode(nodes[0]);
 }
