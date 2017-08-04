@@ -197,26 +197,26 @@ function addTreeNode() {
 	hideRMenu();
 	var name = "增加" + (addCount++);
 	if (zTree.getSelectedNodes()[0] != null) {
-		$("#add_parentId").val(zTree.getSelectedNodes()[0].id);
-		$("#add_parentName").val(zTree.getSelectedNodes()[0].name);
-		$("#add_icon").val(zTree.getSelectedNodes()[0].icon);
-		$("#add_sort").val(zTree.getSelectedNodes()[0].children.length + 1);
+		$("#add_menu_parentId").val(zTree.getSelectedNodes()[0].id);
+		$("#add_menu_parentName").val(zTree.getSelectedNodes()[0].name);
+		$("#add_menu_icon").val(zTree.getSelectedNodes()[0].icon);
+		$("#add_menu_sort").val(zTree.getSelectedNodes()[0].children.length + 1);
 	} else {
-		$("#add_parentId").val("0");
-		$("#add_parentName").val("root");
+		$("#add_menu_parentId").val("0");
+		$("#add_menu_parentName").val("root");
 	}
 	var id = getUuid();
-	$("#add_uuid").val(id);
-	$("#add_name").val(name);
+	$("#add_menu_uuid").val(id);
+	$("#add_menu_name").val(name);
 	// 弹出模态框
-	$("#addModal").modal("show");
+	$("#addMenuModal").modal("show");
 }
 var winId="";
 function add_select_icon(){
 	winId="add_icon_modal";
 	var iconName;
-	if($("#add_icon").val())
-	   iconName=encodeURIComponent($("#add_icon").val());
+	if($("#add_menu_icon").val())
+	   iconName=encodeURIComponent($("#add_menu_icon").val());
 	modals.openWin({
     	winId:winId,
     	title:'图标选择器（双击选择）',
@@ -226,28 +226,28 @@ function add_select_icon(){
 }
 //回填图标
 function fillBackIconName(icon_name){
-	$("#add_icon").val(icon_name); 
-	$("#upd_icon").val(icon_name);
+	$("#add_menu_icon").val(icon_name); 
+	$("#upd_menu_icon").val(icon_name);
 //	$("#icon_i").removeClass().addClass("form-control-feedback").addClass(icon_name);
 }
-function submit() {
+function addMenusubmit() {
 	var param = {
-	uuid : $("#add_uuid").val(),
-	name : $("#add_name").val(),
-	icon : $("#add_icon").val(),
-	discription : $("#add_discription").val(),
-	uri : $("#add_uri").val(),
-	parentsId : $("#add_parentId").val(),
-	sort : $("#add_sort").val(),
-	deleteFlag : $("#add_deleteFlag").val(),
-	insertUser : $("#add_insertUser").val()
+	uuid : $("#add_menu_uuid").val(),
+	name : $("#add_menu_name").val(),
+	icon : $("#add_menu_icon").val(),
+	discription : $("#add_menu_discription").val(),
+	uri : $("#add_menu_uri").val(),
+	parentsId : $("#add_menu_parentId").val(),
+	sort : $("#add_menu_sort").val(),
+	deleteFlag : $("#add_menu_deleteFlag").val(),
+	insertUser : $("#add_menu_insertUser").val()
 	}
 	var url = "/sysMenuInfo/addSysMenuInfo";
 	// 重载
-	ajaxPost(url, param, sucessAdd, 1000, findError);
+	ajaxPost(url, param, sucessAddMenu, 1000, findError);
 }
 
-function sucessAdd(result) {
+function sucessAddMenu(result) {
 	var newNode = {
 	id : result.id,
 	name : result.name,
@@ -259,7 +259,7 @@ function sucessAdd(result) {
 	} else {
 		zTree.addNodes(0, newNode);
 	}
-	$("#addModal").modal("hide");
+	$("#addMenuModal").modal("hide");
 }
 
 /** *************** 更新 节点 ******************************* */
@@ -269,27 +269,27 @@ function updateTreeNode() {
 		uuid : zTree.getSelectedNodes()[0].id
 	};
 	var url = "/sysMenuInfo/findSysMenuInfoByUuid";
-	ajaxPost(url, param, loadUpdate, 1000, findError);
+	ajaxPost(url, param, loadUpdateMenu, 1000, findError);
 }
 
-function loadUpdate(result) {
-	$("#upd_uuid").val(result.uuid);
-	$("#upd_name").val(result.name);
-	$("#upd_icon").val(result.icon);
-	$("#upd_discription").val(result.discription);
-	$("#upd_uri").val(result.uri);
-	$("#upd_parentId").val(result.parentsId);
-	$("#upd_sort").val(result.sort);
-	$("#upd_deleteFlag").val(result.deleteFlag);
+function loadUpdateMenu(result) {
+	$("#upd_menu_uuid").val(result.uuid);
+	$("#upd_menu_name").val(result.name);
+	$("#upd_menu_icon").val(result.icon);
+	$("#upd_menu_discription").val(result.discription);
+	$("#upd_menu_uri").val(result.uri);
+	$("#upd_menu_parentId").val(result.parentsId);
+	$("#upd_menu_sort").val(result.sort);
+	$("#upd_menu_deleteFlag").val(result.deleteFlag);
 	
-	$("#updateModal").modal("show");
+	$("#updateMenuModal").modal("show");
 }
 
 function upd_select_icon(){
 	winId="upd_icon_modal";
 	var iconName;
-	if($("#upd_icon").val())
-	   iconName=encodeURIComponent($("#upd_icon").val());
+	if($("#upd_menu_icon").val())
+	   iconName=encodeURIComponent($("#upd_menu_icon").val());
 	modals.openWin({
     	winId:winId,
     	title:'图标选择器（双击选择）',
@@ -297,30 +297,30 @@ function upd_select_icon(){
     	url:"/icon/nodecorator/select?iconName="+iconName
     });
 }
-function updatesubmit() {
+function updatesubmitMenu() {
 	var param = {
-	uuid : $("#upd_uuid").val(),
-	name : $("#upd_name").val(),
-	icon : $("#upd_icon").val(),
-	discription : $("#upd_discription").val(),
-	uri : $("#upd_uri").val(),
-	parentsId : $("#upd_parentId").val(),
-	sort : $("#upd_sort").val(),
-	deleteFlag : $("#upd_deleteFlag").val(),
-	updateUser : $("#upd_updateUser").val()
+	uuid : $("#upd_menu_uuid").val(),
+	name : $("#upd_menu_name").val(),
+	icon : $("#upd_menu_icon").val(),
+	discription : $("#upd_menu_discription").val(),
+	uri : $("#upd_menu_uri").val(),
+	parentsId : $("#upd_menu_parentId").val(),
+	sort : $("#upd_menu_sort").val(),
+	deleteFlag : $("#upd_menu_deleteFlag").val(),
+	updateUser : $("#upd_menu_updateUser").val()
 	}
 	var url = "/sysMenuInfo/addSysMenuInfo";
 	// 重载
-	ajaxPost(url, param, successUpdate, 1000, findError);
+	ajaxPost(url, param, successUpdateMenu, 1000, findError);
 }
 
-function successUpdate(result) {
+function successUpdateMenu(result) {
 	zTree.getSelectedNodes()[0].id = result.id;
 	zTree.getSelectedNodes()[0].name = result.name;
 	zTree.getSelectedNodes()[0].icon = result.icon;
 	zTree.updateNode(zTree.getSelectedNodes()[0]);
 	
-	$("#updateModal").modal("hide");
+	$("#updateMenuModal").modal("hide");
 }
 
 /** ********** 删除节点 包含子节点 ********* */

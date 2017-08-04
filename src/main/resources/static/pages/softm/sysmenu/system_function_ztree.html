@@ -65,29 +65,29 @@ div#rMenu ul li {
 	<!-- 	开始演示模态框 -->
 	<!-- </button> -->
 	<!-- 模态框（Modal） -->
-	<div class="modal fade bs-example-modal-lg" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade bs-example-modal-lg" id="addMenuModal" tabindex="0" role="dialog" aria-labelledby="addMenuModal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">新增节点</h4>
+					<h4 class="modal-title" id="addMenuModal">新增节点</h4>
 				</div>
 				<form action="" method="post">
 					<div class="modal-body">
 						<div class="row" hidden="hidden">
-							<span class="col-md-3 row-right"> uuid : </span><input class="col-md-5" type="text" name="uuid" id="add_uuid" /> <span class="col-md-4"> *唯一主键 </span>
+							<span class="col-md-3 row-right"> uuid : </span><input class="col-md-5" type="text" name="uuid" id="add_menu_uuid" /> <span class="col-md-4"> *唯一主键 </span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> 地址名称 : </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="name" id="add_name" />
+								<input class="form-control" type="text" name="name" id="add_menu_name" />
 							</div>
 							<span class="col-md-4"> * 用户显示 </span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> 图标 : </span>
 							<div class="col-md-5 btn-group " role="toolbar">
-								<input class="form-control btn" type="text" name="icon" id="add_icon" value="fa  fa-desktop" style="width: 63%;" />
+								<input class="form-control btn" type="text" name="icon" id="add_menu_icon" value="fa  fa-desktop" style="width: 63%;" />
 								<button type="button" id="selectIcon" class="btn btn-primary btn-sm " data-btn-type="selectIcon" onclick="add_select_icon()">
 									<span class="fa fa-hand-pointer-o">选择图标</span>
 								</button>
@@ -97,42 +97,42 @@ div#rMenu ul li {
 						<div class="row">
 							<span class="col-md-3 row-right"> 描述 : </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="discription" id="add_discription" />
+								<input class="form-control" type="text" name="discription" id="add_menu_discription" />
 							</div>
 							<span class="col-md-4"> * </span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> uri地址: </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="uri" id="add_uri" />
+								<input class="form-control" type="text" name="uri" id="add_menu_uri" />
 							</div>
 							<span class="col-md-4"> * 用于调用 </span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> 上一级目录: </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="parentName" id="add_parentName" value="0" disabled="disabled" /> <input type="text" name="parentsId" id="add_parentId" value="0" hidden="hidden" />
+								<input class="form-control" type="text" name="parentName" id="add_menu_parentName" value="0" disabled="disabled" /> <input type="text" name="parentsId" id="add_menu_parentId" value="0" hidden="hidden" />
 							</div>
 							<span class="col-md-4"> * 用于指定位置 </span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> 排序: </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="sort" id="add_sort" value="1" />
+								<input class="form-control" type="text" name="sort" id="add_menu_sort" value="1" />
 							</div>
 							<span class="col-md-4"> * 用户排序 </span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> 停用标识: </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="deleteFlag" id="add_deleteFlag" value="0" />
+								<input class="form-control" type="text" name="deleteFlag" id="add_menu_deleteFlag" value="0" />
 							</div>
 							<span class="col-md-4"> * 标识</span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> 用户: </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="insertUser" id="add_insertUser" value="system" />
+								<input class="form-control" type="text" name="insertUser" id="add_menu_insertUser" value="system" />
 							</div>
 							<span class="col-md-4"> * 用户 </span>
 						</div>
@@ -141,7 +141,7 @@ div#rMenu ul li {
 				</form>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" onclick="submit();">提交添加</button>
+					<button type="button" class="btn btn-primary" onclick="addMenusubmit();">提交添加</button>
 				</div>
 
 			</div>
@@ -152,29 +152,29 @@ div#rMenu ul li {
 
 
 	<!-- 	修改的modal -->
-	<div class="modal fade bs-example-modal-lg" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+	<div class="modal fade bs-example-modal-lg" id="updateMenuModal" tabindex="0" role="dialog" aria-labelledby="updateMenuModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="updateModalLabel">修改节点</h4>
+					<h4 class="modal-title" id="updateMenuModalLabel">修改节点</h4>
 				</div>
 				<form action="" method="post">
 					<div class="modal-body">
 						<div class="row" hidden="hidden">
-							<span class="col-md-3 row-right"> uuid : </span><input class="col-md-5" type="text" name="uuid" id="upd_uuid" /> <span class="col-md-4"> *唯一主键 </span>
+							<span class="col-md-3 row-right"> uuid : </span><input class="col-md-5" type="text" name="uuid" id="upd_menu_uuid" /> <span class="col-md-4"> *唯一主键 </span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> 地址名称 : </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="name" id="upd_name" />
+								<input class="form-control" type="text" name="name" id="upd_menu_name" />
 							</div>
 							<span class="col-md-4"> * 用户显示 </span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> 图标 : </span>
 							<div class="col-md-5 btn-group " role="toolbar">
-								<input class="form-control btn" type="text" name="icon" id="upd_icon" value="fa  fa-desktop" style="width: 63%;" />
+								<input class="form-control btn" type="text" name="icon" id="upd_menu_icon" value="fa  fa-desktop" style="width: 63%;" />
 								<button type="button" id="selectIcon" class="btn btn-primary btn-sm " data-btn-type="selectIcon" onclick="upd_select_icon()">
 									<span class="fa fa-hand-pointer-o">选择图标</span>
 								</button>
@@ -184,42 +184,42 @@ div#rMenu ul li {
 						<div class="row">
 							<span class="col-md-3 row-right"> 描述 : </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="discription" id="upd_discription" />
+								<input class="form-control" type="text" name="discription" id="upd_menu_discription" />
 							</div>
 							<span class="col-md-4"> * </span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> uri地址: </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="uri" id="upd_uri" />
+								<input class="form-control" type="text" name="uri" id="upd_menu_uri" />
 							</div>
 							<span class="col-md-4"> * 用于调用 </span>
 						</div>
 						<div class="row" hidden="hidden">
 							<span class="col-md-3 row-right"> 上一级目录: </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="parentName" id="upd_parentName" value="0" disabled="disabled" /> <input type="text" name="parentsId" id="upd_parentId" value="0" hidden="hidden" />
+								<input class="form-control" type="text" name="parentName" id="upd_menu_parentName" value="0" disabled="disabled" /> <input type="text" name="parentsId" id="upd_menu_parentId" value="0" hidden="hidden" />
 							</div>
 							<span class="col-md-4"> * 用于指定位置 </span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> 排序: </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="sort" id="upd_sort" value="1" />
+								<input class="form-control" type="text" name="sort" id="upd_menu_sort" value="1" />
 							</div>
 							<span class="col-md-4"> * 用户排序 </span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> 停用标识: </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="deleteFlag" id="upd_deleteFlag" value="1" />
+								<input class="form-control" type="text" name="deleteFlag" id="upd_menu_deleteFlag" value="1" />
 							</div>
 							<span class="col-md-4"> * 标识 </span>
 						</div>
 						<div class="row">
 							<span class="col-md-3 row-right"> 用户: </span>
 							<div class="col-md-5 ">
-								<input class="form-control" type="text" name="updateUser" id="upd_updateUser" value="system" />
+								<input class="form-control" type="text" name="updateUser" id="upd_menu_updateUser" value="system" />
 							</div>
 							<span class="col-md-4"> * 用户 </span>
 						</div>

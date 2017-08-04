@@ -167,7 +167,7 @@ function submit() {
 }
 
 function sucessAdd(result) {
-	$("#addModal").modal("hide");
+	$("#addSeedModal").modal("hide");
 	$('#crawler_seed_index_datagrid').bootstrapTable('refresh');
 }
 //========================================================================
@@ -194,7 +194,7 @@ function loadUpdate(result) {
 		$("#add_discription").val("");
 		$("#add_deleteFlag").val("");
 	}
-	$("#addModal").modal({
+	$("#addSeedModal").modal({
 		show:true,
 	});
 }
