@@ -258,6 +258,7 @@
 	<script src="plugins/jQuery/bootbox.min.js"></script>
 	<script src="plugins/bootstrap/tab/js/bootstrap-tab.js"></script>
 	<script type="text/javascript">
+	 _history=[];
 		(function($) {
 	        var menu_data = [];
 	        // 请求数据地址
@@ -312,6 +313,7 @@
 	             showIndex: 0,
 	             loadAll: false
 	        })
+	        _history.push('4c87fb94-6447-11e7-a272-0025d3a93601');
         })(jQuery);
 		
         
@@ -323,12 +325,18 @@
          * @param callback
          * @returns {*}
          */
-        function loadPage(url,id,name) {
+       
+        function loadPage(url,id,name,paramter,flag_r) {
 //         	 console.log("url="+url+",id="+id+",name="+name);
 			if($("#tabContainer").data("tabs").find(id)!=''){
-				$("#tabContainer").data("tabs").showTab(id);
+				if(flag_r!=null){
+					$("#tabContainer").data("tabs").reload({id: id, text: name, closeable: true, url: url,paramter:paramter});
+				}else{
+					$("#tabContainer").data("tabs").showTab(id);
+				}
 			}else if($("#tabContainer").data("tabs").find(id) ==''){
-	        	$("#tabContainer").data("tabs").addTab({id: id, text: name, closeable: true, url: url});
+	        	$("#tabContainer").data("tabs").addTab({id: id, text: name, closeable: true, url: url,paramter:paramter});
+	        	_history.push(id);
 			}
 	        // 	url =url+ ' body' 	; 
 // 	        $("#mainDiv").load(url, function(response, status, xhr) {
@@ -347,7 +355,16 @@
 // 		        }
 // 	        });
         }
-
+        
+         
+        function removeByValue(arr, val) {
+        	  for(var i=0; i<arr.length; i++) {
+        	    if(arr[i] == val) {
+        	      arr.splice(i, 1);
+        	      break;
+        	    }
+        	  }
+        	}
         /**
          * Load a url into a page
          */

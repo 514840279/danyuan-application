@@ -23,49 +23,49 @@ public class SysDatabaseInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GenericGenerator(name = "idGenerator", strategy = "uuid")
-	@Column(unique = true, nullable = false, length = 36)
+	@GenericGenerator(name = "idGenerator", strategy = " uuid")
+	@Column(unique = true, nullable = false, columnDefinition = " varchar(36) COMMENT '主键'")
 	private String			  uuid;
 	
-	@Column(length = 255)
+	@Column(columnDefinition = " varchar(100) COMMENT 'ip地址'")
 	private String			  address;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_time", nullable = false)
+	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
 	private Date			  createTime;
 	
-	@Column(name = "create_user", length = 50)
+	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
 	private String			  createUser;
 	
-	@Column(name = "database_name", length = 255)
+	@Column(name = "database_name", columnDefinition = " varchar(50) COMMENT '数据库名称'")
 	private String			  databaseName;
 	
-	@Column(name = "delete_flag")
+	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
 	private int				  deleteFlag;
 	
-	@Column(length = 200)
+	@Column(columnDefinition = "varchar(200) COMMENT '资源功能描述'")
 	private String			  discription;
 	
-	@Column(length = 255)
+	@Column(columnDefinition = "varchar(200) COMMENT '数据库驱动类'")
 	private String			  driver;
 	
-	@Column(length = 255)
+	@Column(columnDefinition = "varchar(200) COMMENT '用户密码'")
 	private String			  password;
 	
-	@Column(length = 255)
+	@Column(columnDefinition = "varchar(10) COMMENT '端口号'")
 	private String			  port;
 	
-	@Column(length = 255)
+	@Column(columnDefinition = "varchar(200) COMMENT '数据库类型'")
 	private String			  type;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "updata_time")
+	@Column(name = "updata_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '更新人员'")
 	private Date			  updataTime;
 	
-	@Column(name = "updata_user", length = 50)
+	@Column(name = "updata_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新时间'")
 	private String			  updataUser;
 	
-	@Column(insertable = false, length = 255)
+	@Column(columnDefinition = "varchar(200) COMMENT '用户名称'")
 	private String			  username;
 	
 	public SysDatabaseInfo() {

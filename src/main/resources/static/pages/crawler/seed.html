@@ -58,60 +58,67 @@
 	<!-- ==================================================seed添加========================================================================== -->
 	<!-- 添加模态框（Modal） -->
 	<div class="modal fade bs-example-modal-lg" id="addSeedModal" tabindex="-1" role="dialog" aria-labelledby="addSeedModalLabel" aria-hidden="true">
-		<div class="modal-dialog" style="width: 1100px">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="addSeedModalLabel">新增采集网站</h4>
 				</div>
 				<div class="modal-body">
-					<input type="text"  id="add_uuid" name="uuid" hidden="hidden">
-					<div class=" col-md-6 form-group">
-						<label class="col-sm-3 control-label">链接地址</label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control" id="add_seedUrl" name="seedUrl" placeholder="链接地址">
+					<!-- Main content -->
+					<section class="content">
+						<input type="text" id="add_uuid" name="uuid" hidden="hidden">
+						<div class=" col-md-6  col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-right">链接地址</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="add_seedUrl" name="seedUrl" placeholder="链接地址">
+							</div>
 						</div>
-					</div>
-					<div class=" col-md-6 form-group">
-						<label class="col-sm-3 control-label">网站名称</label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control" id="add_seedName" name="seedName" placeholder="网站名称">
+						<div class=" col-md-6 col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-right">网站名称</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="add_seedName" name="seedName" placeholder="网站名称">
+							</div>
 						</div>
-					</div>
-					<div class=" col-md-6 form-group">
-						<label class="col-sm-3 control-label">网站商标</label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control" id="add_seedIcon" name="seedIcon" placeholder="网站商标">
+						<div class=" col-md-6 col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-right">网站商标</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="add_seedIcon" name="seedIcon" placeholder="网站商标">
+							</div>
 						</div>
-					</div>
-					<div class=" col-md-6 form-group">
-						<label class="col-sm-3 control-label">网站类型</label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control" id="add_seedType" name="seedType" placeholder="网站类型">
+						<div class=" col-md-6 col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-right">网站类型</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="add_seedType" name="seedType" placeholder="网站类型">
+							</div>
 						</div>
-					</div>
-					<div class=" col-md-6 form-group">
-						<label class="col-sm-3 control-label">请求间隔时间</label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control" id="add_requestDate" name="requestDate" placeholder="请求时间">
+						<div class=" col-md-6 col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-right">请求间隔时间</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="add_requestDate" name="requestDate" placeholder="请求时间">
+							</div>
 						</div>
-					</div>
-					<div class=" col-md-6 form-group">
-						<label class="col-sm-3 control-label">是否使用代理</label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control" id="add_requestProxy" name="requestProxy" placeholder="是否使用代理1：是，0,：否">
+						<div class=" col-md-6 col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-right">是否使用代理</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="add_requestProxy" name="requestProxy" placeholder="是否使用代理1：是，0,：否">
+							</div>
 						</div>
-					</div>
-					<div class=" col-md-6 form-group">
-						<label class="col-sm-3 control-label">资源功能描述</label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control" id="add_discription" name="discription" placeholder="资源功能描述">
+						<div class=" col-md-6 col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-right">资源功能描述</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="add_discription" name="discription" placeholder="资源功能描述">
+							</div>
 						</div>
-					</div>
+					</section>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" onclick="submit();">提交添加</button>
+					<div class="row">
+						<div class=" text-center">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button type="button" class="btn btn-primary" onclick="submit();">提交添加</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -120,7 +127,7 @@
 	<!-- ===================================================roler列表========================================================================= -->
 	<!-- 添加规则模态框（Modal） -->
 	<div class="modal fade bs-example-modal-lg" id="Modal_roler" tabindex="-1" role="dialog" aria-labelledby="myModal_roler" aria-hidden="true">
-		<div class="modal-dialog" style="width: 1400px">
+		<div class="modal-dialog  modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -128,29 +135,49 @@
 				</div>
 				<!-- Main content -->
 				<section class="content">
-					<div class="text-left text-primary"><h4>网站信息</h4></div>
-					<hr/>
+					<div class="text-left text-primary">
+						<h4>网站信息</h4>
+					</div>
+					<hr />
 					<!-- 详细内容展示 -->
-					<dl class="row">
-						<dt class="col-xs-1 text-right" >uuid:</dt>
-						<dd class="col-xs-2 text-left" id="role_seed_uuid"></dd>
-						<dt class="col-xs-1 text-right">网站地址:</dt>
-						<dd class="col-xs-2 text-left" id="role_seed_url"></dd>
-						<dt class="col-xs-1 text-right">网站名称:</dt>
-						<dd class="col-xs-2 text-left"><p><img  id="role_seed_icon"/><span  id="role_seed_name"></span></p></dd>
-						<dt class="col-xs-1 text-right">网站类型:</dt>
-						<dd class="col-xs-2 text-left" id="role_seed_type"></dd>
-					</dl>	
-					<dl class="row">	
-						<dt class="col-xs-1 text-right">请求间隔:</dt>
-						<dd class="col-xs-2 text-left" id="role_seed_requesttime"></dd>
-						<dt class="col-xs-1 text-right">使用代理:</dt>
-						<dd class="col-xs-2 text-left" id="role_seed_requestProxy"></dd>
-						<dt class="col-xs-1 text-right">资源描述:</dt>
-						<dd class="col-xs-2 text-left" id="role_seed_discription"></dd>
-					</dl>		
-					<div class="text-left text-primary"><h4>规则管理</h4></div>
-					<hr/>
+					<div class="row">
+						<div class="col-md-6 col-xs-12">
+							<div class="col-md-2 col-xs-4 text-right">uuid:</div>
+							<div class="col-md-4 col-xs-8 text-left" id="role_seed_uuid"></div>
+						</div>
+						<div class="col-md-6 col-xs-12">
+							<div class="col-md-2 col-xs-4 text-right">网站地址:</div>
+							<div class="col-md-4 col-xs-8 text-left" id="role_seed_url"></div>
+						</div>
+						<div class="col-md-6 col-xs-12">
+							<div class="col-md-2 col-xs-4 text-right">网站名称:</div>
+							<div class="col-md-4 col-xs-8 text-left">
+								<p>
+									<img id="role_seed_icon" /><span id="role_seed_name"></span>
+								</p>
+							</div>
+						</div>
+						<div class="col-md-6 col-xs-12">
+							<div class="col-md-2 col-xs-4 text-right">网站类型:</div>
+							<div class="col-md-4 col-xs-8 text-left" id="role_seed_type"></div>
+						</div>
+						<div class="col-md-6 col-xs-12">
+							<div class="col-md-2 col-xs-4 text-right">请求间隔:</div>
+							<div class="col-md-4 col-xs-8 text-left" id="role_seed_requesttime"></div>
+						</div>
+						<div class="col-md-6 col-xs-12">
+							<div class="col-md-2 col-xs-4 text-right">使用代理:</div>
+							<div class="col-md-4 col-xs-8 text-left" id="role_seed_requestProxy"></div>
+						</div>
+						<div class="col-md-6 col-xs-12">
+							<div class="col-md-2 col-xs-4 text-right">资源描述:</div>
+							<div class="col-md-4 col-xs-8 text-left" id="role_seed_discription"></div>
+						</div>
+					</div>
+					<div class="text-left text-primary">
+						<h4>规则管理</h4>
+					</div>
+					<hr />
 					<!-- 	表格 -->
 					<div id="toolbar2">
 						<div class="btn-group">
@@ -178,11 +205,11 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- ===================================================roler添加========================================================================= -->
 	<!-- 添加规则模板模态框（Modal） -->
 	<div class="modal fade bs-example-modal-lg" id="addModal_roler" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_roler" aria-hidden="true">
-		<div class="modal-dialog" style="width: 1400px">
+		<div class="modal-dialog  modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -191,7 +218,7 @@
 				<div class="modal-body">
 					<!-- Main content -->
 					<section class="content">
-						<input type="text"id="add_roler_uuid" name="uuid" hidden="hidden">
+						<input type="text" id="add_roler_uuid" name="uuid" hidden="hidden">
 						<!-- 模板 -->
 						<div class="row">
 							<div class=" col-md-6 form-group">
@@ -234,17 +261,19 @@
 					</section>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" id="add_roler_button_apply">提交添加</button>
+					<div class="col-xs-12 text-center">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" id="add_roler_button_apply">提交添加</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- ===================================================colum列表========================================================================= -->
 	<!-- 添加规则模板模态框（Modal） -->
 	<div class="modal fade bs-example-modal-lg" id="addModal_roler_manager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_roler_manager" aria-hidden="true">
-		<div class="modal-dialog" style="width: 1400px">
+		<div class="modal-dialog  modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -253,29 +282,41 @@
 				<div class="modal-body">
 					<!-- Main content -->
 					<section class="content">
-						<div class="text-left text-primary"><h4>网站信息</h4></div>
-					<hr/>
-					<!-- 详细内容展示 -->
-					<dl class="row">
-						<dt class="col-xs-1 text-right" >uuid:</dt>
-						<dd class="col-xs-2 text-left" id="add_roler_uuid_manager"></dd>
-						<dt class="col-xs-1 text-right">模板名称:</dt>
-						<dd class="col-xs-2 text-left" id="add_roler_name_manager"></dd>
-						<dt class="col-xs-1 text-right">配对地址:</dt>
-						<dd class="col-xs-2 text-left" id="add_roler_subUri_manager"></dd>
-						<dt class="col-xs-1 text-right">请求方式:</dt>
-						<dd class="col-xs-2 text-left" id="add_roler_requestType_manager"></dd>
-					</dl>	
-					<dl class="row">	
-						<dt class="col-xs-1 text-right">字符集管理:</dt>
-						<dd class="col-xs-2 text-left" id="add_roler_charset_manager"></dd>
-						<dt class="col-xs-1 text-right">资源描述:</dt>
-						<dd class="col-xs-2 text-left" id="add_roler_discription_manager"></dd>
-						<dt class="col-xs-1 text-right">网页类型:</dt>
-						<dd class="col-xs-2 text-left" id="add_roler_type_manager"></dd>
-					</dl>		
-					<div class="text-left text-primary"><h4>字段管理</h4></div>
-					<hr/>
+						<div class="text-left text-primary">
+							<h4>网站信息</h4>
+						</div>
+						<hr />
+						<!-- 详细内容展示 -->
+						<div class="row">
+							<div class="col-md-6 col-xs-12">
+								<div class="col-md-2 col-xs-4 text-right">uuid:</div>
+								<div class="col-md-4 col-xs-8  text-left" id="add_roler_uuid_manager"></div>
+								<div class="col-md-2 col-xs-4  text-right">模板名称:</div>
+								<div class="col-md-4 col-xs-8 text-left" id="add_roler_name_manager"></div>
+							</div>
+							<div class="col-md-6 col-xs-12">
+								<div class="col-md-2 col-xs-4 text-right">配对地址:</div>
+								<div class="col-md-4 col-xs-8 text-left" id="add_roler_subUri_manager"></div>
+								<div class="col-md-2 col-xs-4 text-right">请求方式:</div>
+								<div class="col-md-4 col-xs-8 text-left" id="add_roler_requestType_manager"></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 col-xs-12">
+								<div class="col-md-2 col-xs-4 text-right">字符集管理:</div>
+								<div class="col-md-4 col-xs-8 text-left" id="add_roler_charset_manager"></div>
+								<div class="col-md-2 col-xs-4 text-right">资源描述:</div>
+								<div class="col-md-4 col-xs-8 text-left" id="add_roler_discription_manager"></div>
+							</div>
+							<div class="col-md-6 col-xs-12">
+								<div class="col-md-2 col-xs-4 text-right">网页类型:</div>
+								<div class="col-md-4 col-xs-8 text-left" id="add_roler_type_manager"></div>
+							</div>
+						</div>
+						<div class="text-left text-primary">
+							<h4>字段管理</h4>
+						</div>
+						<hr />
 						<!-- 	表格 -->
 						<div id="toolbar3">
 							<div class="btn-group">
@@ -293,8 +334,8 @@
 						<!-- 表格 -->
 						<table class="table table-striped table-bordered" id="crawler_seed_roler_colum_datagrid" data-toggle="crawler_seed_roler_colum_datagrid"></table>
 						<!-- 下一页 -->
-						<div>
-							<div class=" col-md-6 form-group">
+						<div >
+							<div class=" col-md-6  form-group">
 								<label class="col-sm-4 control-label">下一页地址提取规则</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="colum_next_page" name="seedIcon" placeholder="//div//next//@href">
@@ -302,7 +343,7 @@
 							</div>
 							<div class=" col-md-6 form-group">
 								<div class="col-sm-6">
-									<button class="btn btn-primary" >应用</button>
+									<button class="btn btn-primary">应用</button>
 								</div>
 							</div>
 						</div>
@@ -315,84 +356,89 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- ===============================================================colum添加============================================================= -->
 	<!-- 添加列模态框（Modal） -->
 	<div class="modal fade bs-example-modal-lg" id="addModal_colum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel_colum" aria-hidden="true">
-		<div class="modal-dialog" style="width: 1400px">
+		<div class="modal-dialog  modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel_colum">字段提取规则</h4>
 				</div>
 				<div class="modal-body">
-					<div class="row">
-						<input type="text"  id="add_column_uuid" name="uuid" hidden="hidden">
-						<div class=" col-md-6 form-group">
-							<label class="col-sm-3 control-label">名称</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="add_column_name" name="name" placeholder="标题">
+					<!-- Main content -->
+					<section class="content">
+						<div class="row">
+							<input type="text" id="add_column_uuid" name="uuid" hidden="hidden">
+							<div class=" col-md-6  col-sm-12 form-group">
+								<label class="col-sm-3 control-label">名称</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_column_name" name="name" placeholder="标题">
+								</div>
+							</div>
+							<div class=" col-md-6 col-sm-12 form-group">
+								<label class="col-sm-3 control-label">规则</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_column_roler" name="roler" placeholder="//div/span[@class='title']//text()[1]">
+								</div>
+							</div>
+							<div class=" col-md-6 col-sm-12 form-group">
+								<label class="col-sm-3 control-label">处理方式</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_column_type" name="type" placeholder="(l)提取内容，(n)直接返回规则字符串，(spl)截取字符，(arr)取数组的一个，（app）拼接字符，(str)截取字符，(rep)替换字符，。。。">
+								</div>
+							</div>
+							<div class=" col-md-6 col-sm-12 form-group">
+								<label class="col-sm-3 control-label">spl1</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_column_spl1" name="spl1" placeholder="">
+								</div>
+							</div>
+							<div class=" col-md-6 col-sm-12 form-group">
+								<label class="col-sm-3 control-label">spl2</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_column_spl2" name="spl2" placeholder="0" value='0'>
+								</div>
+							</div>
+							<div class=" col-md-6 col-sm-12 form-group">
+								<label class="col-sm-3 control-label">app1</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_column_app1" name="app1" placeholder="">
+								</div>
+							</div>
+							<div class=" col-md-6 col-sm-12 form-group">
+								<label class="col-sm-3 control-label">app2</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_column_app2" name="app2" placeholder="">
+								</div>
+							</div>
+							<div class=" col-md-6 col-sm-12 form-group">
+								<label class="col-sm-3 control-label">arr</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_column_arr" name="arr" placeholder="0" value='0'>
+								</div>
+							</div>
+							<div class=" col-md-6 col-sm-12 form-group">
+								<label class="col-sm-3 control-label">rep</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_column_rep" name="rep" placeholder="">
+								</div>
+							</div>
+							<div class=" col-md-6 col-sm-12 form-group">
+								<label class="col-sm-3 control-label">描述</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="add_column_discription" name="discription" placeholder="">
+								</div>
 							</div>
 						</div>
-						<div class=" col-md-6 form-group">
-							<label class="col-sm-3 control-label">规则</label>
-							<div class="col-sm-9">
-								<input type="text" class="form-control" id="add_column_roler" name="roler" placeholder="//div/span[@class='title']//text()[1]">
-							</div>
-						</div>
-						<div class=" col-md-6 form-group">
-							<label class="col-sm-3 control-label">处理方式</label>
-							<div class="col-sm-9">
-								 <input type="text" class="form-control"   id="add_column_type" name="type" placeholder="(l)提取内容，(n)直接返回规则字符串，(spl)截取字符，(arr)取数组的一个，（app）拼接字符，(str)截取字符，(rep)替换字符，。。。"> 
-							</div>
-						</div>
-						<div class=" col-md-6 form-group">
-							<label class="col-sm-3 control-label">spl1</label>
-							<div class="col-sm-9">
-								 <input type="text" class="form-control"   id="add_column_spl1" name="spl1" placeholder=""> 
-							</div>
-						</div>
-						<div class=" col-md-6 form-group">
-							<label class="col-sm-3 control-label">spl2</label>
-							<div class="col-sm-9">
-								 <input type="text" class="form-control"   id="add_column_spl2" name="spl2" placeholder="0" value='0'> 
-							</div>
-						</div>
-						<div class=" col-md-6 form-group">
-							<label class="col-sm-3 control-label">app1</label>
-							<div class="col-sm-9">
-								 <input type="text" class="form-control"   id="add_column_app1" name="app1" placeholder=""> 
-							</div>
-						</div>
-						<div class=" col-md-6 form-group">
-							<label class="col-sm-3 control-label">app2</label>
-							<div class="col-sm-9">
-								 <input type="text" class="form-control" id="add_column_app2" name="app2" placeholder=""> 
-							</div>
-						</div>
-						<div class=" col-md-6 form-group">
-							<label class="col-sm-3 control-label">arr</label>
-							<div class="col-sm-9">
-								 <input type="text" class="form-control" id="add_column_arr" name="arr" placeholder="0" value='0'> 
-							</div>
-						</div>
-						<div class=" col-md-6 form-group">
-							<label class="col-sm-3 control-label">rep</label>
-							<div class="col-sm-9">
-								 <input type="text" class="form-control"  id="add_column_rep" name="rep" placeholder=""> 
-							</div>
-						</div>
-						<div class=" col-md-6 form-group">
-							<label class="col-sm-3 control-label">描述</label>
-							<div class="col-sm-9">
-								 <input type="text" class="form-control" id="add_column_discription" name="discription" placeholder=""> 
-							</div>
-						</div>
-					</div>
+					</section>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" onclick="submitAddColumn();">提交添加</button>
+					<div class="text-center">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" onclick="submitAddColumn();">提交添加</button>
+					</div>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -400,8 +446,8 @@
 		<!-- /.modal -->
 	</div>
 
-<script type="text/javascript" src="/pages/crawler/js/seed_index.js"></script>
-<script type="text/javascript" src="/pages/crawler/js/roler.js"></script>
-<script type="text/javascript" src="/pages/crawler/js/colum.js"></script>
+	<script type="text/javascript" src="/pages/crawler/js/seed_index.js"></script>
+	<script type="text/javascript" src="/pages/crawler/js/roler.js"></script>
+	<script type="text/javascript" src="/pages/crawler/js/colum.js"></script>
 </body>
 </html>

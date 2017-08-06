@@ -1,7 +1,12 @@
 package tk.ainiyue.danyuan.application.dbm.addr.service.impl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tk.ainiyue.danyuan.application.dbm.addr.dao.SysDatabaseDao;
+import tk.ainiyue.danyuan.application.dbm.addr.po.SysDatabaseInfo;
 import tk.ainiyue.danyuan.application.dbm.addr.service.SysDatabaseService;
 
 /**
@@ -16,5 +21,23 @@ import tk.ainiyue.danyuan.application.dbm.addr.service.SysDatabaseService;
  */
 @Service("sysDatabaseService")
 public class SysDatabaseServiceImpl implements SysDatabaseService {
+	//
+	@Autowired
+	private SysDatabaseDao sysDatabaseDao;
 	
+	@Override
+	public List<SysDatabaseInfo> findAll() {
+		return sysDatabaseDao.findAll();
+	}
+	
+	@Override
+	public void save(SysDatabaseInfo sysDatabaseInfo) {
+		sysDatabaseDao.save(sysDatabaseInfo);
+	}
+
+	@Override
+	public void deleteSysDatabaseInfo(List<SysDatabaseInfo> list) {
+		sysDatabaseDao.delete(list);
+	}
+
 }

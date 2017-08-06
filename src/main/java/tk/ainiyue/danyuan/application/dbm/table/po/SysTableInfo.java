@@ -23,49 +23,49 @@ public class SysTableInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GenericGenerator(name = "idGenerator", strategy = "uuid")
-	@Column(unique = true, nullable = false, length = 36)
+	@GenericGenerator(name = "idGenerator", strategy = " uuid")
+	@Column(unique = true, nullable = false, columnDefinition = " varchar(36) COMMENT '主键'")
 	private String			  uuid;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_time")
+	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
 	private Date			  createTime;
 	
-	@Column(name = "create_user", length = 50)
+	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
 	private String			  createUser;
 	
-	@Column(name = "database_uuid", length = 36)
+	@Column(name = "database_uuid", columnDefinition = "varchar(36) COMMENT '数据库表id'")
 	private String			  databaseUuid;
 	
-	@Column(name = "delete_flag")
+	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
 	private int				  deleteFlag;
 	
-	@Column(length = 200)
+	@Column(columnDefinition = "varchar(200) COMMENT '资源功能描述'")
 	private String			  discription;
 	
-	@Column(name = "table_disc", length = 200)
+	@Column(name = "table_disc", columnDefinition = "varchar(50) COMMENT '表的含义'")
 	private String			  tableDisc;
 	
-	@Column(name = "table_name", length = 30)
+	@Column(name = "table_name", columnDefinition = "varchar(30) COMMENT '数据库表名'")
 	private String			  tableName;
 	
-	@Column(name = "TABLE_ORDER")
+	@Column(name = "table_order", columnDefinition = "int COMMENT '数据库表顺序'")
 	private int				  tableOrder;
 	
-	@Column(name = "TABLE_ROWS")
+	@Column(name = "table_rows", columnDefinition = "int COMMENT '数据库表数据量'")
 	private int				  tableRows;
 	
-	@Column(name = "TABLE_SPACE", length = 50)
+	@Column(name = "table_space", columnDefinition = "int COMMENT '数据库表空间大小'")
 	private String			  tableSpace;
 	
-	@Column(name = "TYPE_UUID", length = 36)
+	@Column(name = "type_uuid", columnDefinition = "varchar(36) COMMENT '数据库类型表id'")
 	private String			  typeUuid;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "updata_time")
+	@Column(name = "updata_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '更新人员'")
 	private Date			  updataTime;
 	
-	@Column(name = "updata_user", length = 50)
+	@Column(name = "updata_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新时间'")
 	private String			  updataUser;
 	
 	public SysTableInfo() {
