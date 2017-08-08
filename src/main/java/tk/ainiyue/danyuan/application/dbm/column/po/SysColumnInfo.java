@@ -27,8 +27,8 @@ public class SysColumnInfo implements Serializable {
 	@Column(unique = true, nullable = false, columnDefinition = " varchar(36) COMMENT '主键'")
 	private String			  uuid;
 
-	@Column(name = "cold_length", columnDefinition = " int COMMENT '字段长度'")
-	private int				  coldLength;
+	@Column(name = "cols_length", columnDefinition = " int COMMENT '字段长度'")
+	private int				  colsLength;
 
 	@Column(name = "cols_desc", columnDefinition = " varchar(50) COMMENT '字段含义'")
 	private String			  colsDesc;
@@ -75,15 +75,22 @@ public class SysColumnInfo implements Serializable {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-
-	public int getColdLength() {
-		return this.coldLength;
+	
+	/**
+	 * @return the colsLength
+	 */
+	public int getColsLength() {
+		return colsLength;
 	}
-
-	public void setColdLength(int coldLength) {
-		this.coldLength = coldLength;
+	
+	/**
+	 * @param colsLength
+	 *            the colsLength to set
+	 */
+	public void setColsLength(int colsLength) {
+		this.colsLength = colsLength;
 	}
-
+	
 	public String getColsDesc() {
 		return this.colsDesc;
 	}

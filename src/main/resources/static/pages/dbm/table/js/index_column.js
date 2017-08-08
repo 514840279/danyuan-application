@@ -1,20 +1,20 @@
-$('#search_table_addrName').select2({
+$('#add_table_addrName').select2({
     placeholder: "数据库名称",
     allowClear: true,
     tags: true,
 });
 
-$('#search_table_typeName').select2({
+$('#add_table_typeName').select2({
     placeholder: "类型名",
     allowClear: true,
     tags: true,
 });
 
 $(function() {
-	$('#addnew_table').click(function() {
-		loadPage('/pages/dbm/table/add_table.html','add_table_tab_id','新建表')
+	$('#addnew_column').click(function() {
+		loadPage('/pages/dbm/table/add_column.html','add_column_tab_id','新加字段')
 	});
-	$('#editold_table').click(function() {
+	$('#editold_column').click(function() {
 		var data = $('#db_addr_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
@@ -26,7 +26,7 @@ $(function() {
 		}
 	});
 	
-	$('#deleteold_table').click(function() {
+	$('#deleteold_column').click(function() {
 		var data = $('#db_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
@@ -50,10 +50,10 @@ $(function() {
 	});
 
 	// bootstrap table
-	$('#db_table_datagrid').bootstrapTable({
+	$('#db_colum_datagrid').bootstrapTable({
 		url : "/sysTableInfo/findAll",
 		dataType : "json",
-		toolbar : '#db_table_toolbar', // 工具按钮用哪个容器
+		toolbar : '#db_column_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
@@ -90,10 +90,10 @@ $(function() {
 	});
 	// 窗口大小改变时 重设表头
 	$(window).resize(function() {
-		$('#db_table_datagrid').bootstrapTable('resetView');
+		$('#db_colum_datagrid').bootstrapTable('resetView');
 	});
 
 });
 function successDeleteSysTableInfo(){
-	$('#db_table_datagrid').bootstrapTable('refresh');
+	$('#db_colum_datagrid').bootstrapTable('refresh');
 }
