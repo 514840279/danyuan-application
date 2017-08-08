@@ -28,7 +28,7 @@ http://www.danyuan.wang/#
 账号密码：admin/admin
 
 QQ群：314023211
-联系qq：514840279
+<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven"></a>
 
 ##效果
 ![登录验证](screen/7.png)
