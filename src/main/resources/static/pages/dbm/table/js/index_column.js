@@ -16,10 +16,18 @@ $(function() {
 		//		alert("Something will happen!");
 		var tableName= $("#add_table_tableName").val();
 		var tableDesc=$("#add_table_tableDesc").val();
-		var databaseUuid=$("#add_table_addrName").select2("data")[0].text;
-		var typeUuid=$("#add_table_typeName").select2("data")[0].text;
-		
-		
+		var databaseUuid=$("#add_table_addrName").val();
+		var typeUuid=$("#add_table_typeName").val();
+		var param = {
+				uuid:getUuid(),
+				tableName:tableName,
+				tableDesc:tableDesc,
+				databaseUuid:databaseUuid,
+				typeUuid:typeUuid
+			};
+			// 重载
+			var url = "/sysTableInfo/saveSysTableInfo";
+			ajaxPost(url, param, successSaveSysTableInfo, 1000, findError);
 	});
 	// 新建表
 //	$('#db_trash_table_button').click(function() {
@@ -73,7 +81,7 @@ $(function() {
 								"list":data,
 						};
 						// 重载
-						var url = "/sysDatabaseInfo/deleteSysDatabaseInfo";
+						var url = "/sysTableInfo/deleteSysTableInfo";
 						ajaxPost(url, param, successDeleteSysTableInfo, 1000, findError);
 					}
 				}
@@ -131,6 +139,11 @@ $(function() {
 	ajaxPost('/sysTableTypeInfo/findAll', null, successSearchTableTypeInfo, null, findError);
 
 });
+
+// 创建表成功
+function successSaveSysTableInfo(result){
+	$("#db_table_datagrid").bootstrapTable('load',result); 
+}
 //数据库列表下拉
 function successSearchDatabaseInfo(result){
 	jQuery('#add_table_addrName').append('<option value=""></option>');

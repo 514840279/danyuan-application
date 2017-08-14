@@ -5,11 +5,13 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo;
 import tk.ainiyue.danyuan.application.dbm.table.service.SysTableService;
+import tk.ainiyue.danyuan.application.dbm.table.vo.SysTableVo;
 
 /**
  * 文件名 ： SysTableController.java
@@ -26,13 +28,10 @@ import tk.ainiyue.danyuan.application.dbm.table.service.SysTableService;
 public class SysTableController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysTableController.class);
-
+	
 	//
 	@Autowired
 	private SysTableService		sysTableService;
-	
-//	@Autowired
-//	JdbcTemplate				jdbcTemplate;
 
 	/**
 	 * 方法名： findAll
@@ -45,9 +44,18 @@ public class SysTableController {
 	@RequestMapping("/findAll")
 	public List<SysTableInfo> findAll() {
 		logger.info("findAll", SysTableController.class);
-//		jdbcTemplate.execute("DROP TABLE IF EXISTS customers ");
-//		jdbcTemplate.execute("CREATE TABLE customers(" +
-//		        "id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255))");
 		return sysTableService.findAll();
+	}
+	
+	@RequestMapping("/saveSysTableInfo")
+	public List<SysTableInfo> saveSysTableInfo(@RequestBody SysTableInfo sysTableInfo) {
+		logger.info("saveSysTableInfo", SysTableController.class);
+		return sysTableService.save(sysTableInfo);
+	}
+
+	@RequestMapping("/deleteSysTableInfo")
+	public List<SysTableInfo> deleteSysTableInfo(@RequestBody SysTableVo vo) {
+		logger.info("deleteSysTableInfo", SysTableController.class);
+		return sysTableService.deleteSysTableInfo(vo);
 	}
 }

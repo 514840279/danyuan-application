@@ -26,7 +26,7 @@ $(function() {
 		}
 	});
 	
-	$('#deleteold_table').click(function() {
+	$('#drop_table').click(function() {
 		var data = $('#db_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
@@ -41,7 +41,7 @@ $(function() {
 								"list":data,
 						};
 						// 重载
-						var url = "/sysDatabaseInfo/deleteSysDatabaseInfo";
+						var url = "/sysTableInfo/deleteSysTableInfo";
 						ajaxPost(url, param, successDeleteSysTableInfo, 1000, findError);
 					}
 				}

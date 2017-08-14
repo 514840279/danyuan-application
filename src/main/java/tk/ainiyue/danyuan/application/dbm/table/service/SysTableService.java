@@ -3,6 +3,7 @@ package tk.ainiyue.danyuan.application.dbm.table.service;
 import java.util.List;
 
 import tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo;
+import tk.ainiyue.danyuan.application.dbm.table.vo.SysTableVo;
 
 /**
  * 文件名 ： SysTableService.java
@@ -17,5 +18,9 @@ import tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo;
 public interface SysTableService {
 	
 	List<SysTableInfo> findAll();
+
+	List<SysTableInfo> save(SysTableInfo info);
+	
+	List<SysTableInfo> deleteSysTableInfo(SysTableVo vo);
 
 }
