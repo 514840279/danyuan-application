@@ -1,15 +1,19 @@
 package tk.ainiyue.danyuan.application.dbm.column.service.impl;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.dbm.column.dao.SysColumnDao;
+import tk.ainiyue.danyuan.application.dbm.column.po.SysColumnInfo;
 import tk.ainiyue.danyuan.application.dbm.column.service.SysColumnService;
-import tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo;
 
 /**
  * 文件名 ： SysColumnServiceImpl.java
@@ -27,10 +31,33 @@ public class SysColumnServiceImpl implements SysColumnService {
 	//
 	@Autowired
 	private SysColumnDao		sysColumnDao;
-
+	
 	@Override
-	public List<SysTableInfo> findAllByTableUuid(String tableUuid) {
-		return sysColumnDao.findAllByTableUuid(tableUuid);
+	public Page<SysColumnInfo> findAllByTableUuid(int pageNumber, int pageSize, String searchText, String tableUuid) {
+		logger.info(tableUuid, SysColumnServiceImpl.class);
+//		Page<SysColumnInfo> list = sysColumnDao.findAllByTableUuid(tableUuid);
+		Sort sort = new Sort(new Order(Direction.ASC, "colsOrder"));
+		PageRequest request = this.buildPageRequest(pageNumber, pageSize, sort);
+		Page<SysColumnInfo> sourceCodes = null;
+		if (searchText == null || "".equals(searchText) && "".equals(tableUuid)) {
+			sourceCodes = sysColumnDao.findAll(request);
+		} else {
+			SysColumnInfo info = new SysColumnInfo();
+			if (!"".equals(tableUuid)) {
+				info.setTableUuid(tableUuid);
+			}
+			if (!"".equals(searchText)) {
+				info.setColsName(searchText);
+			}
+			Example<SysColumnInfo> example = Example.of(info);
+			sourceCodes = sysColumnDao.findAll(example, request);
+		}
+		return sourceCodes;
+		
 	}
 
+	// 构建PageRequest
+	private PageRequest buildPageRequest(int pageNumber, int pagzSize, Sort sort) {
+		return new PageRequest(pageNumber - 1, pagzSize, sort);
+	}
 }

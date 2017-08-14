@@ -74,26 +74,25 @@ $(function() {
 		method: "post",  //使用get请求到服务器获取数据  
 		queryParams: function queryParams(params) {  
 		    var param = {  
-	                 pageNumber: params.pageNumber,    
-	                 pageSize: params.pageSize,
-	                 searchText:params.searchText,
-	                 uuid:$('#db_upd_table_uuid').text(),
-	             }; 
+                 pageNumber: params.pageNumber,    
+                 pageSize: params.pageSize,
+                 searchText:params.searchText,
+                 uuid:$('#db_upd_table_uuid').text(),
+             }; 
              return param;
 		},
 		columns : [
 			{title : '全选',	checkbox : true,align : 'center',valign : 'middle'},
 			{title : 'id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle'},
-			{title : '数据库',field : 'databaseUuid',sortable : true,align : 'center'},
-			{title : '类型',field : 'typeUuid',sortable : true,align : 'center'},
-			{title : '表名',field : 'tableName',align : 'center',sortable : true,valign : 'middle'},
-			{title : '表含义',field : 'tableDisc',align : 'center',sortable : true,valign : 'middle'},
-			{title : '排序',field : 'tableOrder',align : 'center',sortable : true,valign : 'middle'},
-			{title : '表数据量',field : 'tableRows',sortable : true,align : 'center'},
-			{title : '数据库表大小',field : 'tableSpace',sortable : true,align : 'center'},
-			{title : '描述',field : 'discription',sortable : true,align : 'center'}
+			{title : '字段名',field : 'colsName',sortable : true,align : 'center'},
+			{title : '翻译',field : 'colsDesc',sortable : true,align : 'center'},
+			{title : '长度',field : 'colsLength',align : 'center',sortable : true,valign : 'middle'},
+			{title : '排序',field : 'colsOrder',align : 'center',sortable : true,valign : 'middle'},
+			{title : '字段类型',field : 'colsType',align : 'center',sortable : true,valign : 'middle'},
+			{title : '描述',field : 'discription',sortable : true,align : 'center'},
 		],
 		responseHandler: function(result){  // 成功时执行
+			console.log(result)
 			return {rows:result.content,total:result.totalElements};
 		}, 
         onLoadSuccess: function(){  //加载成功时执行  

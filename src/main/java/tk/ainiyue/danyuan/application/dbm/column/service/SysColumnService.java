@@ -1,8 +1,8 @@
 package tk.ainiyue.danyuan.application.dbm.column.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 
-import tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo;
+import tk.ainiyue.danyuan.application.dbm.column.po.SysColumnInfo;
 
 /**
  * 文件名 ： SysColumnService.java
@@ -15,7 +15,7 @@ import tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo;
  * 版 本 ： V1.0
  */
 public interface SysColumnService {
-	
-	List<SysTableInfo> findAllByTableUuid(String tableUuid);
-	
+
+	Page<SysColumnInfo> findAllByTableUuid(int pageNumber, int pageSize, String searchText, String tableUuid);
+
 }
