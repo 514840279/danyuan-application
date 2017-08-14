@@ -1,54 +1,6 @@
-$('#add_table_addrName').select2({
-    placeholder: "数据库名称",
-    allowClear: true,
-    tags: true,
-});
-
-$('#add_table_typeName').select2({
-    placeholder: "类型名",
-    allowClear: true,
-    tags: true,
-});
 
 $(function() {
-	// 新建表
-	$('#db_create_table_button').click(function() {
-		//		alert("Something will happen!");
-		var tableName= $("#add_table_tableName").val();
-		var tableDesc=$("#add_table_tableDesc").val();
-		var databaseUuid=$("#add_table_addrName").val();
-		var typeUuid=$("#add_table_typeName").val();
-		var param = {
-				uuid:getUuid(),
-				tableName:tableName,
-				tableDesc:tableDesc,
-				databaseUuid:databaseUuid,
-				typeUuid:typeUuid
-			};
-			// 重载
-			var url = "/sysTableInfo/saveSysTableInfo";
-			ajaxPost(url, param, successSaveSysTableInfo, 1000, findError);
-	});
-	// 新建表
-//	$('#db_trash_table_button').click(function() {
-//		// TODO 清空表
-//		bootbox.setLocale("zh_CN");
-//		bootbox.confirm({
-//		message : "确定要清空所有数据",
-//		title : "系统提示",
-//		callback : function(result) {
-//				if (result) {
-//					var param = {
-//						uuid:
-//					};
-//					// 重载
-//					var url = "/sysDatabaseInfo/deleteSysDatabaseInfo";
-//					ajaxPost(url, param, successDeleteSysTableInfo, 1000, findError);
-//				}
-//			}
-//		});
-//		
-//	});
+	
 	//新加字段
 	$('#addnew_column').click(function() {
 		loadPage('/pages/dbm/table/add_column.html','add_column_tab_id','新加字段');
@@ -91,7 +43,7 @@ $(function() {
 
 	// bootstrap table 表列表
 	$('#db_colum_datagrid').bootstrapTable({
-		url : "/sysTableInfo/findAll",
+		url : "/sysColumnInfo/findAll",
 		dataType : "json",
 		toolbar : '#db_column_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -114,7 +66,21 @@ $(function() {
 		singleSelect : false,
 		locales : "zh-CN", // 表格汉化
 		search : true, // 显示搜索框
-		sidePagination: "client", // 服务端处理分页
+		sidePagination: "server", // 服务端处理分页 server
+		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
+        //设置为limit可以获取limit, offset, search, sort, order  
+        queryParamsType : "undefined",
+        contentType: "application/x-www-form-urlencoded",
+		method: "post",  //使用get请求到服务器获取数据  
+		queryParams: function queryParams(params) {  
+		    var param = {  
+	                 pageNumber: params.pageNumber,    
+	                 pageSize: params.pageSize,
+	                 searchText:params.searchText,
+	                 uuid:$('#db_upd_table_uuid').text(),
+	             }; 
+             return param;
+		},
 		columns : [
 			{title : '全选',	checkbox : true,align : 'center',valign : 'middle'},
 			{title : 'id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle'},
@@ -126,43 +92,28 @@ $(function() {
 			{title : '表数据量',field : 'tableRows',sortable : true,align : 'center'},
 			{title : '数据库表大小',field : 'tableSpace',sortable : true,align : 'center'},
 			{title : '描述',field : 'discription',sortable : true,align : 'center'}
-		]
+		],
+		responseHandler: function(result){  // 成功时执行
+			return {rows:result.content,total:result.totalElements};
+		}, 
+        onLoadSuccess: function(){  //加载成功时执行  
+	    },  
+	    onLoadError: function(){  //加载失败时执行  
+	    } 
 	});
 	// 窗口大小改变时 重设表头
 	$(window).resize(function() {
 		$('#db_colum_datagrid').bootstrapTable('resetView');
 	});
 	
-	// 数据库列表下拉
-	ajaxPost('/sysDatabaseInfo/findAll', null, successSearchDatabaseInfo, null, findError);
-	// 表类型列表下拉
-	ajaxPost('/sysTableTypeInfo/findAll', null, successSearchTableTypeInfo, null, findError);
 
 });
 
 // 创建表成功
 function successSaveSysTableInfo(result){
-	$("#db_table_datagrid").bootstrapTable('load',result); 
-}
-//数据库列表下拉
-function successSearchDatabaseInfo(result){
-	jQuery('#add_table_addrName').append('<option value=""></option>');
-	jQuery.each(result, function(index, value) {
-		var addr = '<option value="' + value.uuid + '">' + value.databaseName + '</option>';
-		jQuery('#add_table_addrName').append(addr);
-	});
-}
-//表类型列表下拉
-function successSearchTableTypeInfo(result){
-	jQuery('#add_table_typeName').append('<option value=""></option>');
-	jQuery.each(result, function(index, value) {
-		var type = '<option value="' + value.uuid + '">' + value.typeName + '</option>';
-		jQuery('#add_table_typeName').append(type);
-	});
-}
-
-
-
-function successDeleteSysTableInfo(){
-	$('#db_colum_datagrid').bootstrapTable('refresh');
+	$("#db_table_datagrid").bootstrapTable('load',result);
+	$("#tabContainer").data("tabs").remove('add_table_tab_id');
+	// 固定 表的tab 的id
+	$("#tabContainer").data("tabs").showTab('4c87ffe1-6447-11e7-a272-0025d3a93601');
+	removeByValue(_history,'add_table_tab_id');
 }
