@@ -1,6 +1,6 @@
 function submit_add_addr(){
 	var param = {
-		uuid :$("#add_addr_uuid").val()==null?getUuid():$("#add_addr_uuid").val(),
+		uuid :$("#add_addr_uuid").val()==""?getUuid():$("#add_addr_uuid").val(),
 		type : $("#add_addr_type").val(),
 		address : $("#add_addr_address").val(),
 		port : $("#add_addr_port").val(),
