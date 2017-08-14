@@ -2,12 +2,16 @@ package tk.ainiyue.danyuan.application.dbm.table.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo;
 import tk.ainiyue.danyuan.application.dbm.table.service.SysTableService;
@@ -58,4 +62,15 @@ public class SysTableController {
 		logger.info("deleteSysTableInfo", SysTableController.class);
 		return sysTableService.deleteSysTableInfo(vo);
 	}
+
+	@RequestMapping(path = "/updBefor", method = RequestMethod.POST)
+	public ModelAndView updBefor(HttpServletRequest request) {
+		logger.info("updBefor", SysTableController.class);
+		ModelAndView view = new ModelAndView("dbm/table/upd_table");
+		SysTableInfo info = new SysTableInfo();
+		info = sysTableService.findSysTableInofByUuid(request.getParameter("uuid"));
+		view.addObject("sysTableInfo", info);
+		return view;
+	}
+	
 }

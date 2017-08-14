@@ -15,13 +15,13 @@ $(function() {
 		loadPage('/pages/dbm/table/add_table.html','add_table_tab_id','新建表')
 	});
 	$('#editold_table').click(function() {
-		var data = $('#db_addr_datagrid').bootstrapTable('getAllSelections');
+		var data = $('#db_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length > 1){
 			alert("只能选择一条");
 		}else{
-			loadPage('/sysDatabaseInfo/addBefor','add_addr_id','修改连接',data[0],'reload')
+			loadPage('/sysTableInfo/updBefor','upd_table_tab_id','修改表',data[0],'reload')
 			
 		}
 	});
@@ -94,6 +94,6 @@ $(function() {
 	});
 
 });
-function successDeleteSysTableInfo(){
+function successDeleteSysTableInfo(reslut){
 	$('#db_table_datagrid').bootstrapTable('refresh');
 }

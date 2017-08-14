@@ -23,5 +23,7 @@ import tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo;
 @DynamicUpdate(true)
 @DynamicInsert(true)
 public interface SysTableDao extends JpaRepository<SysTableInfo, Serializable> {
+
+	SysTableInfo findSysTableInofByUuid(String uuid);
 	
 }

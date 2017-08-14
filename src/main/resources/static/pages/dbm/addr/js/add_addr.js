@@ -18,6 +18,7 @@ function submit_add_addr(){
 function sucessAddSysDatabaseInfo(result){
 	$("#tabContainer").data("tabs").remove('add_addr_id');
 	successDeleteSysDatabaseInfo();
-	$("#tabContainer").data("tabs").showTab(_history[_history.length-2]);
+	// 固定数据库连接的id
+	$("#tabContainer").data("tabs").showTab('4c87fd09-6447-11e7-a272-0025d3a93601');
 	removeByValue(_history,'add_addr_id');
 }

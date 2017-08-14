@@ -1,6 +1,7 @@
 package tk.ainiyue.danyuan.application.dbm.column.dao;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -8,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import tk.ainiyue.danyuan.application.dbm.column.po.SysColumnInfo;
+import tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo;
 
 /**
  * 文件名 ： SysColumnDao.java
@@ -24,4 +26,6 @@ import tk.ainiyue.danyuan.application.dbm.column.po.SysColumnInfo;
 @DynamicInsert(true)
 public interface SysColumnDao extends JpaRepository<SysColumnInfo, Serializable> {
 	
+	List<SysTableInfo> findAllByTableUuid(String tableUuid);
+
 }
