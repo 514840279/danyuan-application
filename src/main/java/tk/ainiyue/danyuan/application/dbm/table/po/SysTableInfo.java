@@ -13,6 +13,8 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * The persistent class for the sys_table_info database table.
  */
@@ -27,6 +29,7 @@ public class SysTableInfo implements Serializable {
 	@Column(unique = true, nullable = false, columnDefinition = " varchar(36) COMMENT '主键'")
 	private String			  uuid;
 
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
 	private Date			  createTime;
@@ -61,6 +64,7 @@ public class SysTableInfo implements Serializable {
 	@Column(name = "type_uuid", columnDefinition = "varchar(36) COMMENT '数据库表类型id'")
 	private String			  typeUuid;
 
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updata_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '更新人员'")
 	private Date			  updataTime;

@@ -1,5 +1,7 @@
 package tk.ainiyue.danyuan.application.dbm.column.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +11,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.dbm.column.dao.SysColumnDao;
 import tk.ainiyue.danyuan.application.dbm.column.po.SysColumnInfo;
 import tk.ainiyue.danyuan.application.dbm.column.service.SysColumnService;
+import tk.ainiyue.danyuan.application.dbm.table.dao.SysTableDao;
+import tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo;
 
 /**
  * 文件名 ： SysColumnServiceImpl.java
@@ -31,27 +36,21 @@ public class SysColumnServiceImpl implements SysColumnService {
 	//
 	@Autowired
 	private SysColumnDao		sysColumnDao;
+	@Autowired
+	private SysTableDao			sysTableDao;
+	@Autowired
+	JdbcTemplate				jdbcTemplate;
 	
+	// 分页查询
 	@Override
 	public Page<SysColumnInfo> findAllByTableUuid(int pageNumber, int pageSize, String searchText, String tableUuid) {
 		logger.info(tableUuid, SysColumnServiceImpl.class);
 //		Page<SysColumnInfo> list = sysColumnDao.findAllByTableUuid(tableUuid);
+		SysColumnInfo info = new SysColumnInfo(tableUuid);
+		Example<SysColumnInfo> example = Example.of(info);
 		Sort sort = new Sort(new Order(Direction.ASC, "colsOrder"));
 		PageRequest request = this.buildPageRequest(pageNumber, pageSize, sort);
-		Page<SysColumnInfo> sourceCodes = null;
-		if (searchText == null || "".equals(searchText) && "".equals(tableUuid)) {
-			sourceCodes = sysColumnDao.findAll(request);
-		} else {
-			SysColumnInfo info = new SysColumnInfo();
-			if (!"".equals(tableUuid)) {
-				info.setTableUuid(tableUuid);
-			}
-			if (!"".equals(searchText)) {
-				info.setColsName(searchText);
-			}
-			Example<SysColumnInfo> example = Example.of(info);
-			sourceCodes = sysColumnDao.findAll(example, request);
-		}
+		Page<SysColumnInfo> sourceCodes = sysColumnDao.findAll(example, request);
 		return sourceCodes;
 		
 	}
@@ -59,5 +58,40 @@ public class SysColumnServiceImpl implements SysColumnService {
 	// 构建PageRequest
 	private PageRequest buildPageRequest(int pageNumber, int pagzSize, Sort sort) {
 		return new PageRequest(pageNumber - 1, pagzSize, sort);
+	}
+
+	// 更新
+	@Override
+	public void save(SysColumnInfo info) {
+		try {
+			SysTableInfo tab = sysTableDao.findOne(info.getTableUuid());
+			SysColumnInfo old = sysColumnDao.findOne(info.getUuid());
+			if (old != null) {
+				String sql = "alter table " + tab.getTableName() + " CHANGE " + old.getColsName() + " " + info.getColsName() + " " + info.getColsType() + "(" + info.getColsLength() + ")";
+				jdbcTemplate.execute(sql);
+			} else {
+
+				String sql = "alter table " + tab.getTableName() + " add " + info.getColsName() + " " + info.getColsType() + "(" + info.getColsLength() + ")";
+				jdbcTemplate.execute(sql);
+			}
+		} finally {
+			sysColumnDao.save(info);
+			
+		}
+	}
+
+	@Override
+	public void deleteSysColumnInfo(List<SysColumnInfo> list) {
+
+		SysTableInfo tab = sysTableDao.findOne(list.get(0).getTableUuid());
+		for (SysColumnInfo sysColumnInfo : list) {
+			try {
+				// alter table user DROP COLUMN new2;
+				String sql = "alter table " + tab.getTableName() + " DROP COLUMN " + sysColumnInfo.getColsName();
+				jdbcTemplate.execute(sql);
+			} finally {
+				sysColumnDao.delete(sysColumnInfo);
+			}
+		}
 	}
 }

@@ -1,25 +1,31 @@
 
 $(function() {
-	
 	//新加字段
 	$('#addnew_column').click(function() {
-		loadPage('/pages/dbm/table/add_column.html','add_column_tab_id','新加字段');
+//		loadPage('/pages/dbm/table/add_column.html','add_column_tab_id','新加字段');
+		var param={
+				tableUuid:$('#db_upd_table_uuid').text()
+		}
+		loadPage('/sysColumnInfo/updBefor','add_column_tab_id','新加字段',param)
 	});
 	// 编辑字段
 	$('#editold_column').click(function() {
-		var data = $('#db_addr_datagrid').bootstrapTable('getAllSelections');
+		var data = $('#db_colum_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length > 1){
 			alert("只能选择一条");
 		}else{
-			loadPage('/sysDatabaseInfo/addBefor','add_addr_id','修改连接',data[0],'reload')
-			
+			var param=data[0];
+			// 由于日期转化错误 所以删除属性
+			param.createTime=undefined;
+			param.updataTime=undefined;
+			loadPage('/sysColumnInfo/updBefor','add_column_tab_id','修改字段',param,'reload')
 		}
 	});
 	// 删除字段
-	$('#deleteold_column').click(function() {
-		var data = $('#db_table_datagrid').bootstrapTable('getAllSelections');
+	$('#drop_column').click(function() {
+		var data = $('#db_colum_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length > 0){
@@ -33,8 +39,8 @@ $(function() {
 								"list":data,
 						};
 						// 重载
-						var url = "/sysTableInfo/deleteSysTableInfo";
-						ajaxPost(url, param, successDeleteSysTableInfo, 1000, findError);
+						var url = "/sysColumnInfo/deleteSysColumnInfo";
+						ajaxPost(url, param, successDeleteSysColumnInfo, 1000, findError);
 					}
 				}
 			});
@@ -92,7 +98,7 @@ $(function() {
 			{title : '描述',field : 'discription',sortable : true,align : 'center'},
 		],
 		responseHandler: function(result){  // 成功时执行
-			console.log(result)
+			console.log(result);
 			return {rows:result.content,total:result.totalElements};
 		}, 
         onLoadSuccess: function(){  //加载成功时执行  
@@ -110,9 +116,16 @@ $(function() {
 
 // 创建表成功
 function successSaveSysTableInfo(result){
-	$("#db_table_datagrid").bootstrapTable('load',result);
 	$("#tabContainer").data("tabs").remove('add_table_tab_id');
 	// 固定 表的tab 的id
 	$("#tabContainer").data("tabs").showTab('4c87ffe1-6447-11e7-a272-0025d3a93601');
+	$("#db_table_datagrid").bootstrapTable('refresh');
 	removeByValue(_history,'add_table_tab_id');
 }
+
+// 删除表
+function successDeleteSysColumnInfo(result){
+	$("#db_colum_datagrid").bootstrapTable('refresh');
+}
+
+

@@ -1,5 +1,7 @@
 package tk.ainiyue.danyuan.application.dbm.column.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import tk.ainiyue.danyuan.application.dbm.column.po.SysColumnInfo;
@@ -17,5 +19,9 @@ import tk.ainiyue.danyuan.application.dbm.column.po.SysColumnInfo;
 public interface SysColumnService {
 
 	Page<SysColumnInfo> findAllByTableUuid(int pageNumber, int pageSize, String searchText, String tableUuid);
+
+	void save(SysColumnInfo info);
+	
+	void deleteSysColumnInfo(List<SysColumnInfo> list);
 
 }
