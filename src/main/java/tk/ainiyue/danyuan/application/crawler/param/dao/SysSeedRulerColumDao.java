@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRolerColumInfo;
+import tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRulerColumInfo;
 
 /**
  * 文件名 ： SysSeedRolerColumDao.java
@@ -18,10 +18,10 @@ import tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRolerColumInfo;
  * 版 本 ： V1.0
  */
 @Repository("sysSeedRolerColumDao")
-public interface SysSeedRolerColumDao extends CrudRepository<SysSeedRolerColumInfo, String> {
+public interface SysSeedRulerColumDao extends CrudRepository<SysSeedRulerColumInfo, String> {
+	
+	List<SysSeedRulerColumInfo> findAllByRulerUuid(String rulerUuid);
 
-	List<SysSeedRolerColumInfo> findAllByRolerUuid(String rolerUuid);
-	
-	void deleteByRolerUuid(String uuid);
-	
+	void deleteByRulerUuid(String uuid);
+
 }

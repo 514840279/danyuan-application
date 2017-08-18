@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import tk.ainiyue.danyuan.application.crawler.param.po.SysRolerInfo;
+import tk.ainiyue.danyuan.application.crawler.param.po.SysRulerInfo;
 
 /**
  * 文件名 ： SysRolerDao.java
@@ -17,9 +17,9 @@ import tk.ainiyue.danyuan.application.crawler.param.po.SysRolerInfo;
  * 时 间 ： 2017年7月20日 下午3:10:54
  * 版 本 ： V1.0
  */
-@Repository("sysSeedRolerDao")
-public interface SysRolerDao extends CrudRepository<SysRolerInfo, String> {
-	
-	List<SysRolerInfo> findAllBySeedUuid(String seedUuid);
-	
+@Repository("sysSeedRulerDao")
+public interface SysRulerDao extends CrudRepository<SysRulerInfo, String> {
+
+	List<SysRulerInfo> findAllBySeedUuid(String seedUuid);
+
 }

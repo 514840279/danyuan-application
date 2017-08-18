@@ -21,15 +21,15 @@ import org.springframework.format.annotation.DateTimeFormat;
  * 版 本 ： V1.0
  */
 @Entity
-@Table(name = "sys_seed_roler_colum_info")
-public class SysSeedRolerColumInfo {
+@Table(name = "sys_seed_ruler_culum_info")
+public class SysSeedRulerColumInfo {
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
 	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键'")
 	private String	uuid;		 // uuid 唯一id
 
-	@Column(name = "roler_uuid", columnDefinition = "varchar(32) COMMENT '规则id'")
-	private String	rolerUuid;	 // roler_uuid 规则id
+	@Column(name = "ruler_uuid", columnDefinition = "varchar(32) COMMENT '规则id'")
+	private String	rulerUuid;	 // roler_uuid 规则id
 	@Column(name = "colum_name", columnDefinition = "varchar(30) COMMENT '列名称'")
 	private String	columName;	 // colum_name 列名称
 	@Column(name = "roler", columnDefinition = "varchar(300) COMMENT '取内容规则'")
@@ -91,16 +91,16 @@ public class SysSeedRolerColumInfo {
 	 *
 	 * @return: String
 	 */
-	public String getRolerUuid() {
-		return rolerUuid;
+	public String getRulerUuid() {
+		return rulerUuid;
 	}
 
 	/**
 	 * 方法名 ： setRolerUuid
 	 * 功 能 ： 设置变量 rolerUuid 的值
 	 */
-	public void setRolerUuid(String rolerUuid) {
-		this.rolerUuid = rolerUuid;
+	public void setRulerUuid(String rulerUuid) {
+		this.rulerUuid = rulerUuid;
 	}
 
 	/**
@@ -365,7 +365,7 @@ public class SysSeedRolerColumInfo {
 
 	@Override
 	public String toString() {
-		return "SysSeedRolerColumInfo [uuid=" + uuid + ", rolerUuid=" + rolerUuid + ", columName=" + columName + ", roler=" + roler + ", type=" + type + ", spl1=" + spl1 + ", spl2=" + spl2 + ", app1=" + app1 + ", app2=" + app2 + ", arr=" + arr + ", discription=" + discription + ", createTime=" + createTime + ", createUser=" + createUser + ", updataTime=" + updataTime + ", updataUser=" + updataUser + ", deleteFlag=" + deleteFlag + "]";
+		return "SysSeedRolerColumInfo [uuid=" + uuid + ", rulerUuid=" + rulerUuid + ", columName=" + columName + ", roler=" + roler + ", type=" + type + ", spl1=" + spl1 + ", spl2=" + spl2 + ", app1=" + app1 + ", app2=" + app2 + ", arr=" + arr + ", discription=" + discription + ", createTime=" + createTime + ", createUser=" + createUser + ", updataTime=" + updataTime + ", updataUser=" + updataUser + ", deleteFlag=" + deleteFlag + "]";
 	}
 
 }

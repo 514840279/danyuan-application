@@ -21,8 +21,8 @@ import org.springframework.format.annotation.DateTimeFormat;
  * 版 本 ： V1.0
  */
 @Entity
-@Table(name = "sys_seed_roler_info")
-public class SysRolerInfo {
+@Table(name = "sys_seed_ruler_info")
+public class SysRulerInfo {
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
 	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键'")

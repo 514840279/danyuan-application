@@ -12,9 +12,9 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import tk.ainiyue.danyuan.application.crawler.param.dao.SysRolerDao;
-import tk.ainiyue.danyuan.application.crawler.param.dao.SysSeedRolerColumDao;
-import tk.ainiyue.danyuan.application.crawler.param.po.SysRolerInfo;
+import tk.ainiyue.danyuan.application.crawler.param.dao.SysRulerDao;
+import tk.ainiyue.danyuan.application.crawler.param.dao.SysSeedRulerColumDao;
+import tk.ainiyue.danyuan.application.crawler.param.po.SysRulerInfo;
 import tk.ainiyue.danyuan.application.crawler.seed.dao.SysSeedDao;
 import tk.ainiyue.danyuan.application.crawler.seed.po.SysSeedInfo;
 import tk.ainiyue.danyuan.application.crawler.seed.service.SysSeedService;
@@ -32,16 +32,16 @@ import tk.ainiyue.danyuan.application.crawler.seed.service.SysSeedService;
 @Service("sysSeedService")
 @Transactional
 public class SysSeedServiceImpl implements SysSeedService {
-	
+
 	//
 	@Autowired
 	private SysSeedDao			 sysSeedDao;
 	//
 	@Autowired
-	private SysRolerDao			 sysSeedRolerDao;
+	private SysRulerDao			 sysSeedRulerDao;
 	@Autowired
-	private SysSeedRolerColumDao sysSeedRolerColumDao;
-	
+	private SysSeedRulerColumDao sysSeedRulerColumDao;
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -49,7 +49,7 @@ public class SysSeedServiceImpl implements SysSeedService {
 	 * 参 考 ： @see tk.ainiyue.admin.roles.service.SysRolesService#findAll()
 	 * 作 者 ： Tenghui.Wang
 	 */
-	
+
 	@Override
 	public Page<SysSeedInfo> findAll(int pageNumber, int pageSize, String searchText) {
 		Sort sort = new Sort(new Order(Direction.DESC, "seedName"));
@@ -65,27 +65,27 @@ public class SysSeedServiceImpl implements SysSeedService {
 		}
 		return sourceCodes;
 	}
-	
+
 	// 构建PageRequest
 	private PageRequest buildPageRequest(int pageNumber, int pagzSize, Sort sort) {
 		return new PageRequest(pageNumber - 1, pagzSize, sort);
 	}
-	
+
 	@Override
 	public void addSysMenuInfo(SysSeedInfo info) {
 		sysSeedDao.save(info);
 	}
-	
+
 	@Override
 	public void deleteSysSeedInfo(List<SysSeedInfo> list) {
 		for (SysSeedInfo sysSeedInfo : list) {
-			List<SysRolerInfo> listroler = sysSeedRolerDao.findAllBySeedUuid(sysSeedInfo.getUuid());
-			for (SysRolerInfo sysRolerInfo : listroler) {
-				sysSeedRolerColumDao.deleteByRolerUuid(sysRolerInfo.getUuid());
+			List<SysRulerInfo> listroler = sysSeedRulerDao.findAllBySeedUuid(sysSeedInfo.getUuid());
+			for (SysRulerInfo sysRulerInfo : listroler) {
+				sysSeedRulerColumDao.deleteByRulerUuid(sysRulerInfo.getUuid());
 			}
-			sysSeedRolerDao.delete(listroler);
+			sysSeedRulerDao.delete(listroler);
 		}
 		sysSeedDao.delete(list);
 	}
-	
+
 }

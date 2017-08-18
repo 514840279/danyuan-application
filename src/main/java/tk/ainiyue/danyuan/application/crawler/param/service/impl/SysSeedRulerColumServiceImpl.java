@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tk.ainiyue.danyuan.application.crawler.param.dao.SysSeedRolerColumDao;
-import tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRolerColumInfo;
-import tk.ainiyue.danyuan.application.crawler.param.service.SysSeedRolerColumService;
+import tk.ainiyue.danyuan.application.crawler.param.dao.SysSeedRulerColumDao;
+import tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRulerColumInfo;
+import tk.ainiyue.danyuan.application.crawler.param.service.SysSeedRulerColumService;
 
 /**
  * 文件名 ： SysSeedRolerColumServiceImpl.java
@@ -20,12 +20,12 @@ import tk.ainiyue.danyuan.application.crawler.param.service.SysSeedRolerColumSer
  * 版 本 ： V1.0
  */
 @Service("sysSeedRolerColumService")
-public class SysSeedRolerColumServiceImpl implements SysSeedRolerColumService {
-
+public class SysSeedRulerColumServiceImpl implements SysSeedRulerColumService {
+	
 	//
 	@Autowired
-	private SysSeedRolerColumDao sysSeedRolerColumDao;
-
+	private SysSeedRulerColumDao sysSeedRulerColumDao;
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -34,21 +34,21 @@ public class SysSeedRolerColumServiceImpl implements SysSeedRolerColumService {
 	 * tk.ainiyue.danyuan.application.crawler.param.service.SysSeedRolerColumService#findAll()
 	 * 作 者 ： wang
 	 */
-
-	@Override
-	public List<SysSeedRolerColumInfo> findAllByRolerUuid(String rolerUuid) {
-		return (List<SysSeedRolerColumInfo>) sysSeedRolerColumDao.findAllByRolerUuid(rolerUuid);
-	}
 	
 	@Override
-	public void addSysRolerColum(SysSeedRolerColumInfo info) {
-		sysSeedRolerColumDao.save(info);
+	public List<SysSeedRulerColumInfo> findAllByRulerUuid(String rulerUuid) {
+		return (List<SysSeedRulerColumInfo>) sysSeedRulerColumDao.findAllByRulerUuid(rulerUuid);
+	}
+
+	@Override
+	public void addSysRulerColum(SysSeedRulerColumInfo info) {
+		sysSeedRulerColumDao.save(info);
+	}
+
+	@Override
+	public void deleteSysRulerInfo(List<SysSeedRulerColumInfo> list) {
+		sysSeedRulerColumDao.delete(list);
+		
 	}
 	
-	@Override
-	public void deleteSysRolerInfo(List<SysSeedRolerColumInfo> list) {
-		sysSeedRolerColumDao.delete(list);
-
-	}
-
 }

@@ -34,6 +34,10 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session</artifactId>
+		</dependency>
 		<!--模板框架 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

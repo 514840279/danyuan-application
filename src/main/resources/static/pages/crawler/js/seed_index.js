@@ -123,7 +123,7 @@ $(function() {
 			$("#role_seed_requestProxy").text(data[0].requestProxy);
 			ruler(data[0]);
 			
-			$("#Modal_roler").modal({
+			$("#Modal_ruler").modal({
 				show:true,
 				
 			})

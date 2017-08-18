@@ -4,7 +4,7 @@ $(function() {
 		
 	});
 	$('#editold_colum').click(function() {
-		var data = $('#crawler_seed_roler_colum_datagrid').bootstrapTable('getAllSelections');
+		var data = $('#crawler_seed_ruler_colum_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length > 1){
@@ -16,7 +16,7 @@ $(function() {
 	
 	$('#deleteold_colum').click(function() {
 		
-		var data = $('#crawler_seed_roler_colum_datagrid').bootstrapTable('getAllSelections');
+		var data = $('#crawler_seed_ruler_colum_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length > 0){
@@ -28,10 +28,10 @@ $(function() {
 					if (result) {
 						var param = {
 								list:data,
-								uuid:$("#add_roler_uuid").val(),
+								uuid:$("#add_ruler_uuid").val(),
 						};
 						// 重载
-						var url = "/sysRolerColum/deleteSysRolerColum";
+						var url = "/sysRulerColum/deleteSysRulerColum";
 						ajaxPost(url, param, sucessAddColumn, 1000, findError);
 					}
 				}
@@ -41,11 +41,11 @@ $(function() {
 
 });
 
-function roler_column(data){
-	$('#crawler_seed_roler_colum_datagrid').bootstrapTable("destroy");
+function ruler_column(data){
+	$('#crawler_seed_ruler_colum_datagrid').bootstrapTable("destroy");
 	// bootstrap table
-	$('#crawler_seed_roler_colum_datagrid').bootstrapTable({
-		url : "/sysRolerColum/findAll",
+	$('#crawler_seed_ruler_colum_datagrid').bootstrapTable({
+		url : "/sysRulerColum/findAll",
 		dataType : "json",
 		toolbar : '#toolbar3', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -89,7 +89,7 @@ function roler_column(data){
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 //			{title : '规则id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle'},
 			{title : '列名称',field : 'columName',sortable : true,align : 'center'},
-			{title : '取内容规则',field : 'roler',align : 'center',sortable : true,valign : 'middle'	},
+			{title : '取内容规则',field : 'ruler',align : 'center',sortable : true,valign : 'middle'	},
 			{title : '处理方式',field : 'type',align : 'center',sortable : true,valign : 'middle'},
 			{title : 'split 1字符串',field : 'spl1',	align : 'center',sortable : true,valign : 'middle'},
 			{title : 'split 2整型脚标',	field : 'spl2',	sortable : true,align : 'center'},
@@ -114,9 +114,9 @@ function imgshow(value,row,index){
 function  submitAddColumn(){
 	var param = {
 			uuid :  $("#add_column_uuid").val(),
-			rolerUuid : $("#add_roler_uuid_manager").text(),
+			rulerUuid : $("#add_ruler_uuid_manager").text(),
 			columName : $("#add_column_name").val(),
-			roler : $("#add_column_roler").val(),
+			ruler : $("#add_column_ruler").val(),
 			type : $("#add_column_type").val(),
 			spl1 : $("#add_column_spl1").val(),
 			spl2 : $("#add_column_spl2").val(),
@@ -127,14 +127,14 @@ function  submitAddColumn(){
 			insertUser : "system",
 			deleteFlag : 0,
 		}
-		var url = "/sysRolerColum/addSysRolerColum";
+		var url = "/sysRulerColum/addSysRulerColum";
 		// 重载
 		ajaxPost(url, param, sucessAddColumn, 1000, findError);
 }
 
 function sucessAddColumn(result){
 	$("#addModal_colum").modal("hide");
-	$('#crawler_seed_roler_colum_datagrid').bootstrapTable('refresh');
+	$('#crawler_seed_ruler_colum_datagrid').bootstrapTable('refresh');
 }
 
 // ========================================================================
@@ -143,8 +143,8 @@ function loadUpdate_colum(result){
 	if(result!= ""){
 		$("#add_column_uuid").val(result.uuid);
 		$("#add_column_name").val(result.columName);
-		$("#add_column_roler").val(result.roler);
-		$("#add_roler_requestType").val(result.requestType);
+		$("#add_column_ruler").val(result.ruler);
+		$("#add_ruler_requestType").val(result.requestType);
 		$("#add_column_type").val(result.type);
 		$("#add_column_spl1").val(result.spl1);
 		$("#add_column_spl2").val(result.spl2);
@@ -156,8 +156,8 @@ function loadUpdate_colum(result){
 	}else{
 		$("#add_column_uuid").val(getUuid());
 		$("#add_column_name").val("");
-		$("#add_column_roler").val("");
-		$("#add_roler_requestType").val("");
+		$("#add_column_ruler").val("");
+		$("#add_ruler_requestType").val("");
 		$("#add_column_type").val("");
 		$("#add_column_spl1").val("");
 		$("#add_column_spl2").val(0);

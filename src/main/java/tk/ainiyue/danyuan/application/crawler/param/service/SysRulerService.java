@@ -2,7 +2,7 @@ package tk.ainiyue.danyuan.application.crawler.param.service;
 
 import java.util.List;
 
-import tk.ainiyue.danyuan.application.crawler.param.po.SysRolerInfo;
+import tk.ainiyue.danyuan.application.crawler.param.po.SysRulerInfo;
 
 /**
  * 文件名 ： SysRolerService.java
@@ -14,8 +14,8 @@ import tk.ainiyue.danyuan.application.crawler.param.po.SysRolerInfo;
  * 时 间 ： 2017年7月20日 下午3:08:22
  * 版 本 ： V1.0
  */
-public interface SysRolerService {
-
+public interface SysRulerService {
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -24,8 +24,8 @@ public interface SysRolerService {
 	 * 作 者 ： wang
 	 * @throws
 	 */
-	List<SysRolerInfo> findAllBySeedUuid(String uuid);
-
+	List<SysRulerInfo> findAllBySeedUuid(String uuid);
+	
 	/**
 	 * 方法名： addSysRoler
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -35,8 +35,8 @@ public interface SysRolerService {
 	 * 作 者 ： wang
 	 * @throws
 	 */
-	void addSysRoler(SysRolerInfo rolerInfo);
-	
-	void deleteSysRolerInfo(List<SysRolerInfo> list);
+	void addSysRuler(SysRulerInfo rulerInfo);
 
+	void deleteSysRulerInfo(List<SysRulerInfo> list);
+	
 }

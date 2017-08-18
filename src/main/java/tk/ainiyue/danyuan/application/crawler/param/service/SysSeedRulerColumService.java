@@ -2,7 +2,7 @@ package tk.ainiyue.danyuan.application.crawler.param.service;
 
 import java.util.List;
 
-import tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRolerColumInfo;
+import tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRulerColumInfo;
 
 /**
  * 文件名 ： SysSeedRolerColumService.java
@@ -14,8 +14,8 @@ import tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRolerColumInfo;
  * 时 间 ： 2017年7月20日 下午4:47:12
  * 版 本 ： V1.0
  */
-public interface SysSeedRolerColumService {
-
+public interface SysSeedRulerColumService {
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -24,10 +24,10 @@ public interface SysSeedRolerColumService {
 	 * 作 者 ： wang
 	 * @throws
 	 */
-	List<SysSeedRolerColumInfo> findAllByRolerUuid(String rolerUuid);
+	List<SysSeedRulerColumInfo> findAllByRulerUuid(String rolerUuid);
+
+	void addSysRulerColum(SysSeedRulerColumInfo info);
 	
-	void addSysRolerColum(SysSeedRolerColumInfo info);
-
-	void deleteSysRolerInfo(List<SysSeedRolerColumInfo> list);
-
+	void deleteSysRulerInfo(List<SysSeedRulerColumInfo> list);
+	
 }

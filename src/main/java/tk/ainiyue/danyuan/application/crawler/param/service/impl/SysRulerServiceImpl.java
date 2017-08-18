@@ -5,12 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import tk.ainiyue.danyuan.application.crawler.param.dao.SysRolerDao;
-import tk.ainiyue.danyuan.application.crawler.param.dao.SysSeedRolerColumDao;
-import tk.ainiyue.danyuan.application.crawler.param.po.SysRolerInfo;
-import tk.ainiyue.danyuan.application.crawler.param.service.SysRolerService;
+import tk.ainiyue.danyuan.application.crawler.param.dao.SysRulerDao;
+import tk.ainiyue.danyuan.application.crawler.param.dao.SysSeedRulerColumDao;
+import tk.ainiyue.danyuan.application.crawler.param.po.SysRulerInfo;
+import tk.ainiyue.danyuan.application.crawler.param.service.SysRulerService;
 
 /**
  * 文件名 ： SysRolerServiceImpl.java
@@ -22,16 +21,16 @@ import tk.ainiyue.danyuan.application.crawler.param.service.SysRolerService;
  * 时 间 ： 2017年7月20日 下午3:08:47
  * 版 本 ： V1.0
  */
-@Service("sysSeedRolerService")
+@Service("sysSeedRulerService")
 @Transactional
-public class SysRolerServiceImpl implements SysRolerService {
-
+public class SysRulerServiceImpl implements SysRulerService {
+	
 	//
 	@Autowired
-	private SysRolerDao			 sysSeedRolerDao;
+	private SysRulerDao			 sysSeedRulerDao;
 	@Autowired
-	private SysSeedRolerColumDao sysSeedRolerColumDao;
-
+	private SysSeedRulerColumDao sysSeedRulerColumDao;
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -40,12 +39,12 @@ public class SysRolerServiceImpl implements SysRolerService {
 	 * tk.ainiyue.danyuan.application.crawler.param.service.SysRolerService#findAll()
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
-	public List<SysRolerInfo> findAllBySeedUuid(String seedUuid) {
-		return sysSeedRolerDao.findAllBySeedUuid(seedUuid);
+	public List<SysRulerInfo> findAllBySeedUuid(String seedUuid) {
+		return sysSeedRulerDao.findAllBySeedUuid(seedUuid);
 	}
-
+	
 	/**
 	 * 方法名 ： addSysRoler
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -55,18 +54,18 @@ public class SysRolerServiceImpl implements SysRolerService {
 	 * tk.ainiyue.danyuan.application.crawler.param.service.SysRolerService#addSysRoler(tk.ainiyue.danyuan.application.crawler.param.po.SysRolerInfo)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
-	public void addSysRoler(SysRolerInfo rolerInfo) {
-		sysSeedRolerDao.save(rolerInfo);
+	public void addSysRuler(SysRulerInfo rulerInfo) {
+		sysSeedRulerDao.save(rulerInfo);
 	}
-
+	
 	@Override
-	public void deleteSysRolerInfo(@RequestBody List<SysRolerInfo> list) {
-		for (SysRolerInfo sysRolerInfo : list) {
-			sysSeedRolerColumDao.deleteByRolerUuid(sysRolerInfo.getUuid());
+	public void deleteSysRulerInfo(List<SysRulerInfo> list) {
+		for (SysRulerInfo sysRulerInfo : list) {
+			sysSeedRulerColumDao.deleteByRulerUuid(sysRulerInfo.getUuid());
 		}
-		sysSeedRolerDao.delete(list);
+		sysSeedRulerDao.delete(list);
 	}
-
+	
 }

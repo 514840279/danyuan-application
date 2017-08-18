@@ -1,9 +1,9 @@
 $(function() {
     $("#result-tab").tabs({
    	 data: [{
-            id: 'result_roler_model',
+            id: 'result_ruler_model',
             text: '选择模板',
-            url: "pages/crawler/result_roler_model.html"
+            url: "pages/crawler/result_ruler_model.html"
         },{
             id: 'result_db_tables',
             text: '选择数据表',

@@ -1,21 +1,21 @@
 $(function() {
-	$('#addnew_roler').click(function() {
-		loadUpdate_roler("");
+	$('#addnew_ruler').click(function() {
+		loadUpdate_ruler("");
 	});
-	$('#editold_roler').click(function() {
-		var data = $('#crawler_seed_roler_datagrid').bootstrapTable('getAllSelections');
+	$('#editold_ruler').click(function() {
+		var data = $('#crawler_seed_ruler_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length > 1){
 			alert("只能选择一条");
 		}else{
-			loadUpdate_roler(data[0]);
+			loadUpdate_ruler(data[0]);
 		}
 	});
 	
-	$('#deleteold_roler').click(function() {
+	$('#deleteold_ruler').click(function() {
 		
-		var data = $('#crawler_seed_roler_datagrid').bootstrapTable('getAllSelections');
+		var data = $('#crawler_seed_ruler_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length > 0){
@@ -31,40 +31,40 @@ $(function() {
 								uuid:uuid,
 						};
 						// 重载
-						var url = "/sysRoler/deleteSysRolerInfo";
-						ajaxPost(url, param, sucessAddRoler, 1000, findError);
+						var url = "/sysRuler/deleteSysRulerInfo";
+						ajaxPost(url, param, sucessAddruler, 1000, findError);
 					}
 				}
 			});
 		}
 	});
 	$('#result_manager_role_manager').click(function() {
-		var data = $('#crawler_seed_roler_datagrid').bootstrapTable('getAllSelections');
+		var data = $('#crawler_seed_ruler_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length > 0){
 			
-			$("#add_roler_uuid_manager").text(data[0].uuid);
-			$("#add_roler_name_manager").text(data[0].name);
-			$("#add_roler_subUri_manager").text(data[0].subUri);
-			$("#add_roler_requestType_manager").text(data[0].requestType);
-			$("#add_roler_charset_manager").text(data[0].charset);
-			$("#add_roler_discription_manager").text(data[0].discription);
-			$("#add_roler_type_manager").text(data[0].type);
-			roler_column(data[0]);
-			$("#addModal_roler_manager").modal({
+			$("#add_ruler_uuid_manager").text(data[0].uuid);
+			$("#add_ruler_name_manager").text(data[0].name);
+			$("#add_ruler_subUri_manager").text(data[0].subUri);
+			$("#add_ruler_requestType_manager").text(data[0].requestType);
+			$("#add_ruler_charset_manager").text(data[0].charset);
+			$("#add_ruler_discription_manager").text(data[0].discription);
+			$("#add_ruler_type_manager").text(data[0].type);
+			ruler_column(data[0]);
+			$("#addModal_ruler_manager").modal({
 				show:true,
 				
 			})
 		}
 	});
-	// add roler
-	$('#add_roler_button_apply').click(function() {
-		if($("#add_roler_subUri").val()==null){
+	// add ruler
+	$('#add_ruler_button_apply').click(function() {
+		if($("#add_ruler_subUri").val()==null){
 			alert("配对地址必须填入");
 			return;
 		}
-		add_roler_submit();
+		add_ruler_submit();
 	});
 	
 	$('#result_manager').click(function() {
@@ -72,10 +72,10 @@ $(function() {
 	});
 });
 function ruler(data) {
-	$('#crawler_seed_roler_datagrid').bootstrapTable("destroy");
+	$('#crawler_seed_ruler_datagrid').bootstrapTable("destroy");
 	// bootstrap table
-	$('#crawler_seed_roler_datagrid').bootstrapTable({
-		url : "/sysRoler/findAll",
+	$('#crawler_seed_ruler_datagrid').bootstrapTable({
+		url : "/sysRuler/findAll",
 		dataType : "json",
 		toolbar : '#toolbar2', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -128,7 +128,7 @@ function ruler(data) {
 	});
 	// 窗口大小改变时 重设表头
 	$(window).resize(function() {
-		$('#crawler_seed_roler_datagrid').bootstrapTable('resetView');
+		$('#crawler_seed_ruler_datagrid').bootstrapTable('resetView');
 	});
 
 };
@@ -138,49 +138,49 @@ function imgshow(value,row,index){
 
 // ========================================================================
 // 添加数据
-function add_roler_submit() {
+function add_ruler_submit() {
 	var param = {
-		uuid : $("#add_roler_uuid").val(),
+		uuid : $("#add_ruler_uuid").val(),
 		seedUuid : $("#role_seed_uuid").text(),
-		type : $("#add_roler_type").val(),
-		name : $("#add_roler_name").val(),
-		subUri : $("#add_roler_subUri").val(),
-		requestType : $("#add_roler_requestType").val(),
-		charset : $("#add_roler_charset").val(),
-		discription : $("#add_roler_discription").val(),
+		type : $("#add_ruler_type").val(),
+		name : $("#add_ruler_name").val(),
+		subUri : $("#add_ruler_subUri").val(),
+		requestType : $("#add_ruler_requestType").val(),
+		charset : $("#add_ruler_charset").val(),
+		discription : $("#add_ruler_discription").val(),
 		insertUser : "system",
 		deleteFlag : 0,
 	}
-	var url = "/sysRoler/addSysRoler";
+	var url = "/sysRuler/addSysRuler";
 	// 重载
-	ajaxPost(url, param, sucessAddRoler, 1000, findError);
+	ajaxPost(url, param, sucessAddruler, 1000, findError);
 }
-function sucessAddRoler(result){
-	$('#crawler_seed_roler_datagrid').bootstrapTable('refresh');
-	$("#addModal_roler").modal("hide");
+function sucessAddruler(result){
+	$('#crawler_seed_ruler_datagrid').bootstrapTable('refresh');
+	$("#addModal_ruler").modal("hide");
 }
 // =========================================================================
 // 修改数据
-function loadUpdate_roler(result){
+function loadUpdate_ruler(result){
 	var uuid = getUuid();
 	if(result!= ""){
-		$("#add_roler_uuid").val(result.uuid);
-		$("#add_roler_name").val(result.name);
-		$("#add_roler_subUri").val(result.subUri);
-		$("#add_roler_requestType").val(result.requestType);
-		$("#add_roler_charset").val(result.charset);
-		$("#add_roler_discription").val(result.discription);
-		$("#add_roler_type").val(result.type);
+		$("#add_ruler_uuid").val(result.uuid);
+		$("#add_ruler_name").val(result.name);
+		$("#add_ruler_subUri").val(result.subUri);
+		$("#add_ruler_requestType").val(result.requestType);
+		$("#add_ruler_charset").val(result.charset);
+		$("#add_ruler_discription").val(result.discription);
+		$("#add_ruler_type").val(result.type);
 	}else{
-		$("#add_roler_uuid").val(uuid);
-		$("#add_roler_name").val("");
-		$("#add_roler_requestType").val("");
-		$("#add_roler_charset").val("");
-		$("#add_roler_discription").val("");
-		$("#add_roler_type").val("");
-		$("#add_roler_subUri").val("");
+		$("#add_ruler_uuid").val(uuid);
+		$("#add_ruler_name").val("");
+		$("#add_ruler_requestType").val("");
+		$("#add_ruler_charset").val("");
+		$("#add_ruler_discription").val("");
+		$("#add_ruler_type").val("");
+		$("#add_ruler_subUri").val("");
 	}
-	$("#addModal_roler").modal({
+	$("#addModal_ruler").modal({
 		show:true,
 	});
 }
