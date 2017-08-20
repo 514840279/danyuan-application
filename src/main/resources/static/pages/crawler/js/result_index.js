@@ -19,6 +19,7 @@ $(function() {
         }],
         showIndex: 0,
         loadAll: true
-   })
+   });
+    $("#result-tab").find('#myTab').attr('id','myTab1');
 });
 

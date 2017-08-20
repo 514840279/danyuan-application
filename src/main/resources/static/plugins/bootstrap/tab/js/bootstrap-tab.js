@@ -151,11 +151,11 @@
             ul_li.find("a").append(ul_li_close);
             ul_li.find("a").append("&nbsp;");
         }
-
-        this.$element.find(".nav-tabs").append(ul_li);
+        
+        this.$element.find(".nav-tabs:eq(0)").append(ul_li);
         //div-content
         var div_content_panel = $(this.template.div_content_panel.format(obj.id));
-        this.$element.find(".tab-content").append(div_content_panel);
+        this.$element.find(".tab-content:eq(0)").append(div_content_panel);
         $("#" + obj.id).load(obj.url,obj.paramter);
         this.stateObj[obj.id] = true;
 
