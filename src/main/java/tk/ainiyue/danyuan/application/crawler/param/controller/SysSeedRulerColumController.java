@@ -31,20 +31,26 @@ public class SysSeedRulerColumController {
 	//
 	@Autowired
 	private SysSeedRulerColumService sysSeedRulerColumService;
-
+	
 	@RequestMapping("/findAll")
 	public List<SysSeedRulerColumInfo> findAll(String uuid, int pageNumber, int pageSize, String searchText) {
 		logger.info("findAll", SysSeedRulerColumController.class);
 		return sysSeedRulerColumService.findAllByRulerUuid(uuid);
 	}
-
+	
+	@RequestMapping("/findAllByRulerUuid")
+	public List<SysSeedRulerColumInfo> findAllByRulerUuid(@RequestBody String uuid) {
+		logger.info("findAllByRulerUuid", SysSeedRulerColumController.class);
+		return sysSeedRulerColumService.findAllByRulerUuid(uuid.replace("\"", ""));
+	}
+	
 	@RequestMapping("/addSysRulerColum")
 	public SysSeedRulerColumInfo addSysRulerColum(@RequestBody SysSeedRulerColumInfo info) {
 		logger.info("addSysRulerColum", SysSeedRulerColumController.class);
 		sysSeedRulerColumService.addSysRulerColum(info);
 		return info;
 	}
-
+	
 	@RequestMapping("/deleteSysRulerColum")
 	public List<SysSeedRulerColumInfo> deleteSysRulerColum(@RequestBody SysSeedRulerColumVo vo) {
 		logger.info("deleteSysRulerColum", SysSeedRulerColumController.class);

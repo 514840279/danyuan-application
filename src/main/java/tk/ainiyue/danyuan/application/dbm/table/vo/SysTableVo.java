@@ -6,8 +6,12 @@ import java.util.List;
 import tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo;
 
 public class SysTableVo {
-	List<SysTableInfo> list = new ArrayList<>();
 
+	private String	   databaseUuid;
+	private String	   typeUuid;
+	
+	List<SysTableInfo> list	= new ArrayList<>();
+	
 	/**
 	 * 方法名 ： getList
 	 * 功 能 ： 返回变量 list 的值
@@ -17,7 +21,7 @@ public class SysTableVo {
 	public List<SysTableInfo> getList() {
 		return list;
 	}
-
+	
 	/**
 	 * 方法名 ： setList
 	 * 功 能 ： 设置变量 list 的值
@@ -25,5 +29,35 @@ public class SysTableVo {
 	public void setList(List<SysTableInfo> list) {
 		this.list = list;
 	}
-
+	
+	/**
+	 * @return the databaseUuid
+	 */
+	public String getDatabaseUuid() {
+		return databaseUuid;
+	}
+	
+	/**
+	 * @param databaseUuid
+	 *            the databaseUuid to set
+	 */
+	public void setDatabaseUuid(String databaseUuid) {
+		this.databaseUuid = databaseUuid;
+	}
+	
+	/**
+	 * @return the typeUuid
+	 */
+	public String getTypeUuid() {
+		return typeUuid;
+	}
+	
+	/**
+	 * @param typeUuid
+	 *            the typeUuid to set
+	 */
+	public void setTypeUuid(String typeUuid) {
+		this.typeUuid = typeUuid;
+	}
+	
 }

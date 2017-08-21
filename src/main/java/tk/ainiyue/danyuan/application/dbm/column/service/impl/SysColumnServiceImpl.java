@@ -94,4 +94,10 @@ public class SysColumnServiceImpl implements SysColumnService {
 			}
 		}
 	}
+
+	@Override
+	public List<SysColumnInfo> findAllBySysColumnInfo(SysColumnInfo info) {
+		Example<SysColumnInfo> example = Example.of(info);
+		return sysColumnDao.findAll(example);
+	}
 }

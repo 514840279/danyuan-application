@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import tk.ainiyue.danyuan.application.crawler.param.po.SysRulerInfo;
@@ -38,10 +39,11 @@ public class SysRulerController {
 		return sysSeedRulerService.findAllBySeedUuid(uuid);
 	}
 
-	@RequestMapping("/findAllByUuid")
+	@RequestMapping(path = "/findAllByUuid", method = RequestMethod.POST)
 	public List<SysRulerInfo> findAll(@RequestBody String uuid) {
 		logger.info("findAll", SysRulerController.class);
-		return sysSeedRulerService.findAllBySeedUuid(uuid);
+		List<SysRulerInfo> list = sysSeedRulerService.findAllBySeedUuid(uuid.replace("\"", ""));
+		return list;
 	}
 
 	@RequestMapping("/addSysRuler")

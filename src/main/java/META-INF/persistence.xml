@@ -16,5 +16,6 @@
 		<class>tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo</class>
 		<class>tk.ainiyue.danyuan.application.softm.system.po.SysSystemInfo</class>
 		<class>tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo</class>
+		<class>tk.ainiyue.danyuan.application.crawler.config.po.SysSeedResultRulerInfo</class>
 	</persistence-unit>
 </persistence>

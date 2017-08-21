@@ -1,5 +1,7 @@
 package tk.ainiyue.danyuan.application.dbm.column.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,12 @@ public class SysColumnController {
 	public Page<SysColumnInfo> findAll(int pageNumber, int pageSize, String searchText, String uuid) {
 		logger.info("findAll", SysColumnController.class);
 		return sysColumnService.findAllByTableUuid(pageNumber, pageSize, searchText, uuid);
+	}
+	
+	@RequestMapping(path = "/findAllBySysColumnInfo")
+	public List<SysColumnInfo> findAllBySysColumnInfo(@RequestBody SysColumnInfo info) {
+		logger.info("findAll", SysColumnController.class);
+		return sysColumnService.findAllBySysColumnInfo(info);
 	}
 
 	@RequestMapping("/updBefor")

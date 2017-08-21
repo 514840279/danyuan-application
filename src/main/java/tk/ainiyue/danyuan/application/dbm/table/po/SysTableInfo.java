@@ -41,7 +41,7 @@ public class SysTableInfo implements Serializable {
 	private String			  databaseUuid;
 
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private int				  deleteFlag;
+	private Integer			  deleteFlag;
 
 	@Column(columnDefinition = "varchar(200) COMMENT '资源功能描述'")
 	private String			  discription;
@@ -53,10 +53,10 @@ public class SysTableInfo implements Serializable {
 	private String			  tableName;
 
 	@Column(name = "table_order", columnDefinition = "int COMMENT '数据库表顺序'")
-	private int				  tableOrder;
+	private Integer			  tableOrder;
 
 	@Column(name = "table_rows", columnDefinition = "int COMMENT '数据库表数据量'")
-	private int				  tableRows;
+	private Integer			  tableRows;
 
 	@Column(name = "table_space", columnDefinition = "int COMMENT '数据库表空间大小'")
 	private String			  tableSpace;
@@ -107,11 +107,11 @@ public class SysTableInfo implements Serializable {
 		this.databaseUuid = databaseUuid;
 	}
 
-	public int getDeleteFlag() {
+	public Integer getDeleteFlag() {
 		return this.deleteFlag;
 	}
 
-	public void setDeleteFlag(int deleteFlag) {
+	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
 
@@ -139,19 +139,19 @@ public class SysTableInfo implements Serializable {
 		this.tableName = tableName;
 	}
 
-	public int getTableOrder() {
+	public Integer getTableOrder() {
 		return this.tableOrder;
 	}
 
-	public void setTableOrder(int tableOrder) {
+	public void setTableOrder(Integer tableOrder) {
 		this.tableOrder = tableOrder;
 	}
 
-	public int getTableRows() {
+	public Integer getTableRows() {
 		return this.tableRows;
 	}
 
-	public void setTableRows(int tableRows) {
+	public void setTableRows(Integer tableRows) {
 		this.tableRows = tableRows;
 	}
 
@@ -186,5 +186,13 @@ public class SysTableInfo implements Serializable {
 	public void setUpdataUser(String updataUser) {
 		this.updataUser = updataUser;
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "SysTableInfo [uuid=" + uuid + ", createTime=" + createTime + ", createUser=" + createUser + ", databaseUuid=" + databaseUuid + ", deleteFlag=" + deleteFlag + ", discription=" + discription + ", tableDesc=" + tableDesc + ", tableName=" + tableName + ", tableOrder=" + tableOrder + ", tableRows=" + tableRows + ", tableSpace=" + tableSpace + ", typeUuid=" + typeUuid + ", updataTime=" + updataTime + ", updataUser=" + updataUser + "]";
+	}
+	
 }

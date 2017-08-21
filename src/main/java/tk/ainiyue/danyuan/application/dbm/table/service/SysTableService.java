@@ -16,13 +16,15 @@ import tk.ainiyue.danyuan.application.dbm.table.vo.SysTableVo;
  * 版 本 ： V1.0
  */
 public interface SysTableService {
-
+	
 	List<SysTableInfo> findAll();
-	
-	List<SysTableInfo> save(SysTableInfo info);
 
-	List<SysTableInfo> deleteSysTableInfo(SysTableVo vo);
+	List<SysTableInfo> save(SysTableInfo info);
 	
+	List<SysTableInfo> deleteSysTableInfo(SysTableVo vo);
+
 	SysTableInfo findSysTableInofByUuid(String uuid);
 	
+	List<SysTableInfo> findAll(SysTableInfo sysTableInfo);
+
 }

@@ -15,7 +15,7 @@ import tk.ainiyue.danyuan.application.crawler.param.po.SysRulerInfo;
  * 版 本 ： V1.0
  */
 public interface SysRulerService {
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -24,8 +24,8 @@ public interface SysRulerService {
 	 * 作 者 ： wang
 	 * @throws
 	 */
-	List<SysRulerInfo> findAllBySeedUuid(String uuid);
-	
+	List<SysRulerInfo> findAllBySeedUuid(String seedUuid);
+
 	/**
 	 * 方法名： addSysRoler
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -36,7 +36,7 @@ public interface SysRulerService {
 	 * @throws
 	 */
 	void addSysRuler(SysRulerInfo rulerInfo);
-
-	void deleteSysRulerInfo(List<SysRulerInfo> list);
 	
+	void deleteSysRulerInfo(List<SysRulerInfo> list);
+
 }

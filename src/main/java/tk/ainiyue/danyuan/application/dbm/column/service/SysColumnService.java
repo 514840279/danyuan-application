@@ -24,4 +24,6 @@ public interface SysColumnService {
 	
 	void deleteSysColumnInfo(List<SysColumnInfo> list);
 
+	List<SysColumnInfo> findAllBySysColumnInfo(SysColumnInfo info);
+
 }

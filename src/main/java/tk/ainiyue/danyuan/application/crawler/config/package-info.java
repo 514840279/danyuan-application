@@ -8,4 +8,4 @@
  * 时 间 ： 2017年7月12日 下午10:24:55
  * 版 本 ： V1.0
  */
-package tk.ainiyue.danyuan.application.crawler.data;
+package tk.ainiyue.danyuan.application.crawler.config;
