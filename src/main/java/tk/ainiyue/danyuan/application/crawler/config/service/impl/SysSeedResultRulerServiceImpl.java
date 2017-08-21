@@ -29,25 +29,25 @@ public class SysSeedResultRulerServiceImpl implements SysSeedResultRulerService 
 	//
 	@Autowired
 	private SysSeedResultRulerDao sysSeedResultRulerDao;
-	
+
 	@Override
 	public List<SysSeedResultRulerInfo> findAllBySysSeedResultRulerInfo(SysSeedResultRulerInfo info) {
 		logger.info(info.toString(), SysSeedResultRulerServiceImpl.class);
 		Example<SysSeedResultRulerInfo> example = Example.of(info);
 		return sysSeedResultRulerDao.findAll(example);
 	}
-	
+
 	@Override
 	public List<SysSeedResultRulerInfo> saveSysSeedResultRulerInfo(SysSeedResultRulerVo vo) {
+		SysSeedResultRulerInfo info = new SysSeedResultRulerInfo();
+		info.setTableUuid(vo.getTableUuid());
+		info.setRulerUuid(vo.getRulerUuid());
+		sysSeedResultRulerDao.delete(info);
 		for (SysSeedResultRulerInfo iterable_element : vo.getList()) {
 			iterable_element.setTableUuid(vo.getTableUuid());
 			iterable_element.setRulerUuid(vo.getRulerUuid());
 			sysSeedResultRulerDao.save(iterable_element);
 		}
-
-		SysSeedResultRulerInfo info = new SysSeedResultRulerInfo();
-		info.setTableUuid(vo.getTableUuid());
-		info.setRulerUuid(vo.getRulerUuid());
 		Example<SysSeedResultRulerInfo> example = Example.of(info);
 		return sysSeedResultRulerDao.findAll(example);
 	}
