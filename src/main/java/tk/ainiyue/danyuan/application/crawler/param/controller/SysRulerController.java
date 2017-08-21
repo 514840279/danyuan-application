@@ -38,6 +38,12 @@ public class SysRulerController {
 		return sysSeedRulerService.findAllBySeedUuid(uuid);
 	}
 
+	@RequestMapping("/findAllByUuid")
+	public List<SysRulerInfo> findAll(@RequestBody String uuid) {
+		logger.info("findAll", SysRulerController.class);
+		return sysSeedRulerService.findAllBySeedUuid(uuid);
+	}
+
 	@RequestMapping("/addSysRuler")
 	public SysRulerInfo addSysRuler(@RequestBody SysRulerInfo rolerInfo) {
 		logger.info("addSysRuler", SysRulerController.class);

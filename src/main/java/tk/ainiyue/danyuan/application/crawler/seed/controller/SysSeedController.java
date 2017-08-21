@@ -1,5 +1,7 @@
 package tk.ainiyue.danyuan.application.crawler.seed.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,12 @@ public class SysSeedController {
 	public Page<SysSeedInfo> findAll(int pageNumber, int pageSize, String searchText) {
 		logger.info("sysSeedList", SysSeedController.class);
 		return sysSeedService.findAll(pageNumber, pageSize, searchText);
+	}
+
+	@RequestMapping("/findAll")
+	public List<SysSeedInfo> findAll() {
+		logger.info("sysSeedList", SysSeedController.class);
+		return sysSeedService.findAll();
 	}
 	
 	@RequestMapping("/addSysMenuInfo")

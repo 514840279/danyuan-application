@@ -32,4 +32,6 @@ public interface SysSeedService {
 	
 	void deleteSysSeedInfo(List<SysSeedInfo> list);
 
+	List<SysSeedInfo> findAll();
+
 }
