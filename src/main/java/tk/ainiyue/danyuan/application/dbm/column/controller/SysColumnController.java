@@ -31,11 +31,11 @@ import tk.ainiyue.danyuan.application.dbm.column.vo.SysColumnVo;
 public class SysColumnController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysColumnController.class);
-
+	
 	//
 	@Autowired
 	private SysColumnService	sysColumnService;
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -49,13 +49,13 @@ public class SysColumnController {
 		logger.info("findAll", SysColumnController.class);
 		return sysColumnService.findAllByTableUuid(pageNumber, pageSize, searchText, uuid);
 	}
-
+	
 	@RequestMapping(path = "/findAllBySysColumnInfo")
 	public List<SysColumnInfo> findAllBySysColumnInfo(@RequestBody SysColumnInfo info) {
 		logger.info("findAll", SysColumnController.class);
 		return sysColumnService.findAllBySysColumnInfo(info);
 	}
-	
+
 	@RequestMapping("/updBefor")
 	public ModelAndView updBefor(@ModelAttribute SysColumnInfo info) {
 		logger.info("updBefor", SysColumnController.class);
@@ -63,29 +63,30 @@ public class SysColumnController {
 		view.addObject("sysColumnInfo", info);
 		return view;
 	}
-
+	
 	@RequestMapping("/saveSysColumnInfo")
 	public Page<SysColumnInfo> saveSysColumnInfo(@RequestBody SysColumnInfo info) {
 		logger.info("saveSysColumnInfo", SysColumnController.class);
 		sysColumnService.save(info);
 		return sysColumnService.findAllByTableUuid(1, 10, "", info.getTableUuid());
-		
-	}
 
+	}
+	
 	@RequestMapping("/saveSysColumnVo")
 	public Page<SysColumnInfo> saveSysColumnVo(@RequestBody SysColumnVo vo) {
+		logger.error(vo.toString(), SysColumnController.class);
 		logger.info("saveSysColumnVo", SysColumnController.class);
 		sysColumnService.saveSysColumnInfo(vo.getList());
 		return sysColumnService.findAllByTableUuid(1, 20, "", vo.getList().get(0).getTableUuid());
-		
+
 	}
-	
+
 	@RequestMapping("/deleteSysColumnInfo")
 	public Page<SysColumnInfo> deleteSysColumnInfo(@RequestBody SysColumnVo vo) {
 		logger.info("deleteSysColumnInfo", SysColumnController.class);
 		sysColumnService.deleteSysColumnInfo(vo.getList());
 		return sysColumnService.findAllByTableUuid(1, 10, "", vo.getList().get(0).getTableUuid());
-		
+
 	}
-	
+
 }

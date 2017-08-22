@@ -47,14 +47,23 @@ $(function(){
 	})
 	
 	$('#result_column_config_table_save_btn_success').click(function(){
-        var param =[];
+		if(_result_config_table_uuid == null){
+			return;
+		}
+        var param ={
+        		list:[],
+        };
         var url = '/sysColumnInfo/saveSysColumnVo';
-		$.each(_config_column_data,function(index,value){
-			param.push({
+        var list_data_el = $("#result_config_column  option"); 
+        
+		$.each(list_data_el,function(index,value){
+			var data = value.text;
+			param.list.push({
 				uuid:getUuid(),
+				tableUuid:_result_config_table_uuid,
 				colsLength:255,
-				colsDesc:value.value,
-				colsName:value.value,
+				colsDesc:data,
+				colsName:data,
 				colsType:'varchar',
 				colsOrder:index+4,
 			});
