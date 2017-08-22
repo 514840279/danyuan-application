@@ -46,6 +46,23 @@ $(function(){
     	})
 	})
 	
+	$('#result_column_config_table_save_btn_success').click(function(){
+        var param =[];
+        var url = '/sysColumnInfo/saveSysColumnVo';
+		$.each(_config_column_data,function(index,value){
+			param.push({
+				uuid:getUuid(),
+				colsLength:255,
+				colsDesc:value.value,
+				colsName:value.value,
+				colsType:'varchar',
+				colsOrder:index+4,
+			});
+		})
+		ajaxPost(url, param, sucessLoadResultConfigRelitationSelect2, 1000, findError);
+	})
+	
+	
 });
 
 

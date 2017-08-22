@@ -17,13 +17,15 @@ import tk.ainiyue.danyuan.application.dbm.column.po.SysColumnInfo;
  * 版 本 ： V1.0
  */
 public interface SysColumnService {
-
-	Page<SysColumnInfo> findAllByTableUuid(int pageNumber, int pageSize, String searchText, String tableUuid);
-
-	void save(SysColumnInfo info);
 	
+	Page<SysColumnInfo> findAllByTableUuid(int pageNumber, int pageSize, String searchText, String tableUuid);
+	
+	void save(SysColumnInfo info);
+
 	void deleteSysColumnInfo(List<SysColumnInfo> list);
-
+	
 	List<SysColumnInfo> findAllBySysColumnInfo(SysColumnInfo info);
-
+	
+	void saveSysColumnInfo(List<SysColumnInfo> list);
+	
 }
