@@ -57,7 +57,7 @@ function sucessLoadResultConfigSelect2(result){
 		});
 		var option= "<option id="+value.uuid+">"+value.rulerColumName+" &nbsp;&nbsp;    >> &nbsp; &nbsp;     "+value.colsName+"</option>"
 		$('#result_config_relation').append(option);
-		$('#result_config_column').find("#"+value.rulerUuid).remove();
+		$('#result_config_column').find("#"+value.rulerColumUuid).remove();
 		$('#result_config_table_column').find("#"+value.colsUuid).remove();
 		
 	});
