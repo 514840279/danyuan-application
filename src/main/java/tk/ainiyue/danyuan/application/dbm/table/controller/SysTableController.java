@@ -1,18 +1,21 @@
 package tk.ainiyue.danyuan.application.dbm.table.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import tk.ainiyue.danyuan.application.dbm.column.vo.SysColumnVo;
 import tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo;
 import tk.ainiyue.danyuan.application.dbm.table.service.SysTableService;
 import tk.ainiyue.danyuan.application.dbm.table.vo.SysTableVo;
@@ -32,10 +35,20 @@ import tk.ainiyue.danyuan.application.dbm.table.vo.SysTableVo;
 public class SysTableController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysTableController.class);
-
+	
 	//
 	@Autowired
 	private SysTableService		sysTableService;
+
+	@Autowired
+	JdbcTemplate				jdbcTemplate;
+	
+	@RequestMapping("/findAllTableRow")
+	public List<Map<String, Object>> listTR(SysColumnVo param) {
+		String sql = "Select * from " + param.getSearchText() + " order by create_time desc limit 0,500";
+		List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
+		return list;
+	}
 	
 	/**
 	 * 方法名： findAll
@@ -50,26 +63,26 @@ public class SysTableController {
 		logger.info("findAll", SysTableController.class);
 		return sysTableService.findAll();
 	}
-
+	
 	@RequestMapping("/findAllBySysTableInfo")
 	public List<SysTableInfo> findAllBySysTableInfo(@RequestBody SysTableInfo sysTableInfo) {
 		logger.error(sysTableInfo.toString());
 		logger.info("findAll", SysTableController.class);
 		return sysTableService.findAll(sysTableInfo);
 	}
-
+	
 	@RequestMapping("/saveSysTableInfo")
 	public List<SysTableInfo> saveSysTableInfo(@RequestBody SysTableInfo sysTableInfo) {
 		logger.info("saveSysTableInfo", SysTableController.class);
 		return sysTableService.save(sysTableInfo);
 	}
-	
+
 	@RequestMapping("/deleteSysTableInfo")
 	public List<SysTableInfo> deleteSysTableInfo(@RequestBody SysTableVo vo) {
 		logger.info("deleteSysTableInfo", SysTableController.class);
 		return sysTableService.deleteSysTableInfo(vo);
 	}
-	
+
 	@RequestMapping(path = "/updBefor", method = RequestMethod.POST)
 	public ModelAndView updBefor(HttpServletRequest request) {
 		logger.info("updBefor", SysTableController.class);
@@ -79,5 +92,5 @@ public class SysTableController {
 		view.addObject("sysTableInfo", info);
 		return view;
 	}
-
+	
 }
