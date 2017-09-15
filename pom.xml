@@ -85,13 +85,25 @@
 			<artifactId>taobao-sdk-java-auto_1455552377940</artifactId>
 			<version>20160607</version>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+
 
 		<!-- oracle 数据库驱动 -->
 		<!-- <dependency> -->
