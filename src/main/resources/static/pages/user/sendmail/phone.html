@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8">
+</head>
+<body>
+
+<!-- 头部设计 -->
+	<section class="content-header">
+		<h1>
+			工具管理 <small>短信测试</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
+			<li><a href="#">工具管理 </a></li>
+			<li class="active">短信测试</li>
+		</ol>
+	</section>
+	
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="text-center">
+			<h2>电话短信发送测试</h2>
+				<h5>因为手机短息是属于第三方阿里大于的收费产品这里不做前台测试，后台代码完成简单的设置是可以发送短信到手机的我测试没问题</h5>
+				<h5>如有开发的问题可以联系我</h5>
+				<h5 class="text-left">				代码如下：
+				</h5>
+			<pre class="text-left">
+				
+					@RequestMapping(value = "/phone/send", method = RequestMethod.POST)
+					public PhoneVo SendPhoneToCustom(@RequestBody PhoneVo vo) throws ApiException {
+						System.err.println(vo.getPhone());
+						vo.setCode(RandomStringUtils.randomNumeric(6));
+				
+						String url = "https://eco.taobao.com/router/rest"; // 固定写法
+						String appkey = "";// 你自己的appkey
+						String secret = ""; // 你的 secret
+				
+						TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
+						AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
+						req.setExtend("123456"); // 可以不写
+						req.setSmsType("normal"); // 固定写法
+						req.setSmsFreeSignName(""); // 发送人名称需要申请通过才可以使用
+						req.setSmsParamString("{\"code\":\"" + vo.getCode() + "\"}"); // 对应短息模板的代码
+						req.setRecNum(vo.getPhone()); // 发送给谁
+						req.setSmsTemplateCode("SMS_94715134");  // 短信模板的号码
+						AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
+						System.out.println(rsp.getBody());
+						
+						return vo;
+					}
+			</pre>
+		</div>
+	</section>
+
+</body>
+</html>
