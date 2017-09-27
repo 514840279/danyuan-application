@@ -6,8 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo;
 import tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentService;
 
@@ -23,6 +25,7 @@ import tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentServic
  */
 @RestController
 @RequestMapping("/sysDepartment")
+@Api(value = "/sysDepartment", description = "部门管理")
 public class SysDepartmentController {
 	
 	//
@@ -40,7 +43,7 @@ public class SysDepartmentController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping("/sysDepartmentList")
+	@RequestMapping(path = "/sysDepartmentList", method = RequestMethod.POST)
 	public List<SysDepartmentInfo> findAll() {
 		logger.info("sysSystemList", SysDepartmentController.class);
 		return sysDepartmentService.findAll();

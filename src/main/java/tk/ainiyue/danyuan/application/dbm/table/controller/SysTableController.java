@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import io.swagger.annotations.Api;
 import tk.ainiyue.danyuan.application.dbm.column.vo.SysColumnVo;
 import tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo;
 import tk.ainiyue.danyuan.application.dbm.table.service.SysTableService;
@@ -32,6 +33,7 @@ import tk.ainiyue.danyuan.application.dbm.table.vo.SysTableVo;
  */
 @RestController
 @RequestMapping("/sysTableInfo")
+@Api(value = "/sysTableInfo", description = "数据库表管理")
 public class SysTableController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysTableController.class);
@@ -43,7 +45,7 @@ public class SysTableController {
 	@Autowired
 	JdbcTemplate				jdbcTemplate;
 
-	@RequestMapping("/findAllTableRow")
+	@RequestMapping(path = "/findAllTableRow", method = RequestMethod.POST)
 	public List<Map<String, Object>> listTR(SysColumnVo param) {
 		String sql = "Select * from " + param.getSearchText() + " order by datetime desc limit 0,500";
 		List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
@@ -58,26 +60,26 @@ public class SysTableController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping("/findAll")
+	@RequestMapping(path = "/findAll", method = RequestMethod.POST)
 	public List<SysTableInfo> findAll() {
 		logger.info("findAll", SysTableController.class);
 		return sysTableService.findAll();
 	}
 
-	@RequestMapping("/findAllBySysTableInfo")
+	@RequestMapping(path = "/findAllBySysTableInfo", method = RequestMethod.POST)
 	public List<SysTableInfo> findAllBySysTableInfo(@RequestBody SysTableInfo sysTableInfo) {
 		logger.error(sysTableInfo.toString());
 		logger.info("findAll", SysTableController.class);
 		return sysTableService.findAll(sysTableInfo);
 	}
 
-	@RequestMapping("/saveSysTableInfo")
+	@RequestMapping(path = "/saveSysTableInfo", method = RequestMethod.POST)
 	public List<SysTableInfo> saveSysTableInfo(@RequestBody SysTableInfo sysTableInfo) {
 		logger.info("saveSysTableInfo", SysTableController.class);
 		return sysTableService.save(sysTableInfo);
 	}
 	
-	@RequestMapping("/deleteSysTableInfo")
+	@RequestMapping(path = "/deleteSysTableInfo", method = RequestMethod.POST)
 	public List<SysTableInfo> deleteSysTableInfo(@RequestBody SysTableVo vo) {
 		logger.info("deleteSysTableInfo", SysTableController.class);
 		return sysTableService.deleteSysTableInfo(vo);

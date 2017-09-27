@@ -6,8 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import tk.ainiyue.danyuan.application.dbm.type.po.SysTableTypeInfo;
 import tk.ainiyue.danyuan.application.dbm.type.service.SysTableTypeService;
 
@@ -23,6 +25,7 @@ import tk.ainiyue.danyuan.application.dbm.type.service.SysTableTypeService;
  */
 @RestController
 @RequestMapping("/sysTableTypeInfo")
+@Api(value = "/sysTableTypeInfo", description = "数据库表类型管理")
 public class SysTableTypeController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysTableTypeController.class);
@@ -38,7 +41,7 @@ public class SysTableTypeController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping("/findAll")
+	@RequestMapping(path = "/findAll", method = RequestMethod.POST)
 	public List<SysTableTypeInfo> findAll() {
 		logger.info("findAll", SysTableTypeController.class);
 		return sysTableTypeService.findAll();

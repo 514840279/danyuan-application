@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import io.swagger.annotations.Api;
 import tk.ainiyue.danyuan.application.dbm.addr.po.SysDatabaseInfo;
 import tk.ainiyue.danyuan.application.dbm.addr.service.SysDatabaseService;
 import tk.ainiyue.danyuan.application.dbm.addr.vo.SysDatabaseVo;
@@ -29,6 +30,7 @@ import tk.ainiyue.danyuan.application.dbm.addr.vo.SysDatabaseVo;
  */
 @RestController
 @RequestMapping("/sysDatabaseInfo")
+@Api(value = "/sysDatabaseInfo", description = "数据库管理")
 public class SysDatabaseController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysDatabaseController.class);
@@ -45,13 +47,13 @@ public class SysDatabaseController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping("/findAll")
+	@RequestMapping(path = "/findAll", method = RequestMethod.POST)
 	public List<SysDatabaseInfo> findAll() {
 		logger.info("findAll", SysDatabaseController.class);
 		return sysDatabaseService.findAll();
 	}
 
-	@RequestMapping("/addSysDatabaseInfo")
+	@RequestMapping(path = "/addSysDatabaseInfo", method = RequestMethod.POST)
 	public List<SysDatabaseInfo> addSysDatabaseInfo(@RequestBody SysDatabaseInfo sysDatabaseInfo) {
 		logger.info("findAll", SysDatabaseController.class);
 		sysDatabaseService.save(sysDatabaseInfo);
@@ -77,7 +79,7 @@ public class SysDatabaseController {
 		return view;
 	}
 
-	@RequestMapping("/deleteSysDatabaseInfo")
+	@RequestMapping(path = "/deleteSysDatabaseInfo", method = RequestMethod.POST)
 	public List<SysDatabaseInfo> deleteSysDatabaseInfo(@RequestBody SysDatabaseVo vo) {
 		logger.error(vo.getList().get(0).toString());
 		logger.info("deleteSysDatabaseInfo", SysDatabaseController.class);

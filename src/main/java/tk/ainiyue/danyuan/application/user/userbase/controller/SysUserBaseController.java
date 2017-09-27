@@ -6,8 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo;
 import tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService;
 
@@ -23,15 +25,16 @@ import tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService;
  */
 @RestController
 @RequestMapping("/sysUserBase")
+@Api(value = "/sysUserBase", description = "用户管理")
 public class SysUserBaseController {
-
+	
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysUserBaseController.class);
-
+	
 	//
 	@Autowired
 	private SysUserBaseService	sysUserBaseService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -40,7 +43,7 @@ public class SysUserBaseController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping("/sysUserBaseList")
+	@RequestMapping(path = "/sysUserBaseList", method = RequestMethod.POST)
 	public List<SysUserBaseInfo> findAll() {
 		logger.info("sysUserBaseList", SysUserBaseController.class);
 		return sysUserBaseService.findAll();

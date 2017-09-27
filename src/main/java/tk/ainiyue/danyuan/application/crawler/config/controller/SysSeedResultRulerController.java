@@ -7,8 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import tk.ainiyue.danyuan.application.crawler.config.po.SysSeedResultRulerInfo;
 import tk.ainiyue.danyuan.application.crawler.config.service.SysSeedResultRulerService;
 import tk.ainiyue.danyuan.application.crawler.config.vo.SysSeedResultRulerVo;
@@ -25,6 +27,7 @@ import tk.ainiyue.danyuan.application.crawler.config.vo.SysSeedResultRulerVo;
  */
 @RestController
 @RequestMapping("/sysSeedResultRulerInfo")
+@Api(value = "/sysSeedResultRulerInfo", description = "采集配置管理")
 public class SysSeedResultRulerController {
 	//
 	private static final Logger		  logger = LoggerFactory.getLogger(SysSeedResultRulerController.class);
@@ -33,13 +36,13 @@ public class SysSeedResultRulerController {
 	@Autowired
 	private SysSeedResultRulerService sysSeedResultRulerService;
 
-	@RequestMapping(path = "/findAllBySysSeedResultRulerInfo")
+	@RequestMapping(path = "/findAllBySysSeedResultRulerInfo", method = RequestMethod.POST)
 	public List<SysSeedResultRulerInfo> findAllBySysSeedResultRulerInfo(@RequestBody SysSeedResultRulerInfo info) {
 		logger.info("findAll", SysSeedResultRulerController.class);
 		return sysSeedResultRulerService.findAllBySysSeedResultRulerInfo(info);
 	}
 
-	@RequestMapping(path = "/saveSysSeedResultRulerInfo")
+	@RequestMapping(path = "/saveSysSeedResultRulerInfo", method = RequestMethod.POST)
 	public List<SysSeedResultRulerInfo> saveSysSeedResultRulerInfo(@RequestBody SysSeedResultRulerVo vo) {
 		logger.info("findAll", SysSeedResultRulerController.class);
 		return sysSeedResultRulerService.saveSysSeedResultRulerInfo(vo);

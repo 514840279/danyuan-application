@@ -15,6 +15,7 @@ import com.taobao.api.TaobaoClient;
 import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
 import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 
+import io.swagger.annotations.Api;
 import tk.ainiyue.danyuan.application.user.vo.MailVo;
 import tk.ainiyue.danyuan.application.user.vo.PhoneVo;
 
@@ -29,11 +30,12 @@ import tk.ainiyue.danyuan.application.user.vo.PhoneVo;
  * 版 本 ： V1.0
  */
 @RestController
+@Api(value = "/", description = "邮箱手机发送工具")
 public class SimapleMailRegist {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	@RequestMapping(value = "/mail/send")
+	@RequestMapping(path = "/mail/send", method = RequestMethod.POST)
 	public MailVo SendMailToCustom(@RequestBody MailVo vo) {
 		System.err.println(vo.getMail());
 		vo.setCode(RandomStringUtils.randomAscii(18));
@@ -47,7 +49,7 @@ public class SimapleMailRegist {
 		return vo;
 	}
 
-	@RequestMapping(value = "/phone/send", method = RequestMethod.POST)
+	@RequestMapping(path = "/phone/send", method = RequestMethod.POST)
 	public PhoneVo SendPhoneToCustom(@RequestBody PhoneVo vo) throws ApiException {
 		System.err.println(vo.getPhone());
 		vo.setCode(RandomStringUtils.randomNumeric(6));

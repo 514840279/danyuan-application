@@ -6,8 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import tk.ainiyue.danyuan.application.softm.sysmenu.controller.SysMenuController;
 import tk.ainiyue.danyuan.application.softm.system.po.SysSystemInfo;
 import tk.ainiyue.danyuan.application.softm.system.service.SysSystemService;
@@ -24,15 +26,16 @@ import tk.ainiyue.danyuan.application.softm.system.service.SysSystemService;
  */
 @RestController
 @RequestMapping("/sysSystem")
+@Api(value = "/sysSystem", description = "系统管理")
 public class SysSystemController {
-	
+
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysMenuController.class);
-
+	
 	//
 	@Autowired
 	private SysSystemService	sysSystemService;
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -41,7 +44,7 @@ public class SysSystemController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping("/sysSystemList")
+	@RequestMapping(path = "/sysSystemList", method = RequestMethod.POST)
 	public List<SysSystemInfo> findAll() {
 		logger.info("sysSystemList", SysMenuController.class);
 		return sysSystemService.findAll();

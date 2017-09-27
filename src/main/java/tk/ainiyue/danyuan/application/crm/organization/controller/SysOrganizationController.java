@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import tk.ainiyue.danyuan.application.crm.organization.po.SysOrganizationInfo;
 import tk.ainiyue.danyuan.application.crm.organization.service.SysOrganizationService;
 
@@ -26,14 +27,15 @@ import tk.ainiyue.danyuan.application.crm.organization.service.SysOrganizationSe
  */
 @RestController
 @RequestMapping("/sysOrganization")
+@Api(value = "/sysOrganization", description = "组织机构管理")
 public class SysOrganizationController {
 	//
 	private static final Logger	   logger = LoggerFactory.getLogger(SysOrganizationController.class);
-	
+
 	//
 	@Autowired
 	private SysOrganizationService sysOrganizationService;
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能：查询所有数据
@@ -42,12 +44,12 @@ public class SysOrganizationController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping("/sysOrganizationList")
+	@RequestMapping(path = "/sysOrganizationList", method = RequestMethod.POST)
 	public List<SysOrganizationInfo> findAll() {
 		logger.info("sysOrganizationList", SysOrganizationController.class);
 		return sysOrganizationService.findAll();
 	}
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： 添加数据
@@ -56,7 +58,7 @@ public class SysOrganizationController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping(value = "/sysOrganizationAdd", method = RequestMethod.POST)
+	@RequestMapping(path = "/sysOrganizationAdd", method = RequestMethod.POST)
 	@ResponseBody
 	public String sysOrganizationAdd(@RequestBody SysOrganizationInfo info) {
 		System.out.println(info.toString());
@@ -68,7 +70,7 @@ public class SysOrganizationController {
 			return "0";
 		}
 	}
-	
+
 	/**
 	 * 方法名： sysOrganizationDelete
 	 * 功 能： 删除
@@ -78,7 +80,7 @@ public class SysOrganizationController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping(value = "/sysOrganizationDelete", method = RequestMethod.POST)
+	@RequestMapping(path = "/sysOrganizationDelete", method = RequestMethod.POST)
 	@ResponseBody
 	public String sysOrganizationDelete(@RequestBody SysOrganizationInfo info) {
 		logger.info("sysOrganizationDelete", SysOrganizationController.class);
@@ -89,7 +91,7 @@ public class SysOrganizationController {
 			return "0";
 		}
 	}
-	
+
 	/**
 	 * 方法名： findSysOrganization
 	 * 功 能：根据uuid查询一条数据
@@ -99,13 +101,13 @@ public class SysOrganizationController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping(value = "/findSysOrganization", method = RequestMethod.POST)
+	@RequestMapping(path = "/findSysOrganization", method = RequestMethod.POST)
 	@ResponseBody
 	public SysOrganizationInfo findSysOrganization(@RequestBody SysOrganizationInfo info) {
 		logger.info("findSysOrganization", SysOrganizationController.class);
 		return sysOrganizationService.findSysOrganization(info.getUuid());
 	}
-	
+
 	/**
 	 * 方法名： sysOrganizationEdit
 	 * 功 能： 修改数据
@@ -115,7 +117,7 @@ public class SysOrganizationController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping(value = "/sysOrganizationEdit", method = RequestMethod.POST)
+	@RequestMapping(path = "/sysOrganizationEdit", method = RequestMethod.POST)
 	@ResponseBody
 	public String sysOrganizationEdit(@RequestBody SysOrganizationInfo info) {
 		System.out.println(info.toString());
@@ -127,5 +129,5 @@ public class SysOrganizationController {
 			return "0";
 		}
 	}
-	
+
 }

@@ -6,8 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import tk.ainiyue.danyuan.application.rms.userrole.po.SysUserRolesInfo;
 import tk.ainiyue.danyuan.application.rms.userrole.service.SysUserRolesService;
 
@@ -23,15 +25,16 @@ import tk.ainiyue.danyuan.application.rms.userrole.service.SysUserRolesService;
  */
 @RestController
 @RequestMapping("/sysUserRoles")
+@Api(value = "/sysUserRoles", description = "用户角色管理")
 public class SysUserRolesController {
-
+	
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysUserRolesController.class);
-
+	
 	//
 	@Autowired
 	private SysUserRolesService	sysUserRolesService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -40,7 +43,7 @@ public class SysUserRolesController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping("/sysUserRolesList")
+	@RequestMapping(path = "/sysUserRolesList", method = RequestMethod.POST)
 	public List<SysUserRolesInfo> findAll() {
 		logger.info("sysUserRolesList", SysUserRolesController.class);
 		return sysUserRolesService.findAll();

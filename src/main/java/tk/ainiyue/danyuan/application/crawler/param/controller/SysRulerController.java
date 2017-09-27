@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import tk.ainiyue.danyuan.application.crawler.param.po.SysRulerInfo;
 import tk.ainiyue.danyuan.application.crawler.param.service.SysRulerService;
 import tk.ainiyue.danyuan.application.crawler.param.vo.SysRulerVo;
@@ -26,39 +27,40 @@ import tk.ainiyue.danyuan.application.crawler.param.vo.SysRulerVo;
  */
 @RestController
 @RequestMapping("/sysRuler")
+@Api(value = "/sysRuler", description = "采集规则管理")
 public class SysRulerController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysRulerController.class);
 	//
 	@Autowired
 	private SysRulerService		sysSeedRulerService;
-
-	@RequestMapping("/findAll")
+	
+	@RequestMapping(path = "/findAll", method = RequestMethod.POST)
 	public List<SysRulerInfo> findAll(String uuid, int pageNumber, int pageSize, String searchText) {
 		logger.info("findAll", SysRulerController.class);
 		return sysSeedRulerService.findAllBySeedUuid(uuid);
 	}
-
+	
 	@RequestMapping(path = "/findAllByUuid", method = RequestMethod.POST)
 	public List<SysRulerInfo> findAll(@RequestBody String uuid) {
 		logger.info("findAll", SysRulerController.class);
 		List<SysRulerInfo> list = sysSeedRulerService.findAllBySeedUuid(uuid.replace("\"", ""));
 		return list;
 	}
-
-	@RequestMapping("/addSysRuler")
+	
+	@RequestMapping(path = "/addSysRuler", method = RequestMethod.POST)
 	public SysRulerInfo addSysRuler(@RequestBody SysRulerInfo rolerInfo) {
 		logger.info("addSysRuler", SysRulerController.class);
 		sysSeedRulerService.addSysRuler(rolerInfo);
 		return rolerInfo;
 	}
-
-	@RequestMapping("/deleteSysRulerInfo")
+	
+	@RequestMapping(path = "/deleteSysRulerInfo", method = RequestMethod.POST)
 	public List<SysRulerInfo> deleteSysRulerInfo(@RequestBody SysRulerVo vo) {
 		logger.error(vo.getList().get(0).toString());
 		logger.info("deleteSysRulerInfo", SysRulerController.class);
 		sysSeedRulerService.deleteSysRulerInfo(vo.getList());
 		return sysSeedRulerService.findAllBySeedUuid(vo.getUuid());
 	}
-
+	
 }

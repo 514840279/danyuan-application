@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import tk.ainiyue.danyuan.application.crawler.seed.po.SysSeedInfo;
 import tk.ainiyue.danyuan.application.crawler.seed.service.SysSeedService;
 import tk.ainiyue.danyuan.application.crawler.seed.vo.SysSeedVo;
@@ -26,14 +28,15 @@ import tk.ainiyue.danyuan.application.crawler.seed.vo.SysSeedVo;
  */
 @RestController
 @RequestMapping("/sysSeed")
+@Api(value = "/sysRuler", description = "采集管理")
 public class SysSeedController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysSeedController.class);
-
+	
 	//
 	@Autowired
 	private SysSeedService		sysSeedService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -42,30 +45,30 @@ public class SysSeedController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping("/sysSeedList")
+	@RequestMapping(path = "/sysSeedList", method = RequestMethod.POST)
 	public Page<SysSeedInfo> findAll(int pageNumber, int pageSize, String searchText) {
 		logger.info("sysSeedList", SysSeedController.class);
 		return sysSeedService.findAll(pageNumber, pageSize, searchText);
 	}
-
-	@RequestMapping("/findAll")
+	
+	@RequestMapping(path = "/findAll", method = RequestMethod.POST)
 	public List<SysSeedInfo> findAll() {
 		logger.info("sysSeedList", SysSeedController.class);
 		return sysSeedService.findAll();
 	}
-	
-	@RequestMapping("/addSysMenuInfo")
+
+	@RequestMapping(path = "/addSysMenuInfo", method = RequestMethod.POST)
 	public SysSeedInfo addSysMenuInfo(@RequestBody SysSeedInfo sysSeedInfo) {
 		logger.info("addSysMenuInfo", SysSeedController.class);
 		sysSeedService.addSysMenuInfo(sysSeedInfo);
 		return sysSeedInfo;
 	}
-	
-	@RequestMapping("/deleteSysSeedInfo")
+
+	@RequestMapping(path = "/deleteSysSeedInfo", method = RequestMethod.POST)
 	public Page<SysSeedInfo> deleteSysSeedInfo(@RequestBody SysSeedVo vo) {
 		logger.info("deleteSysSeedInfo", SysSeedController.class);
 		sysSeedService.deleteSysSeedInfo(vo.getList());
 		return sysSeedService.findAll(vo.getPageNumber(), vo.getPageSize(), null);
 	}
-
+	
 }

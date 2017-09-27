@@ -9,8 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
 import tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo;
 import tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService;
 import tk.ainiyue.danyuan.application.softm.sysmenu.vo.AuthorityzTreeVO;
@@ -27,6 +29,7 @@ import tk.ainiyue.danyuan.application.softm.sysmenu.vo.AuthorityzTreeVO;
  */
 @RestController
 @RequestMapping("/sysMenuInfo")
+@Api(value = "/sysMenuInfo", description = "菜单管理")
 public class SysMenuController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysMenuController.class);
@@ -44,7 +47,7 @@ public class SysMenuController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping("/addbatch")
+	@RequestMapping(path = "/addbatch", method = RequestMethod.POST)
 	public void addbatch(@RequestBody List<SysMenuInfo> sysMenuInfoList) {
 		logger.info(sysMenuInfoList.toString());
 		for (SysMenuInfo authority : sysMenuInfoList) {
@@ -60,7 +63,7 @@ public class SysMenuController {
 	 * 作 者 ： wang
 	 * @throws
 	 */
-	@RequestMapping("/findzTree")
+	@RequestMapping(path = "/findzTree", method = RequestMethod.POST)
 	public List<AuthorityzTreeVO> findzTree() {
 		return sysMenuService.findzTreeByF_ParentId("0");
 	}
@@ -73,7 +76,7 @@ public class SysMenuController {
 	 * 作 者 ： wang
 	 * @throws
 	 */
-	@RequestMapping("/addSysMenuInfo")
+	@RequestMapping(path = "/addSysMenuInfo", method = RequestMethod.POST)
 	public AuthorityzTreeVO addzTree(@RequestBody SysMenuInfo sysMenuInfo) {
 		System.err.println(sysMenuInfo.toString());
 		return sysMenuService.save(sysMenuInfo);
@@ -87,7 +90,7 @@ public class SysMenuController {
 	 * 作 者 ： wang
 	 * @throws
 	 */
-	@RequestMapping("/findSysMenuInfoByUuid")
+	@RequestMapping(path = "/findSysMenuInfoByUuid", method = RequestMethod.POST)
 	public SysMenuInfo findAuthorityByUuid(@RequestBody SysMenuInfo sysMenuInfo) {
 		return sysMenuService.findAuthorityByUuid(sysMenuInfo);
 	}
@@ -100,10 +103,10 @@ public class SysMenuController {
 	 * 作 者 ： wang
 	 * @throws
 	 */
-	@RequestMapping("/deleteSysMenuInfo")
+	@RequestMapping(path = "/deleteSysMenuInfo", method = RequestMethod.POST)
 	public Map<String, String> deleteAuthority(@RequestBody SysMenuInfo sysMenuInfo) {
 		sysMenuService.deleteAuthority(sysMenuInfo);
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 		map.put("code", "0");
 		return map;
 	}
@@ -117,7 +120,7 @@ public class SysMenuController {
 	 * 作 者 ： wang
 	 * @throws
 	 */
-	@RequestMapping("/updateSysMenuInfoName")
+	@RequestMapping(path = "/updateSysMenuInfoName", method = RequestMethod.POST)
 	public AuthorityzTreeVO updateAuthorityName(@RequestBody SysMenuInfo sysMenuInfo) {
 		return sysMenuService.updateAuthorityName(sysMenuInfo);
 	}
@@ -131,7 +134,7 @@ public class SysMenuController {
 	 * 作 者 ： wang
 	 * @throws
 	 */
-	@RequestMapping("/onDropSysMenuInfo")
+	@RequestMapping(path = "/onDropSysMenuInfo", method = RequestMethod.POST)
 	public AuthorityzTreeVO onDropAuthority(@RequestBody SysMenuInfo sysMenuInfo) {
 		return sysMenuService.onDropAuthority(sysMenuInfo);
 	}
