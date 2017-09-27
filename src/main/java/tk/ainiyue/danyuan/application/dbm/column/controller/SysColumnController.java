@@ -50,6 +50,12 @@ public class SysColumnController {
 		return sysColumnService.findAllByTableUuid(pageNumber, pageSize, searchText, uuid);
 	}
 	
+	@RequestMapping(path = "/findAll1")
+	public Page<SysColumnInfo> findAll1(@RequestBody SysColumnVo vo) {
+		logger.info("findAll", SysColumnController.class);
+		return sysColumnService.findAllByTableUuid(vo.getPageNumber(), vo.getPageSize(), vo.getSearchText(), vo.getUuid());
+	}
+	
 	@RequestMapping(path = "/findAllBySysColumnInfo")
 	public List<SysColumnInfo> findAllBySysColumnInfo(@RequestBody SysColumnInfo info) {
 		logger.info("findAll", SysColumnController.class);

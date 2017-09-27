@@ -1,5 +1,5 @@
-$('#search_table_addrName').select2({
-    placeholder : "数据库名称",
+$('#show_table_tableName').select2({
+    placeholder : "数据表名称",
     allowClear : true,
     tags : true,
 });
@@ -7,21 +7,33 @@ $('#search_table_addrName').select2({
 $(function() {
 	// 加载数据选择框
 	// 数据库列表下拉
-	ajaxPost('/table/findAllTable', null, successSearchDatabaseInfo, null, findError);
+	ajaxPost('/sysTableInfo/findAll', null, successSearchDatabaseInfo, null, findError);
 	
 	$('.btn-success').click(function() {
-		var tablename = jQuery('#add_table_addrName').val();
-		_search = tablename;
-		ajaxPost('/table/findAllTableColum', tablename, successSearchDatabaseTableInfo, null, findError);
+		
+		var res = $("#show_table_tableName").select2("data")[0];
+		console.log(res);
+		var uuid = res.id;
+		_search = uuid;
+		_tableName = res.text;
+		var param={
+		        pageNumber : 1,
+		        pageSize :50,
+				uuid:uuid,
+				
+		}
+		ajaxPost('/sysColumnInfo/findAll1', param, successSearchDatabaseTableInfo, null, findError);
 		
 	})
 })
+_tableName="";
+
 // 数据库列表下拉
 function successSearchDatabaseInfo(result) {
-	jQuery('#add_table_addrName').append('<option value=""></option>');
+	jQuery('#show_table_tableName').append('<option value=""></option>');
 	jQuery.each(result, function(index, value) {
-		var addr = '<option value="' + value.tableName + '">' + value.comments + '</option>';
-		jQuery('#add_table_addrName').append(addr);
+		var addr = '<option value="' + value.uuid + '" tableName="'+value.tableName+'">' + (value.tableDesc==""?value.tableName:value.tableDesc) + '</option>';
+		jQuery('#show_table_tableName').append(addr);
 	});
 }
 var _search = "";
@@ -31,12 +43,12 @@ function findError() {
 
 var _column = []
 function successSearchDatabaseTableInfo(result) {
-	$('#db_table_datagrid').bootstrapTable('destroy');
+	$('#show_db_table_data_datagrid').bootstrapTable('destroy');
 	_column = [];
-	$.each(result, function(index, value) {
+	$.each(result.content, function(index, value) {
 		_column.push({
-		    "title" : value.title,
-		    "field" : value.field
+		    "title" : value.colsName,
+		    "field" : value.colsDesc
 		});
 	})
 	reset();
@@ -46,8 +58,8 @@ function successSearchDatabaseTableInfo(result) {
 function reset() {
 	
 	// bootstrap table
-	$('#db_table_datagrid').bootstrapTable({
-	    url : "/table/findAllTableRow",
+	$('#show_db_table_data_datagrid').bootstrapTable({
+	    url : "/sysTableInfo/findAllTableRow",
 	    dataType : "json",
 	    // toolbar : '#toolbar', // 工具按钮用哪个容器
 	    cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -83,16 +95,16 @@ function reset() {
 		    var param = {
 		        pageNumber : params.pageNumber,
 		        pageSize : params.pageSize,
-		        searchText : _search,
+		        searchText : _tableName,
 		    };
 		    return param;
 	    },
 	    columns : _column
-	    }
+	    
 	});
 	// 窗口大小改变时 重设表头
 	$(window).resize(function() {
-		$('#db_table_datagrid').bootstrapTable('resetView');
+		$('#show_db_table_data_datagrid').bootstrapTable('resetView');
 	});
 	
 }
