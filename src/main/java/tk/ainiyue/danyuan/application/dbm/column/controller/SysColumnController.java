@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.dbm.column.po.SysColumnInfo;
 import tk.ainiyue.danyuan.application.dbm.column.service.SysColumnService;
 import tk.ainiyue.danyuan.application.dbm.column.vo.SysColumnVo;
@@ -34,11 +35,11 @@ import tk.ainiyue.danyuan.application.dbm.column.vo.SysColumnVo;
 public class SysColumnController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysColumnController.class);
-	
+
 	//
 	@Autowired
 	private SysColumnService	sysColumnService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -52,50 +53,51 @@ public class SysColumnController {
 		logger.info("findAll", SysColumnController.class);
 		return sysColumnService.findAllByTableUuid(pageNumber, pageSize, searchText, uuid);
 	}
-	
+
 	@RequestMapping(path = "/findAll1", method = RequestMethod.POST)
 	public Page<SysColumnInfo> findAll1(@RequestBody SysColumnVo vo) {
 		logger.info("findAll", SysColumnController.class);
 		return sysColumnService.findAllByTableUuid(vo.getPageNumber(), vo.getPageSize(), vo.getSearchText(), vo.getUuid());
 	}
-	
+
 	@RequestMapping(path = "/findAllBySysColumnInfo", method = RequestMethod.POST)
 	public List<SysColumnInfo> findAllBySysColumnInfo(@RequestBody SysColumnInfo info) {
 		logger.info("findAll", SysColumnController.class);
 		return sysColumnService.findAllBySysColumnInfo(info);
 	}
-
-	@RequestMapping(path = "/updBefor", method = RequestMethod.POST)
+	
+	@ApiOperation(hidden = true, value = "/updBefor")
+	@RequestMapping(path = "/updBefor", method = RequestMethod.GET)
 	public ModelAndView updBefor(@ModelAttribute SysColumnInfo info) {
 		logger.info("updBefor", SysColumnController.class);
 		ModelAndView view = new ModelAndView("dbm/table/upd_column");
 		view.addObject("sysColumnInfo", info);
 		return view;
 	}
-	
+
 	@RequestMapping(path = "/saveSysColumnInfo", method = RequestMethod.POST)
 	public Page<SysColumnInfo> saveSysColumnInfo(@RequestBody SysColumnInfo info) {
 		logger.info("saveSysColumnInfo", SysColumnController.class);
 		sysColumnService.save(info);
 		return sysColumnService.findAllByTableUuid(1, 10, "", info.getTableUuid());
-
+		
 	}
-	
+
 	@RequestMapping(path = "/saveSysColumnVo", method = RequestMethod.POST)
 	public Page<SysColumnInfo> saveSysColumnVo(@RequestBody SysColumnVo vo) {
 		logger.error(vo.toString(), SysColumnController.class);
 		logger.info("saveSysColumnVo", SysColumnController.class);
 		sysColumnService.saveSysColumnInfo(vo.getList());
 		return sysColumnService.findAllByTableUuid(1, 20, "", vo.getList().get(0).getTableUuid());
-
+		
 	}
-
+	
 	@RequestMapping(path = "/deleteSysColumnInfo", method = RequestMethod.POST)
 	public Page<SysColumnInfo> deleteSysColumnInfo(@RequestBody SysColumnVo vo) {
 		logger.info("deleteSysColumnInfo", SysColumnController.class);
 		sysColumnService.deleteSysColumnInfo(vo.getList());
 		return sysColumnService.findAllByTableUuid(1, 10, "", vo.getList().get(0).getTableUuid());
-
+		
 	}
-
+	
 }

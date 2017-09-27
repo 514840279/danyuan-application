@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.dbm.addr.po.SysDatabaseInfo;
 import tk.ainiyue.danyuan.application.dbm.addr.service.SysDatabaseService;
 import tk.ainiyue.danyuan.application.dbm.addr.vo.SysDatabaseVo;
@@ -60,7 +61,8 @@ public class SysDatabaseController {
 		return sysDatabaseService.findAll();
 	}
 
-	@RequestMapping(path = "/addBefor", method = RequestMethod.POST)
+	@ApiOperation(hidden = true, value = "/addBefor")
+	@RequestMapping(path = "/addBefor", method = RequestMethod.GET)
 	public ModelAndView addBefor(HttpServletRequest request) {
 		SysDatabaseInfo info = new SysDatabaseInfo();
 		info.setUuid(request.getParameter("uuid"));
