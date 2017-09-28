@@ -119,7 +119,7 @@ function zTreeOnRename(event, treeId, treeNode, isCancel) {
 	}
 	var url = "/sysMenuInfo/updateSysMenuInfoName";
 	// 重载
-	ajaxPost(url, param, successUpdate, 1000, findError);
+	ajaxPost(url, param, successUpdateMenu, 1000, findError);
 };
 // 删除前
 // function zTreeBeforeRemove(treeId, treeNode) {
