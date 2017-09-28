@@ -46,7 +46,7 @@ public class SysTableController {
 	@Autowired
 	JdbcTemplate				jdbcTemplate;
 
-	@RequestMapping(path = "/findAllTableRow", method = RequestMethod.POST)
+	@RequestMapping(path = "/findAllTableRow", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<Map<String, Object>> listTR(SysColumnVo param) {
 		String sql = "Select * from " + param.getSearchText() + " order by datetime desc limit 0,500";
 		List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
@@ -61,7 +61,7 @@ public class SysTableController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping(path = "/findAll", method = RequestMethod.GET)
+	@RequestMapping(path = "/findAll", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<SysTableInfo> findAll() {
 		logger.info("findAll", SysTableController.class);
 		return sysTableService.findAll();
