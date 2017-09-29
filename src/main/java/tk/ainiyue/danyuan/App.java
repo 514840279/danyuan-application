@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -28,12 +27,12 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration // 启用自动配置
 @SpringBootApplication
 public class App {
-	
+
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(App.class, args);
 	}
-	
-	@Bean
+
+	// @Bean
 	public EmbeddedServletContainerFactory servletContainer() {
 		TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory() {
 			@Override
@@ -49,8 +48,8 @@ public class App {
 		tomcat.addAdditionalTomcatConnectors(httpConnector());
 		return tomcat;
 	}
-
-	@Bean
+	
+	// @Bean
 	public Connector httpConnector() {
 		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
 		connector.setScheme("http");
@@ -61,5 +60,5 @@ public class App {
 		connector.setRedirectPort(8443);
 		return connector;
 	}
-
+	
 }
