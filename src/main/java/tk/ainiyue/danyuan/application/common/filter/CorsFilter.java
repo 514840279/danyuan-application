@@ -10,8 +10,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.stereotype.Component;
-
 /**
  * 文件名 ： CorsFilter.java
  * 包 名 ： tk.ainiyue.danyuan.application.common.filter
@@ -23,7 +21,7 @@ import org.springframework.stereotype.Component;
  * 版 本 ： V1.0
  */
 
-@Component
+//@Component
 public class CorsFilter implements Filter {
 	
 	final static org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(CorsFilter.class);

@@ -58,7 +58,10 @@ public class SysMenuInfo {
 	
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
 	private Integer	deleteFlag;
-	
+
+	@Column(name = "type", columnDefinition = " varchar(50)  default '菜单' COMMENT '菜单还是方法'")
+	private Integer	type;
+
 	@Transient
 	private String	moveType;
 
