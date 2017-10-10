@@ -2,6 +2,8 @@ package tk.ainiyue.danyuan.application.crm.roles.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import tk.ainiyue.danyuan.application.crm.roles.po.SysRolesInfo;
 
 /**
@@ -25,5 +27,17 @@ public interface SysRolesService {
 	 * @throws
 	 */
 	List<SysRolesInfo> findAll();
+
+	SysRolesInfo findByUuid(String uuid);
+	
+	Page<SysRolesInfo> findAllBySearchText(int pageNumber, int pageSize, SysRolesInfo info);
+
+	void save(SysRolesInfo info);
+	
+	void delete(SysRolesInfo info);
+	
+	void delete(List<SysRolesInfo> list);
+	
+	void trunc();
 
 }

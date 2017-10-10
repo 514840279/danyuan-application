@@ -1,6 +1,6 @@
 package tk.ainiyue.danyuan.application.crm.roles.dao;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import tk.ainiyue.danyuan.application.crm.roles.po.SysRolesInfo;
@@ -16,6 +16,6 @@ import tk.ainiyue.danyuan.application.crm.roles.po.SysRolesInfo;
  * 版 本 ： V1.0
  */
 @Repository("sysRolesDao")
-public interface SysRolesDao extends CrudRepository<SysRolesInfo, String> {
-
+public interface SysRolesDao extends JpaRepository<SysRolesInfo, String> {
+	
 }

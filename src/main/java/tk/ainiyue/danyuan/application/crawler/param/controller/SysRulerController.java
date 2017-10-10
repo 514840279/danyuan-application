@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.crawler.param.po.SysRulerInfo;
 import tk.ainiyue.danyuan.application.crawler.param.service.SysRulerService;
 import tk.ainiyue.danyuan.application.crawler.param.vo.SysRulerVo;
@@ -34,27 +35,31 @@ public class SysRulerController {
 	//
 	@Autowired
 	private SysRulerService		sysSeedRulerService;
-	
+
+	@ApiOperation(value = "查询全部的规则信息", notes = "")
 	@RequestMapping(path = "/findAll", method = RequestMethod.POST)
 	public List<SysRulerInfo> findAll(String uuid, int pageNumber, int pageSize, String searchText) {
 		logger.info("findAll", SysRulerController.class);
 		return sysSeedRulerService.findAllBySeedUuid(uuid);
 	}
-	
+
+	@ApiOperation(value = "通过uuid查询规则信息", notes = "")
 	@RequestMapping(path = "/findAllByUuid", method = RequestMethod.POST)
 	public List<SysRulerInfo> findAll(@RequestBody String uuid) {
 		logger.info("findAll", SysRulerController.class);
 		List<SysRulerInfo> list = sysSeedRulerService.findAllBySeedUuid(uuid.replace("\"", ""));
 		return list;
 	}
-	
+
+	@ApiOperation(value = "添加规则信息", notes = "")
 	@RequestMapping(path = "/addSysRuler", method = RequestMethod.POST)
 	public SysRulerInfo addSysRuler(@RequestBody SysRulerInfo rolerInfo) {
 		logger.info("addSysRuler", SysRulerController.class);
 		sysSeedRulerService.addSysRuler(rolerInfo);
 		return rolerInfo;
 	}
-	
+
+	@ApiOperation(value = "删除规则信息", notes = "")
 	@RequestMapping(path = "/deleteSysRulerInfo", method = RequestMethod.POST)
 	public List<SysRulerInfo> deleteSysRulerInfo(@RequestBody SysRulerVo vo) {
 		logger.error(vo.getList().get(0).toString());
@@ -62,5 +67,5 @@ public class SysRulerController {
 		sysSeedRulerService.deleteSysRulerInfo(vo.getList());
 		return sysSeedRulerService.findAllBySeedUuid(vo.getUuid());
 	}
-	
+
 }

@@ -2,6 +2,8 @@ package tk.ainiyue.danyuan.application.crm.organization.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import tk.ainiyue.danyuan.application.crm.organization.po.SysOrganizationInfo;
 
 /**
@@ -66,5 +68,17 @@ public interface SysOrganizationService {
 	 * @throws
 	 */
 	void sysOrganizationEdit(SysOrganizationInfo info);
+
+	SysOrganizationInfo findByUuid(String uuid);
+	
+	Page<SysOrganizationInfo> findAllBySearchText(int pageNumber, int pageSize, SysOrganizationInfo info);
+
+	void save(SysOrganizationInfo info);
+	
+	void delete(SysOrganizationInfo info);
+	
+	void delete(List<SysOrganizationInfo> list);
+	
+	void trunc();
 	
 }

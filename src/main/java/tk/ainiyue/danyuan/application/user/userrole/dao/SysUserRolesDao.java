@@ -1,9 +1,9 @@
-package tk.ainiyue.danyuan.application.rms.userrole.dao;
+package tk.ainiyue.danyuan.application.user.userrole.dao;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import tk.ainiyue.danyuan.application.rms.userrole.po.SysUserRolesInfo;
+import tk.ainiyue.danyuan.application.user.userrole.po.SysUserRolesInfo;
 
 /**
  * 文件名 ： SysUserRolesDao.java
@@ -17,5 +17,5 @@ import tk.ainiyue.danyuan.application.rms.userrole.po.SysUserRolesInfo;
  */
 @Repository("sysUserRolesDao")
 public interface SysUserRolesDao extends CrudRepository<SysUserRolesInfo, String> {
-
+	
 }

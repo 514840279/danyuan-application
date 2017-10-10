@@ -2,6 +2,8 @@ package tk.ainiyue.danyuan.application.crm.department.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo;
 
 /**
@@ -15,7 +17,7 @@ import tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo;
  * 版 本 ： V1.0
  */
 public interface SysDepartmentService {
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -26,4 +28,16 @@ public interface SysDepartmentService {
 	 */
 	List<SysDepartmentInfo> findAll();
 
+	SysDepartmentInfo findByUuid(String uuid);
+	
+	Page<SysDepartmentInfo> findAllBySearchText(int pageNumber, int pageSize, SysDepartmentInfo info);
+	
+	void save(SysDepartmentInfo info);
+
+	void delete(SysDepartmentInfo info);
+
+	void delete(List<SysDepartmentInfo> list);
+
+	void trunc();
+	
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo;
 import tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentService;
 
@@ -27,14 +28,14 @@ import tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentServic
 @RequestMapping("/sysDepartment")
 @Api(value = "/sysDepartment", description = "部门管理")
 public class SysDepartmentController {
-	
+
 	//
 	private static final Logger	 logger	= LoggerFactory.getLogger(SysDepartmentController.class);
-	
+
 	//
 	@Autowired
 	private SysDepartmentService sysDepartmentService;
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -43,6 +44,7 @@ public class SysDepartmentController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
+	@ApiOperation(value = "查询全部部门信息", notes = "")
 	@RequestMapping(path = "/sysDepartmentList", method = RequestMethod.POST)
 	public List<SysDepartmentInfo> findAll() {
 		logger.info("sysSystemList", SysDepartmentController.class);

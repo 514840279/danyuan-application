@@ -2,6 +2,8 @@ package tk.ainiyue.danyuan.application.crm.jurisdiction.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionInfo;
 
 /**
@@ -25,5 +27,17 @@ public interface SysRolesJurisdictionService {
 	 * @throws
 	 */
 	List<SysRolesJurisdictionInfo> findAll();
+	
+	SysRolesJurisdictionInfo findByUuid(String uuid);
+
+	Page<SysRolesJurisdictionInfo> findAllBySearchText(int pageNumber, int pageSize, SysRolesJurisdictionInfo info);
+
+	void save(SysRolesJurisdictionInfo info);
+	
+	void delete(SysRolesJurisdictionInfo info);
+	
+	void delete(List<SysRolesJurisdictionInfo> list);
+	
+	void trunc();
 
 }

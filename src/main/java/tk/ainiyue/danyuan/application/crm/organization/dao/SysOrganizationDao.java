@@ -1,6 +1,6 @@
 package tk.ainiyue.danyuan.application.crm.organization.dao;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import tk.ainiyue.danyuan.application.crm.organization.po.SysOrganizationInfo;
@@ -16,6 +16,6 @@ import tk.ainiyue.danyuan.application.crm.organization.po.SysOrganizationInfo;
  * 版 本 ： V1.0
  */
 @Repository("sysOrganizationDao")
-public interface SysOrganizationDao extends CrudRepository<SysOrganizationInfo, String> {
-
+public interface SysOrganizationDao extends JpaRepository<SysOrganizationInfo, String> {
+	
 }

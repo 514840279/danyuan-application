@@ -2,7 +2,7 @@ package tk.ainiyue.danyuan.application.crawler.param.dao;
 
 import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import tk.ainiyue.danyuan.application.crawler.param.po.SysRulerInfo;
@@ -18,8 +18,8 @@ import tk.ainiyue.danyuan.application.crawler.param.po.SysRulerInfo;
  * 版 本 ： V1.0
  */
 @Repository("sysSeedRulerDao")
-public interface SysRulerDao extends CrudRepository<SysRulerInfo, String> {
-
+public interface SysRulerDao extends JpaRepository<SysRulerInfo, String> {
+	
 	List<SysRulerInfo> findAllBySeedUuid(String seedUuid);
-
+	
 }

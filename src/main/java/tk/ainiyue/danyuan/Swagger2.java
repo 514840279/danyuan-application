@@ -1,7 +1,6 @@
 package tk.ainiyue.danyuan;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -9,7 +8,6 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * 文件名 ： Swagger2.java
@@ -21,8 +19,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * 时 间 ： 2017年9月15日 下午5:02:40
  * 版 本 ： V1.0
  */
-@Configuration
-@EnableSwagger2
+//@Configuration
+//@EnableSwagger2
 public class Swagger2 {
 	@Bean
 	public Docket createRestApi() {
@@ -33,7 +31,7 @@ public class Swagger2 {
 		        .paths(PathSelectors.any())
 		        .build();
 	}
-	
+
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
 		        .title("Spring Boot中使用Swagger2构建RESTful APIs")
@@ -43,5 +41,5 @@ public class Swagger2 {
 		        .version("1.0")
 		        .build();
 	}
-	
+
 }

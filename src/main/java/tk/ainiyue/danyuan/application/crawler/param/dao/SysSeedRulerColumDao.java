@@ -2,7 +2,7 @@ package tk.ainiyue.danyuan.application.crawler.param.dao;
 
 import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRulerColumInfo;
@@ -18,10 +18,10 @@ import tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRulerColumInfo;
  * 版 本 ： V1.0
  */
 @Repository("sysSeedRolerColumDao")
-public interface SysSeedRulerColumDao extends CrudRepository<SysSeedRulerColumInfo, String> {
-	
+public interface SysSeedRulerColumDao extends JpaRepository<SysSeedRulerColumInfo, String> {
+
 	List<SysSeedRulerColumInfo> findAllByRulerUuid(String rulerUuid);
-
+	
 	void deleteByRulerUuid(String uuid);
-
+	
 }

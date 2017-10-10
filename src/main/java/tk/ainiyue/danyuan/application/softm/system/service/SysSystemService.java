@@ -2,6 +2,8 @@ package tk.ainiyue.danyuan.application.softm.system.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import tk.ainiyue.danyuan.application.softm.system.po.SysSystemInfo;
 
 /**
@@ -25,5 +27,17 @@ public interface SysSystemService {
 	 * @throws
 	 */
 	List<SysSystemInfo> findAll();
+	
+	SysSystemInfo findByUuid(String uuid);
+	
+	Page<SysSystemInfo> findAllBySearchText(int pageNumber, int pageSize, SysSystemInfo info);
+	
+	void save(SysSystemInfo info);
+
+	void delete(SysSystemInfo info);
+
+	void delete(List<SysSystemInfo> list);
+
+	void trunc();
 
 }

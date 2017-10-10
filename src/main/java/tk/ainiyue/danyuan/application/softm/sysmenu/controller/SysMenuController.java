@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo;
 import tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService;
 import tk.ainiyue.danyuan.application.softm.sysmenu.vo.AuthorityzTreeVO;
@@ -33,11 +34,11 @@ import tk.ainiyue.danyuan.application.softm.sysmenu.vo.AuthorityzTreeVO;
 public class SysMenuController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysMenuController.class);
-
+	
 	//
 	@Autowired
 	private SysMenuService		sysMenuService;
-
+	
 	/**
 	 * 方法名： addbatch
 	 * 功 能： 批量添加
@@ -47,6 +48,7 @@ public class SysMenuController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
+	@ApiOperation(value = "批量添加修改菜单管理 信息", notes = "")
 	@RequestMapping(path = "/addbatch", method = RequestMethod.POST)
 	public void addbatch(@RequestBody List<SysMenuInfo> sysMenuInfoList) {
 		logger.info(sysMenuInfoList.toString());
@@ -54,7 +56,7 @@ public class SysMenuController {
 			sysMenuService.save(authority);
 		}
 	}
-	
+
 	/**
 	 * 方法名： findzTree
 	 * 功 能： 取得ztree信息
@@ -63,11 +65,12 @@ public class SysMenuController {
 	 * 作 者 ： wang
 	 * @throws
 	 */
+	@ApiOperation(value = "查询全部菜单管理 信息", notes = "")
 	@RequestMapping(path = "/findzTree", method = RequestMethod.POST)
 	public List<AuthorityzTreeVO> findzTree() {
 		return sysMenuService.findzTreeByF_ParentId("0");
 	}
-
+	
 	/**
 	 * 方法名： addzTree
 	 * 功 能： 增加节点
@@ -76,12 +79,13 @@ public class SysMenuController {
 	 * 作 者 ： wang
 	 * @throws
 	 */
+	@ApiOperation(value = "保存菜单管理 信息", notes = "")
 	@RequestMapping(path = "/addSysMenuInfo", method = RequestMethod.POST)
 	public AuthorityzTreeVO addzTree(@RequestBody SysMenuInfo sysMenuInfo) {
 		System.err.println(sysMenuInfo.toString());
 		return sysMenuService.save(sysMenuInfo);
 	}
-
+	
 	/**
 	 * 方法名： findAuthorityByUuid
 	 * 功 能： 增加节点
@@ -90,11 +94,12 @@ public class SysMenuController {
 	 * 作 者 ： wang
 	 * @throws
 	 */
+	@ApiOperation(value = "条件查询菜单管理 信息", notes = "")
 	@RequestMapping(path = "/findSysMenuInfoByUuid", method = RequestMethod.POST)
 	public SysMenuInfo findAuthorityByUuid(@RequestBody SysMenuInfo sysMenuInfo) {
 		return sysMenuService.findAuthorityByUuid(sysMenuInfo);
 	}
-
+	
 	/**
 	 * 方法名： deleteAuthority
 	 * 功 能： 删除
@@ -103,6 +108,7 @@ public class SysMenuController {
 	 * 作 者 ： wang
 	 * @throws
 	 */
+	@ApiOperation(value = "删除菜单管理 信息", notes = "")
 	@RequestMapping(path = "/deleteSysMenuInfo", method = RequestMethod.POST)
 	public Map<String, String> deleteAuthority(@RequestBody SysMenuInfo sysMenuInfo) {
 		sysMenuService.deleteAuthority(sysMenuInfo);
@@ -110,7 +116,7 @@ public class SysMenuController {
 		map.put("code", "0");
 		return map;
 	}
-
+	
 	/**
 	 * 方法名： updateAuthorityName
 	 * 功 能： 更新名称
@@ -120,11 +126,12 @@ public class SysMenuController {
 	 * 作 者 ： wang
 	 * @throws
 	 */
+	@ApiOperation(value = "更新菜单管理 信息", notes = "")
 	@RequestMapping(path = "/updateSysMenuInfoName", method = RequestMethod.POST)
 	public AuthorityzTreeVO updateAuthorityName(@RequestBody SysMenuInfo sysMenuInfo) {
 		return sysMenuService.updateAuthorityName(sysMenuInfo);
 	}
-
+	
 	/**
 	 * 方法名： onDropAuthority
 	 * 功 能： 拖拽排序
@@ -134,9 +141,10 @@ public class SysMenuController {
 	 * 作 者 ： wang
 	 * @throws
 	 */
+	@ApiOperation(value = "拖动修改菜单管理 信息", notes = "")
 	@RequestMapping(path = "/onDropSysMenuInfo", method = RequestMethod.POST)
 	public AuthorityzTreeVO onDropAuthority(@RequestBody SysMenuInfo sysMenuInfo) {
 		return sysMenuService.onDropAuthority(sysMenuInfo);
 	}
-
+	
 }

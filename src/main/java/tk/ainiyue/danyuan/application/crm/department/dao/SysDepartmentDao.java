@@ -1,6 +1,6 @@
 package tk.ainiyue.danyuan.application.crm.department.dao;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo;
@@ -16,6 +16,6 @@ import tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo;
  * 版 本 ： V1.0
  */
 @Repository("sysDepartmentDao")
-public interface SysDepartmentDao extends CrudRepository<SysDepartmentInfo, String> {
+public interface SysDepartmentDao extends JpaRepository<SysDepartmentInfo, String> {
 
 }

@@ -1,6 +1,6 @@
 package tk.ainiyue.danyuan.application.crm.jurisdiction.dao;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionInfo;
@@ -16,6 +16,6 @@ import tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionIn
  * 版 本 ： V1.0
  */
 @Repository("sysRolesJurisdictionDao")
-public interface SysRolesJurisdictionDao extends CrudRepository<SysRolesJurisdictionInfo, String> {
-
+public interface SysRolesJurisdictionDao extends JpaRepository<SysRolesJurisdictionInfo, String> {
+	
 }

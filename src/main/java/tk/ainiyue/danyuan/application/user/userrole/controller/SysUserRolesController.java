@@ -1,4 +1,4 @@
-package tk.ainiyue.danyuan.application.rms.userrole.controller;
+package tk.ainiyue.danyuan.application.user.userrole.controller;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
-import tk.ainiyue.danyuan.application.rms.userrole.po.SysUserRolesInfo;
-import tk.ainiyue.danyuan.application.rms.userrole.service.SysUserRolesService;
+import tk.ainiyue.danyuan.application.user.userrole.po.SysUserRolesInfo;
+import tk.ainiyue.danyuan.application.user.userrole.service.SysUserRolesService;
 
 /**
  * 文件名 ： SysUserRolesController.java
@@ -27,14 +27,14 @@ import tk.ainiyue.danyuan.application.rms.userrole.service.SysUserRolesService;
 @RequestMapping("/sysUserRoles")
 @Api(value = "/sysUserRoles", description = "用户角色管理")
 public class SysUserRolesController {
-	
+
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysUserRolesController.class);
-	
+
 	//
 	@Autowired
 	private SysUserRolesService	sysUserRolesService;
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)

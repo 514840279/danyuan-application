@@ -1,6 +1,6 @@
 package tk.ainiyue.danyuan.application.softm.system.dao;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import tk.ainiyue.danyuan.application.softm.system.po.SysSystemInfo;
@@ -16,6 +16,6 @@ import tk.ainiyue.danyuan.application.softm.system.po.SysSystemInfo;
  * 版 本 ： V1.0
  */
 @Repository("sysSystemDao")
-public interface SysSystemDao extends CrudRepository<SysSystemInfo, String> {
-
+public interface SysSystemDao extends JpaRepository<SysSystemInfo, String> {
+	
 }

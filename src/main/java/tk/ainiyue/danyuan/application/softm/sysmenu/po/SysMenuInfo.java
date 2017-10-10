@@ -60,7 +60,7 @@ public class SysMenuInfo {
 	private Integer	deleteFlag;
 
 	@Column(name = "type", columnDefinition = " varchar(50)  default '菜单' COMMENT '菜单还是方法'")
-	private Integer	type;
+	private String	type;
 
 	@Transient
 	private String	moveType;
@@ -316,7 +316,25 @@ public class SysMenuInfo {
 	public void setMoveType(String moveType) {
 		this.moveType = moveType;
 	}
-
+	
+	/**
+	 * 方法名 ： getType
+	 * 功 能 ： 返回变量 type 的值
+	 * 
+	 * @return: String
+	 */
+	public String getType() {
+		return type;
+	}
+	
+	/**
+	 * 方法名 ： setType
+	 * 功 能 ： 设置变量 type 的值
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
+	
 	/**
 	 * 方法名 ： toString
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)

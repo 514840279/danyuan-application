@@ -1,8 +1,10 @@
-package tk.ainiyue.danyuan.application.rms.userrole.service;
+package tk.ainiyue.danyuan.application.user.userrole.service;
 
 import java.util.List;
 
-import tk.ainiyue.danyuan.application.rms.userrole.po.SysUserRolesInfo;
+import org.springframework.data.domain.Page;
+
+import tk.ainiyue.danyuan.application.user.userrole.po.SysUserRolesInfo;
 
 /**
  * 文件名 ： SysUserRolesService.java
@@ -26,4 +28,15 @@ public interface SysUserRolesService {
 	 */
 	List<SysUserRolesInfo> findAll();
 
+	SysUserRolesInfo findByUuid(String uuid);
+	
+	Page<SysUserRolesInfo> findAllBySearchText(int pageNumber, int pageSize, SysUserRolesInfo info);
+
+	void save(SysUserRolesInfo info);
+	
+	void delete(SysUserRolesInfo info);
+	
+	void delete(List<SysUserRolesInfo> list);
+	
+	void trunc();
 }

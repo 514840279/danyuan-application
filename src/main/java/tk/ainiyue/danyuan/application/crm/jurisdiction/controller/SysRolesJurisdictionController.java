@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionInfo;
 import tk.ainiyue.danyuan.application.crm.jurisdiction.service.SysRolesJurisdictionService;
 
@@ -29,11 +30,11 @@ import tk.ainiyue.danyuan.application.crm.jurisdiction.service.SysRolesJurisdict
 public class SysRolesJurisdictionController {
 	//
 	private static final Logger			logger = LoggerFactory.getLogger(SysRolesJurisdictionController.class);
-	
+
 	//
 	@Autowired
 	private SysRolesJurisdictionService	sysRolesJurisdictionService;
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -42,6 +43,7 @@ public class SysRolesJurisdictionController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
+	@ApiOperation(value = "查询全部角色权限管理信息", notes = "")
 	@RequestMapping(path = "/sysRolesJurisdictionList", method = RequestMethod.POST)
 	public List<SysRolesJurisdictionInfo> findAll() {
 		logger.info("sysRolesJurisdictionList", SysRolesJurisdictionController.class);

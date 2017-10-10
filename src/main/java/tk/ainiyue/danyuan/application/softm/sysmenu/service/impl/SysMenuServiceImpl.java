@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.softm.sysmenu.dao.SysMenuDao;
@@ -75,7 +81,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 		List<AuthorityzTreeVO> list = null;
 		List<SysMenuInfo> listt = sysMenuDao.findAllByParentsIdOrderByF_SortCode(id);
 		if (listt != null && listt.size() > 0) {
-			list = new ArrayList<AuthorityzTreeVO>();
+			list = new ArrayList<>();
 			for (SysMenuInfo sysMenuInfo : listt) {
 				AuthorityzTreeVO vo = new AuthorityzTreeVO();
 				vo.setId(sysMenuInfo.getUuid());
@@ -203,6 +209,85 @@ public class SysMenuServiceImpl implements SysMenuService {
 			}
 		}
 		return new AuthorityzTreeVO();
+	}
+
+	/**
+	 * 方法名 ： findByUuid
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param uuid
+	 * 参 数 ： @return
+	 * 参 考 ： @see
+	 * tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService#findByUuid(java.lang.String)
+	 * 作 者 ： Administrator
+	 */
+	
+	@Override
+	public SysMenuInfo findByUuid(String uuid) {
+		return sysMenuDao.findAllByUuid(uuid);
+	}
+
+	/**
+	 * 方法名 ： findAllBySearchText
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param pageNumber
+	 * 参 数 ： @param pageSize
+	 * 参 数 ： @param info
+	 * 参 数 ： @return
+	 * 参 考 ： @see
+	 * tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService#findAllBySearchText(int,
+	 * int, tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo)
+	 * 作 者 ： Administrator
+	 */
+	
+	@Override
+	public Page<SysMenuInfo> findAllBySearchText(int pageNumber, int pageSize, SysMenuInfo info) {
+		Example<SysMenuInfo> example = Example.of(info);
+		Sort sort = new Sort(new Order(Direction.DESC, "insertDatetime"));
+		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+		Page<SysMenuInfo> sourceCodes = sysMenuDao.findAll(example, request);
+		return sourceCodes;
+	}
+
+	/**
+	 * 方法名 ： delete
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param info
+	 * 参 考 ： @see
+	 * tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService#delete(tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo)
+	 * 作 者 ： Administrator
+	 */
+	
+	@Override
+	public void delete(SysMenuInfo info) {
+		sysMenuDao.delete(info);
+	}
+
+	/**
+	 * 方法名 ： delete
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param list
+	 * 参 考 ： @see
+	 * tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService#delete(java.util.List)
+	 * 作 者 ： Administrator
+	 */
+	
+	@Override
+	public void delete(List<SysMenuInfo> list) {
+		sysMenuDao.delete(list);
+	}
+
+	/**
+	 * 方法名 ： trunc
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ：
+	 * 参 考 ： @see
+	 * tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService#trunc()
+	 * 作 者 ： Administrator
+	 */
+	
+	@Override
+	public void trunc() {
+		sysMenuDao.deleteAll();
 	}
 
 }

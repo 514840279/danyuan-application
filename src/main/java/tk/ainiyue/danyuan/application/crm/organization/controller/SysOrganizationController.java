@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.crm.organization.po.SysOrganizationInfo;
 import tk.ainiyue.danyuan.application.crm.organization.service.SysOrganizationService;
 
@@ -44,6 +45,7 @@ public class SysOrganizationController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
+	@ApiOperation(value = "查询全部组织机构管理信息", notes = "")
 	@RequestMapping(path = "/sysOrganizationList", method = RequestMethod.POST)
 	public List<SysOrganizationInfo> findAll() {
 		logger.info("sysOrganizationList", SysOrganizationController.class);
@@ -58,6 +60,7 @@ public class SysOrganizationController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
+	@ApiOperation(value = "添加组织机构管理信息", notes = "")
 	@RequestMapping(path = "/sysOrganizationAdd", method = RequestMethod.POST)
 	@ResponseBody
 	public String sysOrganizationAdd(@RequestBody SysOrganizationInfo info) {
@@ -80,6 +83,7 @@ public class SysOrganizationController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
+	@ApiOperation(value = "删除组织机构管理信息", notes = "")
 	@RequestMapping(path = "/sysOrganizationDelete", method = RequestMethod.POST)
 	@ResponseBody
 	public String sysOrganizationDelete(@RequestBody SysOrganizationInfo info) {
@@ -101,6 +105,7 @@ public class SysOrganizationController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
+	@ApiOperation(value = "根据uuid查询一条数据", notes = "")
 	@RequestMapping(path = "/findSysOrganization", method = RequestMethod.POST)
 	@ResponseBody
 	public SysOrganizationInfo findSysOrganization(@RequestBody SysOrganizationInfo info) {
@@ -117,6 +122,7 @@ public class SysOrganizationController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
+	@ApiOperation(value = "修改数据", notes = "")
 	@RequestMapping(path = "/sysOrganizationEdit", method = RequestMethod.POST)
 	@ResponseBody
 	public String sysOrganizationEdit(@RequestBody SysOrganizationInfo info) {

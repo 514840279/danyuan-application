@@ -35,11 +35,11 @@ import tk.ainiyue.danyuan.application.dbm.addr.vo.SysDatabaseVo;
 public class SysDatabaseController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysDatabaseController.class);
-
+	
 	//
 	@Autowired
 	private SysDatabaseService	sysDatabaseService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -48,19 +48,21 @@ public class SysDatabaseController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
+	@ApiOperation(value = "查询全部数据库管理信息", notes = "")
 	@RequestMapping(path = "/findAll", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<SysDatabaseInfo> findAll() {
 		logger.info("findAll", SysDatabaseController.class);
 		return sysDatabaseService.findAll();
 	}
 
+	@ApiOperation(value = "添加数据库管理信息", notes = "")
 	@RequestMapping(path = "/addSysDatabaseInfo", method = RequestMethod.POST)
 	public List<SysDatabaseInfo> addSysDatabaseInfo(@RequestBody SysDatabaseInfo sysDatabaseInfo) {
 		logger.info("findAll", SysDatabaseController.class);
 		sysDatabaseService.save(sysDatabaseInfo);
 		return sysDatabaseService.findAll();
 	}
-
+	
 	@ApiOperation(hidden = true, value = "/addBefor")
 	@RequestMapping(path = "/addBefor", method = RequestMethod.GET)
 	public ModelAndView addBefor(HttpServletRequest request) {
@@ -80,7 +82,8 @@ public class SysDatabaseController {
 		view.addObject("sysDatabaseInfo", info);
 		return view;
 	}
-
+	
+	@ApiOperation(value = "删除数据库管理信息", notes = "")
 	@RequestMapping(path = "/deleteSysDatabaseInfo", method = RequestMethod.POST)
 	public List<SysDatabaseInfo> deleteSysDatabaseInfo(@RequestBody SysDatabaseVo vo) {
 		logger.error(vo.getList().get(0).toString());
@@ -88,5 +91,5 @@ public class SysDatabaseController {
 		sysDatabaseService.deleteSysDatabaseInfo(vo.getList());
 		return sysDatabaseService.findAll();
 	}
-	
+
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.crawler.config.po.SysSeedResultRulerInfo;
 import tk.ainiyue.danyuan.application.crawler.config.service.SysSeedResultRulerService;
 import tk.ainiyue.danyuan.application.crawler.config.vo.SysSeedResultRulerVo;
@@ -36,12 +37,14 @@ public class SysSeedResultRulerController {
 	@Autowired
 	private SysSeedResultRulerService sysSeedResultRulerService;
 
+	@ApiOperation(value = "查询全部配置规则信息", notes = "")
 	@RequestMapping(path = "/findAllBySysSeedResultRulerInfo", method = RequestMethod.POST)
 	public List<SysSeedResultRulerInfo> findAllBySysSeedResultRulerInfo(@RequestBody SysSeedResultRulerInfo info) {
 		logger.info("findAll", SysSeedResultRulerController.class);
 		return sysSeedResultRulerService.findAllBySysSeedResultRulerInfo(info);
 	}
 
+	@ApiOperation(value = "保存配置规则信息", notes = "")
 	@RequestMapping(path = "/saveSysSeedResultRulerInfo", method = RequestMethod.POST)
 	public List<SysSeedResultRulerInfo> saveSysSeedResultRulerInfo(@RequestBody SysSeedResultRulerVo vo) {
 		logger.info("findAll", SysSeedResultRulerController.class);
