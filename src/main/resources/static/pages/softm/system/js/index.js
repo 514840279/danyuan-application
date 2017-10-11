@@ -1,12 +1,12 @@
 $(function() {
 	$('#addnew').click(function() {
-		window.location.href = "add.html";
+//		window.location.href = "add.html";
 	});
 	$('#editold').click(function() {
-		window.location.href = "edit.html";
+//		window.location.href = "edit.html";
 	});
 	$('#deleteold').click(function() {
-		window.location.href = "delete";
+//		window.location.href = "delete";
 	});
 	
 	
@@ -45,7 +45,7 @@ $(function() {
 	$('#admin_system_datagrid').bootstrapTable({
 		url : "/sysSystem/sysSystemList",
 		dataType : "json",
-		toolbar : '#toolbar', // 工具按钮用哪个容器
+		toolbar : '#system_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式

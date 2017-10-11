@@ -27,14 +27,14 @@ import tk.ainiyue.danyuan.application.user.userrole.service.SysUserRolesService;
 @RequestMapping("/sysUserRoles")
 @Api(value = "/sysUserRoles", description = "用户角色管理")
 public class SysUserRolesController {
-
+	
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysUserRolesController.class);
-
+	
 	//
 	@Autowired
 	private SysUserRolesService	sysUserRolesService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -43,7 +43,7 @@ public class SysUserRolesController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping(path = "/sysUserRolesList", method = RequestMethod.POST)
+	@RequestMapping(path = "/sysUserRolesList", method = RequestMethod.GET)
 	public List<SysUserRolesInfo> findAll() {
 		logger.info("sysUserRolesList", SysUserRolesController.class);
 		return sysUserRolesService.findAll();

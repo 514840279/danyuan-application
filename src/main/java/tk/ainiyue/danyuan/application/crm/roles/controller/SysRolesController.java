@@ -30,11 +30,11 @@ import tk.ainiyue.danyuan.application.crm.roles.service.SysRolesService;
 public class SysRolesController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysRolesController.class);
-
+	
 	//
 	@Autowired
 	private SysRolesService		sysRolesService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -44,7 +44,7 @@ public class SysRolesController {
 	 * @throws
 	 */
 	@ApiOperation(value = "查询全部角色管理", notes = "")
-	@RequestMapping(path = "/sysRolesList", method = RequestMethod.POST)
+	@RequestMapping(path = "/sysRolesList", method = RequestMethod.GET)
 	public List<SysRolesInfo> findAll() {
 		logger.info("sysRolesList", SysRolesController.class);
 		return sysRolesService.findAll();

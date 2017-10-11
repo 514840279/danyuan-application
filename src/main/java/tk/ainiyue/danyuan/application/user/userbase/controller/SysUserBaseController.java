@@ -27,14 +27,14 @@ import tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService;
 @RequestMapping("/sysUserBase")
 @Api(value = "/sysUserBase", description = "用户管理")
 public class SysUserBaseController {
-	
+
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysUserBaseController.class);
-	
+
 	//
 	@Autowired
 	private SysUserBaseService	sysUserBaseService;
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -43,7 +43,7 @@ public class SysUserBaseController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping(path = "/sysUserBaseList", method = RequestMethod.POST)
+	@RequestMapping(path = "/sysUserBaseList", method = RequestMethod.GET)
 	public List<SysUserBaseInfo> findAll() {
 		logger.info("sysUserBaseList", SysUserBaseController.class);
 		return sysUserBaseService.findAll();

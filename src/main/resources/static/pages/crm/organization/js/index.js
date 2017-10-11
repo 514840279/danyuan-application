@@ -51,7 +51,7 @@ $(function() {
 	$('#admin_organization_datagrid').bootstrapTable({
 		url : "/sysOrganization/sysOrganizationList",
 		dataType : "json",
-		toolbar : '#toolbar', // 工具按钮用哪个容器
+		toolbar : '#organization_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
@@ -153,6 +153,7 @@ function add(){
 	var disc = $('#add_organizationDiscription').val();
 	var flag = $('#add_flag:checked').val();
 	var info={
+			uuid:getUuid(),
 			organizationCode:code,
 			organizationName:name,
 			organizationDiscription:disc,
@@ -241,9 +242,9 @@ function deleteold(){
 
 
 
-// --------------- 通用方法  --------------------------------------
+// --------------- 通用方法 --------------------------------------
 
-//窗口大小改变时 重设表头
+// 窗口大小改变时 重设表头
 $(window).resize(function() {
 	$('#admin_organization_datagrid').bootstrapTable('resetView');
 });

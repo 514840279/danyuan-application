@@ -30,11 +30,11 @@ import tk.ainiyue.danyuan.application.crm.jurisdiction.service.SysRolesJurisdict
 public class SysRolesJurisdictionController {
 	//
 	private static final Logger			logger = LoggerFactory.getLogger(SysRolesJurisdictionController.class);
-
+	
 	//
 	@Autowired
 	private SysRolesJurisdictionService	sysRolesJurisdictionService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -44,7 +44,7 @@ public class SysRolesJurisdictionController {
 	 * @throws
 	 */
 	@ApiOperation(value = "查询全部角色权限管理信息", notes = "")
-	@RequestMapping(path = "/sysRolesJurisdictionList", method = RequestMethod.POST)
+	@RequestMapping(path = "/sysRolesJurisdictionList", method = RequestMethod.GET)
 	public List<SysRolesJurisdictionInfo> findAll() {
 		logger.info("sysRolesJurisdictionList", SysRolesJurisdictionController.class);
 		return sysRolesJurisdictionService.findAll();

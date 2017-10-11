@@ -32,11 +32,11 @@ import tk.ainiyue.danyuan.application.crm.organization.service.SysOrganizationSe
 public class SysOrganizationController {
 	//
 	private static final Logger	   logger = LoggerFactory.getLogger(SysOrganizationController.class);
-
+	
 	//
 	@Autowired
 	private SysOrganizationService sysOrganizationService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能：查询所有数据
@@ -46,12 +46,12 @@ public class SysOrganizationController {
 	 * @throws
 	 */
 	@ApiOperation(value = "查询全部组织机构管理信息", notes = "")
-	@RequestMapping(path = "/sysOrganizationList", method = RequestMethod.POST)
+	@RequestMapping(path = "/sysOrganizationList", method = RequestMethod.GET)
 	public List<SysOrganizationInfo> findAll() {
 		logger.info("sysOrganizationList", SysOrganizationController.class);
 		return sysOrganizationService.findAll();
 	}
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： 添加数据
@@ -73,7 +73,7 @@ public class SysOrganizationController {
 			return "0";
 		}
 	}
-
+	
 	/**
 	 * 方法名： sysOrganizationDelete
 	 * 功 能： 删除
@@ -95,7 +95,7 @@ public class SysOrganizationController {
 			return "0";
 		}
 	}
-
+	
 	/**
 	 * 方法名： findSysOrganization
 	 * 功 能：根据uuid查询一条数据
@@ -112,7 +112,7 @@ public class SysOrganizationController {
 		logger.info("findSysOrganization", SysOrganizationController.class);
 		return sysOrganizationService.findSysOrganization(info.getUuid());
 	}
-
+	
 	/**
 	 * 方法名： sysOrganizationEdit
 	 * 功 能： 修改数据
@@ -135,5 +135,5 @@ public class SysOrganizationController {
 			return "0";
 		}
 	}
-
+	
 }

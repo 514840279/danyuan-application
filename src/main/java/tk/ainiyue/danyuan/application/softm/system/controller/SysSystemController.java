@@ -28,14 +28,14 @@ import tk.ainiyue.danyuan.application.softm.system.service.SysSystemService;
 @RequestMapping("/sysSystem")
 @Api(value = "/sysSystem", description = "系统管理")
 public class SysSystemController {
-
+	
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysMenuController.class);
-	
+
 	//
 	@Autowired
 	private SysSystemService	sysSystemService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -44,7 +44,7 @@ public class SysSystemController {
 	 * 作 者 ： Tenghui.Wang
 	 * @throws
 	 */
-	@RequestMapping(path = "/sysSystemList", method = RequestMethod.POST)
+	@RequestMapping(path = "/sysSystemList", method = RequestMethod.GET)
 	public List<SysSystemInfo> findAll() {
 		logger.info("sysSystemList", SysMenuController.class);
 		return sysSystemService.findAll();

@@ -1,6 +1,6 @@
 $(function() {
 	$('#addnew').click(function() {
-		window.location.href = "add.html";
+//		window.location.href = "add.html";
 	});
 	// 绑定 批量删除事件
 	$('#deleteold').click(function() {
@@ -48,7 +48,7 @@ $(function() {
 	$('#admin_userBase_datagrid').bootstrapTable({
 		url : "/sysUserBase/sysUserBaseList",
 		dataType : "json",
-		toolbar : '#toolbar', // 工具按钮用哪个容器
+		toolbar : '#userBase_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
