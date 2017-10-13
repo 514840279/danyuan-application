@@ -4,11 +4,12 @@
 <title></title>
 <meta charset="UTF-8">
 
-<link href="/plugins/bootstrap/table/bootstrap-table.css"	rel="stylesheet" />
+<link href="/plugins/bootstrap/table/bootstrap-table.css" rel="stylesheet" />
 
 <script src="/plugins/bootstrap/table/bootstrap-table.js"></script>
 <script src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.js"></script>
-<script	src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.js"></script>
+<script src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.js"></script>
+
 </head>
 <body id="body">
 
@@ -30,37 +31,21 @@
 		<!-- 按钮 -->
 		<div id="organization_toolbar" class="btn-group">
 			<!-- 	<button type="button" class="btn btn-success" id="addnew">新增菜单</button> -->
-			<button class="btn btn-success" data-toggle="modal"
-				data-target="#admin_organization_add_modal">新增菜单</button>
+			<button class="btn btn-success" data-toggle="modal" data-target="#admin_organization_add_modal">新增菜单</button>
 			<button type="button" class="btn btn-danger" id="deleteold">删除菜单</button>
 		</div>
-		<!-- 提示框 -->
-		<div class="modal fade" id="admin_organization_alert_success"
-			tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-			aria-hidden="true">
-			<div class="alert alert-success">成功！很好地完成了提交。</div>
-		</div>
-		<!-- <div class="alert alert-info">信息！请注意这个信息。</div> -->
-		<!-- <div class="alert alert-warning">警告！请不要提交。</div> -->
-		<!-- <div class="alert alert-danger">错误！请进行一些更改。</div> -->
 		<!-- 表格 -->
-		<table class="table table-striped table-bordered"
-			id="admin_organization_datagrid"
-			data-toggle="admin_organization_datagrid">
+		<table class="table table-striped table-bordered" id="admin_organization_datagrid" data-toggle="admin_organization_datagrid">
 		</table>
 		<!-- 添加模态框 -->
-		<div class="modal fade" id="admin_organization_add_modal"
-			tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-			aria-hidden="true">
+		<div class="modal fade" id="admin_organization_add_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title" id="myModalLabel">添加机构信息</h4>
 					</div>
-					<form action="/sysOrganization/sysOrganizationAdd" method="post"
-						id="admin_organization_add_form">
+					<form action="/sysOrganization/sysOrganizationAdd" method="post" id="admin_organization_add_form">
 						<div class="modal-body">
 							<table class="table table-bordered table-hover definewidth m10">
 								<tr>
@@ -77,15 +62,12 @@
 								</tr>
 								<tr>
 									<td class="tableleft">状态</td>
-									<td><input type="radio" name="flag" value="1" checked
-										id="add_flag" /> 启用 <input type="radio" name="flag" value="0"
-										id="add_flag" /> 禁用</td>
+									<td><input type="radio" name="flag" value="1" checked id="add_flag" /> 启用 <input type="radio" name="flag" value="0" id="add_flag" /> 禁用</td>
 								</tr>
 							</table>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">关闭</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 							<button type="button" class="btn btn-primary" id="add_button">提交</button>
 						</div>
 					</form>
@@ -94,18 +76,14 @@
 		</div>
 
 		<!-- 修改模态框 -->
-		<div class="modal fade" id="admin_organization_edit_modal"
-			tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-			aria-hidden="true">
+		<div class="modal fade" id="admin_organization_edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title" id="myModalLabel">添加机构信息</h4>
 					</div>
-					<form action="/sysOrganization/sysOrganizationEdit" method="post"
-						id="admin_organization_edit_form">
+					<form action="/sysOrganization/sysOrganizationEdit" method="post" id="admin_organization_edit_form">
 						<div class="modal-body">
 							<table class="table table-bordered table-hover definewidth m10">
 								<tr>
@@ -114,18 +92,15 @@
 								</tr>
 								<tr>
 									<td width="15%" class="tableleft">机构代码</td>
-									<td><input type="text" name="organizationCode"
-										id="edit_organizationCode" /></td>
+									<td><input type="text" name="organizationCode" id="edit_organizationCode" /></td>
 								</tr>
 								<tr>
 									<td class="tableleft">机构名称</td>
-									<td><input type="text" name="organizationName"
-										id="edit_organizationName" /></td>
+									<td><input type="text" name="organizationName" id="edit_organizationName" /></td>
 								</tr>
 								<tr>
 									<td class="tableleft">机构描述</td>
-									<td><input type="text" name="organizationDiscription"
-										id="edit_organizationDiscription" /></td>
+									<td><input type="text" name="organizationDiscription" id="edit_organizationDiscription" /></td>
 								</tr>
 								<tr>
 									<td class="tableleft">录入时间</td>
@@ -137,15 +112,12 @@
 								</tr>
 								<tr>
 									<td class="tableleft">状态</td>
-									<td><input type="radio" name="edit_flag" id="edit_flag"
-										value="1" checked /> 启用 <input type="radio" name="edit_flag"
-										id="edit_flag" value="0" /> 禁用</td>
+									<td><input type="radio" name="edit_flag" id="edit_flag" value="1" checked /> 启用 <input type="radio" name="edit_flag" id="edit_flag" value="0" /> 禁用</td>
 								</tr>
 							</table>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">关闭</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 							<button type="button" class="btn btn-primary" id="edit_button">提交更改</button>
 						</div>
 					</form>

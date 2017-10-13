@@ -17,35 +17,6 @@ $(function() {
 		edit();
 	});
 	
-	// easyui data-graid
-	// $("#admin_menu_datagrid").datagrid({
-	// url : "/sysmenu/sysMenuList",// 加载的URL
-	// isField : "uuid",
-	// pagination : true,// 显示分页
-	// pageSize : 5,// 分页大小
-	// pageList : [ 5, 10, 15, 20 ],// 每页的个数
-	// fit : true,// 自动补全
-	// fitColumns : true,
-	// iconCls : "icon-save",// 图标
-	// title : "用户管理",
-	// columns : [ [ // 每个列具体内容
-	// {
-	// field : 'uuid',
-	// title : 'uuid',
-	// width : 100
-	//
-	// }, {
-	// field : 'parentsId',
-	// title : 'parentsId',
-	// width : 100
-	// }, {
-	// field : 'menuName',
-	// title : 'menuName',
-	// width : 100
-	// } ] ]
-	// //
-	// {"uuid":"q","parentsId":"q","menuName":"q","uri":"q","discription":"q","classType":"q","insertDatetime":"2016-06-13","updataDatatime":"2016-06-13","flag":"q"}
-	// });
 
 	// bootstrap table
 	$('#admin_organization_datagrid').bootstrapTable({
@@ -77,69 +48,22 @@ $(function() {
 		refresh : true,
 		striped : true, // 是否显示行间隔色
 		// sidePagination: "server", // 服务端处理分页
-		columns : [{
-			title : '全选',
-			checkbox : true,
-			align : 'center',
-			valign : 'middle'
-		}
-// ,{
-// title : 'uuid',
-// field : 'uuid',
-// align : 'center',
-// sortable : true,
-// valign : 'middle'
-// }
-		,{
-			title : '机构代码',
-			field : 'organizationCode',
-			align : 'center',
-			sortable : true,
-			valign : 'middle'
-		}
-		,{
-			title : '机构名称',
-			field : 'organizationName',
-			align : 'center',
-			sortable : true,
-			valign : 'middle'
-		},
-		{
-			title : '机构描述',
-			field : 'organizationDiscription',
-			sortable : true,
-			align : 'center'
-		},
-		{
-			title : '录入时间',
-			field : 'insertDatetime',
-			sortable : true,
-			align : 'center',
-			formatter: dateTimeFormatter
-		},
-		{
-			title : '更新时间',
-			field : 'updataDatatime',
-			sortable : true,
-			align : 'center'
-		},
-		{
-			title : '状态',
-			field : 'flag',
-			sortable : true,
-			align : 'center',
-			formatter: stateFormatter
-		},
-		{
-			title : '操作',
-			field : 'uuid',
-			align : 'center',
-			formatter : function(value, row, index) {
-				var e = '<a href="#" mce_href="#" onclick="getEdit(\''	+ row.uuid + '\')">编辑</a> ';
-				var d = '<a href="#" mce_href="#" onclick="del(\''	+ row.uuid + '\')">删除</a> ';
-				return e + d;
-			}
-		} ]
+		columns : [
+			{title : '全选',checkbox : true,	align : 'center',valign : 'middle'},
+			{title : '机构代码',field : 'organizationCode',align : 'center',sortable : true,valign : 'middle'},
+			{title : '机构名称',field : 'organizationName',align : 'center',sortable : true,valign : 'middle'},
+			{title : '机构描述',field : 'organizationDiscription',sortable : true,align : 'center'},
+			{title : '录入时间',field : 'insertDatetime',sortable : true,align : 'center',	formatter: dateTimeFormatter},
+			{title : '更新时间',field : 'updataDatatime',sortable : true,align : 'center'},
+			{title : '状态',field : 'flag',sortable : true,align : 'center',formatter: stateFormatter	},
+			{title : '操作',field : 'uuid',align : 'center',
+				formatter : function(value, row, index) {
+					var e = '<a href="#" mce_href="#" onclick="getEdit(\''	+ row.uuid + '\')">编辑</a> ';
+					var d = '<a href="#" mce_href="#" onclick="del(\''	+ row.uuid + '\')">删除</a> ';
+					return e + d;
+				}
+			} 
+		]
 	});
 
 });
@@ -278,17 +202,20 @@ function success(result){
 		// 重载table
 		$('#admin_organization_datagrid').bootstrapTable('refresh',"/sysOrganization/sysOrganizationList");
 		// 模态框提示
-		$('#admin_organization_alert_success').modal();
-		setTimeout(function(){$("#admin_organization_alert_success").modal("hide")},900);
+		toastr.success("成功修改");
 	}else{
 		error();
 	}
 };
 
+$('#admin_organization_alert_success').alert('hide');
+
 // 调用错误的模态框
 function error(){
 	alert("出错了")
 };
+
+
 
 
 

@@ -19,6 +19,7 @@
        folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
 <link rel="stylesheet" href="plugins/bootstrap/tab/css/bootstrap-tab.css">
+<link href="/plugins/toastr/toastr.min.css" rel="stylesheet" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -267,6 +268,7 @@
 	<script type="text/javascript" src="plugins/jQuery/alert.js"></script>
 	<script type="text/javascript" src="plugins/jQuery/bootbox.min.js"></script>
 	<script type="text/javascript" src="plugins/bootstrap/tab/js/bootstrap-tab.js"></script>
+	<script src="/plugins/toastr/toastr.min.js"></script>
 	<script type="text/javascript">
 	 _history=[];
 		(function($) {
@@ -473,6 +475,31 @@
 	     	window.parent.window.alert(JSON.stringify(result));
 	     	// window.parent.window.alert("出错了");
 	     };
+	     
+	     toastr.options = {
+
+	    			"closeButton": false, // 是否显示关闭按钮
+
+	    			"debug": false, // 是否使用debug模式
+
+	    			"positionClass": "toast-top-full-width",// 弹出窗的位置
+
+	    			"showDuration": "300",// 显示的动画时间
+
+	    			"hideDuration": "1000",// 消失的动画时间
+
+	    			"timeOut": "5000", // 展现时间
+
+	    			"extendedTimeOut": "1000",// 加长展示时间
+
+	    			"showEasing": "swing",// 显示时的动画缓冲方式
+
+	    			"hideEasing": "linear",// 消失时的动画缓冲方式
+
+	    			"showMethod": "fadeIn",// 显示时的动画方式
+
+	    			"hideMethod": "fadeOut" // 消失时的动画方式
+	    			};
 	</script>
 
 </body>
