@@ -21,12 +21,24 @@
 
 	<!-- Main content -->
 	<section class="content">
-		<div class="text-center">
-			<h2>电话短信发送测试</h2>
+	<div class="box">
+			<div class="box-header with-border">
+              <h3 class="box-title">短信测试</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+			<div class="box-body">
+		<div class="text-left">
 				<h5>因为手机短息是属于第三方阿里大于的收费产品这里不做前台测试，后台代码完成简单的设置是可以发送短信到手机的我测试没问题</h5>
 				<h5>如有开发的问题可以联系我</h5>
 				<h5 class="text-left">				代码如下：
 				</h5>
+		</div>
+		<div  class="text-center">
 			<pre class="text-left">
 				
 					@RequestMapping(value = "/phone/send", method = RequestMethod.POST)
@@ -52,6 +64,8 @@
 						return vo;
 					}
 			</pre>
+		</div>
+		</div>
 		</div>
 	</section>
 

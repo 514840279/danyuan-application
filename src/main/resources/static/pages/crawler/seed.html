@@ -26,33 +26,47 @@
 
 	<!-- Main content -->
 	<section class="content">
-		<!-- 	表格 -->
-		<div id="toolbar">
-			<div class="btn-group">
-				<button type="button" class="btn btn-success" id="addnew">
-					<i class="glyphicon glyphicon-plus"></i> 新增种子
-				</button>
-				<button type="button" class="btn btn-info" id="editold">
-					<i class=" glyphicon glyphicon-pencil"></i> 编辑种子
-				</button>
-				<button type="button" class="btn btn-danger" id="deleteold">
-					<i class="glyphicon glyphicon-remove"></i> 删除种子
-				</button>
-			</div>
-			<div class="btn-group">
-				<button type="button" class="btn btn-warning" id="role_manager">
-					<i class="fa fa-gears"></i> 管理规则
-				</button>
-				<button type="button" class="btn btn-success" id="role_manager">
-					<i class="fa fa-toggle-right"></i> 采集控制
-				</button>
-				<button type="button" class="btn btn-primary" id="result_manager">
-					<i class="glyphicon glyphicon-screenshot"></i> 结果配置
-				</button>
+
+		<div class="box">
+			<div class="box-header with-border">
+		              <h3 class="box-title">网站配置</h3>
+		
+		              <div class="box-tools pull-right">
+		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+		                </button>
+		                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+		              </div>
+		            </div>
+			<div class="box-body">
+				<!-- 	表格 -->
+				<div id="seed_toolbar">
+					<div class="btn-group">
+						<button type="button" class="btn btn-success" id="addnew">
+							<i class="glyphicon glyphicon-plus"></i> 新增种子
+						</button>
+						<button type="button" class="btn btn-info" id="editold">
+							<i class=" glyphicon glyphicon-pencil"></i> 编辑种子
+						</button>
+						<button type="button" class="btn btn-danger" id="deleteold">
+							<i class="glyphicon glyphicon-remove"></i> 删除种子
+						</button>
+					</div>
+					<div class="btn-group">
+						<button type="button" class="btn btn-warning" id="role_manager">
+							<i class="fa fa-gears"></i> 管理规则
+						</button>
+						<button type="button" class="btn btn-success" id="role_manager">
+							<i class="fa fa-toggle-right"></i> 采集控制
+						</button>
+						<button type="button" class="btn btn-primary" id="result_manager">
+							<i class="glyphicon glyphicon-screenshot"></i> 结果配置
+						</button>
+					</div>
+				</div>
+				<table class="table table-striped table-bordered" id="crawler_seed_index_datagrid" data-toggle="crawler_seed_index_datagrid">
+				</table>
 			</div>
 		</div>
-		<table class="table table-striped table-bordered" id="crawler_seed_index_datagrid" data-toggle="crawler_seed_index_datagrid">
-		</table>
 	</section>
 
 	<!-- ==================================================seed添加========================================================================== -->

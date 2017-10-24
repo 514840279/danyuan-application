@@ -5,7 +5,7 @@ function initTable(){
 	$('#crawler_seed_index_datagrid').bootstrapTable({
 		url : "/sysSeed/sysSeedList",
 		dataType : "json",
-		toolbar : '#toolbar', // 工具按钮用哪个容器
+		toolbar : '#seed_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
@@ -46,14 +46,14 @@ function initTable(){
 //		onlyInfoPagination:true,
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
-			{title : 'id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle'},
-			{title : '网站类型',field : 'seedType',sortable : true,align : 'center'},
-			{title : '网站名称',field : 'seedName',align : 'center',sortable : true,valign : 'middle'	},
+			{title : 'id',	field : 'uuid',	align : 'left',sortable : true,valign : 'middle',visible:false},
+			{title : '网站类型',field : 'seedType',sortable : true,align : 'left'},
+			{title : '网站名称',field : 'seedName',align : 'left',sortable : true,valign : 'middle'	},
 			{title : '网站商标',field : 'seedIcon',align : 'center',sortable : true,valign : 'middle' ,formatter:imgshow},
-			{title : '链接地址',field : 'seedUrl',	align : 'center',sortable : true,valign : 'middle'},
-			{title : '请求时间',field : 'requestDate',	sortable : true,align : 'center'},
-			{title : '请求代理',field : 'requestProxy',	sortable : true,align : 'center'},
-			{title : '资源功能描述',	field : 'discription',sortable : true,align : 'center'}
+			{title : '链接地址',field : 'seedUrl',	align : 'left',sortable : true,valign : 'middle'},
+			{title : '请求时间',field : 'requestDate',	sortable : true,align : 'left'},
+			{title : '请求代理',field : 'requestProxy',	sortable : true,align : 'left'},
+			{title : '资源功能描述',	field : 'discription',sortable : true,align : 'left'}
 		],  
 		responseHandler: function(result){  // 成功时执行
 			return {rows:result.content,total:result.totalElements};

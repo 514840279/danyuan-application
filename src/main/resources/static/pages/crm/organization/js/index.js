@@ -37,7 +37,7 @@ $(function() {
 		showToggle : true, // 是否显示详细视图和列表视图的切换按钮
 		minimumCountColumns : 2, // 最少允许的列数
 		clickToSelect : true, // 是否启用点击选中行
-		height : 600, // 行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+		height : 455, // 行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
 		uniqueId : "uuid", // 每一行的唯一标识，一般为主键列
 		cardView : false, // 是否显示详细视图
 		detailView : false, // 是否显示父子表
@@ -52,10 +52,10 @@ $(function() {
 			{title : '全选',checkbox : true,	align : 'center',valign : 'middle'},
 			{title : '机构代码',field : 'organizationCode',align : 'center',sortable : true,valign : 'middle'},
 			{title : '机构名称',field : 'organizationName',align : 'center',sortable : true,valign : 'middle'},
-			{title : '机构描述',field : 'organizationDiscription',sortable : true,align : 'center'},
-			{title : '录入时间',field : 'insertDatetime',sortable : true,align : 'center',	formatter: dateTimeFormatter},
-			{title : '更新时间',field : 'updataDatatime',sortable : true,align : 'center'},
-			{title : '状态',field : 'flag',sortable : true,align : 'center',formatter: stateFormatter	},
+			{title : '机构描述',field : 'discription',sortable : true,align : 'center'},
+			{title : '录入时间',field : 'createTime',sortable : true,align : 'center'},
+			{title : '更新时间',field : 'updataTime',sortable : true,align : 'center'},
+			{title : '状态',field : 'deleteFlag',sortable : true,align : 'center',formatter: stateFormatter	},
 			{title : '操作',field : 'uuid',align : 'center',
 				formatter : function(value, row, index) {
 					var e = '<a href="#" mce_href="#" onclick="getEdit(\''	+ row.uuid + '\')">编辑</a> ';
@@ -80,8 +80,8 @@ function add(){
 			uuid:getUuid(),
 			organizationCode:code,
 			organizationName:name,
-			organizationDiscription:disc,
-			flag:flag
+			discription:disc,
+			deleteFlag:flag
 	};
 	var submiturl = "/sysOrganization/sysOrganizationAdd";
 	ajaxPost(submiturl, info, success, 5000, error);
@@ -102,19 +102,17 @@ function getEdit(uuid){
 // 编辑模态框启动编辑
 function getEditsuccess(result){
 	var orgaization = result;
-	if(orgaization.flag=="1"){
+	if(orgaization.deleteFlag=="1"){
 		$('#edit_flag[value="0"]').attr('checked',false);
 		$('#edit_flag[value="1"]').attr('checked',true);
-	}else if(orgaization.flag=="0"){
+	}else if(orgaization.deleteFlag=="0"){
 		$('#edit_flag[value="0"]').attr('checked',true);
 		$('#edit_flag[value="1"]').attr('checked',false);
 	}
 	$('#edit_uuid').text(orgaization.uuid);
 	$('#edit_organizationCode').val(orgaization.organizationCode);
 	$('#edit_organizationName').val(orgaization.organizationName);
-	$('#edit_organizationDiscription').val(orgaization.organizationDiscription);
-	$('#edit_insertDatetime').text(dateTimeFormatter(orgaization.insertDatetime,0,0));
-	$('#edit_updataDatatime').text(orgaization.updataDatatime==null?'-':dateTimeFormatter(orgaization.updataDatatime,0,0));
+	$('#edit_organizationDiscription').val(orgaization.discription);
 	
 	$('#admin_organization_edit_modal').modal();
 };
@@ -136,8 +134,8 @@ function edit(){
 			uuid:uid,	
 			organizationCode:code,
 			organizationName:name,
-			organizationDiscription:disc,
-			flag:flag
+			discription:disc,
+			deleteFlag:flag
 	};
 	var submiturl = "/sysOrganization/sysOrganizationEdit";
 	ajaxPost(submiturl, info, success, 5000, error);

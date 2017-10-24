@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 文件名 ： SysUserRolesInfo.java
@@ -28,25 +28,35 @@ public class SysUserRolesInfo {
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
 	@NotNull
-	@Length(max = 32)
-	@Column(name = "UUID", updatable = false)
-	private String uuid;
+	@Column(name = "UUID", updatable = false, columnDefinition = "varchar(36) COMMENT '主键'")
+	private String	uuid;
 	
-	@Column(name = "user_id", length = 32, nullable = false)
-	private String userId;
+	@Column(name = "user_id", columnDefinition = "varchar(36) COMMENT '用户id'")
+	private String	userId;
 	
-	@Column(name = "roles_id", length = 32, nullable = false)
-	private String rolesId;
+	@Column(name = "roles_id", columnDefinition = "varchar(36) COMMENT '角色id'")
+	private String	rolesId;
 	
-	@Column(name = "insert_datetime", nullable = false, updatable = false)
-	private Date   insertDatetime;
+	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
+	private String	discription; // discription 描述
 	
-	@Column(name = "updata_datetime")
-	private Date   updataDatetime;
+	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	private Date	createTime;	 // create_time 插入时间
 	
-	@Column(name = "flag", length = 2)
-	private String flag;
+	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
+	private String	createUser;	 // create_user 插入人
 	
+	@Column(name = "updata_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '更新人员'")
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	private Date	updataTime;	 // updata_time 更新时间
+	
+	@Column(name = "updata_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新时间'")
+	private String	updataUser;	 // updata_user 更新人
+	
+	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
+	private Integer	deleteFlag;	 // delete_flag 标记
+
 	/**
 	 * 方法名 ： getUuid
 	 * 功 能 ： 返回变量 uuid 的值
@@ -99,60 +109,6 @@ public class SysUserRolesInfo {
 	 */
 	public void setRolesId(String rolesId) {
 		this.rolesId = rolesId;
-	}
-	
-	/**
-	 * 方法名 ： getInsertDatetime
-	 * 功 能 ： 返回变量 insertDatetime 的值
-	 *
-	 * @return: Date
-	 */
-	public Date getInsertDatetime() {
-		return insertDatetime;
-	}
-	
-	/**
-	 * 方法名 ： setInsertDatetime
-	 * 功 能 ： 设置变量 insertDatetime 的值
-	 */
-	public void setInsertDatetime(Date insertDatetime) {
-		this.insertDatetime = insertDatetime;
-	}
-	
-	/**
-	 * 方法名 ： getUpdataDatetime
-	 * 功 能 ： 返回变量 updataDatetime 的值
-	 *
-	 * @return: Date
-	 */
-	public Date getUpdataDatetime() {
-		return updataDatetime;
-	}
-	
-	/**
-	 * 方法名 ： setUpdataDatetime
-	 * 功 能 ： 设置变量 updataDatetime 的值
-	 */
-	public void setUpdataDatetime(Date updataDatetime) {
-		this.updataDatetime = updataDatetime;
-	}
-	
-	/**
-	 * 方法名 ： getFlag
-	 * 功 能 ： 返回变量 flag 的值
-	 *
-	 * @return: String
-	 */
-	public String getFlag() {
-		return flag;
-	}
-	
-	/**
-	 * 方法名 ： setFlag
-	 * 功 能 ： 设置变量 flag 的值
-	 */
-	public void setFlag(String flag) {
-		this.flag = flag;
 	}
 	
 	/**

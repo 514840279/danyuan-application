@@ -24,13 +24,26 @@
 
 	<!-- Main content -->
 	<section class="content">
-		<div id="userBase_toolbar" class="btn-group">
-			<button type="button" class="btn btn-success" id="addnew">新增菜单</button>
-			<button type="button" class="btn btn-info" id="editold">编辑菜单</button>
-			<button type="button" class="btn btn-danger" id="deleteold">删除菜单</button>
+		<div class="box">
+			<div class="box-header with-border">
+              <h3 class="box-title">用户设置</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+			<div class="box-body">
+				<div id="userBase_toolbar" class="btn-group">
+					<button type="button" class="btn btn-success" id="addnew">新增菜单</button>
+					<button type="button" class="btn btn-info" id="editold">编辑菜单</button>
+					<button type="button" class="btn btn-danger" id="deleteold">删除菜单</button>
+				</div>
+				<table class="table table-striped table-bordered" id="admin_userBase_datagrid" data-toggle="admin_userBase_datagrid">
+				</table>
+			</div>
 		</div>
-		<table class="table table-striped table-bordered" id="admin_userBase_datagrid" data-toggle="admin_userBase_datagrid">
-		</table>
 	</section>
 	<script type="text/javascript" src="/pages/user/userbase/js/index.js"></script>
 </body>

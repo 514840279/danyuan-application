@@ -6,10 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 文件名 ： SysOrganizationInfo.java
@@ -27,28 +26,34 @@ public class SysOrganizationInfo {
 
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
-	@Column(name = "UUID", length = 32, nullable = false, updatable = false)
-	private String uuid;
+	@Column(name = "UUID", columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
+	private String	uuid;
 
-	@Column(name = "organization_code", length = 50, nullable = false)
-	private String organizationCode;
+	@Column(name = "organization_code", columnDefinition = "varchar(36) COMMENT '组织机构代码'")
+	private String	organizationCode;
 
-	@Column(name = "organization_name", length = 32, nullable = false)
-	private String organizationName;
+	@Column(name = "organization_name", columnDefinition = "varchar(50) COMMENT '部门名称'")
+	private String	organizationName;
 
-	@Column(name = "organization_discription", length = 1024, nullable = false)
-	private String organizationDiscription;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.UpdateTimestamp
-	@Column(name = "insert_datetime", nullable = false, updatable = false)
-	private Date   insertDatetime;
-
-	@Column(name = "updata_datetime")
-	private Date   updataDatetime;
-
-	@Column(name = "flag", length = 2)
-	private String flag;
+	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
+	private String	discription;	 // discription 描述
+	
+	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	private Date	createTime;		 // create_time 插入时间
+	
+	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
+	private String	createUser;		 // create_user 插入人
+	
+	@Column(name = "updata_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '更新人员'")
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	private Date	updataTime;		 // updata_time 更新时间
+	
+	@Column(name = "updata_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新时间'")
+	private String	updataUser;		 // updata_user 更新人
+	
+	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
+	private Integer	deleteFlag;		 // delete_flag 标记
 
 	/**
 	 * 方法名 ： getUuid
@@ -105,78 +110,6 @@ public class SysOrganizationInfo {
 	}
 
 	/**
-	 * 方法名 ： getOrganizationDiscription
-	 * 功 能 ： 返回变量 organizationDiscription 的值
-	 *
-	 * @return: String
-	 */
-	public String getOrganizationDiscription() {
-		return organizationDiscription;
-	}
-
-	/**
-	 * 方法名 ： setOrganizationDiscription
-	 * 功 能 ： 设置变量 organizationDiscription 的值
-	 */
-	public void setOrganizationDiscription(String organizationDiscription) {
-		this.organizationDiscription = organizationDiscription;
-	}
-
-	/**
-	 * 方法名 ： getInsertDatetime
-	 * 功 能 ： 返回变量 insertDatetime 的值
-	 *
-	 * @return: Date
-	 */
-	public Date getInsertDatetime() {
-		return insertDatetime;
-	}
-
-	/**
-	 * 方法名 ： setInsertDatetime
-	 * 功 能 ： 设置变量 insertDatetime 的值
-	 */
-	public void setInsertDatetime(Date insertDatetime) {
-		this.insertDatetime = insertDatetime;
-	}
-
-	/**
-	 * 方法名 ： getUpdataDatatime
-	 * 功 能 ： 返回变量 updataDatatime 的值
-	 *
-	 * @return: Date
-	 */
-	public Date getUpdataDatetime() {
-		return updataDatetime;
-	}
-
-	/**
-	 * 方法名 ： setUpdataDatatime
-	 * 功 能 ： 设置变量 updataDatatime 的值
-	 */
-	public void setUpdataDatetime(Date updataDatetime) {
-		this.updataDatetime = updataDatetime;
-	}
-
-	/**
-	 * 方法名 ： getFlag
-	 * 功 能 ： 返回变量 flag 的值
-	 *
-	 * @return: String
-	 */
-	public String getFlag() {
-		return flag;
-	}
-
-	/**
-	 * 方法名 ： setFlag
-	 * 功 能 ： 设置变量 flag 的值
-	 */
-	public void setFlag(String flag) {
-		this.flag = flag;
-	}
-
-	/**
 	 * 构造方法：
 	 * 描 述： TODO(这里用一句话描述这个方法的作用)
 	 * 参 数：
@@ -198,18 +131,113 @@ public class SysOrganizationInfo {
 		super();
 		this.uuid = uuid;
 	}
-
+	
 	/**
-	 * 方法名 ： toString
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @return
-	 * 参 考 ： @see java.lang.Object#toString()
-	 * 作 者 ： Tenghui.Wang
+	 * 方法名 ： getDiscription
+	 * 功 能 ： 返回变量 discription 的值
+	 *
+	 * @return: String
 	 */
-
-	@Override
-	public String toString() {
-		return "SysOrganizationInfo [uuid=" + uuid + ", organizationCode=" + organizationCode + ", organizationName=" + organizationName + ", organizationDiscription=" + organizationDiscription + ", insertDatetime=" + insertDatetime + ", updataDatetime=" + updataDatetime + ", flag=" + flag + "]";
+	public String getDiscription() {
+		return discription;
 	}
-
+	
+	/**
+	 * 方法名 ： setDiscription
+	 * 功 能 ： 设置变量 discription 的值
+	 */
+	public void setDiscription(String discription) {
+		this.discription = discription;
+	}
+	
+	/**
+	 * 方法名 ： getCreateTime
+	 * 功 能 ： 返回变量 createTime 的值
+	 *
+	 * @return: Date
+	 */
+	public Date getCreateTime() {
+		return createTime;
+	}
+	
+	/**
+	 * 方法名 ： setCreateTime
+	 * 功 能 ： 设置变量 createTime 的值
+	 */
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	
+	/**
+	 * 方法名 ： getCreateUser
+	 * 功 能 ： 返回变量 createUser 的值
+	 *
+	 * @return: String
+	 */
+	public String getCreateUser() {
+		return createUser;
+	}
+	
+	/**
+	 * 方法名 ： setCreateUser
+	 * 功 能 ： 设置变量 createUser 的值
+	 */
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+	
+	/**
+	 * 方法名 ： getUpdataTime
+	 * 功 能 ： 返回变量 updataTime 的值
+	 *
+	 * @return: Date
+	 */
+	public Date getUpdataTime() {
+		return updataTime;
+	}
+	
+	/**
+	 * 方法名 ： setUpdataTime
+	 * 功 能 ： 设置变量 updataTime 的值
+	 */
+	public void setUpdataTime(Date updataTime) {
+		this.updataTime = updataTime;
+	}
+	
+	/**
+	 * 方法名 ： getUpdataUser
+	 * 功 能 ： 返回变量 updataUser 的值
+	 *
+	 * @return: String
+	 */
+	public String getUpdataUser() {
+		return updataUser;
+	}
+	
+	/**
+	 * 方法名 ： setUpdataUser
+	 * 功 能 ： 设置变量 updataUser 的值
+	 */
+	public void setUpdataUser(String updataUser) {
+		this.updataUser = updataUser;
+	}
+	
+	/**
+	 * 方法名 ： getDeleteFlag
+	 * 功 能 ： 返回变量 deleteFlag 的值
+	 *
+	 * @return: Integer
+	 */
+	public Integer getDeleteFlag() {
+		return deleteFlag;
+	}
+	
+	/**
+	 * 方法名 ： setDeleteFlag
+	 * 功 能 ： 设置变量 deleteFlag 的值
+	 */
+	public void setDeleteFlag(Integer deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
+	
 }

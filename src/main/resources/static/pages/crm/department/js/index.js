@@ -1,37 +1,14 @@
 $(function() {
-	$('#addnew').click(function() {
-//		window.location.href = "add.html";
+	$('#search_table_organization_name').select2({
+	    placeholder: "组织名",
+	    allowClear: true,
+	    tags: true,
 	});
-
-	// easyui data-graid
-	// $("#admin_menu_datagrid").datagrid({
-	// url : "/sysmenu/sysMenuList",// 加载的URL
-	// isField : "uuid",
-	// pagination : true,// 显示分页
-	// pageSize : 5,// 分页大小
-	// pageList : [ 5, 10, 15, 20 ],// 每页的个数
-	// fit : true,// 自动补全
-	// fitColumns : true,
-	// iconCls : "icon-save",// 图标
-	// title : "用户管理",
-	// columns : [ [ // 每个列具体内容
-	// {
-	// field : 'uuid',
-	// title : 'uuid',
-	// width : 100
-	//
-	// }, {
-	// field : 'parentsId',
-	// title : 'parentsId',
-	// width : 100
-	// }, {
-	// field : 'menuName',
-	// title : 'menuName',
-	// width : 100
-	// } ] ]
-	// //
-	// {"uuid":"q","parentsId":"q","menuName":"q","uri":"q","discription":"q","classType":"q","insertDatetime":"2016-06-13","updataDatatime":"2016-06-13","flag":"q"}
-	// });
+	
+	$('#addnew').click(function() {
+		// 模态框
+		$('#admin_department_add_modal').modal();
+	});
 
 	// bootstrap table
 	$('#admin_department_datagrid').bootstrapTable({
@@ -59,58 +36,16 @@ $(function() {
 		locales : "zh-CN", // 表格汉化
 		search : true, // 显示搜索框
 		sidePagination: "client", // 服务端处理分页
-		columns : [{
-			title : '全选',
-			checkbox : true,
-			align : 'center',
-			valign : 'middle'
-		},
-		{
-			title : 'id',
-			field : 'uuid',
-			align : 'center',
-			sortable : true,
-			valign : 'middle'
-		},
-		{
-			title : '部门名称',
-			field : 'departmentName',
-			sortable : true,
-			align : 'center'
-		},
-		{
-			title : '部门描述',
-			field : 'departmentDiscription',
-			align : 'center',
-			sortable : true,
-			valign : 'middle',
-		},
-		{
-			title : '机构id',
-			field : 'organizationId',
-			align : 'center',
-			sortable : true,
-			valign : 'middle',
-		},
-		{
-			title : '记录时间',
-			field : 'insertDatetime',
-			align : 'center',
-			sortable : true,
-			valign : 'middle',
-		},
-		{
-			title : '更新时间',
-			field : 'updataDatatime',
-			sortable : true,
-			align : 'center'
-		},
-		{
-			title : '标记',
-			field : 'flag',
-			sortable : true,
-			align : 'center'
-		}]
+		columns : [
+			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
+			{title : 'id',field : 'uuid',align : 'center',sortable : true,valign : 'middle'},
+			{title : '部门名称',field : 'departmentName',sortable : true,align : 'center'},
+			{title : '部门描述',field : 'departmentDiscription',align : 'center',sortable : true,valign : 'middle',},
+			{title : '机构id',field : 'organizationId',align : 'center',sortable : true,valign : 'middle',},
+			{title : '记录时间',field : 'insertDatetime',align : 'center',sortable : true,	valign : 'middle',},
+			{title : '更新时间',field : 'updataDatatime',sortable : true,align : 'center'},
+			{title : '标记',	field : 'flag',sortable : true,	align : 'center'}
+		]
 	});
 	// 窗口大小改变时 重设表头
 	$(window).resize(function() {

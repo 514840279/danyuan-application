@@ -15,9 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(appliesTo = "sys_menu_info", comment = "系统资源管理表")
 public class SysMenuInfo {
 	@Id
-//	@GenericGenerator(name = "idGenerator", strategy = "uuid")
-//	@GeneratedValue(generator = "idGenerator")
-	@Column(name = "uuid", updatable = false, columnDefinition = " varchar(36) COMMENT '主键 '")
+	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键 '")
 	@NotNull
 	private String	uuid;
 	
@@ -61,6 +59,9 @@ public class SysMenuInfo {
 
 	@Column(name = "type", columnDefinition = " varchar(50)  default '菜单' COMMENT '菜单还是方法'")
 	private String	type;
+	
+	@Column(name = "icon_skin", columnDefinition = " varchar(50) COMMENT '显示图标样式'")
+	private String	iconSkin;
 
 	@Transient
 	private String	moveType;
@@ -320,7 +321,7 @@ public class SysMenuInfo {
 	/**
 	 * 方法名 ： getType
 	 * 功 能 ： 返回变量 type 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getType() {

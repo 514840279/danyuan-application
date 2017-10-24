@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 文件名 ： SysUserBaseInfo.java
@@ -28,45 +28,55 @@ public class SysUserBaseInfo {
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
 	@NotNull
-	@Length(max = 32)
-	@Column(name = "UUID", updatable = false)
-	private String uuid;
+	@Column(name = "UUID", updatable = false, columnDefinition = "varchar(36) COMMENT '主键'")
+	private String	uuid;
 
 	@NotNull
-	@Length(max = 50)
-	@Column(name = "user_name", updatable = false, unique = true)
-	private String userName;
+	@Column(name = "user_name", updatable = false, unique = true, columnDefinition = "varchar(50) COMMENT '用户名'")
+	private String	userName;
 
-	@Column(name = "password")
+	@Column(name = "password", columnDefinition = "varchar(50) COMMENT '密码'")
 	@NotNull
-	@Length(max = 50)
-	private String password;
+	private String	password;
 
 	@NotNull
-	@Length(max = 50)
-	@Column(name = "persion_name")
-	private String persionName;
+	@Column(name = "persion_name", columnDefinition = "varchar(50) COMMENT '姓名'")
+	private String	persionName;
 
-	@Length(max = 2)
-	@Column(name = "sex")
-	private String sex;
+	@Column(name = "sex", columnDefinition = "varchar(2) COMMENT '性别'")
+	private String	sex;
+	
+	@Column(name = "email", columnDefinition = "varchar(100) COMMENT '邮箱'")
+	private String	email;
 
-	@Column(name = "age")
-	private int	   age;
+	@Column(name = "phone", columnDefinition = "varchar(18) COMMENT '电话'")
+	private String	phone;
+	
+	@Column(name = "age", columnDefinition = "varchar(2) COMMENT '年龄'")
+	private int		age;
 
-	@Column(name = "seniority")
-	private float  seniority;
+	@Column(name = "head_pic", columnDefinition = "varchar(1024) COMMENT '头像'")
+	private String	headPic;
 
-	@NotNull
-	@Column(name = "insert_datetime", updatable = false)
-	private Date   insertDatetime;
-
-	@Column(name = "updata_datetime")
-	private Date   updataDatetime;
-
-	@Length(max = 2)
-	@Column(name = "flag")
-	private String flag;
+	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
+	private String	discription; // discription 描述
+	
+	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	private Date	createTime;	 // create_time 插入时间
+	
+	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
+	private String	createUser;	 // create_user 插入人
+	
+	@Column(name = "updata_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '更新人员'")
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	private Date	updataTime;	 // updata_time 更新时间
+	
+	@Column(name = "updata_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新时间'")
+	private String	updataUser;	 // updata_user 更新人
+	
+	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
+	private Integer	deleteFlag;	 // delete_flag 标记
 
 	/**
 	 * 方法名 ： getUuid
@@ -177,60 +187,6 @@ public class SysUserBaseInfo {
 	}
 
 	/**
-	 * 方法名 ： getSeniority
-	 * 功 能 ： 返回变量 seniority 的值
-	 *
-	 * @return: Float
-	 */
-	public Float getSeniority() {
-		return seniority;
-	}
-
-	/**
-	 * 方法名 ： setSeniority
-	 * 功 能 ： 设置变量 seniority 的值
-	 */
-	public void setSeniority(Float seniority) {
-		this.seniority = seniority;
-	}
-
-	/**
-	 * 方法名 ： getInsertDatetime
-	 * 功 能 ： 返回变量 insertDatetime 的值
-	 *
-	 * @return: Date
-	 */
-	public Date getInsertDatetime() {
-		return insertDatetime;
-	}
-
-	/**
-	 * 方法名 ： setInsertDatetime
-	 * 功 能 ： 设置变量 insertDatetime 的值
-	 */
-	public void setInsertDatetime(Date insertDatetime) {
-		this.insertDatetime = insertDatetime;
-	}
-
-	/**
-	 * 方法名 ： getUpdataDatetime
-	 * 功 能 ： 返回变量 updataDatetime 的值
-	 *
-	 * @return: Date
-	 */
-	public Date getUpdataDatetime() {
-		return updataDatetime;
-	}
-
-	/**
-	 * 方法名 ： setUpdataDatetime
-	 * 功 能 ： 设置变量 updataDatetime 的值
-	 */
-	public void setUpdataDatetime(Date updataDatetime) {
-		this.updataDatetime = updataDatetime;
-	}
-
-	/**
 	 * 方法名 ： setAge
 	 * 功 能 ： 设置变量 age 的值
 	 */
@@ -239,31 +195,167 @@ public class SysUserBaseInfo {
 	}
 
 	/**
-	 * 方法名 ： setSeniority
-	 * 功 能 ： 设置变量 seniority 的值
-	 */
-	public void setSeniority(float seniority) {
-		this.seniority = seniority;
-	}
-
-	/**
-	 * 方法名 ： getFlag
-	 * 功 能 ： 返回变量 flag 的值
+	 * 方法名 ： getDiscription
+	 * 功 能 ： 返回变量 discription 的值
 	 *
 	 * @return: String
 	 */
-	public String getFlag() {
-		return flag;
+	public String getDiscription() {
+		return discription;
 	}
-
+	
 	/**
-	 * 方法名 ： setFlag
-	 * 功 能 ： 设置变量 flag 的值
+	 * 方法名 ： setDiscription
+	 * 功 能 ： 设置变量 discription 的值
 	 */
-	public void setFlag(String flag) {
-		this.flag = flag;
+	public void setDiscription(String discription) {
+		this.discription = discription;
 	}
-
+	
+	/**
+	 * 方法名 ： getCreateTime
+	 * 功 能 ： 返回变量 createTime 的值
+	 *
+	 * @return: Date
+	 */
+	public Date getCreateTime() {
+		return createTime;
+	}
+	
+	/**
+	 * 方法名 ： setCreateTime
+	 * 功 能 ： 设置变量 createTime 的值
+	 */
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	
+	/**
+	 * 方法名 ： getCreateUser
+	 * 功 能 ： 返回变量 createUser 的值
+	 *
+	 * @return: String
+	 */
+	public String getCreateUser() {
+		return createUser;
+	}
+	
+	/**
+	 * 方法名 ： setCreateUser
+	 * 功 能 ： 设置变量 createUser 的值
+	 */
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+	
+	/**
+	 * 方法名 ： getUpdataTime
+	 * 功 能 ： 返回变量 updataTime 的值
+	 *
+	 * @return: Date
+	 */
+	public Date getUpdataTime() {
+		return updataTime;
+	}
+	
+	/**
+	 * 方法名 ： setUpdataTime
+	 * 功 能 ： 设置变量 updataTime 的值
+	 */
+	public void setUpdataTime(Date updataTime) {
+		this.updataTime = updataTime;
+	}
+	
+	/**
+	 * 方法名 ： getUpdataUser
+	 * 功 能 ： 返回变量 updataUser 的值
+	 *
+	 * @return: String
+	 */
+	public String getUpdataUser() {
+		return updataUser;
+	}
+	
+	/**
+	 * 方法名 ： setUpdataUser
+	 * 功 能 ： 设置变量 updataUser 的值
+	 */
+	public void setUpdataUser(String updataUser) {
+		this.updataUser = updataUser;
+	}
+	
+	/**
+	 * 方法名 ： getDeleteFlag
+	 * 功 能 ： 返回变量 deleteFlag 的值
+	 *
+	 * @return: Integer
+	 */
+	public Integer getDeleteFlag() {
+		return deleteFlag;
+	}
+	
+	/**
+	 * 方法名 ： setDeleteFlag
+	 * 功 能 ： 设置变量 deleteFlag 的值
+	 */
+	public void setDeleteFlag(Integer deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
+	
+	/**
+	 * 方法名 ： getEmail
+	 * 功 能 ： 返回变量 email 的值
+	 * 
+	 * @return: String
+	 */
+	public String getEmail() {
+		return email;
+	}
+	
+	/**
+	 * 方法名 ： setEmail
+	 * 功 能 ： 设置变量 email 的值
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	/**
+	 * 方法名 ： getPhone
+	 * 功 能 ： 返回变量 phone 的值
+	 * 
+	 * @return: String
+	 */
+	public String getPhone() {
+		return phone;
+	}
+	
+	/**
+	 * 方法名 ： setPhone
+	 * 功 能 ： 设置变量 phone 的值
+	 */
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	/**
+	 * 方法名 ： getHeadPic
+	 * 功 能 ： 返回变量 headPic 的值
+	 * 
+	 * @return: String
+	 */
+	public String getHeadPic() {
+		return headPic;
+	}
+	
+	/**
+	 * 方法名 ： setHeadPic
+	 * 功 能 ： 设置变量 headPic 的值
+	 */
+	public void setHeadPic(String headPic) {
+		this.headPic = headPic;
+	}
+	
 	/**
 	 * 构造方法：
 	 * 描 述： TODO(这里用一句话描述这个方法的作用)
