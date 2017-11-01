@@ -89,7 +89,7 @@ $(function() {
 		    var param = {  
 	                 pageNumber: params.pageNumber,    
 	                 pageSize: params.pageSize,
-	                 sysDepartmentInfo:{departmentName:select2_departmentName}
+	                 organizationId:select2_departmentName
 	             }; 
              return param;
 		},
@@ -122,6 +122,7 @@ var select2_departmentName=""
 //种子下拉点击事件
 $('#search_table_organization_name').on('select2:select', function (evt) {
 	select2_departmentName = evt.params.data.id;
+	$('#admin_department_datagrid').bootstrapTable('refresh');
 	
 });
 

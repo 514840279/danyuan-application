@@ -5,8 +5,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -48,5 +51,38 @@ public class SysRolesController {
 	public List<SysRolesInfo> findAll() {
 		logger.info("sysRolesList", SysRolesController.class);
 		return sysRolesService.findAll();
+	}
+
+	@ApiOperation(value = "分页查询全部部门信息", notes = "")
+	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
+	public Page<SysRolesInfo> findAllBySearchText(int pageNumber, int pageSize, SysRolesInfo sysRolesInfo) {
+		logger.info("findAllBySearchText", SysRolesController.class);
+		return sysRolesService.findAllBySearchText(pageNumber, pageSize, sysRolesInfo);
+	}
+	
+	@ApiOperation(value = "修改角色信息", notes = "")
+	@RequestMapping(path = "/save", method = RequestMethod.POST)
+	@ResponseBody
+	public String save(@RequestBody SysRolesInfo info) {
+		logger.info("save", SysRolesController.class);
+		try {
+			sysRolesService.save(info);
+			return "1";
+		} catch (Exception e) {
+			return "0";
+		}
+	}
+	
+	@ApiOperation(value = "删除角色信息", notes = "")
+	@RequestMapping(path = "/delete", method = RequestMethod.POST)
+	@ResponseBody
+	public String delete(@RequestBody SysRolesInfo info) {
+		logger.info("delete", SysRolesController.class);
+		try {
+			sysRolesService.delete(info);
+			return "1";
+		} catch (Exception e) {
+			return "0";
+		}
 	}
 }

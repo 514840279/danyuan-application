@@ -16,6 +16,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo;
 import tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentService;
+import tk.ainiyue.danyuan.application.crm.department.vo.SysDepartmentInfoVo;
 
 /**
  * 文件名 ： SysDepartment.java
@@ -31,14 +32,14 @@ import tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentServic
 @RequestMapping("/sysDepartment")
 @Api(value = "/sysDepartment", description = "部门管理")
 public class SysDepartmentController {
-
+	
 	//
 	private static final Logger	 logger	= LoggerFactory.getLogger(SysDepartmentController.class);
-
+	
 	//
 	@Autowired
 	private SysDepartmentService sysDepartmentService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -53,14 +54,16 @@ public class SysDepartmentController {
 		logger.info("sysSystemList", SysDepartmentController.class);
 		return sysDepartmentService.findAll();
 	}
-
+	
 	@ApiOperation(value = "分页查询全部部门信息", notes = "")
 	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
-	public Page<SysDepartmentInfo> findAllBySearchText(int pageNumber, int pageSize, SysDepartmentInfo sysDepartmentInfo) {
+	public Page<SysDepartmentInfo> findAllBySearchText(SysDepartmentInfoVo sysDepartmentInfoVo) {
 		logger.info("findAllBySearchText", SysDepartmentController.class);
-		return sysDepartmentService.findAllBySearchText(pageNumber, pageSize, sysDepartmentInfo);
+		SysDepartmentInfo info = new SysDepartmentInfo();
+		info.setOrganizationId(sysDepartmentInfoVo.getOrganizationId());
+		return sysDepartmentService.findAllBySearchText(sysDepartmentInfoVo.getPageNumber(), sysDepartmentInfoVo.getPageSize(), info);
 	}
-	
+
 	@ApiOperation(value = "分页查询全部部门信息", notes = "")
 	@RequestMapping(path = "/sysDepartmentAdd", method = RequestMethod.POST)
 	@ResponseBody
@@ -70,7 +73,7 @@ public class SysDepartmentController {
 		sysDepartmentService.save(info);
 		return "1";
 	}
-	
+
 	@ApiOperation(value = "删除组织机构管理信息", notes = "")
 	@RequestMapping(path = "/sysDepartmentDelete", method = RequestMethod.POST)
 	@ResponseBody
