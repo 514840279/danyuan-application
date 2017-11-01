@@ -39,7 +39,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class=" col-md-6 form-group">
-								<label class="col-sm-2 control-label text-right">数据库:</label>
+								<label class="col-sm-2 control-label text-right">组织机构:</label>
 								<div class="col-sm-10">
 									<select style="width: 100%;" id="search_table_organization_name"></select>
 								</div>
@@ -67,9 +67,9 @@
             </div>
 			<div class="box-body">
 				<div id="department_toolbar" class="btn-group">
-					<button type="button" class="btn btn-success" id="addnew">新增部门</button>
-					<button type="button" class="btn btn-info" id="editold">编辑部门</button>
-					<button type="button" class="btn btn-danger" id="deleteold">删除部门</button>
+					<button type="button" class="btn btn-success" id="addnew_department">新增部门</button>
+					<button type="button" class="btn btn-info" id="editold_department">编辑部门</button>
+					<button type="button" class="btn btn-danger" id="deleteold_department">删除部门</button>
 				</div>
 				<table class="table table-striped table-bordered" id="admin_department_datagrid" data-toggle="admin_department_datagrid">
 				</table>
@@ -88,39 +88,31 @@
 				<form action="/sysDepartment/sysDepartmentAdd" method="post" id="admin_department_add_form">
 					<div class="modal-body">
 						<table class="table table-bordered table-hover definewidth m10">
-							<tr>
+							<tr style="display:none;">
 								<td width="15%" class="tableleft">主键</td>
-								<td><input type="text" id="add_department_uuid" /></td>
+								<td><input type="text" id="add_department_uuid" name="uuid" /></td>
 							</tr>
-							<tr>
+							<tr style="display:none;">
 								<td class="tableleft">机构名称</td>
-								<td><input type="text" id="add_department_organizationId" /></td>
+								<td><input type="text" id="add_department_organizationId" name="organizationId"/></td>
 							</tr>
 							<tr>
 								<td class="tableleft">部门名称</td>
-								<td><input type="text" id="add_department_departmentName" /></td>
+								<td><input type="text" id="add_department_departmentName" name="departmentName" /></td>
 							</tr>
 							<tr>
 								<td class="tableleft">部门描述</td>
-								<td><input type="text" id="add_department_departmentDiscription" /></td>
+								<td><input type="text" id="add_department_departmentDiscription" name="discription" /></td>
 							</tr>
-							<!-- 								<tr> -->
-							<!-- 									<td class="tableleft">录入时间</td> -->
-							<!-- 									<td><input type="text" id="add_department_departmentDiscription" /></td> -->
-							<!-- 								</tr> -->
-							<!-- 								<tr> -->
-							<!-- 									<td class="tableleft">更新时间</td> -->
-							<!-- 									<td><input type="text" id="add_department_updataDatetime" /></td> -->
-							<!-- 								</tr> -->
 							<tr>
 								<td class="tableleft">状态</td>
-								<td><input type="radio" name="flag" value="1" checked id="add_flag" /> 启用 <input type="radio" name="flag" value="0" id="add_flag" /> 禁用</td>
+								<td><input type="radio" name="deleteFlag" value="1" checked id="add_department_deleteFlag" /> 启用 <input type="radio" name="deleteFlag" value="0" id="add_department_deleteFlag" /> 禁用</td>
 							</tr>
 						</table>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary" id="add_button">提交</button>
+						<button type="button" class="btn btn-primary" id="add_department_button">提交</button>
 					</div>
 				</form>
 			</div>

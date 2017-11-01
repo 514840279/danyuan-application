@@ -17,5 +17,5 @@ import tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo;
  */
 @Repository("sysDepartmentDao")
 public interface SysDepartmentDao extends JpaRepository<SysDepartmentInfo, String> {
-
+	
 }

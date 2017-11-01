@@ -26,7 +26,7 @@ public class SysDepartmentInfo {
 	
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
-	@Column(name = "UUID", columnDefinition = "varchar(36) COMMENT '主键'")
+	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键'")
 	private String	uuid;
 	
 	@Column(name = "organization_id", columnDefinition = "varchar(36) COMMENT '单位id'")
@@ -238,6 +238,11 @@ public class SysDepartmentInfo {
 	 */
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
+	}
+	
+	@Override
+	public String toString() {
+		return "SysDepartmentInfo [uuid=" + uuid + ", organizationId=" + organizationId + ", departmentName=" + departmentName + ", discription=" + discription + ", createTime=" + createTime + ", createUser=" + createUser + ", updataTime=" + updataTime + ", updataUser=" + updataUser + ", deleteFlag=" + deleteFlag + "]";
 	}
 	
 }

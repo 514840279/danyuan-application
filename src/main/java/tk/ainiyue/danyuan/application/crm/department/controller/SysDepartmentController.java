@@ -5,8 +5,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -28,14 +31,14 @@ import tk.ainiyue.danyuan.application.crm.department.service.SysDepartmentServic
 @RequestMapping("/sysDepartment")
 @Api(value = "/sysDepartment", description = "部门管理")
 public class SysDepartmentController {
-	
+
 	//
 	private static final Logger	 logger	= LoggerFactory.getLogger(SysDepartmentController.class);
-	
+
 	//
 	@Autowired
 	private SysDepartmentService sysDepartmentService;
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -49,5 +52,35 @@ public class SysDepartmentController {
 	public List<SysDepartmentInfo> findAll() {
 		logger.info("sysSystemList", SysDepartmentController.class);
 		return sysDepartmentService.findAll();
+	}
+
+	@ApiOperation(value = "分页查询全部部门信息", notes = "")
+	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
+	public Page<SysDepartmentInfo> findAllBySearchText(int pageNumber, int pageSize, SysDepartmentInfo sysDepartmentInfo) {
+		logger.info("findAllBySearchText", SysDepartmentController.class);
+		return sysDepartmentService.findAllBySearchText(pageNumber, pageSize, sysDepartmentInfo);
+	}
+	
+	@ApiOperation(value = "分页查询全部部门信息", notes = "")
+	@RequestMapping(path = "/sysDepartmentAdd", method = RequestMethod.POST)
+	@ResponseBody
+	public String save(@RequestBody SysDepartmentInfo info) {
+		logger.info("sysDepartmentAdd", SysDepartmentController.class);
+		System.out.println(info.toString());
+		sysDepartmentService.save(info);
+		return "1";
+	}
+	
+	@ApiOperation(value = "删除组织机构管理信息", notes = "")
+	@RequestMapping(path = "/sysDepartmentDelete", method = RequestMethod.POST)
+	@ResponseBody
+	public String sysDepartmentDelete(@RequestBody SysDepartmentInfo info) {
+		logger.info("sysDepartmentDelete", SysDepartmentController.class);
+		try {
+			sysDepartmentService.delete(info);
+			return "1";
+		} catch (Exception e) {
+			return "0";
+		}
 	}
 }
