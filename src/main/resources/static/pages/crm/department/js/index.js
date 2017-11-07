@@ -165,63 +165,57 @@ function InitSubTable(index, row, $detail) {
 		    var param = {  
 	                 pageNumber: params.pageNumber,    
 	                 pageSize: params.pageSize,
-	                 organizationId:select2_departmentName
+	                 departmentId:row.uuid
 	             }; 
              return param;
 		},
-        columns: [
-        	{field: 'salesNo', title: '订单号', }, 
-        	{field: 'userName',title: '顾客名称',}, 
-        	{  field: 'phone', title: '手机号', }, 
-        	{  field: 'priceStore',title: '订单门市金额(元)', }, 
-        	{ field: 'totalMoney',   title: '订单实售金额(元)', }, 
-        	{ field: 'createDate',   title: '创建时间', }, 
-        	{field: 'operName',  title: '操作员',}, 
-        	{ field: 'stateName',title: '订单状态',  },
-        	{ field: 'paymenRate',title: '已付(%)',},
-        	{field: 'orderRemark',title: '订单备注',  
-	            formatter: function (value, row, index) {  
-	                var remark = value==undefined?'':value  
-	                return '<p title="'+remark+'">查看备注</p>'  
-	            }  
-        	} 
-    	],  
+		columns : [
+			{title : '全选',checkbox : true,align : 'center',valign : 'middle'	},
+			{title : 'uuid',field : 'uuid',	align : 'center',sortable : true,valign : 'middle'},
+			{title : '部门名称',field : 'departmentId',sortable : true,align : 'center'},
+			{title : '角色名称',field : 'roleName',sortable : true,align : 'center'},
+			{title : '角色描述',field : 'discription',sortable : true,align : 'center'},
+			{title : '记录时间',field : 'createTime',align : 'center',	sortable : true,valign : 'middle'},
+			{title : '更新时间',field : 'updataTime',sortable : true,align : 'center'},
+			{title : '标记',	field : 'deleteFlag',	sortable : true,align : 'center'}
+		],
         responseHandler: function(result){  // 成功时执行
 			return {rows:result.content,total:result.totalElements};
 		}, 
         onLoadSuccess: function(){  //加载成功时执行  
 
         	$('#addnew_roles').click(function() {
-        		$("#add_department_uuid").val(getUuid());
-        		$("#add_department_organizationId").val(select2_departmentName);
-        		$("#add_department_departmentDiscription").val("");
-        		$('#add_department_deleteFlag[value="0"]').attr('checked',false);
-        		$('#add_department_deleteFlag[value="1"]').attr('checked',false);
+        		$("#add_roles_uuid").val(getUuid());
+        		$("#add_roles_departmentId").val(row.uuid);
+        		$("#add_roles_roleName").val("");
+        		$("#add_roles_discription").val("");
+        		$('#add_roles_deleteFlag[value="0"]').attr('checked',false);
+        		$('#add_roles_deleteFlag[value="1"]').attr('checked',false);
         		// 模态框
-        		$('#admin_department_add_modal').modal({
+        		$('#admin_roles_add_modal').modal({
         			show:true,
         			
         		});
         	});
         	
         	$('#editold_roles').click(function(){
-        		var data = $('#admin_department_datagrid').bootstrapTable('getAllSelections');
+        		var data = $(cur_table).bootstrapTable('getAllSelections');
         		if(data.length == 0){
         			alert("先选中一条数据");
         		}else if(data.length > 0){
-        			$("#add_department_uuid").val(data[0].uuid);
-        			$("#add_department_organizationId").val(data[0].organizationId);
-        			$("#add_department_departmentName").val(data[0].departmentName);
-        			$("#add_department_departmentDiscription").val(data[0].discription);
+        			$("#add_roles_uuid").val(data[0].uuid);
+        			$("#add_roles_departmentId").val(data[0].departmentId);
+        			$("#add_roles_roleName").val(data[0].roleName);
+        			$("#add_roles_discription").val(data[0].discription);
         			if(data[0].deleteFlag==1){
-        				$('#add_department_deleteFlag[value="0"]').attr('checked',false);
-        				$('#add_department_deleteFlag[value="1"]').attr('checked',true);
+        				$('#add_roles_deleteFlag[value="0"]').attr('checked',false);
+        				$('#add_roles_deleteFlag[value="1"]').attr('checked',true);
         			}else if(data[0].deleteFlag==0){
-        				$('#add_department_deleteFlag[value="0"]').attr('checked',true);
-        				$('#add_department_deleteFlag[value="1"]').attr('checked',false);
+        				$('#add_roles_deleteFlag[value="0"]').attr('checked',true);
+        				$('#add_roles_deleteFlag[value="1"]').attr('checked',false);
         			}
         			
-        			$("#admin_department_add_modal").modal({
+        			$("#admin_roles_add_modal").modal({
         				show:true,
         				
         			})
@@ -230,10 +224,13 @@ function InitSubTable(index, row, $detail) {
         	})
         		
         	$('#add_roles_button').click(function(){
-        		saveDepartment();
+        		saveRoles();
         	});
         	$('#deleteold_roles').click(function(){
-        		deleteoldDepartment()
+        		var temp =$(cur_table).bootstrapTable('getAllSelections');
+        		for (var int=0; int<temp.length; int++) {
+        			deleteRoles(temp[int]);
+        		}
         	});
 	    },  
 	    onLoadError: function(){  //加载失败时执行  
@@ -253,12 +250,38 @@ $('#search_table_organization_name').on('select2:select', function (evt) {
 	
 });
 
+function saveRoles(){
+	var uid  = $('#add_roles_uuid').val();
+	var departmentId = $('#add_roles_departmentId').val();
+	var roleName = $('#add_roles_roleName').val();
+	var discription = $('#add_roles_discription').val();
+	var flag = $('#add_roles_deleteFlag:checked').val();
+	if(flag == undefined){
+		alert("请选则状态");
+		return;
+	};
+	var info={
+			uuid:uid,	
+			departmentId:departmentId,
+			roleName:roleName,
+			discription:discription,
+			deleteFlag:flag
+	};
+	var submiturl = "/sysRoles/save";
+	ajaxPost(submiturl, info, addRolesSuccess, null, findError);
+}
+function addRolesSuccess(result){
+	$('#admin_roles_add_modal').modal('hide');
+	$('#admin_roles_datagrid').bootstrapTable('refresh');
+	// 模态框提示
+//	toastr.success("成功修改");
+}
 function saveDepartment(){
 	var uid  = $('#add_department_uuid').val();
 	var organizationId = $('#add_department_organizationId').val();
 	var departmentName = $('#add_department_departmentName').val();
 	var departmentDiscription = $('#add_department_departmentDiscription').val();
-	var flag = $('#add_department_deleteFlag:checked').val();
+	var flag = $('#add_roles_deleteFlag:checked').val();
 	if(flag == undefined){
 		alert("请选则状态");
 		return;
@@ -282,7 +305,7 @@ function addDepartmentSuccess(result){
 }
 
 function sucessLoadSysOrganizationListSelect2(result){
-	var data = [{id:" ",text:" "}];
+	var data = [{id:" ",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value.uuid,text:value.organizationName});
 	});
@@ -293,6 +316,12 @@ function sucessLoadSysOrganizationListSelect2(result){
 function deleteDepartment(obj){
 	var submiturl = "/sysDepartment/sysDepartmentDelete";
 	ajaxPost(submiturl, obj, addDepartmentSuccess, 5000, findError);
+};
+
+//删除
+function deleteRoles(obj){
+	var submiturl = "/sysRoles/delete";
+	ajaxPost(submiturl, obj, addRolesSuccess, 5000, findError);
 };
 
 

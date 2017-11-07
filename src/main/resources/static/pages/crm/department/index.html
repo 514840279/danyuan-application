@@ -80,7 +80,6 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel-department">添加部门信息</h4>
 				</div>
-				<form action="/sysDepartment/sysDepartmentAdd" method="post" id="admin_department_add_form">
 					<div class="modal-body">
 						<table class="table table-bordered table-hover definewidth m10">
 							<tr style="display:none;">
@@ -109,7 +108,50 @@
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 						<button type="button" class="btn btn-primary" id="add_department_button">提交</button>
 					</div>
-				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- 添加角色模态框 -->
+	<div class="modal fade" id="admin_roles_add_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-roles" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel-roles">添加部门信息</h4>
+				</div>
+					<div class="modal-body">
+						<table class="table table-bordered table-hover definewidth m10">
+							<tr style="display:none;">
+								<td width="15%" class="tableleft">主键</td>
+								<td><input type="text" id="add_roles_uuid" name="uuid" /></td>
+							</tr>
+							<tr style="display:none;">
+								<td class="tableleft">部门名称</td>
+								<td><input type="text" id="add_roles_departmentId" name="organizationId"/></td>
+							</tr>
+							<tr>
+								<td class="tableleft">角色名</td>
+								<td><input type="text" id="add_roles_roleName" name="departmentName" /></td>
+							</tr>
+							<tr>
+								<td class="tableleft">角色描述</td>
+								<td><input type="text" id="add_roles_discription" name="discription" /></td>
+							</tr>
+							<tr>
+								<td class="tableleft">状态</td>
+								<td>
+									<input type="radio" name="deleteFlag" value="1" checked id="add_roles_deleteFlag" /> 启用 
+									<input type="radio" name="deleteFlag" value="0" id="add_roles_deleteFlag" /> 禁用
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" id="add_roles_button">提交</button>
+					</div>
 			</div>
 		</div>
 	</div>
