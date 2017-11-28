@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>菜单管理页</title>
+<link rel="stylesheet" href="/plugins/ztree/css/metroStyle/metroStyle.css"/>
+<script src="/plugins/ztree/js/jquery.ztree.all.js"></script>
+<style type="text/css">
+div#rMenu {
+	position: absolute;
+	visibility: hidden;
+	top: 0;
+	text-align: left;
+	padding: 2px;
+}
+
+div#rMenu ul li {
+	margin: 1px 0;
+	padding: 0 5px;
+	cursor: pointer;
+	list-style: none outside none;
+}
+
+.row-right {
+	text-align: right;
+}
+</style>
+</head>
+<body id="body">
+	<!-- 头部设计 -->
+	<section class="content-header">
+		<h1>
+			系统设置 <small>资源设置</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
+			<li><a href="#">系统设置</a></li>
+			<li class="active">菜单设置</li>
+		</ol>
+	</section>
+	<!-- Main content -->
+	<section class="content ">
+		<div class="row">
+			<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+				<div class="box">
+					<div class="box-header with-border">
+		              <h3 class="box-title">菜单</h3>
+		
+		              <div class="box-tools pull-right">
+		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+		                </button>
+		                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+		              </div>
+		            </div>
+					<div class="box-body">
+						<div style="margin-left: 15px;">
+							<ul id="ztree" class="ztree"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-10 col-md-8 col-sm-6 col-xs-12">
+				<div class="box">
+					<div class="box-header with-border">
+		              <h3 class="box-title">方法预留</h3>
+		
+		              <div class="box-tools pull-right">
+		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+		                </button>
+		                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+		              </div>
+		            </div>
+					<div class="box-body"></div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+
+
+	<script type="text/javascript" src="/pages/crm/jurisdiction/js/system_function_ztree.js"></script>
+</body>
+</html>

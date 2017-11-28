@@ -25,7 +25,7 @@ $(function() {
 		var data = $('#admin_department_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
-		}else if(data.length > 0){
+		}else if(data.length == 1){
 			$("#add_department_uuid").val(data[0].uuid);
 			$("#add_department_organizationId").val(data[0].organizationId);
 			$("#add_department_departmentName").val(data[0].departmentName);
@@ -42,6 +42,8 @@ $(function() {
 				show:true,
 				
 			})
+		}else{
+			alert("只能选中一条数据");
 		}
 			
 	})
@@ -127,6 +129,7 @@ function InitSubTable(index, row, $detail) {
     		+'<button type="button" class="btn btn-success" id="addnew_roles">新增角色</button>'
     		+'<button type="button" class="btn btn-info" id="editold_roles">编辑角色</button>'
     		+'<button type="button" class="btn btn-danger" id="deleteold_roles">删除角色</button>'
+    		+'<button type="button" class="btn btn-danger" id="edit_jurisd_roles">管理资源</button>'
     		+'</div>'
     		+'<table class="table table-striped table-bordered" id="admin_roles_datagrid" data-toggle="admin_roles_datagrid">'
     		+'</table>'
@@ -151,7 +154,7 @@ function InitSubTable(index, row, $detail) {
 		uniqueId : "uuid", // 每一行的唯一标识，一般为主键列
 		showToggle : true, // 是否显示详细视图和列表视图的切换按钮
 		cardView : false, // 是否显示详细视图
-		detailView : true, // 是否显示父子表
+		detailView : false, // 是否显示父子表
 		singleSelect : false,
 		locales : "zh-CN", // 表格汉化
 		search : true, // 显示搜索框
@@ -202,7 +205,7 @@ function InitSubTable(index, row, $detail) {
         		var data = $(cur_table).bootstrapTable('getAllSelections');
         		if(data.length == 0){
         			alert("先选中一条数据");
-        		}else if(data.length > 0){
+        		} else if(data.length ==1 ){
         			$("#add_roles_uuid").val(data[0].uuid);
         			$("#add_roles_departmentId").val(data[0].departmentId);
         			$("#add_roles_roleName").val(data[0].roleName);
@@ -219,6 +222,8 @@ function InitSubTable(index, row, $detail) {
         				show:true,
         				
         			})
+        		}else{
+        			alert("只能选中一条数据");
         		}
         			
         	})
@@ -232,6 +237,38 @@ function InitSubTable(index, row, $detail) {
         			deleteRoles(temp[int]);
         		}
         	});
+        	
+        	$('#edit_jurisd_roles').click(function(){
+        		var data = $(cur_table).bootstrapTable('getAllSelections');
+        		if(data.length == 0){
+        			alert("先选中一条数据");
+        		} else if(data.length ==1 ){
+        			
+        			// themleaf
+        			// 调用 权限列表树
+        			// 查看所有权限并进行打钩
+        			winId="jurisdiction_selelect";
+        			var iconName;
+        			if(data[0].uuid)
+        			   //iconName=encodeURIComponent($("#add_menu_icon").val());
+        			modals.openWin({
+        		    	winId:winId,
+        		    	title:'资源管理',
+        		    	width:'1000px',
+        		    	url:"/icon/nodecorator/ztree?uuid="+data[0].uuid
+        		    });
+        			
+        			
+        			
+        			
+        			$("#edit_jurisd_roles_add_modal").modal({
+        				show:true,
+        				
+        			})
+        		}else{
+        			alert("只能选中一条数据");
+        		}
+        	})
 	    },  
 	    onLoadError: function(){  //加载失败时执行  
 	    },

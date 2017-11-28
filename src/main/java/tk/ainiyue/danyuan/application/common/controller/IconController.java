@@ -21,4 +21,12 @@ public class IconController {
 		request.setAttribute("iconName", iconName);
 		return "icon_selector";
 	}
+	
+	@ApiOperation(value = "图标页面获取", notes = "")
+	@RequestMapping(path = "/nodecorator/ztree", method = RequestMethod.GET)
+	private String ztree(String uuid, HttpServletRequest request) {
+
+		request.setAttribute("uuid", uuid);
+		return "jurisdiction_selelect";
+	}
 }
