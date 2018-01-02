@@ -1,8 +1,13 @@
 package tk.ainiyue.danyuan.application.user.userbase.dao;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo;
 import tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo;
 
 /**
@@ -16,6 +21,13 @@ import tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo;
  * 版 本 ： V1.0
  */
 @Repository("sysUserBaseDao")
-public interface SysUserBaseDao extends CrudRepository<SysUserBaseInfo, String> {
+public interface SysUserBaseDao extends JpaRepository<SysUserBaseInfo, String> {
 
+	@Query("   select t from  SysMenuInfo t where t.uuid in ( "
+	        + " select a.menuId from SysRolesJurisdictionInfo a where a.roleId in ( "
+	        + "   select b.rolesId  from SysUserRolesInfo b where   b.userId =:uuid"
+	        + " ) "
+	        + ") ")
+	List<SysMenuInfo> getRoleByUser(@Param("uuid") String uuid);
+	
 }

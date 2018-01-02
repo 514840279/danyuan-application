@@ -18,7 +18,7 @@ import tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo;
  * 版 本 ： V1.0
  */
 public interface SysUserBaseService {
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -28,7 +28,7 @@ public interface SysUserBaseService {
 	 * @throws
 	 */
 	List<SysUserBaseInfo> findAll();
-
+	
 	/**
 	 * 方法名： findByName
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -39,7 +39,7 @@ public interface SysUserBaseService {
 	 * @throws
 	 */
 	SysUserBaseInfo findByName(String userName);
-
+	
 	/**
 	 * 方法名： getRoleByUser
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -49,18 +49,18 @@ public interface SysUserBaseService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	List<SysMenuInfo> getRoleByUser(SysUserBaseInfo user);
-	
+	List<SysMenuInfo> getRoleByUser(String uuid);
+
 	SysUserBaseInfo findByUuid(String uuid);
-	
+
 	Page<SysUserBaseInfo> findAllBySearchText(int pageNumber, int pageSize, SysUserBaseInfo info);
-	
+
 	void save(SysUserBaseInfo info);
-
+	
 	void delete(SysUserBaseInfo info);
-
+	
 	void delete(List<SysUserBaseInfo> list);
-
+	
 	void trunc();
-
+	
 }

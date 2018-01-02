@@ -3,7 +3,12 @@ package tk.ainiyue.danyuan.application.user.userrole.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.user.userrole.dao.SysUserRolesDao;
@@ -38,8 +43,7 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 
 	@Override
 	public List<SysUserRolesInfo> findAll() {
-		// TODO Auto-generated method stub
-		return (List<SysUserRolesInfo>) sysUserRolesDao.findAll();
+		return sysUserRolesDao.findAll();
 	}
 	
 	/**
@@ -54,8 +58,7 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 
 	@Override
 	public SysUserRolesInfo findByUuid(String uuid) {
-		// TODO Auto-generated method stub
-		return null;
+		return sysUserRolesDao.findOne(uuid);
 	}
 	
 	/**
@@ -70,11 +73,14 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 	 * int, tk.ainiyue.danyuan.application.user.userrole.po.SysUserRolesInfo)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public Page<SysUserRolesInfo> findAllBySearchText(int pageNumber, int pageSize, SysUserRolesInfo info) {
-		// TODO Auto-generated method stub
-		return null;
+		Example<SysUserRolesInfo> example = Example.of(info);
+		Sort sort = new Sort(new Order(Direction.ASC, "createTime"));
+		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+		Page<SysUserRolesInfo> sourceCodes = sysUserRolesDao.findAll(example, request);
+		return sourceCodes;
 	}
 	
 	/**
@@ -88,8 +94,7 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 
 	@Override
 	public void save(SysUserRolesInfo info) {
-		// TODO Auto-generated method stub
-
+		sysUserRolesDao.save(info);
 	}
 	
 	/**
@@ -103,8 +108,7 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 
 	@Override
 	public void delete(SysUserRolesInfo info) {
-		// TODO Auto-generated method stub
-
+		sysUserRolesDao.delete(info);
 	}
 	
 	/**
@@ -118,8 +122,7 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 
 	@Override
 	public void delete(List<SysUserRolesInfo> list) {
-		// TODO Auto-generated method stub
-
+		sysUserRolesDao.delete(list);
 	}
 	
 	/**
@@ -133,8 +136,7 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 
 	@Override
 	public void trunc() {
-		// TODO Auto-generated method stub
-
+		sysUserRolesDao.deleteAll();
 	}
 
 }

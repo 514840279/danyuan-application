@@ -40,7 +40,7 @@ public class SysColumnServiceImpl implements SysColumnService {
 	private SysTableDao			sysTableDao;
 	@Autowired
 	JdbcTemplate				jdbcTemplate;
-
+	
 	// 分页查询
 	@Override
 	public Page<SysColumnInfo> findAllByTableUuid(int pageNumber, int pageSize, String searchText, String tableUuid) {
@@ -52,14 +52,14 @@ public class SysColumnServiceImpl implements SysColumnService {
 		PageRequest request = this.buildPageRequest(pageNumber, pageSize, sort);
 		Page<SysColumnInfo> sourceCodes = sysColumnDao.findAll(example, request);
 		return sourceCodes;
+		
+	}
 
-	}
-	
 	// 构建PageRequest
-	private PageRequest buildPageRequest(int pageNumber, int pagzSize, Sort sort) {
-		return new PageRequest(pageNumber - 1, pagzSize, sort);
+	private PageRequest buildPageRequest(int pageNumber, int pageSize, Sort sort) {
+		return new PageRequest(pageNumber - 1, pageSize, sort);
 	}
-	
+
 	// 更新
 	@Override
 	public void save(SysColumnInfo info) {
@@ -70,19 +70,19 @@ public class SysColumnServiceImpl implements SysColumnService {
 				String sql = "alter table " + tab.getTableName() + " CHANGE " + old.getColsName() + " " + info.getColsName() + " " + info.getColsType() + "(" + info.getColsLength() + ")";
 				jdbcTemplate.execute(sql);
 			} else {
-				
+
 				String sql = "alter table " + tab.getTableName() + " add " + info.getColsName() + " " + info.getColsType() + "(" + info.getColsLength() + ")";
 				jdbcTemplate.execute(sql);
 			}
 		} finally {
 			sysColumnDao.save(info);
-
+			
 		}
 	}
-	
+
 	@Override
 	public void deleteSysColumnInfo(List<SysColumnInfo> list) {
-		
+
 		SysTableInfo tab = sysTableDao.findOne(list.get(0).getTableUuid());
 		for (SysColumnInfo sysColumnInfo : list) {
 			try {
@@ -94,13 +94,13 @@ public class SysColumnServiceImpl implements SysColumnService {
 			}
 		}
 	}
-	
+
 	@Override
 	public List<SysColumnInfo> findAllBySysColumnInfo(SysColumnInfo info) {
 		Example<SysColumnInfo> example = Example.of(info);
 		return sysColumnDao.findAll(example);
 	}
-	
+
 	@Override
 	public void saveSysColumnInfo(List<SysColumnInfo> list) {
 		sysColumnDao.save(list);

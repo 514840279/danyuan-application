@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Repository;
 
 import tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo;
 import tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo;
@@ -25,7 +26,7 @@ import tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService;
  * 时 间 ： 2017年10月8日 上午9:10:01
  * 版 本 ： V1.0
  */
-//@Repository
+@Repository
 public class CustomUserDetailsService implements UserDetailsService {
 	@Autowired // 数据库服务类
 	private SysUserBaseService sysUserBaseService;
@@ -42,7 +43,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException("no user found");
 		} else {
 			try {
-				List<SysMenuInfo> menu = sysUserBaseService.getRoleByUser(user);
+				List<SysMenuInfo> menu = sysUserBaseService.getRoleByUser(user.getUuid());
 				List<GrantedAuthority> gas = new ArrayList<>();
 				for (SysMenuInfo sysMenuInfo : menu) {
 					gas.add(new SimpleGrantedAuthority(sysMenuInfo.getName()));

@@ -3,7 +3,12 @@ package tk.ainiyue.danyuan.application.user.userbase.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo;
@@ -38,8 +43,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 
 	@Override
 	public List<SysUserBaseInfo> findAll() {
-		// TODO Auto-generated method stub
-		return (List<SysUserBaseInfo>) sysUserBaseDao.findAll();
+		return sysUserBaseDao.findAll();
 	}
 
 	/**
@@ -54,8 +58,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 	
 	@Override
 	public SysUserBaseInfo findByName(String userName) {
-		// TODO Auto-generated method stub
-		return null;
+		return sysUserBaseDao.findOne(userName);
 	}
 
 	/**
@@ -69,9 +72,10 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 	 */
 	
 	@Override
-	public List<SysMenuInfo> getRoleByUser(SysUserBaseInfo user) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<SysMenuInfo> getRoleByUser(String uuid) {
+		// 用户 > 角色 > 菜单
+
+		return sysUserBaseDao.getRoleByUser(uuid);
 	}
 	
 	/**
@@ -86,8 +90,8 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 
 	@Override
 	public SysUserBaseInfo findByUuid(String uuid) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return sysUserBaseDao.findOne(uuid);
 	}
 	
 	/**
@@ -105,8 +109,13 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 
 	@Override
 	public Page<SysUserBaseInfo> findAllBySearchText(int pageNumber, int pageSize, SysUserBaseInfo info) {
-		// TODO Auto-generated method stub
-		return null;
+//		logger.info(tableUuid, SysColumnServiceImpl.class);
+//		Page<SysColumnInfo> list = sysColumnDao.findAllByTableUuid(tableUuid);
+		Example<SysUserBaseInfo> example = Example.of(info);
+		Sort sort = new Sort(new Order(Direction.ASC, "createTime"));
+		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+		Page<SysUserBaseInfo> sourceCodes = sysUserBaseDao.findAll(example, request);
+		return sourceCodes;
 	}
 	
 	/**
@@ -120,7 +129,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 
 	@Override
 	public void save(SysUserBaseInfo info) {
-		// TODO Auto-generated method stub
+		sysUserBaseDao.save(info);
 
 	}
 	
@@ -135,7 +144,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 
 	@Override
 	public void delete(SysUserBaseInfo info) {
-		// TODO Auto-generated method stub
+		sysUserBaseDao.delete(info);
 
 	}
 	
@@ -150,7 +159,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 
 	@Override
 	public void delete(List<SysUserBaseInfo> list) {
-		// TODO Auto-generated method stub
+		sysUserBaseDao.delete(list);
 
 	}
 	
@@ -165,7 +174,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 
 	@Override
 	public void trunc() {
-		// TODO Auto-generated method stub
+		sysUserBaseDao.deleteAll();
 
 	}
 
