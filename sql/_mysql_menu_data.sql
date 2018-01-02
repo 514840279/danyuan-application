@@ -1018,6 +1018,7 @@ insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD
 insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD_LENGTH`,`COLS_ORDER`,`cols_type`,`discription`,`create_time`,`create_user`,`updata_time`,`updata_user`,`delete_flag`,`cols_length`) values ('1da6fc6b-f378-460a-a57f-15f3923309b7','BCFA39FCA088D151372D563DCB03D27C','datetime','采集时间',NULL,12,'date','采集时间',NULL,NULL,NULL,NULL,NULL,NULL);
 insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD_LENGTH`,`COLS_ORDER`,`cols_type`,`discription`,`create_time`,`create_user`,`updata_time`,`updata_user`,`delete_flag`,`cols_length`) values ('2306c852-6aff-4794-bb57-042a8d54ac5d','C06A7B0878844341823CDBF55F03885C','md5','url的md5值',NULL,1,'VARCHAR','url的md5值',NULL,NULL,NULL,NULL,NULL,36);
 insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD_LENGTH`,`COLS_ORDER`,`cols_type`,`discription`,`create_time`,`create_user`,`updata_time`,`updata_user`,`delete_flag`,`cols_length`) values ('2947ABD772D975BDA8B8702F3C568650','CF1C0EABDE01F3F762DE286FC64D412A','书名','书名',NULL,NULL,'VARCHAR','',NULL,NULL,NULL,NULL,NULL,255);
+insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD_LENGTH`,`COLS_ORDER`,`cols_type`,`discription`,`create_time`,`create_user`,`updata_time`,`updata_user`,`delete_flag`,`cols_length`) values ('31DA0CFFB1F3E51BBC5950F7947D888B','BCFA39FCA088D151372D563DCB03D27C','书名','书名',NULL,6,'varchar',NULL,NULL,NULL,NULL,NULL,NULL,255);
 insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD_LENGTH`,`COLS_ORDER`,`cols_type`,`discription`,`create_time`,`create_user`,`updata_time`,`updata_user`,`delete_flag`,`cols_length`) values ('374454a4-877c-4037-9686-442d4ff178da','CF1C0EABDE01F3F762DE286FC64D412A','md5','url的md5值',NULL,1,'VARCHAR','url的md5值',NULL,NULL,NULL,NULL,NULL,36);
 insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD_LENGTH`,`COLS_ORDER`,`cols_type`,`discription`,`create_time`,`create_user`,`updata_time`,`updata_user`,`delete_flag`,`cols_length`) values ('3B72B2E7AB14A0D6D3E8994476BDD483','BCFA39FCA088D151372D563DCB03D27C','分类1','分类1',NULL,5,'varchar','',NULL,NULL,NULL,NULL,NULL,50);
 insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD_LENGTH`,`COLS_ORDER`,`cols_type`,`discription`,`create_time`,`create_user`,`updata_time`,`updata_user`,`delete_flag`,`cols_length`) values ('44bcc610-9931-478c-b300-8648aa9854db','C06A7B0878844341823CDBF55F03885C','url','url地址',NULL,2,'VARCHAR','url地址',NULL,NULL,NULL,NULL,NULL,2000);
@@ -1034,8 +1035,10 @@ insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD
 insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD_LENGTH`,`COLS_ORDER`,`cols_type`,`discription`,`create_time`,`create_user`,`updata_time`,`updata_user`,`delete_flag`,`cols_length`) values ('C6019DDF8FEACC1E5BE8A86B9E574954','BCFA39FCA088D151372D563DCB03D27C','阅读量','阅读量',NULL,7,'varchar','',NULL,NULL,NULL,NULL,NULL,10);
 insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD_LENGTH`,`COLS_ORDER`,`cols_type`,`discription`,`create_time`,`create_user`,`updata_time`,`updata_user`,`delete_flag`,`cols_length`) values ('c89b8d10-36ed-497b-a0fa-0cbd1d87cd33','CF1C0EABDE01F3F762DE286FC64D412A','url','url地址',NULL,2,'VARCHAR','url地址',NULL,NULL,NULL,NULL,NULL,2000);
 insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD_LENGTH`,`COLS_ORDER`,`cols_type`,`discription`,`create_time`,`create_user`,`updata_time`,`updata_user`,`delete_flag`,`cols_length`) values ('cda450c8-d0ae-483d-988d-d8a02fa716c6','BCFA39FCA088D151372D563DCB03D27C','md5','url的md5值',NULL,0,'VARCHAR','url的md5值',NULL,NULL,NULL,NULL,NULL,36);
+insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD_LENGTH`,`COLS_ORDER`,`cols_type`,`discription`,`create_time`,`create_user`,`updata_time`,`updata_user`,`delete_flag`,`cols_length`) values ('E116E1DBED15E25C0ED029084A30BA48','BCFA39FCA088D151372D563DCB03D27C','图片','图片',NULL,5,'varchar',NULL,NULL,NULL,NULL,NULL,NULL,255);
 insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD_LENGTH`,`COLS_ORDER`,`cols_type`,`discription`,`create_time`,`create_user`,`updata_time`,`updata_user`,`delete_flag`,`cols_length`) values ('ea5c0788-b938-4b30-818b-290e7d33de82','BCFA39FCA088D151372D563DCB03D27C','数据来源','数据来源',NULL,11,'VARCHAR','数据来源',NULL,NULL,NULL,NULL,NULL,50);
 insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD_LENGTH`,`COLS_ORDER`,`cols_type`,`discription`,`create_time`,`create_user`,`updata_time`,`updata_user`,`delete_flag`,`cols_length`) values ('f2b0b860-bb7e-4ab3-9d88-7882dfbe1489','BCFA39FCA088D151372D563DCB03D27C','url','url地址',NULL,10,'VARCHAR','url地址',NULL,NULL,NULL,NULL,NULL,2000);
+insert  into `sys_column_info`(`uuid`,`table_uuid`,`cols_name`,`COLS_DESC`,`COLD_LENGTH`,`COLS_ORDER`,`cols_type`,`discription`,`create_time`,`create_user`,`updata_time`,`updata_user`,`delete_flag`,`cols_length`) values ('FB792991455CFDBF5A7E92BC57E54A40','BCFA39FCA088D151372D563DCB03D27C','评分','评分',NULL,4,'varchar',NULL,NULL,NULL,NULL,NULL,NULL,255);
 
 /*Table structure for table `sys_database_info` */
 
@@ -1069,16 +1072,23 @@ DROP TABLE IF EXISTS `sys_department_info`;
 
 CREATE TABLE `sys_department_info` (
   `uuid` varchar(32) NOT NULL,
-  `department_discription` varchar(1024) NOT NULL,
   `department_name` varchar(50) NOT NULL,
-  `flag` varchar(2) DEFAULT NULL,
-  `insert_datetime` datetime NOT NULL,
   `organization_id` varchar(32) NOT NULL,
-  `updata_datetime` datetime DEFAULT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
+  `create_user` varchar(50) DEFAULT 'system' COMMENT '录入人员',
+  `delete_flag` int(11) DEFAULT '0' COMMENT '停用标记',
+  `discription` varchar(200) DEFAULT NULL COMMENT '资源功能描述',
+  `updata_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新人员',
+  `updata_user` varchar(50) DEFAULT 'system' COMMENT '更新时间',
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_department_info` */
+
+insert  into `sys_department_info`(`uuid`,`department_name`,`organization_id`,`create_time`,`create_user`,`delete_flag`,`discription`,`updata_time`,`updata_user`) values ('621B717B7AA366579A8C4066D0D94B08','软件园分局','11F1CAED7E2021D724C0E9E6BCE60CCF','2017-11-01 18:28:58',NULL,1,'软件园分局','2017-11-01 18:28:58','system');
+insert  into `sys_department_info`(`uuid`,`department_name`,`organization_id`,`create_time`,`create_user`,`delete_flag`,`discription`,`updata_time`,`updata_user`) values ('75418090625A1C9F9AB126EB5E8E3853','高新分局','11F1CAED7E2021D724C0E9E6BCE60CCF','2017-11-01 18:28:36',NULL,1,'高新分局','2017-11-01 18:28:36','system');
+insert  into `sys_department_info`(`uuid`,`department_name`,`organization_id`,`create_time`,`create_user`,`delete_flag`,`discription`,`updata_time`,`updata_user`) values ('D58E6596AAA01A8419FEBE71D7999856','骨关节','58072861DEDB9BA8E6E69CD10228FA05','2017-11-01 18:27:50',NULL,1,'骨关节','2017-11-01 18:27:50','system');
+insert  into `sys_department_info`(`uuid`,`department_name`,`organization_id`,`create_time`,`create_user`,`delete_flag`,`discription`,`updata_time`,`updata_user`) values ('EDA51AA8D4359F739E7D3EE9923FEBE8','肛肠科','58072861DEDB9BA8E6E69CD10228FA05','2017-11-01 18:27:20',NULL,1,'肛肠科','2017-11-01 18:27:20','system');
 
 /*Table structure for table `sys_menu_info` */
 
@@ -1099,34 +1109,32 @@ CREATE TABLE `sys_menu_info` (
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
   `delete_flag` int(11) DEFAULT '0' COMMENT '停用标记',
   `type` varchar(50) DEFAULT '菜单' COMMENT '菜单还是方法',
+  `icon_skin` varchar(50) DEFAULT NULL COMMENT '显示图标样式',
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_menu_info` */
 
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('102F0D6B58817A998413C6CA1EEC8CBB',NULL,'0','爬虫管理','fa fa-cloud-download',1,'','爬虫管理','system','2017-07-14 09:44:42','system',NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('2146130099979805B1DE119DCB3BA551',NULL,'A3621F23A4BC0580D08EEF948C0FD30B','用户角色','fa  fa-sitemap',1,'pages/user/userbase/index.html','项目权限',NULL,NULL,'system',NULL,0,NULL);
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('24898AE2D779238DC4AA443CE053C6AC',NULL,'4C2700CEB8CDAF0C2E3C3AAD9C849DD6','短息测试','fa fa-mobile-phone',1,'pages/user/sendmail/phone.html','短息测试',NULL,NULL,'system',NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('36882FDCB61EF181592FEE79B0462BDA',NULL,'102F0D6B58817A998413C6CA1EEC8CBB','结果配置','fa fa-file-code-o',2,'pages/crawler/result.html','代码管理',NULL,NULL,'system',NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('39FC2A8FCCCBA07F109261B26A5F5E66',NULL,'4C2700CEB8CDAF0C2E3C3AAD9C849DD6','邮箱测试','fa fa-envelope',2,'pages/user/sendmail/mail.html','邮箱测试',NULL,NULL,'system',NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('4C2700CEB8CDAF0C2E3C3AAD9C849DD6',NULL,'0','系统工具','fa fa-gg',5,'','','system','2017-09-15 12:03:28','system',NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('4c87efc1-6447-11e7-a272-0025d3a93601','99c74ada3a1411e6bdcb10bf48e1d36a','0','数据管理','fa  fa-database',2,'pages/error/404.html','#','佘赐雄',NULL,'超级管理员',NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('4c87fa16-6447-11e7-a272-0025d3a93601',NULL,'102F0D6B58817A998413C6CA1EEC8CBB','种子管理','glyphicon glyphicon-link',0,'pages/crawler/seed.html','爬虫管理',NULL,NULL,'system',NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('4c87fb94-6447-11e7-a272-0025d3a93601','99c74ada3a1411e6bdcb10bf48e1d36a','4c8820df-6447-11e7-a272-0025d3a93601','系统菜单','fa  fa-navicon',1,'pages/softm/sysmenu/system_function_ztree.html','系统导航功能',NULL,NULL,NULL,NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('4c87fd09-6447-11e7-a272-0025d3a93601',NULL,'4c87efc1-6447-11e7-a272-0025d3a93601','数据库连接','fa  fa-plug',0,'pages/dbm/addr/index.html','动态链接数据库',NULL,NULL,'超级管理员',NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('4c87fe75-6447-11e7-a272-0025d3a93601','99c74ada3a1411e6bdcb10bf48e1d36a','2c90838f57c6e02e0157c729a86b000b','数据库备份','glyphicon glyphicon-paste',0,'pages/error/404.html','数据备份、数据还原',NULL,NULL,'超级管理员',NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('4c87ffe1-6447-11e7-a272-0025d3a93601',NULL,'4c87efc1-6447-11e7-a272-0025d3a93601','数据表管理','fa  fa-table',2,'pages/dbm/table/index.html','数据库表结构',NULL,NULL,'超级管理员',NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('4c881551-6447-11e7-a272-0025d3a93601','99c74ada3a1411e6bdcb10bf48e1d36a','0','客户管理','fa  fa-sitemap',3,'pages/error/404.html','客户管理',NULL,NULL,NULL,NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('4c881c82-6447-11e7-a272-0025d3a93601',NULL,'4c8820df-6447-11e7-a272-0025d3a93601','项目信息','fa fa-leaf',0,'pages/softm/system/index.html','#',NULL,NULL,'system',NULL,0,NULL);
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('4c8820df-6447-11e7-a272-0025d3a93601',NULL,'0','系统管理','fa fa-cog',0,'pages/error/404.html','',NULL,NULL,'',NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('4c882255-6447-11e7-a272-0025d3a93601',NULL,'4c881551-6447-11e7-a272-0025d3a93601','单位组织','fa  fa-coffee',0,'pages/crm/organization/index.html','单位组织',NULL,NULL,NULL,NULL,0,NULL);
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('554F7723A796A61F88DAB2BC7A37C26C',NULL,NULL,NULL,NULL,NULL,NULL,'1','system','2017-07-13 15:53:43','system',NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('5633098C6688C98B87CDCD3158F70932',NULL,'A3621F23A4BC0580D08EEF948C0FD30B','用户权限','fa fa-odnoklassniki',0,'pages/user/userroles/index.html','用户管理',NULL,NULL,'system',NULL,0,NULL);
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('659B89DACAF330FB8A8DDCD276614A7A',NULL,'4c881551-6447-11e7-a272-0025d3a93601','角色权限','fa fa-gears',4,'pages/crm/jurisdiction/index.html','角色权限',NULL,NULL,'system',NULL,0,NULL);
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('91257EC58A61079D778D4DD08FB7652B',NULL,'4c87efc1-6447-11e7-a272-0025d3a93601','数据库表查看','fa fa-list',3,'pages/dbm/table/show-tables.html','数据库表查看','system','2017-09-15 10:11:14','system',NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('9419DC15C84351C8F038B2B0E5302FEC',NULL,'4c881551-6447-11e7-a272-0025d3a93601','单位部门','fa fa-map-marker',2,'pages/crm/department/index.html','单位部门',NULL,NULL,'system',NULL,0,NULL);
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('A3621F23A4BC0580D08EEF948C0FD30B',NULL,'0','用户管理','fa fa-users',4,'','用户管理',NULL,NULL,'system',NULL,0,'菜单');
-insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`) values ('D59BB80377132CC30538A0FC69BFAC84',NULL,'4c881551-6447-11e7-a272-0025d3a93601','角色管理','fa fa-map',3,'pages/crm/roles/index.html','角色管理',NULL,NULL,'system',NULL,0,NULL);
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('102F0D6B58817A998413C6CA1EEC8CBB',NULL,'0','爬虫管理','fa fa-cloud-download',1,'','爬虫管理','system','2017-07-14 09:44:42','system',NULL,0,'菜单','fa fa-cloud-download');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('2146130099979805B1DE119DCB3BA551',NULL,'A3621F23A4BC0580D08EEF948C0FD30B','用户角色','fa  fa-sitemap',1,'pages/user/userbase/index.html','项目权限',NULL,NULL,'system',NULL,0,NULL,'fa  fa-sitemap');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('24898AE2D779238DC4AA443CE053C6AC',NULL,'4C2700CEB8CDAF0C2E3C3AAD9C849DD6','短息测试','fa fa-mobile-phone',1,'pages/user/sendmail/phone.html','短息测试',NULL,NULL,'system',NULL,0,'菜单','fa fa-mobile-phone');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('36882FDCB61EF181592FEE79B0462BDA',NULL,'102F0D6B58817A998413C6CA1EEC8CBB','结果配置','fa fa-file-code-o',2,'pages/crawler/result.html','代码管理',NULL,NULL,'system',NULL,0,'菜单','fa fa-file-code-o');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('39FC2A8FCCCBA07F109261B26A5F5E66',NULL,'4C2700CEB8CDAF0C2E3C3AAD9C849DD6','邮箱测试','fa fa-envelope',2,'pages/user/sendmail/mail.html','邮箱测试',NULL,NULL,'system',NULL,0,'菜单','fa fa-envelope');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('4C2700CEB8CDAF0C2E3C3AAD9C849DD6',NULL,'0','系统工具','fa fa-gg',5,'','','system','2017-09-15 12:03:28','system',NULL,0,'菜单','fa fa-gg');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('4c87efc1-6447-11e7-a272-0025d3a93601','99c74ada3a1411e6bdcb10bf48e1d36a','0','数据管理','fa  fa-database',2,'pages/error/404.html','#','佘赐雄',NULL,'超级管理员',NULL,0,'菜单','fa  fa-database');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('4c87fa16-6447-11e7-a272-0025d3a93601',NULL,'102F0D6B58817A998413C6CA1EEC8CBB','种子管理','glyphicon glyphicon-link',0,'pages/crawler/seed.html','爬虫管理',NULL,NULL,'system',NULL,0,'菜单','glyphicon glyphicon-link');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('4c87fb94-6447-11e7-a272-0025d3a93601','99c74ada3a1411e6bdcb10bf48e1d36a','4c8820df-6447-11e7-a272-0025d3a93601','系统菜单','fa  fa-navicon',1,'pages/softm/sysmenu/system_function_ztree.html','系统导航功能',NULL,NULL,NULL,NULL,0,'菜单','fa  fa-navicon');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('4c87fd09-6447-11e7-a272-0025d3a93601',NULL,'4c87efc1-6447-11e7-a272-0025d3a93601','数据库连接','fa  fa-plug',0,'pages/dbm/addr/index.html','动态链接数据库',NULL,NULL,'超级管理员',NULL,0,'菜单','fa  fa-plug');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('4c87fe75-6447-11e7-a272-0025d3a93601','99c74ada3a1411e6bdcb10bf48e1d36a','2c90838f57c6e02e0157c729a86b000b','数据库备份','glyphicon glyphicon-paste',0,'pages/error/404.html','数据备份、数据还原',NULL,NULL,'超级管理员',NULL,0,'菜单','glyphicon glyphicon-paste');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('4c87ffe1-6447-11e7-a272-0025d3a93601',NULL,'4c87efc1-6447-11e7-a272-0025d3a93601','数据表管理','fa  fa-table',2,'pages/dbm/table/index.html','数据库表结构',NULL,NULL,'超级管理员',NULL,0,'菜单','fa  fa-table');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('4c881551-6447-11e7-a272-0025d3a93601','99c74ada3a1411e6bdcb10bf48e1d36a','0','权限管理','fa  fa-sitemap',3,'pages/error/404.html','客户管理',NULL,NULL,NULL,NULL,0,'菜单','fa  fa-sitemap');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('4c881c82-6447-11e7-a272-0025d3a93601',NULL,'4c8820df-6447-11e7-a272-0025d3a93601','项目信息','fa fa-leaf',0,'pages/softm/system/index.html','#',NULL,NULL,'system',NULL,0,NULL,'fa fa-leaf');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('4c8820df-6447-11e7-a272-0025d3a93601',NULL,'0','系统管理','fa fa-cog',0,'pages/error/404.html','',NULL,NULL,'',NULL,0,'菜单','fa fa-cog');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('4c882255-6447-11e7-a272-0025d3a93601',NULL,'4c881551-6447-11e7-a272-0025d3a93601','单位组织','fa  fa-coffee',0,'pages/crm/organization/index.html','单位组织',NULL,NULL,NULL,NULL,0,NULL,'fa  fa-coffee');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('554F7723A796A61F88DAB2BC7A37C26C',NULL,NULL,NULL,NULL,NULL,NULL,'1','system','2017-07-13 15:53:43','system',NULL,0,'菜单',NULL);
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('91257EC58A61079D778D4DD08FB7652B',NULL,'4c87efc1-6447-11e7-a272-0025d3a93601','数据库表查看','fa fa-list',3,'pages/dbm/table/show-tables.html','数据库表查看','system','2017-09-15 10:11:14','system',NULL,0,'菜单','fa fa-list');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('9419DC15C84351C8F038B2B0E5302FEC',NULL,'4c881551-6447-11e7-a272-0025d3a93601','单位部门','fa fa-map-marker',2,'pages/crm/department/index.html','单位部门',NULL,NULL,'system',NULL,0,NULL,'fa fa-map-marker');
+insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`updata_user`,`updata_time`,`create_user`,`create_time`,`delete_flag`,`type`,`icon_skin`) values ('A3621F23A4BC0580D08EEF948C0FD30B',NULL,'0','用户管理','fa fa-users',4,'','用户管理',NULL,NULL,'system',NULL,0,'菜单','fa fa-users');
 
 /*Table structure for table `sys_organization_info` */
 
@@ -1134,18 +1142,21 @@ DROP TABLE IF EXISTS `sys_organization_info`;
 
 CREATE TABLE `sys_organization_info` (
   `uuid` varchar(32) NOT NULL,
-  `flag` varchar(2) DEFAULT NULL,
-  `insert_datetime` datetime NOT NULL,
   `organization_code` varchar(50) NOT NULL,
-  `organization_discription` varchar(1024) NOT NULL,
   `organization_name` varchar(32) NOT NULL,
-  `updata_datetime` datetime DEFAULT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
+  `create_user` varchar(50) DEFAULT 'system' COMMENT '录入人员',
+  `delete_flag` int(11) DEFAULT '0' COMMENT '停用标记',
+  `discription` varchar(200) DEFAULT NULL COMMENT '资源功能描述',
+  `updata_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新人员',
+  `updata_user` varchar(50) DEFAULT 'system' COMMENT '更新时间',
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_organization_info` */
 
-insert  into `sys_organization_info`(`uuid`,`flag`,`insert_datetime`,`organization_code`,`organization_discription`,`organization_name`,`updata_datetime`) values ('83414F8BCEF309B8E21D8B81044C9028','1','2017-10-11 07:31:12','qwe','qwe','qwe',NULL);
+insert  into `sys_organization_info`(`uuid`,`organization_code`,`organization_name`,`create_time`,`create_user`,`delete_flag`,`discription`,`updata_time`,`updata_user`) values ('11F1CAED7E2021D724C0E9E6BCE60CCF','234','大连邮局','2017-11-01 18:28:12',NULL,1,'大连邮局','2017-11-01 18:28:12','system');
+insert  into `sys_organization_info`(`uuid`,`organization_code`,`organization_name`,`create_time`,`create_user`,`delete_flag`,`discription`,`updata_time`,`updata_user`) values ('58072861DEDB9BA8E6E69CD10228FA05','123','大连医院','2017-11-01 18:26:45',NULL,1,'大连医院','2017-11-01 18:26:45','system');
 
 /*Table structure for table `sys_roles_info` */
 
@@ -1154,15 +1165,25 @@ DROP TABLE IF EXISTS `sys_roles_info`;
 CREATE TABLE `sys_roles_info` (
   `uuid` varchar(32) NOT NULL,
   `department_id` varchar(50) NOT NULL,
-  `flag` varchar(2) DEFAULT NULL,
-  `insert_datetime` datetime NOT NULL,
-  `role_discription` varchar(500) DEFAULT NULL,
   `role_name` varchar(32) NOT NULL,
-  `updata_datetime` datetime DEFAULT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
+  `create_user` varchar(50) DEFAULT 'system' COMMENT '录入人员',
+  `delete_flag` int(11) DEFAULT '0' COMMENT '停用标记',
+  `discription` varchar(200) DEFAULT NULL COMMENT '资源功能描述',
+  `updata_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新人员',
+  `updata_user` varchar(50) DEFAULT 'system' COMMENT '更新时间',
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_roles_info` */
+
+insert  into `sys_roles_info`(`uuid`,`department_id`,`role_name`,`create_time`,`create_user`,`delete_flag`,`discription`,`updata_time`,`updata_user`) values ('019E88116631800A20A027BC04556A63','621B717B7AA366579A8C4066D0D94B08','qqq','2017-11-28 15:08:34',NULL,1,'qqqq','2017-11-28 15:08:34','system');
+insert  into `sys_roles_info`(`uuid`,`department_id`,`role_name`,`create_time`,`create_user`,`delete_flag`,`discription`,`updata_time`,`updata_user`) values ('422E8364D11EBC35CC0F6D7FE2613F0D','75418090625A1C9F9AB126EB5E8E3853','123','2017-11-07 11:55:38',NULL,1,'123111','2017-11-07 13:55:43',NULL);
+insert  into `sys_roles_info`(`uuid`,`department_id`,`role_name`,`create_time`,`create_user`,`delete_flag`,`discription`,`updata_time`,`updata_user`) values ('6803A43931172D867F03A829C448DCE5','621B717B7AA366579A8C4066D0D94B08','113231','2017-11-07 14:31:48',NULL,1,'3213','2017-11-07 14:31:48',NULL);
+insert  into `sys_roles_info`(`uuid`,`department_id`,`role_name`,`create_time`,`create_user`,`delete_flag`,`discription`,`updata_time`,`updata_user`) values ('7145A4E69D78327286B76A64B73A22EC','621B717B7AA366579A8C4066D0D94B08','123','2017-11-07 11:55:26',NULL,1,'123','2017-11-07 11:55:26','system');
+insert  into `sys_roles_info`(`uuid`,`department_id`,`role_name`,`create_time`,`create_user`,`delete_flag`,`discription`,`updata_time`,`updata_user`) values ('B6C8910B03B01D3B8F1DA270A0231F5F','D58E6596AAA01A8419FEBE71D7999856','123','2017-11-07 11:56:03',NULL,1,'123','2017-11-07 11:56:03',NULL);
+insert  into `sys_roles_info`(`uuid`,`department_id`,`role_name`,`create_time`,`create_user`,`delete_flag`,`discription`,`updata_time`,`updata_user`) values ('F297893E3120C36D71EC38E6E288D686','621B717B7AA366579A8C4066D0D94B08','4564596789','2017-11-07 14:32:47',NULL,1,'5645646','2017-11-07 14:32:47',NULL);
+insert  into `sys_roles_info`(`uuid`,`department_id`,`role_name`,`create_time`,`create_user`,`delete_flag`,`discription`,`updata_time`,`updata_user`) values ('FAF603F6EBD247F9E5E12C0BF43F4487','EDA51AA8D4359F739E7D3EE9923FEBE8','123','2017-11-07 11:56:28',NULL,1,'123','2017-11-07 11:56:28',NULL);
 
 /*Table structure for table `sys_roles_jurisdiction_info` */
 
@@ -1170,11 +1191,14 @@ DROP TABLE IF EXISTS `sys_roles_jurisdiction_info`;
 
 CREATE TABLE `sys_roles_jurisdiction_info` (
   `uuid` varchar(32) NOT NULL,
-  `flag` varchar(2) DEFAULT NULL,
-  `insert_datetime` datetime NOT NULL,
   `menu_id` varchar(255) DEFAULT NULL,
   `role_id` varchar(255) DEFAULT NULL,
-  `updata_datetime` datetime DEFAULT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
+  `create_user` varchar(50) DEFAULT 'system' COMMENT '录入人员',
+  `delete_flag` int(11) DEFAULT '0' COMMENT '停用标记',
+  `discription` varchar(200) DEFAULT NULL COMMENT '资源功能描述',
+  `updata_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新人员',
+  `updata_user` varchar(50) DEFAULT 'system' COMMENT '更新时间',
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1202,6 +1226,15 @@ CREATE TABLE `sys_seed_result_ruler_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_seed_result_ruler_info` */
+
+insert  into `sys_seed_result_ruler_info`(`uuid`,`cols_name`,`cols_uuid`,`create_time`,`create_user`,`delete_flag`,`discription`,`ruler_colum_name`,`ruler_colum_uuid`,`ruler_uuid`,`table_uuid`,`updata_time`,`updata_user`) values ('1D808ED9FAC7606114686130AE5B33FA','简介','7064A18D4C49F696FA41D73FA956346E','2017-10-23 14:05:54',NULL,NULL,NULL,'简介','402880905da16202015da17f0c11000d','402880905da16202015da17540170006','BCFA39FCA088D151372D563DCB03D27C','2017-10-23 14:05:54','system');
+insert  into `sys_seed_result_ruler_info`(`uuid`,`cols_name`,`cols_uuid`,`create_time`,`create_user`,`delete_flag`,`discription`,`ruler_colum_name`,`ruler_colum_uuid`,`ruler_uuid`,`table_uuid`,`updata_time`,`updata_user`) values ('6F5BF91C62B859E0515AA88877D0D36F','作者','AD2D41265190C2D53D4B49529B267D1C','2017-10-23 14:05:54',NULL,NULL,NULL,'作者','402880905da16202015da17c2ad6000a','402880905da16202015da17540170006','BCFA39FCA088D151372D563DCB03D27C','2017-10-23 14:05:54','system');
+insert  into `sys_seed_result_ruler_info`(`uuid`,`cols_name`,`cols_uuid`,`create_time`,`create_user`,`delete_flag`,`discription`,`ruler_colum_name`,`ruler_colum_uuid`,`ruler_uuid`,`table_uuid`,`updata_time`,`updata_user`) values ('8083DA448FB2593BEE40A8784FCE3486','连接','0AA61F9E1BF7CDE5A72E98AEF0CFF20B','2017-10-23 14:05:54',NULL,NULL,NULL,'连接','402880905da16202015da1796e200008','402880905da16202015da17540170006','BCFA39FCA088D151372D563DCB03D27C','2017-10-23 14:05:54','system');
+insert  into `sys_seed_result_ruler_info`(`uuid`,`cols_name`,`cols_uuid`,`create_time`,`create_user`,`delete_flag`,`discription`,`ruler_colum_name`,`ruler_colum_uuid`,`ruler_uuid`,`table_uuid`,`updata_time`,`updata_user`) values ('89F93EBD6D433DE92E968AD75CADE9FB','分类2','6638888A422B99E1017BE443DB44B1A6','2017-10-23 14:05:54',NULL,NULL,NULL,'分类2','402880905da16202015da17e83fe000c','402880905da16202015da17540170006','BCFA39FCA088D151372D563DCB03D27C','2017-10-23 14:05:54','system');
+insert  into `sys_seed_result_ruler_info`(`uuid`,`cols_name`,`cols_uuid`,`create_time`,`create_user`,`delete_flag`,`discription`,`ruler_colum_name`,`ruler_colum_uuid`,`ruler_uuid`,`table_uuid`,`updata_time`,`updata_user`) values ('A78C9196D1B9CF83DEA16D6B8E34523F','阅读量','C6019DDF8FEACC1E5BE8A86B9E574954','2017-10-23 14:05:54',NULL,NULL,NULL,'阅读量','402880905da16202015da17f888a000e','402880905da16202015da17540170006','BCFA39FCA088D151372D563DCB03D27C','2017-10-23 14:05:54','system');
+insert  into `sys_seed_result_ruler_info`(`uuid`,`cols_name`,`cols_uuid`,`create_time`,`create_user`,`delete_flag`,`discription`,`ruler_colum_name`,`ruler_colum_uuid`,`ruler_uuid`,`table_uuid`,`updata_time`,`updata_user`) values ('C3E7AED0F516A2E29C62D61AA8941C31','图片','A4EA276D840EAB487440DAB59C8D966F','2017-10-23 14:05:54',NULL,NULL,NULL,'图片','402880905da16202015da17a6eb10009','402880905da16202015da17540170006','BCFA39FCA088D151372D563DCB03D27C','2017-10-23 14:05:54','system');
+insert  into `sys_seed_result_ruler_info`(`uuid`,`cols_name`,`cols_uuid`,`create_time`,`create_user`,`delete_flag`,`discription`,`ruler_colum_name`,`ruler_colum_uuid`,`ruler_uuid`,`table_uuid`,`updata_time`,`updata_user`) values ('C6D8F46F566ED17C063ECFE19B2A3B6D','书名','4A0C364540DF5352936295B801557E0B','2017-10-23 14:05:54',NULL,NULL,NULL,'书名','402880905da16202015da178dd370007','402880905da16202015da17540170006','BCFA39FCA088D151372D563DCB03D27C','2017-10-23 14:05:54','system');
+insert  into `sys_seed_result_ruler_info`(`uuid`,`cols_name`,`cols_uuid`,`create_time`,`create_user`,`delete_flag`,`discription`,`ruler_colum_name`,`ruler_colum_uuid`,`ruler_uuid`,`table_uuid`,`updata_time`,`updata_user`) values ('D02679B572A4AB4A7C08BC3352DF28ED','分类1','3B72B2E7AB14A0D6D3E8994476BDD483','2017-10-23 14:05:54',NULL,NULL,NULL,'分类1','402880905da16202015da17e1cca000b','402880905da16202015da17540170006','BCFA39FCA088D151372D563DCB03D27C','2017-10-23 14:05:54','system');
 
 /*Table structure for table `sys_seed_ruler_colum_info` */
 
@@ -1296,6 +1329,7 @@ CREATE TABLE `sys_seed_url_info` (
 
 /*Data for the table `sys_seed_url_info` */
 
+insert  into `sys_seed_url_info`(`uuid`,`delete_flag`,`discription`,`create_time`,`create_user`,`request_date`,`seed_icon`,`seed_name`,`seed_type`,`seed_url`,`updata_time`,`updata_user`,`request_proxy`,`charset`,`request_type`) values ('02c7503dad29d7d2fe70ba20f02794f4',-1,NULL,'2017-11-08 15:50:10','system',NULL,NULL,NULL,NULL,'http://www.xxsy.net','2017-11-08 15:50:10','system',NULL,NULL,NULL);
 insert  into `sys_seed_url_info`(`uuid`,`delete_flag`,`discription`,`create_time`,`create_user`,`request_date`,`seed_icon`,`seed_name`,`seed_type`,`seed_url`,`updata_time`,`updata_user`,`request_proxy`,`charset`,`request_type`) values ('04d01c124e59a57683027cac13d4021b',-1,NULL,'2017-08-30 22:18:14','system',NULL,NULL,NULL,NULL,'http://v.baidu.com/v?ct=301989888&rn=20&pn=0&db=0&s=22&word=%C1%DC%B0%CD%C1%F6','2017-08-30 22:18:14','system',NULL,NULL,NULL);
 insert  into `sys_seed_url_info`(`uuid`,`delete_flag`,`discription`,`create_time`,`create_user`,`request_date`,`seed_icon`,`seed_name`,`seed_type`,`seed_url`,`updata_time`,`updata_user`,`request_proxy`,`charset`,`request_type`) values ('0d07dfbc25a2b22a2372f167dc808a31',-1,NULL,'2017-08-30 22:18:17','system',NULL,NULL,NULL,NULL,'http://tousu.baidu.com/zhidao','2017-08-30 22:18:17','system',NULL,NULL,NULL);
 insert  into `sys_seed_url_info`(`uuid`,`delete_flag`,`discription`,`create_time`,`create_user`,`request_date`,`seed_icon`,`seed_name`,`seed_type`,`seed_url`,`updata_time`,`updata_user`,`request_proxy`,`charset`,`request_type`) values ('0e5cddc599ccfe14c2d7e2be0026ef86',-1,NULL,'2017-08-30 22:18:14','system',NULL,NULL,NULL,NULL,'http://tieba.baidu.com/f?kw=%C1%DC%B0%CD%C1%F6&t=4','2017-08-30 22:18:14','system',NULL,NULL,NULL);
@@ -1319,12 +1353,13 @@ DROP TABLE IF EXISTS `sys_system_info`;
 
 CREATE TABLE `sys_system_info` (
   `uuid` varchar(32) NOT NULL,
-  `developer` varchar(50) NOT NULL,
   `discription` varchar(1024) NOT NULL,
-  `flag` varchar(30) DEFAULT NULL,
-  `insert_datetime` date NOT NULL,
   `system_name` varchar(100) NOT NULL,
-  `updata_datetime` date DEFAULT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
+  `create_user` varchar(50) DEFAULT 'system' COMMENT '录入人员',
+  `delete_flag` int(11) DEFAULT '0' COMMENT '停用标记',
+  `updata_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新人员',
+  `updata_user` varchar(50) DEFAULT 'system' COMMENT '更新时间',
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1387,14 +1422,19 @@ DROP TABLE IF EXISTS `sys_user_base_info`;
 CREATE TABLE `sys_user_base_info` (
   `uuid` varchar(32) NOT NULL,
   `age` int(11) DEFAULT NULL,
-  `flag` varchar(2) DEFAULT NULL,
-  `insert_datetime` datetime NOT NULL,
   `password` varchar(50) NOT NULL,
   `persion_name` varchar(50) NOT NULL,
-  `seniority` float DEFAULT NULL,
   `sex` varchar(2) DEFAULT NULL,
-  `updata_datetime` datetime DEFAULT NULL,
   `user_name` varchar(50) NOT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
+  `create_user` varchar(50) DEFAULT 'system' COMMENT '录入人员',
+  `delete_flag` int(11) DEFAULT '0' COMMENT '停用标记',
+  `discription` varchar(200) DEFAULT NULL COMMENT '资源功能描述',
+  `updata_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新人员',
+  `updata_user` varchar(50) DEFAULT 'system' COMMENT '更新时间',
+  `head_pic` varchar(1024) DEFAULT NULL COMMENT '头像',
+  `email` varchar(100) DEFAULT NULL COMMENT '邮箱',
+  `phone` varchar(18) DEFAULT NULL COMMENT '电话',
   PRIMARY KEY (`uuid`),
   UNIQUE KEY `UK_filjsx4kbabuqh2fkxgd72dx5` (`user_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1407,11 +1447,14 @@ DROP TABLE IF EXISTS `sys_user_roles_info`;
 
 CREATE TABLE `sys_user_roles_info` (
   `uuid` varchar(32) NOT NULL,
-  `flag` varchar(2) DEFAULT NULL,
-  `insert_datetime` datetime NOT NULL,
   `roles_id` varchar(32) NOT NULL,
-  `updata_datetime` datetime DEFAULT NULL,
   `user_id` varchar(32) NOT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
+  `create_user` varchar(50) DEFAULT 'system' COMMENT '录入人员',
+  `delete_flag` int(11) DEFAULT '0' COMMENT '停用标记',
+  `discription` varchar(200) DEFAULT NULL COMMENT '资源功能描述',
+  `updata_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新人员',
+  `updata_user` varchar(50) DEFAULT 'system' COMMENT '更新时间',
   PRIMARY KEY (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
