@@ -30,7 +30,7 @@ import tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService;
 public class CustomUserDetailsService implements UserDetailsService {
 	@Autowired // 数据库服务类
 	private SysUserBaseService sysUserBaseService;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		SysUserBaseInfo user;
@@ -48,8 +48,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 				for (SysMenuInfo sysMenuInfo : menu) {
 					gas.add(new SimpleGrantedAuthority(sysMenuInfo.getName()));
 				}
-				// gas.add(new SwitchUserGrantedAuthority("ROLE_USER", new
-				// Authentication()));
+//				gas.add(new SwitchUserGrantedAuthority("ROLE_USER", new Authentication()));
 				UserDetails users = new User(user.getUserName(), user.getPassword(), true, true, true, true, gas);
 				return users;
 			} catch (Exception e) {
@@ -57,5 +56,5 @@ public class CustomUserDetailsService implements UserDetailsService {
 			}
 		}
 	}
-
+	
 }
