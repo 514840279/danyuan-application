@@ -8,7 +8,8 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
 <!-- Bootstrap 3.3.6 -->
-<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css" />
+<!-- <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css" /> -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />
 <!-- Ionicons -->
@@ -32,12 +33,12 @@
 		<div class="login-box-body">
 			<p class="login-box-msg">登录用户</p>
 
-			<form action="../../index2.html" method="post">
+			<form th:action="@{/login}"  method="post">
 				<div class="form-group has-feedback">
-					<input type="text" class="form-control" placeholder="Full name" /> <span class="glyphicon glyphicon-user form-control-feedback"></span>
+					<input type="text" class="form-control" placeholder="Full name" name="username" /> <span class="glyphicon glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" class="form-control" placeholder="Password" /> <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+					<input type="password" class="form-control" placeholder="Password" name="password"/> <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="row">
 					<!-- /.col -->
@@ -64,9 +65,11 @@
 	<!-- /.login-box -->
 
 	<!-- jQuery 2.2.3 -->
-	<script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<!-- 	<script type="text/javascript" src="plugins/jQuery/jquery.min.js"></script> -->
+	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
 	<!-- Bootstrap 3.3.6 -->
-	<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<!-- 	<script type="text/javascript" src="plugins/bootstrap/js/bootstrap.min.js"></script> -->
 	<script>
 	</script>
 </body>
