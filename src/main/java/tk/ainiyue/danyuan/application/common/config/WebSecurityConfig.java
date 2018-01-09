@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * 文件名 ： WebSecurityConfig.java
@@ -39,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		        .csrf().disable()
 		        .authorizeRequests()
 		        // 不需要验证就可以访问的路径
-		        .antMatchers("/*/js/**", "/*/css/**", "/*/img/**", "/plugins/**", "/pages/*/js/**", "/dist/*/**", "/pages/register.html", "/sysUserBase/save").permitAll()
+		        .antMatchers("/*/js/**", "/*/css/**", "/*/img/**", "/plugins/**", "/pages/*/js/**", "/dist/*/**", "/register.html", "/sysUserBase/save", "/login").permitAll()
 		        // 限制所有请求都需要验证
 		        .anyRequest().authenticated()
 		        .and()
@@ -57,7 +58,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
 		auth.userDetailsService(customUserDetailsService())
-		        .passwordEncoder(passwordEncoder());
+		// .passwordEncoder(passwordEncoder())
+		//
+		;
 
 	}
 	
@@ -67,8 +70,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 * @return
 	 */
 	@Bean
-	public Md5PasswordEncoder passwordEncoder() {
+	public Md5PasswordEncoder passwordEncoder2() {
 		return new Md5PasswordEncoder();
+		
+	}
+	
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 		
 	}
 	

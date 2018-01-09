@@ -58,7 +58,11 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 	
 	@Override
 	public SysUserBaseInfo findByName(String userName) {
-		return sysUserBaseDao.findOne(userName);
+		SysUserBaseInfo info = new SysUserBaseInfo();
+		info.setUserName(userName);
+		Example<SysUserBaseInfo> example = Example.of(info);
+		SysUserBaseInfo sourceCodes = sysUserBaseDao.findOne(example);
+		return sourceCodes;
 	}
 
 	/**

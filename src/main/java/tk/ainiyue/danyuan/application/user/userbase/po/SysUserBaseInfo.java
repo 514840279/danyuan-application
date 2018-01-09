@@ -53,7 +53,7 @@ public class SysUserBaseInfo {
 	private String	phone;
 	
 	@Column(name = "age", columnDefinition = "varchar(2) COMMENT '年龄'")
-	private int		age;
+	private Integer	age;
 
 	@Column(name = "head_pic", columnDefinition = "varchar(1024) COMMENT '头像'")
 	private String	headPic;
@@ -305,7 +305,7 @@ public class SysUserBaseInfo {
 	/**
 	 * 方法名 ： getEmail
 	 * 功 能 ： 返回变量 email 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getEmail() {
@@ -323,7 +323,7 @@ public class SysUserBaseInfo {
 	/**
 	 * 方法名 ： getPhone
 	 * 功 能 ： 返回变量 phone 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getPhone() {
@@ -341,7 +341,7 @@ public class SysUserBaseInfo {
 	/**
 	 * 方法名 ： getHeadPic
 	 * 功 能 ： 返回变量 headPic 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getHeadPic() {
@@ -377,6 +377,11 @@ public class SysUserBaseInfo {
 	public SysUserBaseInfo(String uuid) {
 		super();
 		this.uuid = uuid;
+	}
+
+	@Override
+	public String toString() {
+		return "SysUserBaseInfo [uuid=" + uuid + ", userName=" + userName + ", password=" + password + ", persionName=" + persionName + ", sex=" + sex + ", email=" + email + ", phone=" + phone + ", age=" + age + ", headPic=" + headPic + ", discription=" + discription + ", createTime=" + createTime + ", createUser=" + createUser + ", updataTime=" + updataTime + ", updataUser=" + updataUser + ", deleteFlag=" + deleteFlag + "]";
 	}
 
 }
