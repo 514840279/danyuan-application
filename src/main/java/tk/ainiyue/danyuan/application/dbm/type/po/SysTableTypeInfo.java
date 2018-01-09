@@ -35,7 +35,7 @@ public class SysTableTypeInfo implements Serializable {
 	private String			  createUser;
 	
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private int				  deleteFlag;
+	private Integer			  deleteFlag;
 	
 	@Column(columnDefinition = "varchar(200) COMMENT '资源功能描述'")
 	private String			  discription;
@@ -47,7 +47,7 @@ public class SysTableTypeInfo implements Serializable {
 	private String			  typeIcon;
 	
 	@Column(name = "type_order", columnDefinition = "int COMMENT '类型排序'")
-	private int				  typeOrder;
+	private Integer			  typeOrder;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updata_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '更新人员'")
@@ -83,11 +83,11 @@ public class SysTableTypeInfo implements Serializable {
 		this.createUser = createUser;
 	}
 	
-	public int getDeleteFlag() {
+	public Integer getDeleteFlag() {
 		return this.deleteFlag;
 	}
 	
-	public void setDeleteFlag(int deleteFlag) {
+	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
 	
@@ -107,11 +107,11 @@ public class SysTableTypeInfo implements Serializable {
 		this.typeName = typeName;
 	}
 	
-	public int getTypeOrder() {
+	public Integer getTypeOrder() {
 		return this.typeOrder;
 	}
 	
-	public void setTypeOrder(int typeOrder) {
+	public void setTypeOrder(Integer typeOrder) {
 		this.typeOrder = typeOrder;
 	}
 	
