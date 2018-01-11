@@ -1,5 +1,6 @@
 package tk.ainiyue.danyuan.application.crawler.config.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -7,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,50 +20,63 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "sys_seed_result_ruler_info")
 @NamedQuery(name = "SysSeedResultRulerInfo.findAll", query = "SELECT s FROM SysSeedResultRulerInfo s")
-public class SysSeedResultRulerInfo {
+public class SysSeedResultRulerInfo implements Serializable {
 
+	/**
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+	 */
+	private static final long serialVersionUID = -8550950330729844126L;
+	
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
 	@Column(name = "uuid", unique = true, nullable = false, columnDefinition = " varchar(36) COMMENT '主键'")
-	private String	uuid;
+	private String			  uuid;
 
 	@Column(name = "cols_name", columnDefinition = "varchar(30) COMMENT '表字段名'")
-	private String	colsName;
+	private String			  colsName;
 
 	@Column(name = "cols_uuid", columnDefinition = "varchar(36) COMMENT '表字段id'")
-	private String	colsUuid;
+	private String			  colsUuid;
 
 	@Column(name = "ruler_colum_name", columnDefinition = "varchar(30) COMMENT '规则字段名'")
-	private String	rulerColumName;
+	private String			  rulerColumName;
 
 	@Column(name = "ruler_colum_uuid", columnDefinition = "varchar(36) COMMENT '规则字段id'")
-	private String	rulerColumUuid;
+	private String			  rulerColumUuid;
 
 	@Column(name = "ruler_uuid", columnDefinition = "varchar(36) COMMENT '规则id'")
-	private String	rulerUuid;
+	private String			  rulerUuid;
 
 	@Column(name = "table_uuid", columnDefinition = "varchar(36) COMMENT '表id'")
-	private String	tableUuid;
+	private String			  tableUuid;
 
 	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
-	private String	discription;   // discription 描述
+	private String			  discription;							   // discription
+	                                                                   // 描述
 
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date	createTime;	   // create_time 插入时间
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date			  createTime;							   // create_time
+	                                                                   // 插入时间
 
 	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String	createUser;	   // create_user 插入人
+	private String			  createUser;							   // create_user
+	                                                                   // 插入人
 
-	@Column(name = "updata_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '更新人员'")
+	@Column(name = "update_time", insertable = false, columnDefinition = " timestamp  default CURRENT_TIMESTAMP  COMMENT '更新时间'")
+	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date	updataTime;	   // updata_time 更新时间
+	private Date			  updateTime;							   // updata_time
+	                                                                   // 更新时间
 
-	@Column(name = "updata_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新时间'")
-	private String	updataUser;	   // updata_user 更新人
+	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
+	private String			  updateUser;							   // updata_user
+	                                                                   // 更新人
 
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer	deleteFlag;	   // delete_flag 标记
+	private Integer			  deleteFlag;							   // delete_flag
+	                                                                   // 标记
 
 	public SysSeedResultRulerInfo() {
 	}
@@ -153,20 +169,40 @@ public class SysSeedResultRulerInfo {
 		this.tableUuid = tableUuid;
 	}
 
-	public Date getUpdataTime() {
-		return this.updataTime;
+	/**
+	 * 方法名 ： getUpdateTime
+	 * 功 能 ： 返回变量 updateTime 的值
+	 *
+	 * @return: Date
+	 */
+	public Date getUpdateTime() {
+		return updateTime;
 	}
 
-	public void setUpdataTime(Date updataTime) {
-		this.updataTime = updataTime;
+	/**
+	 * 方法名 ： setUpdateTime
+	 * 功 能 ： 设置变量 updateTime 的值
+	 */
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 
-	public String getUpdataUser() {
-		return this.updataUser;
+	/**
+	 * 方法名 ： getUpdateUser
+	 * 功 能 ： 返回变量 updateUser 的值
+	 *
+	 * @return: String
+	 */
+	public String getUpdateUser() {
+		return updateUser;
 	}
 
-	public void setUpdataUser(String updataUser) {
-		this.updataUser = updataUser;
+	/**
+	 * 方法名 ： setUpdateUser
+	 * 功 能 ： 设置变量 updateUser 的值
+	 */
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
 	}
 
 }

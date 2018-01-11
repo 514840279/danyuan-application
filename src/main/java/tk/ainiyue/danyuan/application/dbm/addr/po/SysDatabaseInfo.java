@@ -1,6 +1,5 @@
 package tk.ainiyue.danyuan.application.dbm.addr.po;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,6 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * The persistent class for the sys_database_info database table.
@@ -19,54 +19,55 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "sys_database_info")
 @NamedQuery(name = "SysDatabaseInfo.findAll", query = "SELECT s FROM SysDatabaseInfo s")
-public class SysDatabaseInfo implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class SysDatabaseInfo {
 
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = " uuid")
 	@Column(unique = true, nullable = false, columnDefinition = " varchar(36) COMMENT '主键'")
-	private String			  uuid;
+	private String	uuid;
 
 	@Column(columnDefinition = " varchar(100) COMMENT 'ip地址'")
-	private String			  address;
+	private String	address;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
-	private Date			  createTime;
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp  default CURRENT_TIMESTAMP COMMENT '录入时间'")
+	private Date	createTime;
 
 	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String			  createUser;
+	private String	createUser;
 
 	@Column(name = "database_name", columnDefinition = " varchar(50) COMMENT '数据库名称'")
-	private String			  databaseName;
+	private String	databaseName;
 
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer			  deleteFlag;
+	private Integer	deleteFlag;
 
 	@Column(columnDefinition = "varchar(200) COMMENT '资源功能描述'")
-	private String			  discription;
+	private String	discription;
 
 	@Column(columnDefinition = "varchar(200) COMMENT '数据库驱动类'")
-	private String			  driver;
+	private String	driver;
 
 	@Column(columnDefinition = "varchar(200) COMMENT '用户密码'")
-	private String			  password;
+	private String	password;
 
 	@Column(columnDefinition = "varchar(10) COMMENT '端口号'")
-	private String			  port;
+	private String	port;
 
 	@Column(columnDefinition = "varchar(200) COMMENT '数据库类型'")
-	private String			  type;
+	private String	type;
 
+	@Column(name = "update_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '更新时间'")
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "updata_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '更新人员'")
-	private Date			  updataTime;
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	private Date	updateTime;	 // updata_time 更新时间
 
-	@Column(name = "updata_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新时间'")
-	private String			  updataUser;
+	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
+	private String	updateUser;	 // updata_user 更新人
 
 	@Column(columnDefinition = "varchar(200) COMMENT '用户名称'")
-	private String			  username;
+	private String	username;
 
 	public SysDatabaseInfo() {
 	}
@@ -159,20 +160,40 @@ public class SysDatabaseInfo implements Serializable {
 		this.type = type;
 	}
 
-	public Date getUpdataTime() {
-		return this.updataTime;
+	/**
+	 * 方法名 ： getUpdateTime
+	 * 功 能 ： 返回变量 updateTime 的值
+	 *
+	 * @return: Date
+	 */
+	public Date getUpdateTime() {
+		return updateTime;
 	}
 
-	public void setUpdataTime(Date updataTime) {
-		this.updataTime = updataTime;
+	/**
+	 * 方法名 ： setUpdateTime
+	 * 功 能 ： 设置变量 updateTime 的值
+	 */
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 
-	public String getUpdataUser() {
-		return this.updataUser;
+	/**
+	 * 方法名 ： getUpdateUser
+	 * 功 能 ： 返回变量 updateUser 的值
+	 *
+	 * @return: String
+	 */
+	public String getUpdateUser() {
+		return updateUser;
 	}
 
-	public void setUpdataUser(String updataUser) {
-		this.updataUser = updataUser;
+	/**
+	 * 方法名 ： setUpdateUser
+	 * 功 能 ： 设置变量 updateUser 的值
+	 */
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
 	}
 
 	public String getUsername() {
@@ -182,5 +203,18 @@ public class SysDatabaseInfo implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+	/**
+	 * 方法名 ： toString
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @return
+	 * 参 考 ： @see java.lang.Object#toString()
+	 * 作 者 ： wang
+	 */
 
+	@Override
+	public String toString() {
+		return "SysDatabaseInfo [uuid=" + uuid + ", address=" + address + ", createTime=" + createTime + ", createUser=" + createUser + ", databaseName=" + databaseName + ", deleteFlag=" + deleteFlag + ", discription=" + discription + ", driver=" + driver + ", password=" + password + ", port=" + port + ", type=" + type + ", updateTime=" + updateTime + ", updateUser=" + updateUser + ", username=" + username + "]";
+	}
+	
 }

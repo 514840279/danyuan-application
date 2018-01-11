@@ -30,7 +30,7 @@ import tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService;
 public class CustomUserDetailsService implements UserDetailsService {
 	@Autowired // 数据库服务类
 	private SysUserBaseService sysUserBaseService;
-
+	
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		SysUserBaseInfo user;
@@ -39,6 +39,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 			System.err.println(user);
 		} catch (Exception e) {
 			throw new UsernameNotFoundException("user select fail");
+
 		}
 		if (user == null) {
 			throw new UsernameNotFoundException("no user found");
@@ -60,5 +61,5 @@ public class CustomUserDetailsService implements UserDetailsService {
 			}
 		}
 	}
-	
+
 }

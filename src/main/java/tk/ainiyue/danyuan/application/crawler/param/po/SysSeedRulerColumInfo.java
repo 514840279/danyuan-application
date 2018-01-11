@@ -1,11 +1,14 @@
 package tk.ainiyue.danyuan.application.crawler.param.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,50 +25,78 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 @Table(name = "sys_seed_ruler_colum_info")
-public class SysSeedRulerColumInfo {
+public class SysSeedRulerColumInfo implements Serializable {
+	/**
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+	 */
+	private static final long serialVersionUID = -8357322920888540203L;
+
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
 	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键'")
-	private String	uuid;		 // uuid 唯一id
+	private String			  uuid;									   // uuid
+	                                                                   // 唯一id
 
 	@Column(name = "ruler_uuid", columnDefinition = "varchar(32) COMMENT '规则id'")
-	private String	rulerUuid;	 // roler_uuid 规则id
+	private String			  rulerUuid;							   // roler_uuid
+	                                                                   // 规则id
 	@Column(name = "colum_name", columnDefinition = "varchar(30) COMMENT '列名称'")
-	private String	columName;	 // colum_name 列名称
+	private String			  columName;							   // colum_name
+	                                                                   // 列名称
 	@Column(name = "ruler", columnDefinition = "varchar(300) COMMENT '取内容规则'")
-	private String	ruler;		 // roler 取内容规则
+	private String			  ruler;								   // roler
+	                                                                   // 取内容规则
 	@Column(name = "type", columnDefinition = "varchar(30) COMMENT '处理方式'")
-	private String	type;		 // type 处理方式
+	private String			  type;									   // type
+	                                                                   // 处理方式
 	@Column(name = "spl1", columnDefinition = "varchar(30) COMMENT 'split 1字符串'")
-	private String	spl1;		 // spl1 split 1字符串
+	private String			  spl1;									   // spl1
+	                                                                   // split
+	                                                                   // 1字符串
 	@Column(name = "spl2", columnDefinition = "int COMMENT '2整型脚标'")
-	private String	spl2;		 // spl2 split 2整型脚标
+	private String			  spl2;									   // spl2
+	                                                                   // split
+	                                                                   // 2整型脚标
 	@Column(name = "app1", columnDefinition = "varchar(30) COMMENT 'apand 方式 字符'")
-	private String	app1;		 // app1 apand 方式 字符
+	private String			  app1;									   // app1
+	                                                                   // apand
+	                                                                   // 方式 字符
 	@Column(name = "app2", columnDefinition = "varchar(30) COMMENT 'apand 字符'")
-	private String	app2;		 // app2 apand 字符
+	private String			  app2;									   // app2
+	                                                                   // apand
+	                                                                   // 字符
 	@Column(name = "arr", columnDefinition = "int COMMENT '取一个 整型'")
-	private String	arr;		 // arr array 取一个 整型
+	private String			  arr;									   // arr
+	                                                                   // array
+	                                                                   // 取一个 整型
 
 	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
-	private String	discription; // discription 描述
+	private String			  discription;							   // discription
+	                                                                   // 描述
 
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
+	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date	createTime;	 // create_time 插入时间
+	private Date			  createTime;							   // create_time
+	                                                                   // 插入时间
 
 	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String	createUser;	 // create_user 插入人
+	private String			  createUser;							   // create_user
+	                                                                   // 插入人
 
-	@Column(name = "updata_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '更新人员'")
+	@Column(name = "update_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '更新时间'")
+	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private String	updataTime;	 // updata_time 更新时间
+	private Date			  updateTime;							   // updata_time
+	                                                                   // 更新时间
 
-	@Column(name = "updata_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新时间'")
-	private String	updataUser;	 // updata_user 更新人
+	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
+	private String			  updateUser;							   // updata_user
+	                                                                   // 更新人
 
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer	deleteFlag;	 // delete_flag 标记
+	private Integer			  deleteFlag;							   // delete_flag
+	                                                                   // 标记
 
 	/**
 	 * 方法名 ： getUuid
@@ -302,42 +333,6 @@ public class SysSeedRulerColumInfo {
 	}
 
 	/**
-	 * 方法名 ： getUpdataTime
-	 * 功 能 ： 返回变量 updataTime 的值
-	 *
-	 * @return: String
-	 */
-	public String getUpdataTime() {
-		return updataTime;
-	}
-
-	/**
-	 * 方法名 ： setUpdataTime
-	 * 功 能 ： 设置变量 updataTime 的值
-	 */
-	public void setUpdataTime(String updataTime) {
-		this.updataTime = updataTime;
-	}
-
-	/**
-	 * 方法名 ： getUpdataUser
-	 * 功 能 ： 返回变量 updataUser 的值
-	 *
-	 * @return: String
-	 */
-	public String getUpdataUser() {
-		return updataUser;
-	}
-
-	/**
-	 * 方法名 ： setUpdataUser
-	 * 功 能 ： 设置变量 updataUser 的值
-	 */
-	public void setUpdataUser(String updataUser) {
-		this.updataUser = updataUser;
-	}
-
-	/**
 	 * 方法名 ： getDeleteFlag
 	 * 功 能 ： 返回变量 deleteFlag 的值
 	 *
@@ -354,7 +349,43 @@ public class SysSeedRulerColumInfo {
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
-
+	
+	/**
+	 * 方法名 ： getUpdateTime
+	 * 功 能 ： 返回变量 updateTime 的值
+	 *
+	 * @return: Date
+	 */
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	
+	/**
+	 * 方法名 ： setUpdateTime
+	 * 功 能 ： 设置变量 updateTime 的值
+	 */
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+	
+	/**
+	 * 方法名 ： getUpdateUser
+	 * 功 能 ： 返回变量 updateUser 的值
+	 *
+	 * @return: String
+	 */
+	public String getUpdateUser() {
+		return updateUser;
+	}
+	
+	/**
+	 * 方法名 ： setUpdateUser
+	 * 功 能 ： 设置变量 updateUser 的值
+	 */
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
+	
 	/**
 	 * 方法名 ： toString
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -365,7 +396,18 @@ public class SysSeedRulerColumInfo {
 
 	@Override
 	public String toString() {
-		return "SysSeedRolerColumInfo [uuid=" + uuid + ", rulerUuid=" + rulerUuid + ", columName=" + columName + ", ruler=" + ruler + ", type=" + type + ", spl1=" + spl1 + ", spl2=" + spl2 + ", app1=" + app1 + ", app2=" + app2 + ", arr=" + arr + ", discription=" + discription + ", createTime=" + createTime + ", createUser=" + createUser + ", updataTime=" + updataTime + ", updataUser=" + updataUser + ", deleteFlag=" + deleteFlag + "]";
+		return "SysSeedRulerColumInfo [uuid=" + uuid + ", rulerUuid=" + rulerUuid + ", columName=" + columName + ", ruler=" + ruler + ", type=" + type + ", spl1=" + spl1 + ", spl2=" + spl2 + ", app1=" + app1 + ", app2=" + app2 + ", arr=" + arr + ", discription=" + discription + ", createTime=" + createTime + ", createUser=" + createUser + ", updateTime=" + updateTime + ", updateUser=" + updateUser + ", deleteFlag=" + deleteFlag + "]";
+	}
+	
+	/**
+	 * 构造方法：
+	 * 描 述： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数：
+	 * 作 者 ： wang
+	 * @throws
+	 */
+	public SysSeedRulerColumInfo() {
+		super();
 	}
 
 }

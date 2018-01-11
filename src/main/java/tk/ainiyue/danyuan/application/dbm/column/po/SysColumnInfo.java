@@ -12,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * The persistent class for the sys_column_info database table.
@@ -23,7 +24,7 @@ public class SysColumnInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GenericGenerator(name = "idGenerator", strategy = " uuid")
+	@GenericGenerator(name = "idGenerator", strategy = " uuid ")
 	@Column(unique = true, nullable = false, columnDefinition = " varchar(36) COMMENT '主键'")
 	private String			  uuid;
 	
@@ -43,6 +44,7 @@ public class SysColumnInfo implements Serializable {
 	private String			  colsType;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
 	private Date			  createTime;
 
@@ -52,133 +54,257 @@ public class SysColumnInfo implements Serializable {
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
 	private Integer			  deleteFlag;
 	
-	@Column(columnDefinition = "varchar(200) COMMENT '资源功能描述'")
+	@Column(columnDefinition = " varchar(200) COMMENT '资源功能描述'")
 	private String			  discription;
 	
 	@Column(name = "table_uuid", columnDefinition = " varchar(36) COMMENT '表id'")
 	private String			  tableUuid;
 	
+	@Column(name = "update_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP   COMMENT '更新时间'")
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "updata_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '更新人员'")
-	private Date			  updataTime;
-	
-	@Column(name = "updata_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新时间'")
-	private String			  updataUser;
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	private Date			  updateTime;			// updata_time 更新时间
+
+	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
+	private String			  updateUser;			// updata_user 更新人
 	
 	public SysColumnInfo() {
 	}
-	
+
+	/**
+	 * 方法名 ： getUuid
+	 * 功 能 ： 返回变量 uuid 的值
+	 *
+	 * @return: String
+	 */
 	public String getUuid() {
-		return this.uuid;
+		return uuid;
 	}
-	
+
+	/**
+	 * 方法名 ： setUuid
+	 * 功 能 ： 设置变量 uuid 的值
+	 */
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
 
 	/**
-	 * @return the colsLength
+	 * 方法名 ： getColsLength
+	 * 功 能 ： 返回变量 colsLength 的值
+	 *
+	 * @return: Integer
 	 */
 	public Integer getColsLength() {
 		return colsLength;
 	}
 
 	/**
-	 * @param colsLength
-	 *            the colsLength to set
+	 * 方法名 ： setColsLength
+	 * 功 能 ： 设置变量 colsLength 的值
 	 */
 	public void setColsLength(Integer colsLength) {
 		this.colsLength = colsLength;
 	}
 
+	/**
+	 * 方法名 ： getColsDesc
+	 * 功 能 ： 返回变量 colsDesc 的值
+	 *
+	 * @return: String
+	 */
 	public String getColsDesc() {
-		return this.colsDesc;
+		return colsDesc;
 	}
-	
+
+	/**
+	 * 方法名 ： setColsDesc
+	 * 功 能 ： 设置变量 colsDesc 的值
+	 */
 	public void setColsDesc(String colsDesc) {
 		this.colsDesc = colsDesc;
 	}
-	
+
+	/**
+	 * 方法名 ： getColsName
+	 * 功 能 ： 返回变量 colsName 的值
+	 *
+	 * @return: String
+	 */
 	public String getColsName() {
-		return this.colsName;
+		return colsName;
 	}
-	
+
+	/**
+	 * 方法名 ： setColsName
+	 * 功 能 ： 设置变量 colsName 的值
+	 */
 	public void setColsName(String colsName) {
 		this.colsName = colsName;
 	}
-	
+
+	/**
+	 * 方法名 ： getColsOrder
+	 * 功 能 ： 返回变量 colsOrder 的值
+	 *
+	 * @return: Integer
+	 */
 	public Integer getColsOrder() {
-		return this.colsOrder;
+		return colsOrder;
 	}
-	
+
+	/**
+	 * 方法名 ： setColsOrder
+	 * 功 能 ： 设置变量 colsOrder 的值
+	 */
 	public void setColsOrder(Integer colsOrder) {
 		this.colsOrder = colsOrder;
 	}
-	
+
+	/**
+	 * 方法名 ： getColsType
+	 * 功 能 ： 返回变量 colsType 的值
+	 *
+	 * @return: String
+	 */
 	public String getColsType() {
-		return this.colsType;
+		return colsType;
 	}
-	
+
+	/**
+	 * 方法名 ： setColsType
+	 * 功 能 ： 设置变量 colsType 的值
+	 */
 	public void setColsType(String colsType) {
 		this.colsType = colsType;
 	}
-	
+
+	/**
+	 * 方法名 ： getCreateTime
+	 * 功 能 ： 返回变量 createTime 的值
+	 *
+	 * @return: Date
+	 */
 	public Date getCreateTime() {
-		return this.createTime;
+		return createTime;
 	}
-	
+
+	/**
+	 * 方法名 ： setCreateTime
+	 * 功 能 ： 设置变量 createTime 的值
+	 */
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	
+
+	/**
+	 * 方法名 ： getCreateUser
+	 * 功 能 ： 返回变量 createUser 的值
+	 *
+	 * @return: String
+	 */
 	public String getCreateUser() {
-		return this.createUser;
+		return createUser;
 	}
-	
+
+	/**
+	 * 方法名 ： setCreateUser
+	 * 功 能 ： 设置变量 createUser 的值
+	 */
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	
+
+	/**
+	 * 方法名 ： getDeleteFlag
+	 * 功 能 ： 返回变量 deleteFlag 的值
+	 *
+	 * @return: Integer
+	 */
 	public Integer getDeleteFlag() {
-		return this.deleteFlag;
+		return deleteFlag;
 	}
-	
+
+	/**
+	 * 方法名 ： setDeleteFlag
+	 * 功 能 ： 设置变量 deleteFlag 的值
+	 */
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
-	
+
+	/**
+	 * 方法名 ： getDiscription
+	 * 功 能 ： 返回变量 discription 的值
+	 *
+	 * @return: String
+	 */
 	public String getDiscription() {
-		return this.discription;
+		return discription;
 	}
-	
+
+	/**
+	 * 方法名 ： setDiscription
+	 * 功 能 ： 设置变量 discription 的值
+	 */
 	public void setDiscription(String discription) {
 		this.discription = discription;
 	}
-	
+
+	/**
+	 * 方法名 ： getTableUuid
+	 * 功 能 ： 返回变量 tableUuid 的值
+	 *
+	 * @return: String
+	 */
 	public String getTableUuid() {
-		return this.tableUuid;
+		return tableUuid;
 	}
-	
+
+	/**
+	 * 方法名 ： setTableUuid
+	 * 功 能 ： 设置变量 tableUuid 的值
+	 */
 	public void setTableUuid(String tableUuid) {
 		this.tableUuid = tableUuid;
 	}
-	
-	public Date getUpdataTime() {
-		return this.updataTime;
+
+	/**
+	 * 方法名 ： getUpdateTime
+	 * 功 能 ： 返回变量 updateTime 的值
+	 *
+	 * @return: Date
+	 */
+	public Date getUpdateTime() {
+		return updateTime;
 	}
-	
-	public void setUpdataTime(Date updataTime) {
-		this.updataTime = updataTime;
+
+	/**
+	 * 方法名 ： setUpdateTime
+	 * 功 能 ： 设置变量 updateTime 的值
+	 */
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
-	
-	public String getUpdataUser() {
-		return this.updataUser;
+
+	/**
+	 * 方法名 ： getUpdateUser
+	 * 功 能 ： 返回变量 updateUser 的值
+	 *
+	 * @return: String
+	 */
+	public String getUpdateUser() {
+		return updateUser;
 	}
-	
-	public void setUpdataUser(String updataUser) {
-		this.updataUser = updataUser;
+
+	/**
+	 * 方法名 ： setUpdateUser
+	 * 功 能 ： 设置变量 updateUser 的值
+	 */
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
 	}
-	
+
 	public SysColumnInfo(String uuid, Integer colsLength, String colsDesc, String colsName, Integer colsOrder, String colsType, String discription, String tableUuid) {
 		super();
 		this.uuid = uuid;
@@ -195,18 +321,5 @@ public class SysColumnInfo implements Serializable {
 		super();
 		this.tableUuid = tableUuid;
 	}
-
-	/**
-	 * 方法名 ： toString
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @return
-	 * 参 考 ： @see java.lang.Object#toString()
-	 * 作 者 ： wang
-	 */
 	
-	@Override
-	public String toString() {
-		return "SysColumnInfo [uuid=" + uuid + ", colsLength=" + colsLength + ", colsDesc=" + colsDesc + ", colsName=" + colsName + ", colsOrder=" + colsOrder + ", colsType=" + colsType + ", createTime=" + createTime + ", createUser=" + createUser + ", deleteFlag=" + deleteFlag + ", discription=" + discription + ", tableUuid=" + tableUuid + ", updataTime=" + updataTime + ", updataUser=" + updataUser + "]";
-	}
-
 }

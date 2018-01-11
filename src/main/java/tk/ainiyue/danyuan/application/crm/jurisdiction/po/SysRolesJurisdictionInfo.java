@@ -1,11 +1,14 @@
 package tk.ainiyue.danyuan.application.crm.jurisdiction.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,38 +25,51 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 @Table(name = "sys_roles_jurisdiction_info")
-public class SysRolesJurisdictionInfo {
+public class SysRolesJurisdictionInfo implements Serializable {
+	
+	/**
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
+	 */
+	private static final long serialVersionUID = 338686748001155299L;
 	
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
 	@Column(name = "UUID", columnDefinition = "varchar(36) COMMENT '主键'")
-	private String	uuid;
+	private String			  uuid;
 	
 	@Column(name = "role_id", columnDefinition = "varchar(36) COMMENT '角色id'")
-	private String	roleId;
+	private String			  roleId;
 	
 	@Column(name = "menu_id", columnDefinition = "varchar(36) COMMENT '菜单id'")
-	private String	menuId;
+	private String			  menuId;
 	
 	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
-	private String	discription; // discription 描述
+	private String			  discription;							 // discription
+	                                                                 // 描述
 	
-	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
+	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '录入时间'")
+	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date	createTime;	 // create_time 插入时间
+	private Date			  createTime;							 // create_time
+	                                                                 // 插入时间
 	
 	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String	createUser;	 // create_user 插入人
+	private String			  createUser;							 // create_user
+	                                                                 // 插入人
 	
-	@Column(name = "updata_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '更新人员'")
+	@Column(name = "update_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '更新时间'")
+	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date	updataTime;	 // updata_time 更新时间
+	private Date			  updateTime;							 // updata_time
+	                                                                 // 更新时间
 	
-	@Column(name = "updata_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新时间'")
-	private String	updataUser;	 // updata_user 更新人
+	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
+	private String			  updateUser;							 // updata_user
+	                                                                 // 更新人
 	
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer	deleteFlag;	 // delete_flag 标记
+	private Integer			  deleteFlag;							 // delete_flag
+	                                                                 // 标记
 	
 	/**
 	 * 方法名 ： getUuid
@@ -164,42 +180,6 @@ public class SysRolesJurisdictionInfo {
 	}
 	
 	/**
-	 * 方法名 ： getUpdataTime
-	 * 功 能 ： 返回变量 updataTime 的值
-	 *
-	 * @return: Date
-	 */
-	public Date getUpdataTime() {
-		return updataTime;
-	}
-	
-	/**
-	 * 方法名 ： setUpdataTime
-	 * 功 能 ： 设置变量 updataTime 的值
-	 */
-	public void setUpdataTime(Date updataTime) {
-		this.updataTime = updataTime;
-	}
-	
-	/**
-	 * 方法名 ： getUpdataUser
-	 * 功 能 ： 返回变量 updataUser 的值
-	 *
-	 * @return: String
-	 */
-	public String getUpdataUser() {
-		return updataUser;
-	}
-	
-	/**
-	 * 方法名 ： setUpdataUser
-	 * 功 能 ： 设置变量 updataUser 的值
-	 */
-	public void setUpdataUser(String updataUser) {
-		this.updataUser = updataUser;
-	}
-	
-	/**
 	 * 方法名 ： getDeleteFlag
 	 * 功 能 ： 返回变量 deleteFlag 的值
 	 *
@@ -239,5 +219,41 @@ public class SysRolesJurisdictionInfo {
 		super();
 		this.uuid = uuid;
 	}
-	
+
+	/**
+	 * 方法名 ： getUpdateTime
+	 * 功 能 ： 返回变量 updateTime 的值
+	 *
+	 * @return: Date
+	 */
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	/**
+	 * 方法名 ： setUpdateTime
+	 * 功 能 ： 设置变量 updateTime 的值
+	 */
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	/**
+	 * 方法名 ： getUpdateUser
+	 * 功 能 ： 返回变量 updateUser 的值
+	 *
+	 * @return: String
+	 */
+	public String getUpdateUser() {
+		return updateUser;
+	}
+
+	/**
+	 * 方法名 ： setUpdateUser
+	 * 功 能 ： 设置变量 updateUser 的值
+	 */
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
+
 }
