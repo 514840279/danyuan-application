@@ -35,7 +35,7 @@ $(function() {
 			{title : '角色名称',field : 'roleId',	sortable : true,align : 'center'},
 			{title : '菜单 名称',field : 'menuId',align : 'center',	sortable : true,valign : 'middle'},
 			{title : '记录时间',field : 'createTime',	align : 'center',sortable : true,valign : 'middle'},
-			{title : '更新时间',field : 'updataTime',	sortable : true,align : 'center'},
+			{title : '更新时间',field : 'updateTime',	sortable : true,align : 'center'},
 			{title : '标记',	field : 'deleteFlag',	sortable : true,align : 'center'}
 		]
 	});

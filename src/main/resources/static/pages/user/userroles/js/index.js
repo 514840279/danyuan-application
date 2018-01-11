@@ -87,14 +87,14 @@ $(function() {
 		},
 		{
 			title : '记录时间',
-			field : 'insertDatetime',
+			field : 'createTime',
 			align : 'center',
 			sortable : true,
 			valign : 'middle'
 		},
 		{
 			title : '更新时间',
-			field : 'updataDatatime',
+			field : 'updateTime',
 			sortable : true,
 			align : 'center'
 		},

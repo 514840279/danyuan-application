@@ -153,8 +153,8 @@ $(function() {
 		  	{title : '员工姓名',field : 'persionName',align : 'center',sortable : true,valign : 'middle'  }, 
 		  	{title : '性别',field : 'sex',align : 'center',sortable : true,valign : 'middle'  }, 
 		  	{title : '年龄',field : 'age',align : 'center',sortable : true,valign : 'middle'  }, 
-		  	{title : '记录时间',field : 'insertDatetime',align : 'center',sortable : true,valign : 'middle'  },
-		  	{title : '更新时间',field : 'updataDatatime',sortable : true,align : 'center'  }, 
+		  	{title : '记录时间',field : 'createTime',align : 'center',sortable : true,valign : 'middle'  },
+		  	{title : '更新时间',field : 'updateTime',sortable : true,align : 'center'  }, 
 		  	{title : '标记',field : 'flag',sortable : true,align : 'center'  } 
     	]
 	});

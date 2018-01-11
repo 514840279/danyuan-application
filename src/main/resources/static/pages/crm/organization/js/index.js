@@ -54,7 +54,7 @@ $(function() {
 			{title : '机构名称',field : 'organizationName',align : 'center',sortable : true,valign : 'middle'},
 			{title : '机构描述',field : 'discription',sortable : true,align : 'center'},
 			{title : '录入时间',field : 'createTime',sortable : true,align : 'center'},
-			{title : '更新时间',field : 'updataTime',sortable : true,align : 'center'},
+			{title : '更新时间',field : 'updateTime',sortable : true,align : 'center'},
 			{title : '状态',field : 'deleteFlag',sortable : true,align : 'center',formatter: stateFormatter	},
 			{title : '操作',field : 'uuid',align : 'center',
 				formatter : function(value, row, index) {
