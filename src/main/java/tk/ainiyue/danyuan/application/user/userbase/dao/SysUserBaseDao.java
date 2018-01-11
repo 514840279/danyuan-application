@@ -2,7 +2,10 @@ package tk.ainiyue.danyuan.application.user.userbase.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -29,5 +32,21 @@ public interface SysUserBaseDao extends JpaRepository<SysUserBaseInfo, String> {
 	        + " ) "
 	        + ") ")
 	List<SysMenuInfo> getRoleByUser(@Param("uuid") String uuid);
+
+	/**
+	 * 方法名： saveu
+	 * 功 能： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数： @param info
+	 * 返 回： void
+	 * 作 者 ： Administrator
+	 * @throws
+	 */
+	@Transactional
+	@Modifying
+	@Query(" update SysUserBaseInfo t set userName =:userName,persionName =:persionName,sex=:sex,email=:email,phone=:phone,age=:age,discription=:discription,updataTime = CURRENT_TIMESTAMP  where uuid =:uuid")
+	void saveu(@Param("uuid") String uuid, @Param("persionName") String persionName,
+	        @Param("age") Integer age, @Param("userName") String userName,
+	        @Param("email") String email, @Param("phone") String phone,
+	        @Param("sex") String sex, @Param("discription") String discription);
 	
 }

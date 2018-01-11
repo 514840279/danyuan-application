@@ -18,6 +18,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo;
 import tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService;
+import tk.ainiyue.danyuan.application.user.userbase.vo.SysUserBaseVo;
 
 /**
  * 文件名 ： SysUserBaseController.java
@@ -33,14 +34,14 @@ import tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService;
 @RequestMapping("/sysUserBase")
 @Api(value = "/sysUserBase", description = "用户管理")
 public class SysUserBaseController {
-	
+
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysUserBaseController.class);
-	
+
 	//
 	@Autowired
 	private SysUserBaseService	sysUserBaseService;
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -54,8 +55,8 @@ public class SysUserBaseController {
 		logger.info("sysUserBaseList", SysUserBaseController.class);
 		return sysUserBaseService.findAll();
 	}
-	
-	@ApiOperation(value = "分页查询全部部门信息", notes = "")
+
+	@ApiOperation(value = "分页查询全部用户信息", notes = "")
 	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
 	public Page<SysUserBaseInfo> findAllBySearchText(int pageNumber, int pageSize, SysUserBaseInfo sysUserBaseInfo) {
 		logger.info("findAllBySearchText", SysUserBaseController.class);
@@ -68,7 +69,6 @@ public class SysUserBaseController {
 	public String save(@RequestBody SysUserBaseInfo info) {
 		logger.info("save", SysUserBaseController.class);
 		try {
-			System.err.println(info.toString());
 			info.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
 			encryptPassword(info);
 			sysUserBaseService.save(info);
@@ -78,15 +78,28 @@ public class SysUserBaseController {
 			return e.toString();
 		}
 	}
-
+	
+	@ApiOperation(value = "修改角色信息", notes = "")
+	@RequestMapping(path = "/saveu", method = RequestMethod.POST)
+	@ResponseBody
+	public String saveu(@RequestBody SysUserBaseInfo info) {
+		logger.info("saveu", SysUserBaseController.class);
+		try {
+			sysUserBaseService.saveu(info.getUuid(), info.getPersionName(), info.getAge(), info.getUserName(), info.getEmail(), info.getPhone(), info.getSex(), info.getDiscription());
+			return "1";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return e.toString();
+		}
+	}
+	
 	@ApiOperation(value = "删除角色信息", notes = "")
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public String delete(@RequestBody SysUserBaseInfo info) {
+	public String delete(@RequestBody SysUserBaseVo vo) {
 		logger.info("delete", SysUserBaseController.class);
 		try {
-			
-			sysUserBaseService.delete(info);
+			sysUserBaseService.delete(vo);
 			return "1";
 		} catch (Exception e) {
 			return "0";
@@ -99,7 +112,6 @@ public class SysUserBaseController {
 	private void encryptPassword(SysUserBaseInfo userEntity) {
 		String password = userEntity.getPassword();
 		password = new BCryptPasswordEncoder().encode(password);
-		System.err.println(password);
 		userEntity.setPassword(password);
 	}
 }
