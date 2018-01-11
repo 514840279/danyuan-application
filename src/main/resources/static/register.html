@@ -8,11 +8,10 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- Bootstrap 3.3.6 -->
-<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://cdn.bootcss.com/ionicons/4.0.0-9/css/ionicons.min.css" />
+<!-- Theme style -->
 <!-- Theme style -->
 <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
 
@@ -66,9 +65,9 @@
 	<!-- /.register-box -->
 
 	<!-- jQuery 2.2.3 -->
-	<script type="text/javascript" src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
 	<!-- Bootstrap 3.3.6 -->
-	<script type="text/javascript" src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="plugins/jQuery/ajax.js"></script>
 	<!-- 	<script src="plugins/jQuery/json2.js"></script> -->
 	<script type="text/javascript" src="plugins/jQuery/alert.js"></script>
@@ -93,10 +92,10 @@
 	        }
 	        
 	        var sysUserBaseInfo = {
-		        	userName:name,
-		        	password:password,
-		        	email:email,
-		        	persionName:persion
+	            userName : name,
+	            password : password,
+	            email : email,
+	            persionName : persion
 	        }
 
 	        ajaxPost("/sysUserBase/save", sysUserBaseInfo, success, 1000, findError);
@@ -108,7 +107,7 @@
         }
 
         function findError(err) {
-        	alert(err)
+	        alert(err)
         }
 	</script>
 </body>

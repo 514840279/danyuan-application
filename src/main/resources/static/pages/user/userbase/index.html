@@ -35,16 +35,133 @@
               </div>
             </div>
 			<div class="box-body">
-				<div id="userBase_toolbar" class="btn-group">
-					<button type="button" class="btn btn-success" id="addnew">新增菜单</button>
-					<button type="button" class="btn btn-info" id="editold">编辑菜单</button>
-					<button type="button" class="btn btn-danger" id="deleteold">删除菜单</button>
+				<div id="userBase_toolbar" >
+					<div class="btn-group">
+						<button type="button" class="btn btn-success" id="addnew_user">新增用户</button>
+						<button type="button" class="btn btn-info" id="editold_user">编辑用户</button>
+						<button type="button" class="btn btn-danger" id="deleteold_user">删除用户</button>
+					</div>
+					<div  class="btn-group">
+						<button type="button" class="btn btn-success" id="change_user_depart">配置权限</button>
+						<button type="button" class="btn btn-warning" id="change_user_password">修改密码</button>
+						<button type="button" class="btn btn-info" id="change_user_head">修改头像</button>
+					</div>
 				</div>
 				<table class="table table-striped table-bordered" id="admin_userBase_datagrid" data-toggle="admin_userBase_datagrid">
 				</table>
 			</div>
 		</div>
 	</section>
+	
+	<!-- 添加模态框 -->
+	<div class="modal fade" id="admin_userBase_upd_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-admin_userBase_upd_" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel-admin_userBase_upd_">添加部门信息</h4>
+				</div>
+					<div class="modal-body">
+						<table class="table table-bordered table-hover definewidth m10">
+							<tr style="display:none;">
+								<td width="15%" class="tableleft">主键</td>
+								<td><input type="text" id="upd_userBase_uuid" name="uuid" /></td>
+							</tr>
+							<tr style="display:none;">
+								<td class="tableleft">用户名</td>
+								<td><input type="text" id="upd_userBase_userName" name="userName"/></td>
+							</tr>
+							<tr>
+								<td class="tableleft">姓名</td>
+								<td><input type="text" id="upd_userBase_persionName" name="persionName" /></td>
+							</tr>
+							<tr>
+								<td class="tableleft">年龄</td>
+								<td><input type="text" id="upd_userBase_age" name="age" /></td>
+							</tr>
+							<tr>
+								<td class="tableleft">性别</td>
+								<td><input type="text" id="upd_userBase_sex" name="sex" /></td>
+							</tr>
+							<tr>
+								<td class="tableleft">邮箱</td>
+								<td><input type="text" id="upd_userBase_email" name="email" /></td>
+							</tr>
+							<tr>
+								<td class="tableleft">电话</td>
+								<td><input type="text" id="upd_userBase_phone" name="phone" /></td>
+							</tr>
+							<tr>
+								<td class="tableleft">简介</td>
+								<td><input type="text" id="upd_userBase_discription" name="discription" /></td>
+							</tr>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" id="admin_userBase_upd_save_button">提交</button>
+					</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- 添加模态框 -->
+	<div class="modal fade" id="admin_userBase_add_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-admin_userBase_add_" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel-admin_userBase_add_">添加部门信息</h4>
+				</div>
+					<div class="modal-body">
+						<table class="table table-bordered table-hover definewidth m10">
+							<tr>
+								<td class="tableleft">用户名</td>
+								<td><input type="text" id="add_userBase_userName" name="userName"/></td>
+							</tr>
+							<tr>
+								<td class="tableleft">姓名</td>
+								<td><input type="text" id="add_userBase_persionName" name="persionName" /></td>
+							</tr>
+							<tr>
+								<td class="tableleft">密码</td>
+								<td><input type="text" id="add_userBase_password" name="password" /></td>
+							</tr>
+							<tr>
+								<td class="tableleft">验证密码</td>
+								<td><input type="text" id="add_userBase_repassword" name="password" /></td>
+							</tr>
+							<tr>
+								<td class="tableleft">年龄</td>
+								<td><input type="text" id="add_userBase_age" name="age" /></td>
+							</tr>
+							<tr>
+								<td class="tableleft">性别</td>
+								<td><input type="text" id="add_userBase_sex" name="sex" /></td>
+							</tr>
+							<tr>
+								<td class="tableleft">邮箱</td>
+								<td><input type="text" id="add_userBase_email" name="email" /></td>
+							</tr>
+							<tr>
+								<td class="tableleft">电话</td>
+								<td><input type="text" id="add_userBase_phone" name="phone" /></td>
+							</tr>
+							<tr>
+								<td class="tableleft">简介</td>
+								<td><input type="text" id="add_userBase_discription" name="discription" /></td>
+							</tr>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" id="admin_userBase_add_save_button">提交</button>
+					</div>
+			</div>
+		</div>
+	</div>
+	
 	<script type="text/javascript" src="/pages/user/userbase/js/index.js"></script>
 </body>
 </html>

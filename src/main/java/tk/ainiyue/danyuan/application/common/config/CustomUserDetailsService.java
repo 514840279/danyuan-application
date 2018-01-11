@@ -36,7 +36,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 		SysUserBaseInfo user;
 		try {
 			user = sysUserBaseService.findByName(userName);
-			System.err.println(user);
 		} catch (Exception e) {
 			throw new UsernameNotFoundException("user select fail");
 		}
@@ -44,7 +43,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException("no user found");
 		} else {
 			try {
-				System.err.println(user.getUuid());
 				List<SysMenuInfo> menu = sysUserBaseService.getRoleByUser(user.getUuid());
 				List<GrantedAuthority> gas = new ArrayList<>();
 				if (menu != null) {
