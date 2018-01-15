@@ -75,7 +75,7 @@ $(function() {
 				discription:discription,
 		};
 		
-		ajaxPost("/sysUserBase/saveu", params, successDelete, 1000, findError);
+		ajaxPost("/sysUserBase/saveu", params, successUpdsysuser, 1000, findError);
 		
 	});
 	
@@ -108,9 +108,8 @@ $(function() {
 				phone:phone,
 				discription:discription,
 		};
-		console.log(params);
 		
-		ajaxPost("/sysUserBase/save", params, successDelete, 1000, findError);
+		ajaxPost("/sysUserBase/save", params, successAddsysuser, 10000, findError);
 		
 	});
 	
@@ -164,7 +163,20 @@ $(function() {
 	});
 	
 });
+function successAddsysuser(result){
+	if(result=="1"){
+		$('#admin_userBase_add_modal').modal('hide');
+	}else if("用户名已存在" == result){
+		alert("用户名称已存在");
+	}
+	
+	$('#admin_userBase_datagrid').bootstrapTable('refresh');
+}
 
-function successDelete(reslut){
+function successUpdsysuser(result){
+	$('#admin_userBase_upd_modal').modal('hide');
+	$('#admin_userBase_datagrid').bootstrapTable('refresh');
+}
+function successDelete(result){
 	$('#admin_userBase_datagrid').bootstrapTable('refresh');
 }

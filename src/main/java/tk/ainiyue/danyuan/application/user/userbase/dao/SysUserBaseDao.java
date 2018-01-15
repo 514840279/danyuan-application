@@ -25,14 +25,14 @@ import tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo;
  */
 @Repository("sysUserBaseDao")
 public interface SysUserBaseDao extends JpaRepository<SysUserBaseInfo, String> {
-	
+
 	@Query("   select t from  SysMenuInfo t where t.uuid in ( "
 	        + " select a.menuId from SysRolesJurisdictionInfo a where a.roleId in ( "
 	        + "   select b.rolesId  from SysUserRolesInfo b where   b.userId =:uuid"
 	        + " ) "
 	        + ") ")
 	List<SysMenuInfo> getRoleByUser(@Param("uuid") String uuid);
-
+	
 	/**
 	 * 方法名： saveu
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -43,10 +43,10 @@ public interface SysUserBaseDao extends JpaRepository<SysUserBaseInfo, String> {
 	 */
 	@Transactional
 	@Modifying
-	@Query(" update SysUserBaseInfo t set userName =:userName,persionName =:persionName,sex=:sex,email=:email,phone=:phone,age=:age,discription=:discription,updataTime = CURRENT_TIMESTAMP  where uuid =:uuid")
+	@Query(" update SysUserBaseInfo t set userName =:userName,persionName =:persionName,sex=:sex,email=:email,phone=:phone,age=:age,discription=:discription,updateTime = CURRENT_TIMESTAMP  where uuid =:uuid")
 	void saveu(@Param("uuid") String uuid, @Param("persionName") String persionName,
 	        @Param("age") Integer age, @Param("userName") String userName,
 	        @Param("email") String email, @Param("phone") String phone,
 	        @Param("sex") String sex, @Param("discription") String discription);
-	
+
 }

@@ -69,13 +69,17 @@ public class SysUserBaseController {
 	public String save(@RequestBody SysUserBaseInfo info) {
 		logger.info("save", SysUserBaseController.class);
 		try {
-			info.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
-			encryptPassword(info);
-			sysUserBaseService.save(info);
+			SysUserBaseInfo baseInfo = sysUserBaseService.findByName(info.getUserName());
+			if (baseInfo == null) {
+				info.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
+				encryptPassword(info);
+				sysUserBaseService.save(info);
+			} else {
+				return "用户名已存在";
+			}
 			return "1";
 		} catch (Exception e) {
-			e.printStackTrace();
-			return e.toString();
+			return "0";
 		}
 	}
 	
