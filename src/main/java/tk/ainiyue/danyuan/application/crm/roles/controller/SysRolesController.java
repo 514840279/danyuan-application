@@ -59,7 +59,14 @@ public class SysRolesController {
 		logger.info("findAllBySearchText", SysRolesController.class);
 		return sysRolesService.findAllBySearchText(pageNumber, pageSize, sysRolesInfo);
 	}
-	
+
+	@ApiOperation(value = "分页查询全部部门信息", notes = "")
+	@RequestMapping(path = "/findAllRoleBySearchText", method = RequestMethod.POST)
+	public List<SysRolesInfo> findAllRoleBySearchText(String userId) {
+		logger.info("findAllBySearchText", SysRolesController.class);
+		return sysRolesService.findAllRoleBySearchText(userId.replace("\"", ""));
+	}
+
 	@ApiOperation(value = "修改角色信息", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody

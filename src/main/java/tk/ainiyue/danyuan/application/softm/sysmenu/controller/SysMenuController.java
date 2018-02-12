@@ -34,11 +34,11 @@ import tk.ainiyue.danyuan.application.softm.sysmenu.vo.AuthorityzTreeVO;
 public class SysMenuController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysMenuController.class);
-	
+
 	//
 	@Autowired
 	private SysMenuService		sysMenuService;
-	
+
 	/**
 	 * 方法名： addbatch
 	 * 功 能： 批量添加
@@ -56,7 +56,7 @@ public class SysMenuController {
 			sysMenuService.save(authority);
 		}
 	}
-
+	
 	/**
 	 * 方法名： findzTree
 	 * 功 能： 取得ztree信息
@@ -71,6 +71,13 @@ public class SysMenuController {
 		return sysMenuService.findzTreeByF_ParentId("0");
 	}
 	
+	@ApiOperation(value = "查询全部菜单管理 信息", notes = "")
+	@RequestMapping(path = "/findzTreeRole", method = RequestMethod.POST)
+	public List<AuthorityzTreeVO> findzTreeRole(@RequestBody String roleUuid) {
+		System.err.println(roleUuid);
+		return sysMenuService.findzTreeByF_ParentId("0", roleUuid.replace("\"", ""));
+	}
+
 	/**
 	 * 方法名： addzTree
 	 * 功 能： 增加节点
@@ -85,7 +92,7 @@ public class SysMenuController {
 		System.err.println(sysMenuInfo.toString());
 		return sysMenuService.save(sysMenuInfo);
 	}
-	
+
 	/**
 	 * 方法名： findAuthorityByUuid
 	 * 功 能： 增加节点
@@ -99,7 +106,7 @@ public class SysMenuController {
 	public SysMenuInfo findAuthorityByUuid(@RequestBody SysMenuInfo sysMenuInfo) {
 		return sysMenuService.findAuthorityByUuid(sysMenuInfo);
 	}
-	
+
 	/**
 	 * 方法名： deleteAuthority
 	 * 功 能： 删除
@@ -116,7 +123,7 @@ public class SysMenuController {
 		map.put("code", "0");
 		return map;
 	}
-	
+
 	/**
 	 * 方法名： updateAuthorityName
 	 * 功 能： 更新名称
@@ -131,7 +138,7 @@ public class SysMenuController {
 	public AuthorityzTreeVO updateAuthorityName(@RequestBody SysMenuInfo sysMenuInfo) {
 		return sysMenuService.updateAuthorityName(sysMenuInfo);
 	}
-	
+
 	/**
 	 * 方法名： onDropAuthority
 	 * 功 能： 拖拽排序
@@ -146,5 +153,5 @@ public class SysMenuController {
 	public AuthorityzTreeVO onDropAuthority(@RequestBody SysMenuInfo sysMenuInfo) {
 		return sysMenuService.onDropAuthority(sysMenuInfo);
 	}
-	
+
 }

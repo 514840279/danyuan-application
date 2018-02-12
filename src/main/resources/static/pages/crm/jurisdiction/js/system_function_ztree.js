@@ -16,21 +16,21 @@ $(document).ready(function() {
 				enable : true
 			},
 			keep : {
-			// parent : true
+//			 parent : true
 			/* 如果设置为 true，则所有 isParent = true 的节点，即使该节点的子节点被全部删除或移走，依旧保持父节点状态 */
 			}
 		},
 		edit : {
-//			drag : {
-//				autoExpandTrigger : true,
-//				isMove : true,
-//				prev : true,
-//				inner : true,
-//				next : true,
-//			},
-			//showRemoveBtn : false, // 显示删除按钮
-			//showRenameBtn : true, // 显示改名按钮
-			//enable : true, // 可编辑
+			drag : {
+				autoExpandTrigger : false,
+				isMove : false,
+				prev : false,
+				inner : false,
+				next : false,
+			},
+			showRemoveBtn : false, // 显示删除按钮
+			showRenameBtn : false, // 显示改名按钮
+			enable : true, // 可编辑
 			removeTitle : "删除节点",
 			renameTitle : "重命名节点"
 		},
@@ -42,15 +42,15 @@ $(document).ready(function() {
 		callback : {
 		// 鼠标拖拽后调用函数
 		// beforeDrag : zTreeBeforeDrag,
-		// onDrag : zTreeOnDrag,
+//		 onDrag : zTreeOnDrag,
 		// beforeDrag: beforeDrag, //拖拽前：捕获节点被拖拽之前的事件回调函数，并且根据返回值确定是否允许开启拖拽操作
 		// beforeDrop: beforeDrop, //拖拽中：捕获节点操作结束之前的事件回调函数，并且根据返回值确定是否允许此拖拽操作
 		//beforeDragOpen : expand, // 拖拽到的目标节点是否展开：用于捕获拖拽节点移动到折叠状态的父节点后，即将自动展开该父节点之前的事件回调函数，并且根据返回值确定是否允许自动展开操作
 		// onDrag: onDrag, //捕获节点被拖拽的事件回调函数
-		//onDrop : zTreeOnDrop, // 捕获节点拖拽操作结束的事件回调函数
+//		onDrop : zTreeOnDrop, // 捕获节点拖拽操作结束的事件回调函数
 		// onExpand: expand, //捕获节点被展开的事件回调函数
 		// beforeDrop: zTreeBeforeDrop,
-		// onDrop: zTreeOnDrop,
+//		 onDrop: zTreeOnDrop,
 		// 编辑
 		// beforeEditName: zTreeBeforeEditName,
 		// beforeRename : zTreeBeforeRename,
@@ -65,14 +65,13 @@ $(document).ready(function() {
 		}
 	
 	};
-	var url = "/sysMenuInfo/findzTree";
+	var url = "/sysMenuInfo/findzTreeRole";
 	
 	/** ** 加载页面 树 数据 *** */
 	// 获取 加载数据
-	ajaxPost(url, null, loadTree, 1000, findError);
+	ajaxPost(url, _role_uuid, loadTree, 1000, findError);
 });
 // 加载 load。。。
-
 function loadTree(result) {
 	zNodes = result;
 	zTreeObj = $.fn.zTree.init($("#ztree"), setting, zNodes);
@@ -92,33 +91,76 @@ function loadTree(result) {
 // window.parent.window.alert(JSON.stringify(treeNodes));
 // };
 // 拖拽时
-// function zTreeOnDrag(event, treeId, treeNodes) {
+ function zTreeOnDrag(event, treeId, treeNodes) {
 // window.parent.window.alert(JSON.stringify(treeNodes.length));
-// };
+ };
 // 勾选
 function zTreeOnCheck(event, treeId, treeNode) {
-	console.log(treeNode)
-	console.log(treeId)
-    alert(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
+//	console.log(treeNode)
+//	console.log(treeNode.getParentNode())
+//	console.log(treeId)
+//    alert(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
+//	alert(_role_uuid);
+	// 参数集
+	var param =[];
+	var temp = treeNode;
+	// 父集
+	while(temp.getParentNode()!=null ){
+		 temp = temp.getParentNode();
+		 param.push({"roleId":_role_uuid,"menuId":temp.id,"checked":ifnottrue(temp.checked)});
+	}
+	
+	// 子集
+	temp = treeNode;
+	eachNode(temp,param);
+	// 自身
+	param.push({"roleId":_role_uuid,"menuId":treeNode.id,"checked":ifnottrue(treeNode.checked)});
+	
+	var url = "/sysRolesJurisdiction/saveAll";
+	console.log(param);
+	// 更新配置信息
+	ajaxPost(url, {"sysRolesJurisdictionInfolist":param}, successUpdateRoleMenu, 1000, findError);
+	
+	
 };
+function successUpdateRoleMenu(result){
+	
+}
+//子集
+function eachNode(temp,param){
+	for (var i = 0; i < temp.children.length; i++) {
+		temp1 = temp.children[i];
+		param.push({"roleId":_role_uuid,"menuId":temp1.id,"checked":ifnottrue(temp1.checked)});
+		eachNode(temp1,param);
+	}
+}
+
+function ifnottrue(strtrue){
+	if(strtrue){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
 // 拖拽放下
 function zTreeOnDrop(event, treeId, treeNodes, targetNode, moveType) {
-	var param = {
-	uuid : "",
-	parentsId : targetNode.id,
-	fModifyUserId : "",
-	fModifyUserName : "",
-	moveType : moveType
-	}
-	for (var int = 0; int < treeNodes.length; int++) {
-		param.uuid = param.uuid + treeNodes[int].id + ",";
-	}
-	
-	
-	
-	var url = "/sysMenuInfo/onDropSysMenuInfo";
-	// 重载
-	ajaxPost(url, param, sucessOnDrop, 1000, findError);
+//	var param = {
+//	uuid : "",
+//	parentsId : targetNode.id,
+//	fModifyUserId : "",
+//	fModifyUserName : "",
+//	moveType : moveType
+//	}
+//	for (var int = 0; int < treeNodes.length; int++) {
+//		param.uuid = param.uuid + treeNodes[int].id + ",";
+//	}
+//	
+//	
+//	
+//	var url = "/sysMenuInfo/onDropSysMenuInfo";
+//	// 重载
+//	ajaxPost(url, param, sucessOnDrop, 1000, findError);
 };
 function sucessOnDrop(result) {
 	

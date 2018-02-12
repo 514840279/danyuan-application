@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,6 +25,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * 版 本 ： V1.0
  */
 @Entity
+@IdClass(SysRolesJurisdictionPk.class)
 @Table(name = "sys_roles_jurisdiction_info")
 public class SysRolesJurisdictionInfo implements Serializable {
 	
@@ -31,22 +33,26 @@ public class SysRolesJurisdictionInfo implements Serializable {
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
 	 */
 	private static final long serialVersionUID = 338686748001155299L;
+
+//	@Column(name = "UUID", columnDefinition = "varchar(36) COMMENT '主键'")
+//	private String			  uuid;
 	
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
-	@Column(name = "UUID", columnDefinition = "varchar(36) COMMENT '主键'")
-	private String			  uuid;
-	
 	@Column(name = "role_id", columnDefinition = "varchar(36) COMMENT '角色id'")
 	private String			  roleId;
 	
+	@Id
+	@GenericGenerator(name = "idGenerator", strategy = "uuid")
 	@Column(name = "menu_id", columnDefinition = "varchar(36) COMMENT '菜单id'")
 	private String			  menuId;
 	
 	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
 	private String			  discription;							 // discription
 	                                                                 // 描述
-	
+	@Column(name = "checked", columnDefinition = "boolean default 0 COMMENT '选中'")
+	private Boolean			  checked;
+
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '录入时间'")
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
@@ -77,17 +83,17 @@ public class SysRolesJurisdictionInfo implements Serializable {
 	 *
 	 * @return: String
 	 */
-	public String getUuid() {
-		return uuid;
-	}
+//	public String getUuid() {
+//		return uuid;
+//	}
 	
 	/**
 	 * 方法名 ： setUuid
 	 * 功 能 ： 设置变量 uuid 的值
 	 */
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
+//	public void setUuid(String uuid) {
+//		this.uuid = uuid;
+//	}
 	
 	/**
 	 * 方法名 ： getRoleId
@@ -215,11 +221,11 @@ public class SysRolesJurisdictionInfo implements Serializable {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	public SysRolesJurisdictionInfo(String uuid) {
-		super();
-		this.uuid = uuid;
-	}
-
+//	public SysRolesJurisdictionInfo(String uuid) {
+//		super();
+//		this.uuid = uuid;
+//	}
+	
 	/**
 	 * 方法名 ： getUpdateTime
 	 * 功 能 ： 返回变量 updateTime 的值
@@ -228,6 +234,12 @@ public class SysRolesJurisdictionInfo implements Serializable {
 	 */
 	public Date getUpdateTime() {
 		return updateTime;
+	}
+
+	public SysRolesJurisdictionInfo(String roleId, String menuId) {
+		super();
+		this.roleId = roleId;
+		this.menuId = menuId;
 	}
 
 	/**
@@ -255,5 +267,18 @@ public class SysRolesJurisdictionInfo implements Serializable {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-
+	
+	public Boolean getChecked() {
+		return checked;
+	}
+	
+	public void setChecked(Boolean checked) {
+		this.checked = checked;
+	}
+	
+	@Override
+	public String toString() {
+		return "SysRolesJurisdictionInfo [roleId=" + roleId + ", menuId=" + menuId + ", discription=" + discription + ", checked=" + checked + ", createTime=" + createTime + ", createUser=" + createUser + ", updateTime=" + updateTime + ", updateUser=" + updateUser + ", deleteFlag=" + deleteFlag + "]";
+	}
+	
 }

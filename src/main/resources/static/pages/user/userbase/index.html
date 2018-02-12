@@ -24,31 +24,53 @@
 
 	<!-- Main content -->
 	<section class="content">
-		<div class="box">
-			<div class="box-header with-border">
-              <h3 class="box-title">用户设置</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-			<div class="box-body">
-				<div id="userBase_toolbar" >
-					<div class="btn-group">
-						<button type="button" class="btn btn-success" id="addnew_user">新增用户</button>
-						<button type="button" class="btn btn-info" id="editold_user">编辑用户</button>
-						<button type="button" class="btn btn-danger" id="deleteold_user">删除用户</button>
+		<div class="col-md-8 col-xs-12">
+			<div class="box">
+				<div class="box-header with-border">
+	              <h3 class="box-title">用户设置</h3>
+	
+	              <div class="box-tools pull-right">
+	                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+	                </button>
+	                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+	              </div>
+	            </div>
+				<div class="box-body">
+					<div id="userBase_toolbar" >
+						<div class="btn-group">
+							<button type="button" class="btn btn-success" id="addnew_user">新增用户</button>
+							<button type="button" class="btn btn-info" id="editold_user">编辑用户</button>
+							<button type="button" class="btn btn-danger" id="deleteold_user">删除用户</button>
+						</div>
+						<div  class="btn-group">
+	<!-- 						<button type="button" class="btn btn-success" id="change_user_depart">配置权限</button> -->
+							<button type="button" class="btn btn-warning" id="change_user_password">修改密码</button>
+							<button type="button" class="btn btn-info" id="change_user_head">修改头像</button>
+						</div>
 					</div>
-					<div  class="btn-group">
-						<button type="button" class="btn btn-success" id="change_user_depart">配置权限</button>
-						<button type="button" class="btn btn-warning" id="change_user_password">修改密码</button>
-						<button type="button" class="btn btn-info" id="change_user_head">修改头像</button>
-					</div>
+					<table class="table table-striped table-bordered" id="admin_userBase_datagrid" data-toggle="admin_userBase_datagrid">
+					</table>
 				</div>
-				<table class="table table-striped table-bordered" id="admin_userBase_datagrid" data-toggle="admin_userBase_datagrid">
-				</table>
+			</div>
+		</div>
+		
+		<div class="col-md-4 col-xs-12">
+			<div class="box">
+				<div class="box-header with-border">
+	              <h3 class="box-title">用户角色设置</h3>
+	
+	              <div class="box-tools pull-right">
+	                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+	                </button>
+	                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+	              </div>
+	            </div>
+				<div class="box-body">
+					<div id="userBase_role_toolbar" >
+					</div>
+					<table class="table table-striped table-bordered" id="admin_userBase_role_datagrid" data-toggle="admin_userBase_role_datagrid">
+					</table>
+				</div>
 			</div>
 		</div>
 	</section>

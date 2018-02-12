@@ -67,6 +67,9 @@ public class SysMenuInfo {
 	@Column(name = "icon_skin", columnDefinition = " varchar(50) COMMENT '显示图标样式'")
 	private String	iconSkin;
 	
+	@Column(name = "checked", columnDefinition = " boolean COMMENT '选中'")
+	private Boolean	checked;
+	
 	@Transient
 	private String	moveType;
 	

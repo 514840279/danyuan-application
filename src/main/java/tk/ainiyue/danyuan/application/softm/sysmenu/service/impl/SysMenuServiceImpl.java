@@ -12,6 +12,8 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
+import tk.ainiyue.danyuan.application.crm.jurisdiction.dao.SysRolesJurisdictionDao;
+import tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionInfo;
 import tk.ainiyue.danyuan.application.softm.sysmenu.dao.SysMenuDao;
 import tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo;
 import tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService;
@@ -30,7 +32,10 @@ public class SysMenuServiceImpl implements SysMenuService {
 
 	//
 	@Autowired
-	private SysMenuDao sysMenuDao;
+	private SysMenuDao				sysMenuDao;
+
+	@Autowired
+	private SysRolesJurisdictionDao	sysRolesJurisdictionDao;
 
 	/**
 	 * 方法名 ： findAll
@@ -89,6 +94,36 @@ public class SysMenuServiceImpl implements SysMenuService {
 				vo.setIcon(sysMenuInfo.getIcon());
 				vo.setUrl(sysMenuInfo.getUri());
 				List<AuthorityzTreeVO> listt1 = findzTreeByF_ParentId(sysMenuInfo.getUuid());
+				if (listt1 != null) {
+					vo.getChildren().addAll(listt1);
+				}
+				list.add(vo);
+			}
+		}
+		return list;
+	}
+	
+	@Override
+	public List<AuthorityzTreeVO> findzTreeByF_ParentId(String id, String roleUuid) {
+		List<AuthorityzTreeVO> list = null;
+		List<SysMenuInfo> listt = sysMenuDao.findAllByParentsIdOrderByF_SortCode(id);
+		if (listt != null && listt.size() > 0) {
+			list = new ArrayList<>();
+			for (SysMenuInfo sysMenuInfo : listt) {
+				AuthorityzTreeVO vo = new AuthorityzTreeVO();
+				vo.setId(sysMenuInfo.getUuid());
+				vo.setName(sysMenuInfo.getName());
+				vo.setIcon(sysMenuInfo.getIcon());
+				vo.setUrl(sysMenuInfo.getUri());
+				SysRolesJurisdictionInfo jurisdiction = new SysRolesJurisdictionInfo();
+				jurisdiction.setMenuId(sysMenuInfo.getUuid());
+				jurisdiction.setRoleId(roleUuid);
+				Example<SysRolesJurisdictionInfo> e = Example.of(jurisdiction);
+				jurisdiction = sysRolesJurisdictionDao.findOne(e);
+				if (jurisdiction != null) {
+					vo.setChecked(jurisdiction.getChecked());
+				}
+				List<AuthorityzTreeVO> listt1 = findzTreeByF_ParentId(sysMenuInfo.getUuid(), roleUuid);
 				if (listt1 != null) {
 					vo.getChildren().addAll(listt1);
 				}

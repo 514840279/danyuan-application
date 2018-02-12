@@ -40,4 +40,6 @@ public interface SysRolesService {
 	
 	void trunc();
 
+	List<SysRolesInfo> findAllRoleBySearchText(String userId);
+
 }

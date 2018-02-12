@@ -16,6 +16,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionInfo;
 import tk.ainiyue.danyuan.application.crm.jurisdiction.service.SysRolesJurisdictionService;
+import tk.ainiyue.danyuan.application.crm.jurisdiction.vo.SysRolesJurisdictionVo;
 
 /**
  * 文件名 ： SysRolesJurisdictionController.java
@@ -33,11 +34,11 @@ import tk.ainiyue.danyuan.application.crm.jurisdiction.service.SysRolesJurisdict
 public class SysRolesJurisdictionController {
 	//
 	private static final Logger			logger = LoggerFactory.getLogger(SysRolesJurisdictionController.class);
-
+	
 	//
 	@Autowired
 	private SysRolesJurisdictionService	sysRolesJurisdictionService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -52,14 +53,14 @@ public class SysRolesJurisdictionController {
 		logger.info("sysRolesJurisdictionList", SysRolesJurisdictionController.class);
 		return sysRolesJurisdictionService.findAll();
 	}
-	
+
 	@ApiOperation(value = "分页查询全部部门信息", notes = "")
 	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
 	public Page<SysRolesJurisdictionInfo> findAllBySearchText(int pageNumber, int pageSize, SysRolesJurisdictionInfo sysRolesJurisdictionInfo) {
 		logger.info("findAllBySearchText", SysRolesJurisdictionController.class);
 		return sysRolesJurisdictionService.findAllBySearchText(pageNumber, pageSize, sysRolesJurisdictionInfo);
 	}
-
+	
 	@ApiOperation(value = "修改角色权限信息", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody
@@ -73,6 +74,22 @@ public class SysRolesJurisdictionController {
 		}
 	}
 
+	@ApiOperation(value = "修改角色权限信息", notes = "")
+	@RequestMapping(path = "/saveAll", method = RequestMethod.POST)
+	@ResponseBody
+	public String save(@RequestBody SysRolesJurisdictionVo vo) {
+		logger.info("saveAll", SysRolesJurisdictionController.class);
+		try {
+			for (SysRolesJurisdictionInfo info : vo.getSysRolesJurisdictionInfolist()) {
+				System.out.println(info.toString());
+				sysRolesJurisdictionService.save(info);
+			}
+			return "1";
+		} catch (Exception e) {
+			return "0";
+		}
+	}
+	
 	@ApiOperation(value = "删除角色权限信息", notes = "")
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	@ResponseBody

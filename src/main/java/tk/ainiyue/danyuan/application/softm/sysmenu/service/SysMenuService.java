@@ -25,7 +25,7 @@ public interface SysMenuService {
 	 * @throws
 	 */
 	List<SysMenuInfo> findAll();
-
+	
 	/**
 	 * @return
 	 * 方法名： save
@@ -36,7 +36,7 @@ public interface SysMenuService {
 	 * @throws
 	 */
 	public AuthorityzTreeVO save(SysMenuInfo authority);
-
+	
 	/**
 	 * 方法名： findzTreeByF_ParentId
 	 * 功 能：获取ztree
@@ -47,7 +47,18 @@ public interface SysMenuService {
 	 * @throws
 	 */
 	List<AuthorityzTreeVO> findzTreeByF_ParentId(String string);
-
+	
+	/**
+	 * 方法名： findzTreeByF_ParentId
+	 * 功 能：获取ztree
+	 * 参 数： @param string
+	 * 参 数： @return
+	 * 返 回： List<AuthorityVO>
+	 * 作 者 ： wang
+	 * @throws
+	 */
+	List<AuthorityzTreeVO> findzTreeByF_ParentId(String string, String Role);
+	
 	/**
 	 * 方法名： findAuthorityByUuid
 	 * 功 能： find
@@ -58,7 +69,7 @@ public interface SysMenuService {
 	 * @throws
 	 */
 	SysMenuInfo findAuthorityByUuid(SysMenuInfo authority);
-
+	
 	/**
 	 * 方法名： deleteAuthority
 	 * 功 能： delete
@@ -69,7 +80,7 @@ public interface SysMenuService {
 	 * @throws
 	 */
 	void deleteAuthority(SysMenuInfo authority);
-
+	
 	/**
 	 * 方法名： updateAuthorityName
 	 * 功 能： 更新名称
@@ -80,7 +91,7 @@ public interface SysMenuService {
 	 * @throws
 	 */
 	AuthorityzTreeVO updateAuthorityName(SysMenuInfo authority);
-
+	
 	/**
 	 * 方法名： onDropAuthority
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -91,15 +102,15 @@ public interface SysMenuService {
 	 * @throws
 	 */
 	AuthorityzTreeVO onDropAuthority(SysMenuInfo authority);
-	
+
 	SysMenuInfo findByUuid(String uuid);
-	
+
 	Page<SysMenuInfo> findAllBySearchText(int pageNumber, int pageSize, SysMenuInfo info);
-	
+
 	void delete(SysMenuInfo info);
-
+	
 	void delete(List<SysMenuInfo> list);
-
+	
 	void trunc();
-
+	
 }

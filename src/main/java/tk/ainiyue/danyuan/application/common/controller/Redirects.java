@@ -20,5 +20,10 @@ public class Redirects {
 	public String login() {
 		return "login/login";
 	}
+	
+//	@RequestMapping("/index")
+//	public String index() {
+//		return "/index";
+//	}
 
 }
