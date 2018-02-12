@@ -21,9 +21,9 @@ public class Redirects {
 		return "login/login";
 	}
 	
-//	@RequestMapping("/index")
-//	public String index() {
-//		return "/index";
-//	}
-
+	@RequestMapping("/index")
+	public String index() {
+		return "index";
+	}
+	
 }
