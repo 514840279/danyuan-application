@@ -1,10 +1,11 @@
 _history = [];
         (function($) {
 	        var menu_data = [];
+//	        console.log(username);
 	        // 请求数据地址
-	        var url = "/sysMenuInfo/findzTree";
+	        var url = "/sysMenuInfo/findzTreeByUser";
 	        // 请求数据
-	        ajaxPost(url, null, loadMenu, 1000, findError);
+	        ajaxPost(url, username, loadMenu, 1000, findError);
 	        // 加载menu
 	        function loadMenu(result) {
 		        // 遍历结果集

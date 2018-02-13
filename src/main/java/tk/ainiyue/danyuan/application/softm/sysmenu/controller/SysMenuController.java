@@ -75,7 +75,14 @@ public class SysMenuController {
 	@RequestMapping(path = "/findzTreeRole", method = RequestMethod.POST)
 	public List<AuthorityzTreeVO> findzTreeRole(@RequestBody String roleUuid) {
 		System.err.println(roleUuid);
-		return sysMenuService.findzTreeByF_ParentId("0", roleUuid.replace("\"", ""));
+		return sysMenuService.findzTreeRole("0", roleUuid.replace("\"", ""));
+	}
+	
+	@ApiOperation(value = "查询全部菜单管理 信息", notes = "")
+	@RequestMapping(path = "/findzTreeByUser", method = RequestMethod.POST)
+	public List<AuthorityzTreeVO> findzTreeByUser(@RequestBody String username) {
+		System.err.println(username);
+		return sysMenuService.findzTreeByUser("0", username.replace("\"", ""));
 	}
 
 	/**
