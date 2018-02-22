@@ -2,6 +2,8 @@ package tk.ainiyue.danyuan.application.dbm.type.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import tk.ainiyue.danyuan.application.dbm.type.po.SysTableTypeInfo;
 
 /**
@@ -15,8 +17,12 @@ import tk.ainiyue.danyuan.application.dbm.type.po.SysTableTypeInfo;
  * 版 本 ： V1.0
  */
 public interface SysTableTypeService {
-	
+
 	List<SysTableTypeInfo> findAll();
-	
+
 	public void save(SysTableTypeInfo info);
+	
+	Page<SysTableTypeInfo> findAllBySearchText(int pageNumber, int pageSize, SysTableTypeInfo sysTableTypeInfo);
+	
+	void delete(List<SysTableTypeInfo> list);
 }

@@ -25,5 +25,10 @@ public class Redirects {
 	public String index() {
 		return "index";
 	}
+
+	@RequestMapping("/")
+	public String home() {
+		return "index";
+	}
 	
 }

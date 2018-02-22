@@ -5,14 +5,18 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.dbm.type.po.SysTableTypeInfo;
 import tk.ainiyue.danyuan.application.dbm.type.service.SysTableTypeService;
+import tk.ainiyue.danyuan.application.dbm.type.vo.SysTableTypeVo;
 
 /**
  * 文件名 ： SysTableTypeController.java
@@ -33,7 +37,7 @@ public class SysTableTypeController {
 	//
 	@Autowired
 	private SysTableTypeService	sysTableTypeService;
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -49,4 +53,34 @@ public class SysTableTypeController {
 		return sysTableTypeService.findAll();
 	}
 
+	@ApiOperation(value = "分页查询全部类型管理信息", notes = "")
+	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
+	public Page<SysTableTypeInfo> findAllBySearchText(SysTableTypeVo sysTableTypeVo) {
+		logger.info("findAllBySearchText", SysTableTypeController.class);
+		return sysTableTypeService.findAllBySearchText(sysTableTypeVo.getPageNumber(), sysTableTypeVo.getPageSize(), sysTableTypeVo.getSysTableTypeInfo());
+	}
+	
+	@ApiOperation(value = "删除类型管理信息", notes = "")
+	@RequestMapping(path = "/sysTableTypeDeleteAll", method = RequestMethod.POST)
+	@ResponseBody
+	public String sysTableTypeDeleteAll(@RequestBody SysTableTypeVo vo) {
+		logger.info("sysTableTypeDeleteAll", SysTableTypeController.class);
+		try {
+			sysTableTypeService.delete(vo.getList());
+			return "1";
+		} catch (Exception e) {
+			return "0";
+		}
+	}
+	
+	@ApiOperation(value = "修改分类信息", notes = "")
+	@RequestMapping(path = "/save", method = RequestMethod.POST)
+	@ResponseBody
+	public String save(@RequestBody SysTableTypeInfo info) {
+		logger.info("save", SysTableTypeController.class);
+		System.out.println(info.toString());
+		sysTableTypeService.save(info);
+		return "1";
+	}
+	
 }

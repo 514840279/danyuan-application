@@ -3,6 +3,12 @@ package tk.ainiyue.danyuan.application.dbm.type.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.dbm.type.dao.SysTableTypeDao;
@@ -33,5 +39,19 @@ public class SysTableTypeServiceImpl implements SysTableTypeService {
 	@Override
 	public void save(SysTableTypeInfo info) {
 		sysTableTypeDao.save(info);
+	}
+
+	@Override
+	public Page<SysTableTypeInfo> findAllBySearchText(int pageNumber, int pageSize, SysTableTypeInfo sysTableTypeInfo) {
+		Example<SysTableTypeInfo> example = Example.of(sysTableTypeInfo);
+		Sort sort = new Sort(new Order(Direction.DESC, "createTime"));
+		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+		Page<SysTableTypeInfo> sourceCodes = sysTableTypeDao.findAll(example, request);
+		return sourceCodes;
+	}
+	
+	@Override
+	public void delete(List<SysTableTypeInfo> list) {
+		sysTableTypeDao.delete(list);
 	}
 }
