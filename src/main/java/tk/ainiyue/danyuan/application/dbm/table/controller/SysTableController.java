@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,14 +39,14 @@ import tk.ainiyue.danyuan.application.dbm.table.vo.SysTableVo;
 public class SysTableController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysTableController.class);
-
+	
 	//
 	@Autowired
 	private SysTableService		sysTableService;
-	
+
 	@Autowired
 	JdbcTemplate				jdbcTemplate;
-
+	
 	@ApiOperation(value = "查询前500数据库表管理信息", notes = "")
 	@RequestMapping(path = "/findAllTableRow", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<Map<String, Object>> listTR(SysColumnVo param) {
@@ -53,7 +54,7 @@ public class SysTableController {
 		List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
 		return list;
 	}
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -68,7 +69,7 @@ public class SysTableController {
 		logger.info("findAll", SysTableController.class);
 		return sysTableService.findAll();
 	}
-
+	
 	@ApiOperation(value = "条件查询全部数据库表管理信息", notes = "")
 	@RequestMapping(path = "/findAllBySysTableInfo", method = RequestMethod.POST)
 	public List<SysTableInfo> findAllBySysTableInfo(@RequestBody SysTableInfo sysTableInfo) {
@@ -76,30 +77,39 @@ public class SysTableController {
 		logger.info("findAll", SysTableController.class);
 		return sysTableService.findAll(sysTableInfo);
 	}
-
+	
 	@ApiOperation(value = "保存数据库表管理信息", notes = "")
 	@RequestMapping(path = "/saveSysTableInfo", method = RequestMethod.POST)
 	public List<SysTableInfo> saveSysTableInfo(@RequestBody SysTableInfo sysTableInfo) {
 		logger.info("saveSysTableInfo", SysTableController.class);
 		return sysTableService.save(sysTableInfo);
 	}
-	
+
 	@ApiOperation(value = "删除数据库表管理信息", notes = "")
 	@RequestMapping(path = "/deleteSysTableInfo", method = RequestMethod.POST)
 	public List<SysTableInfo> deleteSysTableInfo(@RequestBody SysTableVo vo) {
 		logger.info("deleteSysTableInfo", SysTableController.class);
 		return sysTableService.deleteSysTableInfo(vo);
 	}
-	
+
 	@ApiOperation(hidden = true, value = "/updBefor")
 	@RequestMapping(path = "/updBefor", method = RequestMethod.POST)
 	public ModelAndView updBefor(HttpServletRequest request) {
 		logger.info("updBefor", SysTableController.class);
-		ModelAndView view = new ModelAndView("dbm/table/upd_table");
+		ModelAndView view = new ModelAndView("dbm/table/index_column");
 		SysTableInfo info = new SysTableInfo();
 		info = sysTableService.findSysTableInofByUuid(request.getParameter("uuid"));
 		view.addObject("sysTableInfo", info);
 		return view;
 	}
 
+	@ApiOperation(hidden = true, value = "/updBeforEdit")
+	@RequestMapping(path = "/updBeforEdit", method = RequestMethod.POST)
+	public ModelAndView updBeforEdit(@ModelAttribute SysTableInfo info) {
+		logger.info("updBeforEdit", SysTableController.class);
+		ModelAndView view = new ModelAndView("dbm/table/upd_table");
+		view.addObject("sysTableInfo", info);
+		return view;
+	}
+	
 }

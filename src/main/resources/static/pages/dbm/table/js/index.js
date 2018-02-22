@@ -22,10 +22,8 @@ $(function() {
 		}else if(data.length > 1){
 			alert("只能选择一条");
 		}else{
-			loadPage('/sysTableInfo/updBeforEdit','upd_table_column_tab_id','修改表字段',data[0],'reload')
-			
+			loadPage('/sysTableInfo/updBeforEdit','upd_table_tab_id','修改表',data[0],'reload')
 		}
-		
 	});
 	
 	$('#editold_table_column').click(function() {
