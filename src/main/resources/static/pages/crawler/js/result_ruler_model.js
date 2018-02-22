@@ -22,7 +22,7 @@ $(function(){
 });
 // 网站种子下拉框
 function sucessLoadSeedSelect2(result){
-	var data = [{id:" ",text:" "}];
+	var data = [{id:" ",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value.uuid,text:value.seedName});
 	});
@@ -37,7 +37,7 @@ $('#result_seed_select').on('select2:select', function (evt) {
 });
  // 规则下拉数据
 function sucessLoadSeedRulerSelect2(result){
-	var data = [{id:" ",text:" "}];
+	var data = [{id:"",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value.uuid,text:value.name});
 	});
@@ -53,7 +53,7 @@ $('#result_seed_ruler_select').on('select2:select', function (evt) {
 });
 // 规则字段下拉数据
 function sucessLoadSeedRulerColumnSelect2(result){
-	var data = [{id:" ",text:" "}];
+	var data = [{id:"",text:"请选择"}];
 	$('#result_config_column').empty();
 	$.each(result,function(index,value){
 		var option= "<option id="+value.uuid+">"+value.columName+"</option>"

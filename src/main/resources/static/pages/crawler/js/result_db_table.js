@@ -33,7 +33,7 @@ $(function(){
 	
 });
 function sucessLoadDatabaseSelect2(result){
-	var data = [{id:" ",text:" "}];
+	var data = [{id:"",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value.uuid,text:value.databaseName});
 	});
@@ -56,7 +56,7 @@ function loadTableSelect(){
 }
 
 function sucessLoadTableSelect2(result){
-	var data = [{id:" ",text:" "}];
+	var data = [{id:"",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value.uuid,text:value.tableName});
 	});
@@ -76,7 +76,7 @@ $('#result_db_table').on('select2:select', function (evt) {
 });
 
 function sucessLoadTableColumnSelect2(result){
-	var data = [{id:" ",text:" "}];
+	var data = [{id:"",text:"请选择"}];
 	$('#result_config_table_column').empty();
 	$.each(result,function(index,value){
 		var option= "<option id="+value.uuid+">"+value.colsName+"</option>"
