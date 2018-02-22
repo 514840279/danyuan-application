@@ -93,6 +93,10 @@ public class SysTableTypeInfo implements Serializable {
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
+	
+	public void setDeleteFlag(String deleteFlag) {
+		this.deleteFlag = Integer.valueOf(deleteFlag);
+	}
 
 	public String getDiscription() {
 		return this.discription;
@@ -168,5 +172,5 @@ public class SysTableTypeInfo implements Serializable {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-
+	
 }

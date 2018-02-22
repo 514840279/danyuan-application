@@ -14,6 +14,7 @@ $(function() {
 	$('#addnew_table').click(function() {
 		loadPage('/pages/dbm/table/add_table.html','add_table_tab_id','新建表')
 	});
+	
 	$('#editold_table').click(function() {
 		var data = $('#db_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
@@ -21,7 +22,20 @@ $(function() {
 		}else if(data.length > 1){
 			alert("只能选择一条");
 		}else{
-			loadPage('/sysTableInfo/updBefor','upd_table_tab_id','修改表',data[0],'reload')
+			loadPage('/sysTableInfo/updBeforEdit','upd_table_column_tab_id','修改表字段',data[0],'reload')
+			
+		}
+		
+	});
+	
+	$('#editold_table_column').click(function() {
+		var data = $('#db_table_datagrid').bootstrapTable('getAllSelections');
+		if(data.length == 0){
+			alert("先选中一条数据");
+		}else if(data.length > 1){
+			alert("只能选择一条");
+		}else{
+			loadPage('/sysTableInfo/updBefor','upd_table_column_tab_id','修改表字段',data[0],'reload')
 			
 		}
 	});
@@ -92,8 +106,30 @@ $(function() {
 	$(window).resize(function() {
 		$('#db_table_datagrid').bootstrapTable('resetView');
 	});
+	
+	// 数据库列表下拉
+	ajaxPost('/sysDatabaseInfo/findAll', null, successSearchDatabaseInfoindex, null, findError);
+	// 表类型列表下拉
+	ajaxPost('/sysTableTypeInfo/findAll', null, successSearchTableTypeInfoindex, null, findError);
 
 });
 function successDeleteSysTableInfo(reslut){
 	$('#db_table_datagrid').bootstrapTable('refresh');
+}
+
+//数据库列表下拉
+function successSearchDatabaseInfoindex(result){
+	jQuery('#search_table_addrName').append('<option value="">请选择</option>');
+	jQuery.each(result, function(index, value) {
+		var addr = '<option value="' + value.uuid + '">' + value.databaseName + '</option>';
+		jQuery('#search_table_addrName').append(addr);
+	});
+}
+//表类型列表下拉
+function successSearchTableTypeInfoindex(result){
+	jQuery('#search_table_typeName').append('<option value="">请选择</option>');
+	jQuery.each(result, function(index, value) {
+		var type = '<option value="' + value.uuid + '">' + value.typeName + '</option>';
+		jQuery('#search_table_typeName').append(type);
+	});
 }

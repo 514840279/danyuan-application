@@ -17,9 +17,10 @@ $(function() {
 			alert("只能选择一条");
 		}else{
 			var param=data[0];
+			console.log(param);
 			// 由于日期转化错误 所以删除属性
 			param.createTime=undefined;
-			param.updataTime=undefined;
+			param.updateTime=undefined;
 			loadPage('/sysColumnInfo/updBefor','add_column_tab_id','修改字段',param,'reload')
 		}
 	});

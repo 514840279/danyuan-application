@@ -35,11 +35,11 @@ import tk.ainiyue.danyuan.application.dbm.column.vo.SysColumnVo;
 public class SysColumnController {
 	//
 	private static final Logger	logger = LoggerFactory.getLogger(SysColumnController.class);
-	
+
 	//
 	@Autowired
 	private SysColumnService	sysColumnService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -54,39 +54,40 @@ public class SysColumnController {
 		logger.info("findAll", SysColumnController.class);
 		return sysColumnService.findAllByTableUuid(pageNumber, pageSize, searchText, uuid);
 	}
-
+	
 	@ApiOperation(value = "分页查询符合名称或uuid的库字段管理信息", notes = "")
 	@RequestMapping(path = "/findAll1", method = RequestMethod.POST)
 	public Page<SysColumnInfo> findAll1(@RequestBody SysColumnVo vo) {
 		logger.info("findAll", SysColumnController.class);
 		return sysColumnService.findAllByTableUuid(vo.getPageNumber(), vo.getPageSize(), vo.getSearchText(), vo.getUuid());
 	}
-	
+
 	@ApiOperation(value = "分页查询符合名称或uuid的库字段管理信息", notes = "")
 	@RequestMapping(path = "/findAllBySysColumnInfo", method = RequestMethod.POST)
 	public List<SysColumnInfo> findAllBySysColumnInfo(@RequestBody SysColumnInfo info) {
 		logger.info("findAll", SysColumnController.class);
 		return sysColumnService.findAllBySysColumnInfo(info);
 	}
-
+	
 	@ApiOperation(hidden = true, value = "/updBefor")
-	@RequestMapping(path = "/updBefor", method = RequestMethod.GET)
+	@RequestMapping(path = "/updBefor", method = RequestMethod.POST)
 	public ModelAndView updBefor(@ModelAttribute SysColumnInfo info) {
+		System.out.println(info.toString());
 		logger.info("updBefor", SysColumnController.class);
 		ModelAndView view = new ModelAndView("dbm/table/upd_column");
 		view.addObject("sysColumnInfo", info);
 		return view;
 	}
-	
+
 	@ApiOperation(value = "分页查询符合库字段管理信息", notes = "")
 	@RequestMapping(path = "/saveSysColumnInfo", method = RequestMethod.POST)
 	public Page<SysColumnInfo> saveSysColumnInfo(@RequestBody SysColumnInfo info) {
 		logger.info("saveSysColumnInfo", SysColumnController.class);
 		sysColumnService.save(info);
 		return sysColumnService.findAllByTableUuid(1, 10, "", info.getTableUuid());
-
+		
 	}
-	
+
 	@ApiOperation(value = "分页查询符合库字段管理信息", notes = "")
 	@RequestMapping(path = "/saveSysColumnVo", method = RequestMethod.POST)
 	public Page<SysColumnInfo> saveSysColumnVo(@RequestBody SysColumnVo vo) {
@@ -94,16 +95,16 @@ public class SysColumnController {
 		logger.info("saveSysColumnVo", SysColumnController.class);
 		sysColumnService.saveSysColumnInfo(vo.getList());
 		return sysColumnService.findAllByTableUuid(1, 20, "", vo.getList().get(0).getTableUuid());
-
+		
 	}
-
+	
 	@ApiOperation(value = "删除库字段管理信息", notes = "")
 	@RequestMapping(path = "/deleteSysColumnInfo", method = RequestMethod.POST)
 	public Page<SysColumnInfo> deleteSysColumnInfo(@RequestBody SysColumnVo vo) {
 		logger.info("deleteSysColumnInfo", SysColumnController.class);
 		sysColumnService.deleteSysColumnInfo(vo.getList());
 		return sysColumnService.findAllByTableUuid(1, 10, "", vo.getList().get(0).getTableUuid());
-
+		
 	}
-
+	
 }

@@ -28,7 +28,7 @@ public class SysTableInfo implements Serializable {
 	@Column(unique = true, nullable = false, columnDefinition = " varchar(36) COMMENT '主键'")
 	private String			  uuid;
 	
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss", pattern = "yyyy-MM-dd hh:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
 	private Date			  createTime;
@@ -63,7 +63,7 @@ public class SysTableInfo implements Serializable {
 	@Column(name = "type_uuid", columnDefinition = "varchar(36) COMMENT '数据库表类型id'")
 	private String			  typeUuid;
 	
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss", pattern = "yyyy-MM-dd hh:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "update_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '更新时间'")
 	private Date			  updateTime;

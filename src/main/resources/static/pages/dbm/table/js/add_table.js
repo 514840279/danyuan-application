@@ -47,7 +47,7 @@ function successSaveSysTableInfo(result){
 }
 //数据库列表下拉
 function successSearchDatabaseInfo(result){
-	jQuery('#add_table_addrName').append('<option value=""></option>');
+	jQuery('#add_table_addrName').append('<option value="">请选择</option>');
 	jQuery.each(result, function(index, value) {
 		var addr = '<option value="' + value.uuid + '">' + value.databaseName + '</option>';
 		jQuery('#add_table_addrName').append(addr);
@@ -55,7 +55,7 @@ function successSearchDatabaseInfo(result){
 }
 //表类型列表下拉
 function successSearchTableTypeInfo(result){
-	jQuery('#add_table_typeName').append('<option value=""></option>');
+	jQuery('#add_table_typeName').append('<option value="">请选择</option>');
 	jQuery.each(result, function(index, value) {
 		var type = '<option value="' + value.uuid + '">' + value.typeName + '</option>';
 		jQuery('#add_table_typeName').append(type);
