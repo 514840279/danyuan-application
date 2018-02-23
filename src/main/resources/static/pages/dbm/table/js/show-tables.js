@@ -15,7 +15,8 @@ $(function() {
 		console.log(res);
 		var uuid = res.id;
 		_search = uuid;
-		_tableName = res.text;
+		_tableName = res.element.attributes.tablename.value;
+		console.log(_tableName);
 		var param={
 		        pageNumber : 1,
 		        pageSize :50,
