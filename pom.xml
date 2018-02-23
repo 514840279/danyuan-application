@@ -7,9 +7,21 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>danyuan-application</name>
-	<url>http://maven.apache.org</url>
-
+	<name>DY</name>
+	<url>http://danyuan.wang</url>
+	
+	<developers>
+		<developer>
+			<email>514840279@qq.com</email>
+			<url>https://www.jianshu.com/u/cf31b9838b17</url>
+			<name>wang</name>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
+	
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- 指明使用JDK8 -->
