@@ -48,7 +48,12 @@ function successSearchDatabaseTableInfo(result) {
 	$.each(result.content, function(index, value) {
 		_column.push({
 		    "title" : value.colsName,
-		    "field" : value.colsDesc
+		    "field" : value.colsDesc,
+		    "width":value.colsWidth==null?150:value.colsWidth,
+		    "align":value.colsAlign==null?"left":value.colsAlign,
+		    "valign":value.colsValign==null?"middle":value.colsValign,
+		    "visible":value.colsVisible==null?true:value.colsVisible,
+		    "switchable":value.colsSwitchable==null?true:value.colsSwitchable,
 		});
 	})
 	reset();

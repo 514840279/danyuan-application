@@ -27,4 +27,6 @@ public interface SysTableService {
 	
 	List<SysTableInfo> findAll(SysTableInfo sysTableInfo);
 
+	List<SysTableInfo> updateSysTableInfo(SysTableVo vo);
+
 }

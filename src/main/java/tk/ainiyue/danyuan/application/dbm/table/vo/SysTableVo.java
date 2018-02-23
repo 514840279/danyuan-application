@@ -10,6 +10,8 @@ public class SysTableVo {
 	private String	   databaseUuid;
 	private String	   typeUuid;
 	
+	SysTableInfo	   old	= new SysTableInfo();
+	SysTableInfo	   now	= new SysTableInfo();
 	List<SysTableInfo> list	= new ArrayList<>();
 	
 	/**
@@ -58,6 +60,22 @@ public class SysTableVo {
 	 */
 	public void setTypeUuid(String typeUuid) {
 		this.typeUuid = typeUuid;
+	}
+	
+	public SysTableInfo getOld() {
+		return old;
+	}
+	
+	public void setOld(SysTableInfo old) {
+		this.old = old;
+	}
+	
+	public SysTableInfo getNow() {
+		return now;
+	}
+	
+	public void setNow(SysTableInfo now) {
+		this.now = now;
 	}
 	
 }

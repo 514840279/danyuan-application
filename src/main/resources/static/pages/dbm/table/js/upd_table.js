@@ -14,20 +14,24 @@ $(function() {
 	// 新建表
 	$('#db_upd_table_button').click(function() {
 		//		alert("Something will happen!");
+		var uuid= $("#upd_table_uuid").val();
 		var tableName= $("#upd_table_tableName").val();
 		var tableDesc=$("#upd_table_tableDesc").val();
 		var databaseUuid=$("#upd_table_addrName").val();
 		var typeUuid=$("#upd_table_typeName").val();
 		var param = {
-				uuid:getUuid(),
-				tableName:tableName,
-				tableDesc:tableDesc,
-				databaseUuid:databaseUuid,
-				typeUuid:typeUuid
-			};
-			// 重载
-			var url = "/sysTableInfo/saveSysTableInfo";
-			ajaxPost(url, param, successSaveSysTableInfo, 1000, findError);
+				old:sysTableInfo,
+				now:{
+					uuid:uuid,
+					tableName:tableName,
+					tableDesc:tableDesc,
+					databaseUuid:databaseUuid,
+					typeUuid:typeUuid
+				}
+		};
+		// 重载
+		var url = "/sysTableInfo/updateSysTableInfo";
+		ajaxPost(url, param, successSaveSysTableInfo, 1000, findError);
 	});
 	
 	// 数据库列表下拉
@@ -47,17 +51,17 @@ function successSaveSysTableInfo(result){
 }
 //数据库列表下拉
 function successSearchDatabaseInfo(result){
-	jQuery('#upd_table_addrName').append('<option value="">请选择</option>');
-	jQuery.each(result, function(index, value) {
-		var addr = '<option value="' + value.uuid + '">' + value.databaseName + '</option>';
-		jQuery('#upd_table_addrName').append(addr);
+	var data = [];
+	$.each(result,function(index,value){
+		data.push({id:value.uuid,text:value.databaseName});
 	});
+	$('#upd_table_addrName').select2({data:data, placeholder: "数据库名称", tags: true,});
 }
 //表类型列表下拉
 function successSearchTableTypeInfo(result){
-	jQuery('#upd_table_typeName').append('<option value="">请选择</option>');
-	jQuery.each(result, function(index, value) {
-		var type = '<option value="' + value.uuid + '">' + value.typeName + '</option>';
-		jQuery('#upd_table_typeName').append(type);
+	var data = [];
+	$.each(result,function(index,value){
+		data.push({id:value.uuid,text:value.typeName});
 	});
+	$('#upd_table_typeName').select2({data:data,placeholder: "类型名", tags: true,});
 }

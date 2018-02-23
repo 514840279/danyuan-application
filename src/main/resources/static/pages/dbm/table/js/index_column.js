@@ -17,7 +17,6 @@ $(function() {
 			alert("只能选择一条");
 		}else{
 			var param=data[0];
-			console.log(param);
 			// 由于日期转化错误 所以删除属性
 			param.createTime=undefined;
 			param.updateTime=undefined;
@@ -90,16 +89,21 @@ $(function() {
 		},
 		columns : [
 			{title : '全选',	checkbox : true,align : 'center',valign : 'middle'},
-			{title : 'id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle'},
+//			{title : 'id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle'},
 			{title : '字段名',field : 'colsName',sortable : true,align : 'center'},
 			{title : '翻译',field : 'colsDesc',sortable : true,align : 'center'},
 			{title : '长度',field : 'colsLength',align : 'center',sortable : true,valign : 'middle'},
-			{title : '排序',field : 'colsOrder',align : 'center',sortable : true,valign : 'middle'},
+			{title : '显示顺序',field : 'colsOrder',align : 'center',sortable : true,valign : 'middle'},
 			{title : '字段类型',field : 'colsType',align : 'center',sortable : true,valign : 'middle'},
-			{title : '描述',field : 'discription',sortable : true,align : 'center'},
+			{title : '描述',field : 'discription',sortable : true,align : 'left'},
+			{title : '对齐方式',field : 'colsAlign',sortable : true,align : 'left'},
+			{title : '对齐方式',field : 'colsValign',sortable : true,align : 'left'},
+			{title : '列的宽度',field : 'colsWidth',sortable : true,align : 'left'},
+			{title : '列显示',field : 'colsVisible',sortable : true,align : 'left'},
+			{title : '列选项卡显示',field : 'colsSwitchable',sortable : true,align : 'left'},
+			{title : '索引列',field : 'colsIndex',sortable : true,align : 'left'},
 		],
 		responseHandler: function(result){  // 成功时执行
-			console.log(result);
 			return {rows:result.content,total:result.totalElements};
 		}, 
         onLoadSuccess: function(){  //加载成功时执行  

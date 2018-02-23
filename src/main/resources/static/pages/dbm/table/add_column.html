@@ -59,13 +59,13 @@
 							<div class=" col-md-6 form-group">
 								<label class="col-sm-2 control-label text-right">长度:</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="add_column_colsLength" name="colsLength" placeholder="数据库表含义">
+									<input type="text" class="form-control" id="add_column_colsLength" name="colsLength" placeholder="数据库长度 ，最大 2000">
 								</div>
 							</div>
 							<div class=" col-md-6 form-group">
 								<label class="col-sm-2 control-label text-right">排序:</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="add_column_colsOrder" name="colsOrder" placeholder="数据库表含义">
+									<input type="text" class="form-control" id="add_column_colsOrder" name="colsOrder" placeholder="数据由小到大显示列">
 								</div>
 							</div>
 							<div class=" col-md-6 form-group">
@@ -74,6 +74,42 @@
 									<input type="text" class="form-control" id="add_column_discription" name="discription" placeholder="描述">
 								</div>
 							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">对齐方式:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsAlign" name="colsAlign" placeholder="对齐方式：left（靠左）、right（靠右）、center（居中）">
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">对齐方式:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsValign" name="colsValign" placeholder="对齐方式：top（靠上）、middle（居中）、bottom（靠下）">
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">列宽:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsWidth" name="colsWidth" placeholder="每列的宽度">
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">列显示:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsVisible" name="colsVisible" placeholder="默认为true显示该列，设为false则隐藏该列">
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">选项卡显示:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsSwitchable" name="colsSwitchable" placeholder="默认为true显示该列，设为false则禁用列项目的选项卡">
+								</div>
+							</div>
+							
 							<div class=" col-md-12 text-center">
 								<button class="btn btn-success" id="db_alter_table_add_column_button">
 									<i class="glyphicon glyphicon-ok"></i> 添加

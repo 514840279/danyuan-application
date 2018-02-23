@@ -92,6 +92,13 @@ public class SysTableController {
 		return sysTableService.deleteSysTableInfo(vo);
 	}
 
+	@ApiOperation(value = "修改数据库表管理信息", notes = "")
+	@RequestMapping(path = "/updateSysTableInfo", method = RequestMethod.POST)
+	public List<SysTableInfo> updateSysTableInfo(@RequestBody SysTableVo vo) {
+		logger.info("updateSysTableInfo", SysTableController.class);
+		return sysTableService.updateSysTableInfo(vo);
+	}
+
 	@ApiOperation(hidden = true, value = "/updBefor")
 	@RequestMapping(path = "/updBefor", method = RequestMethod.POST)
 	public ModelAndView updBefor(HttpServletRequest request) {

@@ -29,38 +29,41 @@ import tk.ainiyue.danyuan.application.dbm.table.vo.SysTableVo;
  */
 @Service("sysTableService")
 public class SysTableServiceImpl implements SysTableService {
-	
+
 	private static final Logger	logger = LoggerFactory.getLogger(SysTableServiceImpl.class);
 	//
 	@Autowired
 	private SysTableDao			sysTableDao;
 	@Autowired
 	private SysColumnDao		sysColumnDao;
-	
+
 	@Autowired
 	JdbcTemplate				jdbcTemplate;
-
+	
 	@Override
 	public List<SysTableInfo> findAll() {
 		return sysTableDao.findAll();
 	}
-
+	
 	@Override
 	public List<SysTableInfo> save(SysTableInfo info) {
+		// 保存表配信息
 		sysTableDao.save(info);
+		// 动态生成表
 		StringBuilder sBuilder = new StringBuilder();
 		sBuilder.append("CREATE TABLE ");
 		sBuilder.append(info.getTableName());
 		sBuilder.append("(md5 varchar(36) comment 'url的md5值',url varchar(2000) comment 'url地址',数据来源  varchar(50) comment '数据来源',datetime date comment '采集时间' )");
 		jdbcTemplate.execute(sBuilder.toString());
-		
+		// 保存列的配置信息
 		sysColumnDao.save(new SysColumnInfo(UUID.randomUUID().toString(), 36, "url的md5值", "md5", 1, "VARCHAR", "url的md5值", info.getUuid()));
 		sysColumnDao.save(new SysColumnInfo(UUID.randomUUID().toString(), 2000, "url地址", "url", 2, "VARCHAR", "url地址", info.getUuid()));
 		sysColumnDao.save(new SysColumnInfo(UUID.randomUUID().toString(), 50, "数据来源", "数据来源", 3, "VARCHAR", "数据来源", info.getUuid()));
 		sysColumnDao.save(new SysColumnInfo(UUID.randomUUID().toString(), 6, "采集时间", "datetime", 4, "date", "采集时间", info.getUuid()));
+		// 返回表配置信息
 		return sysTableDao.findAll();
 	}
-
+	
 	@Override
 	public List<SysTableInfo> deleteSysTableInfo(SysTableVo vo) {
 		for (SysTableInfo info : vo.getList()) {
@@ -75,19 +78,43 @@ public class SysTableServiceImpl implements SysTableService {
 				sysTableDao.delete(info);
 			}
 		}
-		
+
 		return sysTableDao.findAll();
 	}
-
+	
 	@Override
 	public SysTableInfo findSysTableInofByUuid(String uuid) {
 		return sysTableDao.findSysTableInofByUuid(uuid);
 	}
-	
+
 	@Override
 	public List<SysTableInfo> findAll(SysTableInfo sysTableInfo) {
 		Example<SysTableInfo> example = Example.of(sysTableInfo);
 		return sysTableDao.findAll(example);
 	}
 	
+	@Override
+	public List<SysTableInfo> updateSysTableInfo(SysTableVo vo) {
+		// 旧数据
+		SysTableInfo info = vo.getOld();
+		SysTableInfo sysTableInfo = vo.getNow();
+		
+		System.out.println(info.getTableName() + "  " + sysTableInfo.getTableName());
+		
+		if (!info.getTableName().equals(sysTableInfo.getTableName())) {
+			// 修改表名
+			String sql = "ALTER TABLE " + info.getTableName() + "  RENAME TO  " + sysTableInfo.getTableName();
+			jdbcTemplate.execute(sql);
+		}
+		if (sysTableInfo.getTableName() != null) {
+			// 修改注释
+			String sql = "ALTER TABLE " + sysTableInfo.getTableName() + "  COMMENT='" + sysTableInfo.getTableDesc() + "'";
+			jdbcTemplate.execute(sql);
+		}
+		// 修改配置信息
+		sysTableDao.save(sysTableInfo);
+		
+		return sysTableDao.findAll();
+	}
+
 }

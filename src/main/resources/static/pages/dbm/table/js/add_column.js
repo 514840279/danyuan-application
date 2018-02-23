@@ -10,6 +10,12 @@ $(function() {
 			colsLength : $('#upd_column_colsLength').val(),
 			colsOrder : $('#upd_column_colsOrder').val(),
 			discription : $('#upd_column_discription').val(),
+			colsAlign : $('#upd_column_colsAlign').val(),
+			colsValign : $('#upd_column_colsValign').val(),
+			colsWidth : $('#upd_column_colsWidth').val(),
+			colsVisible : $('#upd_column_colsVisible').val(),
+			colsSwitchable : $('#upd_column_colsSwitchable').val(),
+			colsIndex : $('#upd_column_colsIndex').val(),
 		};
 		// 重载
 		var url = "/sysColumnInfo/saveSysColumnInfo";

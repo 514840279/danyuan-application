@@ -93,8 +93,8 @@ $(function() {
 			{title : '数据库',field : 'databaseUuid',sortable : true,align : 'left'},
 			{title : '类型',field : 'typeUuid',sortable : true,align : 'left'},
 			{title : '表名',field : 'tableName',align : 'left',sortable : true,valign : 'middle'},
-			{title : '表含义',field : 'tableDisc',align : 'left',sortable : true,valign : 'middle'},
-			{title : '排序',field : 'tableOrder',align : 'center',sortable : true,valign : 'middle'},
+			{title : '表含义',field : 'tableDesc',align : 'left',sortable : true,valign : 'middle'},
+			{title : '显示顺序',field : 'tableOrder',align : 'center',sortable : true,valign : 'middle'},
 			{title : '表数据量',field : 'tableRows',sortable : true,align : 'left'},
 			{title : '数据库表大小',field : 'tableSpace',sortable : true,align : 'left'},
 			{title : '描述',field : 'discription',sortable : true,align : 'left'}

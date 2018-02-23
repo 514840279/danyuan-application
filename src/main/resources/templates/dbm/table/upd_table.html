@@ -35,6 +35,7 @@
 				</div>
 				<div id="accordion_table_collapseOne" class="panel-collapse collapse in">
 					<div class="panel-body">
+					<input type="text"  id="upd_table_uuid" name="type" th:value="*{sysTableInfo.uuid}" hidden="hidden"/>
 						<div class="row">
 							<div class="col-md-6 form-group">
 								<label class="col-sm-2 control-label text-right">表名:</label>
@@ -62,7 +63,7 @@
 							</div>
 							<div class=" col-md-12 text-center">
 								<button class="btn btn-success" id="db_upd_table_button">
-									<i class="glyphicon glyphicon-ok"></i> 新建表
+									<i class="glyphicon glyphicon-ok"></i> 修改表
 								</button>
 							</div>
 						</div>
@@ -73,5 +74,10 @@
 
 	</section>
 	<script type="text/javascript" src="pages/dbm/table/js/upd_table.js"></script>
+	<script th:inline="javascript">
+	var sysTableInfo = [[${sysTableInfo}]];
+	var id = sysTableInfo.databaseUuid;
+	$("#upd_table_addrName").select2('val',id);
+	</script>
 </body>
 </html>

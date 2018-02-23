@@ -68,6 +68,24 @@ public class SysColumnInfo implements Serializable {
 	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
 	private String			  updateUser;			// updata_user 更新人
 	
+	@Column(name = "cols_align", columnDefinition = " varchar(36) COMMENT '对齐方式'")
+	private String			  colsAlign;
+
+	@Column(name = "cols_valign", columnDefinition = " varchar(36) COMMENT '对齐方式'")
+	private String			  colsValign;
+
+	@Column(name = "cols_width", columnDefinition = " varchar(36) COMMENT '每列的宽度'")
+	private String			  colsWidth;
+	
+	@Column(name = "cols_visible", columnDefinition = " varchar(36) COMMENT '默认为true显示该列，设为false则隐藏该列'")
+	private Boolean			  colsVisible;
+	
+	@Column(name = "cols_switchable", columnDefinition = " varchar(36) COMMENT '默认为true显示该列，设为false则禁用列项目的选项卡。'")
+	private Boolean			  colsSwitchable;
+	
+	@Column(name = "cols_index", columnDefinition = " varchar(10) COMMENT '用户查询列配置'")
+	private String			  colsIndex;
+
 	public SysColumnInfo() {
 	}
 
@@ -316,10 +334,80 @@ public class SysColumnInfo implements Serializable {
 		this.discription = discription;
 		this.tableUuid = tableUuid;
 	}
-	
+
+	public SysColumnInfo(String uuid, Integer colsLength, String colsDesc, String colsName, Integer colsOrder, String colsType, Date createTime, String createUser, Integer deleteFlag, String discription, String tableUuid, Date updateTime, String updateUser, String colsAlign, String colsValign, String colsWidth, Boolean colsVisible, Boolean colsSwitchable) {
+		super();
+		this.uuid = uuid;
+		this.colsLength = colsLength;
+		this.colsDesc = colsDesc;
+		this.colsName = colsName;
+		this.colsOrder = colsOrder;
+		this.colsType = colsType;
+		this.createTime = createTime;
+		this.createUser = createUser;
+		this.deleteFlag = deleteFlag;
+		this.discription = discription;
+		this.tableUuid = tableUuid;
+		this.updateTime = updateTime;
+		this.updateUser = updateUser;
+		this.colsAlign = colsAlign;
+		this.colsValign = colsValign;
+		this.colsWidth = colsWidth;
+		this.colsVisible = colsVisible;
+		this.colsSwitchable = colsSwitchable;
+	}
+
 	public SysColumnInfo(String tableUuid) {
 		super();
 		this.tableUuid = tableUuid;
+	}
+	
+	public String getColsAlign() {
+		return colsAlign;
+	}
+	
+	public void setColsAlign(String colsAlign) {
+		this.colsAlign = colsAlign;
+	}
+	
+	public String getColsValign() {
+		return colsValign;
+	}
+	
+	public void setColsValign(String colsValign) {
+		this.colsValign = colsValign;
+	}
+	
+	public String getColsWidth() {
+		return colsWidth;
+	}
+	
+	public void setColsWidth(String colsWidth) {
+		this.colsWidth = colsWidth;
+	}
+	
+	public Boolean getColsVisible() {
+		return colsVisible;
+	}
+	
+	public void setColsVisible(Boolean colsVisible) {
+		this.colsVisible = colsVisible;
+	}
+	
+	public Boolean getColsSwitchable() {
+		return colsSwitchable;
+	}
+	
+	public void setColsSwitchable(Boolean colsSwitchable) {
+		this.colsSwitchable = colsSwitchable;
+	}
+	
+	public String getColsIndex() {
+		return colsIndex;
+	}
+	
+	public void setColsIndex(String colsIndex) {
+		this.colsIndex = colsIndex;
 	}
 	
 }

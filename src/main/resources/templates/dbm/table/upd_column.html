@@ -61,13 +61,13 @@
 							<div class=" col-md-6 form-group">
 								<label class="col-sm-2 control-label text-right">长度:</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="upd_column_colsLength" name="colsLength" placeholder="数据库表含义" th:value="*{sysColumnInfo.colsLength}"/>
+									<input type="text" class="form-control" id="upd_column_colsLength" name="colsLength" placeholder="数据库长度 ，最大 2000" th:value="*{sysColumnInfo.colsLength}"/>
 								</div>
 							</div>
 							<div class=" col-md-6 form-group">
 								<label class="col-sm-2 control-label text-right">排序:</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="upd_column_colsOrder" name="colsOrder" placeholder="排序" th:value="*{sysColumnInfo.colsOrder}"/>
+									<input type="text" class="form-control" id="upd_column_colsOrder" name="colsOrder" placeholder="排序，数据由小到大显示列" th:value="*{sysColumnInfo.colsOrder}"/>
 								</div>
 							</div>
 							<div class=" col-md-6 form-group">
@@ -76,9 +76,50 @@
 									<input type="text" class="form-control" id="upd_column_discription" name="discription" placeholder="描述" th:value="*{sysColumnInfo.discription}"/>
 								</div>
 							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">对齐方式:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsAlign" th:value="*{sysColumnInfo.colsAlign}" name="colsAlign" placeholder="对齐方式：left（靠左）、right（靠右）、center（居中）"/>
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">对齐方式:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsValign" name="colsValign"  th:value="*{sysColumnInfo.colsValign}" placeholder="对齐方式：top（靠上）、middle（居中）、bottom（靠下）"/>
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">列宽:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsWidth" name="colsWidth"  th:value="*{sysColumnInfo.colsWidth}" placeholder="每列的宽度"/>
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">列显示:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsVisible" name="colsVisible"  th:value="*{sysColumnInfo.colsVisible}" placeholder="默认为true显示该列，设为false则不显示"/>
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">选项卡显示:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsSwitchable" name="colsSwitchable" th:value="*{sysColumnInfo.colsSwitchable}" placeholder="默认为true显示该列，设为false则禁用列项目的选项卡"/>
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">选项卡显示:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsIndex" name="colsIndex" th:value="*{sysColumnInfo.colsIndex}" placeholder="姓名(xm),证件号码(ZJHM),电话号码(DHHM),邮箱(DZYX)。。。。"/>
+								</div>
+							</div>
 							<div class=" col-md-12 text-center">
 								<button class="btn btn-success" id="db_alter_table_add_column_button">
-									<i class="glyphicon glyphicon-ok"></i> 添加
+									<i class="glyphicon glyphicon-ok"></i> 修改
 								</button>
 							</div>
 						</div>
