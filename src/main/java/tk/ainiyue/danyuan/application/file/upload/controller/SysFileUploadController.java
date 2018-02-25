@@ -1,5 +1,6 @@
 package tk.ainiyue.danyuan.application.file.upload.controller;
 
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -19,21 +20,21 @@ import io.swagger.annotations.Api;
 @RequestMapping("/sysFileUploadInfo")
 @Api(value = "/SysFileUploadInfo", description = "文件上传")
 public class SysFileUploadController {
-
+	
 	@RequestMapping("/upload")
 	public String upload(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-		
+
 		request.setCharacterEncoding("UTF-8");
-		
+
 		Map<String, Object> json = new HashMap<>();
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		
+
 		/** 页面控件的文件流* */
 		MultipartFile multipartFile = null;
 		Map<String, MultipartFile> map = multipartRequest.getFileMap();
 		for (Object obj : map.keySet()) {
 			multipartFile = map.get(obj);
-			
+
 		}
 		/** 获取文件的后缀* */
 		String filename = multipartFile.getOriginalFilename();
@@ -43,8 +44,8 @@ public class SysFileUploadController {
 		String newVersionName = "";
 		String fileMd5 = "";
 		try {
-			
-//			inputStream = multipartFile.getInputStream();
+
+			inputStream = multipartFile.getInputStream();
 //			File tmpFile = File.createTempFile(filename,
 //			        filename.substring(filename.lastIndexOf(".")));
 //			fileMd5 = Files.hash(tmpFile, Hashing.md5()).toString();
@@ -56,11 +57,25 @@ public class SysFileUploadController {
 //			path = UpyunUtils.uploadApk(tmpFile, multipartFile.getOriginalFilename(), true, newVersionName);
 			System.err.println(path);
 //			tmpFile.delete();
-
+			
+			FileOutputStream fos = new FileOutputStream("./uploadfile/" + filename);
+			
+			byte[] b = new byte[1024];
+			
+			while ((inputStream.read(b)) != -1) {
+				
+				fos.write(b);
+				
+			}
+			
+			inputStream.close();
+			
+			fos.close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "1";
 	}
-
+	
 }
