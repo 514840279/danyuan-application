@@ -34,7 +34,7 @@ $(function() {
 		singleSelect : false,
 		locales : "zh-CN", // 表格汉化
 		search : true, // 显示搜索框
-		sidePagination : "client", // 服务端处理分页
+		sidePagination: "client", // 服务端处理分页
 		columns : [ 
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'}, 
 			{title : 'id',field : 'uuid',align : 'center',sortable : true,valign : 'middle'},
