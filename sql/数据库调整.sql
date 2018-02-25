@@ -4,6 +4,9 @@
  -- 设置
  set global max_allowed_packet = 2*1024*1024*10;
  -- 重启数据库
+ quit
+ service mysql.server restart
+
  -- 再次查看
   show VARIABLES like '%max_allowed_packet%';
   
