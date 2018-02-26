@@ -38,8 +38,8 @@
 	<!-- Main content -->
 	<section class="content">
 		<div id="system_toolbar" class="btn-group">
-			<button type="button" class="btn btn-success" id="addnew" data-toggle="modal" data-target="#exampleModal">上传文件</button>
-			<button type="button" class="btn btn-danger" id="deleteold">删除文件</button>
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">上传文件</button>
+			<button type="button" class="btn btn-danger" id="deleteoldFile">删除文件</button>
 		</div>
 		<div class="box">
 			<div class="box-header with-border">
@@ -52,7 +52,7 @@
               </div>
             </div>
 			<div class="box-body">
-			<table class="table table-striped table-bordered" id="admin_system_datagrid" data-toggle="admin_system_datagrid"></table>
+			<table class="table table-striped table-bordered" id="file_upload_datagrid" data-toggle="admin_system_datagrid"></table>
 			</div>
 		</div>
 		
@@ -69,8 +69,7 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	         <input id="files" type="file" data-preview-file-type="text" multiple 
-	         data-allowed-file-extensions='["csv", "txt","xlsx", "xls", "pdf"]' language="zh">
+	         <input id="files" type="file" data-preview-file-type="text" multiple />
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
@@ -79,18 +78,6 @@
 	    </div>
 	  </div>
 	</div>
-	<!-- 	<script type="text/javascript" src="/pages/softm/system/js/index.js"></script> -->
-	<script>
-	$("#files").fileinput({
-		theme: 'fa',
-        language: 'zh',
-		showPreview: true,
-        showUpload: true,
-        language: 'zh',
-        multiple: true,
-        uploadUrl: '/sysFileUploadInfo/upload'
-        
-      });
-	</script>
+<script type="text/javascript" src="/pages/file/upload/js/index.js"></script>
 </body>
 </html>

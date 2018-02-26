@@ -18,7 +18,6 @@ import tk.ainiyue.danyuan.application.softm.sysmenu.dao.SysMenuDao;
 import tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo;
 import tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService;
 import tk.ainiyue.danyuan.application.softm.sysmenu.vo.AuthorityzTreeVO;
-import tk.ainiyue.danyuan.application.user.userbase.dao.SysUserBaseDao;
 
 /**
  * 文件名 ： AuthorityServiceImpl.java
@@ -38,8 +37,6 @@ public class SysMenuServiceImpl implements SysMenuService {
 	@Autowired
 	private SysRolesJurisdictionDao	sysRolesJurisdictionDao;
 	
-	@Autowired
-	private SysUserBaseDao			sysUserBaseDao;
 	
 	/**
 	 * 方法名 ： findAll
