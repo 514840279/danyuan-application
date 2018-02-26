@@ -42,7 +42,7 @@ function reset(){
 	$('#file_upload_datagrid').bootstrapTable({
 		url : "/sysFileUploadInfo/findAllBySearchText",
 		dataType : "json",
-		toolbar : '#system_toolbar', // 工具按钮用哪个容器
+		toolbar : '#file_upload_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
