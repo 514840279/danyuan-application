@@ -5,16 +5,16 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(appliesTo = "sys_menu_info", comment = "系统资源管理表")
+@Table(name = "sys_menu_info")
 public class SysMenuInfo {
 	@Id
 	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键 '")

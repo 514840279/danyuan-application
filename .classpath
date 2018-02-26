@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar" sourcepath="M2_REPO/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/transaction/javax.transaction-api/1.2/javax.transaction-api-1.2.jar" sourcepath="M2_REPO/javax/transaction/javax.transaction-api/1.2/javax.transaction-api-1.2-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/activation/activation/1.1/activation-1.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-web/1.5.10.RELEASE/spring-boot-starter-web-1.5.10.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter-web/1.5.10.RELEASE/spring-boot-starter-web-1.5.10.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter/1.5.10.RELEASE/spring-boot-starter-1.5.10.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter/1.5.10.RELEASE/spring-boot-starter-1.5.10.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot/1.5.10.RELEASE/spring-boot-1.5.10.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-core/4.3.14.RELEASE/spring-core-4.3.14.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-core/4.3.14.RELEASE/spring-core-4.3.14.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context/4.3.14.RELEASE/spring-context-4.3.14.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-context/4.3.14.RELEASE/spring-context-4.3.14.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-aop/4.3.14.RELEASE/spring-aop-4.3.14.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-aop/4.3.14.RELEASE/spring-aop-4.3.14.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-beans/4.3.14.RELEASE/spring-beans-4.3.14.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-beans/4.3.14.RELEASE/spring-beans-4.3.14.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-expression/4.3.14.RELEASE/spring-expression-4.3.14.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-expression/4.3.14.RELEASE/spring-expression-4.3.14.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-autoconfigure/1.5.10.RELEASE/spring-boot-autoconfigure-1.5.10.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-logging/1.5.10.RELEASE/spring-boot-starter-logging-1.5.10.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter-logging/1.5.10.RELEASE/spring-boot-starter-logging-1.5.10.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/ch/qos/logback/logback-classic/1.1.11/logback-classic-1.1.11.jar" sourcepath="M2_REPO/ch/qos/logback/logback-classic/1.1.11/logback-classic-1.1.11-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/ch/qos/logback/logback-core/1.1.11/logback-core-1.1.11.jar" sourcepath="M2_REPO/ch/qos/logback/logback-core/1.1.11/logback-core-1.1.11-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/slf4j/jcl-over-slf4j/1.7.25/jcl-over-slf4j-1.7.25.jar" sourcepath="M2_REPO/org/slf4j/jcl-over-slf4j/1.7.25/jcl-over-slf4j-1.7.25-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/slf4j/jul-to-slf4j/1.7.25/jul-to-slf4j-1.7.25.jar" sourcepath="M2_REPO/org/slf4j/jul-to-slf4j/1.7.25/jul-to-slf4j-1.7.25-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/slf4j/log4j-over-slf4j/1.7.25/log4j-over-slf4j-1.7.25.jar" sourcepath="M2_REPO/org/slf4j/log4j-over-slf4j/1.7.25/log4j-over-slf4j-1.7.25-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/yaml/snakeyaml/1.17/snakeyaml-1.17.jar" sourcepath="M2_REPO/org/yaml/snakeyaml/1.17/snakeyaml-1.17-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-tomcat/1.5.10.RELEASE/spring-boot-starter-tomcat-1.5.10.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter-tomcat/1.5.10.RELEASE/spring-boot-starter-tomcat-1.5.10.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/tomcat/embed/tomcat-embed-core/8.5.27/tomcat-embed-core-8.5.27.jar" sourcepath="M2_REPO/org/apache/tomcat/embed/tomcat-embed-core/8.5.27/tomcat-embed-core-8.5.27-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/tomcat/tomcat-annotations-api/8.5.27/tomcat-annotations-api-8.5.27.jar" sourcepath="M2_REPO/org/apache/tomcat/tomcat-annotations-api/8.5.27/tomcat-annotations-api-8.5.27-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/tomcat/embed/tomcat-embed-el/8.5.27/tomcat-embed-el-8.5.27.jar" sourcepath="M2_REPO/org/apache/tomcat/embed/tomcat-embed-el/8.5.27/tomcat-embed-el-8.5.27-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/tomcat/embed/tomcat-embed-websocket/8.5.27/tomcat-embed-websocket-8.5.27.jar" sourcepath="M2_REPO/org/apache/tomcat/embed/tomcat-embed-websocket/8.5.27/tomcat-embed-websocket-8.5.27-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-validator/5.3.6.Final/hibernate-validator-5.3.6.Final.jar" sourcepath="M2_REPO/org/hibernate/hibernate-validator/5.3.6.Final/hibernate-validator-5.3.6.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/logging/jboss-logging/3.3.1.Final/jboss-logging-3.3.1.Final.jar" sourcepath="M2_REPO/org/jboss/logging/jboss-logging/3.3.1.Final/jboss-logging-3.3.1.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/fasterxml/classmate/1.3.4/classmate-1.3.4.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.8.10/jackson-databind-2.8.10.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.8.10/jackson-databind-2.8.10-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.8.0/jackson-annotations-2.8.0.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.8.0/jackson-annotations-2.8.0-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.8.10/jackson-core-2.8.10.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.8.10/jackson-core-2.8.10-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-web/4.3.14.RELEASE/spring-web-4.3.14.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-web/4.3.14.RELEASE/spring-web-4.3.14.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-webmvc/4.3.14.RELEASE/spring-webmvc-4.3.14.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-webmvc/4.3.14.RELEASE/spring-webmvc-4.3.14.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context-support/4.3.14.RELEASE/spring-context-support-4.3.14.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-context-support/4.3.14.RELEASE/spring-context-support-4.3.14.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/session/spring-session/1.3.1.RELEASE/spring-session-1.3.1.RELEASE.jar" sourcepath="M2_REPO/org/springframework/session/spring-session/1.3.1.RELEASE/spring-session-1.3.1.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-thymeleaf/1.5.10.RELEASE/spring-boot-starter-thymeleaf-1.5.10.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter-thymeleaf/1.5.10.RELEASE/spring-boot-starter-thymeleaf-1.5.10.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/thymeleaf/thymeleaf-spring4/2.1.6.RELEASE/thymeleaf-spring4-2.1.6.RELEASE.jar" sourcepath="M2_REPO/org/thymeleaf/thymeleaf-spring4/2.1.6.RELEASE/thymeleaf-spring4-2.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/thymeleaf/thymeleaf/2.1.6.RELEASE/thymeleaf-2.1.6.RELEASE.jar" sourcepath="M2_REPO/org/thymeleaf/thymeleaf/2.1.6.RELEASE/thymeleaf-2.1.6.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/ognl/ognl/3.0.8/ognl-3.0.8.jar" sourcepath="M2_REPO/ognl/ognl/3.0.8/ognl-3.0.8-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/javassist/javassist/3.21.0-GA/javassist-3.21.0-GA.jar" sourcepath="M2_REPO/org/javassist/javassist/3.21.0-GA/javassist-3.21.0-GA-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/unbescape/unbescape/1.1.0.RELEASE/unbescape-1.1.0.RELEASE.jar" sourcepath="M2_REPO/org/unbescape/unbescape/1.1.0.RELEASE/unbescape-1.1.0.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/nz/net/ultraq/thymeleaf/thymeleaf-layout-dialect/1.4.0/thymeleaf-layout-dialect-1.4.0.jar" sourcepath="M2_REPO/nz/net/ultraq/thymeleaf/thymeleaf-layout-dialect/1.4.0/thymeleaf-layout-dialect-1.4.0-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/codehaus/groovy/groovy/2.4.13/groovy-2.4.13.jar" sourcepath="M2_REPO/org/codehaus/groovy/groovy/2.4.13/groovy-2.4.13-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-jdbc/1.5.10.RELEASE/spring-boot-starter-jdbc-1.5.10.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter-jdbc/1.5.10.RELEASE/spring-boot-starter-jdbc-1.5.10.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/tomcat/tomcat-jdbc/8.5.27/tomcat-jdbc-8.5.27.jar" sourcepath="M2_REPO/org/apache/tomcat/tomcat-jdbc/8.5.27/tomcat-jdbc-8.5.27-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/tomcat/tomcat-juli/8.5.27/tomcat-juli-8.5.27.jar" sourcepath="M2_REPO/org/apache/tomcat/tomcat-juli/8.5.27/tomcat-juli-8.5.27-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-jdbc/4.3.14.RELEASE/spring-jdbc-4.3.14.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-jdbc/4.3.14.RELEASE/spring-jdbc-4.3.14.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-tx/4.3.14.RELEASE/spring-tx-4.3.14.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-tx/4.3.14.RELEASE/spring-tx-4.3.14.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-data-jpa/1.5.10.RELEASE/spring-boot-starter-data-jpa-1.5.10.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter-data-jpa/1.5.10.RELEASE/spring-boot-starter-data-jpa-1.5.10.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-aop/1.5.10.RELEASE/spring-boot-starter-aop-1.5.10.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter-aop/1.5.10.RELEASE/spring-boot-starter-aop-1.5.10.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/aspectj/aspectjweaver/1.8.13/aspectjweaver-1.8.13.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-core/5.0.12.Final/hibernate-core-5.0.12.Final.jar" sourcepath="M2_REPO/org/hibernate/hibernate-core/5.0.12.Final/hibernate-core-5.0.12.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar" sourcepath="M2_REPO/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/antlr/antlr/2.7.7/antlr-2.7.7.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/jandex/2.0.0.Final/jandex-2.0.0.Final.jar" sourcepath="M2_REPO/org/jboss/jandex/2.0.0.Final/jandex-2.0.0.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar" sourcepath="M2_REPO/dom4j/dom4j/1.6.1/dom4j-1.6.1-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/hibernate/common/hibernate-commons-annotations/5.0.1.Final/hibernate-commons-annotations-5.0.1.Final.jar" sourcepath="M2_REPO/org/hibernate/common/hibernate-commons-annotations/5.0.1.Final/hibernate-commons-annotations-5.0.1.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/hibernate/hibernate-entitymanager/5.0.12.Final/hibernate-entitymanager-5.0.12.Final.jar" sourcepath="M2_REPO/org/hibernate/hibernate-entitymanager/5.0.12.Final/hibernate-entitymanager-5.0.12.Final-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/data/spring-data-jpa/1.11.10.RELEASE/spring-data-jpa-1.11.10.RELEASE.jar" sourcepath="M2_REPO/org/springframework/data/spring-data-jpa/1.11.10.RELEASE/spring-data-jpa-1.11.10.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/data/spring-data-commons/1.13.10.RELEASE/spring-data-commons-1.13.10.RELEASE.jar" sourcepath="M2_REPO/org/springframework/data/spring-data-commons/1.13.10.RELEASE/spring-data-commons-1.13.10.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-orm/4.3.14.RELEASE/spring-orm-4.3.14.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-orm/4.3.14.RELEASE/spring-orm-4.3.14.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-aspects/4.3.14.RELEASE/spring-aspects-4.3.14.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-aspects/4.3.14.RELEASE/spring-aspects-4.3.14.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-security/1.5.10.RELEASE/spring-boot-starter-security-1.5.10.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter-security/1.5.10.RELEASE/spring-boot-starter-security-1.5.10.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/security/spring-security-config/4.2.4.RELEASE/spring-security-config-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/security/spring-security-core/4.2.4.RELEASE/spring-security-core-4.2.4.RELEASE.jar" sourcepath="M2_REPO/org/springframework/security/spring-security-core/4.2.4.RELEASE/spring-security-core-4.2.4.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/security/spring-security-web/4.2.4.RELEASE/spring-security-web-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-actuator/1.5.10.RELEASE/spring-boot-starter-actuator-1.5.10.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-actuator/1.5.10.RELEASE/spring-boot-actuator-1.5.10.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/joda-time/joda-time/2.9.9/joda-time-2.9.9.jar"/>
+	<classpathentry kind="var" path="M2_REPO/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-mail/1.5.10.RELEASE/spring-boot-starter-mail-1.5.10.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/sun/mail/javax.mail/1.5.6/javax.mail-1.5.6.jar"/>
+	<classpathentry kind="var" path="M2_REPO/fakepath/taobao-sdk-java-auto_1455552377940/20160607/taobao-sdk-java-auto_1455552377940-20160607.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/springfox/springfox-swagger2/2.2.2/springfox-swagger2-2.2.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/mapstruct/mapstruct/1.0.0.CR1/mapstruct-1.0.0.CR1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/swagger/swagger-annotations/1.5.3/swagger-annotations-1.5.3.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/swagger/swagger-models/1.5.3/swagger-models-1.5.3.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/springfox/springfox-spi/2.2.2/springfox-spi-2.2.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/springfox/springfox-core/2.2.2/springfox-core-2.2.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/google/guava/guava/18.0/guava-18.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/aspectj/aspectjrt/1.8.13/aspectjrt-1.8.13.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/plugin/spring-plugin-core/1.2.0.RELEASE/spring-plugin-core-1.2.0.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/plugin/spring-plugin-metadata/1.2.0.RELEASE/spring-plugin-metadata-1.2.0.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/hateoas/spring-hateoas/0.23.0.RELEASE/spring-hateoas-0.23.0.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/springfox/springfox-schema/2.2.2/springfox-schema-2.2.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/springfox/springfox-swagger-common/2.2.2/springfox-swagger-common-2.2.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/springfox/springfox-spring-web/2.2.2/springfox-spring-web-2.2.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/io/springfox/springfox-swagger-ui/2.2.2/springfox-swagger-ui-2.2.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-devtools/1.5.10.RELEASE/spring-boot-devtools-1.5.10.RELEASE.jar"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

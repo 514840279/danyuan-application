@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="danyuan-application">
+		<class>tk.ainiyue.danyuan.application.crawler.config.po.SysSeedResultRulerInfo</class>
 		<class>tk.ainiyue.danyuan.application.crawler.param.po.SysRulerInfo</class>
 		<class>tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRulerColumInfo</class>
 		<class>tk.ainiyue.danyuan.application.crawler.seed.po.SysSeedInfo</class>
@@ -12,10 +13,26 @@
 		<class>tk.ainiyue.danyuan.application.dbm.column.po.SysColumnInfo</class>
 		<class>tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo</class>
 		<class>tk.ainiyue.danyuan.application.dbm.type.po.SysTableTypeInfo</class>
-		<class>tk.ainiyue.danyuan.application.rms.userrole.po.SysUserRolesInfo</class>
 		<class>tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo</class>
 		<class>tk.ainiyue.danyuan.application.softm.system.po.SysSystemInfo</class>
 		<class>tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo</class>
-		<class>tk.ainiyue.danyuan.application.crawler.config.po.SysSeedResultRulerInfo</class>
+		<class>tk.ainiyue.danyuan.application.user.userrole.po.SysUserRolesInfo</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicCglx</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicDqdm</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicDwxz</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicGzxz</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicHyfl</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicMzdm</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicPxjx</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicRyj</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicTsfl</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicXkfl</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicXlmc</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicXwmc</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicZjlx</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicZwjb</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicZxjd</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicZydm</class>
+		<class>tk.ainiyue.danyuan.application.dic.po.KjDicZzmm</class>
 	</persistence-unit>
 </persistence>
