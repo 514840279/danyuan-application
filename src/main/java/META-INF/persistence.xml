@@ -35,5 +35,14 @@
 		<class>tk.ainiyue.danyuan.application.dic.po.KjDicZydm</class>
 		<class>tk.ainiyue.danyuan.application.dic.po.KjDicZzmm</class>
 		<class>tk.ainiyue.danyuan.application.file.upload.po.SysFileUploadInfo</class>
+		<class>tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmDwxxInfo</class>
+		<class>tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmJbxxInfo</class>
+		<class>tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmRyxxInfo</class>
+		<class>tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryGzllInfo</class>
+		<class>tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJbxxInfo</class>
+		<class>tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJyxxInfo</class>
+		<class>tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryXsjzInfo</class>
+		<class>tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryXspsInfo</class>
+		<class>tk.ainiyue.danyuan.application.kejiju.chengguo.po.KjcgJbxxInfo</class>
 	</persistence-unit>
 </persistence>
