@@ -22,5 +22,5 @@ hs_err_pid*
 /target/
 /design/~$数据库设计.xlsx
 /.settings/
-.project
-.classpath
+/.classpath
+/.project
