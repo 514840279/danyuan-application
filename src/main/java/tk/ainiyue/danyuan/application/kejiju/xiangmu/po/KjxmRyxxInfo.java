@@ -135,13 +135,10 @@ public class KjxmRyxxInfo implements Serializable {
 
 	//bi-directional many-to-one association to KjxmJbxxInfo
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="xmjb_uuid")
-	private KjxmJbxxInfo kjxmJbxxInfo1;
+	@JoinColumn(name="xmjb_uuid",  insertable=false, updatable=false)
+	private KjxmJbxxInfo kjxmJbxxInfo;
 
-	//bi-directional many-to-one association to KjxmJbxxInfo
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="xmjb_uuid")
-	private KjxmJbxxInfo kjxmJbxxInfo2;
+
 
 	public KjxmRyxxInfo() {
 	}
@@ -466,20 +463,12 @@ public class KjxmRyxxInfo implements Serializable {
 		this.task = task;
 	}
 
-	public KjxmJbxxInfo getKjxmJbxxInfo1() {
-		return this.kjxmJbxxInfo1;
+	public KjxmJbxxInfo getKjxmJbxxInfo() {
+		return this.kjxmJbxxInfo;
 	}
 
-	public void setKjxmJbxxInfo1(KjxmJbxxInfo kjxmJbxxInfo1) {
-		this.kjxmJbxxInfo1 = kjxmJbxxInfo1;
-	}
-
-	public KjxmJbxxInfo getKjxmJbxxInfo2() {
-		return this.kjxmJbxxInfo2;
-	}
-
-	public void setKjxmJbxxInfo2(KjxmJbxxInfo kjxmJbxxInfo2) {
-		this.kjxmJbxxInfo2 = kjxmJbxxInfo2;
+	public void setKjxmJbxxInfo1(KjxmJbxxInfo kjxmJbxxInfo) {
+		this.kjxmJbxxInfo = kjxmJbxxInfo;
 	}
 
 }

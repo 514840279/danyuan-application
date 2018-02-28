@@ -93,7 +93,7 @@ public class KjxmDwxxInfo implements Serializable {
 	@Column(name="main_organization_uscc")
 	private String mainOrganizationUscc;
 
-	@Column(name="xmjb_uuid")
+	@Column(name="xmjb_uuid",  insertable=false, updatable=false)
 	private String xmjbUuid;
 
 	public KjxmDwxxInfo() {

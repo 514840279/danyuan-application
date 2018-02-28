@@ -53,7 +53,7 @@ public class KjryJyxxInfo implements Serializable {
 
 	//bi-directional many-to-one association to KjryJbxxInfo
 	@ManyToOne
-	@JoinColumn(name="ryxx_uuid")
+	@JoinColumn(name="ryxx_uuid",  insertable=false, updatable=false)
 	private KjryJbxxInfo kjryJbxxInfo;
 
 	public KjryJyxxInfo() {

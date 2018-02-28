@@ -132,12 +132,8 @@ public class KjxmJbxxInfo implements Serializable {
 	private int totalFund;
 
 	//bi-directional many-to-one association to KjxmRyxxInfo
-	@OneToMany(mappedBy="kjxmJbxxInfo1")
-	private List<KjxmRyxxInfo> kjxmRyxxInfos1;
-
-	//bi-directional many-to-one association to KjxmRyxxInfo
-	@OneToMany(mappedBy="kjxmJbxxInfo2")
-	private List<KjxmRyxxInfo> kjxmRyxxInfos2;
+	@OneToMany(mappedBy="kjxmJbxxInfo")
+	private List<KjxmRyxxInfo> kjxmRyxxInfos;
 
 	public KjxmJbxxInfo() {
 	}
@@ -462,48 +458,12 @@ public class KjxmJbxxInfo implements Serializable {
 		this.totalFund = totalFund;
 	}
 
-	public List<KjxmRyxxInfo> getKjxmRyxxInfos1() {
-		return this.kjxmRyxxInfos1;
+	public List<KjxmRyxxInfo> getKjxmRyxxInfos() {
+		return this.kjxmRyxxInfos;
 	}
 
-	public void setKjxmRyxxInfos1(List<KjxmRyxxInfo> kjxmRyxxInfos1) {
-		this.kjxmRyxxInfos1 = kjxmRyxxInfos1;
-	}
-
-	public KjxmRyxxInfo addKjxmRyxxInfos1(KjxmRyxxInfo kjxmRyxxInfos1) {
-		getKjxmRyxxInfos1().add(kjxmRyxxInfos1);
-		kjxmRyxxInfos1.setKjxmJbxxInfo1(this);
-
-		return kjxmRyxxInfos1;
-	}
-
-	public KjxmRyxxInfo removeKjxmRyxxInfos1(KjxmRyxxInfo kjxmRyxxInfos1) {
-		getKjxmRyxxInfos1().remove(kjxmRyxxInfos1);
-		kjxmRyxxInfos1.setKjxmJbxxInfo1(null);
-
-		return kjxmRyxxInfos1;
-	}
-
-	public List<KjxmRyxxInfo> getKjxmRyxxInfos2() {
-		return this.kjxmRyxxInfos2;
-	}
-
-	public void setKjxmRyxxInfos2(List<KjxmRyxxInfo> kjxmRyxxInfos2) {
-		this.kjxmRyxxInfos2 = kjxmRyxxInfos2;
-	}
-
-	public KjxmRyxxInfo addKjxmRyxxInfos2(KjxmRyxxInfo kjxmRyxxInfos2) {
-		getKjxmRyxxInfos2().add(kjxmRyxxInfos2);
-		kjxmRyxxInfos2.setKjxmJbxxInfo2(this);
-
-		return kjxmRyxxInfos2;
-	}
-
-	public KjxmRyxxInfo removeKjxmRyxxInfos2(KjxmRyxxInfo kjxmRyxxInfos2) {
-		getKjxmRyxxInfos2().remove(kjxmRyxxInfos2);
-		kjxmRyxxInfos2.setKjxmJbxxInfo2(null);
-
-		return kjxmRyxxInfos2;
+	public void setKjxmRyxxInfos(List<KjxmRyxxInfo> kjxmRyxxInfos) {
+		this.kjxmRyxxInfos = kjxmRyxxInfos;
 	}
 
 }
