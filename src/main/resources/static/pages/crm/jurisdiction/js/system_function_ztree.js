@@ -74,9 +74,9 @@ $(document).ready(function() {
 // 加载 load。。。
 function loadTree(result) {
 	zNodes = result;
-	zTreeObj = $.fn.zTree.init($("#ztree"), setting, zNodes);
-	zTree = $.fn.zTree.getZTreeObj("ztree");
-	rMenu = $("#rMenu");
+	zTreeObj = $.fn.zTree.init($("#ztree_jurisdiction"), setting, zNodes);
+	zTree = $.fn.zTree.getZTreeObj("ztree_jurisdiction");
+//	rMenu = $("#rMenu");
 	
 };
 
