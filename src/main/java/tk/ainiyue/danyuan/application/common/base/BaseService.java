@@ -15,13 +15,13 @@ import org.springframework.data.domain.Page;
  * 版 本 ： V1.0
  */
 public interface BaseService<T> {
-
+	
 	T findByUuid(String uuid);
-
+	
 	List<T> findAll();
 	
-	Page<T> findAllBySearchText(int pageNumber, int pageSize, T info);
-
+	Page<T> page(int pageNumber, int pageSize, T info);
+	
 	void save(T info);
 	
 	void delete(T info);
