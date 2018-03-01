@@ -107,8 +107,8 @@ public interface SysMenuDao extends JpaRepository<SysMenuInfo, String> {
 	
 	@Query("SELECT DISTINCT t FROM SysMenuInfo t "
 	        + "WHERE t.uuid IN("
-	        + "	SELECT a.menuId FROM SysRolesJurisdictionInfo a "
-	        + "	WHERE a.roleId IN ( "
+	        + "	SELECT a.id.menuId FROM SysRolesJurisdictionInfo a "
+	        + "	WHERE a.id.roleId IN ( "
 	        + "		SELECT b.rolesId FROM SysUserRolesInfo b "
 	        + "		WHERE b.userId IN ( "
 	        + "			SELECT uuid FROM SysUserBaseInfo c "

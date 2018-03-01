@@ -107,14 +107,14 @@ function zTreeOnCheck(event, treeId, treeNode) {
 	// 父集
 	while(temp.getParentNode()!=null ){
 		 temp = temp.getParentNode();
-		 param.push({"roleId":_role_uuid,"menuId":temp.id,"checked":ifnottrue(temp.checked)});
+		 param.push({"id":{"roleId":_role_uuid,"menuId":temp.id},"checked":ifnottrue(temp.checked)});
 	}
 	
 	// 子集
 	temp = treeNode;
 	eachNode(temp,param);
 	// 自身
-	param.push({"roleId":_role_uuid,"menuId":treeNode.id,"checked":ifnottrue(treeNode.checked)});
+	param.push({"id":{"roleId":_role_uuid,"menuId":temp.id},"checked":ifnottrue(treeNode.checked)});
 	
 	var url = "/sysRolesJurisdiction/saveAll";
 	console.log(param);
@@ -130,7 +130,7 @@ function successUpdateRoleMenu(result){
 function eachNode(temp,param){
 	for (var i = 0; i < temp.children.length; i++) {
 		temp1 = temp.children[i];
-		param.push({"roleId":_role_uuid,"menuId":temp1.id,"checked":ifnottrue(temp1.checked)});
+		param.push({"id":{"roleId":_role_uuid,"menuId":temp.id},"checked":ifnottrue(temp1.checked)});
 		eachNode(temp1,param);
 	}
 }

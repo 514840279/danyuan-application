@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionInfo;
+import tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionInfoPK;
 
 /**
  * 文件名 ： SysRolesJurisdictionDao.java
@@ -17,5 +18,7 @@ import tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionIn
  */
 @Repository("sysRolesJurisdictionDao")
 public interface SysRolesJurisdictionDao extends JpaRepository<SysRolesJurisdictionInfo, String> {
+	
+	SysRolesJurisdictionInfo findById(Class<SysRolesJurisdictionInfo> class1, SysRolesJurisdictionInfoPK pk);
 	
 }

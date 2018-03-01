@@ -27,7 +27,7 @@ import tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo;
 public interface SysUserBaseDao extends JpaRepository<SysUserBaseInfo, String> {
 
 	@Query("   select t from  SysMenuInfo t where t.uuid in ( "
-	        + " select a.menuId from SysRolesJurisdictionInfo a where a.roleId in ( "
+	        + " select a.id.menuId from SysRolesJurisdictionInfo a where a.id.roleId in ( "
 	        + "   select b.rolesId  from SysUserRolesInfo b where   b.userId =:uuid"
 	        + " ) "
 	        + ") ")

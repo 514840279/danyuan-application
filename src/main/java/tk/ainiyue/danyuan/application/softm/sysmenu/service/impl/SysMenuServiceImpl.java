@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.crm.jurisdiction.dao.SysRolesJurisdictionDao;
 import tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionInfo;
+import tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionInfoPK;
 import tk.ainiyue.danyuan.application.softm.sysmenu.dao.SysMenuDao;
 import tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo;
 import tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService;
@@ -36,7 +37,6 @@ public class SysMenuServiceImpl implements SysMenuService {
 	
 	@Autowired
 	private SysRolesJurisdictionDao	sysRolesJurisdictionDao;
-	
 	
 	/**
 	 * 方法名 ： findAll
@@ -71,7 +71,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 		return vo;
 		
 	}
-
+	
 	/**
 	 * 方法名 ： findzTreeByF_ParentId
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -103,7 +103,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 		}
 		return list;
 	}
-
+	
 	@Override
 	public List<AuthorityzTreeVO> findzTreeRole(String id, String roleUuid) {
 		List<AuthorityzTreeVO> list = null;
@@ -117,10 +117,8 @@ public class SysMenuServiceImpl implements SysMenuService {
 				vo.setIcon(sysMenuInfo.getIcon());
 				vo.setUrl(sysMenuInfo.getUri());
 				SysRolesJurisdictionInfo jurisdiction = new SysRolesJurisdictionInfo();
-				jurisdiction.setMenuId(sysMenuInfo.getUuid());
-				jurisdiction.setRoleId(roleUuid);
-				Example<SysRolesJurisdictionInfo> e = Example.of(jurisdiction);
-				jurisdiction = sysRolesJurisdictionDao.findOne(e);
+				SysRolesJurisdictionInfoPK pk = new SysRolesJurisdictionInfoPK(sysMenuInfo.getUuid(), roleUuid);
+				jurisdiction = sysRolesJurisdictionDao.findById(SysRolesJurisdictionInfo.class, pk);
 				if (jurisdiction != null) {
 					vo.setChecked(jurisdiction.getChecked());
 				}
@@ -133,7 +131,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 		}
 		return list;
 	}
-
+	
 	@Override
 	public List<AuthorityzTreeVO> findzTreeByUser(String id, String userName) {
 		List<AuthorityzTreeVO> list = null;
@@ -155,7 +153,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 		}
 		return list;
 	}
-
+	
 	/**
 	 * 方法名 ： findAuthorityByUuid
 	 * 功 能 ： 查询
@@ -278,7 +276,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService#findByUuid(java.lang.String)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public SysMenuInfo findByUuid(String uuid) {
 		return sysMenuDao.findAllByUuid(uuid);
@@ -296,7 +294,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * int, tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public Page<SysMenuInfo> findAllBySearchText(int pageNumber, int pageSize, SysMenuInfo info) {
 		Example<SysMenuInfo> example = Example.of(info);
@@ -314,7 +312,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService#delete(tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void delete(SysMenuInfo info) {
 		sysMenuDao.delete(info);
@@ -328,7 +326,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void delete(List<SysMenuInfo> list) {
 		sysMenuDao.delete(list);
@@ -342,10 +340,10 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService#trunc()
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void trunc() {
 		sysMenuDao.deleteAll();
 	}
-
+	
 }
