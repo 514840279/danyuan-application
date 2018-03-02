@@ -1,4 +1,4 @@
-package tk.ainiyue.danyuan.application.kejiju.xiangmu.controller;
+package tk.ainiyue.danyuan.application.kejiju.renyuan.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,55 +12,56 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmJbxxInfo;
-import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmJbxxService;
-import tk.ainiyue.danyuan.application.kejiju.xiangmu.vo.KjxmJbxxInfoVo;
+import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryXsjzInfo;
+import tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryXsjzService;
+import tk.ainiyue.danyuan.application.kejiju.renyuan.vo.KjryXsjzInfoVo;
 
 /**    
-*  文件名 ： KjxmJbxxInfoController.java  
-*  包    名 ： tk.ainiyue.danyuan.application.kejiju.xiangmu.controller  
+*  文件名 ： KjryXsjzInfoController.java  
+*  包    名 ： tk.ainiyue.danyuan.application.kejiju.renyuan.controller  
 *  描    述 ： TODO(用一句话描述该文件做什么)  
 *  机能名称：
 *  技能ID ：
-*  作    者 ： wang  
-*  时    间 ： 2018年3月1日 下午10:48:45  
+*  作    者 ： Administrator  
+*  时    间 ： 2018年3月2日 上午9:58:04  
 *  版    本 ： V1.0    
 */
+
 @RestController
-@RequestMapping("/kjxmJbxxInfo")
-@Api(value = "/KjxmJbxxInfo", description = "科研项目基本信息")
-public class KjxmJbxxInfoController {
+@RequestMapping("/kjryXsjzInfo")
+@Api(value = "/KjryXsjzInfo", description = "科研人员学术兼职信息")
+public class KjryXsjzController {
 	//
-	private static final Logger	logger	= LoggerFactory.getLogger(KjxmJbxxInfoController.class);
+	private static final Logger	logger	= LoggerFactory.getLogger(KjryXsjzController.class);
 	
 	//
 	@Autowired
-	private KjxmJbxxService	kjxmJbxxService;
+	private KjryXsjzService	kjryXsjzService;
 	
 	@ApiOperation(value = "分页查询全部信息", notes = "")
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
-	public Page<KjxmJbxxInfo> page(KjxmJbxxInfoVo vo) {
-		logger.info("page", KjxmJbxxInfoController.class);
-		return kjxmJbxxService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo());
+	public Page<KjryXsjzInfo> page(KjryXsjzInfoVo vo) {
+		logger.info("page", KjryXsjzController.class);
+		return kjryXsjzService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo());
 	}
 	
 	@ApiOperation(value = "更新", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public String save(@RequestBody KjxmJbxxInfo info) {
-		logger.info("save", KjxmDwxxInfoController.class);
+	public String save(@RequestBody KjryXsjzInfo info) {
+		logger.info("save", KjryXsjzController.class);
 		System.out.println(info.toString());
-		kjxmJbxxService.save(info);
+		kjryXsjzService.save(info);
 		return "1";
 	}
 	
 	@ApiOperation(value = "删除", notes = "")
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public String delete(@RequestBody KjxmJbxxInfoVo vo) {
-		logger.info("delete", KjxmJbxxInfoController.class);
+	public String delete(@RequestBody KjryXsjzInfoVo vo) {
+		logger.info("delete", KjryXsjzController.class);
 		try {
-			kjxmJbxxService.delete(vo.getList());
+			kjryXsjzService.delete(vo.getList());
 			return "1";
 		} catch (Exception e) {
 			return "0";

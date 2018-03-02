@@ -7,7 +7,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmDwxxInfo;
+import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmRyxxInfo;
 
 /**
  * 文件名 ： SysDatabaseDao.java
@@ -19,9 +19,9 @@ import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmDwxxInfo;
  * 时 间 ： 2017年8月3日 下午3:46:57
  * 版 本 ： V1.0
  */
-@Repository("kjxmDwxxInfoDao")
+@Repository("kjxmRyxxDao")
 @DynamicUpdate(true)
 @DynamicInsert(true)
-public interface KjxmDwxxInfoDao extends JpaRepository<KjxmDwxxInfo, Serializable> {
+public interface KjxmRyxxDao extends JpaRepository<KjxmRyxxInfo, Serializable> {
 	
 }

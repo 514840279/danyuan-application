@@ -14,5 +14,23 @@ import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJbxxInfo;
 *  版    本 ： V1.0    
 */
 public class KjryJbxxInfoVo extends Pagination<KjryJbxxInfo> {
+	KjryJbxxInfo info = new KjryJbxxInfo();
+	
+	/**  
+	 *  方法名 ： getInfo 
+	 *  功    能 ： 返回变量 info 的值  
+	 *  @return: KjryJbxxInfo 
+	 */
+	public KjryJbxxInfo getInfo() {
+		return info;
+	}
+	
+	/**  
+	 *  方法名 ： setInfo 
+	 *  功    能 ： 设置变量 info 的值
+	 */
+	public void setInfo(KjryJbxxInfo info) {
+		this.info = info;
+	}
 	
 }

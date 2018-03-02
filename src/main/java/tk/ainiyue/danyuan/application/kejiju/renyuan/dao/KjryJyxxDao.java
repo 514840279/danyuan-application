@@ -19,9 +19,9 @@ import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJyxxInfo;
 *  时    间 ： 2018年3月1日 下午11:39:01  
 *  版    本 ： V1.0    
 */
-@Repository("kjryJyxxInfoDao")
+@Repository("kjryJyxxDao")
 @DynamicUpdate(true)
 @DynamicInsert(true)
-public interface KjryJyxxInfoDao extends JpaRepository<KjryJyxxInfo, Serializable> {
+public interface KjryJyxxDao extends JpaRepository<KjryJyxxInfo, Serializable> {
 	
 }

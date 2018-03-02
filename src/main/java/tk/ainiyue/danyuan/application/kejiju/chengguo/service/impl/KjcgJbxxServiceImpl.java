@@ -11,9 +11,11 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
-import tk.ainiyue.danyuan.application.kejiju.chengguo.dao.KjcgJbxxInfoDao;
+import tk.ainiyue.danyuan.application.dic.dao.KjDicCglxDao;
+import tk.ainiyue.danyuan.application.dic.po.KjDicCglx;
+import tk.ainiyue.danyuan.application.kejiju.chengguo.dao.KjcgJbxxDao;
 import tk.ainiyue.danyuan.application.kejiju.chengguo.po.KjcgJbxxInfo;
-import tk.ainiyue.danyuan.application.kejiju.chengguo.service.KjcgJbxxInfoService;
+import tk.ainiyue.danyuan.application.kejiju.chengguo.service.KjcgJbxxService;
 
 /**    
 *  文件名 ： KjcgJbxxInfoServiceImpl.java  
@@ -25,10 +27,13 @@ import tk.ainiyue.danyuan.application.kejiju.chengguo.service.KjcgJbxxInfoServic
 *  时    间 ： 2018年3月1日 下午11:17:39  
 *  版    本 ： V1.0    
 */
-@Service("kjcgJbxxInfoService")
-public class KjcgJbxxInfoServiceImpl implements KjcgJbxxInfoService {
+@Service("kjcgJbxxService")
+public class KjcgJbxxServiceImpl implements KjcgJbxxService {
 	@Autowired
-	private KjcgJbxxInfoDao kjcgJbxxInfoDao;
+	private KjcgJbxxDao		kjcgJbxxDao;
+	
+	@Autowired
+	private KjDicCglxDao	kjDicCglxDao;
 	
 	/** 
 	*  方法名 ： page
@@ -46,7 +51,7 @@ public class KjcgJbxxInfoServiceImpl implements KjcgJbxxInfoService {
 		Example<KjcgJbxxInfo> example = Example.of(info);
 		Sort sort = new Sort(new Order(Direction.DESC, "createTime"));
 		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
-		return kjcgJbxxInfoDao.findAll(example, request);
+		return kjcgJbxxDao.findAll(example, request);
 	}
 	
 	/** 
@@ -59,7 +64,7 @@ public class KjcgJbxxInfoServiceImpl implements KjcgJbxxInfoService {
 	
 	@Override
 	public void save(KjcgJbxxInfo info) {
-		kjcgJbxxInfoDao.save(info);
+		kjcgJbxxDao.save(info);
 	}
 	
 	/** 
@@ -72,7 +77,47 @@ public class KjcgJbxxInfoServiceImpl implements KjcgJbxxInfoService {
 	
 	@Override
 	public void delete(List<KjcgJbxxInfo> list) {
-		kjcgJbxxInfoDao.delete(list);
+		kjcgJbxxDao.delete(list);
+	}
+	
+	/** 
+	*  方法名 ： dicCglx
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.chengguo.service.KjcgJbxxService#dicCglx()  
+	*  作    者 ： Administrator  
+	*/
+	
+	@Override
+	public List<KjDicCglx> dicCglx() {
+		return kjDicCglxDao.findAll();
+	}
+	
+	/** 
+	*  方法名 ： dicCgsj
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.chengguo.service.KjcgJbxxService#dicCgsj()  
+	*  作    者 ： Administrator  
+	*/
+	
+	@Override
+	public List<String> dicCgsj() {
+		return kjcgJbxxDao.findAllCgsj();
+	}
+	
+	/** 
+	*  方法名 ： findone
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param info
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.chengguo.service.KjcgJbxxService#findone(tk.ainiyue.danyuan.application.kejiju.chengguo.po.KjcgJbxxInfo)  
+	*  作    者 ： Administrator  
+	*/
+	
+	@Override
+	public KjcgJbxxInfo findone(KjcgJbxxInfo info) {
+		return kjcgJbxxDao.findOne(info);
 	}
 	
 }

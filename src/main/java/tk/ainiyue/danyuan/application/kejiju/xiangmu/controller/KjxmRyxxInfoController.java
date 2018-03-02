@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmRyxxInfo;
-import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmRyxxInfoService;
+import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmRyxxService;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.vo.KjxmRyxxInfoVo;
 
 /**    
@@ -35,32 +35,32 @@ public class KjxmRyxxInfoController {
 	
 	//
 	@Autowired
-	private KjxmRyxxInfoService	kjxmRyxxInfoService;
+	private KjxmRyxxService	kjxmRyxxService;
 	
-	@ApiOperation(value = "分页查询全部部门信息", notes = "")
+	@ApiOperation(value = "分页查询全部信息", notes = "")
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<KjxmRyxxInfo> page(KjxmRyxxInfoVo vo) {
 		logger.info("page", KjxmRyxxInfoController.class);
-		return kjxmRyxxInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo());
+		return kjxmRyxxService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo());
 	}
 	
-	@ApiOperation(value = "分页查询全部部门信息", notes = "")
+	@ApiOperation(value = "更新", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public String save(@RequestBody KjxmRyxxInfo info) {
 		logger.info("save", KjxmRyxxInfoController.class);
 		System.out.println(info.toString());
-		kjxmRyxxInfoService.save(info);
+		kjxmRyxxService.save(info);
 		return "1";
 	}
 	
-	@ApiOperation(value = "删除组织机构管理信息", notes = "")
-	@RequestMapping(path = "/sysDepartmentDelete", method = RequestMethod.POST)
+	@ApiOperation(value = "删除", notes = "")
+	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public String delete(@RequestBody KjxmRyxxInfoVo vo) {
 		logger.info("delete", KjxmRyxxInfoController.class);
 		try {
-			kjxmRyxxInfoService.delete(vo.getList());
+			kjxmRyxxService.delete(vo.getList());
 			return "1";
 		} catch (Exception e) {
 			return "0";

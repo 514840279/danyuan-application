@@ -11,9 +11,9 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
-import tk.ainiyue.danyuan.application.kejiju.xiangmu.dao.KjxmRyxxInfoDao;
+import tk.ainiyue.danyuan.application.kejiju.xiangmu.dao.KjxmRyxxDao;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmRyxxInfo;
-import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmRyxxInfoService;
+import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmRyxxService;
 
 /**    
 *  文件名 ： KjxmRyxxInfoServiceImpl.java  
@@ -26,9 +26,9 @@ import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmRyxxInfoService
 *  版    本 ： V1.0    
 */
 @Service("kjxmRyxxInfoService")
-public class KjxmRyxxInfoServiceImpl implements KjxmRyxxInfoService {
+public class KjxmRyxxServiceImpl implements KjxmRyxxService {
 	@Autowired
-	private KjxmRyxxInfoDao kjxmRyxxInfoDao;
+	private KjxmRyxxDao kjxmRyxxDao;
 	
 	/** 
 	*  方法名 ： page
@@ -46,7 +46,7 @@ public class KjxmRyxxInfoServiceImpl implements KjxmRyxxInfoService {
 		Example<KjxmRyxxInfo> example = Example.of(info);
 		Sort sort = new Sort(new Order(Direction.DESC, "createTime"));
 		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
-		return kjxmRyxxInfoDao.findAll(example, request);
+		return kjxmRyxxDao.findAll(example, request);
 	}
 	
 	/** 
@@ -59,7 +59,7 @@ public class KjxmRyxxInfoServiceImpl implements KjxmRyxxInfoService {
 	
 	@Override
 	public void save(KjxmRyxxInfo info) {
-		kjxmRyxxInfoDao.save(info);
+		kjxmRyxxDao.save(info);
 	}
 	
 	/** 
@@ -72,6 +72,6 @@ public class KjxmRyxxInfoServiceImpl implements KjxmRyxxInfoService {
 	
 	@Override
 	public void delete(List<KjxmRyxxInfo> list) {
-		kjxmRyxxInfoDao.delete(list);
+		kjxmRyxxDao.delete(list);
 	}
 }

@@ -18,7 +18,7 @@ public class Pagination<T> {
 	public int		pageSize;
 	public String	uuid;
 	public String	searchText;
-	T				info;
+	public String	username;
 	List<T>			list;
 	
 	/**  
@@ -90,23 +90,6 @@ public class Pagination<T> {
 	}
 	
 	/**  
-	 *  方法名 ： getInfo 
-	 *  功    能 ： 返回变量 info 的值  
-	 *  @return: T 
-	 */
-	public T getInfo() {
-		return info;
-	}
-	
-	/**  
-	 *  方法名 ： setInfo 
-	 *  功    能 ： 设置变量 info 的值
-	 */
-	public void setInfo(T info) {
-		this.info = info;
-	}
-	
-	/**  
 	 *  方法名 ： getList 
 	 *  功    能 ： 返回变量 list 的值  
 	 *  @return: List<T> 
@@ -121,6 +104,23 @@ public class Pagination<T> {
 	 */
 	public void setList(List<T> list) {
 		this.list = list;
+	}
+	
+	/**  
+	 *  方法名 ： getUsername 
+	 *  功    能 ： 返回变量 username 的值  
+	 *  @return: String 
+	 */
+	public String getUsername() {
+		return username;
+	}
+	
+	/**  
+	 *  方法名 ： setUsername 
+	 *  功    能 ： 设置变量 username 的值
+	 */
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 }

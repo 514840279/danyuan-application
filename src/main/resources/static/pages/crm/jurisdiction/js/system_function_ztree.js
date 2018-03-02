@@ -130,7 +130,7 @@ function successUpdateRoleMenu(result){
 function eachNode(temp,param){
 	for (var i = 0; i < temp.children.length; i++) {
 		temp1 = temp.children[i];
-		param.push({"id":{"roleId":_role_uuid,"menuId":temp.id},"checked":ifnottrue(temp1.checked)});
+		param.push({"id":{"roleId":_role_uuid,"menuId":temp1.id},"checked":ifnottrue(temp1.checked)});
 		eachNode(temp1,param);
 	}
 }
