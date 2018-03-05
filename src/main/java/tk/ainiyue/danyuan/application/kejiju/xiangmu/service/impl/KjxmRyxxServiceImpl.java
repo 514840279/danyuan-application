@@ -74,4 +74,18 @@ public class KjxmRyxxServiceImpl implements KjxmRyxxService {
 	public void delete(List<KjxmRyxxInfo> list) {
 		kjxmRyxxDao.delete(list);
 	}
+	
+	/** 
+	*  方法名 ： findList
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param uuid
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmRyxxService#findList(java.lang.String)  
+	*  作    者 ： wang  
+	*/
+	
+	@Override
+	public List<KjxmRyxxInfo> findList(String xmjbUuid) {
+		return kjxmRyxxDao.findAllByXmjbUuid(xmjbUuid);
+	}
 }

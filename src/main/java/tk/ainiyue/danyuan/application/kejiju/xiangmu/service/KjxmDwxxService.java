@@ -51,4 +51,15 @@ public interface KjxmDwxxService {
 	*/
 	void delete(List<KjxmDwxxInfo> list);
 	
+	/**  
+	*  方法名： findList  
+	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数： @param xmjbUuid
+	*  参    数： @return 
+	*  返    回： List<KjxmDwxxInfo>  
+	*  作    者 ： wang  
+	*  @throws  
+	*/
+	List<KjxmDwxxInfo> findList(String xmjbUuid);
+	
 }

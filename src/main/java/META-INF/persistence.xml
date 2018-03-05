@@ -21,9 +21,6 @@
 		<class>tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJyxxInfo</class>
 		<class>tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryXsjzInfo</class>
 		<class>tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryXspsInfo</class>
-		<class>tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmDwxxInfo</class>
-		<class>tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmJbxxInfo</class>
-		<class>tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmRyxxInfo</class>
 		<class>tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo</class>
 		<class>tk.ainiyue.danyuan.application.softm.system.po.SysSystemInfo</class>
 		<class>tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo</class>
@@ -45,5 +42,8 @@
 		<class>tk.ainiyue.danyuan.application.dic.po.KjDicZxjd</class>
 		<class>tk.ainiyue.danyuan.application.dic.po.KjDicZydm</class>
 		<class>tk.ainiyue.danyuan.application.dic.po.KjDicZzmm</class>
+		<class>tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmDwxxInfo</class>
+		<class>tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmJbxxInfo</class>
+		<class>tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmRyxxInfo</class>
 	</persistence-unit>
 </persistence>

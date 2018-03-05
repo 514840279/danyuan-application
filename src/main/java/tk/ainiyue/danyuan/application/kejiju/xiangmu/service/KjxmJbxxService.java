@@ -51,4 +51,44 @@ public interface KjxmJbxxService {
 	*/
 	void delete(List<KjxmJbxxInfo> list);
 	
+	/**  
+	*  方法名： dicJsly  
+	*  功    能： 技术领域列表查询
+	*  参    数： @return 
+	*  返    回： List<String>  
+	*  作    者 ： wang  
+	*  @throws  
+	*/
+	List<String> dicJsly();
+	
+	/**  
+	*  方法名： dicXmlx  
+	*  功    能： 项目类型
+	*  参    数： @return 
+	*  返    回： List<String>  
+	*  作    者 ： wang  
+	*  @throws  
+	*/
+	List<String> dicXmlx();
+	
+	/**  
+	*  方法名： dicSj  
+	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数： @return 
+	*  返    回： List<String>  
+	*  作    者 ： wang  
+	*  @throws  
+	*/
+	List<String> dicSj();
+	
+	/**  
+	*  方法名： dicDq  
+	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数： @return 
+	*  返    回： List<String>  
+	*  作    者 ： wang  
+	*  @throws  
+	*/
+	List<String> dicDq();
+	
 }

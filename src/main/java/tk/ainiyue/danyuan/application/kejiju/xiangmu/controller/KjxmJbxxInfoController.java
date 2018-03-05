@@ -1,5 +1,9 @@
 package tk.ainiyue.danyuan.application.kejiju.xiangmu.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.mysql.jdbc.StringUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmDwxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmJbxxInfo;
+import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmRyxxInfo;
+import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmDwxxService;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmJbxxService;
+import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmRyxxService;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.vo.KjxmJbxxInfoVo;
 
 /**    
@@ -35,13 +46,35 @@ public class KjxmJbxxInfoController {
 	
 	//
 	@Autowired
-	private KjxmJbxxService	kjxmJbxxService;
+	private KjxmJbxxService		kjxmJbxxService;
+	@Autowired
+	private KjxmDwxxService		kjxmDwxxService;
+	//
+	@Autowired
+	private KjxmRyxxService		kjxmRyxxService;
 	
 	@ApiOperation(value = "分页查询全部信息", notes = "")
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<KjxmJbxxInfo> page(KjxmJbxxInfoVo vo) {
 		logger.info("page", KjxmJbxxInfoController.class);
-		return kjxmJbxxService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo());
+		KjxmJbxxInfo info = new KjxmJbxxInfo();
+		if (!StringUtils.isNullOrEmpty(vo.getProjectName().trim())) {
+			info.setProjectName(vo.getProjectName().trim());
+		}
+		if (!StringUtils.isNullOrEmpty(vo.getProjectDomain().trim())) {
+			info.setProjectDomain(vo.getProjectDomain().trim());
+		}
+		if (!StringUtils.isNullOrEmpty(vo.getApprovalYear().trim())) {
+			info.setApprovalYear(vo.getApprovalYear().trim());
+		}
+		if (!StringUtils.isNullOrEmpty(vo.getRegion().trim())) {
+			info.setRegion(vo.getRegion().trim());
+		}
+		if (!StringUtils.isNullOrEmpty(vo.getProjectType().trim())) {
+			info.setProjectType(vo.getProjectType().trim());
+		}
+		
+		return kjxmJbxxService.page(vo.getPageNumber(), vo.getPageSize(), info);
 	}
 	
 	@ApiOperation(value = "更新", notes = "")
@@ -66,4 +99,93 @@ public class KjxmJbxxInfoController {
 			return "0";
 		}
 	}
+	
+	@ApiOperation(value = "技术领域", notes = "")
+	@RequestMapping(path = "/dicJsly", method = RequestMethod.POST)
+	@ResponseBody
+	public List<String> dicJsly() {
+		logger.info("dicJsly", KjxmJbxxInfoController.class);
+		return kjxmJbxxService.dicJsly();
+	}
+	
+	@ApiOperation(value = "项目类型", notes = "")
+	@RequestMapping(path = "/dicXmlx", method = RequestMethod.POST)
+	@ResponseBody
+	public List<String> dicXmlx() {
+		logger.info("dicXmlx", KjxmJbxxInfoController.class);
+		return kjxmJbxxService.dicXmlx();
+	}
+	
+	@ApiOperation(value = "时间", notes = "")
+	@RequestMapping(path = "/dicSj", method = RequestMethod.POST)
+	@ResponseBody
+	public List<String> dicSj() {
+		logger.info("dicSj", KjxmJbxxInfoController.class);
+		return kjxmJbxxService.dicSj();
+	}
+	
+	@ApiOperation(value = "地区", notes = "")
+	@RequestMapping(path = "/dicDq", method = RequestMethod.POST)
+	@ResponseBody
+	public List<String> dicDq() {
+		
+		logger.info("dicDq", KjxmJbxxInfoController.class);
+		return kjxmJbxxService.dicDq();
+	}
+	
+	@ApiOperation(value = "成果时间", notes = "")
+	@RequestMapping(path = "/showDetail", method = RequestMethod.POST)
+	public ModelAndView showDetail(KjxmJbxxInfo info, HttpServletRequest request) {
+		logger.info("showDetail", KjxmJbxxInfoController.class);
+		
+		//		KjxmJbxxInfo info = new KjxmJbxxInfo();
+		//		private String uuid;
+		//		private String approvalYear;
+		//		private String cdc;
+		//		private String cnKeyword;
+		//		private String competentDepartment;
+		//		private Timestamp createTime;
+		//		private String createUser;
+		//		private String discipline;
+		//		private String email;
+		//		private String enKeyword;
+		//		private String expectedIndex;
+		//		private Integer govemmentFund;
+		//		private String industry;
+		//		private Integer localFund;
+		//		private String name;
+		//		private String otherCode;
+		//		private Integer otherFund;
+		//		private String planAbstract;
+		//		private String planId;
+		//		private String planName;
+		//		private String planUrl;
+		//		private String porjectLinks;
+		//		private String projectAbstract;
+		//		private String projectActualEndtime;
+		//		private String projectActualStartTime;
+		//		private String projectDomain;
+		//		private String projectDomainId;
+		//		private String projectId;
+		//		private String projectName;
+		//		private String projectPhase;
+		//		private String projectPlanEndtime;
+		//		private String projectPlanStartTime;
+		//		private String projectType;
+		//		private Integer provincialFund;
+		//		private String region;
+		//		private String researchTarget;
+		//		private String researchContent;
+		//		private Integer selfFund;
+		//		private String telephone;
+		//		private Integer totalFund;
+		List<KjxmDwxxInfo> dwlist = kjxmDwxxService.findList(info.getUuid());
+		List<KjxmRyxxInfo> rylist = kjxmRyxxService.findList(info.getUuid());
+		ModelAndView view = new ModelAndView("kejiju/xiangmu/detail");
+		view.addObject("KjxmJbxxInfo", info);
+		view.addObject("dwlist", dwlist);
+		view.addObject("rylist", rylist);
+		return view;
+	}
+	
 }

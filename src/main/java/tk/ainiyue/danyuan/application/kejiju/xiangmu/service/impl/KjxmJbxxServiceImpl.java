@@ -74,4 +74,56 @@ public class KjxmJbxxServiceImpl implements KjxmJbxxService {
 	public void delete(List<KjxmJbxxInfo> list) {
 		kjxmJbxxDao.delete(list);
 	}
+	
+	/** 
+	*  方法名 ： dicJsly
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmJbxxService#dicJsly()  
+	*  作    者 ： wang  
+	*/
+	
+	@Override
+	public List<String> dicJsly() {
+		return kjxmJbxxDao.dicJsly();
+	}
+	
+	/** 
+	*  方法名 ： dicXmlx
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmJbxxService#dicXmlx()  
+	*  作    者 ： wang  
+	*/
+	
+	@Override
+	public List<String> dicXmlx() {
+		return kjxmJbxxDao.dicXmlx();
+	}
+	
+	/** 
+	*  方法名 ： dicSj
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmJbxxService#dicSj()  
+	*  作    者 ： wang  
+	*/
+	
+	@Override
+	public List<String> dicSj() {
+		return kjxmJbxxDao.dicSj();
+	}
+	
+	/** 
+	*  方法名 ： dicDq
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmJbxxService#dicDq()  
+	*  作    者 ： wang  
+	*/
+	
+	@Override
+	public List<String> dicDq() {
+		return kjxmJbxxDao.dicDq();
+	}
 }

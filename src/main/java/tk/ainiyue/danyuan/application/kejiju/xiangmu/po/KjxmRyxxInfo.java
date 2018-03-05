@@ -2,7 +2,7 @@ package tk.ainiyue.danyuan.application.kejiju.xiangmu.po;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 
 /**
@@ -18,8 +18,9 @@ public class KjxmRyxxInfo implements Serializable {
 	@Id
 	private String uuid;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_time")
-	private Timestamp createTime;
+	private Date createTime;
 
 	@Column(name="create_user")
 	private String createUser;
@@ -135,10 +136,8 @@ public class KjxmRyxxInfo implements Serializable {
 
 	//bi-directional many-to-one association to KjxmJbxxInfo
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="xmjb_uuid",  insertable=false, updatable=false)
+	@JoinColumn(name="xmjb_uuid")
 	private KjxmJbxxInfo kjxmJbxxInfo;
-
-
 
 	public KjxmRyxxInfo() {
 	}
@@ -151,11 +150,11 @@ public class KjxmRyxxInfo implements Serializable {
 		this.uuid = uuid;
 	}
 
-	public Timestamp getCreateTime() {
+	public Date getCreateTime() {
 		return this.createTime;
 	}
 
-	public void setCreateTime(Timestamp createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 
@@ -467,7 +466,7 @@ public class KjxmRyxxInfo implements Serializable {
 		return this.kjxmJbxxInfo;
 	}
 
-	public void setKjxmJbxxInfo1(KjxmJbxxInfo kjxmJbxxInfo) {
+	public void setKjxmJbxxInfo(KjxmJbxxInfo kjxmJbxxInfo) {
 		this.kjxmJbxxInfo = kjxmJbxxInfo;
 	}
 

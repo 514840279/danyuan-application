@@ -75,4 +75,18 @@ public class KjxmDwxxServiceImpl implements KjxmDwxxService {
 		kjxmDwxxDao.save(info);
 	}
 	
+	/** 
+	*  方法名 ： findList
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param kjxmDwxxInfo
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmDwxxService#findList(tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmDwxxInfo)  
+	*  作    者 ： wang  
+	*/
+	
+	@Override
+	public List<KjxmDwxxInfo> findList(String xmjbUuid) {
+		return kjxmDwxxDao.findAllByXmjbUuid(xmjbUuid);
+	}
+	
 }

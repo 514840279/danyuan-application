@@ -2,7 +2,7 @@ package tk.ainiyue.danyuan.application.kejiju.xiangmu.po;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 
 /**
@@ -48,8 +48,9 @@ public class KjxmDwxxInfo implements Serializable {
 	@Column(name="coop_organization_uscc")
 	private String coopOrganizationUscc;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_time")
-	private Timestamp createTime;
+	private Date createTime;
 
 	@Column(name="create_user")
 	private String createUser;
@@ -93,8 +94,10 @@ public class KjxmDwxxInfo implements Serializable {
 	@Column(name="main_organization_uscc")
 	private String mainOrganizationUscc;
 
-	@Column(name="xmjb_uuid",  insertable=false, updatable=false)
-	private String xmjbUuid;
+	//bi-directional many-to-one association to KjxmJbxxInfo
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="xmjb_uuid")
+	private KjxmJbxxInfo kjxmJbxxInfo;
 
 	public KjxmDwxxInfo() {
 	}
@@ -187,11 +190,11 @@ public class KjxmDwxxInfo implements Serializable {
 		this.coopOrganizationUscc = coopOrganizationUscc;
 	}
 
-	public Timestamp getCreateTime() {
+	public Date getCreateTime() {
 		return this.createTime;
 	}
 
-	public void setCreateTime(Timestamp createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 
@@ -307,12 +310,12 @@ public class KjxmDwxxInfo implements Serializable {
 		this.mainOrganizationUscc = mainOrganizationUscc;
 	}
 
-	public String getXmjbUuid() {
-		return this.xmjbUuid;
+	public KjxmJbxxInfo getKjxmJbxxInfo() {
+		return this.kjxmJbxxInfo;
 	}
 
-	public void setXmjbUuid(String xmjbUuid) {
-		this.xmjbUuid = xmjbUuid;
+	public void setKjxmJbxxInfo(KjxmJbxxInfo kjxmJbxxInfo) {
+		this.kjxmJbxxInfo = kjxmJbxxInfo;
 	}
 
 }
