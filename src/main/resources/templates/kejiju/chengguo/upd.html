@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- <link rel="stylesheet" href="/plugins/bootstrap/table/bootstrap-table.min.css"/> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/bootstrap-table.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.min.js"></script> -->
+
+</head>
+<body>
+	<!-- 头部设计 -->
+	<section class="content-header">
+		<h1>
+			详细信息 <small>科技成果</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
+			<li><a href="#">科技成果</a></li>
+			<li class="active">详细信息</li>
+		</ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title">科技成果详细信息</h3>
+
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body">
+				<form action="/kjcgJbxxInfo/save" method="post" id="kejiju_chengguo_form_id">
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4 strong">本地唯一标识</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.resultId}" class="form-control" id="kejiju_chengguo_input_resultId" name="resultId" placeholder="本地唯一标识" hidden="hidden" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">所属项目编码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.projectId}" class="form-control" id="kejiju_chengguo_input_projectId" name="projectId" placeholder="所属项目编码" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">所属项目名称</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.projectName}" class="form-control" id="kejiju_chengguo_input_projectName" name="projectName" placeholder="所属项目名称" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">成果类型</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.resultType}" class="form-control" id="kejiju_chengguo_input_resultType" name="resultType" placeholder="成果类型" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">成果名称</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.resultTitle}" class="form-control" id="kejiju_chengguo_input_resultTitle" name="resultTitle" placeholder="成果名称" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">关键词</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.keyword}" class="form-control" id="kejiju_chengguo_input_keyword" name="keyword" placeholder="关键词" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">成果概述</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.resultAbstract}" class="form-control" id="kejiju_chengguo_input_resultAbstract" name="resultAbstract" placeholder="成果概述" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">成果相关文档</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.resultLinks}" class="form-control" id="kejiju_chengguo_input_resultLinks" name="resultLinks" placeholder="成果相关文档" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">成果完成人</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.completedby}" class="form-control" id="kejiju_chengguo_input_completedby" name="completedby" placeholder="成果完成人" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">成果完成单位</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.completedOrganization}" class="form-control" id="kejiju_chengguo_input_completedOrganization" name="completedOrganization" placeholder="成果完成单位" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">成果完成时间</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.completedDate}" class="form-control" id="kejiju_chengguo_input_completedDate" name="completedDate" placeholder="成果完成时间" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">获奖情况</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.awards}" class="form-control" id="kejiju_chengguo_input_awards" name="awards" placeholder="获奖情况" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">中图分类号</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.cdc}" class="form-control" id="kejiju_chengguo_input_cdc" name="cdc" placeholder="中图分类号" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">学科分类代码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.discipline}" class="form-control" id="kejiju_chengguo_input_discipline" name="discipline" placeholder="学科分类代码" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">行业分类代码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.industry}" class="form-control" id="kejiju_chengguo_input_industry" name="industry" placeholder="行业分类代码" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">其他分类代码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.otherCode}" class="form-control" id="kejiju_chengguo_input_otherCode" name="otherCode" placeholder="其他分类代码" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 text-center">
+							<button class="btn btn-success" type="submit">
+								<i class="fa fa-search"></i> 确定
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

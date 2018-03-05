@@ -2,7 +2,6 @@ package tk.ainiyue.danyuan.application.kejiju.chengguo.po;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,11 +31,11 @@ public class KjcgJbxxInfo implements Serializable {
 	
 	private String				completedby;
 	
-	@Column(name = "create_time")
+	@Column(name = "create_time", updatable = false)
 	private Timestamp			createTime;
 	
-	@Column(name = "create_user")
-	private byte[]				createUser;
+	@Column(name = "create_user", updatable = false)
+	private String				createUser;
 	
 	private String				discipline;
 	
@@ -120,11 +119,11 @@ public class KjcgJbxxInfo implements Serializable {
 		this.createTime = createTime;
 	}
 	
-	public byte[] getCreateUser() {
+	public String getCreateUser() {
 		return this.createUser;
 	}
 	
-	public void setCreateUser(byte[] createUser) {
+	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
 	
@@ -226,7 +225,7 @@ public class KjcgJbxxInfo implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "KjcgJbxxInfo [awards=" + awards + ", cdc=" + cdc + ", completedDate=" + completedDate + ", completedOrganization=" + completedOrganization + ", completedby=" + completedby + ", createTime=" + createTime + ", createUser=" + Arrays.toString(createUser) + ", discipline=" + discipline + ", industry=" + industry + ", keyword=" + keyword + ", otherCode=" + otherCode + ", projectId=" + projectId + ", projectName=" + projectName + ", resultAbstract=" + resultAbstract + ", resultId=" + resultId + ", resultLinks=" + resultLinks + ", resultTitle=" + resultTitle + ", resultType=" + resultType + "]";
+		return "KjcgJbxxInfo [awards=" + awards + ", cdc=" + cdc + ", completedDate=" + completedDate + ", completedOrganization=" + completedOrganization + ", completedby=" + completedby + ", createTime=" + createTime + ", createUser=" + createUser + ", discipline=" + discipline + ", industry=" + industry + ", keyword=" + keyword + ", otherCode=" + otherCode + ", projectId=" + projectId + ", projectName=" + projectName + ", resultAbstract=" + resultAbstract + ", resultId=" + resultId + ", resultLinks=" + resultLinks + ", resultTitle=" + resultTitle + ", resultType=" + resultType + "]";
 	}
 	
 }

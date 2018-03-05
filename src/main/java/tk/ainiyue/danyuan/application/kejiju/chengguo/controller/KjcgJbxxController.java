@@ -1,6 +1,7 @@
 package tk.ainiyue.danyuan.application.kejiju.chengguo.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -67,7 +69,7 @@ public class KjcgJbxxController {
 	@ApiOperation(value = "更新", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public String save(@RequestBody KjcgJbxxInfo info) {
+	public String save(@ModelAttribute KjcgJbxxInfo info) {
 		logger.info("save", KjcgJbxxController.class);
 		System.out.println(info.toString());
 		kjcgJbxxService.save(info);
@@ -103,7 +105,7 @@ public class KjcgJbxxController {
 		return kjcgJbxxService.dicCgsj();
 	}
 	
-	@ApiOperation(value = "成果时间", notes = "")
+	@ApiOperation(value = "成果详细", notes = "")
 	@RequestMapping(path = "/showDetail", method = RequestMethod.POST)
 	public ModelAndView showDetail(HttpServletRequest request) {
 		logger.info("showDetail", KjcgJbxxController.class);
@@ -127,6 +129,36 @@ public class KjcgJbxxController {
 		
 		System.err.println(info);
 		ModelAndView view = new ModelAndView("kejiju/chengguo/detail");
+		view.addObject("kjcgJbxxInfo", info);
+		return view;
+	}
+	
+	@ApiOperation(value = "更新前", notes = "")
+	@RequestMapping(path = "/upd", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView upd(KjcgJbxxInfo info, HttpServletRequest request) {
+		logger.info("upd", KjcgJbxxController.class);
+		if (info.getResultId() == null) {
+			info.setResultId(UUID.randomUUID().toString());
+		}
+		//		info.setResultId(request.getParameter("resultId"));
+		//		info.setAwards(request.getParameter("awards"));
+		//		info.setCdc(request.getParameter("cdc"));
+		//		info.setCompletedDate(request.getParameter("completedDate"));
+		//		info.setCompletedOrganization(request.getParameter("completedOrganization"));
+		//		info.setCompletedby(request.getParameter("completedby"));
+		//		info.setDiscipline(request.getParameter("discipline"));
+		//		info.setIndustry(request.getParameter("industry"));
+		//		info.setKeyword(request.getParameter("keyword"));
+		//		info.setOtherCode(request.getParameter("otherCode"));
+		//		info.setProjectId(request.getParameter("projectId"));
+		//		info.setProjectName(request.getParameter("projectName"));
+		//		info.setResultAbstract(request.getParameter("resultAbstract"));
+		//		info.setResultLinks(request.getParameter("resultLinks"));
+		//		info.setResultTitle(request.getParameter("resultTitle"));
+		//		info.setResultType(request.getParameter("resultType"));
+		
+		System.err.println(info);
+		ModelAndView view = new ModelAndView("kejiju/chengguo/upd");
 		view.addObject("kjcgJbxxInfo", info);
 		return view;
 	}

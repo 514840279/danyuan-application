@@ -18,42 +18,42 @@ $(function() {
 		$('#kejiju_chengguo_table_datagrid').bootstrapTable('refresh');
 	});
 	
-//	$('#addnew_type').click(function() {
-//		$("#dbm_type_add_uuid").val(getUuid());
-//		$('#dbm_type_add_modal').modal({
-//			show:true,
-//		});
-//	});
-//	$('#editold_type').click(function() {
-//		var data = $('#kejiju_chengguo_table_datagrid').bootstrapTable('getAllSelections');
-//		if(data.length == 0){
-//			alert("先选中一条数据");
-//		}else if(data.length == 1){
-//			$("#dbm_type_add_uuid").val(data[0].uuid);
-//			$("#dbm_type_add_typeName").val(data[0].typeName);
-//			$("#dbm_type_add_typeIcon").val(data[0].typeIcon);
-//			$("#dbm_type_add_typeOrder").val(data[0].typeOrder);
-//			$("#dbm_type_add_discription").val(data[0].discription);
-//			if(data[0].deleteFlag==1){
-//				$('#dbm_type_add_deleteFlag[value="0"]').attr('checked',false);
-//				$('#dbm_type_add_deleteFlag[value="1"]').attr('checked',true);
-//			}else if(data[0].deleteFlag==0){
-//				$('#dbm_type_add_deleteFlag[value="0"]').attr('checked',true);
-//				$('#dbm_type_add_deleteFlag[value="1"]').attr('checked',false);
-//			}
-//			$("#dbm_type_add_modal").modal({
-//				show:true,
-//			})
-//		}else{
-//			alert("只能选中一条数据");
-//		}
-//	});
-//	$('#deleteold_type').click(function() {
-//		var data = $('#kejiju_chengguo_table_datagrid').bootstrapTable('getAllSelections');
-//		var url = "/sysTableTypeInfo/sysTableTypeDeleteAll";
-//		var param={list:data};
-//		ajaxPost(url, param, addSysTableTypeInfoSuccess, 5000, findError);
-//	});
+	$('#addnew_chengguo').click(function() {
+		loadPage('/kjcgJbxxInfo/upd','chengguo_add','添加成果',null,'reload');
+	});
+	$('#editold_chengguo').click(function() {
+		var data = $('#kejiju_chengguo_table_datagrid').bootstrapTable('getAllSelections');
+		if(data.length == 0){
+			alert("先选中一条数据");
+		}else if(data.length == 1){
+			var datetemp = data[0];
+//			datetemp.createTime="";
+			loadPage('/kjcgJbxxInfo/upd','chengguo_upd','更新成果',data[0],'reload');
+		}else{
+			alert("只能选中一条数据");
+		}
+	});
+	$('#deleteold_chengguo').click(function() {
+		
+		var data = $('#kejiju_chengguo_table_datagrid').bootstrapTable('getAllSelections');
+		if(data.length == 0){
+			alert("先选中数据");
+		}else if(data.length > 0){
+			bootbox.setLocale("zh_CN");
+			bootbox.confirm({
+			message : "确定要删除选定行",
+			title : "系统提示",
+			callback : function(result) {
+					if (result) {
+						// 重载
+						var url = "/kjcgJbxxInfo/delete";
+						var param={list:data};
+						ajaxPost(url, param, addkejiju_chengguo_tableSuccess, 5000, findError);
+					}
+				}
+			});
+		}
+	});
 	
 
 
@@ -61,7 +61,7 @@ $(function() {
 	$('#kejiju_chengguo_table_datagrid').bootstrapTable({
 		url : "/kjcgJbxxInfo/page",
 		dataType : "json",
-//		toolbar : '#dbm_type_toolbar', // 工具按钮用哪个容器
+		toolbar : '#chengguo-toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
@@ -196,6 +196,6 @@ function findCompletedDateSuccess(result){
 
 
 
-function addSysTableTypeInfoSuccess(result){
+function addkejiju_chengguo_tableSuccess(result){
 	$('#kejiju_chengguo_table_datagrid').bootstrapTable('refresh');
 }
