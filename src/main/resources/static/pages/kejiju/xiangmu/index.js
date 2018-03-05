@@ -5,8 +5,10 @@ search_kejiju_xiangmu_approvalYear="";
 //表格  - 操作 - 事件
 window.actionEvents2 = {
 	'click #kejixiangmu-showDetail': function(e, value, row, index) {  
-		console.log(row);
-		data = row;
+		data ={
+				"uuid":row.uuid
+		};
+		
       //修改操作
 		loadPage('/kjxmJbxxInfo/showDetail','xiangmu_showDetail','项目详细信息',data,'reload');
     }

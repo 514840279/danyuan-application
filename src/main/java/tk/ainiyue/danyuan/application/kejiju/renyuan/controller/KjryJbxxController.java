@@ -1,5 +1,9 @@
 package tk.ainiyue.danyuan.application.kejiju.renyuan.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.mysql.jdbc.StringUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,13 +42,27 @@ public class KjryJbxxController {
 	
 	//
 	@Autowired
-	private KjryJbxxService	KjryJbxxService;
+	private KjryJbxxService		KjryJbxxService;
 	
 	@ApiOperation(value = "分页查询全部信息", notes = "")
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<KjryJbxxInfo> page(KjryJbxxInfoVo vo) {
 		logger.info("page", KjryJbxxController.class);
-		return KjryJbxxService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo());
+		KjryJbxxInfo info = new KjryJbxxInfo();
+		if (!StringUtils.isNullOrEmpty(vo.getName().trim())) {
+			info.setName(vo.getName().trim());
+		}
+		if (!StringUtils.isNullOrEmpty(vo.getDegree().trim())) {
+			info.setDegree(vo.getDegree().trim());
+		}
+		if (!StringUtils.isNullOrEmpty(vo.getPorfessionalTitle().trim())) {
+			info.setPorfessionalTitle(vo.getPorfessionalTitle().trim());
+		}
+		if (!StringUtils.isNullOrEmpty(vo.getResearchDirection().trim())) {
+			info.setResearchDirection(vo.getResearchDirection().trim());
+		}
+		
+		return KjryJbxxService.page(vo.getPageNumber(), vo.getPageSize(), info);
 	}
 	
 	@ApiOperation(value = "更新", notes = "")
@@ -66,4 +87,40 @@ public class KjryJbxxController {
 			return "0";
 		}
 	}
+	
+	@ApiOperation(value = "技术领域", notes = "")
+	@RequestMapping(path = "/dicJsly", method = RequestMethod.POST)
+	@ResponseBody
+	public List<String> dicJsly() {
+		logger.info("dicJsly", KjryJbxxController.class);
+		return KjryJbxxService.dicJsly();
+	}
+	
+	@ApiOperation(value = "职称", notes = "")
+	@RequestMapping(path = "/dicZc", method = RequestMethod.POST)
+	@ResponseBody
+	public List<String> dicZc() {
+		logger.info("dicZc", KjryJbxxController.class);
+		return KjryJbxxService.dicZc();
+	}
+	
+	@ApiOperation(value = "学位", notes = "")
+	@RequestMapping(path = "/dicXw", method = RequestMethod.POST)
+	@ResponseBody
+	public List<String> dicXw() {
+		logger.info("dicXw", KjryJbxxController.class);
+		return KjryJbxxService.dicXw();
+	}
+	
+	@ApiOperation(value = "详细页面", notes = "")
+	@RequestMapping(path = "/showDetail", method = RequestMethod.POST)
+	public ModelAndView showDetail(KjryJbxxInfo info, HttpServletRequest request) {
+		logger.info("showDetail", KjryJbxxController.class);
+		System.out.println(info.toString());
+		info = KjryJbxxService.findOne(info);
+		ModelAndView view = new ModelAndView("kejiju/renyuan/detail");
+		view.addObject("KjryJbxxInfo", info);
+		return view;
+	}
+	
 }

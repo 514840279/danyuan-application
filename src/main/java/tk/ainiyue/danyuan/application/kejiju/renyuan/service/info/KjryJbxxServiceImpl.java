@@ -64,4 +64,59 @@ public class KjryJbxxServiceImpl implements KjryJbxxService {
 	public void delete(List<KjryJbxxInfo> list) {
 		kjryJbxxDao.delete(list);
 	}
+	
+	/** 
+	*  方法名 ： dicJsly
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryJbxxService#dicJsly()  
+	*  作    者 ： Administrator  
+	*/
+	
+	@Override
+	public List<String> dicJsly() {
+		return kjryJbxxDao.dicJsly();
+	}
+	
+	/** 
+	*  方法名 ： dicZc
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryJbxxService#dicZc()  
+	*  作    者 ： Administrator  
+	*/
+	
+	@Override
+	public List<String> dicZc() {
+		return kjryJbxxDao.dicZc();
+	}
+	
+	/** 
+	*  方法名 ： dicSj
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryJbxxService#dicSj()  
+	*  作    者 ： Administrator  
+	*/
+	
+	@Override
+	public List<String> dicXw() {
+		return kjryJbxxDao.dicXw();
+	}
+	
+	/** 
+	*  方法名 ： findOne
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param info
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryJbxxService#findOne(tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJbxxInfo)  
+	*  作    者 ： Administrator  
+	*/
+	
+	@Override
+	public KjryJbxxInfo findOne(KjryJbxxInfo info) {
+		Example<KjryJbxxInfo> example = Example.of(info);
+		return kjryJbxxDao.findOne(example);
+	}
+	
 }

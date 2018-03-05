@@ -41,4 +41,45 @@ public interface KjryJbxxService {
 	*/
 	void delete(List<KjryJbxxInfo> list);
 	
+	/**  
+	*  方法名： dicJsly  
+	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数： @return 
+	*  返    回： List<String>  
+	*  作    者 ： Administrator  
+	*  @throws  
+	*/
+	List<String> dicJsly();
+	
+	/**  
+	*  方法名： dicZc  
+	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数： @return 
+	*  返    回： List<String>  
+	*  作    者 ： Administrator  
+	*  @throws  
+	*/
+	List<String> dicZc();
+	
+	/**  
+	*  方法名： dicSj  
+	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数： @return 
+	*  返    回： List<String>  
+	*  作    者 ： Administrator  
+	*  @throws  
+	*/
+	List<String> dicXw();
+	
+	/**  
+	*  方法名： findOne  
+	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数： @param info
+	*  参    数： @return 
+	*  返    回： KjryJbxxInfo  
+	*  作    者 ： Administrator  
+	*  @throws  
+	*/
+	KjryJbxxInfo findOne(KjryJbxxInfo info);
+	
 }

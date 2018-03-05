@@ -43,10 +43,15 @@ public class KjxmJbxxServiceImpl implements KjxmJbxxService {
 	
 	@Override
 	public Page<KjxmJbxxInfo> page(int pageNumber, int pageSize, KjxmJbxxInfo info) {
-		Example<KjxmJbxxInfo> example = Example.of(info);
-		Sort sort = new Sort(new Order(Direction.DESC, "createTime"));
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
-		return kjxmJbxxDao.findAll(example, request);
+		try {
+			Example<KjxmJbxxInfo> example = Example.of(info);
+			Sort sort = new Sort(new Order(Direction.DESC, "createTime"));
+			PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
+			return kjxmJbxxDao.findAll(example, request);
+		} catch (Exception e) {
+			System.err.println(e.toString());
+		}
+		return null;
 	}
 	
 	/** 
@@ -125,5 +130,20 @@ public class KjxmJbxxServiceImpl implements KjxmJbxxService {
 	@Override
 	public List<String> dicDq() {
 		return kjxmJbxxDao.dicDq();
+	}
+	
+	/** 
+	*  方法名 ： findOne
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param info
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmJbxxService#findOne(tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmJbxxInfo)  
+	*  作    者 ： Administrator  
+	*/
+	
+	@Override
+	public KjxmJbxxInfo findOne(KjxmJbxxInfo info) {
+		Example<KjxmJbxxInfo> example = Example.of(info);
+		return kjxmJbxxDao.findOne(example);
 	}
 }

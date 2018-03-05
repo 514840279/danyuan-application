@@ -1,10 +1,23 @@
-search_kejiju_chengguo_completedDate ="";
-search_kejiju_chengguo_resultType ="";
+search_kejiju_renyuan_researchDirection ="";
+search_kejiju_renyuan_porfessionalTitle ="";
+search_kejiju_renyuan_degree ="";
+//表格  - 操作 - 事件
+window.actionEvents3 = {
+	'click #kejirenyuan-showDetail': function(e, value, row, index) {  
+		data ={
+				"personId":row.personId
+		};
+		
+      //修改操作
+		loadPage('/kjryJbxxInfo/showDetail','xiangmu_showDetail','项目详细信息',data,'reload');
+    }
+}
 $(function() {
-	ajaxPost("/kjcgJbxxInfo/dicCglx", null, findResultTypeSuccess, 5000, findError);
+	ajaxPost("/kjryJbxxInfo/dicJsly", null, findJslySuccess, 5000, findError);
 	
-	ajaxPost("/kjcgJbxxInfo/dicCgsj", null, findCompletedDateSuccess, 5000, findError);
+	ajaxPost("/kjryJbxxInfo/dicZc", null, findZcSuccess, 5000, findError);
 	
+	ajaxPost("/kjryJbxxInfo/dicXw", null, findXwSuccess, 5000, findError);
 	
 	
 //	$('#addnew_type').click(function() {
@@ -47,8 +60,8 @@ $(function() {
 
 
 	// bootstrap table
-	$('#kejiju_chengguo_table_datagrid').bootstrapTable({
-		url : "/kjcgJbxxInfo/page",
+	$('#kejiju_renyuan_table_datagrid').bootstrapTable({
+		url : "/kjryJbxxInfo/page",
 		dataType : "json",
 //		toolbar : '#dbm_type_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -81,40 +94,68 @@ $(function() {
         contentType: "application/x-www-form-urlencoded",
 		method: "post",  //使用get请求到服务器获取数据  
 		queryParams: function queryParams(params) { 
-			console.log(search_kejiju_chengguo_completedDate+search_kejiju_chengguo_resultType)
 		    var param = {  
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
                  username:username,
-                 projectName:$("#search_kejiju_chengguo_projectName").val(),
-                 completedDate:search_kejiju_chengguo_completedDate,
-                 resultType:search_kejiju_chengguo_resultType
+                 name:$("#search_kejiju_renyuan_name").val(),
+                 researchDirection:search_kejiju_renyuan_researchDirection,
+                 porfessionalTitle:search_kejiju_renyuan_porfessionalTitle,
+                 degree: search_kejiju_renyuan_degree
              }; 
              return param;
 		},
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
-			{title : '本地唯一标识',field : 'resultId',sortable : true,align : 'center',visible:false},
-			{title : '所属项目编码',field : 'projectId',sortable : true,align : 'center',visible:false},
-			{title : '所属项目名称',field : 'projectName',align : 'center',sortable : true,valign : 'middle'},
-			{title : '成果类型',field : 'resultType',sortable : true,align : 'center'},
-			{title : '成果名称',field : 'resultTitle',sortable : true,align : 'center'},
-			{title : '关键词',field : 'keyword',sortable : true,align : 'center',visible:false},
-			{title : '成果概述',field : 'resultAbstract',align : 'center',sortable : true,valign : 'middle'},
-			{title : '成果相关文档',field : 'resultLinks',sortable : true,align : 'center',visible:false,visible:false},
-			{title : '成果完成人',field : 'completedby',align : 'center',sortable : true,valign : 'middle',visible:false},
-			{title : '成果完成单位',field : 'completedOrganization',align : 'center',sortable : true,valign : 'middle'},
-			{title : '成果完成时间',field : 'completedDate',sortable : true,align : 'center'},
-			{title : '获奖情况',field : 'awards',align : 'center',sortable : true,valign : 'middle'},
-			{title : '中图分类号',field : 'cdc',align : 'center',sortable : true,valign : 'middle',visible:false},
-			{title : '学科分类代码',field : 'discipline',align : 'center',sortable : true,valign : 'middle',visible:false},
-			{title : '行业分类代码',field : 'industry',sortable : true,align : 'center',visible:false},
-			{title : '其他分类代码',field : 'otherCode',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '姓名',field : 'name',align : 'center',sortable : true,valign : 'middle'},
+			{title : '开户行账号',field : 'bankAccount',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '开户行名称',field : 'bankName',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '出生日期',field : 'birthdate',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '出生地',field : 'birthplace',sortable : true,align : 'center',valign : 'middle'},
+			{title : '中图分类号',field : 'cdc',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '学位',field : 'degree',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '学科分类代码',field : 'discipline',align : 'center',sortable : true,valign : 'middle'},
+			{title : '学历',field : 'education',sortable : true,align : 'center',visible:false,visible:false},
+			{title : '电子邮箱',field : 'email',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '紧急联系人',field : 'emergencyContact',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '紧急联系人电话',field : 'emergencyNumber',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '民族',field : 'ethnicGroup',align : 'center',sortable : true,valign : 'middle'},
+			{title : '传真',field : 'fax',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '领域',field : 'field',align : 'center',sortable : true,valign : 'middle'},
+			{title : '曾用名',field : 'formerName',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '家庭电话',field : 'homeTelephone',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '人才称号',field : 'honorary',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '证件号码',field : 'idNumber',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '证件类型',field : 'idType',align : 'center',valign : 'middle',sortable : true,valign : 'middle',visible:false},
+			{title : '行业分类代码',field : 'industry',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '个人简介',field : 'introduce',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '微博',field : 'mobileTelephone',sortable : true,align : 'center',visible:false,valign : 'middle',visible:false},
+			{title : '国籍',field : 'nationality',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '籍贯',field : 'nativePlace',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '办公电话',field : 'officeTelephone',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '单位名称',field : 'organization',sortable : true,align : 'center',valign : 'middle'},
+			{title : '单位所在市',field : 'organizationCity',align : 'center',sortable : true,valign : 'middle'},
+			{title : '单位性质',field : 'organizationProperty',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '单位所在省',field : 'organizationProvince',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '其他分类代码',field : 'otherCode',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '本地唯一标识',field : 'personId',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '个人学术网址',field : 'personUrls',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '照片路径',field : 'photoUrl',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '政治面貌',field : 'politicalStatus',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '职称',field : 'porfessionalTitle',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '职务级别',field : 'positionLevel',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '职务',field : 'positionTitle',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '通讯地址',field : 'personId',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '邮编',field : 'postcode',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '研究方向',field : 'researchDirection',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '工作性质',field : 'researchType',align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '职业资质',field : 'vocationalQualifications',align : 'center',sortable : true,valign : 'middle',visible:false},
 			{title : '详情',align : 'center',
+				events: actionEvents3,
 				formatter : function(value, row, index) {
 //					var e = '<a href="#" mce_href="#" onclick="getEdit(\''	+ row.uuid + '\')">编辑</a> ';
 //					var d = '<a href="#" mce_href="#" onclick="del(\''	+ row.uuid + '\')">删除</a> ';
-					var f = '<a href="#" mce_href="#" onclick="showDetail(\''	+ row + '\')">详情</a> ';
+					var f = '<button class="btn btn-default" id="kejirenyuan-showDetail">详情</button> ';
 					return f;
 				}
 			},
@@ -125,63 +166,84 @@ $(function() {
 		}, 
 	});
 	
-	$('#search_kejiju_chengguo_button').click(function() {
-		$('#kejiju_chengguo_table_datagrid').bootstrapTable('refresh');
+	$('#search_kejiju_renyuan_button').click(function() {
+		$('#kejiju_renyuan_table_datagrid').bootstrapTable('refresh');
 	});
 });
 
 
 // 窗口大小改变时 重设表头
 $(window).resize(function() {
-	$('#kejiju_chengguo_table_datagrid').bootstrapTable('resetView');
+	$('#kejiju_renyuan_table_datagrid').bootstrapTable('resetView');
 });
 
-// 成果类型下拉框加载
-function findResultTypeSuccess(result){
+// 技术类型下拉框加载
+function findJslySuccess(result){
 	var data = [{id:" ",text:"请选择"}];
 	$.each(result,function(index,value){
-		data.push({id:value.cglx,text:value.cglx});
+		data.push({id:value,text:value});
 	});
 	
-	$('#search_kejiju_chengguo_resultType').select2({
-	    placeholder: "成果类型",
+	$('#search_kejiju_renyuan_researchDirection').select2({
+	    placeholder: "研究方向",
 	    tags: true,
 	    data:data
 	});
 	//种子下拉点击事件
-	$('#search_kejiju_chengguo_resultType').on('select2:select', function (evt) {
-		search_kejiju_chengguo_resultType = evt.params.data.id;
-		$('#kejiju_chengguo_table_datagrid').bootstrapTable('refresh');
+	$('#search_kejiju_renyuan_researchDirection').on('select2:select', function (evt) {
+		search_kejiju_renyuan_researchDirection = evt.params.data.id;
+		$('#kejiju_renyuan_table_datagrid').bootstrapTable('refresh');
 		
 	});
 }
 
 
 
-//成果时间下拉框加载
-function findCompletedDateSuccess(result){
+// 职称下拉框加载
+function findZcSuccess(result){
 	var data = [{id:" ",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value,text:value});
 	});
 	
 	//种子下拉
-	$('#search_kejiju_chengguo_completedDate').select2({
-	    placeholder: "时间",
+	$('#search_kejiju_renyuan_porfessionalTitle').select2({
+	    placeholder: "职务",
 	    tags: true,
 	    data:data
 	});
 	
 	//种子下拉点击事件
-	$('#search_kejiju_chengguo_completedDate').on('select2:select', function (evt) {
-		search_kejiju_chengguo_completedDate = evt.params.data.id;
-		$('#kejiju_chengguo_table_datagrid').bootstrapTable('refresh');
+	$('#search_kejiju_renyuan_porfessionalTitle').on('select2:select', function (evt) {
+		search_kejiju_renyuan_porfessionalTitle = evt.params.data.id;
+		$('#kejiju_renyuan_table_datagrid').bootstrapTable('refresh');
+		
+	});
+}
+
+// 学位下拉框加载
+function findXwSuccess(result){
+	var data = [{id:" ",text:"请选择"}];
+	$.each(result,function(index,value){
+		data.push({id:value,text:value});
+	});
+	
+	//种子下拉
+	$('#search_kejiju_renyuan_degree').select2({
+	    placeholder: "学位",
+	    tags: true,
+	    data:data
+	});
+	
+	//种子下拉点击事件
+	$('#search_kejiju_renyuan_degree').on('select2:select', function (evt) {
+		search_kejiju_renyuan_degree = evt.params.data.id;
+		$('#kejiju_renyuan_table_datagrid').bootstrapTable('refresh');
 		
 	});
 }
 
 
-
 function addSysTableTypeInfoSuccess(result){
-	$('#kejiju_chengguo_table_datagrid').bootstrapTable('refresh');
+	$('#kejiju_renyuan_table_datagrid').bootstrapTable('refresh');
 }

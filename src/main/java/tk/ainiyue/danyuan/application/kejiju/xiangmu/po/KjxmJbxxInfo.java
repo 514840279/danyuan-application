@@ -14,6 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * The persistent class for the kjxm_jbxx_info database table.
  * 
@@ -25,6 +28,8 @@ public class KjxmJbxxInfo implements Serializable {
 	private static final long	serialVersionUID	= 1L;
 	
 	@Id
+	@GenericGenerator(name = "idGenerator", strategy = "uuid")
+	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键'")
 	private String				uuid;
 	
 	@Column(name = "approval_year")
@@ -38,6 +43,7 @@ public class KjxmJbxxInfo implements Serializable {
 	@Column(name = "competent_department")
 	private String				competentDepartment;
 	
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss", pattern = "yyyy-MM-dd hh:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "create_time")
 	private Date				createTime;
@@ -149,6 +155,11 @@ public class KjxmJbxxInfo implements Serializable {
 	private List<KjxmDwxxInfo>	kjxmDwxxInfos;
 	
 	public KjxmJbxxInfo() {
+	}
+	
+	public KjxmJbxxInfo(String uuid) {
+		super();
+		this.uuid = uuid;
 	}
 	
 	public String getUuid() {
@@ -513,6 +524,19 @@ public class KjxmJbxxInfo implements Serializable {
 		kjxmDwxxInfo.setKjxmJbxxInfo(null);
 		
 		return kjxmDwxxInfo;
+	}
+	
+	/** 
+	*  方法名 ： toString
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @return  
+	*  参    考 ： @see java.lang.Object#toString()  
+	*  作    者 ： Administrator  
+	*/
+	
+	@Override
+	public String toString() {
+		return "KjxmJbxxInfo [uuid=" + uuid + ", approvalYear=" + approvalYear + ", cdc=" + cdc + ", cnKeyword=" + cnKeyword + ", competentDepartment=" + competentDepartment + ", createTime=" + createTime + ", createUser=" + createUser + ", discipline=" + discipline + ", email=" + email + ", enKeyword=" + enKeyword + ", expectedIndex=" + expectedIndex + ", govemmentFund=" + govemmentFund + ", industry=" + industry + ", localFund=" + localFund + ", name=" + name + ", otherCode=" + otherCode + ", otherFund=" + otherFund + ", planAbstract=" + planAbstract + ", planId=" + planId + ", planName=" + planName + ", planUrl=" + planUrl + ", porjectLinks=" + porjectLinks + ", projectAbstract=" + projectAbstract + ", projectActualEndtime=" + projectActualEndtime + ", projectActualStartTime=" + projectActualStartTime + ", projectDomain=" + projectDomain + ", projectDomainId=" + projectDomainId + ", projectId=" + projectId + ", projectName=" + projectName + ", projectPhase=" + projectPhase + ", projectPlanEndtime=" + projectPlanEndtime + ", projectPlanStartTime=" + projectPlanStartTime + ", projectType=" + projectType + ", provincialFund=" + provincialFund + ", region=" + region + ", researchContent=" + researchContent + ", researchTarget=" + researchTarget + ", selfFund=" + selfFund + ", telephone=" + telephone + ", totalFund=" + totalFund + ", kjxmRyxxInfos=" + kjxmRyxxInfos + ", kjxmDwxxInfos=" + kjxmDwxxInfos + "]";
 	}
 	
 }

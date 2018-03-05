@@ -19,12 +19,8 @@ import com.mysql.jdbc.StringUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmDwxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmJbxxInfo;
-import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmRyxxInfo;
-import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmDwxxService;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmJbxxService;
-import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmRyxxService;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.vo.KjxmJbxxInfoVo;
 
 /**    
@@ -47,11 +43,6 @@ public class KjxmJbxxInfoController {
 	//
 	@Autowired
 	private KjxmJbxxService		kjxmJbxxService;
-	@Autowired
-	private KjxmDwxxService		kjxmDwxxService;
-	//
-	@Autowired
-	private KjxmRyxxService		kjxmRyxxService;
 	
 	@ApiOperation(value = "分页查询全部信息", notes = "")
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
@@ -137,54 +128,10 @@ public class KjxmJbxxInfoController {
 	@RequestMapping(path = "/showDetail", method = RequestMethod.POST)
 	public ModelAndView showDetail(KjxmJbxxInfo info, HttpServletRequest request) {
 		logger.info("showDetail", KjxmJbxxInfoController.class);
-		
-		//		KjxmJbxxInfo info = new KjxmJbxxInfo();
-		//		private String uuid;
-		//		private String approvalYear;
-		//		private String cdc;
-		//		private String cnKeyword;
-		//		private String competentDepartment;
-		//		private Timestamp createTime;
-		//		private String createUser;
-		//		private String discipline;
-		//		private String email;
-		//		private String enKeyword;
-		//		private String expectedIndex;
-		//		private Integer govemmentFund;
-		//		private String industry;
-		//		private Integer localFund;
-		//		private String name;
-		//		private String otherCode;
-		//		private Integer otherFund;
-		//		private String planAbstract;
-		//		private String planId;
-		//		private String planName;
-		//		private String planUrl;
-		//		private String porjectLinks;
-		//		private String projectAbstract;
-		//		private String projectActualEndtime;
-		//		private String projectActualStartTime;
-		//		private String projectDomain;
-		//		private String projectDomainId;
-		//		private String projectId;
-		//		private String projectName;
-		//		private String projectPhase;
-		//		private String projectPlanEndtime;
-		//		private String projectPlanStartTime;
-		//		private String projectType;
-		//		private Integer provincialFund;
-		//		private String region;
-		//		private String researchTarget;
-		//		private String researchContent;
-		//		private Integer selfFund;
-		//		private String telephone;
-		//		private Integer totalFund;
-		List<KjxmDwxxInfo> dwlist = kjxmDwxxService.findList(info.getUuid());
-		List<KjxmRyxxInfo> rylist = kjxmRyxxService.findList(info.getUuid());
+		System.out.println(info.toString());
+		info = kjxmJbxxService.findOne(info);
 		ModelAndView view = new ModelAndView("kejiju/xiangmu/detail");
 		view.addObject("KjxmJbxxInfo", info);
-		view.addObject("dwlist", dwlist);
-		view.addObject("rylist", rylist);
 		return view;
 	}
 	
