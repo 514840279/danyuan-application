@@ -1,0 +1,75 @@
+<!DOCTYPE html>		
+ <html>		
+ <head>		
+ <title></title>		
+ <meta charset="UTF-8">		
+ <!-- <link rel="stylesheet" href="/plugins/select2/select2.min.css"> -->		
+ <!-- <link rel="stylesheet" href="/plugins/bootstrap/table/bootstrap-table.min.css"> -->		
+ <!-- <script type="text/javascript" src="/plugins/bootstrap/table/bootstrap-table.min.js"></script> -->		
+ <!-- <script type="text/javascript" src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.min.js"></script> -->		
+ <!-- <script type="text/javascript" src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.min.js"></script> -->		
+ <!-- <script type="text/javascript" src="/plugins/select2/select2.min.js"></script> -->		
+ </head>		
+ <body>		
+ 	<!-- 头部设计 -->		
+ 	<section class="content-header">		
+ 		<h1>		
+ 			数据管理 <small>新建表</small>		
+ 		</h1>		
+ 		<ol class="breadcrumb">		
+ 			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>		
+ 			<li><a href="#">数据库设置 </a></li>		
+ 			<li class="active">新建表</li>		
+ 		</ol>		
+ 	</section>		
+ 	<!-- Main content -->		
+ 	<section class="content">		
+ 		<div class="panel-group" id="accordion_table">		
+ 			<div class="panel panel-default">		
+ 				<div class="panel-heading">		
+ 					<h4 class="panel-title">		
+ 						<a data-toggle="collapse" data-parent="#accordion_table" href="#accordion_table_collapseOne"> 添加表信息 </a>		
+ 					</h4>		
+ 				</div>		
+ 				<div id="accordion_table_collapseOne" class="panel-collapse collapse in">		
+ 					<div class="panel-body">		
+ 						<div class="row">		
+ 							<div class="col-md-6 form-group">		
+ 								<label class="col-sm-2 control-label text-right">表名:</label>		
+ 								<div class="col-sm-10">		
+ 									<input type="text" class="form-control" id="add_table_tableName" name="type" placeholder="数据库表名">		
+ 								</div>		
+ 							</div>		
+ 							<div class=" col-md-6 form-group">		
+ 								<label class="col-sm-2 control-label text-right">表含义:</label>		
+ 								<div class="col-sm-10">		
+ 									<input type="text" class="form-control" id="add_table_tableDesc" name="type" placeholder="数据库表含义">		
+ 								</div>		
+ 							</div>		
+ 							<div class=" col-md-6 form-group">		
+ 								<label class="col-sm-2 control-label text-right">数据库:</label>		
+ 								<div class="col-sm-10">		
+ 									<select style="width: 100%;" id="add_table_addrName"></select>		
+ 								</div>		
+ 							</div>		
+ 							<div class=" col-md-6 form-group">		
+ 								<label class="col-sm-2 control-label text-right">类型:</label>		
+ 								<div class="col-sm-10">		
+ 									<select style="width: 100%;" id="add_table_typeName"></select>		
+ 								</div>		
+ 							</div>		
+ 							<div class=" col-md-12 text-center">		
+ 								<button class="btn btn-success" id="db_create_table_button">		
+ 									<i class="glyphicon glyphicon-ok"></i> 新建表		
+ 								</button>		
+ 							</div>		
+ 						</div>		
+ 					</div>		
+ 				</div>		
+ 			</div>		
+ 		</div>		
+ 		
+ 	</section>		
+ 	<script type="text/javascript" src="pages/dbm/table/js/add_table.js"></script>		
+ </body>		
+ </html>
