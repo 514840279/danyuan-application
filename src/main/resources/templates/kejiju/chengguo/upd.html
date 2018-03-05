@@ -43,18 +43,13 @@
 			<div class="box-body">
 				<form action="/kjcgJbxxInfo/save" method="post" id="kejiju_chengguo_form_id">
 					<div class="row">
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12" hidden="hidden">
 							<div class="col-sm-4 strong">本地唯一标识</div>
 							<div class="col-sm-8">
-								<input type="text" th:value="*{kjcgJbxxInfo.resultId}" class="form-control" id="kejiju_chengguo_input_resultId" name="resultId" placeholder="本地唯一标识" hidden="hidden" />
+								<input type="text" th:value="*{kjcgJbxxInfo.resultId}" id="kejiju_chengguo_input_resultId" name="resultId" placeholder="本地唯一标识"  />
 							</div>
 						</div>
-						<div class="col-md-6 col-sm-12">
-							<div class="col-sm-4">所属项目编码</div>
-							<div class="col-sm-8">
-								<input type="text" th:value="*{kjcgJbxxInfo.projectId}" class="form-control" id="kejiju_chengguo_input_projectId" name="projectId" placeholder="所属项目编码" />
-							</div>
-						</div>
+						
 					</div>
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
@@ -155,8 +150,17 @@
 						</div>
 					</div>
 					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="col-sm-4">所属项目编码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjcgJbxxInfo.projectId}" class="form-control" id="kejiju_chengguo_input_projectId" name="projectId" placeholder="所属项目编码" />
+							</div>
+						</div>
+					</div>
+					<input type="text" th:value="*{kjcgJbxxInfo.createUser}" id="kejiju_chengguo_input_otherCode" name="createUser" hidden="hidden" />
+					<div class="row">
 						<div class="col-md-12 col-sm-12 text-center">
-							<button class="btn btn-success" type="submit">
+							<button class="btn btn-success" id="kejiju_chengguo_submit_button" type="button">
 								<i class="fa fa-search"></i> 确定
 							</button>
 						</div>
@@ -165,5 +169,6 @@
 			</div>
 		</div>
 	</section>
+<script type="text/javascript" src="pages/kejiju/chengguo/upd.js"></script>	
 </body>
 </html>

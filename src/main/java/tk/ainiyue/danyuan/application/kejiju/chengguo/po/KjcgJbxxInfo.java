@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 /**
  * The persistent class for the kjcg_jbxx_info database table.
  * 
@@ -56,7 +58,8 @@ public class KjcgJbxxInfo implements Serializable {
 	private String				resultAbstract;
 	
 	@Id
-	@Column(name = "result_id")
+	@GenericGenerator(name = "idGenerator", strategy = "uuid")
+	@Column(name = "result_id", columnDefinition = " varchar(36) COMMENT '主键'")
 	private String				resultId;
 	
 	@Column(name = "result_links")

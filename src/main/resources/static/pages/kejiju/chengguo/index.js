@@ -28,7 +28,7 @@ $(function() {
 		}else if(data.length == 1){
 			var datetemp = data[0];
 //			datetemp.createTime="";
-			loadPage('/kjcgJbxxInfo/upd','chengguo_upd','更新成果',data[0],'reload');
+			loadPage('/kjcgJbxxInfo/upd','chengguo_add','更新成果',data[0],'reload');
 		}else{
 			alert("只能选中一条数据");
 		}
@@ -108,18 +108,18 @@ $(function() {
 			{title : '本地唯一标识',field : 'resultId',sortable : true,align : 'center',visible:false},
 			{title : '所属项目编码',field : 'projectId',sortable : true,align : 'center',visible:false},
 			{title : '所属项目名称',field : 'projectName',align : 'center',sortable : true,valign : 'middle'},
-			{title : '成果类型',field : 'resultType',sortable : true,align : 'center'},
-			{title : '成果名称',field : 'resultTitle',sortable : true,align : 'center'},
-			{title : '关键词',field : 'keyword',sortable : true,align : 'center',visible:false},
+			{title : '成果类型',field : 'resultType',sortable : true,align : 'center',valign : 'middle'},
+			{title : '成果名称',field : 'resultTitle',sortable : true,align : 'center',valign : 'middle'},
+			{title : '关键词',field : 'keyword',sortable : true,align : 'center',valign : 'middle',visible:false},
 			{title : '成果概述',field : 'resultAbstract',align : 'center',sortable : true,valign : 'middle'},
-			{title : '成果相关文档',field : 'resultLinks',sortable : true,align : 'center',visible:false,visible:false},
+			{title : '成果相关文档',field : 'resultLinks',sortable : true,align : 'center',valign : 'middle',visible:false},
 			{title : '成果完成人',field : 'completedby',align : 'center',sortable : true,valign : 'middle',visible:false},
 			{title : '成果完成单位',field : 'completedOrganization',align : 'center',sortable : true,valign : 'middle'},
-			{title : '成果完成时间',field : 'completedDate',sortable : true,align : 'center'},
+			{title : '成果完成时间',field : 'completedDate',sortable : true,align : 'center',valign : 'middle'},
 			{title : '获奖情况',field : 'awards',align : 'center',sortable : true,valign : 'middle'},
 			{title : '中图分类号',field : 'cdc',align : 'center',sortable : true,valign : 'middle',visible:false},
 			{title : '学科分类代码',field : 'discipline',align : 'center',sortable : true,valign : 'middle',visible:false},
-			{title : '行业分类代码',field : 'industry',sortable : true,align : 'center',visible:false},
+			{title : '行业分类代码',field : 'industry',sortable : true,align : 'center',valign : 'middle',visible:false},
 			{title : '其他分类代码',field : 'otherCode',align : 'center',sortable : true,valign : 'middle',visible:false},
 			{title : '详情',align : 'center',
 				events: actionEvents,

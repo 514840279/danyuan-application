@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -69,7 +68,7 @@ public class KjcgJbxxController {
 	@ApiOperation(value = "更新", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public String save(@ModelAttribute KjcgJbxxInfo info) {
+	public String save(@RequestBody KjcgJbxxInfo info) {
 		logger.info("save", KjcgJbxxController.class);
 		System.out.println(info.toString());
 		kjcgJbxxService.save(info);
