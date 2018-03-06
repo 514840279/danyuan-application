@@ -16,6 +16,7 @@ $(function() {
 		    discipline : $("#kejiju_chengguo_input_discipline").val(),
 		    otherCode : $("#kejiju_chengguo_input_otherCode").val(),
 		    projectId : $("#kejiju_chengguo_input_projectId").val(),
+		    industry: $("#kejiju_chengguo_input_industry").val(),
 		    createUser:username,
 		};
 		console.log(data);

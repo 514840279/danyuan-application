@@ -1,6 +1,7 @@
 package tk.ainiyue.danyuan.application.kejiju.xiangmu.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -135,4 +136,17 @@ public class KjxmJbxxInfoController {
 		return view;
 	}
 	
+	@ApiOperation(value = "更新前", notes = "")
+	@RequestMapping(path = "/upd", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView upd(KjxmJbxxInfo info, HttpServletRequest request) {
+		logger.info("upd", KjxmJbxxInfoController.class);
+		if (info.getUuid() == null) {
+			info.setUuid(UUID.randomUUID().toString());
+		} else {
+			info = kjxmJbxxService.findOne(info);
+		}
+		ModelAndView view = new ModelAndView("kejiju/xiangmu/jbxx_upd");
+		view.addObject("KjxmJbxxInfo", info);
+		return view;
+	}
 }

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- <link rel="stylesheet" href="/plugins/bootstrap/table/bootstrap-table.min.css"/> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/bootstrap-table.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.min.js"></script> -->
+
+</head>
+<body>
+	<!-- 头部设计 -->
+	<section class="content-header">
+		<h1>
+			更新项目<small>科技项目</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
+			<li><a href="#">科技项目</a></li>
+			<li class="active">更新项目</li>
+		</ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title">科技项目基本信息</h3>
+
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body">
+				<form action="/kjcgJbxxInfo/save" method="post" id="kejiju_chengguo_form_id">
+					<div class="row">
+						<div class="col-md-6 col-sm-12 form-group" hidden="hidden">
+							<div class="col-sm-4 strong">本地唯一标识</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.uuid}" id="kejiju_xiangmu_jbxx_input_uuid" name="uuid" placeholder="本地唯一标识"  />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">立项年度</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.approvalYear}" id="kejiju_xiangmu_jbxx_input_approvalYear" name="approvalYear" placeholder="立项年度"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">中图分类号</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.cdc}" id="kejiju_xiangmu_jbxx_input_cdc" name="cdc" placeholder="中图分类号"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">中文关键词</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.cnKeyword}" id="kejiju_xiangmu_jbxx_input_cnKeyword" name="cnKeyword" placeholder="中文关键词"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">项目主管部门</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.competentDepartment}" id="kejiju_xiangmu_jbxx_input_competentDepartment" name="competentDepartment" placeholder="项目主管部门"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">学科分类代码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.discipline}" id="kejiju_xiangmu_jbxx_input_discipline" name="discipline" placeholder="学科分类代码"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">联系人邮箱</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.email}" id="kejiju_xiangmu_jbxx_input_email" name="email" placeholder="联系人邮箱"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">英文关键词</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.enKeyword}" id="kejiju_xiangmu_jbxx_input_enKeyword" name="enKeyword" placeholder="英文关键词"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">预期成果指标</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.expectedIndex}" id="kejiju_xiangmu_jbxx_input_expectedIndex" name="expectedIndex" placeholder="预期成果指标"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">中央拨付经费</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.govemmentFund}" id="kejiju_xiangmu_jbxx_input_govemmentFund" name="govemmentFund" placeholder="中央拨付经费"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">行业分类代码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.industry}" id="kejiju_xiangmu_jbxx_input_industry" name="industry" placeholder="行业分类代码"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">地方配套经费</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.localFund}" id="kejiju_xiangmu_jbxx_input_localFund" name="localFund" placeholder="地方配套经费"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">联系人姓名</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.name}" id="kejiju_xiangmu_jbxx_input_name" name="name" placeholder="联系人姓名"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">其他来源经费</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.otherFund}" id="kejiju_xiangmu_jbxx_input_otherFund" name="otherFund" placeholder="其他来源经费"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">其他分类代码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.otherCode}" id="kejiju_xiangmu_jbxx_input_otherCode" name="otherCode" placeholder="其他分类代码"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">科技计划指南描述</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.planAbstract}" id="kejiju_xiangmu_jbxx_input_planAbstract" name="planAbstract" placeholder="科技计划指南描述"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">科技计划编码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.planId}" id="kejiju_xiangmu_jbxx_input_planId" name="planId" placeholder="科技计划编码"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">科技计划名称</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.planName}" id="kejiju_xiangmu_jbxx_input_planName" name="planName" placeholder="科技计划名称"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">科技计划指南链接地址</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.planUrl}" id="kejiju_xiangmu_jbxx_input_planUrl" name="planUrl" placeholder="科技计划指南链接地址"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">项目相关文档</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.porjectLinks}" id="kejiju_xiangmu_jbxx_input_porjectLinks" name="porjectLinks" placeholder="项目相关文档"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">项目简介</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.projectAbstract}" id="kejiju_xiangmu_jbxx_input_projectAbstract" name="projectAbstract" placeholder="项目简介"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">项目实际结束时间</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.projectActualEndtime}" id="kejiju_xiangmu_jbxx_input_projectActualEndtime" name="projectActualEndtime" placeholder="项目实际结束时间"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">项目实际起始时间</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.projectActualStartTime}" id="kejiju_xiangmu_jbxx_input_projectActualStartTime" name="projectActualStartTime" placeholder="项目实际起始时间"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">项目领域名称</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.projectDomain}" id="kejiju_xiangmu_jbxx_input_projectDomain" name="projectDomain" placeholder="项目领域名称"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">项目领域编码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.projectDomainId}" id="kejiju_xiangmu_jbxx_input_projectDomainId" name="projectDomainId" placeholder="项目领域编码"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">项目编码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.projectId}" id="kejiju_xiangmu_jbxx_input_projectId" name="projectId" placeholder="项目编码"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">项目名称</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.projectName}" id="kejiju_xiangmu_jbxx_input_projectName" name="projectName" placeholder="项目名称"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">项目执行阶段</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.projectPhase}" id="kejiju_xiangmu_jbxx_input_projectPhase" name="projectPhase" placeholder="项目执行阶段"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">项目计划结束时间</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.projectPlanEndtime}" id="kejiju_xiangmu_jbxx_input_projectPlanEndtime" name="projectPlanEndtime" placeholder="项目计划结束时间"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">项目计划起始时间</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.projectPlanStartTime}" id="kejiju_xiangmu_jbxx_input_projectPlanStartTime" name="projectPlanStartTime" placeholder="项目计划起始时间"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">项目类别</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.projectType}" id="kejiju_xiangmu_jbxx_input_projectType" name="projectType" placeholder="项目类别"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">省级拨付经费</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.provincialFund}" id="kejiju_xiangmu_jbxx_input_provincialFund" name="provincialFund" placeholder="省级拨付经费"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">省市地区</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.region}" id="kejiju_xiangmu_jbxx_input_region" name="region" placeholder="省市地区"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">主要研究内容</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.researchContent}" id="kejiju_xiangmu_jbxx_input_researchContent" name="researchContent" placeholder="主要研究内容"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">研究目标</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.researchTarget}" id="kejiju_xiangmu_jbxx_input_researchTarget" name="researchTarget" placeholder="研究目标"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">单位自筹经费</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.selfFund}" id="kejiju_xiangmu_jbxx_input_selfFund" name="selfFund" placeholder="单位自筹经费"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">联系人电话</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.telephone}" id="kejiju_xiangmu_jbxx_input_telephone" name="telephone" placeholder="联系人电话"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">项目总经费</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{KjxmJbxxInfo.totalFund}" id="kejiju_xiangmu_jbxx_input_totalFund" name="totalFund" placeholder="项目总经费"  class="form-control" />
+							</div>
+						</div>
+						
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 form-group text-center">
+							<button class="btn btn-success" id="kejiju_chengguo_submit_button" type="button">
+								<i class="fa fa-search"></i> 确定
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+<script type="text/javascript" src="pages/kejiju/xiangmu/jbxx_upd.js"></script>	
+</body>
+</html>

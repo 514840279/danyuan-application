@@ -32,14 +32,18 @@ public class KjxmJbxxInfo implements Serializable {
 	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键'")
 	private String				uuid;
 	
+	// 立项年度
 	@Column(name = "approval_year")
 	private String				approvalYear;
 	
+	// 中图分类号
 	private String				cdc;
 	
+	// 中文关键词
 	@Column(name = "cn_keyword")
 	private String				cnKeyword;
 	
+	// 项目主管部门
 	@Column(name = "competent_department")
 	private String				competentDepartment;
 	
@@ -51,98 +55,131 @@ public class KjxmJbxxInfo implements Serializable {
 	@Column(name = "create_user")
 	private String				createUser;
 	
+	// 学科分类代码
 	private String				discipline;
 	
+	// 联系人邮箱
 	private String				email;
 	
+	// 英文关键词
 	@Column(name = "en_keyword")
 	private String				enKeyword;
 	
+	// 预期成果指标
 	@Column(name = "expected_index")
 	private String				expectedIndex;
 	
+	// 中央拨付经费
 	@Column(name = "govemment_fund")
 	private Integer				govemmentFund;
 	
+	// 行业分类代码
 	private String				industry;
 	
+	// 地方配套经费
 	@Column(name = "local_fund")
 	private Integer				localFund;
 	
+	// 联系人姓名
 	private String				name;
 	
+	// 其他分类代码
 	@Column(name = "other_code")
 	private String				otherCode;
 	
+	// 其他来源经费
 	@Column(name = "other_fund")
 	private Integer				otherFund;
 	
+	// 科技计划指南描述
 	@Column(name = "plan_abstract")
 	private String				planAbstract;
 	
+	// 科技计划编码
 	@Column(name = "plan_id")
 	private String				planId;
 	
+	// 科技计划名称
 	@Column(name = "plan_name")
 	private String				planName;
 	
+	// 科技计划指南链接地址
 	@Column(name = "plan_url")
 	private String				planUrl;
 	
+	// 项目相关文档
 	@Column(name = "porject_links")
 	private String				porjectLinks;
 	
+	// 项目简介
 	@Lob
 	@Column(name = "project_abstract")
 	private String				projectAbstract;
 	
+	// 项目实际结束时间
 	@Column(name = "project_actual_endtime")
 	private String				projectActualEndtime;
 	
+	// 项目实际起始时间
 	@Column(name = "project_actual_start_time")
 	private String				projectActualStartTime;
 	
+	// 项目领域名称
 	@Column(name = "project_domain")
 	private String				projectDomain;
 	
+	// 项目领域编码
 	@Column(name = "project_domain_id")
 	private String				projectDomainId;
 	
+	// 项目编码
 	@Column(name = "project_id")
 	private String				projectId;
 	
+	// 项目名称
 	@Column(name = "project_name")
 	private String				projectName;
 	
+	// 项目执行阶段
 	@Column(name = "project_phase")
 	private String				projectPhase;
 	
+	// 项目计划结束时间
 	@Column(name = "project_plan_endtime")
 	private String				projectPlanEndtime;
 	
+	// 项目计划起始时间
 	@Column(name = "project_plan_start_time")
 	private String				projectPlanStartTime;
 	
+	// 项目类别
 	@Column(name = "project_type")
 	private String				projectType;
 	
+	// 省级拨付经费
 	@Column(name = "provincial_fund")
 	private Integer				provincialFund;
 	
+	// 省市地区
 	private String				region;
 	
+	// 主要研究内容
 	@Lob
 	@Column(name = "research_content")
 	private String				researchContent;
 	
+	// 研究目标
 	@Column(name = "research_target")
 	private String				researchTarget;
 	
+	// 单位自筹经费
 	@Column(name = "self_fund")
 	private Integer				selfFund;
 	
+	// 联系人电话
 	private String				telephone;
 	
+	// 项目总经费
 	@Column(name = "total_fund")
 	private Integer				totalFund;
 	
