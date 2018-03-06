@@ -43,7 +43,7 @@
 			<div class="box-body">
 				<form action="/kjcgJbxxInfo/save" method="post" id="kejiju_chengguo_form_id">
 					<div class="row">
-						<div class="col-md-6 col-sm-12" hidden="hidden">
+						<div class="col-md-6 col-sm-12 form-group" hidden="hidden">
 							<div class="col-sm-4 strong">本地唯一标识</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.resultId}" id="kejiju_chengguo_input_resultId" name="resultId" placeholder="本地唯一标识"  />
@@ -52,13 +52,13 @@
 						
 					</div>
 					<div class="row">
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">所属项目名称</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.projectName}" class="form-control" id="kejiju_chengguo_input_projectName" name="projectName" placeholder="所属项目名称" />
 							</div>
 						</div>
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">成果类型</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.resultType}" class="form-control" id="kejiju_chengguo_input_resultType" name="resultType" placeholder="成果类型" />
@@ -66,13 +66,13 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">成果名称</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.resultTitle}" class="form-control" id="kejiju_chengguo_input_resultTitle" name="resultTitle" placeholder="成果名称" />
 							</div>
 						</div>
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">关键词</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.keyword}" class="form-control" id="kejiju_chengguo_input_keyword" name="keyword" placeholder="关键词" />
@@ -80,13 +80,13 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">成果概述</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.resultAbstract}" class="form-control" id="kejiju_chengguo_input_resultAbstract" name="resultAbstract" placeholder="成果概述" />
 							</div>
 						</div>
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">成果相关文档</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.resultLinks}" class="form-control" id="kejiju_chengguo_input_resultLinks" name="resultLinks" placeholder="成果相关文档" />
@@ -94,13 +94,13 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">成果完成人</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.completedby}" class="form-control" id="kejiju_chengguo_input_completedby" name="completedby" placeholder="成果完成人" />
 							</div>
 						</div>
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">成果完成单位</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.completedOrganization}" class="form-control" id="kejiju_chengguo_input_completedOrganization" name="completedOrganization" placeholder="成果完成单位" />
@@ -108,13 +108,13 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">成果完成时间</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.completedDate}" class="form-control" id="kejiju_chengguo_input_completedDate" name="completedDate" placeholder="成果完成时间" />
 							</div>
 						</div>
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">获奖情况</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.awards}" class="form-control" id="kejiju_chengguo_input_awards" name="awards" placeholder="获奖情况" />
@@ -122,13 +122,13 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">中图分类号</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.cdc}" class="form-control" id="kejiju_chengguo_input_cdc" name="cdc" placeholder="中图分类号" />
 							</div>
 						</div>
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">学科分类代码</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.discipline}" class="form-control" id="kejiju_chengguo_input_discipline" name="discipline" placeholder="学科分类代码" />
@@ -136,13 +136,13 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">行业分类代码</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.industry}" class="form-control" id="kejiju_chengguo_input_industry" name="industry" placeholder="行业分类代码" />
 							</div>
 						</div>
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">其他分类代码</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.otherCode}" class="form-control" id="kejiju_chengguo_input_otherCode" name="otherCode" placeholder="其他分类代码" />
@@ -150,7 +150,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4">所属项目编码</div>
 							<div class="col-sm-8">
 								<input type="text" th:value="*{kjcgJbxxInfo.projectId}" class="form-control" id="kejiju_chengguo_input_projectId" name="projectId" placeholder="所属项目编码" />
@@ -159,7 +159,7 @@
 					</div>
 					<input type="text" th:value="*{kjcgJbxxInfo.createUser}" id="kejiju_chengguo_input_otherCode" name="createUser" hidden="hidden" />
 					<div class="row">
-						<div class="col-md-12 col-sm-12 text-center">
+						<div class="col-md-12 col-sm-12 form-group text-center">
 							<button class="btn btn-success" id="kejiju_chengguo_submit_button" type="button">
 								<i class="fa fa-search"></i> 确定
 							</button>
