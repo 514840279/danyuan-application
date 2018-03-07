@@ -1,5 +1,5 @@
 $(function() {
-	$("#kejiju_chengguo_submit_button").click(function() {
+	$("#kejiju_xiangmu_submit_button").click(function() {
 		var data = {
 				xmjbUuid:uuid,
 				uuid : $("#kejiju_xiangmu_jbxx_input_uuid").val(),
