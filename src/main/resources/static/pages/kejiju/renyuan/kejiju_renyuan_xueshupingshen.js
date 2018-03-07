@@ -1,22 +1,22 @@
-window.actionEventsgongzuolvli = {
-	'click #kejirenyuan_gongzuolvli_showDetail': function(e, value, row, index) {  
+window.actionEventsxueshupingshen = {
+	'click #kejiju_renyuan_xueshupingshen_showDetail': function(e, value, row, index) {  
 		data ={
 			"uuid":row.uuid
 		};
-		//修改操作
-		loadPage('/kjryGzllInfo/showDetail','renyuan_lvli_showDetail','履历信息',data,'reload');
+      //修改操作
+		loadPage('/kjryXspsInfo/showDetail','kejirenyuan_xueshupingshen_showDetail','学术评审详细信息',data,'reload');
     }
 }
 $(function() {
 
 	// 添加项目页面跳转
-	$('#addnew_kejiju_renyuan_gongzuolvli').click(function() {
-		loadPage('/kjryGzllInfo/upd','renyuan_lvli_add','添加履历',{"personId":personId},'reload');
+	$('#addnew_kejiju_renyuan_xueshupingshen').click(function() {
+		loadPage('/kjryXspsInfo/upd','renyuan_pingshen_add','添加评审',{"personId":personId},'reload');
 	});
 	
 	// 修改项目页面跳转
-	$('#editold_kejiju_renyuan_gongzuolvli').click(function() {
-		var data = $('#kejiju_renyuan_gongzuolvli_table_datagrid').bootstrapTable('getAllSelections');
+	$('#editold_kejiju_renyuan_xueshupingshen').click(function() {
+		var data = $('#kejiju_renyuan_xueshupingshen_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length == 1){
@@ -25,13 +25,13 @@ $(function() {
 				"personId":personId
 			}
 			console.log(datetemp)
-			loadPage('/kjryGzllInfo/upd','renyuan_lvli_add','修改履历',datetemp,'reload');
+			loadPage('/kjryXspsInfo/upd','renyuan_pingshen_add','修改评审',datetemp,'reload');
 		}else{
 			alert("只能选中一条数据");
 		}
 	});
-	$('#deleteold_kejiju_renyuan_gongzuolvli').click(function() {
-		var data = $('#kejiju_renyuan_gongzuolvli_table_datagrid').bootstrapTable('getAllSelections');
+	$('#deleteold_kejiju_renyuan_xueshupingshen').click(function() {
+		var data = $('#kejiju_renyuan_xueshupingshen_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中数据");
 		}else if(data.length > 0){
@@ -42,9 +42,9 @@ $(function() {
 				callback : function(result) {
 					if (result) {
 						// 重载
-						var url = "/kjryGzllInfo/delete";
+						var url = "/kjryXspsInfo/delete";
 						var param={list:data};
-						ajaxPost(url, param, addkejiju_renyuan_gongzuolvliSuccess, 5000, findError);
+						ajaxPost(url, param, add_kejiju_renyuan_xueshupingshen_Success, 5000, findError);
 					}
 				}
 			});
@@ -55,10 +55,10 @@ $(function() {
 	
 	
 	// bootstrap table
-	$('#kejiju_renyuan_gongzuolvli_table_datagrid').bootstrapTable({
-		url : "/kjryGzllInfo/list",
+	$('#kejiju_renyuan_xueshupingshen_table_datagrid').bootstrapTable({
+		url : "/kjryXspsInfo/list",
 		dataType : "json",
-		toolbar : '#kejiju_renyuan_gongzuolvli_toolbar', // 工具按钮用哪个容器
+		toolbar : '#kejiju_renyuan_xueshupingshen_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
@@ -97,24 +97,16 @@ $(function() {
 		},
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
-			{title : '国家',field : 'country',sortable : true,align : 'center',valign : 'middle',visible:false},
-			{title : '工作单位机构代码',field : 'organization',sortable : true,align : 'center',valign : 'middle'},
-			{title : '单位组织',field : 'organizationCode',sortable : true,align : 'center',valign : 'middle'},
-			{title : '职务级别',field : 'positionLevel',sortable : true,align : 'center',valign : 'middle'},
-			{title : '职务',field : 'positionTitle',sortable : true,align : 'center',valign : 'middle'},
-			{title : '职称',field : 'professionalTitle',sortable : true,align : 'center',valign : 'middle',visible:false},
-			{title : '工作内容',field : 'researchContent',sortable : true,align : 'center',valign : 'middle',visible:false},
-			{title : '研究方向',field : 'researchDirection',sortable : true,align : 'center',valign : 'middle',visible:false},
-			{title : '工作性质',field : 'researchType',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '评审委托机构',field : 'consignor',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '评审内容',field : 'reviewContent',sortable : true,align : 'center',valign : 'middle'},
 			{title : '起始时间',field : 'startTime',sortable : true,align : 'center',valign : 'middle'},
 			{title : '结束时间',field : 'endTime',sortable : true,align : 'center',valign : 'middle'},
-			{title : '单位统一社会信用代码',field : 'unifiedSocialCreditCode',sortable : true,align : 'center',valign : 'middle',visible:false},
 			{title : '详情',align : 'center',valign : 'middle',
-				events: actionEventsgongzuolvli,
+				events: actionEventsxueshupingshen,
 				formatter : function(value, row, index) {
 //					var e = '<a href="#" mce_href="#" onclick="getEdit(\''	+ row.uuid + '\')">编辑</a> ';
 //					var d = '<a href="#" mce_href="#" onclick="del(\''	+ row.uuid + '\')">删除</a> ';
-					var f = '<button class="btn btn-default" id="kejirenyuan_gongzuolvli_showDetail">详情</button> ';
+					var f = '<button class="btn btn-default" id="kejiju_renyuan_xueshupingshen_showDetail">详情</button> ';
 					return f;
 				}
 			},
@@ -123,6 +115,6 @@ $(function() {
 	});
 });
 
-function addkejiju_renyuan_gongzuolvliSuccess(result){
-	$('#kejiju_renyuan_gongzuolvli_table_datagrid').bootstrapTable('refresh');
+function add_kejiju_renyuan_xueshupingshen_Success(result){
+	$('#kejiju_renyuan_xueshupingshen_table_datagrid').bootstrapTable('refresh');
 }

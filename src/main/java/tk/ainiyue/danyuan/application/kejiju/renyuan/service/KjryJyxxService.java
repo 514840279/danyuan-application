@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJbxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJyxxInfo;
 
 public interface KjryJyxxService {
@@ -40,5 +41,27 @@ public interface KjryJyxxService {
 	*  @throws  
 	*/
 	void delete(List<KjryJyxxInfo> list);
+	
+	/**  
+	*  方法名： list  
+	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数： @param info
+	*  参    数： @return 
+	*  返    回： List<KjryJyxxInfo>  
+	*  作    者 ： wang  
+	*  @throws  
+	*/
+	List<KjryJyxxInfo> list(KjryJbxxInfo info);
+	
+	/**  
+	*  方法名： findOne  
+	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数： @param info
+	*  参    数： @return 
+	*  返    回： KjryJyxxInfo  
+	*  作    者 ： wang  
+	*  @throws  
+	*/
+	KjryJyxxInfo findOne(KjryJyxxInfo info);
 	
 }

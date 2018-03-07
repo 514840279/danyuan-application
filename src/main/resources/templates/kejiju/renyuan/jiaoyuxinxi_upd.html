@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- <link rel="stylesheet" href="/plugins/bootstrap/table/bootstrap-table.min.css"class="form-control" /> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/bootstrap-table.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.min.js"></script> -->
+
+</head>
+<body>
+	<!-- 头部设计 -->
+	<section class="content-header">
+		<h1>
+			更新教育<small>科技人员</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
+			<li><a href="#">科技人员</a></li>
+			<li class="active">更新教育</li>
+		</ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title">科技人员教育信息</h3>
+
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body">
+				<form action="/kjcgJbxxInfo/save" method="post" id="kejiju_chengguo_form_id">
+					<div class="row">
+						<div class="col-md-6 col-sm-12 form-group" hidden="hidden">
+							<div class="col-sm-4 strong">本地唯一标识</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryJyxxInfo.uuid}" id="kejiju_renyuan_jiaoyu_input_uuid" name="uuid" placeholder="本地唯一标识"  />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">国家</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryJyxxInfo.country}" id="kejiju_renyuan_jiaoyu_input_country" name="country" placeholder="国家"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">学位</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryJyxxInfo.degree}" id="kejiju_renyuan_jiaoyu_input_degree" name="degree" placeholder="学位"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">学历</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryJyxxInfo.education}" id="kejiju_renyuan_jiaoyu_input_education" name="education" placeholder="学历"  class="form-control" />
+							</div>
+						</div>
+						
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">结束时间</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryJyxxInfo.endTime}" id="kejiju_renyuan_jiaoyu_input_endTime" name="endTime" placeholder="结束时间"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">专业</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryJyxxInfo.major}" id="kejiju_renyuan_jiaoyu_input_major" name="major" placeholder="专业"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">院校名称</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryJyxxInfo.schoolName}" id="kejiju_renyuan_jiaoyu_input_schoolName" name="schoolName" placeholder="院校名称"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">起始时间</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryJyxxInfo.startTime}" id="kejiju_renyuan_jiaoyu_input_startTime" name="startTime" placeholder="起始时间"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">指导教师</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryJyxxInfo.teacher}" id="kejiju_renyuan_jiaoyu_input_teacher" name="teacher" placeholder="指导教师"  class="form-control" />
+							</div>
+						</div>
+						
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">培训进修</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryJyxxInfo.training}" id="kejiju_renyuan_jiaoyu_input_training" name="training" placeholder="培训进修"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">院校组织机构代码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryJyxxInfo.universityCode}" id="kejiju_renyuan_jiaoyu_input_universityCode" name="universityCode" placeholder="院校组织机构代码"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">院校统一社会信用代码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryJyxxInfo.universityUscc}" id="kejiju_renyuan_jiaoyu_input_universityUscc" name="universityUscc" placeholder="院校统一社会信用代码"  class="form-control" />
+							</div>
+						</div>
+						
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 form-group text-center">
+							<button class="btn btn-success" id="kejiju_renyuan_jiaoyu_submit_button" type="button">
+								<i class="fa fa-search"></i> 确定
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+<script type="text/javascript" src="pages/kejiju/renyuan/jiaoyuxinxi_upd.js"></script>	
+</body>
+</html>

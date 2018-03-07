@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -79,13 +80,33 @@ public class KjryGzllInfo implements Serializable {
 	@Column(name = "unified_social_credit_code")
 	private String				unifiedSocialCreditCode;
 	
+	@Transient
+	private String				personId;
+	
 	//bi-directional many-to-one association to KjryJbxxInfo
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "ryxx_uuid", insertable = false, updatable = false)
+	@JoinColumn(name = "ryxx_uuid")
 	@JsonIgnore
 	private KjryJbxxInfo		kjryJbxxInfo;
 	
 	public KjryGzllInfo() {
+	}
+	
+	/**  
+	 *  方法名 ： getPersonId 
+	 *  功    能 ： 返回变量 personId 的值  
+	 *  @return: String 
+	 */
+	public String getPersonId() {
+		return personId;
+	}
+	
+	/**  
+	 *  方法名 ： setPersonId 
+	 *  功    能 ： 设置变量 personId 的值
+	 */
+	public void setPersonId(String personId) {
+		this.personId = personId;
 	}
 	
 	public String getUuid() {

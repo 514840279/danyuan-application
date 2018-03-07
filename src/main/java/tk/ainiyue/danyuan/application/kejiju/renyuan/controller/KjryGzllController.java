@@ -20,7 +20,9 @@ import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryGzllInfo;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJbxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryGzllService;
+import tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryJbxxService;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.vo.KjryGzllInfoVo;
+import tk.ainiyue.danyuan.application.kejiju.xiangmu.controller.KjxmDwxxInfoController;
 
 /**    
 *  文件名 ： KjryGzllInfoController.java  
@@ -43,12 +45,19 @@ public class KjryGzllController {
 	@Autowired
 	private KjryGzllService		kjryGzllService;
 	
+	//
+	@Autowired
+	private KjryJbxxService		KjryJbxxService;
+	
 	@ApiOperation(value = "更新", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public String save(@RequestBody KjryGzllInfo info) {
 		logger.info("save", KjryGzllController.class);
-		System.out.println(info.toString());
+		KjryJbxxInfo jbxx = new KjryJbxxInfo();
+		jbxx.setPersonId(info.getPersonId());
+		jbxx = KjryJbxxService.findOne(jbxx);
+		info.setKjryJbxxInfo(jbxx);
 		kjryGzllService.save(info);
 		return "1";
 	}
@@ -84,6 +93,21 @@ public class KjryGzllController {
 			info = kjryGzllService.findOne(info);
 		}
 		ModelAndView view = new ModelAndView("kejiju/renyuan/gongzuolvli_dateil");
+		view.addObject("kjryGzllInfo", info);
+		return view;
+	}
+	
+	@ApiOperation(value = "upd", notes = "")
+	@RequestMapping(path = "/upd", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView upd(KjryGzllInfo info) {
+		logger.info("upd", KjxmDwxxInfoController.class);
+		if (StringUtils.isNullOrEmpty(info.getUuid())) {
+			info.setUuid(UUID.randomUUID().toString());
+		} else {
+			info = kjryGzllService.findOne(info);
+		}
+		ModelAndView view = new ModelAndView("kejiju/renyuan/gongzuolvli_upd");
 		view.addObject("kjryGzllInfo", info);
 		return view;
 	}

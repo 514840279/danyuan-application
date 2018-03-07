@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- <link rel="stylesheet" href="/plugins/bootstrap/table/bootstrap-table.min.css"class="form-control" /> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/bootstrap-table.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.min.js"></script> -->
+
+</head>
+<body>
+	<!-- 头部设计 -->
+	<section class="content-header">
+		<h1>
+			更新履历<small>科技人员</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
+			<li><a href="#">科技人员</a></li>
+			<li class="active">更新履历</li>
+		</ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title">科技人员履历信息</h3>
+
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body">
+				<form action="/kjcgJbxxInfo/save" method="post" id="kejiju_chengguo_form_id">
+					<div class="row">
+						<div class="col-md-6 col-sm-12 form-group" hidden="hidden">
+							<div class="col-sm-4 strong">本地唯一标识</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryGzllInfo.uuid}" id="kejiju_renyuan_lvli_input_uuid" name="uuid" placeholder="本地唯一标识"  />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">国家</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryGzllInfo.country}" id="kejiju_renyuan_lvli_input_country" name="country" placeholder="国家"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong"> 结束时间</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryGzllInfo.endTime}" id="kejiju_renyuan_lvli_input_endTime" name="endTime" placeholder=" 结束时间"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">工作单位机构代码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryGzllInfo.organization}" id="kejiju_renyuan_lvli_input_organization" name="organization" placeholder="工作单位机构代码"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">单位组织</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryGzllInfo.organizationCode}" id="kejiju_renyuan_lvli_input_organizationCode" name="organizationCode" placeholder="单位组织"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">职务级别</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryGzllInfo.positionLevel}" id="kejiju_renyuan_lvli_input_positionLevel" name="positionLevel" placeholder="职务级别"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">职务</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryGzllInfo.positionTitle}" id="kejiju_renyuan_lvli_input_positionTitle" name="positionTitle" placeholder="职务"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">职称</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryGzllInfo.professionalTitle}" id="kejiju_renyuan_lvli_input_professionalTitle" name="professionalTitle" placeholder="职称"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">工作内容</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryGzllInfo.researchContent}" id="kejiju_renyuan_lvli_input_researchContent" name="researchContent" placeholder="工作内容"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">研究方向</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryGzllInfo.researchDirection}" id="kejiju_renyuan_lvli_input_researchDirection" name="researchDirection" placeholder="研究方向"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">工作性质</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryGzllInfo.researchType}" id="kejiju_renyuan_lvli_input_researchType" name="researchType" placeholder="工作性质"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">起始时间</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryGzllInfo.startTime}" id="kejiju_renyuan_lvli_input_startTime" name="startTime" placeholder="起始时间"  class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12 form-group">
+							<div class="col-sm-4 strong">单位统一社会信用代码</div>
+							<div class="col-sm-8">
+								<input type="text" th:value="*{kjryGzllInfo.unifiedSocialCreditCode}" id="kejiju_renyuan_lvli_input_unifiedSocialCreditCode" name="unifiedSocialCreditCode" placeholder="单位统一社会信用代码"  class="form-control" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 form-group text-center">
+							<button class="btn btn-success" id="kejiju_renyuan_lvli_submit_button" type="button">
+								<i class="fa fa-search"></i> 确定
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+<script type="text/javascript" src="pages/kejiju/renyuan/gongzuolvli_upd.js"></script>	
+</body>
+</html>

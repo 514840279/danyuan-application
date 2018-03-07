@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.kejiju.renyuan.dao.KjryJyxxDao;
+import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJbxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJyxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryJyxxService;
 
@@ -63,5 +64,33 @@ public class KjryJyxxServiceImpl implements KjryJyxxService {
 	@Override
 	public void delete(List<KjryJyxxInfo> list) {
 		kjryJyxxDao.delete(list);
+	}
+	
+	/** 
+	*  方法名 ： list
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param info
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryJyxxService#list(tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJbxxInfo)  
+	*  作    者 ： wang  
+	*/
+	
+	@Override
+	public List<KjryJyxxInfo> list(KjryJbxxInfo info) {
+		return kjryJyxxDao.findAll(info.getPersonId());
+	}
+	
+	/** 
+	*  方法名 ： findOne
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param info
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryJyxxService#findOne(tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJyxxInfo)  
+	*  作    者 ： wang  
+	*/
+	
+	@Override
+	public KjryJyxxInfo findOne(KjryJyxxInfo info) {
+		return kjryJyxxDao.findOneByUuid(info.getUuid());
 	}
 }

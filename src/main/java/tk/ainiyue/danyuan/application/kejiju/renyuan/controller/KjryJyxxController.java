@@ -1,5 +1,8 @@
 package tk.ainiyue.danyuan.application.kejiju.renyuan.controller;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.mysql.jdbc.StringUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJbxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJyxxInfo;
+import tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryJbxxService;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryJyxxService;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.vo.KjryJyxxInfoVo;
 
@@ -35,7 +43,11 @@ public class KjryJyxxController {
 	
 	//
 	@Autowired
-	private KjryJyxxService	kjryJyxxService;
+	private KjryJyxxService		kjryJyxxService;
+	
+	//
+	@Autowired
+	private KjryJbxxService		KjryJbxxService;
 	
 	@ApiOperation(value = "分页查询全部信息", notes = "")
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
@@ -50,6 +62,10 @@ public class KjryJyxxController {
 	public String save(@RequestBody KjryJyxxInfo info) {
 		logger.info("save", KjryJyxxController.class);
 		System.out.println(info.toString());
+		KjryJbxxInfo jbxx = new KjryJbxxInfo();
+		jbxx.setPersonId(info.getPersonId());
+		jbxx = KjryJbxxService.findOne(jbxx);
+		info.setKjryJbxxInfo(jbxx);
 		kjryJyxxService.save(info);
 		return "1";
 	}
@@ -65,5 +81,42 @@ public class KjryJyxxController {
 		} catch (Exception e) {
 			return "0";
 		}
+	}
+	
+	@ApiOperation(value = "查询全部信息", notes = "")
+	@RequestMapping(path = "/list", method = RequestMethod.GET)
+	public List<KjryJyxxInfo> list(KjryJbxxInfo info) {
+		logger.info("list", KjryJyxxController.class);
+		return kjryJyxxService.list(info);
+	}
+	
+	@ApiOperation(value = "showDetail", notes = "")
+	@RequestMapping(path = "/showDetail", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView showDetail(KjryJyxxInfo info) {
+		logger.info("showDetail", KjryJyxxController.class);
+		if (StringUtils.isNullOrEmpty(info.getUuid())) {
+			info.setUuid(UUID.randomUUID().toString());
+		} else {
+			info = kjryJyxxService.findOne(info);
+		}
+		ModelAndView view = new ModelAndView("kejiju/renyuan/jiaoyu_dateil");
+		view.addObject("kjryJyxxInfo", info);
+		return view;
+	}
+	
+	@ApiOperation(value = "upd", notes = "")
+	@RequestMapping(path = "/upd", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView upd(KjryJyxxInfo info) {
+		logger.info("upd", KjryJyxxController.class);
+		if (StringUtils.isNullOrEmpty(info.getUuid())) {
+			info.setUuid(UUID.randomUUID().toString());
+		} else {
+			info = kjryJyxxService.findOne(info);
+		}
+		ModelAndView view = new ModelAndView("kejiju/renyuan/jiaoyuxinxi_upd");
+		view.addObject("kjryJyxxInfo", info);
+		return view;
 	}
 }
