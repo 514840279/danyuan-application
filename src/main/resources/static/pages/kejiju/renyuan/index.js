@@ -20,50 +20,63 @@ $(function() {
 	ajaxPost("/kjryJbxxInfo/dicXw", null, findXwSuccess, 5000, findError);
 	
 	
-//	$('#addnew_type').click(function() {
-//		$("#dbm_type_add_uuid").val(getUuid());
-//		$('#dbm_type_add_modal').modal({
-//			show:true,
-//		});
-//	});
-//	$('#editold_type').click(function() {
-//		var data = $('#kejiju_chengguo_table_datagrid').bootstrapTable('getAllSelections');
-//		if(data.length == 0){
-//			alert("先选中一条数据");
-//		}else if(data.length == 1){
-//			$("#dbm_type_add_uuid").val(data[0].uuid);
-//			$("#dbm_type_add_typeName").val(data[0].typeName);
-//			$("#dbm_type_add_typeIcon").val(data[0].typeIcon);
-//			$("#dbm_type_add_typeOrder").val(data[0].typeOrder);
-//			$("#dbm_type_add_discription").val(data[0].discription);
-//			if(data[0].deleteFlag==1){
-//				$('#dbm_type_add_deleteFlag[value="0"]').attr('checked',false);
-//				$('#dbm_type_add_deleteFlag[value="1"]').attr('checked',true);
-//			}else if(data[0].deleteFlag==0){
-//				$('#dbm_type_add_deleteFlag[value="0"]').attr('checked',true);
-//				$('#dbm_type_add_deleteFlag[value="1"]').attr('checked',false);
-//			}
-//			$("#dbm_type_add_modal").modal({
-//				show:true,
-//			})
-//		}else{
-//			alert("只能选中一条数据");
-//		}
-//	});
-//	$('#deleteold_type').click(function() {
-//		var data = $('#kejiju_chengguo_table_datagrid').bootstrapTable('getAllSelections');
-//		var url = "/sysTableTypeInfo/sysTableTypeDeleteAll";
-//		var param={list:data};
-//		ajaxPost(url, param, addSysTableTypeInfoSuccess, 5000, findError);
-//	});
+	$('#addnew_kejiju_renyuan').click(function() {
+		loadPage('/kjryJbxxInfo/upd','renyuan_add','添加人员',null,'reload');
+	});
+	$('#editold_addnew_kejiju_renyuan').click(function() {
+		var data = $('#kejiju_renyuan_table_datagrid').bootstrapTable('getAllSelections');
+		if(data.length == 0){
+			alert("先选中一条数据");
+		}else if(data.length == 1){
+			var datetemp = {
+				personId:data[0].personId
+			}
+			loadPage('/kjryJbxxInfo/upd','renyuan_add','修改人员',datetemp,'reload');
+		}else{
+			alert("只能选中一条数据");
+		}
+	});
+	$('#deleteold_addnew_kejiju_renyuan').click(function() {
+		var data = $('#kejiju_renyuan_table_datagrid').bootstrapTable('getAllSelections');
+		if(data.length == 0){
+			alert("先选中数据");
+		}else if(data.length > 0){
+			bootbox.setLocale("zh_CN");
+			bootbox.confirm({
+				message : "确定要删除选定行",
+				title : "系统提示",
+				callback : function(result) {
+					if (result) {
+						// 重载
+						var url = "/kjryJbxxInfo/delete";
+						var param={list:data};
+						ajaxPost(url, param, addkejiju_renyuan_jbxxSuccess, 5000, findError);
+					}
+				}
+			});
+		}
+	});
 	
+	$('#config_addnew_kejiju_renyuan').click(function() {
+		var data = $('#kejiju_renyuan_table_datagrid').bootstrapTable('getAllSelections');
+		if(data.length == 0){
+			alert("先选中一条数据");
+		}else if(data.length == 1){
+			var datetemp = {
+				personId:data[0].personId
+			}
+			loadPage('/kjryJbxxInfo/updDatile','renyuan_jbxx_datile_upd','详细修改',datetemp,'reload');
+		}else{
+			alert("只能选中一条数据");
+		}
+	});
 
 
 	// bootstrap table
 	$('#kejiju_renyuan_table_datagrid').bootstrapTable({
 		url : "/kjryJbxxInfo/page",
 		dataType : "json",
-//		toolbar : '#dbm_type_toolbar', // 工具按钮用哪个容器
+		toolbar : '#kejiju_renyuan_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
@@ -244,6 +257,6 @@ function findXwSuccess(result){
 }
 
 
-function addSysTableTypeInfoSuccess(result){
+function addkejiju_renyuan_jbxxSuccess(result){
 	$('#kejiju_renyuan_table_datagrid').bootstrapTable('refresh');
 }

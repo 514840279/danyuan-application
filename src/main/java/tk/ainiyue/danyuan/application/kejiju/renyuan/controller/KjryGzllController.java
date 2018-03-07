@@ -1,18 +1,24 @@
 package tk.ainiyue.danyuan.application.kejiju.renyuan.controller;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.mysql.jdbc.StringUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryGzllInfo;
+import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJbxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryGzllService;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.vo.KjryGzllInfoVo;
 
@@ -35,14 +41,7 @@ public class KjryGzllController {
 	
 	//
 	@Autowired
-	private KjryGzllService	kjryGzllService;
-	
-	@ApiOperation(value = "分页查询全部信息", notes = "")
-	@RequestMapping(path = "/page", method = RequestMethod.POST)
-	public Page<KjryGzllInfo> page(KjryGzllInfoVo vo) {
-		logger.info("page", KjryGzllController.class);
-		return kjryGzllService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo());
-	}
+	private KjryGzllService		kjryGzllService;
 	
 	@ApiOperation(value = "更新", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
@@ -65,5 +64,27 @@ public class KjryGzllController {
 		} catch (Exception e) {
 			return "0";
 		}
+	}
+	
+	@ApiOperation(value = "查询全部信息", notes = "")
+	@RequestMapping(path = "/list", method = RequestMethod.GET)
+	public List<KjryGzllInfo> list(KjryJbxxInfo info) {
+		logger.info("list", KjryGzllController.class);
+		return kjryGzllService.list(info);
+	}
+	
+	@ApiOperation(value = "showDetail", notes = "")
+	@RequestMapping(path = "/showDetail", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView showDetail(KjryGzllInfo info) {
+		logger.info("showDetail", KjryGzllController.class);
+		if (StringUtils.isNullOrEmpty(info.getUuid())) {
+			info.setUuid(UUID.randomUUID().toString());
+		} else {
+			info = kjryGzllService.findOne(info);
+		}
+		ModelAndView view = new ModelAndView("kejiju/renyuan/gongzuolvli_dateil");
+		view.addObject("kjryGzllInfo", info);
+		return view;
 	}
 }

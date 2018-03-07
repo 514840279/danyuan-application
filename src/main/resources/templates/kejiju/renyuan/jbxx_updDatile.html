@@ -12,6 +12,10 @@
 
 </head>
 <body>
+	<script th:inline="javascript">
+	var personId = [[*{KjryJbxxInfo.personId}]];
+
+	</script>
 	<!-- 头部设计 -->
 	<section class="content-header">
 		<h1>
@@ -27,12 +31,12 @@
 	<!-- Main content -->
 	<section class="content">
 	
-		<div class="box">
+		<div class="box collapsed-box">
 			<div class="box-header with-border">
-              <h3 class="box-title">科技成果详细信息</h3>
+              <h3 class="box-title">科技人员详细信息</h3>
 
               <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
                 </button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
@@ -223,210 +227,22 @@
 			</div>
 		</div>
 		
-		<!--  科技人员履历 -->
-		<div th:each="kjryGzllInfo,index:${KjryJbxxInfo.kjryGzllInfos}">  
-			<div class="box">
-				<div class="box-header with-border">
-	              <h3 class="box-title" th:text="科技人员工作履历 + *{index.index+1}"></h3>
-	
-	              <div class="box-tools pull-right">
-	                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-	                </button>
-	                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-	              </div>
-	            </div>
-				<div class="box-body">
-					<div class="row">
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">国家</div>
-							<div class="col-sm-8" th:text="*{kjryGzllInfo.country}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">结束时间</div>
-							<div class="col-sm-8" th:text="*{kjryGzllInfo.endTime}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">工作单位</div>
-							<div class="col-sm-8" th:text="*{kjryGzllInfo.organization}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">单位组织机构代码</div>
-							<div class="col-sm-8" th:text="*{kjryGzllInfo.organizationCode}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">职务级别</div>
-							<div class="col-sm-8" th:text="*{kjryGzllInfo.positionLevel}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">职务</div>
-							<div class="col-sm-8" th:text="*{kjryGzllInfo.positionTitle}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">职称</div>
-							<div class="col-sm-8" th:text="*{kjryGzllInfo.professionalTitle}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">工作内容</div>
-							<div class="col-sm-8" th:text="*{kjryGzllInfo.researchContent}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">研究方向</div>
-							<div class="col-sm-8" th:text="*{kjryGzllInfo.researchDirection}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">工作性质</div>
-							<div class="col-sm-8" th:text="*{kjryGzllInfo.researchType}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">起始时间</div>
-							<div class="col-sm-8" th:text="*{kjryGzllInfo.startTime}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">单位统一社会信用代码</div>
-							<div class="col-sm-8" th:text="*{kjryGzllInfo.unifiedSocialCreditCode}">2</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<!--  科技人员教育信息 -->
-		<div th:each="kjryJyxxInfo,index:${KjryJbxxInfo.kjryJyxxInfos}">  
-			<div class="box">
-				<div class="box-header with-border">
-	              <h3 class="box-title" th:text="科技人员教育信息 + *{index.index+1}"></h3>
-	
-	              <div class="box-tools pull-right">
-	                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-	                </button>
-	                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-	              </div>
-	            </div>
-				<div class="box-body">
-					<div class="row">
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">国家</div>
-							<div class="col-sm-8" th:text="*{kjryJyxxInfo.country}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">院校名称</div>
-							<div class="col-sm-8" th:text="*{kjryJyxxInfo.schoolName}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">院校组织机构代码</div>
-							<div class="col-sm-8" th:text="*{kjryJyxxInfo.universityCode}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">院校统一社会信用代码</div>
-							<div class="col-sm-8" th:text="*{kjryJyxxInfo.universityUscc}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">专业</div>
-							<div class="col-sm-8" th:text="*{kjryJyxxInfo.major}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">学历</div>
-							<div class="col-sm-8" th:text="*{kjryJyxxInfo.education}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">学位</div>
-							<div class="col-sm-8" th:text="*{kjryJyxxInfo.degree}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">培训进修</div>
-							<div class="col-sm-8" th:text="*{kjryJyxxInfo.training}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">起始时间</div>
-							<div class="col-sm-8" th:text="*{kjryJyxxInfo.startTime}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">结束时间</div>
-							<div class="col-sm-8" th:text="*{kjryJyxxInfo.uuid}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">指导教师</div>
-							<div class="col-sm-8" th:text="*{kjryJyxxInfo.teacher}">2</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<!--  科技人员学术兼职 -->
-		<div th:each="kjryXsjzInfo,index:${KjryJbxxInfo.kjryXsjzInfos}">  
-			<div class="box">
-				<div class="box-header with-border">
-	              <h3 class="box-title" th:text="科技人员学术兼职+ *{index.index+1}"></h3>
-	
-	              <div class="box-tools pull-right">
-	                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-	                </button>
-	                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-	              </div>
-	            </div>
-				<div class="box-body">
-					<div class="row">
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">兼职单位名称</div>
-							<div class="col-sm-8" th:text="*{kjryXsjzInfo.partTimeOrganization}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">职务</div>
-							<div class="col-sm-8" th:text="*{kjryXsjzInfo.positionTitle}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">起始时间</div>
-							<div class="col-sm-8" th:text="*{kjryXsjzInfo.startTime}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">结束时间</div>
-							<div class="col-sm-8" th:text="*{kjryXsjzInfo.endTime}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">届次</div>
-							<div class="col-sm-8" th:text="*{kjryXsjzInfo.session}">2</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<!--  科技人员学术评审 -->
-		<div th:each="kjryXspsInfo,index:${KjryJbxxInfo.kjryXspsInfos}">  
-			<div class="box">
-				<div class="box-header with-border">
-	              <h3 class="box-title" th:text="科技人员学术评审+ *{index.index+1}"></h3>
-	
-	              <div class="box-tools pull-right">
-	                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-	                </button>
-	                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-	              </div>
-	            </div>
-				<div class="box-body">
-					<div class="row">
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">评审内容</div>
-							<div class="col-sm-8" th:text="*{kjryXspsInfo.reviewContent}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">起始时间</div>
-							<div class="col-sm-8" th:text="*{kjryXspsInfo.startTime}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">结束时间</div>
-							<div class="col-sm-8" th:text="*{kjryXspsInfo.endTime}">2</div>
-						</div>
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="col-sm-4 strong">评审委托机构</div>
-							<div class="col-sm-8" th:text="*{kjryXspsInfo.consignor}">2</div>
-						</div>
-					</div>
-				</div>
+		<div class="box">
+			<div class="box-header with-border">
+              <h3 class="box-title">详细信息</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+			<div class="box-body">
+				<div id="renyuan_tab"></div>
 			</div>
 		</div>
 		
 	</section>
+	<script type="text/javascript" src="pages/kejiju/renyuan/jbxx_updDatile.js"></script>
 </body>
 </html>

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.kejiju.renyuan.dao.KjryGzllDao;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryGzllInfo;
+import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJbxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryGzllService;
 
 @Service("kjryGzllService")
@@ -64,4 +65,33 @@ public class KjryGzllServiceImpl implements KjryGzllService {
 	public void delete(List<KjryGzllInfo> list) {
 		kjryGzllDao.delete(list);
 	}
+	
+	/** 
+	*  方法名 ： list
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param info
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryGzllService#list(tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJbxxInfo)  
+	*  作    者 ： Administrator  
+	*/
+	
+	@Override
+	public List<KjryGzllInfo> list(KjryJbxxInfo info) {
+		return kjryGzllDao.findAll(info.getPersonId());
+	}
+	
+	/** 
+	*  方法名 ： findOne
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param info
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryGzllService#findOne(tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryGzllInfo)  
+	*  作    者 ： Administrator  
+	*/
+	
+	@Override
+	public KjryGzllInfo findOne(KjryGzllInfo info) {
+		return kjryGzllDao.findOneByUuid(info.getUuid());
+	}
+	
 }

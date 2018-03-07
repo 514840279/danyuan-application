@@ -14,23 +14,23 @@ import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryGzllInfo;
 *  版    本 ： V1.0    
 */
 public class KjryGzllInfoVo extends Pagination<KjryGzllInfo> {
-	KjryGzllInfo info = new KjryGzllInfo();
+	private String personId;
 	
 	/**  
-	 *  方法名 ： getInfo 
-	 *  功    能 ： 返回变量 info 的值  
-	 *  @return: KjryGzllInfo 
+	 *  方法名 ： getPersonId 
+	 *  功    能 ： 返回变量 personId 的值  
+	 *  @return: String 
 	 */
-	public KjryGzllInfo getInfo() {
-		return info;
+	public String getPersonId() {
+		return personId;
 	}
 	
 	/**  
-	 *  方法名 ： setInfo 
-	 *  功    能 ： 设置变量 info 的值
+	 *  方法名 ： setPersonId 
+	 *  功    能 ： 设置变量 personId 的值
 	 */
-	public void setInfo(KjryGzllInfo info) {
-		this.info = info;
+	public void setPersonId(String personId) {
+		this.personId = personId;
 	}
 	
 }

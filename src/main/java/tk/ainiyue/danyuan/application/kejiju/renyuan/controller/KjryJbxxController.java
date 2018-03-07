@@ -1,6 +1,7 @@
 package tk.ainiyue.danyuan.application.kejiju.renyuan.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,6 +23,7 @@ import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.po.KjryJbxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.service.KjryJbxxService;
 import tk.ainiyue.danyuan.application.kejiju.renyuan.vo.KjryJbxxInfoVo;
+import tk.ainiyue.danyuan.application.kejiju.xiangmu.controller.KjxmJbxxInfoController;
 
 /**    
 *  文件名 ： KjryJbxxInfoController.java  
@@ -119,6 +121,34 @@ public class KjryJbxxController {
 		System.out.println(info.toString());
 		info = KjryJbxxService.findOne(info);
 		ModelAndView view = new ModelAndView("kejiju/renyuan/detail");
+		view.addObject("KjryJbxxInfo", info);
+		return view;
+	}
+	
+	@ApiOperation(value = "更新前", notes = "")
+	@RequestMapping(path = "/upd", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView upd(KjryJbxxInfo info, HttpServletRequest request) {
+		logger.info("upd", KjryJbxxController.class);
+		if (info.getPersonId() == null) {
+			info.setPersonId(UUID.randomUUID().toString());
+		} else {
+			info = KjryJbxxService.findOne(info);
+		}
+		ModelAndView view = new ModelAndView("kejiju/renyuan/jbxx_upd");
+		view.addObject("KjryJbxxInfo", info);
+		return view;
+	}
+	
+	@ApiOperation(value = "更新前", notes = "")
+	@RequestMapping(path = "/updDatile", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView updDatile(KjryJbxxInfo info, HttpServletRequest request) {
+		logger.info("updDatile", KjxmJbxxInfoController.class);
+		if (info.getPersonId() == null) {
+			info.setPersonId(UUID.randomUUID().toString());
+		} else {
+			info = KjryJbxxService.findOne(info);
+		}
+		ModelAndView view = new ModelAndView("kejiju/renyuan/jbxx_updDatile");
 		view.addObject("KjryJbxxInfo", info);
 		return view;
 	}

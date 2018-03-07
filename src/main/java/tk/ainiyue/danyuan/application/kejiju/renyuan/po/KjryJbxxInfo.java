@@ -71,7 +71,7 @@ public class KjryJbxxInfo implements Serializable {
 	// 传真
 	private String				fax;
 	
-	//领域
+	// 领域
 	private String				field;
 	
 	// 曾用名
