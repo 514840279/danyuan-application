@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- <link rel="stylesheet" href="/plugins/bootstrap/table/bootstrap-table.min.css"/> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/bootstrap-table.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.min.js"></script> -->
+
+</head>
+<body>
+	<!-- 头部设计 -->
+	<section class="content-header">
+		<h1>
+			详细信息 <small>科技项目单位</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
+			<li><a href="#">科技项目单位</a></li>
+			<li class="active">详细信息</li>
+		</ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+
+
+
+		<!--  科技项目单位 -->
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title" th:text="科技项目单位 "></h3>
+
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body">
+				<div class="row">
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">主承担单位</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.mainOrganization}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">主承担单位组代码</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.mainOrganizationCode}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">主承担单位统 一社会信用代码</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.mainOrganizationUscc}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">主承担法人单位</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.mainImpersonalEntity}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">主承担单位 上级管理部门</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.mainOrganizationAdministration}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">主承担单位 推荐部门 推</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.mainOrganizationRecommendUnit}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">主承担单位 性质</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.mainOrganizationProperty}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">主承担单位 所在地区</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.mainOrganizationLocation}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">主承担单位 通讯地址</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.mainOrganizationAddress}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">主承担单位 邮政编码</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.mainOrganizationPostcode}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">主承担单位电话</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.mainOrganizationTelephone}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">主承担单位传真</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.mainOrganizationFax}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">主承担单位 电子邮箱</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.mainOrganizationEmail}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">开户行名称</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.bankName}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">开户行账号</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.bankAccount}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">单位开户名称</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.accountName}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">合作单位</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.coopOrganization}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">合作单位组织 机构代码</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.coopOrganizationCode}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">合作单位统一 社会信用代码</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.coopOrganizationUscc}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">合作单位性质</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.coopOrganizationProperty}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">合作单位电话</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.coopOrganizationTelephone}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">合作单位传真</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.coopOrganizationFax}">2</div>
+					</div>
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<div class="col-sm-4 strong">合作单位排序号</div>
+						<div class="col-sm-8" th:text="*{kjxmDwxxInfo.coopOrganizationId}">2</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

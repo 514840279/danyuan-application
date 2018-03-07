@@ -104,4 +104,19 @@ public class KjxmDwxxServiceImpl implements KjxmDwxxService {
 		return kjxmDwxxDao.findAllByXmjbUuid(info.getUuid());
 	}
 	
+	/** 
+	*  方法名 ： findOne
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param info
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmDwxxService#findOne(tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmDwxxInfo)  
+	*  作    者 ： Administrator  
+	*/
+	
+	@Override
+	public KjxmDwxxInfo findOne(KjxmDwxxInfo info) {
+		//		Example<KjxmDwxxInfo> example = Example.of(info);
+		return kjxmDwxxDao.findOneByUuid(info.getUuid());
+	}
+	
 }

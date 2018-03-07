@@ -1,6 +1,7 @@
 $(function() {
 	$("#kejiju_chengguo_submit_button").click(function() {
 		var data = {
+				xmjbUuid:uuid,
 				uuid : $("#kejiju_xiangmu_jbxx_input_uuid").val(),
 				approvalYear : $("#kejiju_xiangmu_jbxx_input_approvalYear").val(),
 				cdc : $("#kejiju_xiangmu_jbxx_input_cdc").val(),
@@ -39,6 +40,7 @@ $(function() {
 				selfFund : $("#kejiju_xiangmu_jbxx_input_selfFund").val(),
 				telephone : $("#kejiju_xiangmu_jbxx_input_telephone").val(),
 				totalFund : $("#kejiju_xiangmu_jbxx_input_totalFund").val(),
+				
 		    createUser:username,
 		};
 		console.log(data);

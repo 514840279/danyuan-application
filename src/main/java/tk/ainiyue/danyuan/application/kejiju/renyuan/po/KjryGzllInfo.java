@@ -27,6 +27,7 @@ public class KjryGzllInfo implements Serializable {
 	@Id
 	private String				uuid;
 	
+	// 国家
 	private String				country;
 	
 	@Column(name = "create_time")
@@ -35,35 +36,46 @@ public class KjryGzllInfo implements Serializable {
 	@Column(name = "create_user")
 	private String				createUser;
 	
+	// 结束时间
 	@Column(name = "end_time")
 	private String				endTime;
 	
+	// 工作单位机构代码
 	private String				organization;
 	
+	// 单位组织
 	@Column(name = "organization_code")
 	private String				organizationCode;
 	
+	// 职务级别
 	@Column(name = "position_level")
 	private String				positionLevel;
 	
+	// 职务
 	@Column(name = "position_title")
 	private String				positionTitle;
 	
+	// 职称
 	@Column(name = "professional_title")
 	private String				professionalTitle;
 	
+	// 工作内容
 	@Column(name = "research_content")
 	private String				researchContent;
 	
+	// 研究方向
 	@Column(name = "research_direction")
 	private String				researchDirection;
 	
+	// 工作性质
 	@Column(name = "research_type")
 	private String				researchType;
 	
+	// 起始时间
 	@Column(name = "start_time")
 	private String				startTime;
 	
+	// 单位统一社会信用代码
 	@Column(name = "unified_social_credit_code")
 	private String				unifiedSocialCreditCode;
 	

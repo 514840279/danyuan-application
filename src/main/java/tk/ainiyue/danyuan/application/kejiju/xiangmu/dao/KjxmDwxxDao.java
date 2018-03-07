@@ -39,4 +39,16 @@ public interface KjxmDwxxDao extends JpaRepository<KjxmDwxxInfo, Serializable> {
 	@Query("select t from KjxmDwxxInfo t where t.kjxmJbxxInfo.uuid =:xmjbUuid) ")
 	List<KjxmDwxxInfo> findAllByXmjbUuid(@Param("xmjbUuid") String xmjbUuid);
 	
+	/**  
+	*  方法名： findOneByUuid  
+	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数： @param uuid
+	*  参    数： @return 
+	*  返    回： KjxmDwxxInfo  
+	*  作    者 ： Administrator  
+	*  @throws  
+	*/
+	@Query("select t from KjxmDwxxInfo t where t.uuid=:uuid) ")
+	KjxmDwxxInfo findOneByUuid(@Param("uuid") String uuid);
+	
 }

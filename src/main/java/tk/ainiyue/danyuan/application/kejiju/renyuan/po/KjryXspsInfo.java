@@ -27,6 +27,7 @@ public class KjryXspsInfo implements Serializable {
 	@Id
 	private String				uuid;
 	
+	// 评审委托机构
 	private String				consignor;
 	
 	@Column(name = "create_time")
@@ -35,12 +36,15 @@ public class KjryXspsInfo implements Serializable {
 	@Column(name = "create_user")
 	private String				createUser;
 	
+	// 结束时间
 	@Column(name = "end_time")
 	private String				endTime;
 	
+	// 评审内容
 	@Column(name = "review_content")
 	private String				reviewContent;
 	
+	// 起始时间
 	@Column(name = "start_time")
 	private String				startTime;
 	

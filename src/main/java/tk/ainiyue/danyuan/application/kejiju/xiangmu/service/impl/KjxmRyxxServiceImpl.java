@@ -103,4 +103,18 @@ public class KjxmRyxxServiceImpl implements KjxmRyxxService {
 	public List<KjxmRyxxInfo> list(KjxmJbxxInfo info) {
 		return kjxmRyxxDao.findAllByXmjbUuid(info.getUuid());
 	}
+	
+	/** 
+	*  方法名 ： findOne
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param info
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmRyxxService#findOne(tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmRyxxInfo)  
+	*  作    者 ： Administrator  
+	*/
+	
+	@Override
+	public KjxmRyxxInfo findOne(KjxmRyxxInfo info) {
+		return kjxmRyxxDao.findOneByuuid(info.getUuid());
+	}
 }

@@ -14,23 +14,43 @@ import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmDwxxInfo;
 *  版    本 ： V1.0    
 */
 public class KjxmDwxxInfoVo extends Pagination<KjxmDwxxInfo> {
-	KjxmDwxxInfo info = new KjxmDwxxInfo();
+	private String	uuid;
+	private String	xmjbUuid;
 	
 	/**  
-	 *  方法名 ： getInfo 
-	 *  功    能 ： 返回变量 info 的值  
-	 *  @return: KjxmDwxxInfo 
+	 *  方法名 ： getUuid 
+	 *  功    能 ： 返回变量 uuid 的值  
+	 *  @return: String 
 	 */
-	public KjxmDwxxInfo getInfo() {
-		return info;
+	@Override
+	public String getUuid() {
+		return uuid;
 	}
 	
 	/**  
-	 *  方法名 ： setInfo 
-	 *  功    能 ： 设置变量 info 的值
+	 *  方法名 ： setUuid 
+	 *  功    能 ： 设置变量 uuid 的值
 	 */
-	public void setInfo(KjxmDwxxInfo info) {
-		this.info = info;
+	@Override
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+	
+	/**  
+	 *  方法名 ： getXmjbUuid 
+	 *  功    能 ： 返回变量 xmjbUuid 的值  
+	 *  @return: String 
+	 */
+	public String getXmjbUuid() {
+		return xmjbUuid;
+	}
+	
+	/**  
+	 *  方法名 ： setXmjbUuid 
+	 *  功    能 ： 设置变量 xmjbUuid 的值
+	 */
+	public void setXmjbUuid(String xmjbUuid) {
+		this.xmjbUuid = xmjbUuid;
 	}
 	
 }

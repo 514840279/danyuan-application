@@ -13,6 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,33 +30,43 @@ public class KjxmDwxxInfo implements Serializable {
 	@Id
 	private String				uuid;
 	
+	// 单位开户名称
 	@Column(name = "account_name")
 	private String				accountName;
 	
+	// 开户行账号
 	@Column(name = "bank_account")
 	private String				bankAccount;
 	
+	// 开户行名称
 	@Column(name = "bank_name")
 	private String				bankName;
 	
+	// 合作单位
 	@Column(name = "coop_organization")
 	private String				coopOrganization;
 	
+	// 合作单位组织机构代码
 	@Column(name = "coop_organization_code")
 	private String				coopOrganizationCode;
 	
+	// 合作单位传真
 	@Column(name = "coop_organization_fax")
 	private String				coopOrganizationFax;
 	
+	// 合作单位排序号
 	@Column(name = "coop_organization_id")
 	private String				coopOrganizationId;
 	
+	// 合作单位性质
 	@Column(name = "coop_organization_property")
 	private int					coopOrganizationProperty;
 	
+	// 合作单位电话 
 	@Column(name = "coop_organization_telephone")
 	private String				coopOrganizationTelephone;
 	
+	// 合作单位统一 社会信用代码
 	@Column(name = "coop_organization_uscc")
 	private String				coopOrganizationUscc;
 	
@@ -66,44 +77,60 @@ public class KjxmDwxxInfo implements Serializable {
 	@Column(name = "create_user")
 	private String				createUser;
 	
+	// 主承担法人单位
 	@Column(name = "main_impersonal_entity")
 	private String				mainImpersonalEntity;
 	
+	// 主承担单位
 	@Column(name = "main_organization")
 	private String				mainOrganization;
 	
+	// 主承担单位 通讯地址
 	@Column(name = "main_organization_address")
 	private String				mainOrganizationAddress;
 	
+	// 主承担单位上级管理部门
 	@Column(name = "main_organization_administration")
 	private String				mainOrganizationAdministration;
 	
+	// 主承担单位组织机构代码
 	@Column(name = "main_organization_code")
 	private String				mainOrganizationCode;
 	
+	// 主承担单位电子邮箱
 	@Column(name = "main_organization_email")
 	private String				mainOrganizationEmail;
 	
+	// 主承担单位传真
 	@Column(name = "main_organization_fax")
 	private String				mainOrganizationFax;
 	
+	// 主承担单位所在地区
 	@Column(name = "main_organization_location")
 	private String				mainOrganizationLocation;
 	
+	// 主承担单位邮政编码
 	@Column(name = "main_organization_postcode")
 	private String				mainOrganizationPostcode;
 	
+	// 主承担单位性质
 	@Column(name = "main_organization_property")
 	private String				mainOrganizationProperty;
 	
+	// 主承担单位推荐部门
 	@Column(name = "main_organization_recommend_unit")
 	private String				mainOrganizationRecommendUnit;
 	
+	// 主承担单位电话
 	@Column(name = "main_organization_telephone")
 	private String				mainOrganizationTelephone;
 	
+	// 主承担单位统 一社会信用代码
 	@Column(name = "main_organization_uscc")
 	private String				mainOrganizationUscc;
+	
+	@Transient
+	private String				xmjbUuid;
 	
 	//bi-directional many-to-one association to KjxmJbxxInfo
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -328,6 +355,36 @@ public class KjxmDwxxInfo implements Serializable {
 	
 	public void setKjxmJbxxInfo(KjxmJbxxInfo kjxmJbxxInfo) {
 		this.kjxmJbxxInfo = kjxmJbxxInfo;
+	}
+	
+	/**  
+	 *  方法名 ： getXmjbUuid 
+	 *  功    能 ： 返回变量 xmjbUuid 的值  
+	 *  @return: String 
+	 */
+	public String getXmjbUuid() {
+		return xmjbUuid;
+	}
+	
+	/**  
+	 *  方法名 ： setXmjbUuid 
+	 *  功    能 ： 设置变量 xmjbUuid 的值
+	 */
+	public void setXmjbUuid(String xmjbUuid) {
+		this.xmjbUuid = xmjbUuid;
+	}
+	
+	/** 
+	*  方法名 ： toString
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @return  
+	*  参    考 ： @see java.lang.Object#toString()  
+	*  作    者 ： Administrator  
+	*/
+	
+	@Override
+	public String toString() {
+		return "KjxmDwxxInfo [uuid=" + uuid + ", accountName=" + accountName + ", bankAccount=" + bankAccount + ", bankName=" + bankName + ", coopOrganization=" + coopOrganization + ", coopOrganizationCode=" + coopOrganizationCode + ", coopOrganizationFax=" + coopOrganizationFax + ", coopOrganizationId=" + coopOrganizationId + ", coopOrganizationProperty=" + coopOrganizationProperty + ", coopOrganizationTelephone=" + coopOrganizationTelephone + ", coopOrganizationUscc=" + coopOrganizationUscc + ", createTime=" + createTime + ", createUser=" + createUser + ", mainImpersonalEntity=" + mainImpersonalEntity + ", mainOrganization=" + mainOrganization + ", mainOrganizationAddress=" + mainOrganizationAddress + ", mainOrganizationAdministration=" + mainOrganizationAdministration + ", mainOrganizationCode=" + mainOrganizationCode + ", mainOrganizationEmail=" + mainOrganizationEmail + ", mainOrganizationFax=" + mainOrganizationFax + ", mainOrganizationLocation=" + mainOrganizationLocation + ", mainOrganizationPostcode=" + mainOrganizationPostcode + ", mainOrganizationProperty=" + mainOrganizationProperty + ", mainOrganizationRecommendUnit=" + mainOrganizationRecommendUnit + ", mainOrganizationTelephone=" + mainOrganizationTelephone + ", mainOrganizationUscc=" + mainOrganizationUscc + ", xmjbUuid=" + xmjbUuid + ", kjxmJbxxInfo=" + kjxmJbxxInfo + "]";
 	}
 	
 }

@@ -33,17 +33,22 @@ public class KjryXsjzInfo implements Serializable {
 	@Column(name = "create_user")
 	private String				createUser;
 	
+	// 结束时间
 	@Column(name = "end_time")
 	private String				endTime;
 	
+	// 兼职单位名称
 	@Column(name = "part_time_organization")
 	private String				partTimeOrganization;
 	
+	// 职务
 	@Column(name = "position_title")
 	private String				positionTitle;
 	
+	// 届次
 	private String				session;
 	
+	// 起始时间
 	@Column(name = "start_time")
 	private String				startTime;
 	

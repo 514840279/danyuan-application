@@ -27,6 +27,7 @@ public class KjryJyxxInfo implements Serializable {
 	@Id
 	private String				uuid;
 	
+	// 国家
 	private String				country;
 	
 	@Column(name = "create_time")
@@ -35,28 +36,38 @@ public class KjryJyxxInfo implements Serializable {
 	@Column(name = "create_user")
 	private String				createUser;
 	
+	// 学位
 	private String				degree;
 	
+	// 学历
 	private String				education;
 	
+	// 结束时间
 	@Column(name = "end_time")
 	private String				endTime;
 	
+	// 专业
 	private String				major;
 	
+	// 院校名称
 	@Column(name = "school_name")
 	private String				schoolName;
 	
+	// 起始时间
 	@Column(name = "start_time")
 	private String				startTime;
 	
+	// 指导教师
 	private String				teacher;
 	
+	// 培训进修
 	private String				training;
 	
+	// 院校组织机构代码
 	@Column(name = "university_code")
 	private String				universityCode;
 	
+	// 院校统一社会信用代码
 	@Column(name = "university_uscc")
 	private String				universityUscc;
 	

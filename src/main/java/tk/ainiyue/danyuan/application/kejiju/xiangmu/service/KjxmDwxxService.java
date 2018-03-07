@@ -74,4 +74,15 @@ public interface KjxmDwxxService {
 	*/
 	List<KjxmDwxxInfo> list(KjxmJbxxInfo info);
 	
+	/**  
+	*  方法名： findOne  
+	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数： @param info
+	*  参    数： @return 
+	*  返    回： KjxmDwxxInfo  
+	*  作    者 ： Administrator  
+	*  @throws  
+	*/
+	KjxmDwxxInfo findOne(KjxmDwxxInfo info);
+	
 }

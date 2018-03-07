@@ -13,6 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -36,120 +37,177 @@ public class KjxmRyxxInfo implements Serializable {
 	@Column(name = "create_user")
 	private String				createUser;
 	
+	// 负责人出生日期
 	@Column(name = "head_birthdate")
 	private String				headBirthdate;
 	
+	// 负责人学位
 	@Column(name = "head_degree")
 	private String				headDegree;
 	
+	// 负责人学历
 	@Column(name = "head_education")
 	private String				headEducation;
 	
+	// 负责人邮箱
 	@Column(name = "head_email")
 	private String				headEmail;
 	
+	// 负责人民族
 	@Column(name = "head_ethnic_group")
 	private String				headEthnicGroup;
 	
+	// 负责人性别
 	@Column(name = "head_gender")
 	private String				headGender;
 	
+	// 负责人才称号
 	@Column(name = "head_honorary")
 	private String				headHonorary;
 	
+	// 负责人证件号码
 	@Column(name = "head_id_number")
 	private String				headIdNumber;
 	
+	// 负责人证件类型
 	@Column(name = "head_id_type")
 	private String				headIdType;
 	
+	// 负责人专业
 	@Column(name = "head_major")
 	private String				headMajor;
 	
+	// 负责人移动电话
 	@Column(name = "head_mobile_telephone")
 	private String				headMobileTelephone;
 	
+	// 负责人姓名
 	@Column(name = "head_name")
 	private String				headName;
 	
+	// 负责人所在单位
 	@Column(name = "head_organization")
 	private String				headOrganization;
 	
+	// 负责人政治面貌
 	@Column(name = "head_political_status")
 	private String				headPoliticalStatus;
 	
+	// 负责人职务级别
 	@Column(name = "head_position_level")
 	private String				headPositionLevel;
 	
+	// 负责人职务
 	@Column(name = "head_position_title")
 	private String				headPositionTitle;
 	
+	// 负责人职称
 	@Column(name = "head_professional_title")
 	private String				headProfessionalTitle;
 	
+	// 负责人研究方向
 	@Column(name = "head_research_direction")
 	private String				headResearchDirection;
 	
+	// 负责人毕业院校
 	@Column(name = "head_school_name")
 	private String				headSchoolName;
 	
+	// 负责人办公电话
 	@Column(name = "head_telephone")
 	private String				headTelephone;
 	
+	// 参加人出生日期
 	@Column(name = "participant_birthday")
 	private String				participantBirthday;
 	
+	// 参加人学位
 	@Column(name = "participant_degree")
 	private String				participantDegree;
 	
+	// 参加人学历
 	@Column(name = "participant_education")
 	private String				participantEducation;
 	
+	// 参加人性别
 	@Column(name = "participant_gender")
 	private String				participantGender;
 	
+	// 参加人证件号码
 	@Column(name = "participant_id_number")
 	private String				participantIdNumber;
 	
+	// 参加人证件类型
 	@Column(name = "participant_id_type")
 	private String				participantIdType;
 	
+	// 参加人专业
 	@Column(name = "participant_major")
 	private String				participantMajor;
 	
+	// 参加人姓名
 	@Column(name = "participant_name")
 	private String				participantName;
 	
+	// 参加人所在单位
 	@Column(name = "participant_organization")
 	private String				participantOrganization;
 	
+	// 参加人职务级别
 	@Column(name = "participant_position_level")
 	private String				participantPositionLevel;
 	
+	// 参加人职称
 	@Column(name = "participant_profession_title")
 	private String				participantProfessionTitle;
 	
+	// 参加人研究方向
 	@Column(name = "participant_research_direction")
 	private String				participantResearchDirection;
 	
+	// 参加人职务
 	@Column(name = "participant_title")
 	private String				participantTitle;
 	
+	// 参加人排序号 
 	@Column(name = "participant_work_rank")
 	private String				participantWorkRank;
 	
+	// 参加人工作时间
 	@Column(name = "participant_working_time")
 	private int					participantWorkingTime;
 	
+	// 人员角色
 	private String				role;
 	
+	// 任务分工
 	private String				task;
+	
+	@Transient
+	private String				xmjbUuid;
 	
 	//bi-directional many-to-one association to KjxmJbxxInfo
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "xmjb_uuid")
 	@JsonIgnore
 	private KjxmJbxxInfo		kjxmJbxxInfo;
+	
+	/**  
+	 *  方法名 ： getXmjbUuid 
+	 *  功    能 ： 返回变量 xmjbUuid 的值  
+	 *  @return: String 
+	 */
+	public String getXmjbUuid() {
+		return xmjbUuid;
+	}
+	
+	/**  
+	 *  方法名 ： setXmjbUuid 
+	 *  功    能 ： 设置变量 xmjbUuid 的值
+	 */
+	public void setXmjbUuid(String xmjbUuid) {
+		this.xmjbUuid = xmjbUuid;
+	}
 	
 	public KjxmRyxxInfo() {
 	}

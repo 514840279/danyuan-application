@@ -1,22 +1,26 @@
 package tk.ainiyue.danyuan.application.kejiju.xiangmu.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.mysql.jdbc.StringUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmDwxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmJbxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmDwxxService;
+import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmJbxxService;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.vo.KjxmDwxxInfoVo;
 
 /**    
@@ -40,12 +44,9 @@ public class KjxmDwxxInfoController {
 	@Autowired
 	private KjxmDwxxService		kjxmDwxxService;
 	
-	@ApiOperation(value = "分页查询全部信息", notes = "")
-	@RequestMapping(path = "/page", method = RequestMethod.POST)
-	public Page<KjxmDwxxInfo> page(KjxmDwxxInfoVo vo) {
-		logger.info("page", KjxmDwxxInfoController.class);
-		return kjxmDwxxService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo());
-	}
+	//
+	@Autowired
+	private KjxmJbxxService		kjxmJbxxService;
 	
 	@ApiOperation(value = "更新", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
@@ -53,6 +54,10 @@ public class KjxmDwxxInfoController {
 	public String save(@RequestBody KjxmDwxxInfo info) {
 		logger.info("save", KjxmDwxxInfoController.class);
 		System.out.println(info.toString());
+		KjxmJbxxInfo jbxx = new KjxmJbxxInfo();
+		jbxx.setUuid(info.getXmjbUuid());
+		jbxx = kjxmJbxxService.findOne(jbxx);
+		info.setKjxmJbxxInfo(jbxx);
 		kjxmDwxxService.save(info);
 		return "1";
 	}
@@ -75,6 +80,42 @@ public class KjxmDwxxInfoController {
 	public List<KjxmDwxxInfo> list(KjxmJbxxInfo info) {
 		logger.info("list", KjxmDwxxInfoController.class);
 		return kjxmDwxxService.list(info);
+	}
+	
+	@ApiOperation(value = "upd", notes = "")
+	@RequestMapping(path = "/upd", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView upd(KjxmDwxxInfoVo vo) {
+		System.out.println(vo.toString());
+		logger.info("upd", KjxmDwxxInfoController.class);
+		KjxmDwxxInfo info = new KjxmDwxxInfo();
+		KjxmJbxxInfo jb = new KjxmJbxxInfo();
+		jb.setUuid(vo.getXmjbUuid());
+		info.setKjxmJbxxInfo(jb);
+		if (StringUtils.isNullOrEmpty(vo.getUuid())) {
+			info.setUuid(UUID.randomUUID().toString());
+		} else {
+			info.setUuid(vo.getUuid());
+			info = kjxmDwxxService.findOne(info);
+		}
+		ModelAndView view = new ModelAndView("kejiju/xiangmu/danwei_upd");
+		view.addObject("kjxmDwxxInfo", info);
+		return view;
+	}
+	
+	@ApiOperation(value = "showDetail", notes = "")
+	@RequestMapping(path = "/showDetail", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView showDetail(KjxmDwxxInfo info) {
+		logger.info("showDetail", KjxmDwxxInfoController.class);
+		if (StringUtils.isNullOrEmpty(info.getUuid())) {
+			info.setUuid(UUID.randomUUID().toString());
+		} else {
+			info = kjxmDwxxService.findOne(info);
+		}
+		ModelAndView view = new ModelAndView("kejiju/xiangmu/danwei_dateil");
+		view.addObject("kjxmDwxxInfo", info);
+		return view;
 	}
 	
 }
