@@ -105,8 +105,8 @@ $(function() {
 		},
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
-			{title : '本地唯一标识',field : 'resultId',sortable : true,align : 'center',visible:false},
-			{title : '所属项目编码',field : 'projectId',sortable : true,align : 'center',visible:false},
+			{title : '本地唯一标识',field : 'resultId',sortable : true,align : 'center',valign : 'middle',visible:false},
+			{title : '所属项目编码',field : 'projectId',sortable : true,align : 'center',valign : 'middle',visible:false},
 			{title : '所属项目名称',field : 'projectName',align : 'center',sortable : true,valign : 'middle'},
 			{title : '成果类型',field : 'resultType',sortable : true,align : 'center',valign : 'middle'},
 			{title : '成果名称',field : 'resultTitle',sortable : true,align : 'center',valign : 'middle'},

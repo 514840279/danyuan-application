@@ -149,4 +149,19 @@ public class KjxmJbxxInfoController {
 		view.addObject("KjxmJbxxInfo", info);
 		return view;
 	}
+	
+	@ApiOperation(value = "更新前", notes = "")
+	@RequestMapping(path = "/updDatile", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView updDatile(KjxmJbxxInfo info, HttpServletRequest request) {
+		logger.info("updDatile", KjxmJbxxInfoController.class);
+		if (info.getUuid() == null) {
+			info.setUuid(UUID.randomUUID().toString());
+		} else {
+			info = kjxmJbxxService.findOne(info);
+		}
+		ModelAndView view = new ModelAndView("kejiju/xiangmu/jbxx_updDatile");
+		view.addObject("KjxmJbxxInfo", info);
+		return view;
+	}
+	
 }

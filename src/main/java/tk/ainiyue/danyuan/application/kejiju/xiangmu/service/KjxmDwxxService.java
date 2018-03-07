@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmDwxxInfo;
+import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmJbxxInfo;
 
 /**    
 *  文件名 ： KjxmDwxxInfoService.java  
@@ -61,5 +62,16 @@ public interface KjxmDwxxService {
 	*  @throws  
 	*/
 	List<KjxmDwxxInfo> findList(String xmjbUuid);
+	
+	/**  
+	*  方法名： list  
+	*  功    能： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数： @param info
+	*  参    数： @return 
+	*  返    回： List<KjxmDwxxInfo>  
+	*  作    者 ： wang  
+	*  @throws  
+	*/
+	List<KjxmDwxxInfo> list(KjxmJbxxInfo info);
 	
 }

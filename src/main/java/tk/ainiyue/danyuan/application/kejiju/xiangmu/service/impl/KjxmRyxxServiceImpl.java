@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.dao.KjxmRyxxDao;
+import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmJbxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmRyxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmRyxxService;
 
@@ -87,5 +88,19 @@ public class KjxmRyxxServiceImpl implements KjxmRyxxService {
 	@Override
 	public List<KjxmRyxxInfo> findList(String xmjbUuid) {
 		return kjxmRyxxDao.findAllByXmjbUuid(xmjbUuid);
+	}
+	
+	/** 
+	*  方法名 ： list
+	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
+	*  参    数 ： @param info
+	*  参    数 ： @return  
+	*  参    考 ： @see tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmRyxxService#list(tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmJbxxInfo)  
+	*  作    者 ： wang  
+	*/
+	
+	@Override
+	public List<KjxmRyxxInfo> list(KjxmJbxxInfo info) {
+		return kjxmRyxxDao.findAllByXmjbUuid(info.getUuid());
 	}
 }

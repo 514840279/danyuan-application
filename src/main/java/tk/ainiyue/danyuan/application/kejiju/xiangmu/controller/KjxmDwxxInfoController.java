@@ -1,5 +1,7 @@
 package tk.ainiyue.danyuan.application.kejiju.xiangmu.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmDwxxInfo;
+import tk.ainiyue.danyuan.application.kejiju.xiangmu.po.KjxmJbxxInfo;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.service.KjxmDwxxService;
 import tk.ainiyue.danyuan.application.kejiju.xiangmu.vo.KjxmDwxxInfoVo;
 
@@ -35,7 +38,7 @@ public class KjxmDwxxInfoController {
 	
 	//
 	@Autowired
-	private KjxmDwxxService	kjxmDwxxService;
+	private KjxmDwxxService		kjxmDwxxService;
 	
 	@ApiOperation(value = "分页查询全部信息", notes = "")
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
@@ -66,4 +69,12 @@ public class KjxmDwxxInfoController {
 			return "0";
 		}
 	}
+	
+	@ApiOperation(value = "查询全部信息", notes = "")
+	@RequestMapping(path = "/list", method = RequestMethod.GET)
+	public List<KjxmDwxxInfo> list(KjxmJbxxInfo info) {
+		logger.info("list", KjxmDwxxInfoController.class);
+		return kjxmDwxxService.list(info);
+	}
+	
 }
