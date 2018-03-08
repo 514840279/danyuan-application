@@ -1,5 +1,5 @@
-search_kejiju_chengguo_completedDate1 ="";
-search_kejiju_chengguo_resultType1 ="";
+search_kejiju_chengguo_completedDate ="";
+search_kejiju_chengguo_resultType ="";
 //表格  - 操作 - 事件
 window.actionEvents = {
 	'click #showDetail': function(e, value, row, index) {  
@@ -10,19 +10,19 @@ window.actionEvents = {
     }
 }
 $(function() {
-	ajaxPost("/kjcgJbxxInfo/dicCglx", null, findResultTypeSuccess1, 5000, findError);
+	ajaxPost("/kjcgJbxxInfo/dicCglx", null, findResultTypeSuccess, 5000, findError);
 	
-	ajaxPost("/kjcgJbxxInfo/dicCgsj", null, findCompletedDateSuccess1, 5000, findError);
+	ajaxPost("/kjcgJbxxInfo/dicCgsj", null, findCompletedDateSuccess, 5000, findError);
 	
 	$('#search_kejiju_chengguo_button').click(function() {
-		$('#kejiju_chengguo_table_datagrid1').bootstrapTable('refresh');
+		$('#kejiju_chengguo_table_datagrid').bootstrapTable('refresh');
 	});
 	
 	$('#addnew_chengguo').click(function() {
 		loadPage('/kjcgJbxxInfo/upd','chengguo_add','添加成果',null,'reload');
 	});
 	$('#editold_chengguo').click(function() {
-		var data = $('#kejiju_chengguo_table_datagrid1').bootstrapTable('getAllSelections');
+		var data = $('#kejiju_chengguo_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length == 1){
@@ -35,7 +35,7 @@ $(function() {
 	});
 	$('#deleteold_chengguo').click(function() {
 		
-		var data = $('#kejiju_chengguo_table_datagrid1').bootstrapTable('getAllSelections');
+		var data = $('#kejiju_chengguo_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中数据");
 		}else if(data.length > 0){
@@ -58,10 +58,10 @@ $(function() {
 
 
 	// bootstrap table
-	$('#kejiju_chengguo_table_datagrid1').bootstrapTable({
+	$('#kejiju_chengguo_table_datagrid').bootstrapTable({
 		url : "/kjcgJbxxInfo/page",
 		dataType : "json",
-//		toolbar : '#chengguo-toolbar', // 工具按钮用哪个容器
+		toolbar : '#chengguo-toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
@@ -96,9 +96,9 @@ $(function() {
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
                  username:username,
-                 projectName:$("#search_kejiju_chengguo_projectName1").val(),
-                 completedDate:search_kejiju_chengguo_completedDate1,
-                 resultType:search_kejiju_chengguo_resultType1
+                 projectName:$("#search_kejiju_chengguo_projectName").val(),
+                 completedDate:search_kejiju_chengguo_completedDate,
+                 resultType:search_kejiju_chengguo_resultType
              }; 
              return param;
 		},
@@ -146,25 +146,25 @@ $(function() {
 
 // 窗口大小改变时 重设表头
 $(window).resize(function() {
-	$('#kejiju_chengguo_table_datagrid1').bootstrapTable('resetView');
+	$('#kejiju_chengguo_table_datagrid').bootstrapTable('resetView');
 });
 
 // 成果类型下拉框加载
-function findResultTypeSuccess1(result){
+function findResultTypeSuccess(result){
 	var data = [{id:" ",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value.cglx,text:value.cglx});
 	});
 	
-	$('#search_kejiju_chengguo_resultType1').select2({
+	$('#search_kejiju_chengguo_resultType').select2({
 	    placeholder: "成果类型",
 	    tags: true,
 	    data:data
 	});
 	//种子下拉点击事件
-	$('#search_kejiju_chengguo_resultType1').on('select2:select', function (evt) {
-		search_kejiju_chengguo_resultType1 = evt.params.data.id;
-		$('#kejiju_chengguo_table_datagrid1').bootstrapTable('refresh');
+	$('#search_kejiju_chengguo_resultType').on('select2:select', function (evt) {
+		search_kejiju_chengguo_resultType = evt.params.data.id;
+		$('#kejiju_chengguo_table_datagrid').bootstrapTable('refresh');
 		
 	});
 }
@@ -172,23 +172,23 @@ function findResultTypeSuccess1(result){
 
 
 //成果时间下拉框加载
-function findCompletedDateSuccess1(result){
+function findCompletedDateSuccess(result){
 	var data = [{id:" ",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value,text:value});
 	});
 	
 	//种子下拉
-	$('#search_kejiju_chengguo_completedDate1').select2({
+	$('#search_kejiju_chengguo_completedDate').select2({
 	    placeholder: "时间",
 	    tags: true,
 	    data:data
 	});
 	
 	//种子下拉点击事件
-	$('#search_kejiju_chengguo_completedDate1').on('select2:select', function (evt) {
-		search_kejiju_chengguo_completedDate1 = evt.params.data.id;
-		$('#kejiju_chengguo_table_datagrid1').bootstrapTable('refresh');
+	$('#search_kejiju_chengguo_completedDate').on('select2:select', function (evt) {
+		search_kejiju_chengguo_completedDate = evt.params.data.id;
+		$('#kejiju_chengguo_table_datagrid').bootstrapTable('refresh');
 		
 	});
 }
@@ -196,5 +196,5 @@ function findCompletedDateSuccess1(result){
 
 
 function addkejiju_chengguo_tableSuccess(result){
-	$('#kejiju_chengguo_table_datagrid1').bootstrapTable('refresh');
+	$('#kejiju_chengguo_table_datagrid').bootstrapTable('refresh');
 }

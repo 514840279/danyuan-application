@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			<div class="box-body">
-				<form action="/kjcgJbxxInfo/save" method="post" id="kejiju_chengguo_form_id">
+				<form action="/kjcgJbxxInfo/save" method="post" id="kejiju_xiangmu_jiben_form_id">
 					<div class="row">
 						<div class="col-md-6 col-sm-12 form-group" hidden="hidden">
 							<div class="col-sm-4 strong">本地唯一标识</div>
@@ -136,7 +136,7 @@
 						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4 strong">科技计划指南描述</div>
 							<div class="col-sm-8">
-								<input type="text" th:value="*{KjxmJbxxInfo.planAbstract}" id="kejiju_xiangmu_jbxx_input_planAbstract" name="planAbstract" placeholder="科技计划指南描述"  class="form-control" />
+								<textarea rows="5"  th:text="*{KjxmJbxxInfo.planAbstract}" id="kejiju_xiangmu_jbxx_input_planAbstract" name="planAbstract" placeholder="科技计划指南描述"  class="form-control" ></textarea>
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-12 form-group">
@@ -166,7 +166,7 @@
 						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4 strong">项目简介</div>
 							<div class="col-sm-8">
-								<input type="text" th:value="*{KjxmJbxxInfo.projectAbstract}" id="kejiju_xiangmu_jbxx_input_projectAbstract" name="projectAbstract" placeholder="项目简介"  class="form-control" />
+								<textarea rows="5" th:text="*{KjxmJbxxInfo.projectAbstract}" id="kejiju_xiangmu_jbxx_input_projectAbstract" name="projectAbstract" placeholder="项目简介"  class="form-control" ></textarea>
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-12 form-group">
@@ -244,7 +244,7 @@
 						<div class="col-md-6 col-sm-12 form-group">
 							<div class="col-sm-4 strong">主要研究内容</div>
 							<div class="col-sm-8">
-								<input type="text" th:value="*{KjxmJbxxInfo.researchContent}" id="kejiju_xiangmu_jbxx_input_researchContent" name="researchContent" placeholder="主要研究内容"  class="form-control" />
+								<textarea rows="5"  th:text="*{KjxmJbxxInfo.researchContent}" id="kejiju_xiangmu_jbxx_input_researchContent" name="researchContent" placeholder="主要研究内容"  class="form-control" ></textarea>
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-12 form-group">

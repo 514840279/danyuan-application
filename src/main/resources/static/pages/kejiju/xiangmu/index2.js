@@ -1,7 +1,7 @@
-search_kejiju_xiangmu_projectDomain1 ="";
-search_kejiju_xiangmu_projectType1 ="";
-search_kejiju_xiangmu_region1="";
-search_kejiju_xiangmu_approvalYear1="";
+search_kejiju_xiangmu_projectDomain ="";
+search_kejiju_xiangmu_projectType ="";
+search_kejiju_xiangmu_region="";
+search_kejiju_xiangmu_approvalYear="";
 //表格  - 操作 - 事件
 window.actionEvents2 = {
 	'click #kejixiangmu-showDetail': function(e, value, row, index) {  
@@ -15,13 +15,13 @@ window.actionEvents2 = {
 }
 $(function() {
 	// 技术领域
-	ajaxPost("/kjxmJbxxInfo/dicJsly", null, findProjectDomainSuccess1, 5000, findError);
+	ajaxPost("/kjxmJbxxInfo/dicJsly", null, findProjectDomainSuccess, 5000, findError);
 	// 项目类型
-	ajaxPost("/kjxmJbxxInfo/dicXmlx", null, findProjectTypeSuccess1, 5000, findError);
+	ajaxPost("/kjxmJbxxInfo/dicXmlx", null, findProjectTypeSuccess, 5000, findError);
 	// 时间
-	ajaxPost("/kjxmJbxxInfo/dicSj", null, findApprovalYearSuccess1, 5000, findError);
+	ajaxPost("/kjxmJbxxInfo/dicSj", null, findApprovalYearSuccess, 5000, findError);
 	// 地区
-	ajaxPost("/kjxmJbxxInfo/dicDq", null, findRegionSuccess1, 5000, findError);
+	ajaxPost("/kjxmJbxxInfo/dicDq", null, findRegionSuccess, 5000, findError);
 	
 	
 	// 添加项目页面跳转
@@ -31,7 +31,7 @@ $(function() {
 	
 	// 修改项目页面跳转
 	$('#kejiju_xiangmu_editold').click(function() {
-		var data = $('#kejiju_xiangmu_table_datagrid1').bootstrapTable('getAllSelections');
+		var data = $('#kejiju_xiangmu_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length == 1){
@@ -44,7 +44,7 @@ $(function() {
 		}
 	});
 	$('#kejiju_xiangmu_deleteold').click(function() {
-		var data = $('#kejiju_xiangmu_table_datagrid1').bootstrapTable('getAllSelections');
+		var data = $('#kejiju_xiangmu_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中数据");
 		}else if(data.length > 0){
@@ -66,7 +66,7 @@ $(function() {
 	});
 	
 	$('#kejiju_xiangmu_config').click(function() {
-		var data = $('#kejiju_xiangmu_table_datagrid1').bootstrapTable('getAllSelections');
+		var data = $('#kejiju_xiangmu_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length == 1){
@@ -83,7 +83,7 @@ $(function() {
 
 
 	// bootstrap table
-	$('#kejiju_xiangmu_table_datagrid1').bootstrapTable({
+	$('#kejiju_xiangmu_table_datagrid').bootstrapTable({
 		url : "/kjxmJbxxInfo/page",
 		dataType : "json",
 		toolbar : '#kejiju_xiangmu_toolbar', // 工具按钮用哪个容器
@@ -121,11 +121,11 @@ $(function() {
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
                  username:username,
-                 projectName:$("#search_kejiju_xiangmu_projectName1").val(),
-                 projectDomain:search_kejiju_xiangmu_projectDomain1,
-                 projectType:search_kejiju_xiangmu_projectType1,
-                 region:search_kejiju_xiangmu_region1,
-                 approvalYear:search_kejiju_xiangmu_approvalYear1
+                 projectName:$("#search_kejiju_xiangmu_projectName").val(),
+                 projectDomain:search_kejiju_xiangmu_projectDomain,
+                 projectType:search_kejiju_xiangmu_projectType,
+                 region:search_kejiju_xiangmu_region,
+                 approvalYear:search_kejiju_xiangmu_approvalYear
              }; 
              return param;
 		},
@@ -187,31 +187,31 @@ $(function() {
 	});
 	
 	$('#search_kejiju_xiangmu_button').click(function() {
-		$('#kejiju_xiangmu_table_datagrid1').bootstrapTable('refresh');
+		$('#kejiju_xiangmu_table_datagrid').bootstrapTable('refresh');
 	});
 });
 
 // 窗口大小改变时 重设表头
 $(window).resize(function() {
-	$('#kejiju_xiangmu_table_datagrid1').bootstrapTable('resetView');
+	$('#kejiju_xiangmu_table_datagrid').bootstrapTable('resetView');
 });
 
 // 技术领域下拉框加载
-function findProjectDomainSuccess1(result){
+function findProjectDomainSuccess(result){
 	var data = [{id:" ",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value,text:value});
 	});
 	
-	$('#search_kejiju_xiangmu_projectDomain1').select2({
+	$('#search_kejiju_xiangmu_projectDomain').select2({
 	    placeholder: "科技领域",
 	    tags: true,
 	    data:data
 	});
 	//种子下拉点击事件
-	$('#search_kejiju_xiangmu_projectDomain1').on('select2:select', function (evt) {
-		search_kejiju_xiangmu_projectDomain1 = evt.params.data.id;
-		$('#kejiju_xiangmu_table_datagrid1').bootstrapTable('refresh');
+	$('#search_kejiju_xiangmu_projectDomain').on('select2:select', function (evt) {
+		search_kejiju_xiangmu_projectDomain = evt.params.data.id;
+		$('#kejiju_xiangmu_table_datagrid').bootstrapTable('refresh');
 		
 	});
 }
@@ -219,74 +219,74 @@ function findProjectDomainSuccess1(result){
 
 
 // 项目类型下拉框加载
-function findProjectTypeSuccess1(result){
+function findProjectTypeSuccess(result){
 	var data = [{id:" ",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value,text:value});
 	});
 	
 	//种子下拉
-	$('#search_kejiju_xiangmu_projectType1').select2({
+	$('#search_kejiju_xiangmu_projectType').select2({
 	    placeholder: "时间",
 	    tags: true,
 	    data:data
 	});
 	
 	//种子下拉点击事件
-	$('#search_kejiju_xiangmu_projectType1').on('select2:select', function (evt) {
-		search_kejiju_xiangmu_projectType1 = evt.params.data.id;
-		$('#kejiju_xiangmu_table_datagrid1').bootstrapTable('refresh');
+	$('#search_kejiju_xiangmu_projectType').on('select2:select', function (evt) {
+		search_kejiju_xiangmu_projectType = evt.params.data.id;
+		$('#kejiju_xiangmu_table_datagrid').bootstrapTable('refresh');
 		
 	});
 }
 
 
 // 时间下拉框加载
-function findApprovalYearSuccess1(result){
+function findApprovalYearSuccess(result){
 	var data = [{id:" ",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value,text:value});
 	});
 	
 	//种子下拉
-	$('#search_kejiju_xiangmu_approvalYear1').select2({
+	$('#search_kejiju_xiangmu_approvalYear').select2({
 	    placeholder: "时间",
 	    tags: true,
 	    data:data
 	});
 	
 	//种子下拉点击事件
-	$('#search_kejiju_xiangmu_approvalYear1').on('select2:select', function (evt) {
-		search_kejiju_xiangmu_approvalYear1 = evt.params.data.id;
-		$('#kejiju_xiangmu_table_datagrid1').bootstrapTable('refresh');
+	$('#search_kejiju_xiangmu_approvalYear').on('select2:select', function (evt) {
+		search_kejiju_xiangmu_approvalYear = evt.params.data.id;
+		$('#kejiju_xiangmu_table_datagrid').bootstrapTable('refresh');
 		
 	});
 }
 
 
 // 地区下拉框加载
-function findRegionSuccess1(result){
+function findRegionSuccess(result){
 	var data = [{id:" ",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value,text:value});
 	});
 	
 	//种子下拉
-	$('#search_kejiju_xiangmu_region1').select2({
+	$('#search_kejiju_xiangmu_region').select2({
 	    placeholder: "时间",
 	    tags: true,
 	    data:data
 	});
 	
 	//种子下拉点击事件
-	$('#search_kejiju_xiangmu_region1').on('select2:select', function (evt) {
-		search_kejiju_xiangmu_region1 = evt.params.data.id;
-		$('#kejiju_xiangmu_table_datagrid1').bootstrapTable('refresh');
+	$('#search_kejiju_xiangmu_region').on('select2:select', function (evt) {
+		search_kejiju_xiangmu_region = evt.params.data.id;
+		$('#kejiju_xiangmu_table_datagrid').bootstrapTable('refresh');
 		
 	});
 }
 
 
 function addkejiju_xiamgmu_jbxxSuccess(result){
-	$('#kejiju_xiangmu_table_datagrid1').bootstrapTable('refresh');
+	$('#kejiju_xiangmu_table_datagrid').bootstrapTable('refresh');
 }

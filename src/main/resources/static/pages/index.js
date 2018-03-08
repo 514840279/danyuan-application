@@ -15,7 +15,12 @@ _history = [];
 		        });
 		        // console.log(JSON.stringify(result));
 		        $("a[data-url]").click(function(evt) {
-			        loadPage($(this).data("url"), $(this).data("id"), $(this).data("name"));
+		        	var url = $(this).data("url");
+		        	if(url==null||url==""||url=="#"||url=="/"){
+		        		url = "/pages/error/404.html";
+		        	}
+		        	
+			        loadPage(url, $(this).data("id"), $(this).data("name"));
 			        $("ul.treeview-menu li").removeClass("active");
 			        $(this).parent().addClass("active");
 		        });

@@ -1,6 +1,6 @@
-search_kejiju_renyuan_researchDirection1 ="";
-search_kejiju_renyuan_porfessionalTitle1 ="";
-search_kejiju_renyuan_degree1 ="";
+search_kejiju_renyuan_researchDirection ="";
+search_kejiju_renyuan_porfessionalTitle ="";
+search_kejiju_renyuan_degree ="";
 //表格  - 操作 - 事件
 window.actionEvents3 = {
 	'click #kejirenyuan-showDetail': function(e, value, row, index) {  
@@ -13,18 +13,18 @@ window.actionEvents3 = {
     }
 }
 $(function() {
-	ajaxPost("/kjryJbxxInfo/dicJsly", null, findJslySuccess1, 5000, findError);
+	ajaxPost("/kjryJbxxInfo/dicJsly", null, findJslySuccess, 5000, findError);
 	
-	ajaxPost("/kjryJbxxInfo/dicZc", null, findZcSuccess1, 5000, findError);
+	ajaxPost("/kjryJbxxInfo/dicZc", null, findZcSuccess, 5000, findError);
 	
-	ajaxPost("/kjryJbxxInfo/dicXw", null, findXwSuccess1, 5000, findError);
+	ajaxPost("/kjryJbxxInfo/dicXw", null, findXwSuccess, 5000, findError);
 	
 	
 	$('#addnew_kejiju_renyuan').click(function() {
 		loadPage('/kjryJbxxInfo/upd','renyuan_add','添加人员',null,'reload');
 	});
 	$('#editold_addnew_kejiju_renyuan').click(function() {
-		var data = $('#kejiju_renyuan_table_datagrid1').bootstrapTable('getAllSelections');
+		var data = $('#kejiju_renyuan_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length == 1){
@@ -37,7 +37,7 @@ $(function() {
 		}
 	});
 	$('#deleteold_addnew_kejiju_renyuan').click(function() {
-		var data = $('#kejiju_renyuan_table_datagrid1').bootstrapTable('getAllSelections');
+		var data = $('#kejiju_renyuan_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中数据");
 		}else if(data.length > 0){
@@ -58,7 +58,7 @@ $(function() {
 	});
 	
 	$('#config_addnew_kejiju_renyuan').click(function() {
-		var data = $('#kejiju_renyuan_table_datagrid1').bootstrapTable('getAllSelections');
+		var data = $('#kejiju_renyuan_table_datagrid').bootstrapTable('getAllSelections');
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length == 1){
@@ -73,7 +73,7 @@ $(function() {
 
 
 	// bootstrap table
-	$('#kejiju_renyuan_table_datagrid1').bootstrapTable({
+	$('#kejiju_renyuan_table_datagrid').bootstrapTable({
 		url : "/kjryJbxxInfo/page",
 		dataType : "json",
 		toolbar : '#kejiju_renyuan_toolbar', // 工具按钮用哪个容器
@@ -111,10 +111,10 @@ $(function() {
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
                  username:username,
-                 name:$("#search_kejiju_renyuan_name1").val(),
-                 researchDirection:search_kejiju_renyuan_researchDirection1,
-                 porfessionalTitle:search_kejiju_renyuan_porfessionalTitle1,
-                 degree: search_kejiju_renyuan_degree1
+                 name:$("#search_kejiju_renyuan_name").val(),
+                 researchDirection:search_kejiju_renyuan_researchDirection,
+                 porfessionalTitle:search_kejiju_renyuan_porfessionalTitle,
+                 degree: search_kejiju_renyuan_degree
              }; 
              return param;
 		},
@@ -180,32 +180,32 @@ $(function() {
 	});
 	
 	$('#search_kejiju_renyuan_button').click(function() {
-		$('#kejiju_renyuan_table_datagrid1').bootstrapTable('refresh');
+		$('#kejiju_renyuan_table_datagrid').bootstrapTable('refresh');
 	});
 });
 
 
 // 窗口大小改变时 重设表头
 $(window).resize(function() {
-	$('#kejiju_renyuan_table_datagrid1').bootstrapTable('resetView');
+	$('#kejiju_renyuan_table_datagrid').bootstrapTable('resetView');
 });
 
 // 技术类型下拉框加载
-function findJslySuccess1(result){
+function findJslySuccess(result){
 	var data = [{id:" ",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value,text:value});
 	});
 	
-	$('#search_kejiju_renyuan_researchDirection1').select2({
+	$('#search_kejiju_renyuan_researchDirection').select2({
 	    placeholder: "研究方向",
 	    tags: true,
 	    data:data
 	});
 	//种子下拉点击事件
-	$('#search_kejiju_renyuan_researchDirection1').on('select2:select', function (evt) {
-		search_kejiju_renyuan_researchDirection1 = evt.params.data.id;
-		$('#kejiju_renyuan_table_datagrid1').bootstrapTable('refresh');
+	$('#search_kejiju_renyuan_researchDirection').on('select2:select', function (evt) {
+		search_kejiju_renyuan_researchDirection = evt.params.data.id;
+		$('#kejiju_renyuan_table_datagrid').bootstrapTable('refresh');
 		
 	});
 }
@@ -213,50 +213,50 @@ function findJslySuccess1(result){
 
 
 // 职称下拉框加载
-function findZcSuccess1(result){
+function findZcSuccess(result){
 	var data = [{id:" ",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value,text:value});
 	});
 	
 	//种子下拉
-	$('#search_kejiju_renyuan_porfessionalTitle1').select2({
+	$('#search_kejiju_renyuan_porfessionalTitle').select2({
 	    placeholder: "职务",
 	    tags: true,
 	    data:data
 	});
 	
 	//种子下拉点击事件
-	$('#search_kejiju_renyuan_porfessionalTitle1').on('select2:select', function (evt) {
-		search_kejiju_renyuan_porfessionalTitle1 = evt.params.data.id;
-		$('#kejiju_renyuan_table_datagrid1').bootstrapTable('refresh');
+	$('#search_kejiju_renyuan_porfessionalTitle').on('select2:select', function (evt) {
+		search_kejiju_renyuan_porfessionalTitle = evt.params.data.id;
+		$('#kejiju_renyuan_table_datagrid').bootstrapTable('refresh');
 		
 	});
 }
 
 // 学位下拉框加载
-function findXwSuccess1(result){
+function findXwSuccess(result){
 	var data = [{id:" ",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value,text:value});
 	});
 	
 	//种子下拉
-	$('#search_kejiju_renyuan_degree1').select2({
+	$('#search_kejiju_renyuan_degree').select2({
 	    placeholder: "学位",
 	    tags: true,
 	    data:data
 	});
 	
 	//种子下拉点击事件
-	$('#search_kejiju_renyuan_degree1').on('select2:select', function (evt) {
-		search_kejiju_renyuan_degree1 = evt.params.data.id;
-		$('#kejiju_renyuan_table_datagrid1').bootstrapTable('refresh');
+	$('#search_kejiju_renyuan_degree').on('select2:select', function (evt) {
+		search_kejiju_renyuan_degree = evt.params.data.id;
+		$('#kejiju_renyuan_table_datagrid').bootstrapTable('refresh');
 		
 	});
 }
 
 
 function addkejiju_renyuan_jbxxSuccess(result){
-	$('#kejiju_renyuan_table_datagrid1').bootstrapTable('refresh');
+	$('#kejiju_renyuan_table_datagrid').bootstrapTable('refresh');
 }
