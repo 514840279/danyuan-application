@@ -1,6 +1,7 @@
 package tk.ainiyue.danyuan.application.common.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class Redirects {
-
+	
 	@RequestMapping("/login")
 	public String login() {
 		return "login/login";
@@ -25,10 +26,15 @@ public class Redirects {
 	public String index() {
 		return "index";
 	}
-
+	
 	@RequestMapping("/")
 	public String home() {
 		return "index";
+	}
+	
+	@RequestMapping("/templates/{path1}/{path2}/{page}")
+	public String templates(@PathVariable("path1") String path1, @PathVariable("path2") String path2, @PathVariable("page") String page) {
+		return path1 + "/" + path2 + "/" + page;
 	}
 	
 }
