@@ -1,4 +1,4 @@
-_history = [];
+//_history = [];
         (function($) {
 	        var menu_data = [];
 //	        console.log(username);
@@ -46,20 +46,20 @@ _history = [];
 	        }
 	        
 	        function findError() {
-	        }
-	        ;
+	        };
+	        loadPage('pages/remen.html','remen','首页');
 	        
-	        $("#tabContainer").tabs({
-	            data : [ {
-	                id : 'remen',
-	                text : '热门推荐',
-	                closeable : true,
-	                url : "pages/remen.html"
-	            } ],
-	            showIndex : 0,
-	            loadAll : false
-	        })
-	        _history.push('remen');
+//	        $("#tabContainer").tabs({
+//	            data : [ {
+//	                id : 'remen',
+//	                text : '热门推荐',
+//	                closeable : true,
+//	                url : "pages/remen.html"
+//	            } ],
+//	            showIndex : 0,
+//	            loadAll : false
+//	        })
+//	        _history.push('remen');
         })(jQuery);
         
         /**
@@ -73,44 +73,44 @@ _history = [];
         
         function loadPage(url, id, name, paramter, flag_r) {
 	        //         	 console.log("url="+url+",id="+id+",name="+name);
-	        if ($("#tabContainer").data("tabs").find(id) != '') {
-		        if (flag_r != null) {
-			        $("#tabContainer").data("tabs").reload({
-			            id : id,
-			            text : name,
-			            closeable : true,
-			            url : url,
-			            paramter : paramter
-			        });
-		        } else {
-			        $("#tabContainer").data("tabs").showTab(id);
-		        }
-	        } else if ($("#tabContainer").data("tabs").find(id) == '') {
-		        $("#tabContainer").data("tabs").addTab({
-		            id : id,
-		            text : name,
-		            closeable : true,
-		            url : url,
-		            paramter : paramter
-		        });
-		        _history.push(id);
-	        }
+//	        if ($("#tabContainer").data("tabs").find(id) != '') {
+//		        if (flag_r != null) {
+//			        $("#tabContainer").data("tabs").reload({
+//			            id : id,
+//			            text : name,
+//			            closeable : true,
+//			            url : url,
+//			            paramter : paramter
+//			        });
+//		        } else {
+//			        $("#tabContainer").data("tabs").showTab(id);
+//		        }
+//	        } else if ($("#tabContainer").data("tabs").find(id) == '') {
+//		        $("#tabContainer").data("tabs").addTab({
+//		            id : id,
+//		            text : name,
+//		            closeable : true,
+//		            url : url,
+//		            paramter : paramter
+//		        });
+////		        _history.push(id);
+//	        }
 	        // 	url =url+ ' body' 	; 
-	        // 	        $("#mainDiv").load(url, function(response, status, xhr) {
-	        // 		        if (status == "success") {
-	        // 			        if (response) {
-	        // 				        try {
-	        // 					        var result = jQuery.parseJSON(response);
-	        // 					        if (result.code == 100) {
-	        // 						        $("#mainDiv").html("");
-	        // 						        alert(result.data);
-	        // 					        }
-	        // 				        } catch (e) {
-	        // 					        return response;
-	        // 				        }
-	        // 			        }
-	        // 		        }
-	        // 	        });
+	         	        $("#mainDiv").load(url, function(response, status, xhr) {
+	         		        if (status == "success") {
+	         			        if (response) {
+	         				        try {
+	         					        var result = jQuery.parseJSON(response);
+	         					        if (result.code == 100) {
+	         						        $("#mainDiv").html("");
+	         						        alert(result.data);
+	         					        }
+	         				        } catch (e) {
+	         					        return response;
+	         				        }
+	         			        }
+	         		        }
+	         	        });
         }
 
         function removeByValue(arr, val) {
