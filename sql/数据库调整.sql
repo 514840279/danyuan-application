@@ -9,6 +9,9 @@
 
  -- 再次查看
   show VARIABLES like '%max_allowed_packet%';
+ 
+  -- 修改密码
+ SET PASSWORD FOR 'root'@'localhost' = PASSWORD('514840279@qq.com');
   
   
   
