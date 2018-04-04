@@ -3,6 +3,7 @@ package tk.ainiyue.danyuan.application.common.base;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort.Order;
 
 /**
  * 文件名 ： BaseService.java
@@ -16,13 +17,15 @@ import org.springframework.data.domain.Page;
  */
 public interface BaseService<T> {
 	
-	T findByUuid(String uuid);
+	T findOne(T info);
 	
-	List<T> findAll();
+	List<T> findAll(T info);
 	
-	Page<T> page(int pageNumber, int pageSize, T info);
+	Page<T> page(int pageNumber, int pageSize, T info, Order... order);
 	
 	void save(T info);
+	
+	void save(List<T> list);
 	
 	void delete(T info);
 	
