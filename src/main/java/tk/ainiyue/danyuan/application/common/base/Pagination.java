@@ -20,6 +20,24 @@ public class Pagination<T> {
 	public String	searchText;
 	public String	username;
 	List<T>			list;
+	public T		info;
+	
+	/**  
+	 *  方法名 ： getInfo 
+	 *  功    能 ： 返回变量 info 的值  
+	 *  @return: T 
+	 */
+	public T getInfo() {
+		return info;
+	}
+	
+	/**  
+	 *  方法名 ： setInfo 
+	 *  功    能 ： 设置变量 info 的值
+	 */
+	public void setInfo(T info) {
+		this.info = info;
+	}
 	
 	/**  
 	 *  方法名 ： getPageNumber 
