@@ -45,7 +45,7 @@
 				<div class="row">
 					<!-- /.col -->
 					<div class="col-xs-12">
-						<button type="submit" class="btn btn-primary btn-block btn-flat">提交</button>
+						<button type="submit" class="btn btn-primary btn-block btn-flat" id="submit">提交</button>
 					</div>
 
 					<div class="col-xs-8" style="font-size: 28px;">
@@ -73,7 +73,12 @@
 	<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<!-- 	<script type="text/javascript" src="plugins/bootstrap/js/bootstrap.min.js"></script> -->
 	<script>
-		
+		$("#submit").bind("moucedown",function(e){
+			if(e.keyCode == 13){
+		        //模拟点击登陆按钮，触发上面的 Click 事件
+		      $(this).submit();
+		    }
+		});
 	</script>
 </body>
 </html>
