@@ -1,4 +1,6 @@
 target/
+### gitbook ###
+_book/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
