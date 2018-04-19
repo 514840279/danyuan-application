@@ -1,1 +1,0 @@
-java -jar target/danyuan.jar
