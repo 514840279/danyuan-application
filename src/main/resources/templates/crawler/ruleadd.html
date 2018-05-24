@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8"/>
+<!-- <link href="/plugins/bootstrap/table/bootstrap-table.css" rel="stylesheet" /> -->
+
+<!-- <script src="/plugins/bootstrap/table/bootstrap-table.js"></script> -->
+<!-- <script src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.js"></script> -->
+<!-- <script src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.js"></script> -->
+</head>
+<body id="body">
+	<!-- 头部设计 -->
+	<section class="content-header">
+		<h1>
+			采集器规则修改<small>爬虫管理</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
+			<li><a href="#">爬虫管理 </a></li>
+			<li class="active">采集器规则修改</li>
+		</ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+		<form  id="add_form">
+		<div class="row">
+			<div class=" col-md-6 form-group">
+				<label class="col-sm-2 control-label text-right">规则名称:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="add_taskRule_name" name="name" placeholder="规则名称" th:value="*{taskRule.name}"/>
+				</div>
+			</div>
+			<div class=" col-md-6 form-group">
+				<label class="col-sm-2 control-label text-right">规则类型:</label>
+				<div class="col-sm-10">
+					<select style="width: 100%;" id="add_taskRule_type" name="type"></select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class=" col-md-6 form-group">
+				<label class="col-sm-2 control-label text-right">规则内容:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="add_taskRule_context" name="context" placeholder="规则内容" th:value="*{taskRule.context}"/>
+				</div>
+			</div>
+			<div class=" col-md-6 form-group">
+				<label class="col-sm-2 control-label text-right">规则状态:</label>
+				<div class="col-sm-10">
+					<select style="width: 100%;" id="add_taskRule_status" name="status"></select>
+				</div>
+			</div>
+		
+
+			<div class="col-md-12 form-group text-center">
+				<div class="col-sm-12">
+				 	<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button class="btn btn-success" onclick="submit_add_addr()">确认</button>
+				</div>
+			</div>
+		</div>
+		</form>
+	</section>
+	<script  th:inline="javascript">
+	var taskRule = [[*{taskRule}]];
+	</script>
+	<script type="text/javascript" src="/pages/crawler/task/ruleadd.js"></script>
+</body>
+</html>

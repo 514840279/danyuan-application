@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="danyuan-application">
-		<class>tk.ainiyue.danyuan.application.common.config.syslog.SysComnLogs</class>
 		<class>tk.ainiyue.danyuan.application.crawler.config.po.SysSeedResultRulerInfo</class>
 		<class>tk.ainiyue.danyuan.application.crawler.param.po.SysRulerInfo</class>
 		<class>tk.ainiyue.danyuan.application.crawler.param.po.SysSeedRulerColumInfo</class>
 		<class>tk.ainiyue.danyuan.application.crawler.seed.po.SysSeedInfo</class>
+		<class>tk.ainiyue.danyuan.application.crawler.task.po.Task</class>
+		<class>tk.ainiyue.danyuan.application.crawler.task.po.TaskRule</class>
+		<class>tk.ainiyue.danyuan.application.crawler.task.po.TaskRulePK</class>
 		<class>tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo</class>
 		<class>tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionInfo</class>
 		<class>tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionInfoPK</class>
@@ -15,9 +17,19 @@
 		<class>tk.ainiyue.danyuan.application.dbm.column.po.SysColumnInfo</class>
 		<class>tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo</class>
 		<class>tk.ainiyue.danyuan.application.dbm.type.po.SysTableTypeInfo</class>
+		<class>tk.ainiyue.danyuan.application.softm.syslog.po.SysComnLogs</class>
+		<class>tk.ainiyue.danyuan.application.softm.syslog.po.VSysComnLogs</class>
 		<class>tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo</class>
 		<class>tk.ainiyue.danyuan.application.softm.system.po.SysSystemInfo</class>
 		<class>tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo</class>
 		<class>tk.ainiyue.danyuan.application.user.userrole.po.SysUserRolesInfo</class>
+		<class>tk.ainiyue.danyuan.application.zhcx.po.SysAdviceMess</class>
+		<class>tk.ainiyue.danyuan.application.zhcx.po.SysDicUserIndexCode</class>
+		<class>tk.ainiyue.danyuan.application.zhcx.po.SysZhcxAddr</class>
+		<class>tk.ainiyue.danyuan.application.zhcx.po.SysZhcxCol</class>
+		<class>tk.ainiyue.danyuan.application.zhcx.po.SysZhcxTab</class>
+		<class>tk.ainiyue.danyuan.application.zhcx.po.SysZhcxType</class>
+		<class>tk.ainiyue.danyuan.application.zhcx.po.VSysZhcxTab</class>
+		<class>tk.ainiyue.danyuan.application.zhcx.po.VSysZhxCol</class>
 	</persistence-unit>
 </persistence>

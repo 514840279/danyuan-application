@@ -1,6 +1,7 @@
 package tk.ainiyue.danyuan.application.common.base;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Order;
@@ -21,7 +22,7 @@ public interface BaseService<T> {
 	
 	List<T> findAll(T info);
 	
-	Page<T> page(int pageNumber, int pageSize, T info, Order... order);
+	Page<T> page(int pageNumber, int pageSize, T info,Map<String,String> map, Order... order);
 	
 	void save(T info);
 	

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+<link rel="icon" type="image/png" href="/dist/img/logo.png" />
+<title>数盟科技</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/plugins/bootstrap/css/ionicons.min.css" />
+<link rel="stylesheet" href="/dist/css/AdminLTE.min.css" />
+<link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css" />
+<link rel="stylesheet" href="/plugins/bootstrap/tab/css/bootstrap-tab.css" />
+<link rel="stylesheet" href="/plugins/bootstrap/table/bootstrap-table.min.css"/>
+<link rel="stylesheet" href="/plugins/toastr/toastr.min.css" />
+
+<link rel="stylesheet" href="/dist/css/style.css" />
+
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="plugins/jQuery/html5shiv.min.js"></script>
+  <script src="plugins/jQuery/respond.min.js"></script>
+  <![endif]-->
+<style type="text/css">
+.content-wrapper, .right-side, .main-footer {
+	margin-left: 0;
+}
+</style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+
+		<header class="main-header">
+
+			<!-- Logo -->
+			<a href="/index.html" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span class="logo-mini"><b>ZC</b></span> <!-- logo for regular state and mobile devices --> <span class="logo-lg"><b>数盟科技</b></span>
+			</a>
+
+			<!-- Header Navbar: style can be found in header.less -->
+			<nav class="navbar navbar-static-top">
+				<!-- Sidebar toggle button-->
+				<!-- 				<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">Toggle navigation</span> -->
+				<!-- 				</a> -->
+				<!-- Navbar Right Menu -->
+				<div class="navbar-custom-menu">
+
+					<ul class="nav navbar-nav">
+						<!-- User Account: style can be found in dropdown.less -->
+						<li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image" /> <span class="hidden-xs" th:text="${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}"></span>
+						</a>
+							<ul class="dropdown-menu">
+								<!-- User image -->
+								<li class="user-header"><img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+
+									<p th:text="${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}">
+										Alexander Pierce - Web Developer <small>Member since Nov. 2012</small>
+									</p></li>
+								<!-- Menu Body -->
+								<!-- Menu Footer-->
+								<li class="user-footer">
+									<div class="pull-left">
+<!-- 										<a href="#" class="btn btn-default btn-flat">Profile</a> -->
+									</div>
+									<div class="pull-right">
+										<form action="/logout" method="post">
+											<input type="submit" value="退出" class="btn btn-default btn-flat" />
+										</form>
+										<!-- 										<a href="#" >Sign out</a> -->
+									</div>
+								</li>
+							</ul></li>
+					</ul>
+				</div>
+
+			</nav>
+		</header>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper" id="mainDiv">
+			<section class="content" id="show_type_id">
+				<div class="box ">
+						<div class="panel-heading font16" id="context_title">发件人信息</div>
+						<div class="panel-body pt5 pb5" id="context_input">
+							<table class="table" >
+								<tbody id="context_input_tab">
+									<tr id="context_input_line" >
+										<td class="bt0" style="display: none" >
+											<span class="color_a">发件人省份：</span>
+											<span id="data">某省</span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+					</div>
+				</div>
+			</section>
+
+
+		</div>
+		<!-- /.content-wrapper -->
+
+		<footer class="main-footer">
+		</footer>
+	</div>
+	
+	<!-- ./wrapper -->
+    <form id="sosuoform" name="sosuoform" action="/zhcx/forwardYjcx" method="post" target="_blank" hidden="hidden">
+		<input id="zhcx_type"  name="type" value="" />
+		<input id="zhcx_sousuo_paramString"  name="paramString" value="" />
+     </form>
+	<!-- jQuery 2.2.3 -->
+	<script type="text/javascript" src="/plugins/jQuery/jquery.min.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/dist/js/app.min.js"></script>
+	<script type="text/javascript" src="/dist/js/base-modal.js"></script>
+	<script type="text/javascript" src="/plugins/sparkline/jquery.sparkline.min.js"></script>
+	<script type="text/javascript" src="/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+	<script type="text/javascript" src="/plugins/jQuery/ajax.js"></script>
+	<script type="text/javascript" src="/plugins/jQuery/alert.js"></script>
+	<script type="text/javascript" src="/plugins/jQuery/bootbox.min.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap/tab/js/bootstrap-tab.js"></script>
+
+	<script type="text/javascript" src="/plugins/bootstrap/table/bootstrap-table.min.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.min.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap/table/extensions/editable/bootstrap-table-editable.min.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.min.js"></script>
+
+	<script type="text/javascript" src="/plugins/toastr/toastr.min.js"></script>
+
+	<script th:inline="javascript">
+	var paramString = [[*{paramString}]];
+	paramString = JSON.parse(paramString);
+	var mapString = [[*{mapString}]];
+	mapString = JSON.parse(mapString);
+	var tableName = [[*{tableName}]];
+	var tableDesc = [[*{tableDesc}]];
+	var username = [[${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}]];
+    console.log("欢迎用户{{"+username+"}}登录本系统！\n 	");
+    
+	</script>
+	<!-- 	<script type="text/javascript" src="/pages/index.js">	</script> -->
+	<script type="text/javascript" src="/pages/zhcx/search/zhxx.js">	</script>
+
+</body>
+</html>

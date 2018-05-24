@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+<link rel="icon" type="image/png" href="/dist/img/logo.png" />
+<title>数盟科技</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+<link rel="stylesheet" href="/dist/css/AdminLTE.min.css" />
+<link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css" />
+<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css" />
+<!-- <link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.min.css" /> -->
+<link rel="stylesheet" href="/plugins/bootstrap/css/ionicons.min.css" />
+<!-- <link rel="stylesheet" href="/plugins/toastr/toastr.min.css" /> -->
+
+<link rel="stylesheet" href="/dist/css/style.css" />
+
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="plugins/jQuery/html5shiv.min.js"></script>
+  <script src="plugins/jQuery/respond.min.js"></script>
+  <![endif]-->
+<style type="text/css">
+.content-wrapper, .right-side, .main-footer {
+	margin-left: 0;
+}
+.layout_b .item_01{width:350px; margin-left:15px}
+.row_a{display:-webkit-flex; display:flex}
+.col_1{flex:1}
+.list_b .item_list .tit{margin-right:10px}
+</style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- context menu -->
+	<div class="wrapper">
+
+		<header class="main-header">
+
+			<!-- Logo -->
+			<a href="/index.html" class="logo"> 
+			<span class="logo-mini"><b>ZC</b></span> 
+			<span class="logo-lg"><b>数盟科技</b></span>
+			</a>
+			<nav class="navbar navbar-static-top">
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image" /> <span class="hidden-xs" th:text="${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}"></span>
+						</a>
+							<ul class="dropdown-menu">
+								<!-- User image -->
+								<li class="user-header"><img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+									<p th:text="${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}">
+										Alexander Pierce - Web Developer <small>Member since Nov. 2012</small>
+									</p></li>
+								<!-- Menu Body -->
+								<!-- Menu Footer-->
+								<li class="user-footer">
+									<div class="pull-left">
+									</div>
+									<div class="pull-right">
+										<form action="/logout" method="post">
+											<input type="submit" value="退出" class="btn btn-default btn-flat" />
+										</form>
+									</div>
+								</li>
+							</ul></li>
+					</ul>
+				</div>
+
+			</nav>
+		</header>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper" id="mainDiv">
+			<section class="content" id="show_type_id">
+				<div class="box ">
+					<div class="">
+						<div class="layout_b row_a">
+							<div class="col_1" style="margin: 0px; padding: 0px;">
+								<div id="map" style="width: 1100px; height: 635px;"></div>
+							</div>
+							<div class="list_b">
+								<div class="item" >
+										<div class="item_header row_a">
+											<div class="col_1">请添加查询</div>
+										</div>
+										<div class="item_content">
+											<div class="item_list" id="list_item">
+												<div class="row_a" style="display: none">
+													<div class="tit"></div>
+													<div class="col_1 text_overflow"></div>
+													<div class="a_bar">
+														<a>删除</a>
+													</div>
+												</div>
+											</div>
+											<div class="row_a">
+												<div class="tit">
+													<select id="xl" class="form-control input-sm" name="keyword-type" >
+<!-- 														<option ng-repeat="key in keywordTypes" value="SFZH">证件号码</option> -->
+<!-- 														<option ng-repeat="key in keywordTypes" value="HH">户号</option> -->
+<!-- 														<option ng-repeat="key in keywordTypes" value="GSMC">公司名称</option> -->
+<!-- 														<option ng-repeat="key in keywordTypes" value="QQHM">QQ号码</option> -->
+<!-- 														<option ng-repeat="key in keywordTypes" value="DHHM">电话号码</option> -->
+													</select>
+												</div>
+												<div class="col_1 ml10">
+													<input id="keyword_input" name="keyword" type="text" class="form-control input-sm" placeholder="输入关键字" value="441522197207230672"/>
+												</div>
+												<div class="ml10">
+													<button  id="addItem" type="button" class="btn btn-info btn-sm">添加</button>
+												</div>
+											</div>
+										</div>
+										<div class="item_footer_close"></div>
+										<div class="item_footer_open"></div>
+									</div>
+
+								<div class="item">
+									<div class="item_content">
+										<div class="row_a pull-right">
+<!-- 												<div class="tit"> -->
+<!-- 													<select id="cs" class="form-control input-sm" name="keyword-level" ng-model="data.newKeywordlevel"> -->
+<!-- 														<option ng-repeat="key in keywordTypes" value="10">10</option> -->
+<!-- 														<option ng-repeat="key in keywordTypes" value="10">15</option> -->
+<!-- 														<option ng-repeat="key in keywordTypes" value="10">20</option> -->
+<!-- 														<option ng-repeat="key in keywordTypes" value="10">15</option> -->
+<!-- 													</select> -->
+<!-- 												</div> -->
+<!-- 												<span class="col_1 ml10" style="padding: 5px;">层数</span> -->
+											<div class="ml10">
+												<button id="sub" type="button" class="btn btn-success btn-sm">提交</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<table class="table" id="table">
+										<tbody id="context_input_tab">
+											<tr id="context_input_line" >
+												<td class="bt0"  >
+													<span class="color_a"></span>
+													<span id="data"></span>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+		</div>
+		<!-- /.content-wrapper -->
+
+		<footer class="main-footer"> 
+		</footer>
+	</div>
+	
+    
+	<!-- ./wrapper -->
+	<form id="sosuoform" name="sosuoform" action="/zhcx/forwardYjcx" method="post" target="_blank" hidden="hidden">
+		<input id="zhcx_type" name="type" value="" /> <input id="zhcx_sousuo_paramString" name="paramString" value="" />
+	</form>
+	<!-- jQuery 2.2.3 -->
+	<script type="text/javascript" src="/plugins/jQuery/jquery.min.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/dist/js/app.min.js"></script>
+	<script type="text/javascript" src="/plugins/jQuery/ajax.js"></script>
+	<script type="text/javascript" src="/plugins/jQuery/alert.js"></script>
+	<script type="text/javascript" src="/plugins/jQuery/bootbox.min.js"></script>
+	<script type="text/javascript" src="/plugins/echarts/echarts4.min.js"></script>
+
+
+
+	<script th:inline="javascript">
+	var paramString = [[*{paramString}]];
+	var paramList = JSON.parse(paramString);
+	var username = [[${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}]];
+    console.log("欢迎用户{{"+username+"}}登录本系统！\n 	");
+    
+	</script>
+	<!-- 	<script type="text/javascript" src="/pages/index.js">	</script> -->
+	<script type="text/javascript" src="/pages/zhcx/search/chart.js">	</script>
+
+</body>
+</html>

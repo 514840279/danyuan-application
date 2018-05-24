@@ -27,53 +27,71 @@
 	<!-- Main content -->
 	<section class="content">
 		<div class="row">
-			<input type="text" id="add_addr_uuid" name="type" placeholder="uuid" th:value="*{sysDatabaseInfo.uuid}" hidden="hedden"/>
+			<input type="text" id="add_task_id" name="id" placeholder="id" th:value="*{task.id}" hidden="hedden"/>
 			<div class=" col-md-6 form-group">
-				<label class="col-sm-2 control-label text-right">数据库类型:</label>
+				<label class="col-sm-2 control-label text-right">是否采集附件:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="add_addr_type" name="type" placeholder="数据库类型" th:value="*{sysDatabaseInfo.type}"/>
+					<input type="text" class="form-control" id="add_task_appendixStatus" name="appendixStatus" placeholder="是否采集附件" th:value="*{task.appendixStatus}"/>
 				</div>
 			</div>
 			<div class=" col-md-6 form-group">
-				<label class="col-sm-2 control-label text-right">链接地址:</label>
+				<label class="col-sm-2 control-label text-right">已完成任务个数:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="add_addr_address" name="address" placeholder="ip地址" th:value="*{sysDatabaseInfo.address}"/>
+					<input type="text" class="form-control" id="add_task_comfurmTask" name="comfurmTask" placeholder="已完成任务个数" th:value="*{task.comfurmTask}"/>
 				</div>
 			</div>
 			<div class=" col-md-6 form-group">
-				<label class="col-sm-2 control-label text-right">端口号:</label>
+				<label class="col-sm-2 control-label text-right">失败任务个数:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="add_addr_port" name="port" placeholder="端口号" th:value="*{sysDatabaseInfo.port}"/>
+					<input type="text" class="form-control" id="add_task_errTask" name="errTask" placeholder="失败任务个数" th:value="*{task.errTask}"/>
 				</div>
 			</div>
 			<div class=" col-md-6 form-group">
-				<label class="col-sm-2 control-label text-right">数据库名:</label>
+				<label class="col-sm-2 control-label text-right">启动频率:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="add_addr_databaseName" name="databaseName" placeholder="数据库名" th:value="*{sysDatabaseInfo.databaseName}"/>
+					<input type="text" class="form-control" id="add_task_executeType" name="executeType" placeholder="启动频率" th:value="*{task.executeType}"/>
 				</div>
 			</div>
 			<div class=" col-md-6 form-group">
-				<label class="col-sm-2 control-label text-right">用户名:</label>
+				<label class="col-sm-2 control-label text-right">采集器启动时间:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="add_addr_username" name="username" placeholder="用户名" th:value="*{sysDatabaseInfo.username}"/>
+					<input type="text" class="form-control" id="add_task_executeTime" name="executeTime" placeholder="采集器启动时间" th:value="*{task.executeTime}"/>
 				</div>
 			</div>
 			<div class=" col-md-6 form-group">
 				<label class="col-sm-2 control-label text-right">密码:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="add_addr_password" name="password" placeholder="密码" th:value="*{sysDatabaseInfo.password}"/>
+					<input type="text" class="form-control" id="add_task_password" name="password" placeholder="密码" th:value="*{task.password}"/>
 				</div>
 			</div>
 			<div class=" col-md-6 form-group">
-				<label class="col-sm-2 control-label text-right">驱动:</label>
+				<label class="col-sm-2 control-label text-right">剩余任务个数:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="add_addr_driver" name="driver" placeholder="数据库类型" th:value="*{sysDatabaseInfo.driver}"/>
+					<input type="text" class="form-control" id="add_task_lastTask" name="lastTask" placeholder="剩余任务个数" th:value="*{task.lastTask}"/>
 				</div>
 			</div>
 			<div class=" col-md-6 form-group">
-				<label class="col-sm-2 control-label text-right">描述:</label>
+				<label class="col-sm-2 control-label text-right">采集器状态:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="add_addr_discription" name="discription" placeholder="ip地址" th:value="*{sysDatabaseInfo.discription}"/>
+					<input type="text" class="form-control" id="add_task_status" name="status" placeholder="采集器状态" th:value="*{task.status}"/>
+				</div>
+			</div>
+			<div class=" col-md-6 form-group">
+				<label class="col-sm-2 control-label text-right">采集器名称:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="add_task_taskName" name="taskName" placeholder="采集器名称" th:value="*{task.taskName}"/>
+				</div>
+			</div>
+			<div class=" col-md-6 form-group">
+				<label class="col-sm-2 control-label text-right">线程个数:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="add_task_threadNumber" name="threadNumber" placeholder="线程个数" th:value="*{task.threadNumber}"/>
+				</div>
+			</div>
+			<div class=" col-md-6 form-group">
+				<label class="col-sm-2 control-label text-right">采集网址:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="add_task_url" name="url" placeholder="采集网址" th:value="*{task.url}"/>
 				</div>
 			</div>
 			<div class="col-md-12 form-group text-center">
@@ -83,6 +101,6 @@
 			</div>
 		</div>
 	</section>
-	<script type="text/javascript" src="pages/dbm/addr/js/add_addr.js"></script>
+	<script type="text/javascript" src="/pages/crawler/task/add.js"></script>
 </body>
 </html>

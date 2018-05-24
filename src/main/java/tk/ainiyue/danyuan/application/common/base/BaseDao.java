@@ -3,6 +3,7 @@ package tk.ainiyue.danyuan.application.common.base;
 import java.io.Serializable;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 
 /**    
@@ -16,6 +17,6 @@ import org.springframework.data.repository.NoRepositoryBean;
 *  版    本 ： V1.0    
 */
 @NoRepositoryBean
-public interface BaseDao<T> extends JpaRepository<T, Serializable> {
+public interface BaseDao<T> extends JpaRepository<T, Serializable>,JpaSpecificationExecutor<T>  {
 	
 }

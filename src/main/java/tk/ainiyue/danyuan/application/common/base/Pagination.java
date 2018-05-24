@@ -1,6 +1,15 @@
 package tk.ainiyue.danyuan.application.common.base;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.data.domain.Sort.Direction;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**    
 *  文件名 ： Pagination.java  
@@ -14,13 +23,18 @@ import java.util.List;
 */
 public class Pagination<T> {
 	
-	public int		pageNumber;
-	public int		pageSize;
+	public Integer		pageNumber;
+	public Integer		pageSize;
 	public String	uuid;
 	public String	searchText;
 	public String	username;
+	public String	sortName;
+	public String	filter;
+	public String	sortOrder;
+	public Direction order ;
 	List<T>			list;
 	public T		info;
+	public Map<String,String> map= new HashMap<String,String>();
 	
 	/**  
 	 *  方法名 ： getInfo 
@@ -42,9 +56,9 @@ public class Pagination<T> {
 	/**  
 	 *  方法名 ： getPageNumber 
 	 *  功    能 ： 返回变量 pageNumber 的值  
-	 *  @return: int 
+	 *  @return: Integer 
 	 */
-	public int getPageNumber() {
+	public Integer getPageNumber() {
 		return pageNumber;
 	}
 	
@@ -52,16 +66,16 @@ public class Pagination<T> {
 	 *  方法名 ： setPageNumber 
 	 *  功    能 ： 设置变量 pageNumber 的值
 	 */
-	public void setPageNumber(int pageNumber) {
+	public void setPageNumber(Integer pageNumber) {
 		this.pageNumber = pageNumber;
 	}
 	
 	/**  
 	 *  方法名 ： getPageSize 
 	 *  功    能 ： 返回变量 pageSize 的值  
-	 *  @return: int 
+	 *  @return: Integer 
 	 */
-	public int getPageSize() {
+	public Integer getPageSize() {
 		return pageSize;
 	}
 	
@@ -69,7 +83,7 @@ public class Pagination<T> {
 	 *  方法名 ： setPageSize 
 	 *  功    能 ： 设置变量 pageSize 的值
 	 */
-	public void setPageSize(int pageSize) {
+	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
 	
@@ -140,5 +154,65 @@ public class Pagination<T> {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	public String getSortName() {
+		return sortName;
+	}
+
+	public void setSortName(String sortName) {
+		this.sortName = sortName;
+	}
+
+	public String getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(String sortOrder) {
+		this.sortOrder = sortOrder;
+		switch (sortOrder){
+		case("desc"):
+			order = Direction.DESC;
+			break;
+		case("asc"):
+			order =  Direction.ASC;
+			break;
+		}
+	}
+
+	public Direction getOrder() {
+		return order;
+	}
+	
+	
+
+	public String getFilter() {
+		return filter;
+	}
+
+	@SuppressWarnings("unchecked")
+	public void setFilter(String filter) throws JsonParseException, JsonMappingException, IOException {
+		this.filter = filter;
+		if(filter!=null&& !"".equals(filter)){
+			ObjectMapper objmap = new ObjectMapper();
+			this.map = objmap.readValue(filter, Map.class);
+		}
+	}
+
+	public Map<String, String> getMap() {
+		return map;
+	}
+
+	@Override
+	public String toString() {
+		return "Pagination [pageNumber=" + pageNumber + ", pageSize=" + pageSize + ", uuid=" + uuid + ", searchText="
+				+ searchText + ", username=" + username + ", sortName=" + sortName + ", filter=" + filter
+				+ ", sortOrder=" + sortOrder + ", order=" + order + ", list=" + list + ", info=" + info + ", map=" + map
+				+ "]";
+	}
+
+	
+
+	
+	
 	
 }
