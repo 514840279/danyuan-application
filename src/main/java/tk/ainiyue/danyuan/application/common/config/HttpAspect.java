@@ -27,9 +27,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
+import tk.ainiyue.danyuan.application.dbm.zhcx.vo.MulteityParam;
 import tk.ainiyue.danyuan.application.softm.syslog.dao.SysComnLogsDao;
 import tk.ainiyue.danyuan.application.softm.syslog.po.SysComnLogs;
-import tk.ainiyue.danyuan.application.zhcx.vo.MulteityParam;
 
 @Aspect // 用于将切面声明为一个普通的类
 @Component // 将这个类引入spring容器中去

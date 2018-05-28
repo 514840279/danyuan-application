@@ -13,8 +13,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo;
-import tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo;
-import tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService;
+import tk.ainiyue.danyuan.application.softm.userbase.po.SysUserBaseInfo;
+import tk.ainiyue.danyuan.application.softm.userbase.service.SysUserBaseService;
 
 /**
  * 文件名 ： CustomUserDetailsService.java
@@ -38,7 +38,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 			user = sysUserBaseService.findByName(userName);
 		} catch (Exception e) {
 			throw new UsernameNotFoundException("user select fail");
-
+			
 		}
 		if (user == null) {
 			throw new UsernameNotFoundException("no user found");
@@ -51,7 +51,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 						gas.add(new SimpleGrantedAuthority(sysMenuInfo.getName()));
 					}
 				}
-//				gas.add(new SwitchUserGrantedAuthority("ROLE_USER", new Authentication()));
+				//				gas.add(new SwitchUserGrantedAuthority("ROLE_USER", new Authentication()));
 				UserDetails users = new User(user.getUserName(), user.getPassword(), true, true, true, true, gas);
 				return users;
 			} catch (Exception e) {
@@ -59,5 +59,5 @@ public class CustomUserDetailsService implements UserDetailsService {
 			}
 		}
 	}
-
+	
 }

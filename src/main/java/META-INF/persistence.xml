@@ -8,28 +8,28 @@
 		<class>tk.ainiyue.danyuan.application.crawler.task.po.Task</class>
 		<class>tk.ainiyue.danyuan.application.crawler.task.po.TaskRule</class>
 		<class>tk.ainiyue.danyuan.application.crawler.task.po.TaskRulePK</class>
-		<class>tk.ainiyue.danyuan.application.crm.department.po.SysDepartmentInfo</class>
-		<class>tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionInfo</class>
-		<class>tk.ainiyue.danyuan.application.crm.jurisdiction.po.SysRolesJurisdictionInfoPK</class>
-		<class>tk.ainiyue.danyuan.application.crm.organization.po.SysOrganizationInfo</class>
-		<class>tk.ainiyue.danyuan.application.crm.roles.po.SysRolesInfo</class>
 		<class>tk.ainiyue.danyuan.application.dbm.addr.po.SysDatabaseInfo</class>
 		<class>tk.ainiyue.danyuan.application.dbm.column.po.SysColumnInfo</class>
 		<class>tk.ainiyue.danyuan.application.dbm.table.po.SysTableInfo</class>
 		<class>tk.ainiyue.danyuan.application.dbm.type.po.SysTableTypeInfo</class>
+		<class>tk.ainiyue.danyuan.application.dbm.zhcx.po.SysAdviceMess</class>
+		<class>tk.ainiyue.danyuan.application.dbm.zhcx.po.SysDicUserIndexCode</class>
+		<class>tk.ainiyue.danyuan.application.dbm.zhcx.po.SysZhcxAddr</class>
+		<class>tk.ainiyue.danyuan.application.dbm.zhcx.po.SysZhcxCol</class>
+		<class>tk.ainiyue.danyuan.application.dbm.zhcx.po.SysZhcxTab</class>
+		<class>tk.ainiyue.danyuan.application.dbm.zhcx.po.SysZhcxType</class>
+		<class>tk.ainiyue.danyuan.application.dbm.zhcx.po.VSysZhcxTab</class>
+		<class>tk.ainiyue.danyuan.application.dbm.zhcx.po.VSysZhxCol</class>
+		<class>tk.ainiyue.danyuan.application.softm.department.po.SysDepartmentInfo</class>
+		<class>tk.ainiyue.danyuan.application.softm.jurisdiction.po.SysRolesJurisdictionInfo</class>
+		<class>tk.ainiyue.danyuan.application.softm.jurisdiction.po.SysRolesJurisdictionInfoPK</class>
+		<class>tk.ainiyue.danyuan.application.softm.organization.po.SysOrganizationInfo</class>
+		<class>tk.ainiyue.danyuan.application.softm.roles.po.SysRolesInfo</class>
 		<class>tk.ainiyue.danyuan.application.softm.syslog.po.SysComnLogs</class>
 		<class>tk.ainiyue.danyuan.application.softm.syslog.po.VSysComnLogs</class>
 		<class>tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo</class>
 		<class>tk.ainiyue.danyuan.application.softm.system.po.SysSystemInfo</class>
-		<class>tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo</class>
-		<class>tk.ainiyue.danyuan.application.user.userrole.po.SysUserRolesInfo</class>
-		<class>tk.ainiyue.danyuan.application.zhcx.po.SysAdviceMess</class>
-		<class>tk.ainiyue.danyuan.application.zhcx.po.SysDicUserIndexCode</class>
-		<class>tk.ainiyue.danyuan.application.zhcx.po.SysZhcxAddr</class>
-		<class>tk.ainiyue.danyuan.application.zhcx.po.SysZhcxCol</class>
-		<class>tk.ainiyue.danyuan.application.zhcx.po.SysZhcxTab</class>
-		<class>tk.ainiyue.danyuan.application.zhcx.po.SysZhcxType</class>
-		<class>tk.ainiyue.danyuan.application.zhcx.po.VSysZhcxTab</class>
-		<class>tk.ainiyue.danyuan.application.zhcx.po.VSysZhxCol</class>
+		<class>tk.ainiyue.danyuan.application.softm.userbase.po.SysUserBaseInfo</class>
+		<class>tk.ainiyue.danyuan.application.softm.userrole.po.SysUserRolesInfo</class>
 	</persistence-unit>
 </persistence>
