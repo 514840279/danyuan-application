@@ -1,7 +1,7 @@
 $(function() {
 	var url = "/sysAdviceMess/findAll";
 	ajaxPost(url, null, showAllAdvice);
-	hljs.initHighlighting();
+//	hljs.initHighlighting();
 });
 
 

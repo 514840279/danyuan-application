@@ -171,11 +171,6 @@ $(window).resize(function() {
 	$('#admin_organization_datagrid').bootstrapTable('resetView');
 });
 
-// 日期 时间的格式化
-function dateTimeFormatter(value,row,index){
-	return  new Date(parseInt(value)).toLocaleString(); 
-};
-
 // 状态的代码转换
 function stateFormatter(value,row,index){
 	if(value=="1"){
