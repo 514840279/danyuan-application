@@ -12,9 +12,9 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
-import tk.ainiyue.danyuan.application.softm.jurisdiction.dao.SysRolesJurisdictionDao;
-import tk.ainiyue.danyuan.application.softm.jurisdiction.po.SysRolesJurisdictionInfo;
-import tk.ainiyue.danyuan.application.softm.jurisdiction.po.SysRolesJurisdictionInfoPK;
+import tk.ainiyue.danyuan.application.softm.organization.dao.SysRolesJurisdictionDao;
+import tk.ainiyue.danyuan.application.softm.organization.po.SysRolesJurisdictionInfo;
+import tk.ainiyue.danyuan.application.softm.organization.po.SysRolesJurisdictionInfoPK;
 import tk.ainiyue.danyuan.application.softm.sysmenu.dao.SysMenuDao;
 import tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo;
 import tk.ainiyue.danyuan.application.softm.sysmenu.service.SysMenuService;

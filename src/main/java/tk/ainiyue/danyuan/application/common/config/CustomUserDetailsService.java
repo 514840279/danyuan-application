@@ -12,9 +12,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
+import tk.ainiyue.danyuan.application.softm.roles.po.SysUserBaseInfo;
+import tk.ainiyue.danyuan.application.softm.roles.service.SysUserBaseService;
 import tk.ainiyue.danyuan.application.softm.sysmenu.po.SysMenuInfo;
-import tk.ainiyue.danyuan.application.softm.userbase.po.SysUserBaseInfo;
-import tk.ainiyue.danyuan.application.softm.userbase.service.SysUserBaseService;
 
 /**
  * 文件名 ： CustomUserDetailsService.java

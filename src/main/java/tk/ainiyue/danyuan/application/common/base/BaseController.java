@@ -20,7 +20,7 @@ public interface BaseController<T> {
 	
 	public List<T> findAll(T info);
 	
-	public String findOne(T info);
+	public T findOne(T info);
 	
 	public String save(T info);
 	
