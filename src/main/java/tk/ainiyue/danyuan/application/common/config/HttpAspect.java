@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.bitwalker.useragentutils.Browser;
 import eu.bitwalker.useragentutils.OperatingSystem;
 import eu.bitwalker.useragentutils.UserAgent;
-import tk.ainiyue.danyuan.application.dbm.zhcx.vo.MulteityParam;
+import tk.ainiyue.danyuan.application.dbms.zhcx.vo.MulteityParam;
 import tk.ainiyue.danyuan.application.softm.syslog.dao.SysComnLogsDao;
 import tk.ainiyue.danyuan.application.softm.syslog.po.SysComnLogs;
 
