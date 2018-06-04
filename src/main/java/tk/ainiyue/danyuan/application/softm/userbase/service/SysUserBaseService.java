@@ -80,5 +80,26 @@ public interface SysUserBaseService {
 	 * @throws
 	 */
 	void saveu(String uuid, String persionName, Integer age, String userName, String email, String phone, String sex, String string);
+
+	/**
+	 * 方法名： changePassword
+	 * 功 能： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数： @param info
+	 * 返 回： void
+	 * 作 者 ： Administrator
+	 * @throws
+	 */
+	void changePassword(SysUserBaseInfo info);
+	
+	/**
+	 * 方法名： checkUserName
+	 * 功 能： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数： @param userName
+	 * 参 数： @return
+	 * 返 回： boolean
+	 * 作 者 ： Administrator
+	 * @throws
+	 */
+	boolean checkUserName(String userName);
 	
 }

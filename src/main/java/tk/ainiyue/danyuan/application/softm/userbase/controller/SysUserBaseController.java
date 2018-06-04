@@ -1,6 +1,8 @@
 package tk.ainiyue.danyuan.application.softm.userbase.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -34,14 +36,14 @@ import tk.ainiyue.danyuan.application.softm.userbase.vo.SysUserBaseVo;
 @RequestMapping("/sysUserBase")
 @Api(value = "/sysUserBase", description = "用户管理")
 public class SysUserBaseController {
-	
+
 	//
 	private static final Logger	logger	= LoggerFactory.getLogger(SysUserBaseController.class);
-	
+
 	//
 	@Autowired
 	private SysUserBaseService	sysUserBaseService;
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -55,14 +57,14 @@ public class SysUserBaseController {
 		logger.info("sysUserBaseList", SysUserBaseController.class);
 		return sysUserBaseService.findAll();
 	}
-	
+
 	@ApiOperation(value = "分页查询全部用户信息", notes = "")
 	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
 	public Page<SysUserBaseInfo> findAllBySearchText(int pageNumber, int pageSize, SysUserBaseInfo sysUserBaseInfo) {
 		logger.info("findAllBySearchText", SysUserBaseController.class);
 		return sysUserBaseService.findAllBySearchText(pageNumber, pageSize, sysUserBaseInfo);
 	}
-	
+
 	@ApiOperation(value = "修改角色信息", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody
@@ -82,7 +84,7 @@ public class SysUserBaseController {
 			return "0";
 		}
 	}
-	
+
 	@ApiOperation(value = "修改角色信息", notes = "")
 	@RequestMapping(path = "/saveu", method = RequestMethod.POST)
 	@ResponseBody
@@ -96,7 +98,7 @@ public class SysUserBaseController {
 			return e.toString();
 		}
 	}
-	
+
 	@ApiOperation(value = "删除角色信息", notes = "")
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	@ResponseBody
@@ -109,7 +111,7 @@ public class SysUserBaseController {
 			return "0";
 		}
 	}
-	
+
 	/**
 	 * 加密密码
 	 */
@@ -117,5 +119,29 @@ public class SysUserBaseController {
 		String password = userEntity.getPassword();
 		password = new BCryptPasswordEncoder().encode(password);
 		userEntity.setPassword(password);
+	}
+
+	@ApiOperation(value = "修改角色信息", notes = "")
+	@RequestMapping(path = "/checkUserName", method = RequestMethod.POST)
+	public Map<String, Boolean> checkUserName(String userName) {
+		logger.info("checkUserName", SysUserBaseController.class);
+		boolean boo = sysUserBaseService.checkUserName(userName);
+		Map<String, Boolean> map = new HashMap<>();
+		map.put("valid", boo);
+		return map;
+	}
+
+	@ApiOperation(value = "修改密码信息", notes = "")
+	@RequestMapping(path = "/changePassword", method = RequestMethod.POST)
+	@ResponseBody
+	public String changePassword(@RequestBody SysUserBaseVo vo) {
+		logger.info("changePassword", SysUserBaseController.class);
+		try {
+			encryptPassword(vo.getInfo());
+			sysUserBaseService.changePassword(vo.getInfo());
+			return "1";
+		} catch (Exception e) {
+			return "0";
+		}
 	}
 }

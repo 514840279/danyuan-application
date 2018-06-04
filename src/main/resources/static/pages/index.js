@@ -1,10 +1,11 @@
-//_history = [];
+_history = [];
 (function($) {
     var menu_data = [];
+//	        console.log(username);
     // 请求数据地址
     var url = "/sysMenuInfo/findzTreeByUser";
     // 请求数据
-    ajaxPost(url, username, loadMenu, 1000, findError);
+    ajaxPost(url, username, loadMenu, null, findError);
     // 加载menu
     function loadMenu(result) {
         // 遍历结果集
@@ -14,12 +15,7 @@
         });
         // console.log(JSON.stringify(result));
         $("a[data-url]").click(function(evt) {
-        	var url = $(this).data("url");
-        	if(url==null||url==""||url=="#"||url=="/"){
-        		url = "/pages/error/404.html";
-        	}
-        	
-	        loadPage(url, $(this).data("id"), $(this).data("name"));
+	        loadPage($(this).data("url"), $(this).data("id"), $(this).data("name"));
 	        $("ul.treeview-menu li").removeClass("active");
 	        $(this).parent().addClass("active");
         });
@@ -31,6 +27,9 @@
         html = '';
         if (item.children.length == 0) {
 	        html = "<li><a href='#' data-url='"+item.url+"' data-id='"+item.id+"' data-name='"+item.name+"' ><i class='"+item.icon+"'></i>" + item.name + "</a></li>";
+	        if(item.homePage){
+	        	loadPage(item.url);
+	        }
         } else {
 	        html = "<li class='treeview'>" + "<a href='#'>" + "<i class='"+item.icon+"'></i>" + "<span>" + item.name + "</span>" + "<span class='pull-right-container'>"
 	        // + "<span class='label label-primary pull-right'>" + item.children.length + "</span>" 
@@ -46,7 +45,20 @@
     
     function findError() {
     };
-    loadPage('pages/remen.html','remen','首页');
+    
+ // 获取屏幕宽度
+	url = "pages/remen.html";
+	
+	modals.openWin({
+    	winId:"show_config_table",
+    	title:'修改分组信息',
+    	width:screen.width-20+'px',
+    	url:url
+    });
+    
+    // 默认显示页面
+	
+//	loadPage('/pages/zhcx/search/chart.html');
     
 //	        $("#tabContainer").tabs({
 //	            data : [ {
@@ -60,7 +72,7 @@
 //	        })
 //	        _history.push('remen');
 })(jQuery);
-        
+
 /**
  * 待改
  * 
@@ -71,7 +83,7 @@
  */
 
 function loadPage(url, id, name, paramter, flag_r) {
-        //         	 console.log("url="+url+",id="+id+",name="+name);
+    //         	 console.log("url="+url+",id="+id+",name="+name);
 //	        if ($("#tabContainer").data("tabs").find(id) != '') {
 //		        if (flag_r != null) {
 //			        $("#tabContainer").data("tabs").reload({
@@ -92,24 +104,24 @@ function loadPage(url, id, name, paramter, flag_r) {
 //		            url : url,
 //		            paramter : paramter
 //		        });
-////		        _history.push(id);
+//		        _history.push(id);
 //	        }
-// 	url =url+ ' body' 	; 
-    $("#mainDiv").load(url, function(response, status, xhr) {
-        if (status == "success") {
-	        if (response) {
-		        try {
-			        var result = jQuery.parseJSON(response);
-			        if (result.code == 100) {
-				        $("#mainDiv").html("");
-				        alert(result.data);
+//	         	url =url+ ' body' 	; 
+        $("#mainDiv").load(url, function(response, status, xhr) {
+	        if (status == "success") {
+		        if (response) {
+			        try {
+				        var result = jQuery.parseJSON(response);
+				        if (result.code == 100) {
+					        $("#mainDiv").html("");
+					        alert(result.data);
+				        }
+			        } catch (e) {
+				        return response;
 			        }
-		        } catch (e) {
-			        return response;
 		        }
 	        }
-        }
-    });
+        });
 }
 
 function removeByValue(arr, val) {
@@ -207,31 +219,6 @@ function getNowFormatDate() {
     var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate + " " + date.getHours() + seperator2 + date.getMinutes() + seperator2 + date.getSeconds();
     return currentdate;
 }
-Date.prototype.format = function(fmt) { 
-    var o = { 
-       "M+" : this.getMonth()+1,                 //月份 
-       "d+" : this.getDate(),                    //日 
-       "h+" : this.getHours(),                   //小时 
-       "m+" : this.getMinutes(),                 //分 
-       "s+" : this.getSeconds(),                 //秒 
-       "q+" : Math.floor((this.getMonth()+3)/3), //季度 
-       "S"  : this.getMilliseconds()             //毫秒 
-   }; 
-   if(/(y+)/.test(fmt)) {
-           fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
-   }
-    for(var k in o) {
-       if(new RegExp("("+ k +")").test(fmt)){
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
-        }
-    }
-   return fmt; 
-}
-
-//日期 时间的格式化
-function dateTimeFormatter(value,row,index){
-	return  new Date(parseInt(value)).toLocaleString(); 
-};
 
 /** ** 错误函数 **** */
 // 错误消息
@@ -239,7 +226,7 @@ function findError(result) {
     window.parent.window.alert(JSON.stringify(result));
     // window.parent.window.alert("出错了");
 };
-        
+
 toastr.options = {
     "closeButton" : false, // 是否显示关闭按钮
     "debug" : false, // 是否使用debug模式
@@ -252,4 +239,9 @@ toastr.options = {
     "hideEasing" : "linear",// 消失时的动画缓冲方式
     "showMethod" : "fadeIn",// 显示时的动画方式
     "hideMethod" : "fadeOut" // 消失时的动画方式
+};
+
+//日期 时间的格式化
+function dateTimeFormatter(value,row,index){
+	return  new Date(parseInt(value)).toLocaleString(); 
 };

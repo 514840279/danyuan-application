@@ -214,10 +214,10 @@ $(function() {
 			$('#upd_userBase_age').val(data[0].age);
 			
 			if(data[0].sex=="男"){
-				$('#upd_userBase_sex[value="男"]').parent().click();
+				$('.upd_userBase_sex[value="男"]').parent().click();
 			}else if(data[0].sex=="女"){
 				console.log(data[0].sex)
-				$('#upd_userBase_sex[value="女"]').parent().click();
+				$('.upd_userBase_sex[value="女"]').parent().click();
 			}
 			$('#upd_userBase_email').val(data[0].email);
 			$('#upd_userBase_phone').val(data[0].phone);
@@ -243,7 +243,7 @@ $(function() {
 				userName:$('#upd_userBase_userName').val(),
 				persionName:$('#upd_userBase_persionName').val(),
 				age:$('#upd_userBase_age').val(),
-				sex:$('#upd_userBase_sex:checked').val(),
+				sex:$('.upd_userBase_sex:checked').val(),
 				email:$('#upd_userBase_email').val(),
 				phone:$('#upd_userBase_phone').val(),
 //				headPic:$('#upd_userBase_headPic').val(),
@@ -263,7 +263,7 @@ $(function() {
 				userName:$('#add_userBase_userName').val(),
 				persionName:$('#add_userBase_persionName').val(),
 				age:$('#add_userBase_age').val(),
-				sex:$('#add_userBase_sex').val(),
+				sex:$('.add_userBase_sex').val(),
 				password:$('#add_userBase_password').val(),
 				email:$('#add_userBase_email').val(),
 				phone:$('#add_userBase_phone').val(),

@@ -69,7 +69,7 @@ $(document).ready(function() {
 
 function loadTree(result) {
 	zNodes = result;
-	console.log(zNodes);
+//	console.log(zNodes);
 	zTreeObj = $.fn.zTree.init($("#ztree"), setting, zNodes);
 	zTree = $.fn.zTree.getZTreeObj("ztree");
 	rMenu = $("#rMenu");

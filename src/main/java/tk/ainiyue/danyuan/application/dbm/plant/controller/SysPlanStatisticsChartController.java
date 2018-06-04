@@ -15,7 +15,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,16 +44,15 @@ import tk.ainiyue.danyuan.application.dbm.plant.service.SysPlantChartDimensionSe
 public class SysPlanStatisticsChartController {
 	//
 	private static final Logger			logger	= LoggerFactory.getLogger(SysPlanStatisticsChartController.class);
-
+	
 	@Autowired
 	SysPlantChartDimensionService		sysPlantChartDimensionService;
 	@Autowired
 	SysPlantChartDimensionDataService	sysPlantChartDimensionDataService;
-	
+
 	@Autowired
-	@Qualifier("secondaryJdbcTemplate")
 	JdbcTemplate						secondaryJdbcTemplate;
-	
+
 	@ApiOperation(value = "构建图形数据", notes = "")
 	@RequestMapping(path = "/build", method = RequestMethod.POST)
 	public Map<String, Object> build(@RequestBody SysPlantChartDimension info) {
@@ -92,11 +90,11 @@ public class SysPlanStatisticsChartController {
 			default:
 				break;
 		}
-		
-		return map;
-		
-	}
 
+		return map;
+
+	}
+	
 	/**
 	 * @param list
 	 * 方法名： buildSunburst
@@ -108,10 +106,10 @@ public class SysPlanStatisticsChartController {
 	 * @throws
 	 */
 	private void buildSunburst(Map<String, Object> map, SysPlantChartDimension info, List<SysPlantChartDimensionData> list) {
-
+		
 		map.put("series_data", "");
 	}
-
+	
 	/**
 	 * @param list
 	 * 方法名： buildTree
@@ -123,9 +121,9 @@ public class SysPlanStatisticsChartController {
 	 * @throws
 	 */
 	private void buildTree(Map<String, Object> map, SysPlantChartDimension info, List<SysPlantChartDimensionData> list) {
-		
-	}
 
+	}
+	
 	/**
 	 * @param list
 	 * 方法名： buildMap
@@ -137,9 +135,9 @@ public class SysPlanStatisticsChartController {
 	 * @throws
 	 */
 	private void buildMap(Map<String, Object> map, SysPlantChartDimension info, List<SysPlantChartDimensionData> list) {
-		
-	}
 
+	}
+	
 	/**
 	 * 方法名： buildBarOrLine
 	 * 功 能： 柱图或线图
@@ -151,9 +149,9 @@ public class SysPlanStatisticsChartController {
 	 * @throws
 	 */
 	private void buildBarOrLine(Map<String, Object> map, SysPlantChartDimension info, List<SysPlantChartDimensionData> list) {
-
+		
 	}
-
+	
 	/**
 	 * @param list
 	 * 方法名： buildPie
@@ -165,6 +163,6 @@ public class SysPlanStatisticsChartController {
 	 * @throws
 	 */
 	private void buildPie(Map<String, Object> map, SysPlantChartDimension info, List<SysPlantChartDimensionData> list) {
-
+		
 	}
 }
