@@ -18,9 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import tk.ainiyue.danyuan.application.dbms.column.vo.SysColumnVo;
 import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
 import tk.ainiyue.danyuan.application.dbms.tabs.service.SysDbmsTabsInfoService;
+import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysColumnVo;
 import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDbmsTabsInfoVo;
 
 /**

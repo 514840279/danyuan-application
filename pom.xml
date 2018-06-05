@@ -88,15 +88,15 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>1.0.20</version>
-		</dependency>
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.alibaba</groupId> -->
+<!-- 			<artifactId>druid</artifactId> -->
+<!-- 			<version>1.0.20</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>joda-time</groupId> -->
+<!-- 			<artifactId>joda-time</artifactId> -->
+<!-- 		</dependency> -->
 		<!-- mysql 数据库驱动. -->
 		<dependency>
 			<groupId>mysql</groupId>

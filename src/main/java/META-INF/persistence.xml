@@ -8,13 +8,13 @@
 		<class>tk.ainiyue.danyuan.application.crawler.task.po.Task</class>
 		<class>tk.ainiyue.danyuan.application.crawler.task.po.TaskRule</class>
 		<class>tk.ainiyue.danyuan.application.crawler.task.po.TaskRulePK</class>
-		<class>tk.ainiyue.danyuan.application.dbms.addr.po.SysDatabaseInfo</class>
-		<class>tk.ainiyue.danyuan.application.dbms.column.po.SysColumnInfo</class>
 		<class>tk.ainiyue.danyuan.application.dbms.chart.po.SysPlantChartDimension</class>
 		<class>tk.ainiyue.danyuan.application.dbms.chart.po.SysPlantChartDimensionData</class>
 		<class>tk.ainiyue.danyuan.application.dbms.chart.po.SysPlantChartDimensionGroup</class>
+		<class>tk.ainiyue.danyuan.application.dbms.tabs.po.SysColumnInfo</class>
+		<class>tk.ainiyue.danyuan.application.dbms.tabs.po.SysDatabaseInfo</class>
 		<class>tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo</class>
-		<class>tk.ainiyue.danyuan.application.dbms.type.po.SysTableTypeInfo</class>
+		<class>tk.ainiyue.danyuan.application.dbms.tabs.po.SysTableTypeInfo</class>
 		<class>tk.ainiyue.danyuan.application.dbms.zhcx.po.SysAdviceMess</class>
 		<class>tk.ainiyue.danyuan.application.dbms.zhcx.po.SysDicUserIndexCode</class>
 		<class>tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxAddr</class>

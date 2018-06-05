@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8"/>
+
+<!-- <link rel="stylesheet" href="/plugins/select2/select2.min.css"/> -->
+<!-- <link rel="stylesheet" href="/plugins/bootstrap/table/bootstrap-table.min.css"/> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/bootstrap-table.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/select2/select2.min.js"></script> -->
+
+</head>
+<body>
+	<!-- 头部设计 -->
+	<section class="content-header">
+		<h1>
+			数据管理 <small>新建字段</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
+			<li><a href="#">数据库设置 </a></li>
+			<li class="active">新建字段</li>
+		</ol>
+	</section>
+	<!-- Main content -->
+	<section class="content">
+		<div class="panel-group" id="accordion_column">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion_column"   href="#accordion_column_collapse">
+							新建字段
+						</a>
+					</h4>
+				</div>
+				<div id="accordion_column_collapse" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<div class="row">
+							<input type="text"  id="upd_column_uuid" name="colsName" th:value="*{sysColumnInfo.uuid}" hidden="hidden"/>
+							<input type="text"  id="upd_column_tableUuid" name="colsName" th:value="*{sysColumnInfo.tableUuid}" hidden="hidden"/>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">字段名:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsName" name="colsName" placeholder="字段名" th:value="*{sysColumnInfo.colsName}"/>
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">字段含义:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsDesc" name="colsDesc" placeholder="字段含义" th:value="*{sysColumnInfo.colsDesc}"/>
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">类型:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsType" name="colsType" placeholder="类型" th:value="*{sysColumnInfo.colsType}"/>
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">长度:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsLength" name="colsLength" placeholder="数据库长度 ，最大 2000" th:value="*{sysColumnInfo.colsLength}"/>
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">排序:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsOrder" name="colsOrder" placeholder="排序，数据由小到大显示列" th:value="*{sysColumnInfo.colsOrder}"/>
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">描述:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_discription" name="discription" placeholder="描述" th:value="*{sysColumnInfo.discription}"/>
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">对齐方式:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsAlign" th:value="*{sysColumnInfo.colsAlign}" name="colsAlign" placeholder="对齐方式：left（靠左）、right（靠右）、center（居中）"/>
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">对齐方式:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsValign" name="colsValign"  th:value="*{sysColumnInfo.colsValign}" placeholder="对齐方式：top（靠上）、middle（居中）、bottom（靠下）"/>
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">列宽:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsWidth" name="colsWidth"  th:value="*{sysColumnInfo.colsWidth}" placeholder="每列的宽度"/>
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">列显示:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsVisible" name="colsVisible"  th:value="*{sysColumnInfo.colsVisible}" placeholder="默认为true显示该列，设为false则不显示"/>
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">选项卡显示:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsSwitchable" name="colsSwitchable" th:value="*{sysColumnInfo.colsSwitchable}" placeholder="默认为true显示该列，设为false则禁用列项目的选项卡"/>
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">选项卡显示:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="upd_column_colsIndex" name="colsIndex" th:value="*{sysColumnInfo.colsIndex}" placeholder="姓名(xm),证件号码(ZJHM),电话号码(DHHM),邮箱(DZYX)。。。。"/>
+								</div>
+							</div>
+							<div class=" col-md-12 text-center">
+								<button class="btn btn-success" id="db_alter_table_add_column_button">
+									<i class="glyphicon glyphicon-ok"></i> 修改
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script type="text/javascript" src="pages/dbms/table/add_column.js"></script>
+</body>
+</html>

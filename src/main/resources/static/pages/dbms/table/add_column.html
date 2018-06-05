@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8">
+
+<!-- <link rel="stylesheet" href="/plugins/select2/select2.min.css"> -->
+<!-- <link rel="stylesheet" href="/plugins/bootstrap/table/bootstrap-table.min.css"> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/bootstrap-table.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/select2/select2.min.js"></script> -->
+
+</head>
+<body>
+	<!-- 头部设计 -->
+	<section class="content-header">
+		<h1>
+			数据管理 <small>新建表</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
+			<li><a href="#">数据库设置 </a></li>
+			<li class="active">新建表</li>
+		</ol>
+	</section>
+	<!-- Main content -->
+	<section class="content">
+		<div class="panel-group" id="accordion_column">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion_column"   href="#accordion_column_collapse">
+							新建字段
+						</a>
+					</h4>
+				</div>
+				<div id="accordion_column_collapse" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<div class="row">
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">字段名:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsName" name="colsName" placeholder="字段名">
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">字段含义:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsDesc" name="colsDesc" placeholder="字段含义">
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">类型:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsType" name="colsType" placeholder="类型">
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">长度:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsLength" name="colsLength" placeholder="数据库长度 ，最大 2000">
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">排序:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsOrder" name="colsOrder" placeholder="数据由小到大显示列">
+								</div>
+							</div>
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">描述:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_discription" name="discription" placeholder="描述">
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">对齐方式:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsAlign" name="colsAlign" placeholder="对齐方式：left（靠左）、right（靠右）、center（居中）">
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">对齐方式:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsValign" name="colsValign" placeholder="对齐方式：top（靠上）、middle（居中）、bottom（靠下）">
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">列宽:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsWidth" name="colsWidth" placeholder="每列的宽度">
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">列显示:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsVisible" name="colsVisible" placeholder="默认为true显示该列，设为false则隐藏该列">
+								</div>
+							</div>
+							
+							<div class=" col-md-6 form-group">
+								<label class="col-sm-2 control-label text-right">选项卡显示:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="add_column_colsSwitchable" name="colsSwitchable" placeholder="默认为true显示该列，设为false则禁用列项目的选项卡">
+								</div>
+							</div>
+							
+							<div class=" col-md-12 text-center">
+								<button class="btn btn-success" id="db_alter_table_add_column_button">
+									<i class="glyphicon glyphicon-ok"></i> 添加
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script type="text/javascript" src="pages/dbms/table/js/add_column.js"></script>
+</body>
+</html>

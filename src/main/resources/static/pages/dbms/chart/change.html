@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8" />
+</head>
+<body id="body">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4 class="modal-title" id="myModalLabel">修改分组</h4>
+	</div>
+	<div class="modal-body row">
+		<!-- Main content -->
+		<section class="content">
+			<div class="box-body row">
+				<form action="" id="chart_dems_form">
+					<div class=" col-md-12 form-group">
+						<label class="col-sm-3 control-label text-right">修改分组:</label>
+						<div class="col-sm-9">
+<!-- 							<input type="text" class="form-control" id="add_sysPlantChartDimension_title" name="title"  th:value="*{sysPlantChartDimensionGroup.title}" placeholder="标题名称" /> -->
+							<select style="width: 100%;" id="change_sysPlantChartDimension_groupUuid" name="groupUuid"></select>
+						</div>
+					</div>
+				</form>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 text-center">
+						 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						 <button type="button" class="btn btn-primary"  onclick="submit_change()">提交</button>
+					</div>
+				</div>
+		</section>
+	</div>
+	<script type="text/javascript" src="/pages/dbms/chart/groupchange.js"></script>
+</body>
+</html>
