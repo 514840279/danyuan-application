@@ -1,13 +1,11 @@
 package tk.ainiyue.danyuan.application.dbms.tabs.dao;
 
-import java.io.Serializable;
-
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import tk.ainiyue.danyuan.application.dbms.tabs.po.SysTableTypeInfo;
+import tk.ainiyue.danyuan.application.common.base.BaseDao;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsTypeInfo;
 
 /**
  * 文件名 ： SysTableTypeDao.java
@@ -19,9 +17,9 @@ import tk.ainiyue.danyuan.application.dbms.tabs.po.SysTableTypeInfo;
  * 时 间 ： 2017年8月3日 下午3:58:14
  * 版 本 ： V1.0
  */
-@Repository("sysTableTypeDao")
+@Repository("sysDbmsTabsTypeInfoDao")
 @DynamicUpdate(true)
 @DynamicInsert(true)
-public interface SysTableTypeDao extends JpaRepository<SysTableTypeInfo, Serializable> {
+public interface SysDbmsTabsTypeInfoDao extends BaseDao<SysDbmsTabsTypeInfo> {
 	
 }

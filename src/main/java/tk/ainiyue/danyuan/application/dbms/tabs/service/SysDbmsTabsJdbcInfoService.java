@@ -4,54 +4,41 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.common.base.BaseService;
-import tk.ainiyue.danyuan.application.dbms.tabs.dao.SysTableTypeDao;
-import tk.ainiyue.danyuan.application.dbms.tabs.po.SysTableTypeInfo;
+import tk.ainiyue.danyuan.application.dbms.tabs.dao.SysDbmsTabsJdbcInfoDao;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsJdbcInfo;
 
 /**
- * 文件名 ： SysTableTypeServiceImpl.java
- * 包 名 ： tk.ainiyue.danyuan.application.dbm.type.service.impl
+ * 文件名 ： SysDatabaseService.java
+ * 包 名 ： tk.ainiyue.danyuan.application.dbm.addr.service.impl
  * 描 述 ： TODO(用一句话描述该文件做什么)
  * 机能名称：
  * 技能ID ：
  * 作 者 ： wang
- * 时 间 ： 2017年8月3日 下午3:58:50
+ * 时 间 ： 2017年8月3日 下午3:47:40
  * 版 本 ： V1.0
  */
-@Service("sysTableTypeService")
-public class SysTableTypeServiceImpl implements BaseService<SysTableTypeInfo> {
+@Service("sysDbmsTabsJdbcInfoService")
+public class SysDbmsTabsJdbcInfoService implements BaseService<SysDbmsTabsJdbcInfo> {
 	//
 	@Autowired
-	private SysTableTypeDao sysTableTypeDao;
-	
-	public List<SysTableTypeInfo> findAll() {
-		return sysTableTypeDao.findAll();
-	}
-	
-	@Override
-	public void save(SysTableTypeInfo info) {
-		sysTableTypeDao.save(info);
+	private SysDbmsTabsJdbcInfoDao sysDbmsTabsJdbcInfoDao;
+
+	public List<SysDbmsTabsJdbcInfo> findAll() {
+		return sysDbmsTabsJdbcInfoDao.findAll();
 	}
 
-	public Page<SysTableTypeInfo> findAllBySearchText(int pageNumber, int pageSize, SysTableTypeInfo sysTableTypeInfo) {
-		Example<SysTableTypeInfo> example = Example.of(sysTableTypeInfo);
-		Sort sort = new Sort(new Order(Direction.DESC, "createTime"));
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
-		Page<SysTableTypeInfo> sourceCodes = sysTableTypeDao.findAll(example, request);
-		return sourceCodes;
+	@Override
+	public void save(SysDbmsTabsJdbcInfo SysDbmsTabsJdbcInfo) {
+		sysDbmsTabsJdbcInfoDao.save(SysDbmsTabsJdbcInfo);
 	}
 	
-	@Override
-	public void delete(List<SysTableTypeInfo> list) {
-		sysTableTypeDao.delete(list);
+	public void deleteSysDbmsTabsJdbcInfo(List<SysDbmsTabsJdbcInfo> list) {
+		sysDbmsTabsJdbcInfoDao.delete(list);
 	}
 	
 	/**
@@ -64,7 +51,7 @@ public class SysTableTypeServiceImpl implements BaseService<SysTableTypeInfo> {
 	 */
 
 	@Override
-	public SysTableTypeInfo findOne(SysTableTypeInfo info) {
+	public SysDbmsTabsJdbcInfo findOne(SysDbmsTabsJdbcInfo info) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -79,7 +66,7 @@ public class SysTableTypeServiceImpl implements BaseService<SysTableTypeInfo> {
 	 */
 
 	@Override
-	public List<SysTableTypeInfo> findAll(SysTableTypeInfo info) {
+	public List<SysDbmsTabsJdbcInfo> findAll(SysDbmsTabsJdbcInfo info) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -98,7 +85,7 @@ public class SysTableTypeServiceImpl implements BaseService<SysTableTypeInfo> {
 	 */
 
 	@Override
-	public Page<SysTableTypeInfo> page(int pageNumber, int pageSize, SysTableTypeInfo info, Map<String, String> map, Order... order) {
+	public Page<SysDbmsTabsJdbcInfo> page(int pageNumber, int pageSize, SysDbmsTabsJdbcInfo info, Map<String, String> map, Order... order) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -112,7 +99,7 @@ public class SysTableTypeServiceImpl implements BaseService<SysTableTypeInfo> {
 	 */
 
 	@Override
-	public void save(List<SysTableTypeInfo> list) {
+	public void save(List<SysDbmsTabsJdbcInfo> list) {
 		// TODO Auto-generated method stub
 
 	}
@@ -126,7 +113,21 @@ public class SysTableTypeServiceImpl implements BaseService<SysTableTypeInfo> {
 	 */
 
 	@Override
-	public void delete(SysTableTypeInfo info) {
+	public void delete(SysDbmsTabsJdbcInfo info) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	/**
+	 * 方法名 ： delete
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param list
+	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#delete(java.util.List)
+	 * 作 者 ： Administrator
+	 */
+
+	@Override
+	public void delete(List<SysDbmsTabsJdbcInfo> list) {
 		// TODO Auto-generated method stub
 
 	}
@@ -144,4 +145,5 @@ public class SysTableTypeServiceImpl implements BaseService<SysTableTypeInfo> {
 		// TODO Auto-generated method stub
 
 	}
+	
 }

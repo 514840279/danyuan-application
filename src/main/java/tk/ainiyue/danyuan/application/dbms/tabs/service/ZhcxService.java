@@ -1,4 +1,4 @@
-package tk.ainiyue.danyuan.application.dbms.zhcx.service;
+package tk.ainiyue.danyuan.application.dbms.tabs.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,8 +11,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import tk.ainiyue.danyuan.application.dbms.tabs.vo.MulteityParam;
 import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxCol;
-import tk.ainiyue.danyuan.application.dbms.zhcx.vo.MulteityParam;
 import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxColVo;
 
 /**

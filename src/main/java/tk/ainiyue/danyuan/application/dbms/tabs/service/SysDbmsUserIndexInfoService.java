@@ -1,4 +1,4 @@
-package tk.ainiyue.danyuan.application.dbms.zhcx.service;
+package tk.ainiyue.danyuan.application.dbms.tabs.service;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
-import tk.ainiyue.danyuan.application.dbms.zhcx.dao.SysDicUserIndexCodeDao;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysDicUserIndexCode;
+import tk.ainiyue.danyuan.application.dbms.tabs.dao.SysDbmsUserIndexInfoDao;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsUserIndexInfo;
 
 /**
  * 文件名 ： SysDicUserIndexCode.java
@@ -25,10 +25,10 @@ import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysDicUserIndexCode;
  * 版 本 ： V1.0
  */
 @Service
-public class SysDicUserIndexCodeService {
+public class SysDbmsUserIndexInfoService {
 	@Autowired
-	private SysDicUserIndexCodeDao sysDicUserIndexCodeDao;
-	
+	private SysDbmsUserIndexInfoDao sysDbmsUserIndexInfoDao;
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -37,10 +37,10 @@ public class SysDicUserIndexCodeService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	public List<SysDicUserIndexCode> findAll() {
-		return sysDicUserIndexCodeDao.findAllByDeleteFlag();
+	public List<SysDbmsUserIndexInfo> findAll() {
+		return sysDbmsUserIndexInfoDao.findAllByDeleteFlag();
 	}
-	
+
 	/**
 	 * 方法名： page
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -52,14 +52,14 @@ public class SysDicUserIndexCodeService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	public Page<SysDicUserIndexCode> page(int pageNumber, int pageSize, SysDicUserIndexCode col) {
-		Example<SysDicUserIndexCode> example = Example.of(col);
+	public Page<SysDbmsUserIndexInfo> page(int pageNumber, int pageSize, SysDbmsUserIndexInfo col) {
+		Example<SysDbmsUserIndexInfo> example = Example.of(col);
 		Sort sort = new Sort(new Order(Direction.ASC, "userOrder"), new Order(Direction.DESC, "createTime"));
 		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
-		Page<SysDicUserIndexCode> sourceCodes = sysDicUserIndexCodeDao.findAll(example, request);
+		Page<SysDbmsUserIndexInfo> sourceCodes = sysDbmsUserIndexInfoDao.findAll(example, request);
 		return sourceCodes;
 	}
-	
+
 	/**
 	 * 方法名： save
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -68,10 +68,10 @@ public class SysDicUserIndexCodeService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	public void save(SysDicUserIndexCode info) {
-		sysDicUserIndexCodeDao.save(info);
+	public void save(SysDbmsUserIndexInfo info) {
+		sysDbmsUserIndexInfoDao.save(info);
 	}
-	
+
 	/**
 	 * 方法名： delete
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -80,10 +80,10 @@ public class SysDicUserIndexCodeService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	public void delete(List<SysDicUserIndexCode> list) {
-		sysDicUserIndexCodeDao.delete(list);
+	public void delete(List<SysDbmsUserIndexInfo> list) {
+		sysDbmsUserIndexInfoDao.delete(list);
 	}
-	
+
 	/**
 	 * 方法名： chartList
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -93,6 +93,6 @@ public class SysDicUserIndexCodeService {
 	 * @throws
 	 */
 	// public List<SysDicUserIndexCode> chartList() {
-	// return sysDicUserIndexCodeDao.findAllByChart();
+	// return sysDbmsUserIndexInfoDao.findAllByChart();
 	// }
 }

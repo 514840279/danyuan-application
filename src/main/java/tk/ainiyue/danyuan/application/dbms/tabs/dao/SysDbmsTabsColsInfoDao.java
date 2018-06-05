@@ -1,13 +1,11 @@
 package tk.ainiyue.danyuan.application.dbms.tabs.dao;
 
-import java.io.Serializable;
-
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import tk.ainiyue.danyuan.application.dbms.tabs.po.SysColumnInfo;
+import tk.ainiyue.danyuan.application.common.base.BaseDao;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
 
 /**
  * 文件名 ： SysColumnDao.java
@@ -22,6 +20,6 @@ import tk.ainiyue.danyuan.application.dbms.tabs.po.SysColumnInfo;
 @Repository("sysColumnDao")
 @DynamicUpdate(true)
 @DynamicInsert(true)
-public interface SysColumnDao extends JpaRepository<SysColumnInfo, Serializable> {
-	
+public interface SysDbmsTabsColsInfoDao extends BaseDao<SysDbmsTabsColsInfo> {
+
 }

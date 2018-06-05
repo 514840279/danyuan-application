@@ -1,4 +1,4 @@
-package tk.ainiyue.danyuan.application.dbms.zhcx.po;
+package tk.ainiyue.danyuan.application.dbms.tabs.po;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,9 +17,9 @@ import org.hibernate.annotations.GenericGenerator;
  * The persistent class for the sys_dic_user_index_code database table.
  */
 @Entity
-@Table(name = "sys_dic_user_index_code")
-@NamedQuery(name = "SysDicUserIndexCode.findAll", query = "SELECT s FROM SysDicUserIndexCode s")
-public class SysDicUserIndexCode implements Serializable {
+@Table(name = "sys_dbms_user_index_info")
+@NamedQuery(name = "SysDbmsUserIndexInfo.findAll", query = "SELECT s FROM SysDbmsUserIndexInfo s")
+public class SysDbmsUserIndexInfo implements Serializable {
 	private static final long	serialVersionUID	= 1L;
 	
 	@Id
@@ -32,40 +32,47 @@ public class SysDicUserIndexCode implements Serializable {
 	
 	@Column(name = "user_index")
 	private String				userIndex;
+
+	@Column(name = "user_placeholder")
+	private String				userPlaceholder;
 	
 	@Column(name = "user_order")
 	private Integer				userOrder;
+	
 	@Column(name = "multeity")
 	private Integer				multeity;
-	@Column(name = "user_placeholder")
-	private String				userPlaceholder;
+	
 	@Column(name = "chart")
 	private Integer				chart;
+
+	@Column(columnDefinition = "varchar(200) COMMENT '资源功能描述'")
+	private String				discription;
+	
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
 	@org.hibernate.annotations.CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				createTime;										// create_time
+	private Date				createTime;					// create_time
 	// 插入时间
 	
 	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String				createUser;										// create_user
+	private String				createUser;					// create_user
 	// 插入人
 	
 	@Column(name = "update_time", columnDefinition = " timestamp  default CURRENT_TIMESTAMP  COMMENT '更新时间'")
 	@Temporal(TemporalType.TIMESTAMP)
 	@org.hibernate.annotations.CreationTimestamp
-	private Date				updateTime;										// updata_time
+	private Date				updateTime;					// updata_time
 	// 更新时间
 	
 	@Column(name = "update_user", columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
-	private String				updateUser;										// updata_user
+	private String				updateUser;					// updata_user
 	// 更新人
 	
 	@Column(name = "delete_flag")
-	private Boolean				deleteFlag;										// delete_flag
+	private Integer				deleteFlag;					// delete_flag
 	// 标记
 	
-	public SysDicUserIndexCode() {
+	public SysDbmsUserIndexInfo() {
 	}
 	
 	public String getUuid() {
@@ -177,23 +184,6 @@ public class SysDicUserIndexCode implements Serializable {
 		this.updateUser = updateUser;
 	}
 	
-	/**
-	 * 方法名 ： getDeleteFlag
-	 * 功 能 ： 返回变量 deleteFlag 的值
-	 * @return: Boolean
-	 */
-	public Boolean getDeleteFlag() {
-		return deleteFlag;
-	}
-	
-	/**
-	 * 方法名 ： setDeleteFlag
-	 * 功 能 ： 设置变量 deleteFlag 的值
-	 */
-	public void setDeleteFlag(Boolean deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}
-	
 	public Integer getMulteity() {
 		return multeity;
 	}
@@ -216,6 +206,53 @@ public class SysDicUserIndexCode implements Serializable {
 	
 	public void setChart(Integer chart) {
 		this.chart = chart;
+	}
+
+	/**
+	 * 方法名 ： getDiscription
+	 * 功 能 ： 返回变量 discription 的值
+	 * @return: String
+	 */
+	public String getDiscription() {
+		return discription;
+	}
+
+	/**
+	 * 方法名 ： setDiscription
+	 * 功 能 ： 设置变量 discription 的值
+	 */
+	public void setDiscription(String discription) {
+		this.discription = discription;
+	}
+
+	/**
+	 * 方法名 ： getDeleteFlag
+	 * 功 能 ： 返回变量 deleteFlag 的值
+	 * @return: Integer
+	 */
+	public Integer getDeleteFlag() {
+		return deleteFlag;
+	}
+
+	/**
+	 * 方法名 ： setDeleteFlag
+	 * 功 能 ： 设置变量 deleteFlag 的值
+	 */
+	public void setDeleteFlag(Integer deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
+	
+	/**
+	 * 方法名 ： toString
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @return
+	 * 参 考 ： @see java.lang.Object#toString()
+	 * 作 者 ： Administrator
+	 */
+
+	@Override
+	public String toString() {
+		return "SysDicUserIndexCode [uuid=" + uuid + ", userDesc=" + userDesc + ", userIndex=" + userIndex + ", userPlaceholder=" + userPlaceholder + ", userOrder=" + userOrder + ", multeity=" + multeity + ", chart=" + chart + ", discription=" + discription + ", createTime=" + createTime + ", createUser=" + createUser + ", updateTime=" + updateTime + ", updateUser=" + updateUser + ", deleteFlag=" + deleteFlag + "]";
 	}
 	
 }

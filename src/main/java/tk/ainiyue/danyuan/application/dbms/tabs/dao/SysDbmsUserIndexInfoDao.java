@@ -1,15 +1,14 @@
-package tk.ainiyue.danyuan.application.dbms.zhcx.dao;
+package tk.ainiyue.danyuan.application.dbms.tabs.dao;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysDicUserIndexCode;
+import tk.ainiyue.danyuan.application.common.base.BaseDao;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsUserIndexInfo;
 
 /**
  * 文件名 ： SysDicUserIndexCodeDao.java
@@ -21,11 +20,11 @@ import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysDicUserIndexCode;
  * 时 间 ： 2018年3月8日 下午1:48:02
  * 版 本 ： V1.0
  */
-@Repository("sysDicUserIndexCodeDao")
+@Repository("sysDbmsUserIndexInfoDao")
 @DynamicUpdate(true)
 @DynamicInsert(true)
-public interface SysDicUserIndexCodeDao extends JpaRepository<SysDicUserIndexCode, Serializable> {
-	
+public interface SysDbmsUserIndexInfoDao extends BaseDao<SysDbmsUserIndexInfo> {
+
 	/**
 	 * 方法名： findAllByDeleteFlag
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -34,7 +33,7 @@ public interface SysDicUserIndexCodeDao extends JpaRepository<SysDicUserIndexCod
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	@Query("select t from SysDicUserIndexCode t where t.deleteFlag =1 order by userOrder ")
-	List<SysDicUserIndexCode> findAllByDeleteFlag();
-	
+	@Query("select t from SysDbmsUserIndexInfo t where t.deleteFlag =1 order by userOrder ")
+	List<SysDbmsUserIndexInfo> findAllByDeleteFlag();
+
 }

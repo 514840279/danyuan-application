@@ -1,4 +1,4 @@
-package tk.ainiyue.danyuan.application.dbms.zhcx.service;
+package tk.ainiyue.danyuan.application.dbms.tabs.service;
 
 import java.util.List;
 import java.util.Map;
@@ -9,11 +9,11 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.common.base.BaseService;
-import tk.ainiyue.danyuan.application.dbms.zhcx.dao.SysAdviceMessDao;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysAdviceMess;
+import tk.ainiyue.danyuan.application.dbms.tabs.dao.SysDbmsAdviMessInfoDao;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsAdviMessInfo;
 
 /**
- * 文件名 ： SysAdviceMessService.java
+ * 文件名 ： SysDbmsAdviMessInfoService.java
  * 包 名 ： com.shumeng.application.application.zhcx.service
  * 描 述 ： TODO(用一句话描述该文件做什么)
  * 机能名称：
@@ -23,9 +23,9 @@ import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysAdviceMess;
  * 版 本 ： V1.0
  */
 @Service
-public class SysAdviceMessService implements BaseService<SysAdviceMess> {
+public class SysDbmsAdviMessInfoService implements BaseService<SysDbmsAdviMessInfo> {
 	@Autowired
-	SysAdviceMessDao sysAdviceMessDao;
+	SysDbmsAdviMessInfoDao sysDbmsAdviMessInfoDao;
 	
 	/**
 	 * 方法名 ： findOne
@@ -37,7 +37,7 @@ public class SysAdviceMessService implements BaseService<SysAdviceMess> {
 	 */
 	
 	@Override
-	public SysAdviceMess findOne(SysAdviceMess info) {
+	public SysDbmsAdviMessInfo findOne(SysDbmsAdviMessInfo info) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -52,9 +52,9 @@ public class SysAdviceMessService implements BaseService<SysAdviceMess> {
 	 */
 	
 	@Override
-	public List<SysAdviceMess> findAll(SysAdviceMess info) {
+	public List<SysDbmsAdviMessInfo> findAll(SysDbmsAdviMessInfo info) {
 		
-		return sysAdviceMessDao.findByDeleteFlag(false);
+		return sysDbmsAdviMessInfoDao.findByDeleteFlag(0);
 	}
 	
 	/**
@@ -66,7 +66,7 @@ public class SysAdviceMessService implements BaseService<SysAdviceMess> {
 	 */
 	
 	@Override
-	public void save(SysAdviceMess info) {
+	public void save(SysDbmsAdviMessInfo info) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -80,7 +80,7 @@ public class SysAdviceMessService implements BaseService<SysAdviceMess> {
 	 */
 	
 	@Override
-	public void save(List<SysAdviceMess> list) {
+	public void save(List<SysDbmsAdviMessInfo> list) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -94,7 +94,7 @@ public class SysAdviceMessService implements BaseService<SysAdviceMess> {
 	 */
 	
 	@Override
-	public void delete(SysAdviceMess info) {
+	public void delete(SysDbmsAdviMessInfo info) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -108,7 +108,7 @@ public class SysAdviceMessService implements BaseService<SysAdviceMess> {
 	 */
 	
 	@Override
-	public void delete(List<SysAdviceMess> list) {
+	public void delete(List<SysDbmsAdviMessInfo> list) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -128,7 +128,7 @@ public class SysAdviceMessService implements BaseService<SysAdviceMess> {
 	}
 	
 	@Override
-	public Page<SysAdviceMess> page(int pageNumber, int pageSize, SysAdviceMess info, Map<String, String> map, Order... order) {
+	public Page<SysDbmsAdviMessInfo> page(int pageNumber, int pageSize, SysDbmsAdviMessInfo info, Map<String, String> map, Order... order) {
 		// TODO Auto-generated method stub
 		return null;
 	}

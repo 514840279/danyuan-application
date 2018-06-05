@@ -1,4 +1,4 @@
-package tk.ainiyue.danyuan.application.dbms.zhcx.controller;
+package tk.ainiyue.danyuan.application.dbms.tabs.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,15 +20,15 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysDicUserIndexCode;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsUserIndexInfo;
+import tk.ainiyue.danyuan.application.dbms.tabs.service.SysDbmsUserIndexInfoService;
+import tk.ainiyue.danyuan.application.dbms.tabs.service.ZhcxService;
 import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxCol;
 import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxTab;
 import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxType;
-import tk.ainiyue.danyuan.application.dbms.zhcx.service.SysDicUserIndexCodeService;
 import tk.ainiyue.danyuan.application.dbms.zhcx.service.SysZhcxColService;
 import tk.ainiyue.danyuan.application.dbms.zhcx.service.SysZhcxTabService;
 import tk.ainiyue.danyuan.application.dbms.zhcx.service.SysZhcxTypeService;
-import tk.ainiyue.danyuan.application.dbms.zhcx.service.ZhcxService;
 import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxColVo;
 import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxTabVo;
 
@@ -46,26 +46,26 @@ import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxTabVo;
 @RequestMapping("/zhcx")
 @Api(value = "/zhcx", description = "综合查询业务")
 public class ZhcxController {
-	
+
 	private static final Logger	logger	= LoggerFactory.getLogger(ZhcxController.class);
-	
+
 	//
 	@Autowired
 	private SysZhcxTypeService	sysZhcxTypeService;
-	
+
 	//
 	@Autowired
 	private SysZhcxTabService	sysZhcxTabService;
-	
+
 	//
 	@Autowired
 	private SysZhcxColService	sysZhcxColService;
 	@Autowired
-	SysDicUserIndexCodeService	sysDicUserIndexCodeService;
-	
+	SysDbmsUserIndexInfoService	sysDbmsUserIndexInfoService;
+
 	@Autowired
 	private ZhcxService			zhcxService;
-	
+
 	@ApiOperation(value = "查询前500数据库表管理信息", notes = "")
 	@RequestMapping(path = "/findAllTableRow", method = { RequestMethod.GET, RequestMethod.POST })
 	public Map<String, Object> findAllTableRow(@RequestBody SysZhcxColVo vo) throws JsonParseException, JsonMappingException, IOException {
@@ -84,19 +84,19 @@ public class ZhcxController {
 		}
 		return map;
 	}
-	
+
 	@ApiOperation(value = "一键查询前", notes = "")
 	@RequestMapping(path = "/forwardYjcx", method = RequestMethod.POST)
 	public ModelAndView forwardYjcx(SysZhcxTabVo vo) {
 		logger.info("forwardYjcx", ZhcxController.class);
 		ModelAndView view = new ModelAndView("zhcx/search/yjcx");
-		List<SysDicUserIndexCode> list = sysDicUserIndexCodeService.findAll();
+		List<SysDbmsUserIndexInfo> list = sysDbmsUserIndexInfoService.findAll();
 		view.addObject("type", vo.getType());
 		view.addObject("list", list);
 		view.addObject("paramString", vo.getParamString());
 		return view;
 	}
-	
+
 	@ApiOperation(value = "类型查询", notes = "")
 	@RequestMapping(path = "/findAllType", method = RequestMethod.POST)
 	public List<SysZhcxType> findAllType(String username) {
@@ -104,7 +104,7 @@ public class ZhcxController {
 		List<SysZhcxType> list = sysZhcxTypeService.findAllType(username);
 		return list;
 	}
-	
+
 	@ApiOperation(value = "表名查询", notes = "")
 	@RequestMapping(path = "/findAllTable", method = RequestMethod.POST)
 	public List<SysZhcxTab> findAllTable(@RequestBody SysZhcxTabVo vo) {
@@ -116,7 +116,7 @@ public class ZhcxController {
 			return new ArrayList<SysZhcxTab>();
 		}
 	}
-	
+
 	@ApiOperation(value = "表名查询", notes = "")
 	@RequestMapping(path = "/findAllTableByTypeUuid", method = RequestMethod.POST)
 	public List<SysZhcxTab> findAllTableByTypeUuid(@RequestBody SysZhcxTabVo vo) {
@@ -124,7 +124,7 @@ public class ZhcxController {
 		List<SysZhcxTab> list = sysZhcxTabService.findAllByTypeUuid(vo);
 		return list;
 	}
-	
+
 	@ApiOperation(value = "表名查询", notes = "")
 	@RequestMapping(path = "/findAllColumn", method = RequestMethod.POST)
 	public List<SysZhcxCol> findAllColumn(@RequestBody SysZhcxColVo vo) {
@@ -133,7 +133,7 @@ public class ZhcxController {
 		List<SysZhcxCol> list = sysZhcxColService.findAllColumn(vo);
 		return list;
 	}
-	
+
 	@ApiOperation(value = "一键查询前", notes = "")
 	@RequestMapping(path = "/forwardZhlb", method = RequestMethod.POST)
 	public ModelAndView forwardZhlb(SysZhcxTabVo vo) {
@@ -149,7 +149,7 @@ public class ZhcxController {
 		view.addObject("paramString", vo.getParamString());
 		return view;
 	}
-	
+
 	@ApiOperation(value = "详细展示", notes = "")
 	@RequestMapping(path = "/forwardZhxx", method = RequestMethod.POST)
 	public ModelAndView forwardZhxx(SysZhcxColVo vo) {
@@ -161,7 +161,7 @@ public class ZhcxController {
 		view.addObject("paramString", vo.getParamString());
 		return view;
 	}
-	
+
 	@ApiOperation(value = "详细展示", notes = "")
 	@RequestMapping(path = "/forwardChart", method = RequestMethod.POST)
 	public ModelAndView forwardChart(SysZhcxColVo vo) {
@@ -170,5 +170,5 @@ public class ZhcxController {
 		view.addObject("paramString", vo.getParamString());
 		return view;
 	}
-	
+
 }

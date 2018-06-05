@@ -65,13 +65,15 @@ $(function() {
 		sidePagination: "client", // 服务端处理分页
 		columns : [
 			{title : '全选',	checkbox : true,align : 'center',valign : 'middle'},
-			{title : 'id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle'},
-			{title : 'ip',field : 'address',sortable : true,align : 'center'},
-			{title : '端口',field : 'port',align : 'center',sortable : true,valign : 'middle'},
+			{title : 'id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle',visible:false},
+			{title : '数据库名',field : 'databaseName',sortable : true,align : 'center',valign : 'middle'},
 			{title : '数据库类型',field : 'type',align : 'center',sortable : true,valign : 'middle'},
+			{title : 'ip',field : 'ip',sortable : true,align : 'center'},
+			{title : '端口',field : 'port',align : 'center',sortable : true,valign : 'middle'},
 			{title : '用户名',field : 'username',align : 'center',sortable : true,valign : 'middle'},
-			{title : '密码',field : 'password',sortable : true,align : 'center'},
-			{title : '数据库名',field : 'databaseName',sortable : true,align : 'center'}
+			{title : '密码',field : 'password',sortable : true,align : 'center',valign : 'middle'},
+			{title : '描述',field : 'discription',sortable : true,align : 'center',valign : 'middle'},
+			{title : '状态',field : 'deleteFlag',sortable : true,align : 'center',valign : 'middle'},
 		]
 	});
 	// 窗口大小改变时 重设表头

@@ -16,13 +16,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.common.base.BaseService;
-import tk.ainiyue.danyuan.application.dbms.tabs.dao.SysColumnDao;
+import tk.ainiyue.danyuan.application.dbms.tabs.dao.SysDbmsTabsColsInfoDao;
 import tk.ainiyue.danyuan.application.dbms.tabs.dao.SysDbmsTabsInfoDao;
-import tk.ainiyue.danyuan.application.dbms.tabs.po.SysColumnInfo;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
 import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
 
 /**
- * 文件名 ： SysColumnServiceImpl.java
+ * 文件名 ： SysDbmsTabsColsInfoService.java
  * 包 名 ： tk.ainiyue.danyuan.application.dbm.column.service.impl
  * 描 述 ： TODO(用一句话描述该文件做什么)
  * 机能名称：
@@ -31,26 +31,27 @@ import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
  * 时 间 ： 2017年8月3日 下午3:52:36
  * 版 本 ： V1.0
  */
-@Service("sysColumnService")
-public class SysColumnServiceImpl implements BaseService<SysColumnInfo> {
-	private static final Logger	logger	= LoggerFactory.getLogger(SysColumnServiceImpl.class);
+@Service("sysDbmsTabsColsInfoService")
+public class SysDbmsTabsColsInfoService implements BaseService<SysDbmsTabsColsInfo> {
+	private static final Logger		logger	= LoggerFactory.getLogger(SysDbmsTabsColsInfoService.class);
 	//
 	@Autowired
-	private SysColumnDao		sysColumnDao;
+	private SysDbmsTabsColsInfoDao	sysDbmsTabsColsInfoDao;
 	@Autowired
-	private SysDbmsTabsInfoDao	sysDbmsTabsInfoDao;
+	private SysDbmsTabsInfoDao		sysDbmsTabsInfoDao;
 	@Autowired
-	JdbcTemplate				jdbcTemplate;
+	JdbcTemplate					jdbcTemplate;
 
 	// 分页查询
-	public Page<SysColumnInfo> findAllByTableUuid(int pageNumber, int pageSize, String searchText, String tableUuid) {
-		logger.info(tableUuid, SysColumnServiceImpl.class);
-		// Page<SysColumnInfo> list = sysColumnDao.findAllByTableUuid(tableUuid);
-		SysColumnInfo info = new SysColumnInfo(tableUuid);
-		Example<SysColumnInfo> example = Example.of(info);
+	public Page<SysDbmsTabsColsInfo> findAllByTableUuid(int pageNumber, int pageSize, String searchText, String tableUuid) {
+		logger.info(tableUuid, SysDbmsTabsColsInfoService.class);
+		// Page<SysDbmsTabsColsInfo> list = sysDbmsTabsColsInfoDao.findAllByTableUuid(tableUuid);
+		SysDbmsTabsColsInfo info = new SysDbmsTabsColsInfo();
+		info.setTabsUuid(tableUuid);
+		Example<SysDbmsTabsColsInfo> example = Example.of(info);
 		Sort sort = new Sort(new Order(Direction.ASC, "colsOrder"));
 		PageRequest request = this.buildPageRequest(pageNumber, pageSize, sort);
-		Page<SysColumnInfo> sourceCodes = sysColumnDao.findAll(example, request);
+		Page<SysDbmsTabsColsInfo> sourceCodes = sysDbmsTabsColsInfoDao.findAll(example, request);
 		return sourceCodes;
 
 	}
@@ -62,10 +63,10 @@ public class SysColumnServiceImpl implements BaseService<SysColumnInfo> {
 
 	// 更新
 	@Override
-	public void save(SysColumnInfo info) {
+	public void save(SysDbmsTabsColsInfo info) {
 		try {
-			SysDbmsTabsInfo tab = sysDbmsTabsInfoDao.findOne(info.getTableUuid());
-			SysColumnInfo old = sysColumnDao.findOne(info.getUuid());
+			SysDbmsTabsInfo tab = sysDbmsTabsInfoDao.findOne(info.getTabsUuid());
+			SysDbmsTabsColsInfo old = sysDbmsTabsColsInfoDao.findOne(info.getUuid());
 			if (old != null) {
 				String sql = "alter table " + tab.getTabsName() + " CHANGE " + old.getColsName() + " " + info.getColsName() + " " + info.getColsType() + "(" + info.getColsLength() + ")";
 				jdbcTemplate.execute(sql);
@@ -75,32 +76,32 @@ public class SysColumnServiceImpl implements BaseService<SysColumnInfo> {
 				jdbcTemplate.execute(sql);
 			}
 		} finally {
-			sysColumnDao.save(info);
+			sysDbmsTabsColsInfoDao.save(info);
 
 		}
 	}
 
-	public void deleteSysColumnInfo(List<SysColumnInfo> list) {
+	public void deleteSysDbmsTabsColsInfo(List<SysDbmsTabsColsInfo> list) {
 
-		SysDbmsTabsInfo tab = sysDbmsTabsInfoDao.findOne(list.get(0).getTableUuid());
-		for (SysColumnInfo sysColumnInfo : list) {
+		SysDbmsTabsInfo tab = sysDbmsTabsInfoDao.findOne(list.get(0).getTabsUuid());
+		for (SysDbmsTabsColsInfo SysDbmsTabsColsInfo : list) {
 			try {
 				// alter table user DROP COLUMN new2;
-				String sql = "alter table " + tab.getTabsName() + " DROP COLUMN " + sysColumnInfo.getColsName();
+				String sql = "alter table " + tab.getTabsName() + " DROP COLUMN " + SysDbmsTabsColsInfo.getColsName();
 				jdbcTemplate.execute(sql);
 			} finally {
-				sysColumnDao.delete(sysColumnInfo);
+				sysDbmsTabsColsInfoDao.delete(SysDbmsTabsColsInfo);
 			}
 		}
 	}
 
-	public List<SysColumnInfo> findAllBySysColumnInfo(SysColumnInfo info) {
-		Example<SysColumnInfo> example = Example.of(info);
-		return sysColumnDao.findAll(example);
+	public List<SysDbmsTabsColsInfo> findAllBySysDbmsTabsColsInfo(SysDbmsTabsColsInfo info) {
+		Example<SysDbmsTabsColsInfo> example = Example.of(info);
+		return sysDbmsTabsColsInfoDao.findAll(example);
 	}
 
-	public void saveSysColumnInfo(List<SysColumnInfo> list) {
-		sysColumnDao.save(list);
+	public void saveSysDbmsTabsColsInfo(List<SysDbmsTabsColsInfo> list) {
+		sysDbmsTabsColsInfoDao.save(list);
 	}
 
 	/**
@@ -113,7 +114,7 @@ public class SysColumnServiceImpl implements BaseService<SysColumnInfo> {
 	 */
 	
 	@Override
-	public SysColumnInfo findOne(SysColumnInfo info) {
+	public SysDbmsTabsColsInfo findOne(SysDbmsTabsColsInfo info) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -128,7 +129,7 @@ public class SysColumnServiceImpl implements BaseService<SysColumnInfo> {
 	 */
 	
 	@Override
-	public List<SysColumnInfo> findAll(SysColumnInfo info) {
+	public List<SysDbmsTabsColsInfo> findAll(SysDbmsTabsColsInfo info) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -147,7 +148,7 @@ public class SysColumnServiceImpl implements BaseService<SysColumnInfo> {
 	 */
 	
 	@Override
-	public Page<SysColumnInfo> page(int pageNumber, int pageSize, SysColumnInfo info, Map<String, String> map, Order... order) {
+	public Page<SysDbmsTabsColsInfo> page(int pageNumber, int pageSize, SysDbmsTabsColsInfo info, Map<String, String> map, Order... order) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -161,7 +162,7 @@ public class SysColumnServiceImpl implements BaseService<SysColumnInfo> {
 	 */
 	
 	@Override
-	public void save(List<SysColumnInfo> list) {
+	public void save(List<SysDbmsTabsColsInfo> list) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -175,7 +176,7 @@ public class SysColumnServiceImpl implements BaseService<SysColumnInfo> {
 	 */
 	
 	@Override
-	public void delete(SysColumnInfo info) {
+	public void delete(SysDbmsTabsColsInfo info) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -189,7 +190,7 @@ public class SysColumnServiceImpl implements BaseService<SysColumnInfo> {
 	 */
 	
 	@Override
-	public void delete(List<SysColumnInfo> list) {
+	public void delete(List<SysDbmsTabsColsInfo> list) {
 		// TODO Auto-generated method stub
 		
 	}

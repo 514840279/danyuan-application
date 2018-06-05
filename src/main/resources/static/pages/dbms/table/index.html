@@ -27,50 +27,59 @@
 
 	<!-- Main content -->
 	<section class="content">
-		<div class="panel-group" id="accordionTable">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordionTable" href="#collapseTable"> 点击查询 </a>
-					</h4>
-				</div>
-				<div id="collapseTable" class="panel-collapse collapse in">
-					<div class="panel-body">
-						<div class="row">
-							<div class=" col-md-6 form-group">
-								<label class="col-sm-2 control-label text-right">表名:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="search_table_tableName" name="type" placeholder="数据库表名">
-								</div>
-							</div>
-							<div class=" col-md-6 form-group">
-								<label class="col-sm-2 control-label text-right">表含义:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="search_table_tableDesc" name="type" placeholder="数据库表含义">
-								</div>
-							</div>
-							<div class=" col-md-6 form-group">
-								<label class="col-sm-2 control-label text-right">数据库:</label>
-								<div class="col-sm-10">
-									<select style="width: 100%;" id="search_table_addrName"></select>
-								</div>
-							</div>
-							<div class=" col-md-6 form-group">
-								<label class="col-sm-2 control-label text-right">类型:</label>
-								<div class="col-sm-10">
-									<select style="width: 100%;" id="search_table_typeName"></select>
-								</div>
-							</div>
-							<div class=" col-md-12 text-center">
-								<button class="btn btn-success">
-									<i class="fa fa-search"></i> 查询
-								</button>
-							</div>
+		<div class="box box-default">
+	        <div class="box-header with-border">
+	          <h3 class="box-title">条件筛选</h3>
+	
+	          <div class="box-tools pull-right">
+	            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+	            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+	          </div>
+	        </div>
+	        <!-- /.box-header -->
+	        <div class="box-body">
+				<div class="row">
+					<div class=" col-md-6 form-group">
+						<label class="col-sm-2 control-label text-right">表名:</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="search_table_tableName" name="type" placeholder="数据库表名">
 						</div>
 					</div>
+					<div class=" col-md-6 form-group">
+						<label class="col-sm-2 control-label text-right">表含义:</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="search_table_tableDesc" name="type" placeholder="数据库表含义">
+						</div>
+					</div>
+					<div class=" col-md-6 form-group">
+						<label class="col-sm-2 control-label text-right">数据库:</label>
+						<div class="col-sm-10">
+							<select style="width: 100%;" id="search_table_addrName"></select>
+						</div>
+					</div>
+					<div class=" col-md-6 form-group">
+						<label class="col-sm-2 control-label text-right">类型:</label>
+						<div class="col-sm-10">
+							<select style="width: 100%;" id="search_table_typeName"></select>
+						</div>
+					</div>
+					
 				</div>
-			</div>
-		</div>
+	
+	        </div>
+	        <!-- /.box-body -->
+	        <div class="box-footer">
+	<!--           Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about -->
+	<!--           the plugin. -->
+				<div class=" col-md-12 text-center">
+					<button class="btn btn-success">
+						<i class="fa fa-search"></i> 查询
+					</button>
+				</div>
+	        </div>
+	      </div>
+	
+	
 
 		<div class="box">
 			<div class="box-header with-border">
@@ -85,24 +94,24 @@
 			<div class="box-body">
 				<div id="db_table_toolbar">
 					<div class="btn-group">
-						<button type="button" class="btn btn-success" id="addnew_table">
+						<button type="button" class="btn btn-default" id="addnew_table">
 							<i class="glyphicon glyphicon-plus"></i> 新建表
 						</button>
-						<button type="button" class="btn btn-info" id="editold_table">
+						<button type="button" class="btn btn-default" id="editold_table">
 							<i class=" glyphicon glyphicon-pencil"></i> 编辑表
 						</button>
-						<button type="button" class="btn btn-danger" id="drop_table">
+						<button type="button" class="btn btn-default" id="drop_table">
 							<i class="glyphicon glyphicon-remove"></i> 删除表
 						</button>
 					</div>
 					<div class="btn-group">
-						<button type="button" class="btn btn-info" id="editold_table_column">
+						<button type="button" class="btn btn-default" id="editold_table_column">
 							<i class=" glyphicon glyphicon-pencil"></i> 编辑列 
 						</button>
-						<button type="button" class="btn btn-danger" id="deleteold_table">
+						<button type="button" class="btn btn-default" id="deleteold_table">
 							<i class="glyphicon glyphicon-trash"></i> 清空表
 						</button>
-						<button type="button" class="btn btn-warning" id="analysis_table">
+						<button type="button" class="btn btn-default" id="analysis_table">
 							<i class="fa fa-gear"></i> 分析表
 						</button>
 					</div>

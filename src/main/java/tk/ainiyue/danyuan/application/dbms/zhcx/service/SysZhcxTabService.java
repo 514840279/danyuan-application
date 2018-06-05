@@ -19,11 +19,11 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import tk.ainiyue.danyuan.application.dbms.tabs.vo.MulteityParam;
 import tk.ainiyue.danyuan.application.dbms.zhcx.dao.SysZhcxTabDao;
 import tk.ainiyue.danyuan.application.dbms.zhcx.dao.VSysZhcxTabDao;
 import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxTab;
 import tk.ainiyue.danyuan.application.dbms.zhcx.po.VSysZhcxTab;
-import tk.ainiyue.danyuan.application.dbms.zhcx.vo.MulteityParam;
 import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxTabVo;
 
 @Service

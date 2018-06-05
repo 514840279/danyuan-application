@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tk.ainiyue.danyuan.application.common.base.Pagination;
+import tk.ainiyue.danyuan.application.dbms.tabs.vo.MulteityParam;
 import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxTab;
 
 public class SysZhcxTabVo extends Pagination<SysZhcxTab> {

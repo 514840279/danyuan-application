@@ -18,31 +18,61 @@ import org.springframework.format.annotation.DateTimeFormat;
  * The persistent class for the sys_column_info database table.
  */
 @Entity
-@Table(name = "sys_column_info")
-@NamedQuery(name = "SysColumnInfo.findAll", query = "SELECT s FROM SysColumnInfo s")
-public class SysColumnInfo implements Serializable {
+@Table(name = "sys_dbms_tabs_cols_info")
+@NamedQuery(name = "SysColumnInfo.findAll", query = "SELECT s FROM SysDbmsTabsColsInfo s")
+public class SysDbmsTabsColsInfo implements Serializable {
 	private static final long	serialVersionUID	= 1L;
 
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = " uuid ")
 	@Column(unique = true, nullable = false, columnDefinition = " varchar(36) COMMENT '主键'")
 	private String				uuid;
+	
+	@Column(name = "tabs_uuid", columnDefinition = " varchar(36) COMMENT '表id'")
+	private String				tabsUuid;
+	
+	@Column(name = "cols_name", columnDefinition = " varchar(30) COMMENT '字段名'")
+	private String				colsName;
+	
+	@Column(name = "cols_desc", columnDefinition = " varchar(50) COMMENT '字段含义'")
+	private String				colsDesc;
+	
+	@Column(name = "cols_type", columnDefinition = " varchar(30) COMMENT '字段类型（varchar,number,text）'")
+	private String				colsType;
 
 	@Column(name = "cols_length", columnDefinition = " int COMMENT '字段长度'")
 	private Integer				colsLength;
-
-	@Column(name = "cols_desc", columnDefinition = " varchar(50) COMMENT '字段含义'")
-	private String				colsDesc;
-
-	@Column(name = "cols_name", columnDefinition = " varchar(30) COMMENT '字段名'")
-	private String				colsName;
+	
+	@Column(name = "page_list", columnDefinition = " int COMMENT '字段列表展示隐藏'")
+	private Integer				pageList;
 
 	@Column(name = "cols_order", columnDefinition = " int COMMENT '字段顺序'")
 	private Integer				colsOrder;
 
-	@Column(name = "cols_type", columnDefinition = " varchar(30) COMMENT '字段类型（varchar,number,text）'")
-	private String				colsType;
+	@Column(name = "cols_align", columnDefinition = " varchar(36) default 'center' COMMENT '对齐方式'")
+	private String				colsAlign;
+	
+	@Column(name = "cols_valign", columnDefinition = " varchar(36) default 'middle' COMMENT '对齐方式'")
+	private String				colsValign;
+	
+	@Column(name = "cols_width", columnDefinition = " varchar(36) default 150 COMMENT '每列的宽度'")
+	private String				colsWidth;
 
+	@Column(name = "cols_visible", columnDefinition = " varchar(36) default 1 COMMENT '默认为true显示该列，设为false则隐藏该列'")
+	private Boolean				colsVisible;
+
+	@Column(name = "cols_switchable", columnDefinition = " varchar(36) default 1 COMMENT '默认为true显示该列，设为false则禁用列项目的选项卡。'")
+	private Boolean				colsSwitchable;
+
+	@Column(name = "user_index", columnDefinition = " varchar(10) COMMENT '用户查询列配置'")
+	private String				userIndex;
+	
+	@Column(name = "user_icon", columnDefinition = " varchar(10) COMMENT '用户查询显示图标'")
+	private String				userIcon;
+
+	@Column(columnDefinition = " varchar(200) COMMENT '资源功能描述'")
+	private String				discription;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
@@ -50,16 +80,7 @@ public class SysColumnInfo implements Serializable {
 	
 	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
 	private String				createUser;
-
-	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer				deleteFlag;
-
-	@Column(columnDefinition = " varchar(200) COMMENT '资源功能描述'")
-	private String				discription;
-
-	@Column(name = "table_uuid", columnDefinition = " varchar(36) COMMENT '表id'")
-	private String				tableUuid;
-
+	
 	@Column(name = "update_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP   COMMENT '更新时间'")
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
@@ -68,28 +89,10 @@ public class SysColumnInfo implements Serializable {
 	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
 	private String				updateUser;					// updata_user 更新人
 
-	@Column(name = "cols_align", columnDefinition = " varchar(36) COMMENT '对齐方式'")
-	private String				colsAlign;
+	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
+	private Integer				deleteFlag;
 	
-	@Column(name = "cols_valign", columnDefinition = " varchar(36) COMMENT '对齐方式'")
-	private String				colsValign;
-	
-	@Column(name = "cols_width", columnDefinition = " varchar(36) COMMENT '每列的宽度'")
-	private String				colsWidth;
-
-	@Column(name = "cols_visible", columnDefinition = " varchar(36) COMMENT '默认为true显示该列，设为false则隐藏该列'")
-	private Boolean				colsVisible;
-
-	@Column(name = "cols_switchable", columnDefinition = " varchar(36) COMMENT '默认为true显示该列，设为false则禁用列项目的选项卡。'")
-	private Boolean				colsSwitchable;
-
-	@Column(name = "cols_index", columnDefinition = " varchar(10) COMMENT '用户查询列配置'")
-	private String				colsIndex;
-	
-	@Column(name = "user_icon")
-	private String				userIcon;
-	
-	public SysColumnInfo() {
+	public SysDbmsTabsColsInfo() {
 	}
 	
 	/**
@@ -261,24 +264,24 @@ public class SysColumnInfo implements Serializable {
 	public void setDiscription(String discription) {
 		this.discription = discription;
 	}
-	
+
 	/**
-	 * 方法名 ： getTableUuid
-	 * 功 能 ： 返回变量 tableUuid 的值
+	 * 方法名 ： getTabsUuid
+	 * 功 能 ： 返回变量 tabsUuid 的值
 	 * @return: String
 	 */
-	public String getTableUuid() {
-		return tableUuid;
+	public String getTabsUuid() {
+		return tabsUuid;
 	}
-	
+
 	/**
-	 * 方法名 ： setTableUuid
-	 * 功 能 ： 设置变量 tableUuid 的值
+	 * 方法名 ： setTabsUuid
+	 * 功 能 ： 设置变量 tabsUuid 的值
 	 */
-	public void setTableUuid(String tableUuid) {
-		this.tableUuid = tableUuid;
+	public void setTabsUuid(String tabsUuid) {
+		this.tabsUuid = tabsUuid;
 	}
-	
+
 	/**
 	 * 方法名 ： getUpdateTime
 	 * 功 能 ： 返回变量 updateTime 的值
@@ -313,45 +316,6 @@ public class SysColumnInfo implements Serializable {
 		this.updateUser = updateUser;
 	}
 	
-	public SysColumnInfo(String uuid, Integer colsLength, String colsDesc, String colsName, Integer colsOrder, String colsType, String discription, String tableUuid) {
-		super();
-		this.uuid = uuid;
-		this.colsLength = colsLength;
-		this.colsDesc = colsDesc;
-		this.colsName = colsName;
-		this.colsOrder = colsOrder;
-		this.colsType = colsType;
-		this.discription = discription;
-		this.tableUuid = tableUuid;
-	}
-	
-	public SysColumnInfo(String uuid, Integer colsLength, String colsDesc, String colsName, Integer colsOrder, String colsType, Date createTime, String createUser, Integer deleteFlag, String discription, String tableUuid, Date updateTime, String updateUser, String colsAlign, String colsValign, String colsWidth, Boolean colsVisible, Boolean colsSwitchable) {
-		super();
-		this.uuid = uuid;
-		this.colsLength = colsLength;
-		this.colsDesc = colsDesc;
-		this.colsName = colsName;
-		this.colsOrder = colsOrder;
-		this.colsType = colsType;
-		this.createTime = createTime;
-		this.createUser = createUser;
-		this.deleteFlag = deleteFlag;
-		this.discription = discription;
-		this.tableUuid = tableUuid;
-		this.updateTime = updateTime;
-		this.updateUser = updateUser;
-		this.colsAlign = colsAlign;
-		this.colsValign = colsValign;
-		this.colsWidth = colsWidth;
-		this.colsVisible = colsVisible;
-		this.colsSwitchable = colsSwitchable;
-	}
-	
-	public SysColumnInfo(String tableUuid) {
-		super();
-		this.tableUuid = tableUuid;
-	}
-
 	public String getColsAlign() {
 		return colsAlign;
 	}
@@ -392,14 +356,23 @@ public class SysColumnInfo implements Serializable {
 		this.colsSwitchable = colsSwitchable;
 	}
 
-	public String getColsIndex() {
-		return colsIndex;
+	/**
+	 * 方法名 ： getUserIndex
+	 * 功 能 ： 返回变量 userIndex 的值
+	 * @return: String
+	 */
+	public String getUserIndex() {
+		return userIndex;
 	}
 
-	public void setColsIndex(String colsIndex) {
-		this.colsIndex = colsIndex;
+	/**
+	 * 方法名 ： setUserIndex
+	 * 功 能 ： 设置变量 userIndex 的值
+	 */
+	public void setUserIndex(String userIndex) {
+		this.userIndex = userIndex;
 	}
-	
+
 	/**
 	 * 方法名 ： getUserIcon
 	 * 功 能 ： 返回变量 userIcon 的值
@@ -415,6 +388,23 @@ public class SysColumnInfo implements Serializable {
 	 */
 	public void setUserIcon(String userIcon) {
 		this.userIcon = userIcon;
+	}
+	
+	/**
+	 * 方法名 ： getPageList
+	 * 功 能 ： 返回变量 pageList 的值
+	 * @return: Integer
+	 */
+	public Integer getPageList() {
+		return pageList;
+	}
+	
+	/**
+	 * 方法名 ： setPageList
+	 * 功 能 ： 设置变量 pageList 的值
+	 */
+	public void setPageList(Integer pageList) {
+		this.pageList = pageList;
 	}
 	
 }

@@ -1,4 +1,4 @@
-package tk.ainiyue.danyuan.application.dbms.zhcx.dao;
+package tk.ainiyue.danyuan.application.dbms.tabs.dao;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import tk.ainiyue.danyuan.application.common.base.BaseDao;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysAdviceMess;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsAdviMessInfo;
 
 /**
  * 文件名 ： SysAdviceMessDao.java
@@ -19,8 +19,8 @@ import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysAdviceMess;
  * 时 间 ： 2018年4月26日 下午3:34:26
  * 版 本 ： V1.0
  */
-@Repository("sysAdviceMessDao")
-public interface SysAdviceMessDao extends BaseDao<SysAdviceMess> {
+@Repository("sysDbmsAdviMessInfoDao")
+public interface SysDbmsAdviMessInfoDao extends BaseDao<SysDbmsAdviMessInfo> {
 	
 	/**
 	 * 方法名： findByDeleteFlag
@@ -31,7 +31,7 @@ public interface SysAdviceMessDao extends BaseDao<SysAdviceMess> {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	@Query("select t from SysAdviceMess t where t.deleteFlag=:deletef order by t.type desc,t.addrUuid desc,t.tableName")
-	List<SysAdviceMess> findByDeleteFlag(@Param("deletef") Boolean i);
+	@Query("select t from SysDbmsAdviMessInfo t where t.deleteFlag=:deleteFlag order by t.type desc,t.addrUuid desc,t.tableName")
+	List<SysDbmsAdviMessInfo> findByDeleteFlag(@Param("deleteFlag") Integer deleteFlag);
 	
 }

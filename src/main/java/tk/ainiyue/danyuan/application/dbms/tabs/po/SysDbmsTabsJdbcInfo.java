@@ -17,9 +17,9 @@ import org.springframework.format.annotation.DateTimeFormat;
  * The persistent class for the sys_database_info database table.
  */
 @Entity
-@Table(name = "sys_database_info")
-@NamedQuery(name = "SysDatabaseInfo.findAll", query = "SELECT s FROM SysDatabaseInfo s")
-public class SysDatabaseInfo {
+@Table(name = "sys_dbms_tabs_jdbc_info")
+@NamedQuery(name = "SysDbmsTabsJdbcInfo.findAll", query = "SELECT s FROM SysDbmsTabsJdbcInfo s")
+public class SysDbmsTabsJdbcInfo {
 	
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = " uuid")
@@ -69,7 +69,7 @@ public class SysDatabaseInfo {
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
 	private Integer	deleteFlag;
 	
-	public SysDatabaseInfo() {
+	public SysDbmsTabsJdbcInfo() {
 	}
 	
 	public String getUuid() {

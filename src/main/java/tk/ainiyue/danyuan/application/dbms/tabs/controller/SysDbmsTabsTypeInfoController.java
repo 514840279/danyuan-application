@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import tk.ainiyue.danyuan.application.dbms.tabs.po.SysTableTypeInfo;
-import tk.ainiyue.danyuan.application.dbms.tabs.service.SysTableTypeServiceImpl;
-import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysTableTypeVo;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsTypeInfo;
+import tk.ainiyue.danyuan.application.dbms.tabs.service.SysDbmsTabsTypeInfoService;
+import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDbmsTabsTypeInfoVo;
 
 /**
- * 文件名 ： SysTableTypeController.java
+ * 文件名 ： SysDbmsTabsTypeInfoController.java
  * 包 名 ： tk.ainiyue.danyuan.application.dbm.type.controller
  * 描 述 ： TODO(用一句话描述该文件做什么)
  * 机能名称：
@@ -29,14 +29,14 @@ import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysTableTypeVo;
  * 版 本 ： V1.0
  */
 @RestController
-@RequestMapping("/sysTableTypeInfo")
-@Api(value = "/sysTableTypeInfo", description = "数据库表类型管理")
-public class SysTableTypeController {
+@RequestMapping("/sysDbmsTabsTypeInfo")
+@Api(value = "/SysDbmsTabsTypeInfo", description = "数据库表类型管理")
+public class SysDbmsTabsTypeInfoController {
 	//
-	private static final Logger		logger	= LoggerFactory.getLogger(SysTableTypeController.class);
+	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsTabsTypeInfoController.class);
 	//
 	@Autowired
-	private SysTableTypeServiceImpl	sysTableTypeService;
+	private SysDbmsTabsTypeInfoService	sysDbmsTabsTypeInfoService;
 	
 	/**
 	 * 方法名： findAll
@@ -48,25 +48,25 @@ public class SysTableTypeController {
 	 */
 	@ApiOperation(value = "查询全部数据库表类型管理信息", notes = "")
 	@RequestMapping(path = "/findAll", method = RequestMethod.POST)
-	public List<SysTableTypeInfo> findAll() {
-		logger.info("findAll", SysTableTypeController.class);
-		return sysTableTypeService.findAll();
+	public List<SysDbmsTabsTypeInfo> findAll() {
+		logger.info("findAll", SysDbmsTabsTypeInfoController.class);
+		return sysDbmsTabsTypeInfoService.findAll();
 	}
 	
 	@ApiOperation(value = "分页查询全部类型管理信息", notes = "")
 	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
-	public Page<SysTableTypeInfo> findAllBySearchText(SysTableTypeVo sysTableTypeVo) {
-		logger.info("findAllBySearchText", SysTableTypeController.class);
-		return sysTableTypeService.findAllBySearchText(sysTableTypeVo.getPageNumber(), sysTableTypeVo.getPageSize(), sysTableTypeVo.getSysTableTypeInfo());
+	public Page<SysDbmsTabsTypeInfo> findAllBySearchText(SysDbmsTabsTypeInfoVo sysTableTypeVo) {
+		logger.info("findAllBySearchText", SysDbmsTabsTypeInfoController.class);
+		return sysDbmsTabsTypeInfoService.findAllBySearchText(sysTableTypeVo.getPageNumber(), sysTableTypeVo.getPageSize(), sysTableTypeVo.getInfo());
 	}
 
 	@ApiOperation(value = "删除类型管理信息", notes = "")
 	@RequestMapping(path = "/sysTableTypeDeleteAll", method = RequestMethod.POST)
 	@ResponseBody
-	public String sysTableTypeDeleteAll(@RequestBody SysTableTypeVo vo) {
-		logger.info("sysTableTypeDeleteAll", SysTableTypeController.class);
+	public String sysTableTypeDeleteAll(@RequestBody SysDbmsTabsTypeInfoVo vo) {
+		logger.info("sysTableTypeDeleteAll", SysDbmsTabsTypeInfoController.class);
 		try {
-			sysTableTypeService.delete(vo.getList());
+			sysDbmsTabsTypeInfoService.delete(vo.getList());
 			return "1";
 		} catch (Exception e) {
 			return "0";
@@ -76,10 +76,10 @@ public class SysTableTypeController {
 	@ApiOperation(value = "修改分类信息", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public String save(@RequestBody SysTableTypeInfo info) {
-		logger.info("save", SysTableTypeController.class);
+	public String save(@RequestBody SysDbmsTabsTypeInfo info) {
+		logger.info("save", SysDbmsTabsTypeInfoController.class);
 		System.out.println(info.toString());
-		sysTableTypeService.save(info);
+		sysDbmsTabsTypeInfoService.save(info);
 		return "1";
 	}
 

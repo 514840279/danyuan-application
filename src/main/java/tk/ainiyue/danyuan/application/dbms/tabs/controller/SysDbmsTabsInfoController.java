@@ -20,7 +20,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
 import tk.ainiyue.danyuan.application.dbms.tabs.service.SysDbmsTabsInfoService;
-import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysColumnVo;
+import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDbmsTabsColsInfoVo;
 import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDbmsTabsInfoVo;
 
 /**
@@ -39,22 +39,22 @@ import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDbmsTabsInfoVo;
 public class SysDbmsTabsInfoController {
 	//
 	private static final Logger		logger	= LoggerFactory.getLogger(SysDbmsTabsInfoController.class);
-	
+
 	//
 	@Autowired
 	private SysDbmsTabsInfoService	sysDbmsTabsInfoService;
-	
+
 	@Autowired
 	JdbcTemplate					jdbcTemplate;
-	
+
 	@ApiOperation(value = "查询前500数据库表管理信息", notes = "")
 	@RequestMapping(path = "/findAllTableRow", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<Map<String, Object>> listTR(SysColumnVo param) {
+	public List<Map<String, Object>> listTR(SysDbmsTabsColsInfoVo param) {
 		String sql = "Select * from " + param.getSearchText() + " order by datetime desc limit 0,500";
 		List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
 		return list;
 	}
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -69,7 +69,7 @@ public class SysDbmsTabsInfoController {
 		logger.info("findAll", SysDbmsTabsInfoController.class);
 		return sysDbmsTabsInfoService.findAll(sysDbmsTabsInfo);
 	}
-	
+
 	@ApiOperation(value = "条件查询全部数据库表管理信息", notes = "")
 	@RequestMapping(path = "/findAllBySysTableInfo", method = RequestMethod.POST)
 	public List<SysDbmsTabsInfo> findAllBySysTableInfo(@RequestBody SysDbmsTabsInfo sysDbmsTabsInfo) {
@@ -77,7 +77,7 @@ public class SysDbmsTabsInfoController {
 		logger.info("findAll", SysDbmsTabsInfoController.class);
 		return sysDbmsTabsInfoService.findAll(sysDbmsTabsInfo);
 	}
-	
+
 	@ApiOperation(value = "保存数据库表管理信息", notes = "")
 	@RequestMapping(path = "/saveSysTableInfo", method = RequestMethod.POST)
 	public String saveSysTableInfo(@RequestBody SysDbmsTabsInfo sysDbmsTabsInfo) {
@@ -85,7 +85,7 @@ public class SysDbmsTabsInfoController {
 		sysDbmsTabsInfoService.save(sysDbmsTabsInfo);
 		return "1";
 	}
-	
+
 	@ApiOperation(value = "删除数据库表管理信息", notes = "")
 	@RequestMapping(path = "/deleteSysTableInfo", method = RequestMethod.POST)
 	public String deleteSysTableInfo(@RequestBody SysDbmsTabsInfoVo vo) {
@@ -93,7 +93,7 @@ public class SysDbmsTabsInfoController {
 		sysDbmsTabsInfoService.delete(vo.getList());
 		return "1";
 	}
-	
+
 	@ApiOperation(value = "修改数据库表管理信息", notes = "")
 	@RequestMapping(path = "/updateSysTableInfo", method = RequestMethod.POST)
 	public String updateSysTableInfo(@RequestBody SysDbmsTabsInfoVo vo) {
@@ -101,7 +101,7 @@ public class SysDbmsTabsInfoController {
 		sysDbmsTabsInfoService.save(vo.getList());
 		return "1";
 	}
-	
+
 	@ApiOperation(hidden = true, value = "/updBefor")
 	@RequestMapping(path = "/updBefor", method = RequestMethod.POST)
 	public ModelAndView updBefor(HttpServletRequest request) {
@@ -113,7 +113,7 @@ public class SysDbmsTabsInfoController {
 		view.addObject("sysTableInfo", info);
 		return view;
 	}
-	
+
 	@ApiOperation(hidden = true, value = "/updBeforEdit")
 	@RequestMapping(path = "/updBeforEdit", method = RequestMethod.POST)
 	public ModelAndView updBeforEdit(@ModelAttribute SysDbmsTabsInfo info) {
@@ -122,5 +122,5 @@ public class SysDbmsTabsInfoController {
 		view.addObject("sysTableInfo", info);
 		return view;
 	}
-	
+
 }

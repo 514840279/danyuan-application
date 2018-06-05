@@ -1,4 +1,4 @@
-package tk.ainiyue.danyuan.application.dbms.zhcx.service;
+package tk.ainiyue.danyuan.application.dbms.tabs.service;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -14,8 +14,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import tk.ainiyue.danyuan.application.dbms.zhcx.dao.SysAdviceMessDao;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysAdviceMess;
+import tk.ainiyue.danyuan.application.dbms.tabs.dao.SysDbmsAdviMessInfoDao;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsAdviMessInfo;
 import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxCol;
 import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxTab;
 
@@ -46,7 +46,7 @@ public class ZhcxAdviceService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	public static void startConfixTableCloumnIndexConfig(SysZhcxTab sysZhcxTab, Map<String, DataSource> multiDatasource, SysAdviceMessDao sysAdviceMessDao, JdbcTemplate jdbcTemplate2, SysZhcxCol sysZhcxCol) {
+	public static void startConfixTableCloumnIndexConfig(SysZhcxTab sysZhcxTab, Map<String, DataSource> multiDatasource, SysDbmsAdviMessInfoDao sysAdviceMessDao, JdbcTemplate jdbcTemplate2, SysZhcxCol sysZhcxCol) {
 		logger.info("startConfixTableCloumnIndexAndCloumnLengthConfig", ZhcxAdviceService.class);
 		// 列数据统计建议添加索引，(索引修改或重建，索引添加，)
 		// 索引修改 一般发现索引创建位置处于数据空间下或者处于其他用户下的索引空间 给出建议修改
@@ -57,7 +57,7 @@ public class ZhcxAdviceService {
 		}
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(multiDatasource.get(sysZhcxTab.getAddrUuid()));
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
-		SysAdviceMess advice = null;
+		SysDbmsAdviMessInfo advice = null;
 		StringBuffer sBuffer = new StringBuffer();
 		sBuffer.append(" select i.owner,i.index_name,i.table_owner,i.table_name,ic.column_name,i.tablespace_name from all_indexes i ");
 		sBuffer.append(" inner join all_ind_columns ic on i.index_name = ic.index_name and i.owner = ic.index_owner and i.table_name = ic.table_name ");
@@ -73,7 +73,7 @@ public class ZhcxAdviceService {
 		if (resultlist != null && resultlist.size() > 0) {
 			Map<String, Object> resultmap = resultlist.get(0);
 			if (!expactUser.equals(resultmap.get("owner")) || !expactIndexSpaces.equals(resultmap.get("tablespace_name"))) {
-				advice = new SysAdviceMess(UUID.randomUUID().toString(), "索引重建", sysZhcxTab.getTableDesc(), sysZhcxTab.getTableName(), sysZhcxTab.getAddrUuid());
+				advice = new SysDbmsAdviMessInfo(UUID.randomUUID().toString(), "索引重建", sysZhcxTab.getTableDesc(), sysZhcxTab.getTableName(), sysZhcxTab.getAddrUuid());
 				sBuilder.append("-- 由于索引信息并不是期望的值，建议充建索引信息：\n");
 				String indexName = "IND_" + UUID.randomUUID().toString().replace("-", "").substring(4, 20) + "_" + sysZhcxCol.getColsOrder();
 				sBuilder.append("-- 预期值：\t 索引所属：" + expactUser + "\t索引的表空间：" + expactIndexSpaces + "\n");
@@ -85,7 +85,7 @@ public class ZhcxAdviceService {
 				return;
 			}
 		} else if (sysZhcxCol.getUserIndex() != null && !"".equals(sysZhcxCol.getUserIndex())) {
-			advice = new SysAdviceMess(UUID.randomUUID().toString(), "索引添加", sysZhcxTab.getTableDesc(), sysZhcxTab.getTableName(), sysZhcxTab.getAddrUuid());
+			advice = new SysDbmsAdviMessInfo(UUID.randomUUID().toString(), "索引添加", sysZhcxTab.getTableDesc(), sysZhcxTab.getTableName(), sysZhcxTab.getAddrUuid());
 			sBuilder.append("-- 由于配置中userIndex不为空，并且期望的索引信息未找到，建议建索引信息：\n");
 			String indexName = "IND_" + UUID.randomUUID().toString().replace("-", "").substring(4, 20) + "_" + sysZhcxCol.getColsOrder();
 			sBuilder.append(" create index " + expactUser + "." + indexName + " on " + tableName + " (" + sysZhcxCol.getColsName() + ")  tablespace " + expactIndexSpaces + ";");
@@ -93,7 +93,7 @@ public class ZhcxAdviceService {
 			return;
 		}
 		advice.setMessage(sBuilder.toString());
-		advice.setDeleteFlag(false);
+		advice.setDeleteFlag(0);
 		sysAdviceMessDao.save(advice);
 		
 	}
@@ -110,7 +110,7 @@ public class ZhcxAdviceService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	public static void startConfixTableColumnsConfig(SysZhcxTab sysZhcxTab, Map<String, DataSource> multiDatasource, SysAdviceMessDao sysAdviceMessDao, JdbcTemplate jdbcTemplate2, List<SysZhcxCol> list) {
+	public static void startConfixTableColumnsConfig(SysZhcxTab sysZhcxTab, Map<String, DataSource> multiDatasource, SysDbmsAdviMessInfoDao sysAdviceMessDao, JdbcTemplate jdbcTemplate2, List<SysZhcxCol> list) {
 		// 列配置比较建议修正,平台隐藏，实际长度修改(列修改，列配置修改,列统计信息)
 		// 列信息处理会有多个同时执行，遮里配置和列的注释都有可能为空，需要对比
 		// 统计信息包含陪的实际最大长度 给出建议缩小列的长度类型， 列空值比例，当空超过60% 给出建议平台默认不展示
@@ -121,7 +121,7 @@ public class ZhcxAdviceService {
 		if (tableName.contains("@")) {
 			tableName = sysZhcxTab.getTableName().substring(0, sysZhcxTab.getTableName().indexOf("@"));
 		}
-		SysAdviceMess advice = null;
+		SysDbmsAdviMessInfo advice = null;
 		for (SysZhcxCol sysZhcxCol : list) {
 			StringBuffer sBuffer = new StringBuffer();
 			sBuffer.append(" select tc.OWNER,tc.TABLE_NAME,tc.COLUMN_NAME,cc.comments,tc.NUM_NULLS,tc.DATA_TYPE from all_tab_columns tc ");
@@ -136,11 +136,11 @@ public class ZhcxAdviceService {
 				Map<String, Object> resultmap = resultlist.get(0);
 				// 配置列类型
 				if (!resultmap.get("DATA_TYPE").equals(sysZhcxCol.getColdType())) {
-					advice = new SysAdviceMess(UUID.randomUUID().toString(), "列配置修改", sysZhcxTab.getTableDesc(), sysZhcxTab.getTableName(), sysZhcxTab.getAddrUuid());
+					advice = new SysDbmsAdviMessInfo(UUID.randomUUID().toString(), "列配置修改", sysZhcxTab.getTableDesc(), sysZhcxTab.getTableName(), sysZhcxTab.getAddrUuid());
 					String executeSql = "update sys_zhcx_cols1 t set  t.COLD_TYPE = '" + resultmap.get("DATA_TYPE") + "',t.update_time = sysdate where t.uuid='" + sysZhcxCol.getUuid() + "'";
 					advice.setExecuteSql(executeSql + ";");
 					jdbcTemplate2.execute(executeSql);
-					advice.setDeleteFlag(true);
+					advice.setDeleteFlag(1);
 					sysAdviceMessDao.save(advice);
 				}
 				// 配置列展示
@@ -148,13 +148,13 @@ public class ZhcxAdviceService {
 					BigDecimal numNulls = (BigDecimal) resultmap.get("NUM_NULLS");
 					if (numNulls != null && numNulls.intValue() != 0) {
 						if (numNulls.subtract(new BigDecimal(sysZhcxTab.getTableRows()).multiply(new BigDecimal(0.6f))).intValue() > 0 && "1".equals(sysZhcxCol.getPageList())) {
-							advice = new SysAdviceMess(UUID.randomUUID().toString(), "列配置修改", sysZhcxTab.getTableDesc(), tableName, sysZhcxTab.getAddrUuid());
+							advice = new SysDbmsAdviMessInfo(UUID.randomUUID().toString(), "列配置修改", sysZhcxTab.getTableDesc(), tableName, sysZhcxTab.getAddrUuid());
 							StringBuilder sBuilder = new StringBuilder();
 							sBuilder.append("-- 表中的空值超过 60% 建议默认列表不展示");
-							advice = new SysAdviceMess(UUID.randomUUID().toString(), "列配置修改", sysZhcxTab.getTableDesc(), sysZhcxTab.getTableName(), sysZhcxTab.getAddrUuid());
+							advice = new SysDbmsAdviMessInfo(UUID.randomUUID().toString(), "列配置修改", sysZhcxTab.getTableDesc(), sysZhcxTab.getTableName(), sysZhcxTab.getAddrUuid());
 							sBuilder.append("update sys_zhcx_cols1 t set  t.PAGE_LIST = '0',t.update_time = sysdate where t.uuid='" + sysZhcxCol.getUuid() + "'");
 							advice.setMessage(sBuilder.toString() + ";");
-							advice.setDeleteFlag(false);
+							advice.setDeleteFlag(0);
 							sysAdviceMessDao.save(advice);
 						}
 					}
@@ -162,7 +162,7 @@ public class ZhcxAdviceService {
 				// 注释和翻译
 				if (sysZhcxCol.getColsDesc() != null && resultmap.get("comments") != null) {
 					StringBuilder sBuilder = new StringBuilder();
-					advice = new SysAdviceMess(UUID.randomUUID().toString(), "列配置修改", sysZhcxTab.getTableDesc(), sysZhcxTab.getTableName(), sysZhcxTab.getAddrUuid());
+					advice = new SysDbmsAdviMessInfo(UUID.randomUUID().toString(), "列配置修改", sysZhcxTab.getTableDesc(), sysZhcxTab.getTableName(), sysZhcxTab.getAddrUuid());
 					if (sysZhcxTab.getTableDesc() == null || "".equals(sysZhcxTab.getTableDesc())) {
 						sBuilder.append("-- 由于配置中的信息没有，建议执行以下语句进行统一：\n");
 						sBuilder.append("update SYS_ZHCX_COLS1 t set t.COLS_DESC ='" + resultmap.get("comments") + "' ,t.update_time = sysdate where t.uuid='" + sysZhcxCol.getUuid() + "'; \n");
@@ -180,7 +180,7 @@ public class ZhcxAdviceService {
 					}
 					
 					advice.setMessage(sBuilder.toString());
-					advice.setDeleteFlag(false);
+					advice.setDeleteFlag(0);
 					sysAdviceMessDao.save(advice);
 				}
 			}
@@ -204,7 +204,7 @@ public class ZhcxAdviceService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	public static void startConfixTableConfig(SysZhcxTab sysZhcxTab, Map<String, DataSource> multiDatasource, SysAdviceMessDao sysAdviceMessDao, JdbcTemplate jdbcTemplate2) {
+	public static void startConfixTableConfig(SysZhcxTab sysZhcxTab, Map<String, DataSource> multiDatasource, SysDbmsAdviMessInfoDao sysAdviceMessDao, JdbcTemplate jdbcTemplate2) {
 		logger.info("startConfixTableConfig", ZhcxAdviceService.class);
 		// 表配置比较建议修正 (表修改，表配置修改)
 		// 表修改需要人工确认，所以当前不会生成表修改的类型
@@ -220,7 +220,7 @@ public class ZhcxAdviceService {
 			tableName = sysZhcxTab.getTableName().substring(0, sysZhcxTab.getTableName().indexOf("@"));
 		}
 		map.put("tablename", tableName);
-		SysAdviceMess advice = new SysAdviceMess(UUID.randomUUID().toString(), "表配置修改", sysZhcxTab.getTableDesc(), tableName, sysZhcxTab.getAddrUuid());
+		SysDbmsAdviMessInfo advice = new SysDbmsAdviMessInfo(UUID.randomUUID().toString(), "表配置修改", sysZhcxTab.getTableDesc(), tableName, sysZhcxTab.getAddrUuid());
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(multiDatasource.get(sysZhcxTab.getAddrUuid()));
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
 		System.err.println(sysZhcxTab.getTableName());
@@ -232,7 +232,7 @@ public class ZhcxAdviceService {
 				String executeSql = "update sys_zhcx_tabs1 t set  t.table_rows = " + resultmap.get("num_rows") + ",t.table_space = " + resultmap.get("table_space") + ",t.update_time = sysdate where t.uuid='" + sysZhcxTab.getUuid() + "'";
 				advice.setExecuteSql(executeSql + ";");
 				jdbcTemplate2.execute(executeSql);
-				advice.setDeleteFlag(true);
+				advice.setDeleteFlag(1);
 				sysAdviceMessDao.save(advice);
 				
 			}
@@ -255,7 +255,7 @@ public class ZhcxAdviceService {
 					return;
 				}
 				advice.setMessage(sBuilder.toString());
-				advice.setDeleteFlag(false);
+				advice.setDeleteFlag(0);
 				sysAdviceMessDao.save(advice);
 			}
 		}

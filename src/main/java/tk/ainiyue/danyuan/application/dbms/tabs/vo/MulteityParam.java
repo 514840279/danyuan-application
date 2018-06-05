@@ -1,4 +1,4 @@
-package tk.ainiyue.danyuan.application.dbms.zhcx.vo;
+package tk.ainiyue.danyuan.application.dbms.tabs.vo;
 
 /**
  * 文件名 ： MulteityParams.java

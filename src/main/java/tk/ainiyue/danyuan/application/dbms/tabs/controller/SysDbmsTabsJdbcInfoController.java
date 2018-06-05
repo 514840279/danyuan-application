@@ -15,12 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDatabaseInfo;
-import tk.ainiyue.danyuan.application.dbms.tabs.service.SysDatabaseServiceImpl;
-import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDatabaseVo;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsJdbcInfo;
+import tk.ainiyue.danyuan.application.dbms.tabs.service.SysDbmsTabsJdbcInfoService;
+import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDbmsTabsJdbcInfoVo;
 
 /**
- * 文件名 ： SysDatabaseController.java
+ * 文件名 ： SysDbmsTabsJdbcInfoController.java
  * 包 名 ： tk.ainiyue.danyuan.application.dbm.addr.controller
  * 描 述 ： TODO(用一句话描述该文件做什么)
  * 机能名称：
@@ -30,15 +30,14 @@ import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDatabaseVo;
  * 版 本 ： V1.0
  */
 @RestController
-@RequestMapping("/sysDatabaseInfo")
-@Api(value = "/sysDatabaseInfo", description = "数据库管理")
-public class SysDatabaseController {
+@RequestMapping("/sysDbmsTabsJdbcInfo")
+@Api(value = "/SysDbmsTabsJdbcInfo", description = "数据库管理")
+public class SysDbmsTabsJdbcInfoController {
 	//
-	private static final Logger		logger	= LoggerFactory.getLogger(SysDatabaseController.class);
+	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsTabsJdbcInfoController.class);
 	
-	//
 	@Autowired
-	private SysDatabaseServiceImpl	sysDatabaseService;
+	private SysDbmsTabsJdbcInfoService	sysDbmsTabsJdbcInfoService;
 	
 	/**
 	 * 方法名： findAll
@@ -50,23 +49,23 @@ public class SysDatabaseController {
 	 */
 	@ApiOperation(value = "查询全部数据库管理信息", notes = "")
 	@RequestMapping(path = "/findAll", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<SysDatabaseInfo> findAll() {
-		logger.info("findAll", SysDatabaseController.class);
-		return sysDatabaseService.findAll();
+	public List<SysDbmsTabsJdbcInfo> findAll() {
+		logger.info("findAll", SysDbmsTabsJdbcInfoController.class);
+		return sysDbmsTabsJdbcInfoService.findAll();
 	}
 
 	@ApiOperation(value = "添加数据库管理信息", notes = "")
-	@RequestMapping(path = "/addSysDatabaseInfo", method = RequestMethod.POST)
-	public List<SysDatabaseInfo> addSysDatabaseInfo(@RequestBody SysDatabaseInfo sysDatabaseInfo) {
-		logger.info("findAll", SysDatabaseController.class);
-		sysDatabaseService.save(sysDatabaseInfo);
-		return sysDatabaseService.findAll();
+	@RequestMapping(path = "/addSysDbmsTabsJdbcInfo", method = RequestMethod.POST)
+	public List<SysDbmsTabsJdbcInfo> addSysDbmsTabsJdbcInfo(@RequestBody SysDbmsTabsJdbcInfo SysDbmsTabsJdbcInfo) {
+		logger.info("findAll", SysDbmsTabsJdbcInfoController.class);
+		sysDbmsTabsJdbcInfoService.save(SysDbmsTabsJdbcInfo);
+		return sysDbmsTabsJdbcInfoService.findAll();
 	}
 	
 	@ApiOperation(hidden = true, value = "/addBefor")
 	@RequestMapping(path = "/addBefor", method = RequestMethod.GET)
 	public ModelAndView addBefor(HttpServletRequest request) {
-		SysDatabaseInfo info = new SysDatabaseInfo();
+		SysDbmsTabsJdbcInfo info = new SysDbmsTabsJdbcInfo();
 		info.setUuid(request.getParameter("uuid"));
 		info.setIp(request.getParameter("address"));
 		info.setDatabaseName(request.getParameter("databaseName"));
@@ -77,19 +76,19 @@ public class SysDatabaseController {
 		info.setPassword(request.getParameter("password"));
 		info.setPort(request.getParameter("port"));
 		info.setType(request.getParameter("type"));
-		logger.info("addBefor", SysDatabaseController.class);
+		logger.info("addBefor", SysDbmsTabsJdbcInfoController.class);
 		ModelAndView view = new ModelAndView("dbm/addr/add_addr");
-		view.addObject("sysDatabaseInfo", info);
+		view.addObject("SysDbmsTabsJdbcInfo", info);
 		return view;
 	}
 	
 	@ApiOperation(value = "删除数据库管理信息", notes = "")
-	@RequestMapping(path = "/deleteSysDatabaseInfo", method = RequestMethod.POST)
-	public List<SysDatabaseInfo> deleteSysDatabaseInfo(@RequestBody SysDatabaseVo vo) {
+	@RequestMapping(path = "/deleteSysDbmsTabsJdbcInfo", method = RequestMethod.POST)
+	public List<SysDbmsTabsJdbcInfo> deleteSysDbmsTabsJdbcInfo(@RequestBody SysDbmsTabsJdbcInfoVo vo) {
 		logger.error(vo.getList().get(0).toString());
-		logger.info("deleteSysDatabaseInfo", SysDatabaseController.class);
-		sysDatabaseService.deleteSysDatabaseInfo(vo.getList());
-		return sysDatabaseService.findAll();
+		logger.info("deleteSysDbmsTabsJdbcInfo", SysDbmsTabsJdbcInfoController.class);
+		sysDbmsTabsJdbcInfoService.deleteSysDbmsTabsJdbcInfo(vo.getList());
+		return sysDbmsTabsJdbcInfoService.findAll();
 	}
 
 }

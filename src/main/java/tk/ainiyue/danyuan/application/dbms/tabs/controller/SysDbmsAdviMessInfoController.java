@@ -1,4 +1,4 @@
-package tk.ainiyue.danyuan.application.dbms.zhcx.controller;
+package tk.ainiyue.danyuan.application.dbms.tabs.controller;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysAdviceMess;
-import tk.ainiyue.danyuan.application.dbms.zhcx.service.SysAdviceMessService;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsAdviMessInfo;
+import tk.ainiyue.danyuan.application.dbms.tabs.service.SysDbmsAdviMessInfoService;
 
 /**
  * 文件名 ： Test.java
@@ -25,15 +25,15 @@ import tk.ainiyue.danyuan.application.dbms.zhcx.service.SysAdviceMessService;
 @RestController
 @RequestMapping("/sysAdviceMess")
 @Api(value = "/SysAdviceMess", description = "综合查询业务")
-public class SysAdviceMessController {
-	
+public class SysDbmsAdviMessInfoController {
+
 	@Autowired
-	SysAdviceMessService sysAdviceMessService;
-	
+	SysDbmsAdviMessInfoService sysDbmsAdviMessInfoService;
+
 	@ApiOperation(value = "查询前500数据库表管理信息", notes = "")
 	@RequestMapping(path = "/findAll", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<SysAdviceMess> findAll() throws ClassNotFoundException {
-		return sysAdviceMessService.findAll(new SysAdviceMess());
-		
+	public List<SysDbmsAdviMessInfo> findAll() throws ClassNotFoundException {
+		return sysDbmsAdviMessInfoService.findAll(new SysDbmsAdviMessInfo());
+
 	}
 }

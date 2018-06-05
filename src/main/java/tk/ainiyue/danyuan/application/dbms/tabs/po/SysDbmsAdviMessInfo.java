@@ -1,4 +1,4 @@
-package tk.ainiyue.danyuan.application.dbms.zhcx.po;
+package tk.ainiyue.danyuan.application.dbms.tabs.po;
 
 import java.util.Date;
 
@@ -11,6 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 文件名 ： SysAdviceMess.java
@@ -23,38 +24,44 @@ import org.hibernate.annotations.GenericGenerator;
  * 版 本 ： V1.0
  */
 @Entity
-@Table(name = "sys_advice_mess")
-@NamedQuery(name = "SysAdviceMess.findAll", query = "SELECT s FROM SysAdviceMess s")
-public class SysAdviceMess {
+@Table(name = "sys_dbms_advi_mess_info")
+@NamedQuery(name = "SysDbmsAdviMessInfo.findAll", query = "SELECT s FROM SysDbmsAdviMessInfo s")
+public class SysDbmsAdviMessInfo {
 	@Id
 	@GenericGenerator(name = "idGenerator", strategy = "uuid")
-	@Column(name = "UUID", columnDefinition = " varchar(36) COMMENT '主键'")
+	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键'")
 	private String	uuid;
-	
-	@Column(name = "CREATE_TIME", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.CreationTimestamp
-	private Date	createTime;		// create_time
-	
-	@Column(name = "DELETE_FLAG", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Boolean	deleteFlag;		// delete_flag
-	
-	@Column(name = "TYPE")
+
+	@Column(name = "type")
 	private String	type;
-	@Column(name = "MESSAGE")
+	@Column(name = "message")
 	private String	message;
-	@Column(name = "EXECUTE_SQL")
+	@Column(name = "execute_sql")
 	private String	executeSql;
 	
-	@Column(name = "TABLE_DESC")
+	@Column(name = "table_desc")
 	private String	tableDesc;
 	
-	@Column(name = "TABLE_NAME")
+	@Column(name = "table_name")
 	private String	tableName;
 	
-	@Column(name = "ADDR_UUID")
-	private String	addrUuid;
+	@Column(name = "jdbc_uuid")
+	private String	jdbcUuid;
 	
+	@Column(columnDefinition = " varchar(200) COMMENT '资源功能描述'")
+	private String	discription;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
+	private Date	createTime;
+	
+	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
+	private String	createUser;
+	
+	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
+	private Integer	deleteFlag;
+
 	/**
 	 * 方法名 ： getUuid
 	 * 功 能 ： 返回变量 uuid 的值
@@ -62,6 +69,37 @@ public class SysAdviceMess {
 	 */
 	public String getUuid() {
 		return uuid;
+	}
+	
+	/**
+	 * 构造方法：
+	 * 描 述： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数：
+	 * 作 者 ： Administrator
+	 * @throws
+	 */
+	public SysDbmsAdviMessInfo() {
+		super();
+	}
+	
+	/**
+	 * 构造方法：
+	 * 描 述： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数： @param uuid
+	 * 参 数： @param type
+	 * 参 数： @param tableDesc
+	 * 参 数： @param tableName
+	 * 参 数： @param jdbcUuid
+	 * 作 者 ： Administrator
+	 * @throws
+	 */
+	public SysDbmsAdviMessInfo(String uuid, String type, String tableDesc, String tableName, String jdbcUuid) {
+		super();
+		this.uuid = uuid;
+		this.type = type;
+		this.tableDesc = tableDesc;
+		this.tableName = tableName;
+		this.jdbcUuid = jdbcUuid;
 	}
 	
 	/**
@@ -87,23 +125,6 @@ public class SysAdviceMess {
 	 */
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
-	}
-	
-	/**
-	 * 方法名 ： getDeleteFlag
-	 * 功 能 ： 返回变量 deleteFlag 的值
-	 * @return: Boolean
-	 */
-	public Boolean getDeleteFlag() {
-		return deleteFlag;
-	}
-	
-	/**
-	 * 方法名 ： setDeleteFlag
-	 * 功 能 ： 设置变量 deleteFlag 的值
-	 */
-	public void setDeleteFlag(Boolean deleteFlag) {
-		this.deleteFlag = deleteFlag;
 	}
 	
 	/**
@@ -157,30 +178,6 @@ public class SysAdviceMess {
 		this.message = message;
 	}
 	
-	public SysAdviceMess() {
-		super();
-	}
-	
-	/**
-	 * 构造方法：
-	 * 描 述： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数： @param uuid
-	 * 参 数： @param type
-	 * 参 数： @param tableDesc
-	 * 参 数： @param tableName
-	 * 参 数： @param addrUuid
-	 * 作 者 ： Administrator
-	 * @throws
-	 */
-	public SysAdviceMess(String uuid, String type, String tableDesc, String tableName, String addrUuid) {
-		super();
-		this.uuid = uuid;
-		this.type = type;
-		this.tableDesc = tableDesc;
-		this.tableName = tableName;
-		this.addrUuid = addrUuid;
-	}
-	
 	/**
 	 * 方法名 ： getTableDesc
 	 * 功 能 ： 返回变量 tableDesc 的值
@@ -216,22 +213,73 @@ public class SysAdviceMess {
 	}
 	
 	/**
-	 * 方法名 ： getAddrUuid
-	 * 功 能 ： 返回变量 addrUuid 的值
+	 * 方法名 ： getJdbcUuid
+	 * 功 能 ： 返回变量 jdbcUuid 的值
 	 * @return: String
 	 */
-	public String getAddrUuid() {
-		return addrUuid;
+	public String getJdbcUuid() {
+		return jdbcUuid;
 	}
-	
+
 	/**
-	 * 方法名 ： setAddrUuid
-	 * 功 能 ： 设置变量 addrUuid 的值
+	 * 方法名 ： setJdbcUuid
+	 * 功 能 ： 设置变量 jdbcUuid 的值
 	 */
-	public void setAddrUuid(String addrUuid) {
-		this.addrUuid = addrUuid;
+	public void setJdbcUuid(String jdbcUuid) {
+		this.jdbcUuid = jdbcUuid;
 	}
-	
+
+	/**
+	 * 方法名 ： getDiscription
+	 * 功 能 ： 返回变量 discription 的值
+	 * @return: String
+	 */
+	public String getDiscription() {
+		return discription;
+	}
+
+	/**
+	 * 方法名 ： setDiscription
+	 * 功 能 ： 设置变量 discription 的值
+	 */
+	public void setDiscription(String discription) {
+		this.discription = discription;
+	}
+
+	/**
+	 * 方法名 ： getCreateUser
+	 * 功 能 ： 返回变量 createUser 的值
+	 * @return: String
+	 */
+	public String getCreateUser() {
+		return createUser;
+	}
+
+	/**
+	 * 方法名 ： setCreateUser
+	 * 功 能 ： 设置变量 createUser 的值
+	 */
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
+	/**
+	 * 方法名 ： getDeleteFlag
+	 * 功 能 ： 返回变量 deleteFlag 的值
+	 * @return: Integer
+	 */
+	public Integer getDeleteFlag() {
+		return deleteFlag;
+	}
+
+	/**
+	 * 方法名 ： setDeleteFlag
+	 * 功 能 ： 设置变量 deleteFlag 的值
+	 */
+	public void setDeleteFlag(Integer deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
+
 	/**
 	 * 方法名 ： toString
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
