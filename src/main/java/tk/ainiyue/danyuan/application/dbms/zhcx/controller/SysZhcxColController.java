@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxCol;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.VSysZhxCol;
 import tk.ainiyue.danyuan.application.dbms.zhcx.service.SysZhcxColService;
 import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxColVo;
 
@@ -34,11 +33,11 @@ import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxColVo;
 public class SysZhcxColController {
 	//
 	private static final Logger	logger	= LoggerFactory.getLogger(SysZhcxColController.class);
-	
+
 	//
 	@Autowired
 	private SysZhcxColService	sysZhcxColService;
-	
+
 	@ApiOperation(value = "分页查询符合名称信息", notes = "")
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<SysZhcxCol> page(int pageNumber, int pageSize, String searchText) {
@@ -48,17 +47,6 @@ public class SysZhcxColController {
 		return sysZhcxColService.page(pageNumber, pageSize, col);
 	}
 	
-	@ApiOperation(value = "分页查询符合名称信息", notes = "")
-	@RequestMapping(path = "/pagev", method = RequestMethod.POST)
-	public Page<VSysZhxCol> pagev(int pageNumber, int pageSize, String searchText) {
-		logger.info("pagev", SysZhcxColController.class);
-		VSysZhxCol col = new VSysZhxCol();
-		if (!"".equals(searchText)) {
-			col.setTableName(searchText);
-		}
-		return sysZhcxColService.pagev(pageNumber, pageSize, col);
-	}
-	
 	@ApiOperation(value = "更新", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	public String save(@RequestBody SysZhcxCol info) {
@@ -66,7 +54,7 @@ public class SysZhcxColController {
 		sysZhcxColService.save(info);
 		return "1";
 	}
-	
+
 	@ApiOperation(value = "更新", notes = "")
 	@RequestMapping(path = "/savev", method = RequestMethod.POST)
 	public String savev(@RequestBody SysZhcxColVo vo) {
@@ -83,7 +71,7 @@ public class SysZhcxColController {
 		}
 		return "1";
 	}
-	
+
 	@ApiOperation(value = "删除", notes = "")
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestBody SysZhcxColVo vo) {
@@ -91,5 +79,5 @@ public class SysZhcxColController {
 		sysZhcxColService.delete(vo.getList());
 		return "1";
 	}
-	
+
 }

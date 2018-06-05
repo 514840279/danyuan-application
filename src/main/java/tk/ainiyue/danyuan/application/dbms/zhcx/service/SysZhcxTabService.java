@@ -3,11 +3,6 @@ package tk.ainiyue.danyuan.application.dbms.zhcx.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -15,35 +10,30 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.dbms.tabs.vo.MulteityParam;
 import tk.ainiyue.danyuan.application.dbms.zhcx.dao.SysZhcxTabDao;
-import tk.ainiyue.danyuan.application.dbms.zhcx.dao.VSysZhcxTabDao;
 import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxTab;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.VSysZhcxTab;
 import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxTabVo;
 
 @Service
 public class SysZhcxTabService {
 	@Autowired
 	private SysZhcxTabDao	sysZhcxTabDao;
-	@Autowired
-	private VSysZhcxTabDao	vSysZhcxTabDao;
-	
+
 	@Autowired
 	JdbcTemplate			jdbcTemplate;
-	
+
 	public List<SysZhcxTab> findAll() {
 		return sysZhcxTabDao.findAll();
 	}
-	
+
 	public void save(SysZhcxTab info) {
 		sysZhcxTabDao.save(info);
 	}
-	
+
 	public Page<SysZhcxTab> page(int pageNumber, int pageSize, SysZhcxTab info) {
 		if ("".equals(info.getAddrUuid())) {
 			info.setAddrUuid(null);
@@ -57,39 +47,7 @@ public class SysZhcxTabService {
 		Page<SysZhcxTab> sourceCodes = sysZhcxTabDao.findAll(example, request);
 		return sourceCodes;
 	}
-	
-	/**
-	 * 方法名： pagev
-	 * 功 能： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数： @param pageNumber
-	 * 参 数： @param pageSize
-	 * 参 数： @param tab
-	 * 参 数： @return
-	 * 返 回： Page<VSysZhcxTab>
-	 * 作 者 ： Administrator
-	 * @throws
-	 */
-	public Page<VSysZhcxTab> pagev(int pageNumber, int pageSize, String searchText) {
-		// Example<VSysZhcxTab> example = Example.of(tab);
-		Sort sort = new Sort(new Order(Direction.DESC, "tableName"), new Order(Direction.DESC, "tableDesc"));
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
-		Page<VSysZhcxTab> sourceCodes = vSysZhcxTabDao.findAll(new Specification<VSysZhcxTab>() {
-			
-			@Override
-			public Predicate toPredicate(Root<VSysZhcxTab> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				List<Predicate> list = new ArrayList<>();
-				list.add(cb.like(root.get("tableName").as(String.class), "%" + searchText + "%"));
-				return cb.and(list.toArray(new Predicate[list.size()]));
-			}
-			
-		}, request);
-		return sourceCodes;
-	}
-	
-	public void delete(List<SysZhcxTab> list) {
-		sysZhcxTabDao.delete(list);
-	}
-	
+
 	/**
 	 * 方法名： forwardYjcx
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -102,7 +60,7 @@ public class SysZhcxTabService {
 	public List<SysZhcxTab> forwardYjcx(String userindex) {
 		return sysZhcxTabDao.findAllByUserIndex(userindex);
 	}
-	
+
 	/**
 	 * 方法名： findAllTable
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -115,7 +73,7 @@ public class SysZhcxTabService {
 	 * @throws
 	 */
 	public List<SysZhcxTab> findAllTable(SysZhcxTabVo vo) {
-		
+
 		if (vo.getParamList() == null || vo.getParamList().size() == 0) {
 			// 但条件查询
 			return sysZhcxTabDao.findAllByUserIndexAndTypeUuid(vo.getUserindex(), vo.getTypeUuid());
@@ -145,12 +103,12 @@ public class SysZhcxTabService {
 					}
 				}
 			}
-			
+
 			// 多条件查询
 			return minusList;
 		}
 	}
-	
+
 	/**
 	 * 方法名： findAllByTypeUuid
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -163,7 +121,7 @@ public class SysZhcxTabService {
 	public List<SysZhcxTab> findAllByTypeUuid(SysZhcxTabVo vo) {
 		return sysZhcxTabDao.findAllByTypeUuid(vo.getTypeUuid());
 	}
-	
+
 	/**
 	 * 方法名： list
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -179,4 +137,17 @@ public class SysZhcxTabService {
 		return sourceCodes;
 	}
 	
+	/**
+	 * 方法名： delete
+	 * 功 能： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数： @param list
+	 * 返 回： void
+	 * 作 者 ： Administrator
+	 * @throws
+	 */
+	public void delete(List<SysZhcxTab> list) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

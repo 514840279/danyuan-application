@@ -44,7 +44,7 @@ $(function() {
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var url = "/sysDicUserIndexCode/delete";
+						var url = "/sysDbmsUserIndexInfo/delete";
 						var param={list:data};
 						ajaxPost(url, param, addSysDicUserIndexCodeSuccess, 5000, findError);
 					}
@@ -55,7 +55,7 @@ $(function() {
 	
 	$('#dbm_userindex_add_button').click(function() {
 		
-		var url = "/sysDicUserIndexCode/save";
+		var url = "/sysDbmsUserIndexInfo/save";
 		var	SysDicUserIndexCode={
 				uuid:$("#dbm_useridex_add_uuid").val(),
 			userDesc:$("#dbm_useridex_add_desc").val(),
@@ -77,7 +77,7 @@ $(function() {
 
 	// bootstrap table
 	$('#dbm_userindex_datagrid').bootstrapTable({
-		url : "/sysDicUserIndexCode/page",
+		url : "/sysDbmsUserIndexInfo/page",
 		dataType : "json",
 		toolbar : '#dbm_userindex_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

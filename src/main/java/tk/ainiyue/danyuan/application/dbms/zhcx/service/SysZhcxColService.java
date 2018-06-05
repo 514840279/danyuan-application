@@ -12,17 +12,13 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import tk.ainiyue.danyuan.application.dbms.zhcx.dao.SysZhcxColDao;
-import tk.ainiyue.danyuan.application.dbms.zhcx.dao.VSysZhxColDao;
 import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxCol;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.VSysZhxCol;
 import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxColVo;
 
 @Service
 public class SysZhcxColService {
 	@Autowired
-	private SysZhcxColDao	sysZhcxColDao;
-	@Autowired
-	private VSysZhxColDao	vSysZhxColDao;
+	private SysZhcxColDao sysZhcxColDao;
 	
 	public List<SysZhcxCol> findAll() {
 		return sysZhcxColDao.findAll();
@@ -58,22 +54,4 @@ public class SysZhcxColService {
 		return sysZhcxColDao.findAllColumn(tabsuuid);
 	}
 	
-	/**
-	 * 方法名： pagev
-	 * 功 能： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数： @param pageNumber
-	 * 参 数： @param pageSize
-	 * 参 数： @param col
-	 * 参 数： @return
-	 * 返 回： Page<VSysZhxCol>
-	 * 作 者 ： Administrator
-	 * @throws
-	 */
-	public Page<VSysZhxCol> pagev(int pageNumber, int pageSize, VSysZhxCol col) {
-		Example<VSysZhxCol> example = Example.of(col);
-		Sort sort = new Sort(new Order(Direction.DESC, "tableName"));
-		PageRequest request = new PageRequest(pageNumber - 1, pageSize, sort);
-		Page<VSysZhxCol> sourceCodes = vSysZhxColDao.findAll(example, request);
-		return sourceCodes;
-	}
 }

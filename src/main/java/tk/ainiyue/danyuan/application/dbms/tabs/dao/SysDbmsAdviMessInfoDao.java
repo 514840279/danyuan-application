@@ -21,7 +21,7 @@ import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsAdviMessInfo;
  */
 @Repository("sysDbmsAdviMessInfoDao")
 public interface SysDbmsAdviMessInfoDao extends BaseDao<SysDbmsAdviMessInfo> {
-	
+
 	/**
 	 * 方法名： findByDeleteFlag
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -31,7 +31,7 @@ public interface SysDbmsAdviMessInfoDao extends BaseDao<SysDbmsAdviMessInfo> {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	@Query("select t from SysDbmsAdviMessInfo t where t.deleteFlag=:deleteFlag order by t.type desc,t.addrUuid desc,t.tableName")
+	@Query("select t from SysDbmsAdviMessInfo t where t.deleteFlag=:deleteFlag order by t.type desc,t.jdbcUuid desc,t.tableName")
 	List<SysDbmsAdviMessInfo> findByDeleteFlag(@Param("deleteFlag") Integer deleteFlag);
-	
+
 }

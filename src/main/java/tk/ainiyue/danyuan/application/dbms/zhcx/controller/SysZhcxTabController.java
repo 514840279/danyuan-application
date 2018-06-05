@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxTab;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.VSysZhcxTab;
 import tk.ainiyue.danyuan.application.dbms.zhcx.service.SysZhcxTabService;
 import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxTabVo;
 
@@ -35,33 +34,26 @@ import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxTabVo;
 public class SysZhcxTabController {
 	//
 	private static final Logger	logger	= LoggerFactory.getLogger(SysZhcxTabController.class);
-	
+
 	//
 	@Autowired
 	private SysZhcxTabService	sysZhcxTabService;
-	
+
 	@ApiOperation(value = "分页查询符合名称信息", notes = "")
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<SysZhcxTab> page(@RequestBody SysZhcxTabVo vo) {
 		logger.info("page", SysZhcxTabController.class);
 		return sysZhcxTabService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo());
 	}
-	
-	@ApiOperation(value = "分页查询符合名称信息", notes = "")
-	@RequestMapping(path = "/pagev", method = RequestMethod.POST)
-	public Page<VSysZhcxTab> pagev(int pageNumber, int pageSize, String searchText) {
-		logger.info("pagev", SysZhcxTabController.class);
-		return sysZhcxTabService.pagev(pageNumber, pageSize, searchText);
-	}
-	
+
 	@ApiOperation(value = "分页查询符合名称信息", notes = "")
 	@RequestMapping(path = "/list", method = RequestMethod.POST)
 	public List<SysZhcxTab> list(@RequestBody SysZhcxTab info) {
-		
+
 		logger.info("list", SysZhcxTypeController.class);
 		return sysZhcxTabService.list(info);
 	}
-	
+
 	@ApiOperation(value = "更新", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	public String save(@RequestBody SysZhcxTab info) {
@@ -69,7 +61,7 @@ public class SysZhcxTabController {
 		sysZhcxTabService.save(info);
 		return "1";
 	}
-	
+
 	@ApiOperation(value = "更新", notes = "")
 	@RequestMapping(path = "/savev", method = RequestMethod.POST)
 	public String save(@RequestBody SysZhcxTabVo vo) {
@@ -83,7 +75,7 @@ public class SysZhcxTabController {
 		}
 		return "1";
 	}
-	
+
 	@ApiOperation(value = "删除", notes = "")
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestBody SysZhcxTabVo vo) {
@@ -91,5 +83,5 @@ public class SysZhcxTabController {
 		sysZhcxTabService.delete(vo.getList());
 		return "1";
 	}
-	
+
 }

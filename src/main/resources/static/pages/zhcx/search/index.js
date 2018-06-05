@@ -1,7 +1,7 @@
 $(function() {
 	$("#search-2-box").css({"display":"none"});
 	// search bar 数据
-	var url = '/sysDicUserIndexCode/findAll';
+	var url = '/sysDbmsUserIndexInfo/findAll';
 	ajaxPost(url, null, add_user_index_sucess, 1000, findError);
 	$("#search-1-box-button-show").click(function(){
 		$("#search-2-box").css({"display":"none"});
