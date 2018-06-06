@@ -55,11 +55,15 @@ public class SysDbmsTabsTypeInfoController {
 	
 	@ApiOperation(value = "分页查询全部类型管理信息", notes = "")
 	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
-	public Page<SysDbmsTabsTypeInfo> findAllBySearchText(SysDbmsTabsTypeInfoVo sysTableTypeVo) {
+	public Page<SysDbmsTabsTypeInfo> findAllBySearchText(@RequestBody SysDbmsTabsTypeInfoVo vo) {
 		logger.info("findAllBySearchText", SysDbmsTabsTypeInfoController.class);
-		return sysDbmsTabsTypeInfoService.findAllBySearchText(sysTableTypeVo.getPageNumber(), sysTableTypeVo.getPageSize(), sysTableTypeVo.getInfo());
+		SysDbmsTabsTypeInfo info = vo.getInfo();
+		if (info == null) {
+			info = new SysDbmsTabsTypeInfo();
+		}
+		return sysDbmsTabsTypeInfoService.findAllBySearchText(vo.getPageNumber(), vo.getPageSize(), info);
 	}
-
+	
 	@ApiOperation(value = "删除类型管理信息", notes = "")
 	@RequestMapping(path = "/sysTableTypeDeleteAll", method = RequestMethod.POST)
 	@ResponseBody
@@ -72,7 +76,7 @@ public class SysDbmsTabsTypeInfoController {
 			return "0";
 		}
 	}
-
+	
 	@ApiOperation(value = "修改分类信息", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody
@@ -82,5 +86,5 @@ public class SysDbmsTabsTypeInfoController {
 		sysDbmsTabsTypeInfoService.save(info);
 		return "1";
 	}
-
+	
 }

@@ -1,6 +1,7 @@
 package tk.ainiyue.danyuan.application.dbms.tabs.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -53,42 +54,39 @@ public class SysDbmsTabsJdbcInfoController {
 		logger.info("findAll", SysDbmsTabsJdbcInfoController.class);
 		return sysDbmsTabsJdbcInfoService.findAll();
 	}
-
+	
 	@ApiOperation(value = "添加数据库管理信息", notes = "")
-	@RequestMapping(path = "/addSysDbmsTabsJdbcInfo", method = RequestMethod.POST)
-	public List<SysDbmsTabsJdbcInfo> addSysDbmsTabsJdbcInfo(@RequestBody SysDbmsTabsJdbcInfo SysDbmsTabsJdbcInfo) {
+	@RequestMapping(path = "/save", method = RequestMethod.POST)
+	public String save(@RequestBody SysDbmsTabsJdbcInfo sysDbmsTabsJdbcInfo) {
 		logger.info("findAll", SysDbmsTabsJdbcInfoController.class);
-		sysDbmsTabsJdbcInfoService.save(SysDbmsTabsJdbcInfo);
-		return sysDbmsTabsJdbcInfoService.findAll();
+		if (sysDbmsTabsJdbcInfo.getUuid() == null || "".equals(sysDbmsTabsJdbcInfo.getUuid())) {
+			sysDbmsTabsJdbcInfo.setUuid(UUID.randomUUID().toString());
+		}
+		sysDbmsTabsJdbcInfoService.save(sysDbmsTabsJdbcInfo);
+		return "1";
 	}
 	
 	@ApiOperation(hidden = true, value = "/addBefor")
 	@RequestMapping(path = "/addBefor", method = RequestMethod.GET)
 	public ModelAndView addBefor(HttpServletRequest request) {
 		SysDbmsTabsJdbcInfo info = new SysDbmsTabsJdbcInfo();
-		info.setUuid(request.getParameter("uuid"));
-		info.setIp(request.getParameter("address"));
-		info.setDatabaseName(request.getParameter("databaseName"));
-		info.setDeleteFlag(Integer.parseInt(request.getParameter("deleteFlag")));
-		info.setDiscription(request.getParameter("discription"));
-		info.setDriver(request.getParameter("driver"));
-		info.setUsername(request.getParameter("username"));
-		info.setPassword(request.getParameter("password"));
-		info.setPort(request.getParameter("port"));
-		info.setType(request.getParameter("type"));
+		if (request.getParameter("uuid") != null && !"".equals(request.getParameter("uuid"))) {
+			info.setUuid(request.getParameter("uuid"));
+			info = sysDbmsTabsJdbcInfoService.findOne(info);
+		}
 		logger.info("addBefor", SysDbmsTabsJdbcInfoController.class);
-		ModelAndView view = new ModelAndView("dbm/addr/add_addr");
+		ModelAndView view = new ModelAndView("dbms/addr/add_addr");
 		view.addObject("SysDbmsTabsJdbcInfo", info);
 		return view;
 	}
 	
 	@ApiOperation(value = "删除数据库管理信息", notes = "")
-	@RequestMapping(path = "/deleteSysDbmsTabsJdbcInfo", method = RequestMethod.POST)
-	public List<SysDbmsTabsJdbcInfo> deleteSysDbmsTabsJdbcInfo(@RequestBody SysDbmsTabsJdbcInfoVo vo) {
+	@RequestMapping(path = "/delete", method = RequestMethod.POST)
+	public String delete(@RequestBody SysDbmsTabsJdbcInfoVo vo) {
 		logger.error(vo.getList().get(0).toString());
-		logger.info("deleteSysDbmsTabsJdbcInfo", SysDbmsTabsJdbcInfoController.class);
-		sysDbmsTabsJdbcInfoService.deleteSysDbmsTabsJdbcInfo(vo.getList());
-		return sysDbmsTabsJdbcInfoService.findAll();
+		logger.info("delete", SysDbmsTabsJdbcInfoController.class);
+		sysDbmsTabsJdbcInfoService.delete(vo.getList());
+		return "1";
 	}
-
+	
 }

@@ -1,6 +1,16 @@
 $(function() {
 	$('#addnew_addr').click(function() {
-		loadPage('/pages/dbm/addr/add_addr.html','add_addr_id','添加连接')
+//		'/pages/dbms/addr/add_addr.html','add_addr_id','添加连接'
+		
+		// 获取屏幕宽度
+		url = "/sysDbmsTabsJdbcInfo/addBefor";
+    	
+    	modals.openWin({
+	    	winId:"add_addr_id",
+	    	title:'添加连接信息',
+	    	width:screen.width*0.5+'px',
+	    	url:url
+	    });
 	});
 	$('#editold_addr').click(function() {
 		var data = $('#db_addr_datagrid').bootstrapTable('getAllSelections');
@@ -9,8 +19,16 @@ $(function() {
 		}else if(data.length > 1){
 			alert("只能选择一条");
 		}else{
-			loadPage('/sysDatabaseInfo/addBefor','add_addr_id','修改连接',data[0],'reload')
-			
+//			loadPage('/sysDbmsTabsJdbcInfo/addBefor','add_addr_id','修改连接',,'reload')
+			// 获取屏幕宽度
+			url = "/sysDbmsTabsJdbcInfo/addBefor?uuid="+data[0].uuid;
+	    	
+	    	modals.openWin({
+		    	winId:"add_addr_id",
+		    	title:'添加连接信息',
+		    	width:screen.width*0.5 +'px',
+		    	url:url
+		    });
 		}
 	});
 	
@@ -29,7 +47,7 @@ $(function() {
 								"list":data,
 						};
 						// 重载
-						var url = "/sysDatabaseInfo/deleteSysDatabaseInfo";
+						var url = "/sysDbmsTabsJdbcInfo/delete";
 						ajaxPost(url, param, successDeleteSysDatabaseInfo, 1000, findError);
 					}
 				}
@@ -39,7 +57,7 @@ $(function() {
 
 	// bootstrap table
 	$('#db_addr_datagrid').bootstrapTable({
-		url : "/sysDatabaseInfo/findAll",
+		url : "/sysDbmsTabsJdbcInfo/findAll",
 		dataType : "json",
 		toolbar : '#db_addr_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -71,7 +89,7 @@ $(function() {
 			{title : 'ip',field : 'ip',sortable : true,align : 'center'},
 			{title : '端口',field : 'port',align : 'center',sortable : true,valign : 'middle'},
 			{title : '用户名',field : 'username',align : 'center',sortable : true,valign : 'middle'},
-			{title : '密码',field : 'password',sortable : true,align : 'center',valign : 'middle'},
+//			{title : '密码',field : 'password',sortable : true,align : 'center',valign : 'middle',visible:false},
 			{title : '描述',field : 'discription',sortable : true,align : 'center',valign : 'middle'},
 			{title : '状态',field : 'deleteFlag',sortable : true,align : 'center',valign : 'middle'},
 		]

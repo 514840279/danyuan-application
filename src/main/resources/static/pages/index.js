@@ -49,12 +49,12 @@ _history = [];
  // 获取屏幕宽度
 	url = "pages/remen.html";
 	
-	modals.openWin({
-    	winId:"show_config_table",
-    	title:'修改分组信息',
-    	width:screen.width-20+'px',
-    	url:url
-    });
+//	modals.openWin({
+//    	winId:"show_config_table",
+//    	title:'修改分组信息',
+//    	width:screen.width-20+'px',
+//    	url:url
+//    });
     
     // 默认显示页面
 	
@@ -243,5 +243,5 @@ toastr.options = {
 
 //日期 时间的格式化
 function dateTimeFormatter(value,row,index){
-	return  new Date(parseInt(value)).toLocaleString(); 
+	return  new Date(value).toLocaleString(); 
 };

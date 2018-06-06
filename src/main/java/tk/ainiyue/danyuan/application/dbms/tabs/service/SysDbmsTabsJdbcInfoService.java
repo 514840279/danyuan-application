@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
@@ -27,18 +28,14 @@ public class SysDbmsTabsJdbcInfoService implements BaseService<SysDbmsTabsJdbcIn
 	//
 	@Autowired
 	private SysDbmsTabsJdbcInfoDao sysDbmsTabsJdbcInfoDao;
-
+	
 	public List<SysDbmsTabsJdbcInfo> findAll() {
 		return sysDbmsTabsJdbcInfoDao.findAll();
 	}
-
+	
 	@Override
 	public void save(SysDbmsTabsJdbcInfo SysDbmsTabsJdbcInfo) {
 		sysDbmsTabsJdbcInfoDao.save(SysDbmsTabsJdbcInfo);
-	}
-	
-	public void deleteSysDbmsTabsJdbcInfo(List<SysDbmsTabsJdbcInfo> list) {
-		sysDbmsTabsJdbcInfoDao.delete(list);
 	}
 	
 	/**
@@ -49,11 +46,11 @@ public class SysDbmsTabsJdbcInfoService implements BaseService<SysDbmsTabsJdbcIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public SysDbmsTabsJdbcInfo findOne(SysDbmsTabsJdbcInfo info) {
-		// TODO Auto-generated method stub
-		return null;
+		Example<SysDbmsTabsJdbcInfo> example = Example.of(info);
+		return sysDbmsTabsJdbcInfoDao.findOne(example);
 	}
 	
 	/**
@@ -64,7 +61,7 @@ public class SysDbmsTabsJdbcInfoService implements BaseService<SysDbmsTabsJdbcIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public List<SysDbmsTabsJdbcInfo> findAll(SysDbmsTabsJdbcInfo info) {
 		// TODO Auto-generated method stub
@@ -83,7 +80,7 @@ public class SysDbmsTabsJdbcInfoService implements BaseService<SysDbmsTabsJdbcIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#page(int, int, java.lang.Object, java.util.Map, org.springframework.data.domain.Sort.Order[])
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public Page<SysDbmsTabsJdbcInfo> page(int pageNumber, int pageSize, SysDbmsTabsJdbcInfo info, Map<String, String> map, Order... order) {
 		// TODO Auto-generated method stub
@@ -97,11 +94,11 @@ public class SysDbmsTabsJdbcInfoService implements BaseService<SysDbmsTabsJdbcIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void save(List<SysDbmsTabsJdbcInfo> list) {
 		// TODO Auto-generated method stub
-
+		
 	}
 	
 	/**
@@ -111,11 +108,11 @@ public class SysDbmsTabsJdbcInfoService implements BaseService<SysDbmsTabsJdbcIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void delete(SysDbmsTabsJdbcInfo info) {
 		// TODO Auto-generated method stub
-
+		
 	}
 	
 	/**
@@ -125,11 +122,11 @@ public class SysDbmsTabsJdbcInfoService implements BaseService<SysDbmsTabsJdbcIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void delete(List<SysDbmsTabsJdbcInfo> list) {
-		// TODO Auto-generated method stub
-
+		sysDbmsTabsJdbcInfoDao.delete(list);
+		
 	}
 	
 	/**
@@ -139,11 +136,11 @@ public class SysDbmsTabsJdbcInfoService implements BaseService<SysDbmsTabsJdbcIn
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#trunc()
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void trunc() {
 		// TODO Auto-generated method stub
-
+		
 	}
 	
 }

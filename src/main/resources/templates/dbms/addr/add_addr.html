@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8"/>
+
+</head>
+<body>
+	<div class="box">
+		<div class="box-header with-border">
+             <h3 class="box-title">添加数据库设置</h3>
+
+             <div class="box-tools pull-right">
+               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+               </button>
+               <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+             </div>
+           </div>
+		<div class="box-body">
+			<div class="row">
+				<input type="text" id="add_addr_uuid" name="type" placeholder="uuid" th:value="*{SysDbmsTabsJdbcInfo.uuid}" hidden="hedden" />
+				<div class=" col-md-12 form-group">
+					<label class="col-sm-2 control-label text-right">数据库名:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="add_addr_databaseName" name="databaseName"  th:value="*{SysDbmsTabsJdbcInfo.databaseName}" placeholder="数据库名"/>
+					</div>
+				</div>
+				<div class=" col-md-12 form-group">
+					<label class="col-sm-2 control-label text-right">数据库类型:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="add_addr_type" name="type" th:value="*{SysDbmsTabsJdbcInfo.type}" placeholder="数据库类型"/>
+					</div>
+				</div>
+				<div class=" col-md-12 form-group">
+					<label class="col-sm-2 control-label text-right">链接地址:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="add_addr_ip" name="ip" th:value="*{SysDbmsTabsJdbcInfo.ip}" placeholder="ip地址"/>
+					</div>
+				</div>
+				<div class=" col-md-12 form-group">
+					<label class="col-sm-2 control-label text-right">端口号:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="add_addr_port" name="port" th:value="*{SysDbmsTabsJdbcInfo.port}" placeholder="端口号"/>
+					</div>
+				</div>
+				<div class=" col-md-12 form-group">
+					<label class="col-sm-2 control-label text-right">用户名:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="add_addr_username" name="username" th:value="*{SysDbmsTabsJdbcInfo.username}" placeholder="用户名"/>
+					</div>
+				</div>
+				<div class=" col-md-12 form-group">
+					<label class="col-sm-2 control-label text-right">密码:</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="add_addr_password" name="password" th:value="*{SysDbmsTabsJdbcInfo.password}" placeholder="密码"/>
+					</div>
+				</div>
+				<div class=" col-md-12 form-group">
+					<label class="col-sm-2 control-label text-right">描述:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="add_addr_discription" name="discription" th:value="*{SysDbmsTabsJdbcInfo.discription}" placeholder="ip地址描写"/>
+					</div>
+				</div>
+				<div class="col-md-12 form-group text-center">
+					<div class="col-sm-12">
+						<button class="btn btn-success" onclick="submit_add_addr()">确认</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="pages/dbms/addr/add_addr.js"></script>
+</body>
+</html>

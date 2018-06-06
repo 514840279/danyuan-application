@@ -31,14 +31,14 @@ $(function() {
 	});
 	$('#deleteold_type').click(function() {
 		var data = $('#dbm_type_datagrid').bootstrapTable('getAllSelections');
-		var url = "/sysTableTypeInfo/sysTableTypeDeleteAll";
+		var url = "/sysDbmsTabsTypeInfo/sysTableTypeDeleteAll";
 		var param={list:data};
 		ajaxPost(url, param, addSysTableTypeInfoSuccess, 5000, findError);
 	});
 	
 	$('#dbm_type_add_button').click(function() {
 		
-		var url = "/sysTableTypeInfo/save";
+		var url = "/sysDbmsTabsTypeInfo/save";
 		var	sysTableTypeInfo={
 			uuid:$("#dbm_type_add_uuid").val(),
 			typeName:$("#dbm_type_add_typeName").val(),
@@ -56,7 +56,7 @@ $(function() {
 
 	// bootstrap table
 	$('#dbm_type_datagrid').bootstrapTable({
-		url : "/sysTableTypeInfo/findAllBySearchText",
+		url : "/sysDbmsTabsTypeInfo/findAllBySearchText",
 		dataType : "json",
 		toolbar : '#dbm_type_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -86,7 +86,7 @@ $(function() {
 		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
         //设置为limit可以获取limit, offset, search, sort, order  
         queryParamsType : "undefined",
-        contentType: "application/x-www-form-urlencoded",
+        contentType: "application/json",
 		method: "post",  //使用get请求到服务器获取数据  
 		queryParams: function queryParams(params) {  
 		    var param = {  
