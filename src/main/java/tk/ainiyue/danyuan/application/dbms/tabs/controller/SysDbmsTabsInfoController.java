@@ -1,14 +1,20 @@
 package tk.ainiyue.danyuan.application.dbms.tabs.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +25,12 @@ import org.springframework.web.servlet.ModelAndView;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsJdbcInfo;
 import tk.ainiyue.danyuan.application.dbms.tabs.service.SysDbmsTabsInfoService;
-import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDbmsTabsColsInfoVo;
+import tk.ainiyue.danyuan.application.dbms.tabs.service.SysDbmsTabsJdbcInfoService;
 import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDbmsTabsInfoVo;
+import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDbmsTabsJdbcInfoVo;
+import tk.ainiyue.danyuan.application.dbms.zhcx.controller.SysZhcxTabController;
 
 /**
  * 文件名 ： SysDbmsTabsInfoController.java
@@ -38,23 +47,64 @@ import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDbmsTabsInfoVo;
 @Api(value = "/SysDbmsTabsInfo", description = "数据库表管理")
 public class SysDbmsTabsInfoController {
 	//
-	private static final Logger		logger	= LoggerFactory.getLogger(SysDbmsTabsInfoController.class);
-
+	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsTabsInfoController.class);
+	
 	//
 	@Autowired
-	private SysDbmsTabsInfoService	sysDbmsTabsInfoService;
+	private SysDbmsTabsInfoService		sysDbmsTabsInfoService;
+	@Autowired
+	private SysDbmsTabsJdbcInfoService	sysDbmsTabsJdbcInfoService;
 
 	@Autowired
-	JdbcTemplate					jdbcTemplate;
+	JdbcTemplate						jdbcTemplate;
 
 	@ApiOperation(value = "查询前500数据库表管理信息", notes = "")
-	@RequestMapping(path = "/findAllTableRow", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<Map<String, Object>> listTR(SysDbmsTabsColsInfoVo param) {
-		String sql = "Select * from " + param.getSearchText() + " order by datetime desc limit 0,500";
-		List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
-		return list;
-	}
+	@RequestMapping(path = "/pagev", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<Map<String, Object>> pagev(@RequestBody SysDbmsTabsJdbcInfoVo vo) {
+		logger.info("pagev", SysDbmsTabsInfoController.class);
+		SysDbmsTabsJdbcInfo info = sysDbmsTabsJdbcInfoService.findOne(vo.getInfo());
+		if (info != null && info.getType().equals("mysql")) {
+			// List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
+			StringBuilder pageSql = new StringBuilder();
+			pageSql.append(" SELECT UUID() AS uuid, '" + info.getUuid() + "' as jdbcUuid,  CONCAT(T.`TABLE_SCHEMA`,'.' ,T.`TABLE_NAME`) AS tabsName,T.`TABLE_COMMENT`  AS tabsDesc,T.`TABLE_ROWS` AS tabsRows FROM `INFORMATION_SCHEMA`.`TABLES` T");
+			pageSql.append(" WHERE T.`TABLE_SCHEMA` = '" + info.getDatabaseName() + "'");
+			pageSql.append(" order by CONCAT(T.`TABLE_SCHEMA`,'.' ,T.`TABLE_NAME`),TABLE_ROWS desc");
+			// pageSql.append(" limit " + (vo.getPageNumber() - 1) * vo.getPageSize() + "," + vo.getPageSize());
+			System.err.println(pageSql.toString());
+			Map<String, String> param = new HashMap<String, String>();
+			NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+			List<Map<String, Object>> list = template.queryForList(pageSql.toString(), param);
+			return list;
+		} else {
+			return null;
+		}
 
+		// String sql = "Select * from " + param.getSearchText() + " order by datetime desc limit 0,500";
+		
+	}
+	
+	/**
+	 * 方法名： findAll
+	 * 功 能： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数： @return
+	 * 返 回： List<SysSeedInfo>
+	 * 作 者 ： Tenghui.Wang
+	 * @throws
+	 */
+	@ApiOperation(value = "查询全部数据库表管理信息", notes = "")
+	@RequestMapping(path = "/page", method = { RequestMethod.GET, RequestMethod.POST })
+	public Page<SysDbmsTabsInfo> page(@RequestBody SysDbmsTabsInfoVo vo) {
+		logger.info("findAll", SysDbmsTabsInfoController.class);
+		Order order = new Order(Direction.DESC, "createTime");
+		if (vo.getSortName() != null) {
+			order = new Order(vo.getOrder(), vo.getSortName());
+		}
+		if (vo.getInfo() == null) {
+			vo.setInfo(new SysDbmsTabsInfo());
+		}
+		return sysDbmsTabsInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), order);
+	}
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -69,7 +119,7 @@ public class SysDbmsTabsInfoController {
 		logger.info("findAll", SysDbmsTabsInfoController.class);
 		return sysDbmsTabsInfoService.findAll(sysDbmsTabsInfo);
 	}
-
+	
 	@ApiOperation(value = "条件查询全部数据库表管理信息", notes = "")
 	@RequestMapping(path = "/findAllBySysTableInfo", method = RequestMethod.POST)
 	public List<SysDbmsTabsInfo> findAllBySysTableInfo(@RequestBody SysDbmsTabsInfo sysDbmsTabsInfo) {
@@ -77,23 +127,52 @@ public class SysDbmsTabsInfoController {
 		logger.info("findAll", SysDbmsTabsInfoController.class);
 		return sysDbmsTabsInfoService.findAll(sysDbmsTabsInfo);
 	}
-
+	
 	@ApiOperation(value = "保存数据库表管理信息", notes = "")
-	@RequestMapping(path = "/saveSysTableInfo", method = RequestMethod.POST)
-	public String saveSysTableInfo(@RequestBody SysDbmsTabsInfo sysDbmsTabsInfo) {
-		logger.info("saveSysTableInfo", SysDbmsTabsInfoController.class);
+	@RequestMapping(path = "/save", method = RequestMethod.POST)
+	public String save(@RequestBody SysDbmsTabsInfo sysDbmsTabsInfo) {
+		logger.info("save", SysDbmsTabsInfoController.class);
+		if (sysDbmsTabsInfo.getUuid() == null || "".equals(sysDbmsTabsInfo.getUuid())) {
+			sysDbmsTabsInfo.setUuid(UUID.randomUUID().toString());
+		}
 		sysDbmsTabsInfoService.save(sysDbmsTabsInfo);
 		return "1";
 	}
 
+	@ApiOperation(value = "更新", notes = "")
+	@RequestMapping(path = "/savev", method = RequestMethod.POST)
+	public String save(@RequestBody SysDbmsTabsInfoVo vo) {
+		logger.info("savev", SysZhcxTabController.class);
+		for (SysDbmsTabsInfo info : vo.getList()) {
+			SysDbmsTabsInfo infot = new SysDbmsTabsInfo();
+			infot.setTabsName(info.getTabsName());
+			infot = sysDbmsTabsInfoService.findOne(infot);
+			if (infot == null) {
+				info.setDeleteFlag(0);
+				info.setCreateUser(vo.getUsername());
+				info.setUpdateUser(vo.getUsername());
+				sysDbmsTabsInfoService.savev(info);
+			}
+		}
+		return "1";
+	}
+	
 	@ApiOperation(value = "删除数据库表管理信息", notes = "")
-	@RequestMapping(path = "/deleteSysTableInfo", method = RequestMethod.POST)
-	public String deleteSysTableInfo(@RequestBody SysDbmsTabsInfoVo vo) {
-		logger.info("deleteSysTableInfo", SysDbmsTabsInfoController.class);
-		sysDbmsTabsInfoService.delete(vo.getList());
+	@RequestMapping(path = "/drop", method = RequestMethod.POST)
+	public String drop(@RequestBody SysDbmsTabsInfoVo vo) {
+		logger.info("drop", SysDbmsTabsInfoController.class);
+		sysDbmsTabsInfoService.drop(vo.getList());
 		return "1";
 	}
 
+	@ApiOperation(value = "删除数据库表管理信息", notes = "")
+	@RequestMapping(path = "/delete", method = RequestMethod.POST)
+	public String delete(@RequestBody SysDbmsTabsInfoVo vo) {
+		logger.info("delete", SysDbmsTabsInfoController.class);
+		sysDbmsTabsInfoService.delete(vo.getList());
+		return "1";
+	}
+	
 	@ApiOperation(value = "修改数据库表管理信息", notes = "")
 	@RequestMapping(path = "/updateSysTableInfo", method = RequestMethod.POST)
 	public String updateSysTableInfo(@RequestBody SysDbmsTabsInfoVo vo) {
@@ -101,26 +180,26 @@ public class SysDbmsTabsInfoController {
 		sysDbmsTabsInfoService.save(vo.getList());
 		return "1";
 	}
-
+	
 	@ApiOperation(hidden = true, value = "/updBefor")
 	@RequestMapping(path = "/updBefor", method = RequestMethod.POST)
 	public ModelAndView updBefor(HttpServletRequest request) {
 		logger.info("updBefor", SysDbmsTabsInfoController.class);
-		ModelAndView view = new ModelAndView("dbm/table/index_column");
+		ModelAndView view = new ModelAndView("dbms/table/index_column");
 		SysDbmsTabsInfo info = new SysDbmsTabsInfo();
 		info.setUuid(request.getParameter("uuid"));
 		info = sysDbmsTabsInfoService.findOne(info);
 		view.addObject("sysTableInfo", info);
 		return view;
 	}
-
+	
 	@ApiOperation(hidden = true, value = "/updBeforEdit")
-	@RequestMapping(path = "/updBeforEdit", method = RequestMethod.POST)
+	@RequestMapping(path = "/updBeforEdit", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView updBeforEdit(@ModelAttribute SysDbmsTabsInfo info) {
 		logger.info("updBeforEdit", SysDbmsTabsInfoController.class);
-		ModelAndView view = new ModelAndView("dbm/table/upd_table");
+		ModelAndView view = new ModelAndView("dbms/table/upd_table");
 		view.addObject("sysTableInfo", info);
 		return view;
 	}
-
+	
 }

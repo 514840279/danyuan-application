@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8">
+
+<!-- <link rel="stylesheet" href="/plugins/select2/select2.min.css"> -->
+<!-- <link rel="stylesheet" href="/plugins/bootstrap/table/bootstrap-table.min.css"> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/bootstrap-table.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.min.js"></script> -->
+<!-- <script type="text/javascript" src="/plugins/select2/select2.min.js"></script> -->
+
+</head>
+<body>
+	<div class="box">
+		<div class="box-header with-border">
+             <h3 class="box-title">添加表信息</h3>
+
+             <div class="box-tools pull-right">
+               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+               </button>
+               <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+             </div>
+           </div>
+		<div class="box-body">
+			<div class="row" style="padding: 10px;">
+				<div id="imp_table_toolbar">
+					<div class="btn-group">
+						<select style="width: 100%;" id="imp_table_typeName"></select>
+					</div>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default" id="add_table_plus" ><i class="fa fa-plus"></i> 添加
+               			</button>
+					</div>
+				</div>
+				<table class="table table-striped table-bordered" id="imp_table_datagrid" data-toggle="imp_table_datagrid">
+				</table>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript" src="pages/dbms/table/imp_table.js"></script>
+</body>
+</html>
