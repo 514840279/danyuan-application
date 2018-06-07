@@ -1,7 +1,7 @@
 $(function() {
 	// 修改显示
-	$("#myModalLabel").text(tableDesc+"表查询")
-	$("#type_text_id").text(tableDesc);
+	$("#myModalLabel").text(tabsDesc+"表查询")
+	$("#type_text_id").text(tabsDesc);
 	// 多条件查询提交按钮绑定事件
 	jQuery("#searchbutton").bind("click", function(){
 		// 设置本按钮的状态
@@ -11,8 +11,10 @@ $(function() {
 	// 列查询
 	var url_column = "/zhcx/findAllColumn";
 	var param_column={
-			"username":username,
-			tableUuid:tableuuid,
+			info:{
+				"username":username,
+				tabsUuid:tabsuuid,
+			}
 	};
 	ajaxPost(url_column,param_column,columnFix);
 	
@@ -41,7 +43,6 @@ _result=[]
 
 function columnFix(result){
 	// 整理要显示的查询列
-
 	// 要显示的列组织；
 	var column =[] ;
 	$.each(result,function(index,value){
@@ -144,7 +145,7 @@ function columnFix(result){
 		
 	})
 	// 
-	reset("column_table_text_id",tableName,column,result) ;
+	reset("column_table_text_id",tabsName,column,result) ;
 }
 
 
@@ -163,7 +164,7 @@ function forwordYjcx(value,userIndex,colsName){
 }
 _total=0;
 // 表数据加载
-function reset(id,tableName,column,sysColumn) {
+function reset(id,tabsName,column,sysColumn) {
 //	sysc = [];
 //	$.each(sysColumn,function(index,valu){
 //		if(valu.userIndex!=null&&valu.userIndex!=""){
@@ -210,7 +211,7 @@ function reset(id,tableName,column,sysColumn) {
 	    		pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
 	    		"username":username,
-		        tableName : tableName,
+	    		tabsName : tabsName,
 		        dbType:dbType,
 		        esName:esName,
 		        total:_total,
@@ -228,8 +229,8 @@ function reset(id,tableName,column,sysColumn) {
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
 		$("#zhxx_mapString").val(JSON.stringify(row));
 		$("#zhxx_paramString").val(JSON.stringify(sysColumn));
-		$("#zhxx_tableName").val(tableName);
-		$("#zhxx_tableDesc").val(tableDesc);
+		$("#zhxx_tableName").val(tabsName);
+		$("#zhxx_tableDesc").val(tabsDesc);
 		$("#zhxxform").submit();
     }).on('click-row.bs.table', function (e, row, ele,field) {
     	$(".success").removeClass("success");

@@ -68,16 +68,29 @@
 				</div>
 			</div>
 			<div class="box-body">
-				<div id="dbm_config_column_toolbar" class="btn-group">
-					<button type="button" class="btn btn-default" id="addnew_column_table" title="新增类型">
-						<i class="fa fa-plus"></i> 新增类型 
-					</button>
-					<button type="button" class="btn btn-default" id="editold_column_table" title="修改类型">
-						<i class="fa fa-edit"></i> 修改类型 
-					</button>
-					<button type="button" class="btn btn-default" id="deleteold_column_table" title="删除类型">
-						<i class="fa fa-remove"></i> 删除类型 
-					</button>
+				<div id="dbm_config_column_toolbar" >
+					<div class="btn-group">
+						<button type="button" class="btn btn-default" id="addnew_column_table" title="新增类型">
+							<i class="fa fa-plus"></i> 导入字段配置
+						</button>
+						<button type="button" class="btn btn-default" id="editold_column_table" title="修改类型">
+							<i class="fa fa-edit"></i> 修改字段配置
+						</button>
+						<button type="button" class="btn btn-default" id="deleteold_column_table" title="删除类型">
+							<i class="fa fa-remove"></i> 删除字段配置
+						</button>
+					</div>
+					<div class="btn-group">
+						<button type="button" disabled="disabled" class="btn btn-default" id="addnew_column_table" title="新增类型">
+							<i class="fa fa-plus"></i> 新建字段
+						</button>
+						<button type="button" disabled="disabled" class="btn btn-default" id="deleteold_column_table" title="删除类型">
+							<i class="fa fa-remove"></i> 删除字段
+						</button>
+						<button type="button" disabled="disabled" class="btn btn-default" id="deleteold_column_table" title="删除类型">
+							<i class="fa fa-remove"></i> 字段分析
+						</button>
+					</div>
 				</div>
 				<table class="table table-striped table-bordered" id="dbm_config_column_datagrid" data-toggle="dbm_config_table_datagrid"></table>
 			</div>
@@ -105,18 +118,18 @@
 						<label for="update_config_column_colsOrder">列排序</label> 
 						<input type="text" class="form-control" id="update_config_column_colsOrder" placeholder="列排序">
 					</div>
-					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
-						<label for="update_config_column_pageInput">pageInput</label> 
-						<input type="text" class="form-control" id="update_config_column_pageInput" placeholder="pageInput">
-					</div>
-					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
-						<label for="update_config_column_pageList">pageList</label> 
-						<input type="text" class="form-control" id="update_config_column_pageList" placeholder="pageList">
-					</div>
-					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
-						<label for="update_config_column_pageView">pageView</label> 
-						<input type="text" class="form-control" id="update_config_column_pageView" placeholder="pageView">
-					</div>
+<!-- 					<div class="col-lg-6   col-md-6 col-sm-12 form-group"> -->
+<!-- 						<label for="update_config_column_pageInput">pageInput</label>  -->
+<!-- 						<input type="text" class="form-control" id="update_config_column_pageInput" placeholder="pageInput"> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-lg-6   col-md-6 col-sm-12 form-group"> -->
+<!-- 						<label for="update_config_column_pageList">pageList</label>  -->
+<!-- 						<input type="text" class="form-control" id="update_config_column_pageList" placeholder="pageList"> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-lg-6   col-md-6 col-sm-12 form-group"> -->
+<!-- 						<label for="update_config_column_pageView">pageView</label>  -->
+<!-- 						<input type="text" class="form-control" id="update_config_column_pageView" placeholder="pageView"> -->
+<!-- 					</div> -->
 					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
 						<label for="update_config_column_userIndex">用户索引</label> 
 						<input type="text" class="form-control" id="update_config_column_userIndex" placeholder="用户索引">

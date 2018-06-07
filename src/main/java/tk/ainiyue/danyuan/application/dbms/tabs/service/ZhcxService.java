@@ -11,9 +11,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
 import tk.ainiyue.danyuan.application.dbms.tabs.vo.MulteityParam;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxCol;
-import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxColVo;
+import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDbmsTabsColsInfoVo;
 
 /**
  * 文件名 ： ZhcxService.java
@@ -31,7 +31,7 @@ public class ZhcxService {
 	JdbcTemplate	jdbcTemplate;
 	@Value("${spring.jpa.database}")
 	private String	database;
-	
+
 	/**
 	 * 方法名： findAllSigleTableByMulitityParam
 	 * 功 能： 单表多条件查询
@@ -41,16 +41,16 @@ public class ZhcxService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	public Map<String, Object> findAllSigleTableByMulteityParam(SysZhcxColVo vo) {
+	public Map<String, Object> findAllSigleTableByMulteityParam(SysDbmsTabsColsInfoVo vo) {
 		Map<String, Object> map = new HashMap<>();
 		// 默认单表查询
 		StringBuffer sql = new StringBuffer();
-		sql.append("Select * from " + vo.getTableName());
+		sql.append("Select * from " + vo.getTabsName());
 		// 单表多条件查询时 拼接sql
 		sql.append("  where 1=1  ");
-		for (SysZhcxCol sysZhcxCol : vo.getList()) {
+		for (SysDbmsTabsColsInfo sysZhcxCol : vo.getList()) {
 			String colsRange = sysZhcxCol.getTabsUuid();
-			String coldType = sysZhcxCol.getColdType();
+			String coldType = sysZhcxCol.getColsType();
 			String colName = sysZhcxCol.getColsName();
 			String colValue = sysZhcxCol.getColsDesc();
 			if (colValue != null) {
@@ -81,13 +81,13 @@ public class ZhcxService {
 				}
 			}
 		}
-		
+
 		resultMap(sql.toString(), null, vo, map);
 		return map;
 	}
-	
-	private void resultMap(String sqlString, Map<String, String> param, SysZhcxColVo vo, Map<String, Object> resultMap) {
-		
+
+	private void resultMap(String sqlString, Map<String, String> param, SysDbmsTabsColsInfoVo vo, Map<String, Object> resultMap) {
+
 		StringBuilder pageSql = new StringBuilder();
 		if ("Oracle".equals(database)) {
 			pageSql.append(" select *  ");
@@ -102,7 +102,7 @@ public class ZhcxService {
 		} else if ("MYSQL".equals(database)) {
 			pageSql.append(sqlString.toString() + " limit " + (vo.getPageNumber().intValue() - 1) * vo.getPageSize().intValue() + "," + vo.getPageSize().intValue());
 		}
-		
+
 		System.out.println(pageSql.toString());
 		// List<Map<String, Object>> list = jdbcTemplate.queryForList(pageSql.toString());
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
@@ -128,7 +128,7 @@ public class ZhcxService {
 			}
 		}
 	}
-	
+
 	/**
 	 * 方法名： findBySingleTableByMulteityParam
 	 * 功 能： 单表多条件分组查询
@@ -138,20 +138,21 @@ public class ZhcxService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	public Map<String, Object> findBySingleTableByGroupsAndMulteityParam(SysZhcxColVo vo) {
+	public Map<String, Object> findBySingleTableByGroupsAndMulteityParam(SysDbmsTabsColsInfoVo vo) {
 		Map<String, Object> map = new HashMap<>();
 		StringBuffer sql = new StringBuffer();
-		sql.append(" select * from " + vo.tableName + " where 1=1 ");
+		sql.append(" select * from " + vo.getTabsName() + " where 1=1 ");
 		// 排序分组
-		List<List<SysZhcxCol>> groupListList = sortByUserIndex(vo.getList());
+		List<List<SysDbmsTabsColsInfo>> groupListList = sortByUserIndex(vo.getList());
 		// 拼接查询条件与参数
 		Map<String, String> params = new HashMap<>();
 		searchSqlByParams(sql, groupListList, vo.getParamList(), params);
 		// 求结果
 		resultMap(sql.toString(), params, vo, map);
+		System.err.println(sql.toString());
 		return map;
 	}
-	
+
 	/**
 	 * 方法名： searchSqlByParams
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -163,15 +164,15 @@ public class ZhcxService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	private void searchSqlByParams(StringBuffer sql, List<List<SysZhcxCol>> groupListList, List<MulteityParam> paramList, Map<String, String> params) {
+	private void searchSqlByParams(StringBuffer sql, List<List<SysDbmsTabsColsInfo>> groupListList, List<MulteityParam> paramList, Map<String, String> params) {
 		if (groupListList == null) {
 			return;
 		}
-		for (List<SysZhcxCol> groupList : groupListList) {
+		for (List<SysDbmsTabsColsInfo> groupList : groupListList) {
 			StringBuffer sqltem = new StringBuffer();
 			boolean exists = false;
 			for (int i = 0; i < groupList.size(); i++) {
-				SysZhcxCol sysZhcxCol = groupList.get(i);
+				SysDbmsTabsColsInfo sysZhcxCol = groupList.get(i);
 				if (sysZhcxCol.getUserIndex() != null && !"".equals(sysZhcxCol.getUserIndex())) {
 					for (MulteityParam multeityParam : paramList) {
 						if (multeityParam.getUserIndex().equals(sysZhcxCol.getUserIndex())) {
@@ -203,11 +204,11 @@ public class ZhcxService {
 			if (exists) {
 				sql.append(" and (  ").append(sqltem.toString()).append(" )");
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	/**
 	 * @param paramList
 	 * 方法名： sortByUserIndex
@@ -218,22 +219,22 @@ public class ZhcxService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	private List<List<SysZhcxCol>> sortByUserIndex(List<SysZhcxCol> list) {
+	private List<List<SysDbmsTabsColsInfo>> sortByUserIndex(List<SysDbmsTabsColsInfo> list) {
 		if (list == null) {
 			return null;
 		}
-		List<SysZhcxCol> tempList = new ArrayList<>();
-		List<List<SysZhcxCol>> listlist = new ArrayList<>();
-		List<SysZhcxCol> groupList = null;
+		List<SysDbmsTabsColsInfo> tempList = new ArrayList<>();
+		List<List<SysDbmsTabsColsInfo>> listlist = new ArrayList<>();
+		List<SysDbmsTabsColsInfo> groupList = null;
 		for (int i = 0; i < list.size(); i++) {
-			SysZhcxCol sysZhcxCol = list.get(i);
+			SysDbmsTabsColsInfo sysZhcxCol = list.get(i);
 			if (null != sysZhcxCol.getUserIndex() && !"".equals(sysZhcxCol.getUserIndex())) {
 				tempList.add(sysZhcxCol);
 			}
 		}
 		while (tempList.size() > 0) {
 			groupList = new ArrayList<>();
-			for (SysZhcxCol sysZhcxCol : tempList) {
+			for (SysDbmsTabsColsInfo sysZhcxCol : tempList) {
 				if (groupList.size() == 0) {
 					groupList.add(sysZhcxCol);
 				} else {
@@ -247,5 +248,5 @@ public class ZhcxService {
 		}
 		return listlist;
 	}
-	
+
 }

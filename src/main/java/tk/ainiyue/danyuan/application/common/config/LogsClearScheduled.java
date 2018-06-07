@@ -19,13 +19,13 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import tk.ainiyue.danyuan.application.dbms.tabs.dao.SysDbmsAdviMessInfoDao;
+import tk.ainiyue.danyuan.application.dbms.tabs.dao.SysDbmsTabsColsInfoDao;
+import tk.ainiyue.danyuan.application.dbms.tabs.dao.SysDbmsTabsInfoDao;
+import tk.ainiyue.danyuan.application.dbms.tabs.dao.SysDbmsTabsJdbcInfoDao;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsJdbcInfo;
 import tk.ainiyue.danyuan.application.dbms.tabs.service.ZhcxAdviceService;
-import tk.ainiyue.danyuan.application.dbms.zhcx.dao.SysZhcxAddrDao;
-import tk.ainiyue.danyuan.application.dbms.zhcx.dao.SysZhcxColDao;
-import tk.ainiyue.danyuan.application.dbms.zhcx.dao.SysZhcxTabDao;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxAddr;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxCol;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxTab;
 
 /**
  * 文件名 ： LogsClearScheduled.java
@@ -43,13 +43,13 @@ public class LogsClearScheduled {
 	@Autowired
 	JdbcTemplate							jdbcTemplate;
 	@Autowired
-	SysZhcxTabDao							sysZhcxTabDao;
+	SysDbmsTabsColsInfoDao					sysDbmsTabsColsInfoDao;
 	@Autowired
-	SysZhcxAddrDao							sysZhcxAddrDao;
+	SysDbmsTabsJdbcInfoDao					sysDbmsTabsJdbcInfoDao;
 	@Autowired
 	SysDbmsAdviMessInfoDao					sysDbmsAdviMessInfoDao;
 	@Autowired
-	SysZhcxColDao							sysZhcxColDao;
+	SysDbmsTabsInfoDao						sysDbmsTabsInfoDao;
 	
 	private static final SimpleDateFormat	dateFormat	= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	long									nd			= 1000 * 60 * 60 * 24;
@@ -62,23 +62,23 @@ public class LogsClearScheduled {
 		jdbcTemplate.update(sql);
 	}
 	
-	@Scheduled(cron = "0 30 18 1 * *")
+	// @Scheduled(cron = "0 30 18 1 * *")
 	// @Scheduled(fixedDelay = 10000000)
 	public void zhcxConfix() throws ClassNotFoundException {
 		sysDbmsAdviMessInfoDao.deleteAllInBatch();
-		List<SysZhcxTab> list = sysZhcxTabDao.findByAddrUuidIsNotNullAndUpdateTimeGreaterThan();
+		List<SysDbmsTabsInfo> list = sysDbmsTabsInfoDao.findByAddrUuidIsNotNullAndUpdateTimeGreaterThan();
 		Map<String, DataSource> multiDatasource = getMultiDatasource();
-		for (SysZhcxTab sysZhcxTab : list) {
+		for (SysDbmsTabsInfo sysZhcxTab : list) {
 			if ("oracle".equals(sysZhcxTab.getDbType())) {
 				Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+8"));
 				logger.info("当前时间：" + dateFormat.format(calendar.getTime()));
 				// if (calendar.get(Calendar.HOUR_OF_DAY) <= 8 || calendar.get(Calendar.HOUR_OF_DAY) > 16) {
 				// 表配置比较建议修正 (表修改，表配置修改)
 				ZhcxAdviceService.startConfixTableConfig(sysZhcxTab, multiDatasource, sysDbmsAdviMessInfoDao, jdbcTemplate);
-				SysZhcxCol info = new SysZhcxCol();
+				SysDbmsTabsColsInfo info = new SysDbmsTabsColsInfo();
 				info.setTabsUuid(sysZhcxTab.getUuid());
-				Example<SysZhcxCol> example = Example.of(info);
-				List<SysZhcxCol> colList = sysZhcxColDao.findAll(example);
+				Example<SysDbmsTabsColsInfo> example = Example.of(info);
+				List<SysDbmsTabsColsInfo> colList = sysDbmsTabsColsInfoDao.findAll(example);
 				// 列配置比较建议修正(列修改，列配置修改,列统计配置修改，列长度修改)
 				ZhcxAdviceService.startConfixTableColumnsConfig(sysZhcxTab, multiDatasource, sysDbmsAdviMessInfoDao, jdbcTemplate, colList);
 
@@ -89,25 +89,25 @@ public class LogsClearScheduled {
 	}
 	
 	private Map<String, DataSource> getMultiDatasource() throws ClassNotFoundException {
-		List<SysZhcxAddr> list = sysZhcxAddrDao.findAll();
+		List<SysDbmsTabsJdbcInfo> list = sysDbmsTabsJdbcInfoDao.findAll();
 		Map<String, DataSource> map = new HashMap<String, DataSource>();
 		@SuppressWarnings("unchecked")
 		Class<? extends DataSource> type = (Class<? extends DataSource>) Class.forName("org.apache.tomcat.jdbc.pool.DataSource");
-		for (SysZhcxAddr sysZhcxAddr : list) {
+		for (SysDbmsTabsJdbcInfo sysZhcxAddr : list) {
 			String driverClassName = "";
 			String url = "";
 			switch (sysZhcxAddr.getDbType()) {
 				case "oracle":
 					driverClassName = "oracle.jdbc.driver.OracleDriver";
-					url = "jdbc:oracle:thin:@" + sysZhcxAddr.getIp() + ":" + sysZhcxAddr.getPort() + ":" + sysZhcxAddr.getDbName();
+					url = "jdbc:oracle:thin:@" + sysZhcxAddr.getIp() + ":" + sysZhcxAddr.getPort() + ":" + sysZhcxAddr.getDatabaseName();
 					break;
 				case "mysql":
 					driverClassName = "com.mysql.jdbc.Driver";
-					url = "jdbc:mysql://" + sysZhcxAddr.getIp() + ":" + sysZhcxAddr.getPort() + "/" + sysZhcxAddr.getDbName() + "?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull";
+					url = "jdbc:mysql://" + sysZhcxAddr.getIp() + ":" + sysZhcxAddr.getPort() + "/" + sysZhcxAddr.getDatabaseName() + "?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull";
 					break;
 				default:
 					driverClassName = "oracle.jdbc.driver.OracleDriver";
-					url = "jdbc:oracle:thin:@" + sysZhcxAddr.getIp() + ":" + sysZhcxAddr.getPort() + ":" + sysZhcxAddr.getDbName();
+					url = "jdbc:oracle:thin:@" + sysZhcxAddr.getIp() + ":" + sysZhcxAddr.getPort() + ":" + sysZhcxAddr.getDatabaseName();
 					break;
 			}
 			DataSource dataSource = DataSourceBuilder.create().driverClassName(driverClassName).url(url).username(sysZhcxAddr.getUsername()).password(sysZhcxAddr.getPassword()).type(type).build();

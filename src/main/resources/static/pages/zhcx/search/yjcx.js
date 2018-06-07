@@ -64,7 +64,9 @@ function findAllType_Sucess(result){
 		var param_table ={
 				"username":username,
 				paramList:paramList,
-				typeUuid:typeUuid
+				info:{
+					typeUuid:typeUuid
+				}
 		}
 //		console.log(typeUuid);
 		jQuery.ajax({
@@ -78,34 +80,35 @@ function findAllType_Sucess(result){
 				lenth = lenth+result.length;
 				var table_parrent = type.find("#show_table_id");
 				$.each(result,function(index,value){
+					console.log(value);
 					var dbType = value.dbType;
 					var esName = value.esName;
-					var tableName= value.tableName;
-					var tableDesc= value.tableDesc;
-					var tableId=value.uuid;
-					var tableRows = value.tableRows==null?0:value.tableRows;
+					var tabsName= value.tabsName;
+					var tabsDesc= value.tabsDesc;
+					var tabsId=value.uuid;
+					var tabsRows = value.tabsRows==null?0:value.tabsRows;
 					var table = table_parrent.find("#table_box:eq(0)").clone();
 					var collapse = table.find("#table_title_id");
-					collapse.text(tableDesc);
+					collapse.text(tabsDesc);
 					
-					collapse.attr("href","#collapse_"+tableId);
-					table.find("#collapseTable").attr("id","collapse_"+tableId);
+					collapse.attr("href","#collapse_"+tabsId);
+					table.find("#collapseTable").attr("id","collapse_"+tabsId);
 					
-					collapse.attr("data-parent","#accordionTable_"+tableId);
-					table.find("#accordionTable").attr("id","accordionTable_"+tableId);
+					collapse.attr("data-parent","#accordionTable_"+tabsId);
+					table.find("#accordionTable").attr("id","accordionTable_"+tabsId);
 					
-					table.find("table").attr("id",tableId);
+					table.find("table").attr("id",tabsId);
 					
 					var more = table.find("#for_more_table");
 
 		    		more.css({ "cursor" : "pointer"});		
 					more.bind("click", function(){
-						jQuery("#tableuuid").val(tableId);
-						jQuery("#tableName").val(tableName);
-						jQuery("#tableRows").val(0);
+						jQuery("#tabsuuid").val(tabsId);
+						jQuery("#tabsName").val(tabsName);
+						jQuery("#tabsRows").val(0);
 						jQuery("#dbType").val(dbType);
 						jQuery("#esName").val(esName);
-						jQuery("#tableDesc").val(value.tableDesc);
+						jQuery("#tabsDesc").val(tabsDesc);
 						jQuery("#paramString").val(paramString);
 						jQuery("#type").val("单表多条件更多查询");
 						jQuery("#zhlbform").attr("action",  "/zhcx/forwardZhlb");
@@ -115,7 +118,7 @@ function findAllType_Sucess(result){
 					var url_column = "/zhcx/findAllColumn";
 					var param_column={
 							"username":username,
-							tableUuid:tableId,
+							info:{tabsUuid:tabsId}
 					};
 					jQuery.ajax({
 						type : 'POST',
@@ -188,7 +191,7 @@ function findAllType_Sucess(result){
 								
 							})
 							// 
-							reset(tableId,tableName,column,result,table,tableDesc,dbType,esName) ;
+							reset(tabsId,tabsName,column,result,table,tabsDesc,dbType,esName) ;
 						}
 					});
 
@@ -237,7 +240,7 @@ Date.prototype.format = function(fmt) {
 
 //var paramsNode=[];
 // 表数据加载
-function reset(id,tableName,column,sysColumn,table,tableDesc,dbType,esName) {
+function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 //	var sysc = [];
 //	$.each(sysColumn,function(index,valu){
 //		if(valu.userIndex!=null&&valu.userIndex!=""){
@@ -283,7 +286,7 @@ function reset(id,tableName,column,sysColumn,table,tableDesc,dbType,esName) {
 	    		pageNumber: 1,    
 	    		pageSize: 8,
 	    		"username":username,
-		        tableName : tableName,
+		        tabsName : tabsName,
 		        dbType:dbType,
 		        esName:esName,
 		        type:_type,
@@ -343,8 +346,8 @@ function reset(id,tableName,column,sysColumn,table,tableDesc,dbType,esName) {
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
 		$("#zhxx_mapString").val(JSON.stringify(row));
 		$("#zhxx_paramString").val(JSON.stringify(sysColumn));
-		$("#zhxx_tableName").val(tableName);
-		$("#zhxx_tableDesc").val(tableDesc);
+		$("#zhxx_tableName").val(tabsName);
+		$("#zhxx_tableDesc").val(tabsDesc);
 		$("#zhxxform").submit();
     }).on('click-row.bs.table', function (e, row, ele,field) {
     	$(".success").removeClass("success");

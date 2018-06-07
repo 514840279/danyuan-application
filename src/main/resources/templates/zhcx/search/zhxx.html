@@ -83,18 +83,18 @@
 		<div class="content-wrapper" id="mainDiv">
 			<section class="content" id="show_type_id">
 				<div class="box ">
-						<div class="panel-heading font16" id="context_title">发件人信息</div>
-						<div class="panel-body pt5 pb5" id="context_input">
-							<table class="table" >
-								<tbody id="context_input_tab">
-									<tr id="context_input_line" >
-										<td class="bt0" style="display: none" >
-											<span class="color_a">发件人省份：</span>
-											<span id="data">某省</span>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+					<div class="panel-heading font16" id="context_title">发件人信息</div>
+					<div class="panel-body pt5 pb5" id="context_input">
+						<table class="table" >
+							<tbody id="context_input_tab">
+								<tr id="context_input_line" >
+									<td class="bt0" style="display: none" >
+										<span class="color_a">发件人省份：</span>
+										<span id="data">某省</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</section>
@@ -136,8 +136,8 @@
 	paramString = JSON.parse(paramString);
 	var mapString = [[*{mapString}]];
 	mapString = JSON.parse(mapString);
-	var tableName = [[*{tableName}]];
-	var tableDesc = [[*{tableDesc}]];
+	var tabsName = [[*{tabsName}]];
+	var tabsDesc = [[*{tabsDesc}]];
 	var username = [[${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}]];
     console.log("欢迎用户{{"+username+"}}登录本系统！\n 	");
     

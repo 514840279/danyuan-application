@@ -35,7 +35,17 @@ $(function() {
 		}else if(data.length > 1){
 			alert("只能选择一条");
 		}else{
-			loadPage('/sysDbmsTabsInfo/updBeforEdit','upd_table_tab_id','修改表',data[0],'reload')
+			var uuid =data[0].uuid;
+			// 获取屏幕宽度
+			url = "/sysDbmsTabsInfo/updBeforEdit?uuid="+uuid;
+	    	
+	    	modals.openWin({
+		    	winId:"upd_tabs_id",
+		    	title:'添加连接信息',
+		    	width:screen.width*0.5 +'px',
+		    	url:url
+		    });
+//			loadPage('/sysDbmsTabsInfo/updBeforEdit','upd_table_tab_id','修改表',data[0],'reload')
 		}
 	});
 	

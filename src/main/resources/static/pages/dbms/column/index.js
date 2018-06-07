@@ -1,4 +1,4 @@
-_tableUuid=" ";
+_tableUuid="0";
 $(function() {
 	$('#addnew_column_table').click(function() {
 //			iconName=encodeURIComponent($("#add_menu_icon").val());
@@ -6,7 +6,7 @@ $(function() {
 		    	winId:"addnew_column_show_view_table",
 		    	title:'列选择',
 		    	width:'1000px',
-		    	url:"templates/zhcx/config/index"
+		    	url:"templates/dbms/column/add_column"
 		    });
 		
 	});
@@ -19,23 +19,23 @@ $(function() {
 			$("#update_config_column_colsName").text(d.colsName);
 			$("#update_config_column_colsDesc").val(d.colsDesc);
 			$("#update_config_column_colsOrder").val(d.colsOrder);
-			$("#update_config_column_pageInput").val(d.pageInput);
-			$("#update_config_column_pageList").val(d.pageList);
-			$("#update_config_column_pageView").val(d.pageView);
+//			$("#update_config_column_pageInput").val(d.pageInput);
+//			$("#update_config_column_pageList").val(d.pageList);
+//			$("#update_config_column_pageView").val(d.pageView);
 			$("#update_config_column_userIndex").val(d.userIndex);
 			$("#update_config_column_userIcon").val(d.userIcon);
 			$("#update_config_column_colsAlign").val(d.colsAlign);
 			$("#update_config_column_colsWidth").val(d.colsWidth);
 			$("#update_config_column_colsValign").val(d.colsValign);
 			$("#update_config_column_colsSwitchable").val(d.colsSwitchable);
-			$("#update_config_column_indexIndex").val(d.indexIndex);
-			$("#update_config_column_indexKeyword").val(d.indexKeyword);
-			$("#update_config_column_indexIkmaxword").val(d.indexIkmaxword);
-			$("#update_config_column_indexGeopoint").val(d.indexGeopoint);
-			$("#update_config_column_indexIpaddress").val(d.indexIpaddress);
-			$("#update_config_column_indexPinyin").val(d.indexPinyin);
-			$("#update_config_column_indexAll").val(d.indexAll);
-			$("#update_config_column_indexIkmaxword").val(d.indexIkmaxword);
+//			$("#update_config_column_indexIndex").val(d.indexIndex);
+//			$("#update_config_column_indexKeyword").val(d.indexKeyword);
+//			$("#update_config_column_indexIkmaxword").val(d.indexIkmaxword);
+//			$("#update_config_column_indexGeopoint").val(d.indexGeopoint);
+//			$("#update_config_column_indexIpaddress").val(d.indexIpaddress);
+//			$("#update_config_column_indexPinyin").val(d.indexPinyin);
+//			$("#update_config_column_indexAll").val(d.indexAll);
+//			$("#update_config_column_indexIkmaxword").val(d.indexIkmaxword);
 			
 			$('#update-show-myModal').modal({
 		        show: true
@@ -55,7 +55,7 @@ $(function() {
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var url = "/sysZhcxCol/delete";
+						var url = "/sysDbmsTabsColsInfo/delete";
 						var param={list:data};
 						ajaxPost(url, param, addSysColumnInfoSuccess, 5000, findError);
 					}
@@ -68,24 +68,15 @@ $(function() {
 		var d = $('#dbm_config_column_datagrid').bootstrapTable('getAllSelections')[0];
 		d.colsDesc=$("#update_config_column_colsDesc").val();
 		d.colsOrder=$("#update_config_column_colsOrder").val();
-		d.pageInput=$("#update_config_column_pageInput").val();
-		d.pageList=$("#update_config_column_pageList").val();
-		d.pageView=$("#update_config_column_pageView").val();
 		d.userIndex=$("#update_config_column_userIndex").val();
 		d.userIcon=$("#update_config_column_userIcon").val();
 		d.colsWidth=$("#update_config_column_colsWidth").val();
 		d.colsAlign=$("#update_config_column_colsAlign").val();
 		d.colsValign=$("#update_config_column_colsValign").val();
 		d.colsSwitchable=$("#update_config_column_colsSwitchable").val();
-		d.indexIndex=$("#update_config_column_indexIndex").val();
-		d.indexKeyword=$("#update_config_column_indexKeyword").val();
-		d.indexIkmaxword=$("#update_config_column_indexIkmaxword").val();
-		d.indexGeopoint=$("#update_config_column_indexGeopoint").val();
-		d.indexIpaddress=$("#update_config_column_indexIpaddress").val();
-		d.indexPinyin=$("#update_config_column_indexPinyin").val();
-		d.indexAll=$("#update_config_column_indexAll").val();
-		d.indexIkmaxword=$("#update_config_column_indexIkmaxword").val();
-		var url ='/sysZhcxCol/save';
+		var url ='/sysDbmsTabsColsInfo/save';
+		d.createTime=null;
+		d.updateTime=null;
 		ajaxPost(url, d, addSysColumnInfoSuccess, 5000, findError);
 	})
 	
@@ -93,14 +84,15 @@ $(function() {
 	showClomnTable();
 
 //	update_config_table_typeUuid
-	var url = "/sysZhcxType/list";
+	var url = "/sysDbmsTabsTypeInfo/findAll";
 	ajaxPost(url, null, addSelectedTypeSuccess, 5000, findError);
 	
-	var url = "/sysZhcxAddr/list";
+	var url = "/sysDbmsTabsJdbcInfo/findAll";
 	ajaxPost(url, null, addSelectedAddrSuccess, 5000, findError);
 
 });
-var winId="";
+
+
 function add_select_icon(){
 //	$('#update-show-myModal').modal('hide');
 	winId="add_icon_modal";
@@ -123,17 +115,19 @@ function fillBackIconName(icon_name){
 //	$("#icon_i").removeClass().addClass("form-control-feedback").addClass(icon_name);
 }
 update_config_table_typeUuid=" ";
+search_config_table_typeUuid=null;
 function addSelectedTypeSuccess(result){
-	var data = [];
+	var data = [{id:"",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value.uuid,text:value.typeName});
 	});
 	
 	$('#search_config_table_typeUuid').select2({
 	    tags: true,
-	    data:data
+	    data:data,
+	    placeholder: "请选择",
 	});
-	
+	search_config_table_typeUuid=null;
 	$('#search_config_table_typeUuid').on('select2:select', function (evt) {
 		search_config_table_typeUuid = evt.params.data.id;
 		searchtableNames();
@@ -145,20 +139,21 @@ function searchtableNames(){
 			typeUuid:search_config_table_typeUuid,
 			addrUuid:search_config_table_addrUuid,
 	}
-	var url = "/sysZhcxTab/list";
+	var url = "/sysDbmsTabsInfo/findAll";
 	ajaxPost(url, param, addSelectedTableSuccess, 5000, findError);
 }
-search_config_table_typeUuid="";
+
 search_config_table_addrUuid="";
 function addSelectedAddrSuccess(result){
 	var data = [{id:"",text:"请选择"}];
 	$.each(result,function(index,value){
-		data.push({id:value.uuid,text:value.dbName});
+		data.push({id:value.uuid,text:value.databaseName});
 	});
 	
 	$('#search_config_table_addrUuid').select2({
 	    tags: true,
-	    data:data
+	    data:data,
+	    placeholder: "请选择",
 	});
 	
 	$('#search_config_table_addrUuid').on('select2:select', function (evt) {
@@ -170,12 +165,13 @@ function addSelectedAddrSuccess(result){
 function addSelectedTableSuccess(result){
 	var data = [{id:" ",text:"请选择"}];
 	$.each(result,function(index,value){
-		data.push({id:value.uuid,text:value.tableDesc+"("+value.tableName+")"});
+		data.push({id:value.uuid,text:value.tabsDesc+"("+value.tabsName+")"});
 	});
 	$('#search_config_table_tableUuid').empty();   
 	$('#search_config_table_tableUuid').select2({
 	    tags: true,
-	    data:data
+	    data:data,
+	    placeholder: "请选择",
 	});
 	
 	$('#search_config_table_tableUuid').on('select2:select', function (evt) {
@@ -183,10 +179,11 @@ function addSelectedTableSuccess(result){
 		$('#dbm_config_column_datagrid').bootstrapTable("refresh");
 	});
 }
+
 function showClomnTable(){
 	// bootstrap table
 	$('#dbm_config_column_datagrid').bootstrapTable({
-		url : "/sysZhcxCol/page",
+		url : "/sysDbmsTabsColsInfo/page",
 		dataType : "json",
 		toolbar : '#dbm_config_column_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -216,13 +213,13 @@ function showClomnTable(){
 		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
         //设置为limit可以获取limit, offset, search, sort, order  
         queryParamsType : "undefined",
-        contentType: "application/x-www-form-urlencoded",
+        contentType: "application/json",
 		method: "post",  //使用get请求到服务器获取数据  
 		queryParams: function queryParams(params) {  
 		    var param = {  
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
-                 searchText: _tableUuid
+                 info:{tabsUuid: _tableUuid}
              }; 
              return param;
 		},
@@ -252,10 +249,6 @@ function showClomnTable(){
 $(window).resize(function() {
 	$('#dbm_config_table_datagrid').bootstrapTable('resetView');
 });
-
-
-
-
 
 function addSysColumnInfoSuccess(result){
 	$('#dbm_config_column_datagrid').bootstrapTable('refresh');

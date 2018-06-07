@@ -190,22 +190,22 @@
 	<script type="text/javascript" src="/plugins/toastr/toastr.min.js"></script>
 
 	<script th:inline="javascript">
-	var tableuuid = [[*{tableuuid}]];
-	var tableName = [[*{tableName}]];
-	var tableDesc = [[*{tableDesc}]];
-	var tableRows = [[*{tableRows}]];
-	var dbType = [[*{dbType}]];
-	var esName = [[*{esName}]];
-	
-	var _type = [[*{type}]];
-	var paramString = [[*{paramString}]];
-	
-	var paramList = [];
-	if(paramString!=""){
-		paramList =JSON.parse(paramString)
-	}
-	var username = [[${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}]];
-    console.log("欢迎用户{{"+username+"}}登录本系统！\n 	");
+		var tabsuuid = [[*{tabsuuid}]];
+		var tabsName = [[*{tabsName}]];
+		var tabsDesc = [[*{tabsDesc}]];
+		var tabsRows = [[*{tabsRows}]];
+		var dbType = [[*{dbType}]];
+		var esName = [[*{esName}]];
+		
+		var _type = [[*{type}]];
+		var paramString = [[*{paramString}]];
+		
+		var paramList = [];
+		if(paramString!=""){
+			paramList =JSON.parse(paramString)
+		}
+		var username = [[${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}]];
+	    console.log("欢迎用户{{"+username+"}}登录本系统！\n 	");
     
 	</script>
 	<!-- 	<script type="text/javascript" src="/pages/index.js">	</script> -->

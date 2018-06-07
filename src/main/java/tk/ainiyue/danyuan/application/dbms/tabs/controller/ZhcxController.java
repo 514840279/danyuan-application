@@ -20,17 +20,17 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
+import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsTabsTypeInfo;
 import tk.ainiyue.danyuan.application.dbms.tabs.po.SysDbmsUserIndexInfo;
+import tk.ainiyue.danyuan.application.dbms.tabs.service.SysDbmsTabsColsInfoService;
+import tk.ainiyue.danyuan.application.dbms.tabs.service.SysDbmsTabsInfoService;
+import tk.ainiyue.danyuan.application.dbms.tabs.service.SysDbmsTabsTypeInfoService;
 import tk.ainiyue.danyuan.application.dbms.tabs.service.SysDbmsUserIndexInfoService;
 import tk.ainiyue.danyuan.application.dbms.tabs.service.ZhcxService;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxCol;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxTab;
-import tk.ainiyue.danyuan.application.dbms.zhcx.po.SysZhcxType;
-import tk.ainiyue.danyuan.application.dbms.zhcx.service.SysZhcxColService;
-import tk.ainiyue.danyuan.application.dbms.zhcx.service.SysZhcxTabService;
-import tk.ainiyue.danyuan.application.dbms.zhcx.service.SysZhcxTypeService;
-import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxColVo;
-import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxTabVo;
+import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDbmsTabsColsInfoVo;
+import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDbmsTabsInfoVo;
 
 /**
  * 文件名 ： ZhcxController.java
@@ -46,31 +46,32 @@ import tk.ainiyue.danyuan.application.dbms.zhcx.vo.SysZhcxTabVo;
 @RequestMapping("/zhcx")
 @Api(value = "/zhcx", description = "综合查询业务")
 public class ZhcxController {
-
-	private static final Logger	logger	= LoggerFactory.getLogger(ZhcxController.class);
-
+	
+	private static final Logger			logger	= LoggerFactory.getLogger(ZhcxController.class);
+	
 	//
 	@Autowired
-	private SysZhcxTypeService	sysZhcxTypeService;
-
+	private SysDbmsTabsTypeInfoService	sysDbmsTabsTypeInfoService;
+	
 	//
 	@Autowired
-	private SysZhcxTabService	sysZhcxTabService;
-
+	private SysDbmsTabsInfoService		sysDbmsTabsInfoService;
+	
 	//
 	@Autowired
-	private SysZhcxColService	sysZhcxColService;
+	private SysDbmsTabsColsInfoService	sysDbmsTabsColsInfoService;
 	@Autowired
-	SysDbmsUserIndexInfoService	sysDbmsUserIndexInfoService;
-
+	SysDbmsUserIndexInfoService			sysDbmsUserIndexInfoService;
+	
 	@Autowired
-	private ZhcxService			zhcxService;
-
+	private ZhcxService					zhcxService;
+	
 	@ApiOperation(value = "查询前500数据库表管理信息", notes = "")
 	@RequestMapping(path = "/findAllTableRow", method = { RequestMethod.GET, RequestMethod.POST })
-	public Map<String, Object> findAllTableRow(@RequestBody SysZhcxColVo vo) throws JsonParseException, JsonMappingException, IOException {
+	public Map<String, Object> findAllTableRow(@RequestBody SysDbmsTabsColsInfoVo vo) throws JsonParseException, JsonMappingException, IOException {
 		logger.info("findAllTableRow", ZhcxController.class);
 		Map<String, Object> map = new HashMap<>();
+		System.err.println(vo.toString());
 		if ("oracle".equals(vo.getDbType()) || "mysql".equals(vo.getDbType())) {
 			// if ("单表多条件查询".equals(vo.getType())) {
 			// map = zhcxService.findAllSigleTableByMulteityParam(vo);
@@ -84,11 +85,12 @@ public class ZhcxController {
 		}
 		return map;
 	}
-
+	
 	@ApiOperation(value = "一键查询前", notes = "")
 	@RequestMapping(path = "/forwardYjcx", method = RequestMethod.POST)
-	public ModelAndView forwardYjcx(SysZhcxTabVo vo) {
+	public ModelAndView forwardYjcx(SysDbmsTabsInfoVo vo) {
 		logger.info("forwardYjcx", ZhcxController.class);
+		System.err.println(vo.toString());
 		ModelAndView view = new ModelAndView("zhcx/search/yjcx");
 		List<SysDbmsUserIndexInfo> list = sysDbmsUserIndexInfoService.findAll();
 		view.addObject("type", vo.getType());
@@ -99,76 +101,79 @@ public class ZhcxController {
 
 	@ApiOperation(value = "类型查询", notes = "")
 	@RequestMapping(path = "/findAllType", method = RequestMethod.POST)
-	public List<SysZhcxType> findAllType(String username) {
+	public List<SysDbmsTabsTypeInfo> findAllType(String username) {
 		logger.info("findAllType", ZhcxController.class);
-		List<SysZhcxType> list = sysZhcxTypeService.findAllType(username);
+		List<SysDbmsTabsTypeInfo> list = sysDbmsTabsTypeInfoService.findAll();
 		return list;
 	}
-
+	
 	@ApiOperation(value = "表名查询", notes = "")
 	@RequestMapping(path = "/findAllTable", method = RequestMethod.POST)
-	public List<SysZhcxTab> findAllTable(@RequestBody SysZhcxTabVo vo) {
+	public List<SysDbmsTabsInfo> findAllTable(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("findAllTable", ZhcxController.class);
-		List<SysZhcxTab> list = sysZhcxTabService.findAllTable(vo);
+		List<SysDbmsTabsInfo> list = sysDbmsTabsInfoService.findAll(vo.getInfo());
 		if (list != null) {
 			return list;
 		} else {
-			return new ArrayList<SysZhcxTab>();
+			return new ArrayList<SysDbmsTabsInfo>();
 		}
 	}
-
+	
 	@ApiOperation(value = "表名查询", notes = "")
 	@RequestMapping(path = "/findAllTableByTypeUuid", method = RequestMethod.POST)
-	public List<SysZhcxTab> findAllTableByTypeUuid(@RequestBody SysZhcxTabVo vo) {
+	public List<SysDbmsTabsInfo> findAllTableByTypeUuid(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("findAllTableByTypeUuid", ZhcxController.class);
-		List<SysZhcxTab> list = sysZhcxTabService.findAllByTypeUuid(vo);
+		List<SysDbmsTabsInfo> list = new ArrayList<>();
+		if (vo.getInfo() != null && !"".equals(vo.getInfo())) {
+			list = sysDbmsTabsInfoService.findAll(vo.getInfo());
+		}
 		return list;
 	}
-
+	
 	@ApiOperation(value = "表名查询", notes = "")
 	@RequestMapping(path = "/findAllColumn", method = RequestMethod.POST)
-	public List<SysZhcxCol> findAllColumn(@RequestBody SysZhcxColVo vo) {
+	public List<SysDbmsTabsColsInfo> findAllColumn(@RequestBody SysDbmsTabsColsInfoVo vo) {
 		logger.info("findAllColumn", ZhcxController.class);
-		logger.info(vo.toString(), ZhcxController.class);
-		List<SysZhcxCol> list = sysZhcxColService.findAllColumn(vo);
+		List<SysDbmsTabsColsInfo> list = sysDbmsTabsColsInfoService.findAll(vo.getInfo());
 		return list;
 	}
-
+	
 	@ApiOperation(value = "一键查询前", notes = "")
 	@RequestMapping(path = "/forwardZhlb", method = RequestMethod.POST)
-	public ModelAndView forwardZhlb(SysZhcxTabVo vo) {
+	public ModelAndView forwardZhlb(SysDbmsTabsInfoVo vo) {
+		System.err.println(vo.toString());
 		logger.info("forwardZhlb", ZhcxController.class);
 		ModelAndView view = new ModelAndView("zhcx/search/zhlb");
-		view.addObject("tableuuid", vo.getTableuuid());
-		view.addObject("tableDesc", vo.getTableDesc());
-		view.addObject("tableName", vo.getTableName());
+		view.addObject("tabsuuid", vo.getTabsuuid());
+		view.addObject("tabsDesc", vo.getTabsDesc());
+		view.addObject("tabsName", vo.getTabsName());
 		view.addObject("dbType", vo.getDbType());
 		view.addObject("esName", vo.getEsName());
-		view.addObject("tableRows", vo.getTableRows());
+		view.addObject("tabsRows", vo.getTabsRows());
 		view.addObject("type", vo.getType());
 		view.addObject("paramString", vo.getParamString());
 		return view;
 	}
-
+	
 	@ApiOperation(value = "详细展示", notes = "")
 	@RequestMapping(path = "/forwardZhxx", method = RequestMethod.POST)
-	public ModelAndView forwardZhxx(SysZhcxColVo vo) {
+	public ModelAndView forwardZhxx(SysDbmsTabsColsInfoVo vo) {
 		logger.info("forwardZhxx", ZhcxController.class);
 		ModelAndView view = new ModelAndView("zhcx/search/zhxx");
 		view.addObject("mapString", vo.getMapString());
-		view.addObject("tableName", vo.getTableName());
-		view.addObject("tableDesc", vo.getTableDesc());
+		view.addObject("tabsName", vo.getTabsName());
+		view.addObject("tabsDesc", vo.getTabsDesc());
 		view.addObject("paramString", vo.getParamString());
 		return view;
 	}
-
+	
 	@ApiOperation(value = "详细展示", notes = "")
 	@RequestMapping(path = "/forwardChart", method = RequestMethod.POST)
-	public ModelAndView forwardChart(SysZhcxColVo vo) {
+	public ModelAndView forwardChart(SysDbmsTabsColsInfoVo vo) {
 		logger.info("forwardChart", ZhcxController.class);
 		ModelAndView view = new ModelAndView("zhcx/search/chart");
 		view.addObject("paramString", vo.getParamString());
 		return view;
 	}
-
+	
 }

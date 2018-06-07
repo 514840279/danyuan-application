@@ -35,34 +35,34 @@
 				</div>
 				<div id="accordion_table_collapseOne" class="panel-collapse collapse in">
 					<div class="panel-body">
-					<input type="text"  id="upd_table_uuid" name="type" th:value="*{sysTableInfo.uuid}" hidden="hidden"/>
+					<input type="text"  id="add_table_uuid" name="type" th:value="*{sysTableInfo.uuid}" hidden="hidden"/>
 						<div class="row">
 							<div class="col-md-6 form-group">
 								<label class="col-sm-2 control-label text-right">表名:</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="upd_table_tabsName" name="tabsName" placeholder="数据库表名" th:value="*{sysTableInfo.tabsName}"/>
+									<input type="text" class="form-control" id="add_table_tableName" name="tabsName" placeholder="数据库表名" th:value="*{sysTableInfo.tabsName}"/>
 								</div>
 							</div>
 							<div class=" col-md-6 form-group">
 								<label class="col-sm-2 control-label text-right">表含义:</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="upd_table_tabsDesc" name="tabsDesc" placeholder="数据库表含义"  th:value="*{sysTableInfo.tabsDesc}"/>
+									<input type="text" class="form-control" id="add_table_tableDesc" name="tabsDesc" placeholder="数据库表含义"  th:value="*{sysTableInfo.tabsDesc}"/>
 								</div>
 							</div>
 							<div class=" col-md-6 form-group">
 								<label class="col-sm-2 control-label text-right">数据库:</label>
 								<div class="col-sm-10">
-									<select style="width: 100%;" id="upd_table_addrName" ></select>
+									<select style="width: 100%;" id="add_table_addrName" ></select>
 								</div>
 							</div>
 							<div class=" col-md-6 form-group">
 								<label class="col-sm-2 control-label text-right">类型:</label>
 								<div class="col-sm-10">
-									<select style="width: 100%;" id="upd_table_typeName"></select>
+									<select style="width: 100%;" id="add_table_typeName"></select>
 								</div>
 							</div>
 							<div class=" col-md-12 text-center">
-								<button class="btn btn-success" id="db_upd_table_button">
+								<button class="btn btn-success" id="db_create_table_button">
 									<i class="glyphicon glyphicon-ok"></i> 修改表
 								</button>
 							</div>
@@ -73,11 +73,11 @@
 		</div>
 
 	</section>
-	<script type="text/javascript" src="pages/dbms/table/upd_table.js"></script>
 	<script th:inline="javascript">
 	var sysTableInfo = [[${sysTableInfo}]];
 	var id = sysTableInfo.databaseUuid;
-	$("#upd_table_addrName").select2('val',id);
+	
 	</script>
+	<script type="text/javascript" src="pages/dbms/table/upd_table.js"></script>
 </body>
 </html>
