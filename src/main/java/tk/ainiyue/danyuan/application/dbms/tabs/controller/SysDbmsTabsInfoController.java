@@ -46,16 +46,16 @@ import tk.ainiyue.danyuan.application.dbms.tabs.vo.SysDbmsTabsJdbcInfoVo;
 public class SysDbmsTabsInfoController {
 	//
 	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsTabsInfoController.class);
-
+	
 	//
 	@Autowired
 	private SysDbmsTabsInfoService		sysDbmsTabsInfoService;
 	@Autowired
 	private SysDbmsTabsJdbcInfoService	sysDbmsTabsJdbcInfoService;
-	
+
 	@Autowired
 	JdbcTemplate						jdbcTemplate;
-	
+
 	@ApiOperation(value = "查询前500数据库表管理信息", notes = "")
 	@RequestMapping(path = "/pagev", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<Map<String, Object>> pagev(@RequestBody SysDbmsTabsJdbcInfoVo vo) {
@@ -64,7 +64,13 @@ public class SysDbmsTabsInfoController {
 		if (info != null && info.getType().equals("mysql")) {
 			// List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
 			StringBuilder pageSql = new StringBuilder();
-			pageSql.append(" SELECT UUID() AS uuid, '" + info.getUuid() + "' as jdbcUuid,  CONCAT(T.`TABLE_SCHEMA`,'.' ,T.`TABLE_NAME`) AS tabsName,T.`TABLE_COMMENT`  AS tabsDesc,T.`TABLE_ROWS` AS tabsRows FROM `INFORMATION_SCHEMA`.`TABLES` T");
+			pageSql.append(" SELECT UUID() AS uuid,   ");
+			pageSql.append("  '" + info.getUuid() + "' as jdbcUuid,  ");
+			pageSql.append(" CONCAT(T.`TABLE_SCHEMA`,'.' ,T.`TABLE_NAME`) AS tabsName,");
+			pageSql.append(" T.`TABLE_COMMENT`  AS tabsDesc, ");
+			pageSql.append(" 'mysql'  AS dbType, ");
+			pageSql.append(" T.`TABLE_ROWS` AS tabsRows ");
+			pageSql.append(" FROM `INFORMATION_SCHEMA`.`TABLES` T ");
 			pageSql.append(" WHERE T.`TABLE_SCHEMA` = '" + info.getDatabaseName() + "'");
 			pageSql.append(" order by CONCAT(T.`TABLE_SCHEMA`,'.' ,T.`TABLE_NAME`),TABLE_ROWS desc");
 			// pageSql.append(" limit " + (vo.getPageNumber() - 1) * vo.getPageSize() + "," + vo.getPageSize());
@@ -78,11 +84,11 @@ public class SysDbmsTabsInfoController {
 		} else {
 			return null;
 		}
-		
+
 		// String sql = "Select * from " + param.getSearchText() + " order by datetime desc limit 0,500";
-
+		
 	}
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -104,7 +110,7 @@ public class SysDbmsTabsInfoController {
 		}
 		return sysDbmsTabsInfoService.page(vo.getPageNumber(), vo.getPageSize(), vo.getInfo(), vo.getMap(), order);
 	}
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -117,10 +123,10 @@ public class SysDbmsTabsInfoController {
 	@RequestMapping(path = "/findAll", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<SysDbmsTabsInfo> findAll() {
 		logger.info("findAll", SysDbmsTabsInfoController.class);
-
+		
 		return sysDbmsTabsInfoService.findAll();
 	}
-
+	
 	@ApiOperation(value = "条件查询全部数据库表管理信息", notes = "")
 	@RequestMapping(path = "/findAllBySysTableInfo", method = RequestMethod.POST)
 	public List<SysDbmsTabsInfo> findAllBySysTableInfo(@RequestBody SysDbmsTabsInfo sysDbmsTabsInfo) {
@@ -128,7 +134,7 @@ public class SysDbmsTabsInfoController {
 		logger.info("findAll", SysDbmsTabsInfoController.class);
 		return sysDbmsTabsInfoService.findAll(sysDbmsTabsInfo);
 	}
-
+	
 	@ApiOperation(value = "保存数据库表管理信息", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	public String save(@RequestBody SysDbmsTabsInfo sysDbmsTabsInfo) {
@@ -139,7 +145,7 @@ public class SysDbmsTabsInfoController {
 		sysDbmsTabsInfoService.save(sysDbmsTabsInfo);
 		return "1";
 	}
-
+	
 	@ApiOperation(value = "保存数据库表管理信息", notes = "")
 	@RequestMapping(path = "/change", method = RequestMethod.POST)
 	public String change(@RequestBody SysDbmsTabsInfoVo vo) {
@@ -147,7 +153,7 @@ public class SysDbmsTabsInfoController {
 		sysDbmsTabsInfoService.change(vo);
 		return "1";
 	}
-	
+
 	@ApiOperation(value = "更新", notes = "")
 	@RequestMapping(path = "/savev", method = RequestMethod.POST)
 	public String save(@RequestBody SysDbmsTabsInfoVo vo) {
@@ -165,7 +171,7 @@ public class SysDbmsTabsInfoController {
 		}
 		return "1";
 	}
-
+	
 	@ApiOperation(value = "删除数据库表管理信息", notes = "")
 	@RequestMapping(path = "/drop", method = RequestMethod.POST)
 	public String drop(@RequestBody SysDbmsTabsInfoVo vo) {
@@ -173,7 +179,7 @@ public class SysDbmsTabsInfoController {
 		sysDbmsTabsInfoService.drop(vo.getList());
 		return "1";
 	}
-	
+
 	@ApiOperation(value = "删除数据库表管理信息", notes = "")
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestBody SysDbmsTabsInfoVo vo) {
@@ -181,7 +187,7 @@ public class SysDbmsTabsInfoController {
 		sysDbmsTabsInfoService.delete(vo.getList());
 		return "1";
 	}
-
+	
 	@ApiOperation(value = "修改数据库表管理信息", notes = "")
 	@RequestMapping(path = "/updateSysTableInfo", method = RequestMethod.POST)
 	public String updateSysTableInfo(@RequestBody SysDbmsTabsInfoVo vo) {
@@ -189,7 +195,7 @@ public class SysDbmsTabsInfoController {
 		sysDbmsTabsInfoService.save(vo.getList());
 		return "1";
 	}
-
+	
 	@ApiOperation(hidden = true, value = "/updBefor")
 	@RequestMapping(path = "/updBefor", method = RequestMethod.POST)
 	public ModelAndView updBefor(HttpServletRequest request) {
@@ -201,7 +207,7 @@ public class SysDbmsTabsInfoController {
 		view.addObject("sysTableInfo", info);
 		return view;
 	}
-
+	
 	@ApiOperation(hidden = true, value = "/updBeforEdit")
 	@RequestMapping(path = "/updBeforEdit", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView updBeforEdit(HttpServletRequest request) {
@@ -215,5 +221,5 @@ public class SysDbmsTabsInfoController {
 		view.addObject("sysTableInfo", info);
 		return view;
 	}
-
+	
 }

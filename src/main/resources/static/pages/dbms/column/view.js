@@ -114,8 +114,8 @@ function showClomnTable(){
 		},
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
-			{title : 'id',field : 'uuid',align : 'left',sortable : true,valign : 'middle'},
-			{title : 'tabsUuid',field : 'tabsUuid',align : 'left',sortable : true,valign : 'middle'},
+			{title : 'id',field : 'uuid',align : 'left',sortable : true,valign : 'middle',visible:false},
+			{title : 'tabsUuid',field : 'tabsUuid',align : 'left',sortable : true,valign : 'middle',visible:false},
 			{title : '表名称',field : 'tabsName',align : 'left',sortable : true,valign : 'middle'},
 			{title : '列名称',field : 'colsName',align : 'left',sortable : true,valign : 'middle'},
 			{title : '列中文含义',field : 'colsDesc',align : 'left',sortable : true,valign : 'middle'},

@@ -80,7 +80,6 @@ function findAllType_Sucess(result){
 				lenth = lenth+result.length;
 				var table_parrent = type.find("#show_table_id");
 				$.each(result,function(index,value){
-					console.log(value);
 					var dbType = value.dbType;
 					var esName = value.esName;
 					var tabsName= value.tabsName;
@@ -191,6 +190,7 @@ function findAllType_Sucess(result){
 								
 							})
 							// 
+							tabsDesc = tabsDesc==null||tabsDesc==""?tabsName:tabsDesc
 							reset(tabsId,tabsName,column,result,table,tabsDesc,dbType,esName) ;
 						}
 					});
@@ -241,6 +241,7 @@ Date.prototype.format = function(fmt) {
 //var paramsNode=[];
 // 表数据加载
 function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
+	console.log(dbType);
 //	var sysc = [];
 //	$.each(sysColumn,function(index,valu){
 //		if(valu.userIndex!=null&&valu.userIndex!=""){

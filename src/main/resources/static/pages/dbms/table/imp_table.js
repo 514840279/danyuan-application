@@ -51,6 +51,7 @@ $(function() {
 			{title : '表名',field : 'tabsName',align : 'left',sortable : true,valign : 'middle'},
 			{title : '表含义',field : 'tabsDesc',align : 'left',sortable : true,valign : 'middle'},
 			{title : '表数据量',field : 'tabsRows',sortable : true,align : 'left'},
+			{title : '数据库类型',field : 'dbType',align : 'left',sortable : true,valign : 'middle'},
 		]
 	});
 	// 窗口大小改变时 重设表头
