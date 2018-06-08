@@ -73,6 +73,10 @@ _history = [];
 //	        _history.push('remen');
 })(jQuery);
 
+$("#show_profile").click(function(){
+	loadPage("/pages/user/profile.html");
+})
+
 /**
  * 待改
  * 
