@@ -17,13 +17,13 @@
 3. 导入数据库脚本 sql/All.sql
 4. 修改项目配置：src/main/resources/application.properties
 	1. 修改数据库链接地址数据库用户名密码 
-	2. 修改 server.port=9999 # 项目端口号
+	2. 修改 server.port=80 # 项目端口号
 	3. 修改 security.user.name=admin # 项目验证登录用户	       
 	4. 修改 security.user.password=admin # 项目验证登录密码
 5. 执行mvn clean
 6. 执行mvn install
 7. 执行mvn spring-boot:run(java -jar target/danyuan.jar)
-8. 访问http://localhost:9999 # 端口号
+8. 访问http://localhost # 端口号
 9. 输入用户名、密码 admin/admin
 
 ## 演示地址
@@ -41,11 +41,4 @@ QQ群： <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61
 ![弹窗1](screen/3.png)
 ![弹窗1](screen/2.png)
 ![右键](screen/1.png)
-
-## 相关项目
-科技局： https://github.com/514840279/danyuan-kejiju.git
-
-oracle数据管理：https://github.com/514840279/danyuan-dbmanager.git
-
-markdown https://github.com/514840279/danyuan-markdown.git
 
