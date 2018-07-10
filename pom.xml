@@ -34,7 +34,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.10.RELEASE</version>
+		<version>1.5.14.RELEASE</version>
 	</parent>
 
 	<dependencies>
@@ -46,10 +46,10 @@
 		</dependency>
 		<!-- 包含支持UI模版（Velocity，FreeMarker，JasperReports）， 邮件服务， 脚本服务(JRuby)， 缓存Cache（EHCache）， 
 			任务计划Scheduling（uartz）。 -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework</groupId> -->
-<!-- 			<artifactId>spring-context-support</artifactId> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-context-support</artifactId> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session</artifactId>
@@ -93,15 +93,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.alibaba</groupId> -->
-<!-- 			<artifactId>druid</artifactId> -->
-<!-- 			<version>1.0.20</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>joda-time</groupId> -->
-<!-- 			<artifactId>joda-time</artifactId> -->
-<!-- 		</dependency> -->
 		<!-- mysql 数据库驱动. -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -153,22 +144,73 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>org.sitemesh</groupId> -->
-		<!-- <artifactId>sitemesh</artifactId> -->
-		<!-- <version>3.0.0</version> -->
-		<!-- </dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.elasticsearch.client</groupId> -->
-<!-- 			<artifactId>transport</artifactId> -->
-<!-- 			<version>${elasticsearch.version}</version> -->
-<!-- 		</dependency> -->
+
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.codeborne/phantomjsdriver -->
+		<dependency>
+			<groupId>com.codeborne</groupId>
+			<artifactId>phantomjsdriver</artifactId>
+			<version>1.2.1</version>
+		</dependency>
 		<dependency>
 			<groupId>eu.bitwalker</groupId>
 			<artifactId>UserAgentUtils</artifactId>
 			<version>1.20</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.hankcs</groupId>
+			<artifactId>hanlp</artifactId>
+			<version>portable-1.2.9</version>
+		</dependency>
+
+		<!-- 支持Word文档的操作 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>3.10-beta2</version>
+		</dependency>
+
+		<!-- 加入POI核心依赖 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.10-beta2</version>
+		</dependency>
+		<!-- 为POI支持Office Open XML -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.10-beta2</version>
+		</dependency>
+		<!-- 加入CXF依赖包 -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>2.7.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>2.7.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency>
+		<!-- jsoup -->
+		<dependency>
+			<!-- jsoup HTML parser library @ http://jsoup.org/ -->
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.8.3</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>danyuan</finalName>
