@@ -21,7 +21,7 @@ _book/
 nbproject/private/
 build/
 nbbuild/
-dist/
+
 nbdist/
 .nb-gradle/
 
@@ -31,9 +31,13 @@ nbdist/
 # Package Files #
 *.war
 *.ear
-*.zip
+/*.zip
 *.tar.gz
-*.rar
+/*.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/node_modules/
+/danyuan-application-web-vue-lte/
+/dist/
+/danyuan-application-service/
