@@ -1,0 +1,62 @@
+server:
+  port: 80
+spring:
+  aop:
+    proxy-target-class: true
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    password: 514840279@qq.com
+    url: jdbc:mysql://47.52.93.94:3306/application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
+  http:
+    multipart:
+      maxFileSize: 100Mb
+      maxRequestSize: 1000Mb
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  jpa:
+    database: MYSQL
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+  mail:
+    host: smtp.qq.com
+    username: 514840279
+    password: nepfflumbfbicajd
+    from: 514840279@qq.com
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  session:
+    store-type: none
+  thymeleaf:
+    content-type: text/html
+    encoding: UTF-8
+    mode: HTML5
+phone:
+  accessKeyId: yourAccessKeyId
+  accessKeySecret: yourAccessKeySecret
+  signName: 云通信
+  templateCode: SMS_1000000
+  # 此处的模板中 'order' 对应阿里云短信模板中设置的${order}
+  # {order_title} 对应系统替换的关键词
+  # 此处代码无需修改 仅需在模板中需要出现的位置填写 ${order}或 ${username}
+  templateParam: '{"order":{order_title},"username":{username}}'
+  
+user:
+  #结果分析表名称
+  table:
+    base: bids_bx_基本信息_v3
+    pingbiao: bids_bx_评标专家_v3
+    zhongbiao: bids_bx_中标信息_v3  
+    
