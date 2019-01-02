@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8"/>
+
+<style type="text/css">
+#client_row div{
+	margin: 0px;
+	padding: 0px;
+}
+</style>
+</head>
+<body >
+<section class="content" >
+	<div id="show_body"  >
+			<div  id="chart_col" style="display: none;">
+				<div class="box-body" id="config_table">
+				</div>
+			</div>
+		<div class="row">
+			<div class="col-sm-12">
+				 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				 <select id="change_theme_id"></select>
+				 <button class="btn btn-success" id="loadimg">保存图片</button>
+			</div>
+		</div>
+		<div class="row" id="client_row">
+			
+		</div>
+	</div>
+</section>
+	<script th:inline="javascript">
+		var sysPlantChartDimensionList = [[*{sysPlantChartDimensionList}]];
+	</script>
+	<script type="text/javascript" src="/plugins/jQuery/html2canvas.min.js"></script>
+	<script type="text/javascript" src="/pages/plant/chart3/loadCharts.js"></script>
+	<script type="text/javascript" src="/pages/plant/chart3/show.js"></script>
+</body>
+</html>

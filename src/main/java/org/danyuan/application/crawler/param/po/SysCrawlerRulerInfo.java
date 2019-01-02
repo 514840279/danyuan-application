@@ -10,7 +10,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -30,63 +29,62 @@ public class SysCrawlerRulerInfo implements Serializable {
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
 	 */
 	private static final long	serialVersionUID	= 7367302169131287220L;
-	
+
 	@Id
-	@GenericGenerator(name = "idGenerator", strategy = "uuid")
 	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键'")
 	private String				uuid;										// uuid
-	
+
 	@Column(name = "task_uuid", columnDefinition = " varchar(36) not null COMMENT '任务id'")
 	private String				taskUuid;
-	
+
 	@Column(name = "type", columnDefinition = " varchar(200) COMMENT '规则类别'")
 	private String				type;
-	
+
 	private String				ruler;
-	
+
 	@Column(name = "name", columnDefinition = " varchar(200) COMMENT '名称'")
 	private String				name;										// name 名称
-	
+
 	@Column(name = "parent_uuid", columnDefinition = " varchar(36) COMMENT '上一层id'")
 	private String				parentUuid;
 	// 父组作为字典的字段
 	private String				parentDicUuid;
 	// 筛选字典时 用的条件语句
-	private String				parentDicParams;									// sub_uri
-	
+	private String				parentDicParams;							// sub_uri
+
 	private String				itemsRuler;
 	private String				nextpageRuler;
-	
+
 	@Column(name = "discription", columnDefinition = " varchar(200) COMMENT '资源功能描述'")
 	private String				discription;								// discription
 	// 描述
-	
+
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
 	private Date				createTime;									// create_time
 	// 插入时间
-	
+
 	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
 	private String				createUser;									// create_user
 	// 插入人
-	
+
 	@Column(name = "update_time", insertable = false, columnDefinition = " timestamp  default CURRENT_TIMESTAMP   COMMENT '更新时间'")
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
 	private Date				updateTime;									// updata_time
 	// 更新时间
-	
+
 	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
 	private String				updateUser;									// updata_user
 	// 更新人
-	
+
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
 	private Integer				deleteFlag;									// delete_flag
 	// 标记
-	
+
 	private String				statue;
-	
+
 	/**
 	 * 方法名 ： getUuid
 	 * 功 能 ： 返回变量 uuid 的值
@@ -96,7 +94,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public String getUuid() {
 		return uuid;
 	}
-	
+
 	/**
 	 * 方法名 ： setUuid
 	 * 功 能 ： 设置变量 uuid 的值
@@ -104,7 +102,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-	
+
 	/**
 	 * 方法名 ： getType
 	 * 功 能 ： 返回变量 type 的值
@@ -114,7 +112,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public String getType() {
 		return type;
 	}
-	
+
 	/**
 	 * 方法名 ： setType
 	 * 功 能 ： 设置变量 type 的值
@@ -122,7 +120,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+
 	/**
 	 * 方法名 ： getName
 	 * 功 能 ： 返回变量 name 的值
@@ -132,7 +130,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * 方法名 ： setName
 	 * 功 能 ： 设置变量 name 的值
@@ -140,7 +138,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * 方法名 ： getDiscription
 	 * 功 能 ： 返回变量 discription 的值
@@ -150,7 +148,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public String getDiscription() {
 		return discription;
 	}
-	
+
 	/**
 	 * 方法名 ： setDiscription
 	 * 功 能 ： 设置变量 discription 的值
@@ -158,7 +156,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public void setDiscription(String discription) {
 		this.discription = discription;
 	}
-	
+
 	/**
 	 * 方法名 ： getCreateTime
 	 * 功 能 ： 返回变量 createTime 的值
@@ -168,7 +166,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public Date getCreateTime() {
 		return createTime;
 	}
-	
+
 	/**
 	 * 方法名 ： setCreateTime
 	 * 功 能 ： 设置变量 createTime 的值
@@ -176,7 +174,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	
+
 	/**
 	 * 方法名 ： getCreateUser
 	 * 功 能 ： 返回变量 createUser 的值
@@ -186,7 +184,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public String getCreateUser() {
 		return createUser;
 	}
-	
+
 	/**
 	 * 方法名 ： setCreateUser
 	 * 功 能 ： 设置变量 createUser 的值
@@ -194,7 +192,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	
+
 	/**
 	 * 方法名 ： getDeleteFlag
 	 * 功 能 ： 返回变量 deleteFlag 的值
@@ -204,7 +202,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public Integer getDeleteFlag() {
 		return deleteFlag;
 	}
-	
+
 	/**
 	 * 方法名 ： setDeleteFlag
 	 * 功 能 ： 设置变量 deleteFlag 的值
@@ -212,7 +210,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
-	
+
 	/**
 	 * 方法名 ： getUpdateTime
 	 * 功 能 ： 返回变量 updateTime 的值
@@ -222,7 +220,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public Date getUpdateTime() {
 		return updateTime;
 	}
-	
+
 	/**
 	 * 方法名 ： setUpdateTime
 	 * 功 能 ： 设置变量 updateTime 的值
@@ -230,7 +228,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-	
+
 	/**
 	 * 方法名 ： getUpdateUser
 	 * 功 能 ： 返回变量 updateUser 的值
@@ -240,7 +238,7 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public String getUpdateUser() {
 		return updateUser;
 	}
-	
+
 	/**
 	 * 方法名 ： setUpdateUser
 	 * 功 能 ： 设置变量 updateUser 的值
@@ -248,17 +246,17 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	
+
 	/**
 	 * 方法名 ： getTaskUuid
 	 * 功 能 ： 返回变量 taskUuid 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getTaskUuid() {
 		return taskUuid;
 	}
-	
+
 	/**
 	 * 方法名 ： setTaskUuid
 	 * 功 能 ： 设置变量 taskUuid 的值
@@ -266,17 +264,17 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public void setTaskUuid(String taskUuid) {
 		this.taskUuid = taskUuid;
 	}
-	
+
 	/**
 	 * 方法名 ： getParentUuid
 	 * 功 能 ： 返回变量 parentUuid 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getParentUuid() {
 		return parentUuid;
 	}
-	
+
 	/**
 	 * 方法名 ： setParentUuid
 	 * 功 能 ： 设置变量 parentUuid 的值
@@ -284,17 +282,17 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public void setParentUuid(String parentUuid) {
 		this.parentUuid = parentUuid;
 	}
-	
+
 	/**
 	 * 方法名 ： getRuler
 	 * 功 能 ： 返回变量 ruler 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getRuler() {
 		return ruler;
 	}
-	
+
 	/**
 	 * 方法名 ： setRuler
 	 * 功 能 ： 设置变量 ruler 的值
@@ -302,90 +300,95 @@ public class SysCrawlerRulerInfo implements Serializable {
 	public void setRuler(String ruler) {
 		this.ruler = ruler;
 	}
-	
-	/**  
-	 *  方法名 ： getItemsRuler 
-	 *  功    能 ： 返回变量 itemsRuler 的值  
-	 *  @return: String 
+
+	/**
+	 * 方法名 ： getItemsRuler
+	 * 功 能 ： 返回变量 itemsRuler 的值
+	 * 
+	 * @return: String
 	 */
 	public String getItemsRuler() {
 		return itemsRuler;
 	}
-	
-	/**  
-	 *  方法名 ： setItemsRuler 
-	 *  功    能 ： 设置变量 itemsRuler 的值
+
+	/**
+	 * 方法名 ： setItemsRuler
+	 * 功 能 ： 设置变量 itemsRuler 的值
 	 */
 	public void setItemsRuler(String itemsRuler) {
 		this.itemsRuler = itemsRuler;
 	}
-	
-	/**  
-	 *  方法名 ： getNextpageRuler 
-	 *  功    能 ： 返回变量 nextpageRuler 的值  
-	 *  @return: String 
+
+	/**
+	 * 方法名 ： getNextpageRuler
+	 * 功 能 ： 返回变量 nextpageRuler 的值
+	 * 
+	 * @return: String
 	 */
 	public String getNextpageRuler() {
 		return nextpageRuler;
 	}
-	
-	/**  
-	 *  方法名 ： setNextpageRuler 
-	 *  功    能 ： 设置变量 nextpageRuler 的值
+
+	/**
+	 * 方法名 ： setNextpageRuler
+	 * 功 能 ： 设置变量 nextpageRuler 的值
 	 */
 	public void setNextpageRuler(String nextpageRuler) {
 		this.nextpageRuler = nextpageRuler;
 	}
-	
-	/**  
-	 *  方法名 ： getStatue 
-	 *  功    能 ： 返回变量 statue 的值  
-	 *  @return: String 
+
+	/**
+	 * 方法名 ： getStatue
+	 * 功 能 ： 返回变量 statue 的值
+	 * 
+	 * @return: String
 	 */
 	public String getStatue() {
 		return statue;
 	}
-	
-	/**  
-	 *  方法名 ： setStatue 
-	 *  功    能 ： 设置变量 statue 的值
+
+	/**
+	 * 方法名 ： setStatue
+	 * 功 能 ： 设置变量 statue 的值
 	 */
 	public void setStatue(String statue) {
 		this.statue = statue;
 	}
-	
-	/**  
-	 *  方法名 ： getParentDicUuid 
-	 *  功    能 ： 返回变量 parentDicUuid 的值  
-	 *  @return: String 
+
+	/**
+	 * 方法名 ： getParentDicUuid
+	 * 功 能 ： 返回变量 parentDicUuid 的值
+	 * 
+	 * @return: String
 	 */
 	public String getParentDicUuid() {
 		return parentDicUuid;
 	}
-	
-	/**  
-	 *  方法名 ： setParentDicUuid 
-	 *  功    能 ： 设置变量 parentDicUuid 的值
+
+	/**
+	 * 方法名 ： setParentDicUuid
+	 * 功 能 ： 设置变量 parentDicUuid 的值
 	 */
 	public void setParentDicUuid(String parentDicUuid) {
 		this.parentDicUuid = parentDicUuid;
 	}
-	
-	/**  
-	 *  方法名 ： getParentDicParams 
-	 *  功    能 ： 返回变量 parentDicParams 的值  
-	 *  @return: String 
+
+	/**
+	 * 方法名 ： getParentDicParams
+	 * 功 能 ： 返回变量 parentDicParams 的值
+	 * 
+	 * @return: String
 	 */
 	public String getParentDicParams() {
 		return parentDicParams;
 	}
-	
-	/**  
-	 *  方法名 ： setParentDicParams 
-	 *  功    能 ： 设置变量 parentDicParams 的值
+
+	/**
+	 * 方法名 ： setParentDicParams
+	 * 功 能 ： 设置变量 parentDicParams 的值
 	 */
 	public void setParentDicParams(String parentDicParams) {
 		this.parentDicParams = parentDicParams;
 	}
-	
+
 }

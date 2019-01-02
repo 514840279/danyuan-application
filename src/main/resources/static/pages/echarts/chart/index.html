@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8">
+
+<!-- <link href="/plugins/bootstrap/table/bootstrap-table.css" rel="stylesheet" /> -->
+
+<!-- <script src="/plugins/bootstrap/table/bootstrap-table.js"></script> -->
+<!-- <script src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.js"></script> -->
+<!-- <script src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.js"></script> -->
+</head>
+<body id="body">
+	<!-- 头部设计 -->
+	<section class="content-header">
+		<h1>
+			 标讯管理<small>平台管理</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
+			<li><a href="#">平台管理 </a></li>
+			<li class="active">标讯管理</li>
+		</ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="row">
+			
+			<div class="col-lg-3">
+				<!-- 信息编辑管理 -->
+				<div class="box  box-success">
+					<div class="box-header with-border">
+						<h3 class="box-title">编辑区</h3>
+						<div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse">
+								<i class="fa fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-box-tool" data-widget="remove">
+								<i class="fa fa-times"></i>
+							</button>
+						</div>
+					</div>
+					
+					<!-- 分组管理 -->
+					<div class="box-body">
+						<div  class="row">
+							<div class="col-sm-6">
+								<select id="chart_layout_select_id" ></select>
+							</div>
+							<div class="col-sm-6">
+								<select id="chartTheme_select_id" ></select>
+							</div>
+						</div>
+						<div  class="row" style="margin-top: 5px;">
+							<div class="pull-right col-sm-5">
+								<button  type="button" class='btn btn-primary' id="add_group_btn"><i class='fa fa-plus-square-o '> 新建分组 </i></button>
+							</div>
+						</div>
+					</div>
+					<hr/>
+					<!-- 筛选条件 -->
+					<div class="box-body">
+						<div  class="row" id="chart_params_head_id">
+							<div class="col-sm-6">
+								<select id="chart_group_select_id" style="width: 120px;"></select> 
+							</div>
+							<div class="col-sm-6">
+								<button  type="button" class='btn btn-primary' id="remove_group_btn"><i class='fa fa-remove '> 删除分组 </i></button>
+							</div>
+						</div>
+						<div id="chart_params_content_id">
+							<div  class="row" style="display: none;" id="params_id">
+							</div>
+						</div>
+						<div id="chart_params_foot_id" class="row" style="margin-top: 5px;">
+							<div class="col-sm-5 pull-right">
+<!-- 								<button  type="button" class='btn btn-primary' id="add_group_btn"><i class='fa fa-plus-square-o'> 保存条件 </i></button> -->
+								<button  type="button" class='btn btn-primary' id="show_group_btn"><i class='fa fa-plus-square-o'> 查看全屏 </i></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-lg-9">
+				<div class="row" id="chart_row">
+					<div id="chart_context">
+						<!--图表生成区域 -->
+						
+					</div>
+		      	</div>
+			</div>
+		
+		</div>
+    </section>
+    
+	<!-- 分组模态框 -->
+	<div class="modal fade" id="add_group_btn_modal" tabindex="-1" role="dialog" aria-labelledby="add_group_btnlabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="add_group_btnlabel">添加分组</h4>
+				</div>
+				<div class="modal-body">
+					<div class=" col-md-12 form-group">
+						<label class="col-sm-3 control-label text-right">标题名称:</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="add_sysPlantChartDimensionGroup_title" name="title"  placeholder="标题名称" />
+						</div>
+					</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" onclick="submit_add_group()">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+    
+	<script type="text/javascript" src="/plugins/echarts/theme/chalk.js"></script>
+	<script type="text/javascript" src="/plugins/echarts/theme/dark.js"></script>
+	<script type="text/javascript" src="/plugins/echarts/theme/essos.js"></script>
+	<script type="text/javascript" src="/plugins/echarts/theme/halloween.js"></script>
+	<script type="text/javascript" src="/plugins/echarts/theme/infographic.js"></script>
+	<script type="text/javascript" src="/plugins/echarts/theme/macarons.js"></script>
+	<script type="text/javascript" src="/plugins/echarts/theme/purple-passion.js"></script>
+	<script type="text/javascript" src="/plugins/echarts/theme/roma.js"></script>
+	<script type="text/javascript" src="/plugins/echarts/theme/shine.js"></script>
+	<script type="text/javascript" src="/plugins/echarts/theme/vintage.js"></script>
+	<script type="text/javascript" src="/plugins/echarts/theme/walden.js"></script>
+	<script type="text/javascript" src="/plugins/echarts/theme/westeros.js"></script>
+	<script type="text/javascript" src="/plugins/echarts/theme/wonderland.js"></script>
+		
+<!-- 	<script type="text/javascript" src="/pages/plant/chart/add.js"></script> -->
+<!-- 	<script type="text/javascript" src="/pages/plant/chart3/index.js"></script> -->
+	<script type="text/javascript" src="/pages/plant/chart3/loadCharts.js"></script>
+	<script type="text/javascript" src="/pages/plant/chart3/trools.js"></script>
+</body>
+</html>

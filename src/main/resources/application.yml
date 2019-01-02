@@ -1,6 +1,14 @@
 server:
   port: 80
 spring:
+  data:
+    elasticsearch:
+      cluster-name: my-application
+      cluster-nodes: 192.168.0.11:9300
+    neo4j:
+      uri: bolt://192.168.0.85:7687
+      username: neo4j
+      password: admin
   aop:
     proxy-target-class: true
   datasource:
@@ -8,6 +16,7 @@ spring:
     password: 514840279@qq.com
     url: jdbc:mysql://47.52.93.94:3306/application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull
     username: root
+    
   http:
     multipart:
       maxFileSize: 100Mb
@@ -43,6 +52,8 @@ spring:
     content-type: text/html
     encoding: UTF-8
     mode: HTML5
+  main:
+    allow-bean-definition-overriding: true
 phone:
   accessKeyId: yourAccessKeyId
   accessKeySecret: yourAccessKeySecret
@@ -59,4 +70,10 @@ user:
     base: bids_bx_基本信息_v3
     pingbiao: bids_bx_评标专家_v3
     zhongbiao: bids_bx_中标信息_v3  
+
+# 自定义管理查询的 es 名称
+elasticsearch:
+  index:
+    name: 标讯数据5
+    type: text    
     

@@ -1,8 +1,11 @@
 package org.danyuan.application.common.controller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 文件名 ： Redirects.java
@@ -22,14 +25,11 @@ public class Redirects {
 		return "login/login";
 	}
 	
-	@RequestMapping("/index")
-	public String index() {
-		return "index";
-	}
-	
-	@RequestMapping("/")
-	public String home() {
-		return "index";
+	@RequestMapping({ "/index", "/", "/index.html", "/home" })
+	public ModelAndView index(Principal user) {
+		ModelAndView view = new ModelAndView("index");
+		view.addObject("username", user.getName());
+		return view;
 	}
 	
 	@RequestMapping("/templates/{path1}/{path2}/{page}")

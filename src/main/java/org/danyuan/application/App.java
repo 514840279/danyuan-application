@@ -3,6 +3,8 @@ package org.danyuan.application;
 import org.apache.catalina.connector.Connector;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
+import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 
 /**
  * 文件名 ： App.java
@@ -15,12 +17,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 版 本 ： V1.0
  */
 @SpringBootApplication
+@EnableElasticsearchRepositories
+@EnableNeo4jRepositories
 public class App {
-
+	
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(App.class, args);
 	}
-	
+
 	// @Bean
 	public Connector httpConnector() {
 		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
@@ -32,5 +36,5 @@ public class App {
 		connector.setRedirectPort(8443);
 		return connector;
 	}
-	
+
 }

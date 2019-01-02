@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8"/>
+
+<!-- <link href="/plugins/bootstrap/table/bootstrap-table.css" rel="stylesheet" /> -->
+
+<!-- <script src="/plugins/bootstrap/table/bootstrap-table.js"></script> -->
+<!-- <script src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.js"></script> -->
+<!-- <script src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.js"></script> -->
+</head>
+<body id="body">
+	<div class="col-lg-4 col-md-6 col-xs-12" id="chart_col">
+		<div class="box box-success">
+			<div class="box-header with-border">
+				<h3 class="box-title">饼图</h3>
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse" title="缩放">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove" title="隐藏">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body">
+				<div id="dbm_config_table_datagrid1" style="width: 100%; height: 230px;"></div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="col-lg-4 col-md-6 col-xs-12">
+		<div class="box  box-success">
+			<div class="box-header with-border">
+				<h3 class="box-title">全国地图</h3>
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body ">
+				<div id="dbm_config_table_datagrid2" style="width: 100%; height: 230px;"></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4 col-md-6 col-xs-12">
+		<div class="box  box-success">
+			<div class="box-header with-border">
+				<h3 class="box-title">环形图</h3>
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body ">
+				<div id="dbm_config_table_datagrid7" style="width: 100%; height: 230px;"></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4 col-md-6 col-xs-12">
+		<div class="box  box-success">
+			<div class="box-header with-border">
+				<h3 class="box-title">线图</h3>
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body ">
+				<div id="dbm_config_table_datagrid3" style="width: 100%; height: 230px;"></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4 col-md-6 col-xs-12">
+		<div class="box  box-success">
+			<div class="box-header with-border">
+				<h3 class="box-title">柱形图</h3>
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body">
+				<div id="dbm_config_table_datagrid4" style="width: 100%; height: 230px;"></div>
+			</div>
+		</div>
+	</div>
+<!-- 	<div class="col-lg-4 col-md-6 col-xs-12"> -->
+<!-- 		<div class="box  box-success"> -->
+<!-- 			<div class="box-header with-border"> -->
+<!-- 				<h3 class="box-title">树图</h3> -->
+<!-- 				<div class="box-tools pull-right"> -->
+<!-- 					<button type="button" class="btn btn-box-tool" data-widget="collapse"> -->
+<!-- 						<i class="fa fa-minus"></i> -->
+<!-- 					</button> -->
+<!-- 					<button type="button" class="btn btn-box-tool" data-widget="remove"> -->
+<!-- 						<i class="fa fa-times"></i> -->
+<!-- 					</button> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="box-body"> -->
+<!-- 				<div id="dbm_config_table_datagrid5" style="width: 100%; height: 230px;"></div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- 	<div class="col-lg-4 col-md-6 col-xs-12"> -->
+<!-- 		<div class="box  box-success"> -->
+<!-- 			<div class="box-header with-border"> -->
+<!-- 				<h3 class="box-title">旭日图</h3> -->
+<!-- 				<div class="box-tools pull-right"> -->
+<!-- 					<button type="button" class="btn btn-box-tool" data-widget="collapse"> -->
+<!-- 						<i class="fa fa-minus"></i> -->
+<!-- 					</button> -->
+<!-- 					<button type="button" class="btn btn-box-tool" data-widget="remove"> -->
+<!-- 						<i class="fa fa-times"></i> -->
+<!-- 					</button> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="box-body"> -->
+<!-- 				<div id="dbm_config_table_datagrid6" style="width: 100%; height: 230px;"></div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- 	<div class="col-lg-4 col-md-6 col-xs-12"> -->
+<!-- 		<div class="box  box-success"> -->
+<!-- 			<div class="box-header with-border"> -->
+<!-- 				<h3 class="box-title">南丁格尔图</h3> -->
+<!-- 				<div class="box-tools pull-right"> -->
+<!-- 					<button type="button" class="btn btn-box-tool" data-widget="collapse"> -->
+<!-- 						<i class="fa fa-minus"></i> -->
+<!-- 					</button> -->
+<!-- 					<button type="button" class="btn btn-box-tool" data-widget="remove"> -->
+<!-- 						<i class="fa fa-times"></i> -->
+<!-- 					</button> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="box-body"> -->
+<!-- 				<div id="dbm_config_table_datagrid8" style="width: 100%; height: 230px;"></div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+	<div class="col-lg-4 col-md-6 col-xs-12" style="display: none;">
+		<div class="box  box-success">
+			<div class="box-header with-border">
+				<h3 class="box-title">条形图</h3>
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body">
+				<div id="dbm_config_table_datagrid9" style="width: 100%; height: 230px;"></div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/pages/plant/chart3/chart.js"></script>
+</body>
+</html>
