@@ -3,12 +3,15 @@ server:
 spring:
   data:
     elasticsearch:
+    
       cluster-name: my-application
-      cluster-nodes: 192.168.0.11:9300
+      cluster-nodes: 192.168.0.11:9300      repositories:        enabled: false
     neo4j:
-      uri: bolt://192.168.0.85:7687
+      uri: bolt://localhost:7687
       username: neo4j
       password: admin
+      repositories:
+        enabled: false
   aop:
     proxy-target-class: true
   datasource:
