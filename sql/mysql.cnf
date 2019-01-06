@@ -1,0 +1,57 @@
+[client]
+default-character-set=utf8
+ 
+[mysql]
+default-character-set=utf8
+ 
+[mysqld]
+init_connect='SET collation_connection = utf8_unicode_ci'
+init_connect='SET NAMES utf8'
+character-set-server=utf8
+collation-server=utf8_unicode_ci
+
+#忘记密码时使用
+#skip-grant-tables
+#设置协议认证方式(重点啊)
+default_authentication_plugin=mysql_native_password
+
+#优化
+sql_mode=NO_ENGINE_SUBSTITUTION
+back_log = 384
+key_buffer_size = 384M
+thread_stack = 256K
+sort_buffer_size = 6M
+join_buffer_size = 8M
+myisam_sort_buffer_size = 64M
+thread_cache_size = 64
+tmp_table_size = 256M
+max_connections = 100
+max_connect_errors = 100
+open_files_limit = 65535
+wait_timeout = 86400 
+key_buffer_size=256M
+tmp_table_size=64M
+read_buffer_size=4M
+read_rnd_buffer_size=16M
+sort_buffer_size=32M
+thread_cache_size=120
+default_storage_engine = InnoDB
+innodb_file_per_table = 1
+innodb_buffer_pool_size = 512M
+innodb_log_file_size = 128M
+innodb_log_buffer_size = 8M
+innodb_flush_log_at_trx_commit = 1
+innodb_lock_wait_timeout = 5
+ 
+log-bin=mysql-bin
+binlog_format=mixed
+server-id	= 1
+expire_logs_days = 10
+ 
+[mysqldump]
+quick
+max_allowed_packet = 16M
+ 
+ 
+[mysql]
+no-auto-rehash
