@@ -13,16 +13,6 @@ import org.danyuan.application.dbms.chart.po.SysChartNodeCols;
 import org.danyuan.application.dbms.chart.po.SysChartRelationshipType;
 import org.danyuan.application.dbms.tabs.vo.MulteityParam;
 import org.danyuan.application.dbms.tabs.vo.SysDbmsTabsColsInfoVo;
-import org.neo4j.driver.internal.InternalPath;
-import org.neo4j.driver.v1.AuthTokens;
-import org.neo4j.driver.v1.Driver;
-import org.neo4j.driver.v1.GraphDatabase;
-import org.neo4j.driver.v1.Record;
-import org.neo4j.driver.v1.Session;
-import org.neo4j.driver.v1.StatementResult;
-import org.neo4j.driver.v1.Value;
-import org.neo4j.driver.v1.types.Node;
-import org.neo4j.driver.v1.types.Relationship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,16 +28,16 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ChartService {
-
-	private Driver						driver;
+	
+	//	private Driver						driver;
 	@Autowired
 	private SysChartNodeDao				sysChartNodeDao;
 	@Autowired
 	private SysChartNodeColsDao			sysChartNodeColsDao;
-
+	
 	@Autowired
 	private SysChartRelationshipTypeDao	sysChartRelationshipTypeDao;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -71,7 +61,7 @@ public class ChartService {
 		}
 		return map;
 	}
-
+	
 	/**
 	 * 方法名： findAllByValue
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -84,15 +74,15 @@ public class ChartService {
 	 */
 	private Map<String, Object> findAllByValue(List<MulteityParam> list, int limit) {
 		Map<String, Object> map = new HashMap<>();
-		if (driver == null) {
-			driver = GraphDatabase.driver("bolt://172.16.3.219:7687", AuthTokens.basic("neo4j", "admin"));
-		}
+		//		if (driver == null) {
+		//			driver = GraphDatabase.driver("bolt://172.16.3.219:7687", AuthTokens.basic("neo4j", "admin"));
+		//		}
 		List<Map<String, Object>> datas = new ArrayList<>();
 		List<Map<String, Object>> links = new ArrayList<>();
 		List<SysChartNode> sysChartNode = sysChartNodeDao.findAllByDelete();
 		List<SysChartRelationshipType> sysChartRelationshipTypeList = sysChartRelationshipTypeDao.findAllByDelete();
-
-		Session session = driver.session();
+		
+		//		Session session = driver.session();
 		for (int i = 0; i < list.size() - 1; i++) {
 			MulteityParam aParam = list.get(i);
 			for (int j = i + 1; j < list.size(); j++) {
@@ -101,30 +91,30 @@ public class ChartService {
 				Map<String, Object> params = new HashMap<>();
 				writeSqlFromMulteityParam(sql, aParam, bParam, params);
 				params.put("limit", limit);
-				StatementResult stat = session.run(sql.toString(), params);
-				List<Record> listr = stat.list();
-				if (null != listr && listr.size() > 0) {
-					for (Record record : listr) {
-						Value path = record.get("p");
-						InternalPath sObject = (InternalPath) path.asPath();
-						Iterable<Relationship> rela = sObject.relationships();
-						for (Relationship relationship : rela) {
-							addLinkFromRelationShip(links, relationship, sysChartRelationshipTypeList);
-						}
-						Iterable<Node> node1 = sObject.nodes();
-						for (Node node : node1) {
-							addNodeFromNode(datas, node, sysChartNode);
-						}
-					}
-				}
+				//				StatementResult stat = session.run(sql.toString(), params);
+				//				List<Record> listr = stat.list();
+				//				if (null != listr && listr.size() > 0) {
+				//					for (Record record : listr) {
+				//						Value path = record.get("p");
+				//						InternalPath sObject = (InternalPath) path.asPath();
+				//						Iterable<Relationship> rela = sObject.relationships();
+				//						for (Relationship relationship : rela) {
+				//							addLinkFromRelationShip(links, relationship, sysChartRelationshipTypeList);
+				//						}
+				//						Iterable<Node> node1 = sObject.nodes();
+				//						for (Node node : node1) {
+				//							addNodeFromNode(datas, node, sysChartNode);
+				//						}
+				//					}
+				//				}
 			}
 		}
-
+		
 		map.put("data", datas);
 		map.put("links", links);
 		return map;
 	}
-
+	
 	/**
 	 * 方法名： writeSqlFromMulteityParam
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -145,7 +135,7 @@ public class ChartService {
 		params.put("value2", bParam.getValue());
 		sql.append(":{value2}})) RETURN p LIMIT {limit}");
 	}
-
+	
 	/**
 	 * 方法名： TypeNameExtractor
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -171,7 +161,7 @@ public class ChartService {
 		}
 		return string;
 	}
-
+	
 	/**
 	 * 方法名： findOneByValue
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -186,17 +176,17 @@ public class ChartService {
 		Map<String, Object> map = new HashMap<>();
 		List<Map<String, Object>> datas = new ArrayList<>();
 		List<Map<String, Object>> links = new ArrayList<>();
-
+		
 		String userIndex = multeityParam.getUserIndex();
 		if (userIndex == null) {
 			map.put("resultType", 0);
 		}
 		List<SysChartNodeCols> listc = sysChartNodeColsDao.findAllByValue(userIndex);
-		if (driver == null) {
-			driver = GraphDatabase.driver("bolt://172.16.3.219:7687", AuthTokens.basic("neo4j", "admin"));
-		}
+		//		if (driver == null) {
+		//			driver = GraphDatabase.driver("bolt://172.16.3.219:7687", AuthTokens.basic("neo4j", "admin"));
+		//		}
 		List<SysChartNode> sysChartNode = sysChartNodeDao.findAllByDelete();
-		Session session = driver.session();
+		//		Session session = driver.session();
 		StringBuffer sql = new StringBuffer();
 		for (int i = 0; i < listc.size(); i++) {
 			for (SysChartNode sysChartNode2 : sysChartNode) {
@@ -218,27 +208,27 @@ public class ChartService {
 		Map<String, Object> params = new HashMap<>();
 		params.put("value", multeityParam.getValue());
 		params.put("limit", limit);
-
-		StatementResult stat = session.run(sql.toString(), params);
-		List<Record> list = stat.list();
-
-		List<SysChartRelationshipType> sysChartRelationshipTypeList = sysChartRelationshipTypeDao.findAllByDelete();
-		if (null != list && list.size() > 0) {
-			for (Record record : list) {
-				Relationship rela = record.get("r").asRelationship();
-				addLinkFromRelationShip(links, rela, sysChartRelationshipTypeList);
-				Node node1 = record.get("n1").asNode();
-				addNodeFromNode(datas, node1, sysChartNode);
-				Node node2 = record.get("n2").asNode();
-				addNodeFromNode(datas, node2, sysChartNode);
-			}
-		}
+		
+		//		StatementResult stat = session.run(sql.toString(), params);
+		//		List<Record> list = stat.list();
+		//
+		//		List<SysChartRelationshipType> sysChartRelationshipTypeList = sysChartRelationshipTypeDao.findAllByDelete();
+		//		if (null != list && list.size() > 0) {
+		//			for (Record record : list) {
+		//				Relationship rela = record.get("r").asRelationship();
+		//				addLinkFromRelationShip(links, rela, sysChartRelationshipTypeList);
+		//				Node node1 = record.get("n1").asNode();
+		//				addNodeFromNode(datas, node1, sysChartNode);
+		//				Node node2 = record.get("n2").asNode();
+		//				addNodeFromNode(datas, node2, sysChartNode);
+		//			}
+		//		}
 		map.put("data", datas);
 		map.put("links", links);
 		return map;
-
+		
 	}
-
+	
 	/**
 	 * @param sysChartNode
 	 * 方法名： addNodeFromNode
@@ -249,58 +239,58 @@ public class ChartService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	private void addNodeFromNode(List<Map<String, Object>> datas, Node node, List<SysChartNode> sysChartNodeList) {
-		// 前台需要进行去重
-		boolean isexists = false;
-		String nodeid = Long.toString(node.id());
-		for (Map<String, Object> data : datas) {
-			if (nodeid.equals(data.get("id"))) {
-				isexists = true;
-				break;
-			}
-		}
-		if (!isexists) {
-
-			Iterable<String> sLabel = node.labels();
-			Map<String, Object> node1 = new HashMap<>();
-			for (String ss : sLabel) {
-				for (SysChartNode sysChartNode : sysChartNodeList) {
-					if (sysChartNode.getNodeName().equals(ss)) {
-						node1.put("id", nodeid);
-						node1.put("draggable", true);
-						node1.put("flag", 0);
-						List<Map<String, Object>> proList = new ArrayList<>();
-						List<SysChartNodeCols> cols = sysChartNodeColsDao.findAllByNodeUuid(sysChartNode.getUuid());
-						boolean count = true;
-						for (SysChartNodeCols sysChartNodeCols : cols) {
-							// if (!"ID".equals(sysChartNodeCols.getUserIndex())) {
-							Map<String, Object> nodet = new HashMap<>();
-							if (sysChartNodeCols.getUserIndex() != null) {
-								if (count) {
-									node1.put("type", sysChartNodeCols.getUserIndex());
-									node1.put("category", sysChartNodeCols.getColumnDesc());
-									node1.put("name", node.get(sysChartNodeCols.getColumName()).toString().replace("\"", ""));
-									isexists = false;
-								}
-								nodet.put("type", sysChartNodeCols.getUserIndex());
-								nodet.put("category", sysChartNodeCols.getColumnDesc());
-								nodet.put("name", node.get(sysChartNodeCols.getColumName()).toString().replace("\"", ""));
-							} else {
-								nodet.put(sysChartNodeCols.getColumnDesc() == null ? sysChartNodeCols.getColumName() : sysChartNodeCols.getColumnDesc(), node.get(sysChartNodeCols.getColumName()).toString().replace("\"", ""));
-							}
-							//
-							proList.add(nodet);
-						}
-						node1.put("properties", proList);
-						break;
-					}
-				}
-			}
-			datas.add(node1);
-		}
-
-	}
-
+	//	private void addNodeFromNode(List<Map<String, Object>> datas, Node node, List<SysChartNode> sysChartNodeList) {
+	//		// 前台需要进行去重
+	//		boolean isexists = false;
+	//		String nodeid = Long.toString(node.id());
+	//		for (Map<String, Object> data : datas) {
+	//			if (nodeid.equals(data.get("id"))) {
+	//				isexists = true;
+	//				break;
+	//			}
+	//		}
+	//		if (!isexists) {
+	//			
+	//			Iterable<String> sLabel = node.labels();
+	//			Map<String, Object> node1 = new HashMap<>();
+	//			for (String ss : sLabel) {
+	//				for (SysChartNode sysChartNode : sysChartNodeList) {
+	//					if (sysChartNode.getNodeName().equals(ss)) {
+	//						node1.put("id", nodeid);
+	//						node1.put("draggable", true);
+	//						node1.put("flag", 0);
+	//						List<Map<String, Object>> proList = new ArrayList<>();
+	//						List<SysChartNodeCols> cols = sysChartNodeColsDao.findAllByNodeUuid(sysChartNode.getUuid());
+	//						boolean count = true;
+	//						for (SysChartNodeCols sysChartNodeCols : cols) {
+	//							// if (!"ID".equals(sysChartNodeCols.getUserIndex())) {
+	//							Map<String, Object> nodet = new HashMap<>();
+	//							if (sysChartNodeCols.getUserIndex() != null) {
+	//								if (count) {
+	//									node1.put("type", sysChartNodeCols.getUserIndex());
+	//									node1.put("category", sysChartNodeCols.getColumnDesc());
+	//									node1.put("name", node.get(sysChartNodeCols.getColumName()).toString().replace("\"", ""));
+	//									isexists = false;
+	//								}
+	//								nodet.put("type", sysChartNodeCols.getUserIndex());
+	//								nodet.put("category", sysChartNodeCols.getColumnDesc());
+	//								nodet.put("name", node.get(sysChartNodeCols.getColumName()).toString().replace("\"", ""));
+	//							} else {
+	//								nodet.put(sysChartNodeCols.getColumnDesc() == null ? sysChartNodeCols.getColumName() : sysChartNodeCols.getColumnDesc(), node.get(sysChartNodeCols.getColumName()).toString().replace("\"", ""));
+	//							}
+	//							//
+	//							proList.add(nodet);
+	//						}
+	//						node1.put("properties", proList);
+	//						break;
+	//					}
+	//				}
+	//			}
+	//			datas.add(node1);
+	//		}
+	//		
+	//	}
+	
 	/**
 	 * @param sysChartRelationshipTypeList
 	 * 方法名： addLinkFromRelationShip
@@ -311,35 +301,35 @@ public class ChartService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	private void addLinkFromRelationShip(List<Map<String, Object>> links, Relationship rela, List<SysChartRelationshipType> sysChartRelationshipTypeList) {
-
-		// 前台需要进行去重
-		String source = Long.toString(rela.startNodeId());
-		String target = Long.toString(rela.endNodeId());
-		boolean isexists = false;
-		for (Map<String, Object> link : links) {
-			if (source.equals(link.get("source")) && target.equals(link.get("target"))) {
-				isexists = true;
-				break;
-			}
-		}
-		if (!isexists) {
-			String arel = rela.type();
-			for (SysChartRelationshipType sysChartRelationshipType : sysChartRelationshipTypeList) {
-				if (sysChartRelationshipType.getRelationshipName().equals(arel)) {
-					arel = sysChartRelationshipType.getRelationshipDesc();
-					break;
-				}
-			}
-			Map<String, Object> link = new HashMap<>();
-			if (source != target) {
-				link.put("source", source);
-				link.put("target", target);
-				link.put("value", arel);
-				links.add(link);
-			}
-		}
-
-	}
-
+	//	private void addLinkFromRelationShip(List<Map<String, Object>> links, Relationship rela, List<SysChartRelationshipType> sysChartRelationshipTypeList) {
+	//		
+	//		// 前台需要进行去重
+	//		String source = Long.toString(rela.startNodeId());
+	//		String target = Long.toString(rela.endNodeId());
+	//		boolean isexists = false;
+	//		for (Map<String, Object> link : links) {
+	//			if (source.equals(link.get("source")) && target.equals(link.get("target"))) {
+	//				isexists = true;
+	//				break;
+	//			}
+	//		}
+	//		if (!isexists) {
+	//			String arel = rela.type();
+	//			for (SysChartRelationshipType sysChartRelationshipType : sysChartRelationshipTypeList) {
+	//				if (sysChartRelationshipType.getRelationshipName().equals(arel)) {
+	//					arel = sysChartRelationshipType.getRelationshipDesc();
+	//					break;
+	//				}
+	//			}
+	//			Map<String, Object> link = new HashMap<>();
+	//			if (source != target) {
+	//				link.put("source", source);
+	//				link.put("target", target);
+	//				link.put("value", arel);
+	//				links.add(link);
+	//			}
+	//		}
+	//		
+	//	}
+	
 }
