@@ -3,20 +3,31 @@ server:
 spring:
   data:
     elasticsearch:
+    
       cluster-name: my-application
-      cluster-nodes: 192.168.0.11:9300
+      cluster-nodes: 192.168.0.11:9300      repositories:        enabled: false
     neo4j:
-      uri: bolt://192.168.0.85:7687
+      uri: bolt://localhost:7687
       username: neo4j
       password: admin
+      repositories:
+        enabled: false
   aop:
     proxy-target-class: true
   datasource:
     driverClassName: com.mysql.jdbc.Driver
+    #driver-class-name: com.mysql.cj.jdbc.Driver
     password: 514840279@qq.com
-    url: jdbc:mysql://47.52.93.94:3306/application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://47.52.93.94:3306/application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false
     username: root
-    
+    hikari:      minimum-idle: 5
+      maximum-pool-size: 50
+      auto-commit: true
+      idle-timeout: 3000
+      pool-name: DatebookHikariCP
+      max-lifetime: 180000
+      connection-timeout: 1800
+      connection-test-query: SELECT 1
   http:
     multipart:
       maxFileSize: 100Mb
@@ -54,6 +65,13 @@ spring:
     mode: HTML5
   main:
     allow-bean-definition-overriding: true
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+#    org.hibernate.type.descriptor.sql.BasicBinder: trace
+#    org.hibernate.type.descriptor.sql.BasicExtractor: trace
+    org.danyuan: DEBUG
 phone:
   accessKeyId: yourAccessKeyId
   accessKeySecret: yourAccessKeySecret

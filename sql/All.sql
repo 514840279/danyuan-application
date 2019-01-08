@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v10.51 
-MySQL - 5.7.23 : Database - application
+MySQL - 5.7.24-log : Database - application
 *********************************************************************
 */
 
@@ -11,25 +11,29 @@ MySQL - 5.7.23 : Database - application
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`application` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`application` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 
 USE `application`;
 
 /*Table structure for table `学习资料列表` */
 
+DROP TABLE IF EXISTS `学习资料列表`;
+
 CREATE TABLE `学习资料列表` (
-  `md5` varchar(36) DEFAULT NULL COMMENT 'url的md5值',
-  `图片地址` varchar(255) DEFAULT NULL,
-  `地址` varchar(255) DEFAULT NULL,
-  `喜欢` varchar(255) DEFAULT NULL,
-  `介绍` varchar(255) DEFAULT NULL,
-  `分类` varchar(255) DEFAULT NULL,
-  `标题` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `md5` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'url的md5值',
+  `图片地址` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `地址` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `喜欢` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `介绍` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `分类` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `标题` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `学习资料列表` */
 
 /*Table structure for table `资料库导航` */
+
+DROP TABLE IF EXISTS `资料库导航`;
 
 CREATE TABLE `资料库导航` (
   `md5` varchar(36) DEFAULT NULL COMMENT 'url的md5值',
@@ -39,2276 +43,29 @@ CREATE TABLE `资料库导航` (
 
 /*Data for the table `资料库导航` */
 
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/kouyv/','英语口语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yvfa/','英语语法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/xiezuo/','英语写作');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/tingli/','英语听力');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yuedu/','英语阅读');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cet46/','英语四六级');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fanyi/','英语翻译');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cihui/','英语词汇');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fangfa/','英语方法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yousheng/','英语有声');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/liuxue/','留学英语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/yingyv/','考研英语复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhengzhi/','考研政治复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/shuxue/','考研数学复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhenti/','考研真题');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhuanye/','考研专业课');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/fudao/','考研辅导');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/os/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/app/','应用软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/net/','网络软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/xitong/','系统工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/duomeiti/','多媒体工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/hangye/','行业软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/kaifa/','编程开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/anquan/','安全相关');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xinli/','心理学书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lizhi/','励志书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xiaoshuo/','文学小说');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学开放视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/','上海交大视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','中国石油大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','photoshop视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ziliao/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/sucai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yousheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/zazhi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fanwen/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','ps视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/',' 上海交大');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','石油大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jisuanji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jichu/','计算机基础');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caozuoxitong/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/bangong/','office教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yingjian/','硬件组装');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangluo/','网络技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/diannao/','电脑杂志');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/renzheng/','IT认证考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shujuku/','数据库教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cyvyan/','C语言/C++');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/csharp/','C#教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/asp/','ASP/ASP.NET');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/php/','PHP教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/javascript/','Javascript');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/java/','JAVA教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/hack/','黑客技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/android/','Android教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youxi/','游戏开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangyebiancheng/','网页编程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/flash/','FLASH教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dreamweaver/','Dreamweaver');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wordpress/','WordPress');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/seo/','SEO教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/photoshop/','photoshop');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','PS视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/coreldraw/','CoreDRAW');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/illustrator/','Illustrator');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/indesign/','InDesign教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/painter/','Painter教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cad/','CAD教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shejisucai/','平面设计素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanggao/','广告设计');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yychuli/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yysucai/','视频素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/aftereffects/','After Effects');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/premiere/','Premiere教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/softimage/','SOFTIMAGE');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsmax/','3Ds Max教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/maya/','Maya教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/proe/','Pro/ENGINEER');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cinema4d/','Cinema 4D');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/vray/','Vray教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/modo/','Modo教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zbrush/','ZBrush教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/inventor/','Inventor教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/solidworks/','SolidWorks');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lightwave/','LightWave');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dchuli/','3D处理工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsucai/','3D模型素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingguan/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiaoshou/','市场营销');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanli/','管理学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingji/','经济学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jinrong/','金融学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gupiao/','股票/基金');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/kuaiji/','会计/财务管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiyeguanli/','企业管理知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shenghuo/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yangsheng/','健康养生资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caipu/','菜谱食谱厨艺');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youyun/','幼儿孕妇护理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvjia/','瑜伽视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/liyi/','生活礼仪形象');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheying/','数码摄影教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaju/','家居装修知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教知识育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongcheng/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jianzhu/','建筑工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huanjing/','环境工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianzi/','电子通信');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiche/','汽车修理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','生物科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianqi/','电气工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tumu/','土木工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jixie/','机械工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shehui/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lizhi/','励志成功');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wushu/','武术武艺教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvshiwei/','余世维讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zengshiqiang/','曾仕强讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chenanzhi/','陈安之讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/baike/','百科全书资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangqi/','象棋围棋军旗');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/waiyv/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/riyv/','日语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fayv/','法语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/deyv/','德语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/hanguoyv/','韩语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lishidili/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zglishi/','中国历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjlishi/','世界历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenhua/','中国文化');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenxue/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shufa/','书写书法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wudao/','舞蹈体操');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tiyv/','体育球类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangsheng/','相声小品');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiju/','戏剧影视');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gangqin/','钢琴/小提琴');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jita/','吉他摇滚教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huihua/','艺术绘画教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaoyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chuzhong/','初中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gaozhong/','高中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongwuyuan/','公务员考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/junshi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zhexue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/falv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/kouyv/','英语口语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yvfa/','英语语法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/xiezuo/','英语写作');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/tingli/','英语听力');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yuedu/','英语阅读');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cet46/','英语四六级');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fanyi/','英语翻译');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cihui/','英语词汇');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fangfa/','英语方法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yousheng/','英语有声');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/liuxue/','留学英语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/yingyv/','考研英语复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhengzhi/','考研政治复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/shuxue/','考研数学复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhenti/','考研真题');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhuanye/','考研专业课');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/fudao/','考研辅导');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/os/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/app/','应用软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/net/','网络软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/xitong/','系统工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/duomeiti/','多媒体工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/hangye/','行业软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/kaifa/','编程开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/anquan/','安全相关');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xinli/','心理学书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lizhi/','励志书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xiaoshuo/','文学小说');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学开放视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/','上海交大视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','中国石油大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','photoshop视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ziliao/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/sucai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yousheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/zazhi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fanwen/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','ps视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/',' 上海交大');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','石油大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jisuanji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jichu/','计算机基础');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caozuoxitong/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/bangong/','office教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yingjian/','硬件组装');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangluo/','网络技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/diannao/','电脑杂志');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/renzheng/','IT认证考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shujuku/','数据库教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cyvyan/','C语言/C++');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/csharp/','C#教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/asp/','ASP/ASP.NET');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/php/','PHP教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/javascript/','Javascript');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/java/','JAVA教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/hack/','黑客技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/android/','Android教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youxi/','游戏开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangyebiancheng/','网页编程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/flash/','FLASH教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dreamweaver/','Dreamweaver');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wordpress/','WordPress');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/seo/','SEO教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/photoshop/','photoshop');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','PS视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/coreldraw/','CoreDRAW');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/illustrator/','Illustrator');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/indesign/','InDesign教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/painter/','Painter教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cad/','CAD教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shejisucai/','平面设计素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanggao/','广告设计');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yychuli/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yysucai/','视频素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/aftereffects/','After Effects');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/premiere/','Premiere教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/softimage/','SOFTIMAGE');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsmax/','3Ds Max教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/maya/','Maya教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/proe/','Pro/ENGINEER');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cinema4d/','Cinema 4D');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/vray/','Vray教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/modo/','Modo教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zbrush/','ZBrush教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/inventor/','Inventor教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/solidworks/','SolidWorks');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lightwave/','LightWave');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dchuli/','3D处理工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsucai/','3D模型素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingguan/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiaoshou/','市场营销');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanli/','管理学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingji/','经济学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jinrong/','金融学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gupiao/','股票/基金');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/kuaiji/','会计/财务管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiyeguanli/','企业管理知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shenghuo/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yangsheng/','健康养生资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caipu/','菜谱食谱厨艺');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youyun/','幼儿孕妇护理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvjia/','瑜伽视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/liyi/','生活礼仪形象');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheying/','数码摄影教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaju/','家居装修知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教知识育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongcheng/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jianzhu/','建筑工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huanjing/','环境工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianzi/','电子通信');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiche/','汽车修理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','生物科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianqi/','电气工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tumu/','土木工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jixie/','机械工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shehui/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lizhi/','励志成功');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wushu/','武术武艺教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvshiwei/','余世维讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zengshiqiang/','曾仕强讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chenanzhi/','陈安之讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/baike/','百科全书资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangqi/','象棋围棋军旗');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/waiyv/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/riyv/','日语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fayv/','法语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/deyv/','德语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/hanguoyv/','韩语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lishidili/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zglishi/','中国历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjlishi/','世界历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenhua/','中国文化');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenxue/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shufa/','书写书法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wudao/','舞蹈体操');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tiyv/','体育球类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangsheng/','相声小品');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiju/','戏剧影视');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gangqin/','钢琴/小提琴');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jita/','吉他摇滚教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huihua/','艺术绘画教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaoyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chuzhong/','初中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gaozhong/','高中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongwuyuan/','公务员考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/junshi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zhexue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/falv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/kouyv/','英语口语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yvfa/','英语语法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/xiezuo/','英语写作');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/tingli/','英语听力');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yuedu/','英语阅读');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cet46/','英语四六级');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fanyi/','英语翻译');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cihui/','英语词汇');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fangfa/','英语方法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yousheng/','英语有声');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/liuxue/','留学英语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/yingyv/','考研英语复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhengzhi/','考研政治复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/shuxue/','考研数学复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhenti/','考研真题');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhuanye/','考研专业课');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/fudao/','考研辅导');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/os/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/app/','应用软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/net/','网络软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/xitong/','系统工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/duomeiti/','多媒体工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/hangye/','行业软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/kaifa/','编程开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/anquan/','安全相关');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xinli/','心理学书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lizhi/','励志书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xiaoshuo/','文学小说');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学开放视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/','上海交大视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','中国石油大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','photoshop视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ziliao/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/sucai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yousheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/zazhi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fanwen/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','ps视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/',' 上海交大');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','石油大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jisuanji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jichu/','计算机基础');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caozuoxitong/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/bangong/','office教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yingjian/','硬件组装');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangluo/','网络技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/diannao/','电脑杂志');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/renzheng/','IT认证考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shujuku/','数据库教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cyvyan/','C语言/C++');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/csharp/','C#教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/asp/','ASP/ASP.NET');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/php/','PHP教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/javascript/','Javascript');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/java/','JAVA教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/hack/','黑客技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/android/','Android教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youxi/','游戏开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangyebiancheng/','网页编程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/flash/','FLASH教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dreamweaver/','Dreamweaver');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wordpress/','WordPress');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/seo/','SEO教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/photoshop/','photoshop');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','PS视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/coreldraw/','CoreDRAW');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/illustrator/','Illustrator');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/indesign/','InDesign教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/painter/','Painter教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cad/','CAD教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shejisucai/','平面设计素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanggao/','广告设计');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yychuli/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yysucai/','视频素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/aftereffects/','After Effects');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/premiere/','Premiere教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/softimage/','SOFTIMAGE');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsmax/','3Ds Max教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/maya/','Maya教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/proe/','Pro/ENGINEER');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cinema4d/','Cinema 4D');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/vray/','Vray教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/modo/','Modo教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zbrush/','ZBrush教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/inventor/','Inventor教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/solidworks/','SolidWorks');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lightwave/','LightWave');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dchuli/','3D处理工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsucai/','3D模型素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingguan/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiaoshou/','市场营销');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanli/','管理学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingji/','经济学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jinrong/','金融学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gupiao/','股票/基金');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/kuaiji/','会计/财务管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiyeguanli/','企业管理知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shenghuo/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yangsheng/','健康养生资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caipu/','菜谱食谱厨艺');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youyun/','幼儿孕妇护理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvjia/','瑜伽视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/liyi/','生活礼仪形象');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheying/','数码摄影教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaju/','家居装修知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教知识育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongcheng/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jianzhu/','建筑工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huanjing/','环境工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianzi/','电子通信');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiche/','汽车修理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','生物科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianqi/','电气工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tumu/','土木工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jixie/','机械工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shehui/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lizhi/','励志成功');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wushu/','武术武艺教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvshiwei/','余世维讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zengshiqiang/','曾仕强讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chenanzhi/','陈安之讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/baike/','百科全书资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangqi/','象棋围棋军旗');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/waiyv/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/riyv/','日语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fayv/','法语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/deyv/','德语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/hanguoyv/','韩语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lishidili/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zglishi/','中国历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjlishi/','世界历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenhua/','中国文化');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenxue/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shufa/','书写书法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wudao/','舞蹈体操');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tiyv/','体育球类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangsheng/','相声小品');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiju/','戏剧影视');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gangqin/','钢琴/小提琴');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jita/','吉他摇滚教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huihua/','艺术绘画教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaoyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chuzhong/','初中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gaozhong/','高中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongwuyuan/','公务员考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/junshi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zhexue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/falv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/kouyv/','英语口语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yvfa/','英语语法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/xiezuo/','英语写作');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/tingli/','英语听力');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yuedu/','英语阅读');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cet46/','英语四六级');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fanyi/','英语翻译');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cihui/','英语词汇');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fangfa/','英语方法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yousheng/','英语有声');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/liuxue/','留学英语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/yingyv/','考研英语复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhengzhi/','考研政治复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/shuxue/','考研数学复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhenti/','考研真题');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhuanye/','考研专业课');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/fudao/','考研辅导');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/os/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/app/','应用软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/net/','网络软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/xitong/','系统工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/duomeiti/','多媒体工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/hangye/','行业软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/kaifa/','编程开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/anquan/','安全相关');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xinli/','心理学书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lizhi/','励志书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xiaoshuo/','文学小说');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学开放视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/','上海交大视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','中国石油大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','photoshop视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ziliao/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/sucai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yousheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/zazhi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fanwen/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','ps视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/',' 上海交大');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','石油大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jisuanji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jichu/','计算机基础');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caozuoxitong/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/bangong/','office教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yingjian/','硬件组装');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangluo/','网络技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/diannao/','电脑杂志');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/renzheng/','IT认证考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shujuku/','数据库教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cyvyan/','C语言/C++');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/csharp/','C#教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/asp/','ASP/ASP.NET');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/php/','PHP教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/javascript/','Javascript');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/java/','JAVA教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/hack/','黑客技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/android/','Android教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youxi/','游戏开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangyebiancheng/','网页编程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/flash/','FLASH教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dreamweaver/','Dreamweaver');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wordpress/','WordPress');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/seo/','SEO教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/photoshop/','photoshop');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','PS视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/coreldraw/','CoreDRAW');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/illustrator/','Illustrator');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/indesign/','InDesign教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/painter/','Painter教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cad/','CAD教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shejisucai/','平面设计素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanggao/','广告设计');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yychuli/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yysucai/','视频素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/aftereffects/','After Effects');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/premiere/','Premiere教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/softimage/','SOFTIMAGE');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsmax/','3Ds Max教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/maya/','Maya教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/proe/','Pro/ENGINEER');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cinema4d/','Cinema 4D');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/vray/','Vray教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/modo/','Modo教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zbrush/','ZBrush教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/inventor/','Inventor教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/solidworks/','SolidWorks');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lightwave/','LightWave');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dchuli/','3D处理工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsucai/','3D模型素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingguan/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiaoshou/','市场营销');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanli/','管理学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingji/','经济学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jinrong/','金融学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gupiao/','股票/基金');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/kuaiji/','会计/财务管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiyeguanli/','企业管理知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shenghuo/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yangsheng/','健康养生资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caipu/','菜谱食谱厨艺');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youyun/','幼儿孕妇护理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvjia/','瑜伽视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/liyi/','生活礼仪形象');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheying/','数码摄影教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaju/','家居装修知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教知识育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongcheng/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jianzhu/','建筑工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huanjing/','环境工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianzi/','电子通信');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiche/','汽车修理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','生物科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianqi/','电气工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tumu/','土木工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jixie/','机械工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shehui/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lizhi/','励志成功');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wushu/','武术武艺教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvshiwei/','余世维讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zengshiqiang/','曾仕强讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chenanzhi/','陈安之讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/baike/','百科全书资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangqi/','象棋围棋军旗');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/waiyv/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/riyv/','日语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fayv/','法语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/deyv/','德语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/hanguoyv/','韩语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lishidili/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zglishi/','中国历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjlishi/','世界历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenhua/','中国文化');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenxue/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shufa/','书写书法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wudao/','舞蹈体操');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tiyv/','体育球类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangsheng/','相声小品');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiju/','戏剧影视');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gangqin/','钢琴/小提琴');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jita/','吉他摇滚教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huihua/','艺术绘画教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaoyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chuzhong/','初中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gaozhong/','高中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongwuyuan/','公务员考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/junshi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zhexue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/falv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/kouyv/','英语口语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yvfa/','英语语法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/xiezuo/','英语写作');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/tingli/','英语听力');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yuedu/','英语阅读');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cet46/','英语四六级');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fanyi/','英语翻译');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cihui/','英语词汇');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fangfa/','英语方法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yousheng/','英语有声');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/liuxue/','留学英语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/yingyv/','考研英语复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhengzhi/','考研政治复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/shuxue/','考研数学复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhenti/','考研真题');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhuanye/','考研专业课');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/fudao/','考研辅导');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/os/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/app/','应用软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/net/','网络软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/xitong/','系统工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/duomeiti/','多媒体工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/hangye/','行业软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/kaifa/','编程开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/anquan/','安全相关');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xinli/','心理学书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lizhi/','励志书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xiaoshuo/','文学小说');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学开放视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/','上海交大视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','中国石油大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','photoshop视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ziliao/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/sucai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yousheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/zazhi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fanwen/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','ps视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/',' 上海交大');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','石油大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jisuanji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jichu/','计算机基础');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caozuoxitong/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/bangong/','office教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yingjian/','硬件组装');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangluo/','网络技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/diannao/','电脑杂志');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/renzheng/','IT认证考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shujuku/','数据库教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cyvyan/','C语言/C++');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/csharp/','C#教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/asp/','ASP/ASP.NET');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/php/','PHP教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/javascript/','Javascript');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/java/','JAVA教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/hack/','黑客技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/android/','Android教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youxi/','游戏开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangyebiancheng/','网页编程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/flash/','FLASH教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dreamweaver/','Dreamweaver');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wordpress/','WordPress');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/seo/','SEO教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/photoshop/','photoshop');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','PS视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/coreldraw/','CoreDRAW');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/illustrator/','Illustrator');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/indesign/','InDesign教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/painter/','Painter教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cad/','CAD教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shejisucai/','平面设计素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanggao/','广告设计');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yychuli/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yysucai/','视频素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/aftereffects/','After Effects');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/premiere/','Premiere教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/softimage/','SOFTIMAGE');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsmax/','3Ds Max教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/maya/','Maya教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/proe/','Pro/ENGINEER');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cinema4d/','Cinema 4D');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/vray/','Vray教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/modo/','Modo教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zbrush/','ZBrush教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/inventor/','Inventor教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/solidworks/','SolidWorks');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lightwave/','LightWave');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dchuli/','3D处理工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsucai/','3D模型素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingguan/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiaoshou/','市场营销');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanli/','管理学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingji/','经济学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jinrong/','金融学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gupiao/','股票/基金');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/kuaiji/','会计/财务管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiyeguanli/','企业管理知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shenghuo/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yangsheng/','健康养生资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caipu/','菜谱食谱厨艺');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youyun/','幼儿孕妇护理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvjia/','瑜伽视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/liyi/','生活礼仪形象');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheying/','数码摄影教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaju/','家居装修知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教知识育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongcheng/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jianzhu/','建筑工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huanjing/','环境工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianzi/','电子通信');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiche/','汽车修理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','生物科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianqi/','电气工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tumu/','土木工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jixie/','机械工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shehui/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lizhi/','励志成功');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wushu/','武术武艺教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvshiwei/','余世维讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zengshiqiang/','曾仕强讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chenanzhi/','陈安之讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/baike/','百科全书资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangqi/','象棋围棋军旗');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/waiyv/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/riyv/','日语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fayv/','法语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/deyv/','德语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/hanguoyv/','韩语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lishidili/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zglishi/','中国历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjlishi/','世界历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenhua/','中国文化');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenxue/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shufa/','书写书法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wudao/','舞蹈体操');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tiyv/','体育球类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangsheng/','相声小品');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiju/','戏剧影视');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gangqin/','钢琴/小提琴');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jita/','吉他摇滚教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huihua/','艺术绘画教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaoyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chuzhong/','初中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gaozhong/','高中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongwuyuan/','公务员考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/junshi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zhexue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/falv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/kouyv/','英语口语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yvfa/','英语语法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/xiezuo/','英语写作');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/tingli/','英语听力');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yuedu/','英语阅读');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cet46/','英语四六级');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fanyi/','英语翻译');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cihui/','英语词汇');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fangfa/','英语方法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yousheng/','英语有声');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/liuxue/','留学英语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/yingyv/','考研英语复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhengzhi/','考研政治复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/shuxue/','考研数学复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhenti/','考研真题');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhuanye/','考研专业课');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/fudao/','考研辅导');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/os/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/app/','应用软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/net/','网络软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/xitong/','系统工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/duomeiti/','多媒体工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/hangye/','行业软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/kaifa/','编程开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/anquan/','安全相关');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xinli/','心理学书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lizhi/','励志书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xiaoshuo/','文学小说');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学开放视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/','上海交大视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','中国石油大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','photoshop视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ziliao/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/sucai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yousheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/zazhi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fanwen/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','ps视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/',' 上海交大');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','石油大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jisuanji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jichu/','计算机基础');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caozuoxitong/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/bangong/','office教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yingjian/','硬件组装');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangluo/','网络技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/diannao/','电脑杂志');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/renzheng/','IT认证考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shujuku/','数据库教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cyvyan/','C语言/C++');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/csharp/','C#教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/asp/','ASP/ASP.NET');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/php/','PHP教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/javascript/','Javascript');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/java/','JAVA教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/hack/','黑客技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/android/','Android教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youxi/','游戏开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangyebiancheng/','网页编程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/flash/','FLASH教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dreamweaver/','Dreamweaver');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wordpress/','WordPress');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/seo/','SEO教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/photoshop/','photoshop');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','PS视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/coreldraw/','CoreDRAW');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/illustrator/','Illustrator');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/indesign/','InDesign教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/painter/','Painter教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cad/','CAD教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shejisucai/','平面设计素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanggao/','广告设计');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yychuli/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yysucai/','视频素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/aftereffects/','After Effects');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/premiere/','Premiere教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/softimage/','SOFTIMAGE');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsmax/','3Ds Max教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/maya/','Maya教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/proe/','Pro/ENGINEER');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cinema4d/','Cinema 4D');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/vray/','Vray教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/modo/','Modo教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zbrush/','ZBrush教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/inventor/','Inventor教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/solidworks/','SolidWorks');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lightwave/','LightWave');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dchuli/','3D处理工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsucai/','3D模型素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingguan/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiaoshou/','市场营销');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanli/','管理学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingji/','经济学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jinrong/','金融学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gupiao/','股票/基金');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/kuaiji/','会计/财务管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiyeguanli/','企业管理知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shenghuo/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yangsheng/','健康养生资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caipu/','菜谱食谱厨艺');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youyun/','幼儿孕妇护理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvjia/','瑜伽视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/liyi/','生活礼仪形象');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheying/','数码摄影教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaju/','家居装修知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教知识育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongcheng/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jianzhu/','建筑工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huanjing/','环境工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianzi/','电子通信');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiche/','汽车修理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','生物科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianqi/','电气工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tumu/','土木工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jixie/','机械工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shehui/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lizhi/','励志成功');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wushu/','武术武艺教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvshiwei/','余世维讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zengshiqiang/','曾仕强讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chenanzhi/','陈安之讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/baike/','百科全书资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangqi/','象棋围棋军旗');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/waiyv/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/riyv/','日语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fayv/','法语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/deyv/','德语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/hanguoyv/','韩语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lishidili/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zglishi/','中国历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjlishi/','世界历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenhua/','中国文化');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenxue/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shufa/','书写书法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wudao/','舞蹈体操');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tiyv/','体育球类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangsheng/','相声小品');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiju/','戏剧影视');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gangqin/','钢琴/小提琴');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jita/','吉他摇滚教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huihua/','艺术绘画教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaoyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chuzhong/','初中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gaozhong/','高中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongwuyuan/','公务员考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/junshi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zhexue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/falv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/kouyv/','英语口语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yvfa/','英语语法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/xiezuo/','英语写作');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/tingli/','英语听力');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yuedu/','英语阅读');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cet46/','英语四六级');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fanyi/','英语翻译');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cihui/','英语词汇');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fangfa/','英语方法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yousheng/','英语有声');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/liuxue/','留学英语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/yingyv/','考研英语复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhengzhi/','考研政治复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/shuxue/','考研数学复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhenti/','考研真题');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhuanye/','考研专业课');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/fudao/','考研辅导');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/os/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/app/','应用软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/net/','网络软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/xitong/','系统工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/duomeiti/','多媒体工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/hangye/','行业软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/kaifa/','编程开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/anquan/','安全相关');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xinli/','心理学书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lizhi/','励志书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xiaoshuo/','文学小说');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学开放视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/','上海交大视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','中国石油大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','photoshop视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ziliao/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/sucai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yousheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/zazhi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fanwen/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','ps视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/',' 上海交大');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','石油大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jisuanji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jichu/','计算机基础');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caozuoxitong/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/bangong/','office教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yingjian/','硬件组装');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangluo/','网络技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/diannao/','电脑杂志');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/renzheng/','IT认证考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shujuku/','数据库教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cyvyan/','C语言/C++');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/csharp/','C#教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/asp/','ASP/ASP.NET');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/php/','PHP教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/javascript/','Javascript');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/java/','JAVA教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/hack/','黑客技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/android/','Android教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youxi/','游戏开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangyebiancheng/','网页编程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/flash/','FLASH教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dreamweaver/','Dreamweaver');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wordpress/','WordPress');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/seo/','SEO教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/photoshop/','photoshop');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','PS视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/coreldraw/','CoreDRAW');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/illustrator/','Illustrator');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/indesign/','InDesign教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/painter/','Painter教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cad/','CAD教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shejisucai/','平面设计素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanggao/','广告设计');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yychuli/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yysucai/','视频素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/aftereffects/','After Effects');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/premiere/','Premiere教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/softimage/','SOFTIMAGE');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsmax/','3Ds Max教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/maya/','Maya教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/proe/','Pro/ENGINEER');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cinema4d/','Cinema 4D');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/vray/','Vray教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/modo/','Modo教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zbrush/','ZBrush教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/inventor/','Inventor教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/solidworks/','SolidWorks');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lightwave/','LightWave');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dchuli/','3D处理工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsucai/','3D模型素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingguan/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiaoshou/','市场营销');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanli/','管理学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingji/','经济学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jinrong/','金融学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gupiao/','股票/基金');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/kuaiji/','会计/财务管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiyeguanli/','企业管理知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shenghuo/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yangsheng/','健康养生资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caipu/','菜谱食谱厨艺');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youyun/','幼儿孕妇护理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvjia/','瑜伽视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/liyi/','生活礼仪形象');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheying/','数码摄影教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaju/','家居装修知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教知识育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongcheng/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jianzhu/','建筑工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huanjing/','环境工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianzi/','电子通信');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiche/','汽车修理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','生物科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianqi/','电气工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tumu/','土木工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jixie/','机械工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shehui/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lizhi/','励志成功');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wushu/','武术武艺教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvshiwei/','余世维讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zengshiqiang/','曾仕强讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chenanzhi/','陈安之讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/baike/','百科全书资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangqi/','象棋围棋军旗');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/waiyv/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/riyv/','日语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fayv/','法语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/deyv/','德语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/hanguoyv/','韩语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lishidili/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zglishi/','中国历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjlishi/','世界历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenhua/','中国文化');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenxue/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shufa/','书写书法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wudao/','舞蹈体操');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tiyv/','体育球类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangsheng/','相声小品');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiju/','戏剧影视');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gangqin/','钢琴/小提琴');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jita/','吉他摇滚教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huihua/','艺术绘画教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaoyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chuzhong/','初中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gaozhong/','高中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongwuyuan/','公务员考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/junshi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zhexue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/falv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/kouyv/','英语口语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yvfa/','英语语法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/xiezuo/','英语写作');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/tingli/','英语听力');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yuedu/','英语阅读');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cet46/','英语四六级');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fanyi/','英语翻译');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cihui/','英语词汇');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fangfa/','英语方法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yousheng/','英语有声');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/liuxue/','留学英语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/yingyv/','考研英语复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhengzhi/','考研政治复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/shuxue/','考研数学复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhenti/','考研真题');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhuanye/','考研专业课');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/fudao/','考研辅导');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/os/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/app/','应用软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/net/','网络软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/xitong/','系统工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/duomeiti/','多媒体工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/hangye/','行业软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/kaifa/','编程开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/anquan/','安全相关');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xinli/','心理学书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lizhi/','励志书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xiaoshuo/','文学小说');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学开放视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/','上海交大视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','中国石油大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','photoshop视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ziliao/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/sucai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yousheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/zazhi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fanwen/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','ps视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/',' 上海交大');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','石油大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jisuanji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jichu/','计算机基础');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caozuoxitong/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/bangong/','office教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yingjian/','硬件组装');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangluo/','网络技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/diannao/','电脑杂志');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/renzheng/','IT认证考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shujuku/','数据库教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cyvyan/','C语言/C++');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/csharp/','C#教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/asp/','ASP/ASP.NET');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/php/','PHP教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/javascript/','Javascript');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/java/','JAVA教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/hack/','黑客技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/android/','Android教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youxi/','游戏开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangyebiancheng/','网页编程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/flash/','FLASH教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dreamweaver/','Dreamweaver');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wordpress/','WordPress');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/seo/','SEO教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/photoshop/','photoshop');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','PS视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/coreldraw/','CoreDRAW');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/illustrator/','Illustrator');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/indesign/','InDesign教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/painter/','Painter教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cad/','CAD教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shejisucai/','平面设计素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanggao/','广告设计');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yychuli/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yysucai/','视频素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/aftereffects/','After Effects');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/premiere/','Premiere教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/softimage/','SOFTIMAGE');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsmax/','3Ds Max教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/maya/','Maya教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/proe/','Pro/ENGINEER');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cinema4d/','Cinema 4D');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/vray/','Vray教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/modo/','Modo教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zbrush/','ZBrush教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/inventor/','Inventor教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/solidworks/','SolidWorks');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lightwave/','LightWave');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dchuli/','3D处理工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsucai/','3D模型素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingguan/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiaoshou/','市场营销');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanli/','管理学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingji/','经济学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jinrong/','金融学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gupiao/','股票/基金');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/kuaiji/','会计/财务管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiyeguanli/','企业管理知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shenghuo/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yangsheng/','健康养生资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caipu/','菜谱食谱厨艺');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youyun/','幼儿孕妇护理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvjia/','瑜伽视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/liyi/','生活礼仪形象');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheying/','数码摄影教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaju/','家居装修知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教知识育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongcheng/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jianzhu/','建筑工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huanjing/','环境工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianzi/','电子通信');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiche/','汽车修理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','生物科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianqi/','电气工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tumu/','土木工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jixie/','机械工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shehui/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lizhi/','励志成功');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wushu/','武术武艺教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvshiwei/','余世维讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zengshiqiang/','曾仕强讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chenanzhi/','陈安之讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/baike/','百科全书资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangqi/','象棋围棋军旗');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/waiyv/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/riyv/','日语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fayv/','法语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/deyv/','德语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/hanguoyv/','韩语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lishidili/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zglishi/','中国历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjlishi/','世界历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenhua/','中国文化');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenxue/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shufa/','书写书法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wudao/','舞蹈体操');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tiyv/','体育球类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangsheng/','相声小品');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiju/','戏剧影视');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gangqin/','钢琴/小提琴');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jita/','吉他摇滚教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huihua/','艺术绘画教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaoyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chuzhong/','初中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gaozhong/','高中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongwuyuan/','公务员考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/junshi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zhexue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/falv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/kouyv/','英语口语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yvfa/','英语语法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/xiezuo/','英语写作');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/tingli/','英语听力');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yuedu/','英语阅读');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cet46/','英语四六级');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fanyi/','英语翻译');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cihui/','英语词汇');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fangfa/','英语方法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yousheng/','英语有声');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/liuxue/','留学英语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/yingyv/','考研英语复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhengzhi/','考研政治复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/shuxue/','考研数学复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhenti/','考研真题');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhuanye/','考研专业课');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/fudao/','考研辅导');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/os/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/app/','应用软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/net/','网络软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/xitong/','系统工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/duomeiti/','多媒体工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/hangye/','行业软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/kaifa/','编程开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/anquan/','安全相关');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xinli/','心理学书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lizhi/','励志书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xiaoshuo/','文学小说');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学开放视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/','上海交大视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','中国石油大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','photoshop视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ziliao/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/sucai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yousheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/zazhi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fanwen/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','ps视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/',' 上海交大');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','石油大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jisuanji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jichu/','计算机基础');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caozuoxitong/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/bangong/','office教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yingjian/','硬件组装');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangluo/','网络技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/diannao/','电脑杂志');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/renzheng/','IT认证考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shujuku/','数据库教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cyvyan/','C语言/C++');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/csharp/','C#教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/asp/','ASP/ASP.NET');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/php/','PHP教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/javascript/','Javascript');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/java/','JAVA教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/hack/','黑客技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/android/','Android教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youxi/','游戏开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangyebiancheng/','网页编程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/flash/','FLASH教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dreamweaver/','Dreamweaver');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wordpress/','WordPress');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/seo/','SEO教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/photoshop/','photoshop');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','PS视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/coreldraw/','CoreDRAW');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/illustrator/','Illustrator');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/indesign/','InDesign教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/painter/','Painter教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cad/','CAD教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shejisucai/','平面设计素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanggao/','广告设计');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yychuli/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yysucai/','视频素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/aftereffects/','After Effects');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/premiere/','Premiere教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/softimage/','SOFTIMAGE');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsmax/','3Ds Max教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/maya/','Maya教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/proe/','Pro/ENGINEER');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cinema4d/','Cinema 4D');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/vray/','Vray教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/modo/','Modo教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zbrush/','ZBrush教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/inventor/','Inventor教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/solidworks/','SolidWorks');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lightwave/','LightWave');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dchuli/','3D处理工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsucai/','3D模型素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingguan/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiaoshou/','市场营销');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanli/','管理学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingji/','经济学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jinrong/','金融学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gupiao/','股票/基金');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/kuaiji/','会计/财务管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiyeguanli/','企业管理知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shenghuo/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yangsheng/','健康养生资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caipu/','菜谱食谱厨艺');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youyun/','幼儿孕妇护理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvjia/','瑜伽视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/liyi/','生活礼仪形象');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheying/','数码摄影教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaju/','家居装修知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教知识育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongcheng/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jianzhu/','建筑工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huanjing/','环境工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianzi/','电子通信');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiche/','汽车修理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','生物科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianqi/','电气工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tumu/','土木工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jixie/','机械工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shehui/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lizhi/','励志成功');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wushu/','武术武艺教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvshiwei/','余世维讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zengshiqiang/','曾仕强讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chenanzhi/','陈安之讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/baike/','百科全书资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangqi/','象棋围棋军旗');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/waiyv/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/riyv/','日语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fayv/','法语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/deyv/','德语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/hanguoyv/','韩语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lishidili/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zglishi/','中国历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjlishi/','世界历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenhua/','中国文化');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenxue/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shufa/','书写书法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wudao/','舞蹈体操');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tiyv/','体育球类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangsheng/','相声小品');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiju/','戏剧影视');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gangqin/','钢琴/小提琴');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jita/','吉他摇滚教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huihua/','艺术绘画教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaoyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chuzhong/','初中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gaozhong/','高中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongwuyuan/','公务员考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/junshi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zhexue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/falv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/kouyv/','英语口语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yvfa/','英语语法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/xiezuo/','英语写作');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/tingli/','英语听力');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yuedu/','英语阅读');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cet46/','英语四六级');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fanyi/','英语翻译');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/cihui/','英语词汇');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/fangfa/','英语方法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/yousheng/','英语有声');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yingyv/liuxue/','留学英语');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/yingyv/','考研英语复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhengzhi/','考研政治复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/shuxue/','考研数学复习资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhenti/','考研真题');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/zhuanye/','考研专业课');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kaoyan/fudao/','考研辅导');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/os/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/app/','应用软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/net/','网络软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/xitong/','系统工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/duomeiti/','多媒体工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/hangye/','行业软件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/kaifa/','编程开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ruanjian/anquan/','安全相关');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xinli/','心理学书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lizhi/','励志书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/xiaoshuo/','文学小说');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学开放视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/','上海交大视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','中国石油大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','photoshop视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学视频课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jisuanji/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','工程技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','经济管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shuli/','数理科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lilun/','理论科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huanjing/','环境科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/dianzi/','电子技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/huaxue/','化学物理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','社会科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/anquan/','安全消防');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','历史地理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/zhexue/','哲学宗教');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shengwu/','生物医学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','教育学类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','文学艺术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/falv/','政治法律');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/ziliao/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/sucai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/yousheng/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/zazhi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocai/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fanwen/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/jiaocheng/shipin/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/daxuekecheng/','大学课程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','ps视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/comjiaocheng/','计算机类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qhshipin/','清华大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjshipin/',' 上海交大');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zdshipin/','浙江大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zsyshipin/','石油大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dnshipin/','东南大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tjshipin/','同济大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jlshipin/','吉林大学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zkyshipin/','中科院视频');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jisuanji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jichu/','计算机基础');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caozuoxitong/','操作系统');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/bangong/','office教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yingjian/','硬件组装');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangluo/','网络技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/diannao/','电脑杂志');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/renzheng/','IT认证考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shujuku/','数据库教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cyvyan/','C语言/C++');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/csharp/','C#教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/asp/','ASP/ASP.NET');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/php/','PHP教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/javascript/','Javascript');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/java/','JAVA教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/hack/','黑客技术');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/android/','Android教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youxi/','游戏开发');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wangyebiancheng/','网页编程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/flash/','FLASH教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dreamweaver/','Dreamweaver');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wordpress/','WordPress');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/seo/','SEO教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheji/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/photoshop/','photoshop');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/psjiaocheng/','PS视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/coreldraw/','CoreDRAW');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/illustrator/','Illustrator');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/indesign/','InDesign教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/painter/','Painter教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cad/','CAD教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shejisucai/','平面设计素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanggao/','广告设计');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yychuli/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yysucai/','视频素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/aftereffects/','After Effects');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/premiere/','Premiere教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/softimage/','SOFTIMAGE');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsmax/','3Ds Max教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/maya/','Maya教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/proe/','Pro/ENGINEER');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/cinema4d/','Cinema 4D');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/vray/','Vray教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/modo/','Modo教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zbrush/','ZBrush教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/inventor/','Inventor教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/solidworks/','SolidWorks');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lightwave/','LightWave');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dchuli/','3D处理工具');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/3dsucai/','3D模型素材');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingguan/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiaoshou/','市场营销');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/guanli/','管理学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jingji/','经济学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jinrong/','金融学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gupiao/','股票/基金');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/kuaiji/','会计/财务管理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiyeguanli/','企业管理知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jingji/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jingji/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shenghuo/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yangsheng/','健康养生资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/caipu/','菜谱食谱厨艺');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youyun/','幼儿孕妇护理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvjia/','瑜伽视频教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/liyi/','生活礼仪形象');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sheying/','数码摄影教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaju/','家居装修知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教知识育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongcheng/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jianzhu/','建筑工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huanjing/','环境工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianzi/','电子通信');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/qiche/','汽车修理');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','生物科学');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/dianqi/','电气工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tumu/','土木工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jixie/','机械工程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jishu/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jishu/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shehui/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lizhi/','励志成功');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wushu/','武术武艺教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yvshiwei/','余世维讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zengshiqiang/','曾仕强讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chenanzhi/','陈安之讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yanjiang/','名人演讲讲座');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/baike/','百科全书资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangqi/','象棋围棋军旗');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/shehui/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/shehui/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/waiyv/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/riyv/','日语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/fayv/','法语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/deyv/','德语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/hanguoyv/','韩语资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lishidili/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/lishi/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/lishi/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zglishi/','中国历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/sjlishi/','世界历史');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenhua/','中国文化');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wenxue/','>');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shufa/','书写书法');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/wudao/','舞蹈体操');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/tiyv/','体育球类');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiangsheng/','相声小品');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/xiju/','戏剧影视');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gangqin/','钢琴/小提琴');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jita/','吉他摇滚教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/huihua/','艺术绘画教程');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/wenxue/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/wenxue/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiaoyv/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/chuzhong/','初中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gaozhong/','高中教学资料');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/gongwuyuan/','公务员考试');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/jiajiao/','家庭教育知识');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/youer/','幼儿教育');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/book/jiaoyv/','图书书籍');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/kejian/jiaoyv/','学习课件');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/junshi/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/lixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/zhexue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/yixue/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/shengwu/','');
-insert  into `资料库导航`(`md5`,`连接地址`,`项目`) values (NULL,'http://www.xuexic.com/s/falv/','');
-
 /*Table structure for table `起点列表` */
 
+DROP TABLE IF EXISTS `起点列表`;
+
 CREATE TABLE `起点列表` (
-  `md5` varchar(36) DEFAULT NULL COMMENT 'url的md5值',
-  `数据id` varchar(255) DEFAULT NULL,
-  `分类1` varchar(255) DEFAULT NULL,
-  `小说主页` varchar(255) DEFAULT NULL,
-  `分类2` varchar(255) DEFAULT NULL,
-  `作者首页` varchar(255) DEFAULT NULL,
-  `作者` varchar(255) DEFAULT NULL,
-  `发布状态` varchar(255) DEFAULT NULL,
-  `书面` varchar(255) DEFAULT NULL,
-  `小说简介` varchar(255) DEFAULT NULL,
-  `书名` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `md5` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'url的md5值',
+  `数据id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `分类1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `小说主页` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `分类2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `作者首页` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `作者` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `发布状态` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `书面` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `小说简介` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `书名` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `起点列表` */
 
 /*Table structure for table `oauth_access_token` */
+
+DROP TABLE IF EXISTS `oauth_access_token`;
 
 CREATE TABLE `oauth_access_token` (
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -2329,6 +86,8 @@ CREATE TABLE `oauth_access_token` (
 /*Data for the table `oauth_access_token` */
 
 /*Table structure for table `oauth_client_details` */
+
+DROP TABLE IF EXISTS `oauth_client_details`;
 
 CREATE TABLE `oauth_client_details` (
   `client_id` varchar(48) NOT NULL,
@@ -2351,6 +110,8 @@ insert  into `oauth_client_details`(`client_id`,`resource_ids`,`client_secret`,`
 
 /*Table structure for table `oauth_code` */
 
+DROP TABLE IF EXISTS `oauth_code`;
+
 CREATE TABLE `oauth_code` (
   `code` varchar(255) DEFAULT NULL,
   `authentication` varbinary(3000) DEFAULT NULL
@@ -2359,6 +120,8 @@ CREATE TABLE `oauth_code` (
 /*Data for the table `oauth_code` */
 
 /*Table structure for table `oauth_refresh_token` */
+
+DROP TABLE IF EXISTS `oauth_refresh_token`;
 
 CREATE TABLE `oauth_refresh_token` (
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -2372,55 +135,63 @@ CREATE TABLE `oauth_refresh_token` (
 
 /*Table structure for table `sys_chart_node` */
 
+DROP TABLE IF EXISTS `sys_chart_node`;
+
 CREATE TABLE `sys_chart_node` (
-  `uuid` varchar(36) NOT NULL,
+  `uuid` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `create_user` varchar(50) DEFAULT 'system',
+  `create_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT 'system',
   `delete_flag` int(11) DEFAULT '0',
-  `node_desc` varchar(50) DEFAULT NULL,
-  `node_name` varchar(50) DEFAULT NULL,
+  `node_desc` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `node_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_user` varchar(50) DEFAULT 'system',
+  `update_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT 'system',
   PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `sys_chart_node` */
 
 /*Table structure for table `sys_chart_node_cols` */
 
+DROP TABLE IF EXISTS `sys_chart_node_cols`;
+
 CREATE TABLE `sys_chart_node_cols` (
-  `uuid` varchar(50) NOT NULL,
-  `column_name` varchar(50) DEFAULT NULL,
-  `column_desc` varchar(50) DEFAULT NULL,
+  `uuid` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `column_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `column_desc` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `create_user` varchar(50) DEFAULT 'system',
+  `create_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT 'system',
   `delete_flag` int(11) DEFAULT '0',
-  `node_uuid` varchar(50) DEFAULT NULL,
+  `node_uuid` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_user` varchar(50) DEFAULT 'system',
-  `user_index` varchar(50) DEFAULT NULL,
+  `update_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT 'system',
+  `user_index` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `sys_chart_node_cols` */
 
 /*Table structure for table `sys_chart_relationship_type` */
 
+DROP TABLE IF EXISTS `sys_chart_relationship_type`;
+
 CREATE TABLE `sys_chart_relationship_type` (
-  `uuid` varchar(50) NOT NULL,
+  `uuid` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `create_user` varchar(50) DEFAULT 'system',
+  `create_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT 'system',
   `delete_flag` int(11) DEFAULT '0',
-  `relationship_desc` varchar(50) DEFAULT NULL,
-  `relationship_name` varchar(50) DEFAULT NULL,
+  `relationship_desc` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `relationship_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_user` varchar(50) DEFAULT 'system',
+  `update_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT 'system',
   PRIMARY KEY (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `sys_chart_relationship_type` */
 
 /*Table structure for table `sys_comn_logs` */
+
+DROP TABLE IF EXISTS `sys_comn_logs`;
 
 CREATE TABLE `sys_comn_logs` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
@@ -2448,6 +219,8 @@ CREATE TABLE `sys_comn_logs` (
 
 /*Table structure for table `sys_crawler_demo` */
 
+DROP TABLE IF EXISTS `sys_crawler_demo`;
+
 CREATE TABLE `sys_crawler_demo` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
   `discription` varchar(200) DEFAULT NULL COMMENT '资源功能描述',
@@ -2464,6 +237,8 @@ CREATE TABLE `sys_crawler_demo` (
 insert  into `sys_crawler_demo`(`uuid`,`discription`,`create_time`,`create_user`,`update_time`,`update_user`,`delete_flag`) values ('BB840C8E8D27C61B062ECE192C7FD9D5','系统使用表','2018-06-06 21:17:39',NULL,'2018-06-06 21:17:39',NULL,1);
 
 /*Table structure for table `sys_crawler_result_ruler_info` */
+
+DROP TABLE IF EXISTS `sys_crawler_result_ruler_info`;
 
 CREATE TABLE `sys_crawler_result_ruler_info` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
@@ -2504,6 +279,8 @@ insert  into `sys_crawler_result_ruler_info`(`uuid`,`cols_name`,`cols_uuid`,`cre
 insert  into `sys_crawler_result_ruler_info`(`uuid`,`cols_name`,`cols_uuid`,`create_time`,`create_user`,`delete_flag`,`discription`,`ruler_colum_name`,`ruler_colum_uuid`,`ruler_uuid`,`table_uuid`,`update_time`,`update_user`) values ('F55A41CD80C435FE5AF1BFED18C4B730','分类1','0237C23386FD9AC5F9EA61B95743C478','2018-12-14 23:14:56',NULL,NULL,NULL,'分类1','19318c74-a463-4f8d-84e8-6bf17c289a67','0e97cb8d-8a6b-4e00-94c2-4a67594eae55','0a89e4ec-ee20-48ca-bc4c-d3e5d81e46d0','2018-12-14 23:14:56','system');
 
 /*Table structure for table `sys_crawler_ruler_colum_info` */
+
+DROP TABLE IF EXISTS `sys_crawler_ruler_colum_info`;
 
 CREATE TABLE `sys_crawler_ruler_colum_info` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
@@ -2554,6 +331,8 @@ insert  into `sys_crawler_ruler_colum_info`(`uuid`,`app1`,`app2`,`arr`,`colum_na
 
 /*Table structure for table `sys_crawler_ruler_info` */
 
+DROP TABLE IF EXISTS `sys_crawler_ruler_info`;
+
 CREATE TABLE `sys_crawler_ruler_info` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
   `charset` varchar(20) DEFAULT NULL COMMENT '字符集',
@@ -2585,6 +364,8 @@ insert  into `sys_crawler_ruler_info`(`uuid`,`charset`,`content_info`,`create_ti
 
 /*Table structure for table `sys_crawler_task_err_info` */
 
+DROP TABLE IF EXISTS `sys_crawler_task_err_info`;
+
 CREATE TABLE `sys_crawler_task_err_info` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
   `discription` varchar(200) DEFAULT NULL COMMENT '资源功能描述',
@@ -2604,6 +385,8 @@ CREATE TABLE `sys_crawler_task_err_info` (
 insert  into `sys_crawler_task_err_info`(`uuid`,`discription`,`create_time`,`create_user`,`update_time`,`update_user`,`delete_flag`,`task_uuid`,`url`,`error_msg`) values ('BB840C8E8D27C61B062ECE192C7FD9D5','系统使用表','2018-06-06 21:17:39',NULL,'2018-06-06 21:17:39',NULL,1,NULL,NULL,NULL);
 
 /*Table structure for table `sys_crawler_task_info` */
+
+DROP TABLE IF EXISTS `sys_crawler_task_info`;
 
 CREATE TABLE `sys_crawler_task_info` (
   `uuid` varchar(36) NOT NULL COMMENT '唯一id',
@@ -2640,6 +423,8 @@ insert  into `sys_crawler_task_info`(`uuid`,`task_name`,`start_time`,`last_excut
 
 /*Table structure for table `sys_crawler_task_self_code_info` */
 
+DROP TABLE IF EXISTS `sys_crawler_task_self_code_info`;
+
 CREATE TABLE `sys_crawler_task_self_code_info` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
   `discription` varchar(200) DEFAULT NULL COMMENT '资源功能描述',
@@ -2660,6 +445,8 @@ insert  into `sys_crawler_task_self_code_info`(`uuid`,`discription`,`create_time
 
 /*Table structure for table `sys_dbms_advi_mess_info` */
 
+DROP TABLE IF EXISTS `sys_dbms_advi_mess_info`;
+
 CREATE TABLE `sys_dbms_advi_mess_info` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
@@ -2678,6 +465,8 @@ CREATE TABLE `sys_dbms_advi_mess_info` (
 /*Data for the table `sys_dbms_advi_mess_info` */
 
 /*Table structure for table `sys_dbms_chart_dimension` */
+
+DROP TABLE IF EXISTS `sys_dbms_chart_dimension`;
 
 CREATE TABLE `sys_dbms_chart_dimension` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
@@ -2708,6 +497,8 @@ CREATE TABLE `sys_dbms_chart_dimension` (
 
 /*Table structure for table `sys_dbms_chart_dimension_data` */
 
+DROP TABLE IF EXISTS `sys_dbms_chart_dimension_data`;
+
 CREATE TABLE `sys_dbms_chart_dimension_data` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
   `cols_desc` varchar(255) DEFAULT NULL,
@@ -2728,6 +519,8 @@ CREATE TABLE `sys_dbms_chart_dimension_data` (
 
 /*Table structure for table `sys_dbms_chart_dimension_group` */
 
+DROP TABLE IF EXISTS `sys_dbms_chart_dimension_group`;
+
 CREATE TABLE `sys_dbms_chart_dimension_group` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
@@ -2745,6 +538,8 @@ CREATE TABLE `sys_dbms_chart_dimension_group` (
 /*Data for the table `sys_dbms_chart_dimension_group` */
 
 /*Table structure for table `sys_dbms_tabs_cols_info` */
+
+DROP TABLE IF EXISTS `sys_dbms_tabs_cols_info`;
 
 CREATE TABLE `sys_dbms_tabs_cols_info` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
@@ -2797,6 +592,8 @@ insert  into `sys_dbms_tabs_cols_info`(`uuid`,`cols_align`,`cols_desc`,`cols_len
 
 /*Table structure for table `sys_dbms_tabs_info` */
 
+DROP TABLE IF EXISTS `sys_dbms_tabs_info`;
+
 CREATE TABLE `sys_dbms_tabs_info` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
@@ -2827,6 +624,8 @@ insert  into `sys_dbms_tabs_info`(`uuid`,`create_time`,`create_user`,`database_u
 
 /*Table structure for table `sys_dbms_tabs_jdbc_info` */
 
+DROP TABLE IF EXISTS `sys_dbms_tabs_jdbc_info`;
+
 CREATE TABLE `sys_dbms_tabs_jdbc_info` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
@@ -2852,6 +651,8 @@ insert  into `sys_dbms_tabs_jdbc_info`(`uuid`,`create_time`,`create_user`,`datab
 
 /*Table structure for table `sys_dbms_tabs_type_info` */
 
+DROP TABLE IF EXISTS `sys_dbms_tabs_type_info`;
+
 CREATE TABLE `sys_dbms_tabs_type_info` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
@@ -2874,6 +675,8 @@ insert  into `sys_dbms_tabs_type_info`(`uuid`,`create_time`,`create_user`,`delet
 insert  into `sys_dbms_tabs_type_info`(`uuid`,`create_time`,`create_user`,`delete_flag`,`discription`,`type_class`,`type_icon`,`type_name`,`type_order`,`update_time`,`update_user`) values ('D1BE1521CF4BBE1222581AA7F625F00E','2018-12-14 20:54:01',NULL,1,'小说',NULL,'','小说',1,'2018-12-14 20:54:01',NULL);
 
 /*Table structure for table `sys_dbms_user_index_info` */
+
+DROP TABLE IF EXISTS `sys_dbms_user_index_info`;
 
 CREATE TABLE `sys_dbms_user_index_info` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
@@ -2905,6 +708,8 @@ insert  into `sys_dbms_user_index_info`(`uuid`,`user_index`,`user_desc`,`user_pl
 
 /*Table structure for table `sys_department_info` */
 
+DROP TABLE IF EXISTS `sys_department_info`;
+
 CREATE TABLE `sys_department_info` (
   `uuid` varchar(32) NOT NULL,
   `department_name` varchar(50) NOT NULL,
@@ -2925,6 +730,8 @@ insert  into `sys_department_info`(`uuid`,`department_name`,`organization_id`,`c
 insert  into `sys_department_info`(`uuid`,`department_name`,`organization_id`,`create_time`,`create_user`,`delete_flag`,`discription`,`update_time`,`update_user`) values ('BD174B512EB1A0B87FF6E6CE6B171393','admin','3CE6C80F33B624C1BB1B016A79083694','2018-02-12 16:23:00',NULL,NULL,'admin','2018-02-12 16:23:00','system');
 
 /*Table structure for table `sys_dic_key_list` */
+
+DROP TABLE IF EXISTS `sys_dic_key_list`;
 
 CREATE TABLE `sys_dic_key_list` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
@@ -3040,6 +847,8 @@ insert  into `sys_dic_key_list`(`uuid`,`name_uuid`,`key_value`,`key_order`,`crea
 
 /*Table structure for table `sys_dic_name` */
 
+DROP TABLE IF EXISTS `sys_dic_name`;
+
 CREATE TABLE `sys_dic_name` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
   `name` varchar(50) DEFAULT NULL COMMENT '显示名称',
@@ -3069,6 +878,8 @@ insert  into `sys_dic_name`(`uuid`,`name`,`code`,`create_time`,`create_user`,`de
 insert  into `sys_dic_name`(`uuid`,`name`,`code`,`create_time`,`create_user`,`delete_flag`,`discription`,`update_time`,`update_user`,`button_type`) values ('f7d67906-6d24-48d4-ad72-8eea33d0795b','字符集','crawler_charset_type','2018-12-05 23:22:17','test',NULL,NULL,'2018-12-05 23:22:17','test','selected');
 
 /*Table structure for table `sys_dic_porvince_city` */
+
+DROP TABLE IF EXISTS `sys_dic_porvince_city`;
 
 CREATE TABLE `sys_dic_porvince_city` (
   `PROVINCE` varchar(255) DEFAULT NULL,
@@ -3534,6 +1345,8 @@ insert  into `sys_dic_porvince_city`(`PROVINCE`,`CITY`) values ('海南','三沙
 
 /*Table structure for table `sys_file_upload_info` */
 
+DROP TABLE IF EXISTS `sys_file_upload_info`;
+
 CREATE TABLE `sys_file_upload_info` (
   `uuid` varchar(255) NOT NULL,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
@@ -3554,6 +1367,8 @@ CREATE TABLE `sys_file_upload_info` (
 insert  into `sys_file_upload_info`(`uuid`,`create_time`,`create_user`,`delete_flag`,`discription`,`name`,`path`,`size`,`type`,`update_time`,`update_user`) values ('b020bbed-4a19-476b-b6af-9c3ebeabd804','2018-03-11 11:33:33','test',NULL,NULL,'spring文档剽窃.xlsx','./uploadfile/spring文档剽窃.xlsx',32167,'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','2018-03-11 11:33:33','system');
 
 /*Table structure for table `sys_menu_info` */
+
+DROP TABLE IF EXISTS `sys_menu_info`;
 
 CREATE TABLE `sys_menu_info` (
   `uuid` varchar(50) NOT NULL COMMENT '主键',
@@ -3615,6 +1430,8 @@ insert  into `sys_menu_info`(`uuid`,`system_id`,`parents_id`,`name`,`icon`,`sort
 
 /*Table structure for table `sys_organization_info` */
 
+DROP TABLE IF EXISTS `sys_organization_info`;
+
 CREATE TABLE `sys_organization_info` (
   `uuid` varchar(32) NOT NULL,
   `organization_code` varchar(50) NOT NULL,
@@ -3633,6 +1450,8 @@ CREATE TABLE `sys_organization_info` (
 insert  into `sys_organization_info`(`uuid`,`organization_code`,`organization_name`,`create_time`,`create_user`,`delete_flag`,`discription`,`update_time`,`update_user`) values ('3CE6C80F33B624C1BB1B016A79083694','admin','admin','2018-02-12 16:22:42',NULL,1,'admin','2018-02-12 16:22:42','system');
 
 /*Table structure for table `sys_plant_bind_conf` */
+
+DROP TABLE IF EXISTS `sys_plant_bind_conf`;
 
 CREATE TABLE `sys_plant_bind_conf` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
@@ -3654,11 +1473,13 @@ CREATE TABLE `sys_plant_bind_conf` (
   `update_user` varchar(50) DEFAULT 'system' COMMENT '更新人员',
   `width` int(11) DEFAULT '0' COMMENT '宽度设置',
   PRIMARY KEY (`uuid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_plant_bind_conf` */
 
 /*Table structure for table `sys_plant_chart_dimension` */
+
+DROP TABLE IF EXISTS `sys_plant_chart_dimension`;
 
 CREATE TABLE `sys_plant_chart_dimension` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
@@ -3689,6 +1510,8 @@ CREATE TABLE `sys_plant_chart_dimension` (
 
 /*Table structure for table `sys_plant_chart_dimension_data` */
 
+DROP TABLE IF EXISTS `sys_plant_chart_dimension_data`;
+
 CREATE TABLE `sys_plant_chart_dimension_data` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
   `cols_desc` varchar(255) DEFAULT NULL,
@@ -3709,6 +1532,8 @@ CREATE TABLE `sys_plant_chart_dimension_data` (
 
 /*Table structure for table `sys_plant_chart_dimension_group` */
 
+DROP TABLE IF EXISTS `sys_plant_chart_dimension_group`;
+
 CREATE TABLE `sys_plant_chart_dimension_group` (
   `uuid` varchar(36) NOT NULL COMMENT '主键',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
@@ -3726,6 +1551,8 @@ CREATE TABLE `sys_plant_chart_dimension_group` (
 /*Data for the table `sys_plant_chart_dimension_group` */
 
 /*Table structure for table `sys_roles_info` */
+
+DROP TABLE IF EXISTS `sys_roles_info`;
 
 CREATE TABLE `sys_roles_info` (
   `uuid` varchar(32) NOT NULL,
@@ -3748,6 +1575,8 @@ insert  into `sys_roles_info`(`uuid`,`department_id`,`role_name`,`create_time`,`
 insert  into `sys_roles_info`(`uuid`,`department_id`,`role_name`,`create_time`,`create_user`,`delete_flag`,`discription`,`update_time`,`update_user`,`checked`) values ('BEB0D81B918DD968D24D6F95AC15A753','2476DC8ED9FE9483FB956C2EFEB8E39E','test','2018-02-22 10:59:31',NULL,1,'test','2018-02-22 10:59:31','system',NULL);
 
 /*Table structure for table `sys_roles_jurisdiction_info` */
+
+DROP TABLE IF EXISTS `sys_roles_jurisdiction_info`;
 
 CREATE TABLE `sys_roles_jurisdiction_info` (
   `menu_id` varchar(36) NOT NULL COMMENT '菜单id',
@@ -3959,6 +1788,8 @@ insert  into `sys_roles_jurisdiction_info`(`menu_id`,`role_id`,`create_time`,`cr
 
 /*Table structure for table `sys_system_info` */
 
+DROP TABLE IF EXISTS `sys_system_info`;
+
 CREATE TABLE `sys_system_info` (
   `uuid` varchar(32) NOT NULL,
   `discription` varchar(1024) NOT NULL,
@@ -3974,6 +1805,8 @@ CREATE TABLE `sys_system_info` (
 /*Data for the table `sys_system_info` */
 
 /*Table structure for table `sys_user_base_info` */
+
+DROP TABLE IF EXISTS `sys_user_base_info`;
 
 CREATE TABLE `sys_user_base_info` (
   `uuid` varchar(32) NOT NULL,
@@ -4002,6 +1835,8 @@ insert  into `sys_user_base_info`(`uuid`,`age`,`password`,`persion_name`,`sex`,`
 insert  into `sys_user_base_info`(`uuid`,`age`,`password`,`persion_name`,`sex`,`user_name`,`create_time`,`create_user`,`delete_flag`,`discription`,`update_time`,`update_user`,`head_pic`,`email`,`phone`) values ('fb48fff75ae24e40b975a9c6ce1a124d',0,'{bcrypt}$2a$10$CNidVdUK3y5ByE0DY8CzHuEJuFiKGAflYFa/or7bRYhrD9r9EDyLO','admin','1','admin','2018-02-12 16:27:07',NULL,NULL,'admin','2018-02-12 16:27:07','system',NULL,'admin','admin');
 
 /*Table structure for table `sys_user_roles_info` */
+
+DROP TABLE IF EXISTS `sys_user_roles_info`;
 
 CREATE TABLE `sys_user_roles_info` (
   `roles_id` varchar(36) NOT NULL COMMENT '角色id',
@@ -4045,20 +1880,17 @@ insert  into `sys_user_roles_info`(`roles_id`,`user_id`,`checked`,`create_time`,
 
 DROP TABLE IF EXISTS `v_sys_comn_logs`;
 
-/*!50001 CREATE TABLE  `v_sys_comn_logs`(
- `create_user` varchar(50) ,
- `ip` varchar(200) ,
- `param_list` varchar(2000) ,
- `date1` varchar(10) ,
- `time1` varchar(5) ,
- `num` bigint(21) ,
- `id` varchar(36) 
-)*/;
+CREATE TABLE `v_sys_comn_logs` (
+  `create_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ip` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `param_list` varchar(2000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date1` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `time1` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `num` bigint(21) DEFAULT NULL,
+  `id` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*View structure for view v_sys_comn_logs */
-
-/*!50001 DROP TABLE IF EXISTS `v_sys_comn_logs` */;
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `v_sys_comn_logs` AS (select `t`.`create_user` AS `create_user`,`t`.`ip` AS `ip`,`t`.`param_list` AS `param_list`,date_format(`t`.`create_time`,'%Y-%c-%d') AS `date1`,date_format(`t`.`create_time`,'%h:%i') AS `time1`,count(1) AS `num`,`t`.`uuid` AS `id` from `sys_comn_logs` `t` where (`t`.`class_method` = 'findAllTableRow') group by `t`.`create_user`,`t`.`ip`,`t`.`param_list`,date_format(`t`.`create_time`,'%Y-%c-%d'),date_format(`t`.`create_time`,'%h:%i') order by date_format(`t`.`create_time`,'%Y-%c-%d') desc,date_format(`t`.`create_time`,'%h:%i') desc) */;
+/*Data for the table `v_sys_comn_logs` */
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
