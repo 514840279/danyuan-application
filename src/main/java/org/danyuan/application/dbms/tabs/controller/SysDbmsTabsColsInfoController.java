@@ -1,22 +1,17 @@
 package org.danyuan.application.dbms.tabs.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
-import org.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
 import org.danyuan.application.dbms.tabs.service.SysDbmsTabsColsInfoService;
-import org.danyuan.application.dbms.tabs.service.SysDbmsTabsInfoService;
 import org.danyuan.application.dbms.tabs.vo.SysDbmsTabsColsInfoVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,9 +38,7 @@ public class SysDbmsTabsColsInfoController {
 	//
 	@Autowired
 	private SysDbmsTabsColsInfoService	sysDbmsTabsColsInfoService;
-	@Autowired
-	private SysDbmsTabsInfoService		sysDbmsTabsInfoService;
-	
+
 	@Autowired
 	JdbcTemplate						jdbcTemplate;
 	
@@ -70,32 +63,10 @@ public class SysDbmsTabsColsInfoController {
 	}
 	
 	@RequestMapping(path = "/pagev", method = RequestMethod.POST)
-	public List<Map<String, Object>> pagev(@RequestBody Pagination<SysDbmsTabsColsInfo> vo) {
+	public List<SysDbmsTabsColsInfo> pagev(@RequestBody Pagination<SysDbmsTabsColsInfo> vo) {
 		logger.info("pagev", SysDbmsTabsColsInfoController.class);
-		SysDbmsTabsInfo tabs = new SysDbmsTabsInfo();
-		tabs.setUuid(vo.getInfo().getTabsUuid());
-		tabs = sysDbmsTabsInfoService.findOne(tabs);
 		
-		// SysDbmsTabsJdbcInfo jdbc = new SysDbmsTabsJdbcInfo();
-		// jdbc.setUuid(tabs.getJdbcUuid());
-		// jdbc = sysDbmsTabsJdbcInfoService.findOne(jdbc);
-		Map<String, String> param = new HashMap<>();
-		StringBuilder pageSql = new StringBuilder();
-		pageSql.append(" SELECT  ");
-		pageSql.append("   UUID() AS 'uuid', ");
-		pageSql.append("   '" + tabs.getUuid() + "' as tabsUuid,");
-		pageSql.append("   CONCAT(t.`TABLE_SCHEMA`, '.', t.`TABLE_NAME`) AS tabsName, ");
-		pageSql.append("   t.`COLUMN_NAME` AS colsName, ");
-		pageSql.append("   t.`ORDINAL_POSITION` AS colsOrder, ");
-		pageSql.append("   t.`DATA_TYPE` AS colsType, ");
-		pageSql.append("   t.`COLUMN_COMMENT` AS colsDesc  ");
-		pageSql.append(" FROM  `information_schema`.`COLUMNS` t  ");
-		pageSql.append(" WHERE CONCAT(t.`TABLE_SCHEMA`,'.',t.`TABLE_NAME`) = '" + tabs.getTabsName() + "'  ");
-		pageSql.append(" ORDER BY t.`ORDINAL_POSITION`  ");
-		
-		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
-		List<Map<String, Object>> list = template.queryForList(pageSql.toString(), param);
-		return list;
+		return sysDbmsTabsColsInfoService.pagev(vo.getInfo().getTabsUuid());
 		
 	}
 	

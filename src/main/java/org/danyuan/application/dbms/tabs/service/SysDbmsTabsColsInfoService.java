@@ -21,7 +21,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -43,8 +45,11 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	@Autowired
 	private SysDbmsTabsInfoDao		sysDbmsTabsInfoDao;
 	@Autowired
+	private SysDbmsTabsInfoService	sysDbmsTabsInfoService;
+
+	@Autowired
 	JdbcTemplate					jdbcTemplate;
-	
+
 	// 分页查询
 	public Page<SysDbmsTabsColsInfo> findAllByTableUuid(int pageNumber, int pageSize, String searchText, String tableUuid) {
 		logger.info(tableUuid, SysDbmsTabsColsInfoService.class);
@@ -56,14 +61,14 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 		PageRequest request = this.buildPageRequest(pageNumber, pageSize, sort);
 		Page<SysDbmsTabsColsInfo> sourceCodes = sysDbmsTabsColsInfoDao.findAll(example, request);
 		return sourceCodes;
-		
+
 	}
-	
+
 	// 构建PageRequest
 	private PageRequest buildPageRequest(int pageNumber, int pageSize, Sort sort) {
 		return PageRequest.of(pageNumber - 1, pageSize, sort);
 	}
-	
+
 	// 更新
 	public void change(SysDbmsTabsColsInfo info) {
 		try {
@@ -73,18 +78,18 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 				String sql = "alter table " + tab.getTabsName() + " CHANGE " + old.get().getColsName() + " " + info.getColsName() + " " + info.getColsType() + "(" + info.getColsLength() + ")";
 				jdbcTemplate.execute(sql);
 			} else {
-				
+
 				String sql = "alter table " + tab.getTabsName() + " add " + info.getColsName() + " " + info.getColsType() + "(" + info.getColsLength() + ")";
 				jdbcTemplate.execute(sql);
 			}
 		} finally {
 			sysDbmsTabsColsInfoDao.save(info);
-			
+
 		}
 	}
-	
+
 	public void deleteSysDbmsTabsColsInfo(List<SysDbmsTabsColsInfo> list) {
-		
+
 		Optional<SysDbmsTabsInfo> tab = sysDbmsTabsInfoDao.findById(list.get(0).getTabsUuid());
 		if (tab.isPresent()) {
 			for (SysDbmsTabsColsInfo SysDbmsTabsColsInfo : list) {
@@ -98,16 +103,16 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 			}
 		}
 	}
-	
+
 	public List<SysDbmsTabsColsInfo> findAllBySysDbmsTabsColsInfo(SysDbmsTabsColsInfo info) {
 		Example<SysDbmsTabsColsInfo> example = Example.of(info);
 		return sysDbmsTabsColsInfoDao.findAll(example);
 	}
-	
+
 	public void saveSysDbmsTabsColsInfo(List<SysDbmsTabsColsInfo> list) {
 		sysDbmsTabsColsInfoDao.saveAll(list);
 	}
-	
+
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -116,13 +121,13 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public SysDbmsTabsColsInfo findOne(SysDbmsTabsColsInfo info) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -131,13 +136,13 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public List<SysDbmsTabsColsInfo> findAll(SysDbmsTabsColsInfo info) {
 		Example<SysDbmsTabsColsInfo> example = Example.of(info);
 		return sysDbmsTabsColsInfoDao.findAll(example);
 	}
-	
+
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -150,11 +155,11 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#page(int, int, java.lang.Object, java.util.Map, org.springframework.data.domain.Sort.Order[])
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public Page<SysDbmsTabsColsInfo> page(Pagination<SysDbmsTabsColsInfo> vo) {
 		List<Sort.Order> orders = new ArrayList<>();
-		
+
 		if (vo.getSortName() != null) {
 			orders = vo.getOrders();
 		} else {
@@ -164,14 +169,14 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 		if (vo.getInfo() == null) {
 			vo.setInfo(new SysDbmsTabsColsInfo());
 		}
-		
+
 		Example<SysDbmsTabsColsInfo> example = Example.of(vo.getInfo());
 		Sort sort = Sort.by(orders);
 		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		Page<SysDbmsTabsColsInfo> page = sysDbmsTabsColsInfoDao.findAll(example, request);
 		return page;
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -179,7 +184,7 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void saveAll(List<SysDbmsTabsColsInfo> list) {
 		for (SysDbmsTabsColsInfo sysDbmsTabsColsInfo : list) {
@@ -189,7 +194,7 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 			change(sysDbmsTabsColsInfo);
 		}
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -197,13 +202,13 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void delete(SysDbmsTabsColsInfo info) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -211,12 +216,12 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void deleteAll(List<SysDbmsTabsColsInfo> list) {
 		sysDbmsTabsColsInfoDao.deleteAll(list);
 	}
-	
+
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -224,10 +229,47 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#trunc()
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void trunc() {
 		// TODO Auto-generated method stub
-		
+
+	}
+	
+	/**
+	 * @方法名 pagev
+	 * @功能 TODO(这里用一句话描述这个方法的作用)
+	 * @参数 @param vo
+	 * @参数 @return
+	 * @返回 List<Map<String,Object>>
+	 * @author Administrator
+	 * @throws
+	 */
+	public List<SysDbmsTabsColsInfo> pagev(String uuid) {
+		SysDbmsTabsInfo tabs = new SysDbmsTabsInfo();
+		tabs.setUuid(uuid);
+		tabs = sysDbmsTabsInfoService.findOne(tabs);
+
+		// SysDbmsTabsJdbcInfo jdbc = new SysDbmsTabsJdbcInfo();
+		// jdbc.setUuid(tabs.getJdbcUuid());
+		// jdbc = sysDbmsTabsJdbcInfoService.findOne(jdbc);
+//		Map<String, String> param = new HashMap<>();
+		StringBuilder pageSql = new StringBuilder();
+		pageSql.append(" SELECT  ");
+		pageSql.append("   UUID() AS 'uuid', ");
+		pageSql.append("   '" + tabs.getUuid() + "' as tabsUuid,");
+		pageSql.append("   CONCAT(t.`TABLE_SCHEMA`, '.', t.`TABLE_NAME`) AS tabsName, ");
+		pageSql.append("   t.`COLUMN_NAME` AS colsName, ");
+		pageSql.append("   t.`ORDINAL_POSITION` AS colsOrder, ");
+		pageSql.append("   t.`DATA_TYPE` AS colsType, ");
+		pageSql.append("   t.`COLUMN_COMMENT` AS colsDesc  ");
+		pageSql.append(" FROM  `information_schema`.`COLUMNS` t  ");
+		pageSql.append(" WHERE CONCAT(t.`TABLE_SCHEMA`,'.',t.`TABLE_NAME`) = '" + tabs.getTabsName() + "'  ");
+		pageSql.append(" ORDER BY t.`ORDINAL_POSITION`  ");
+
+		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+//		List<Map<String, Object>> list = template.queryForList(pageSql.toString(), param);
+		List<SysDbmsTabsColsInfo> list = template.getJdbcOperations().query(pageSql.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsColsInfo.class));
+		return list;
 	}
 }
