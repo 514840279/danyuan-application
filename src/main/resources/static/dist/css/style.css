@@ -523,3 +523,9 @@ table a, table a:hover{text-decoration:underline}
 .nav_right{width:170px; position:fixed; right:15px; top:300px}
 .nav_right .list-group-item{padding:7px 0; text-align:center}
 .nav_right .list-group-item:last-child{padding:1px 0 0; background:#f4f4f4; font-size:12px}
+
+
+iframe{
+	width: 0px;
+	height: 0px;
+}
