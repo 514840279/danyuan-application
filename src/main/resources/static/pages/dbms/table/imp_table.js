@@ -80,6 +80,7 @@ $(function() {
 	
 });
 function addSysDbmsTabsInfoSuccess(result){
+	$('#imp_table_datagrid').bootstrapTable('refresh');
 	
 }
 //数据库列表下拉

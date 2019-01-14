@@ -2,10 +2,13 @@ package org.danyuan.application.dbms.tabs.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.danyuan.application.common.base.BaseDao;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -65,5 +68,23 @@ public interface SysDbmsTabsInfoDao extends BaseDao<SysDbmsTabsInfo> {
 	 */
 	@Query("select distinct t from SysDbmsTabsInfo t   where t.jdbcUuid is not null and t.deleteFlag =0   and t.updateTime> sysdate-300 order by t.updateTime")
 	List<SysDbmsTabsInfo> findByAddrUuidIsNotNullAndUpdateTimeGreaterThan();
+
+	/**
+	 * @方法名 change
+	 * @功能 TODO(这里用一句话描述这个方法的作用)
+	 * @参数 @param tabsName
+	 * @参数 @param tabsDesc
+	 * @参数 @param typeUuid
+	 * @参数 @param jdbcUuid
+	 * @参数 @param uuid
+	 * @返回 void
+	 * @author Administrator
+	 * @throws
+	 */
+	@Transactional
+	@Modifying
+	@Query(" update SysDbmsTabsInfo t set tabsName =:tabsName,tabsDesc=:tabsDesc,typeUuid=:typeUuid,jdbcUuid=:jdbcUuid,updateTime = CURRENT_TIMESTAMP,updateUser = :username  where uuid =:uuid")
+
+	void change(@Param("tabsName") String tabsName, @Param("tabsDesc") String tabsDesc, @Param("typeUuid") String typeUuid, @Param("jdbcUuid") String jdbcUuid, @Param("uuid") String uuid, @Param("username") String username);
 
 }

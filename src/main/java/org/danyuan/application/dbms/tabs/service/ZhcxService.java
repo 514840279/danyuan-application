@@ -30,7 +30,7 @@ public class ZhcxService {
 	JdbcTemplate	jdbcTemplate;
 	@Value("${spring.jpa.database}")
 	private String	database;
-
+	
 	/**
 	 * 方法名： findAllSigleTableByMulitityParam
 	 * 功 能： 单表多条件查询
@@ -80,13 +80,13 @@ public class ZhcxService {
 				}
 			}
 		}
-
+		
 		resultMap(sql.toString(), null, vo, map);
 		return map;
 	}
-
+	
 	private void resultMap(String sqlString, Map<String, String> param, SysDbmsTabsColsInfoVo vo, Map<String, Object> resultMap) {
-
+		
 		StringBuilder pageSql = new StringBuilder();
 		if ("Oracle".equals(database)) {
 			pageSql.append(" select *  ");
@@ -101,7 +101,7 @@ public class ZhcxService {
 		} else if ("MYSQL".equals(database)) {
 			pageSql.append(sqlString.toString() + " limit " + (vo.getPageNumber().intValue() - 1) * vo.getPageSize().intValue() + "," + vo.getPageSize().intValue());
 		}
-
+		
 		System.out.println(pageSql.toString());
 		// List<Map<String, Object>> list = jdbcTemplate.queryForList(pageSql.toString());
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
@@ -127,7 +127,7 @@ public class ZhcxService {
 			}
 		}
 	}
-
+	
 	/**
 	 * 方法名： findBySingleTableByMulteityParam
 	 * 功 能： 单表多条件分组查询
@@ -151,7 +151,7 @@ public class ZhcxService {
 		System.err.println(sql.toString());
 		return map;
 	}
-
+	
 	/**
 	 * 方法名： searchSqlByParams
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -173,29 +173,31 @@ public class ZhcxService {
 			for (int i = 0; i < groupList.size(); i++) {
 				SysDbmsTabsColsInfo sysZhcxCol = groupList.get(i);
 				if (sysZhcxCol.getUserIndex() != null && !"".equals(sysZhcxCol.getUserIndex())) {
-					for (MulteityParam multeityParam : paramList) {
-						if (multeityParam.getUserIndex().equals(sysZhcxCol.getUserIndex())) {
-							exists = true;
-							if (i > 0) {
-								sqltem.append(" or ");
-							}
-							String keysOperator = multeityParam.getOperator();
-							String param = multeityParam.getValue().replace("*", "%").replace("?", "_");
-							String op = "=";
-							if ("eq".equals(keysOperator)) {
-								if (param.indexOf("%") == -1 && param.indexOf("_") == -1) {
-									op = " = ";
-								} else {
-									op = " like ";
+					if (paramList != null && paramList.size() > 0) {
+						for (MulteityParam multeityParam : paramList) {
+							if (multeityParam.getUserIndex().equals(sysZhcxCol.getUserIndex())) {
+								exists = true;
+								if (i > 0) {
+									sqltem.append(" or ");
 								}
-							} else if ("ge".equals(keysOperator)) {
-								op = " >= ";
-							} else if ("le".equals(keysOperator)) {
-								op = " <= ";
+								String keysOperator = multeityParam.getOperator();
+								String param = multeityParam.getValue().replace("*", "%").replace("?", "_");
+								String op = "=";
+								if ("eq".equals(keysOperator)) {
+									if (param.indexOf("%") == -1 && param.indexOf("_") == -1) {
+										op = " = ";
+									} else {
+										op = " like ";
+									}
+								} else if ("ge".equals(keysOperator)) {
+									op = " >= ";
+								} else if ("le".equals(keysOperator)) {
+									op = " <= ";
+								}
+								String paramName = sysZhcxCol.getColsName() + i + keysOperator;
+								sqltem.append(sysZhcxCol.getColsName() + op + " :" + paramName);
+								params.put(paramName, param);
 							}
-							String paramName = sysZhcxCol.getColsName() + i + keysOperator;
-							sqltem.append(sysZhcxCol.getColsName() + op + " :" + paramName);
-							params.put(paramName, param);
 						}
 					}
 				}
@@ -203,11 +205,11 @@ public class ZhcxService {
 			if (exists) {
 				sql.append(" and (  ").append(sqltem.toString()).append(" )");
 			}
-
+			
 		}
-
+		
 	}
-
+	
 	/**
 	 * @param paramList
 	 * 方法名： sortByUserIndex
@@ -247,5 +249,5 @@ public class ZhcxService {
 		}
 		return listlist;
 	}
-
+	
 }

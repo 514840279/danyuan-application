@@ -144,9 +144,10 @@ $(function() {
                  info:{
                 	 jdbcUuid:search_table_addrName,
             		 typeUuid:search_table_typeName,
-            		 tableName:$("#search_table_tableName").val(),
-        			 tableDesc:$("#search_table_tableDesc").val(),
-                 }
+            		 tabsName:$("#search_table_tabsName").val(),
+        			 tabsDesc:$("#search_table_tabsDesc").val(),
+                 },
+                 username:username
              }; 
              return param;
 		},

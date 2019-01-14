@@ -38,7 +38,7 @@ public class SysDbmsTabsTypeInfoService extends BaseServiceImpl<SysDbmsTabsTypeI
 	
 	public Page<SysDbmsTabsTypeInfo> findAllBySearchText(int pageNumber, int pageSize, SysDbmsTabsTypeInfo SysDbmsTabsTypeInfo) {
 		Example<SysDbmsTabsTypeInfo> example = Example.of(SysDbmsTabsTypeInfo);
-		Sort sort = Sort.by(new Order(Direction.DESC, "createTime"));
+		Sort sort = Sort.by(new Order(Direction.ASC, "typeOrder"), new Order(Direction.DESC, "createTime"));
 		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
 		Page<SysDbmsTabsTypeInfo> sourceCodes = sysDbmsTabsTypeInfoDao.findAll(example, request);
 		return sourceCodes;
