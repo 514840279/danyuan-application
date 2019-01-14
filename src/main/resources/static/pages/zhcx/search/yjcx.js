@@ -64,9 +64,7 @@ function findAllType_Sucess(result){
 		var param_table ={
 				"username":username,
 				paramList:paramList,
-				info:{
-					typeUuid:typeUuid
-				}
+				typeUuid:typeUuid
 		}
 //		console.log(typeUuid);
 		jQuery.ajax({
@@ -180,9 +178,9 @@ function findAllType_Sucess(result){
 							    			}
 							    			var f = value;
 							    			if(userIcon==null||userIcon==""){
-							    				 f = '<a class="text-blue" title="'+value+'" userIndex="'+userIndex+'" onclick="forwordYjcx(\''+value+'\',\''+userIndex+'\',\''+colsName.replaceAll("||','||","||_||")+'\')">'+value+' </a> ';
+							    				 f = '<a class="text-blue" title="'+value+'" userIndex="'+userIndex+'" onclick="forwordYjcx(\''+value+'\',\''+userIndex+'\',\''+colsName+'\')">'+value+' </a> ';
 							    			}else{
-							    				 f = f = '<i class="'+userIcon+' text-blue" title="'+value+'" userIndex="'+userIndex+'" onclick="forwordYjcx(\''+value+'\',\''+userIndex+'\',\''+colsName.replaceAll("||','||","||_||")+'\')" id="sfzh_search"></i> ';
+							    				 f = f = '<i class="'+userIcon+' text-blue" title="'+value+'" userIndex="'+userIndex+'" onclick="forwordYjcx(\''+value+'\',\''+userIndex+'\',\''+colsName+'\')" id="sfzh_search"></i> ';
 							    			}
 							    			return f;
 							    		},
@@ -206,7 +204,6 @@ function findAllType_Sucess(result){
 
 function forwordYjcx(value,userIndex,colsName){
 	var paramList = [];
-	colsName= colsName.replace("||_||","||','||")
 	paramList.push({
 		"userIndex" : userIndex,
 		"userDesc" : colsName+"("+userIndex+")",

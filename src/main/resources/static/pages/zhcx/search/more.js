@@ -63,9 +63,3 @@ function findAllType_Sucess(result){
 		$("#mainDiv").append(type);
 	})
 }
-
-
-
-function findError(result) {
-    window.parent.window.alert(JSON.stringify(result));
-};

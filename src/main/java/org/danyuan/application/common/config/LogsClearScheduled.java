@@ -1,10 +1,12 @@
 package org.danyuan.application.common.config;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TimeZone;
 
 import javax.sql.DataSource;
@@ -49,42 +51,73 @@ public class LogsClearScheduled {
 	SysDbmsAdviMessInfoDao					sysDbmsAdviMessInfoDao;
 	@Autowired
 	SysDbmsTabsInfoDao						sysDbmsTabsInfoDao;
-	
+
 	private static final SimpleDateFormat	dateFormat	= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	long									nd			= 1000 * 60 * 60 * 24;
 	long									nh			= 1000 * 60 * 60;
-	
+
 	@Scheduled(cron = "1 0 0 * * *")
 	// @Scheduled(fixedDelay = 1000)
 	public void delete() {
 		String sql = "DELETE FROM sys_comn_logs WHERE TIMESTAMPDIFF(DAY,create_time,NOW())>30";
 		jdbcTemplate.update(sql);
 	}
-	
-	// @Scheduled(cron = "0 30 18 1 * *")
+
+	@Scheduled(cron = "0 8-18/1 * * * *")
 	// @Scheduled(fixedDelay = 10000000)
 	public void zhcxConfix() throws ClassNotFoundException {
 		sysDbmsAdviMessInfoDao.deleteAllInBatch();
 		List<SysDbmsTabsInfo> list = sysDbmsTabsInfoDao.findByAddrUuidIsNotNullAndUpdateTimeGreaterThan();
 		Map<String, DataSource> multiDatasource = getMultiDatasource();
 		for (SysDbmsTabsInfo sysZhcxTab : list) {
-			if ("oracle".equals(sysZhcxTab.getDbType())) {
-				Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+8"));
-				logger.info("当前时间：" + dateFormat.format(calendar.getTime()));
+			Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+8"));
+			logger.info("当前时间：" + dateFormat.format(calendar.getTime()));
+			if ("oracle".equals(sysZhcxTab.getDbType().toLowerCase())) {
 				// if (calendar.get(Calendar.HOUR_OF_DAY) <= 8 || calendar.get(Calendar.HOUR_OF_DAY) > 16) {
 				// 表配置比较建议修正 (表修改，表配置修改)
-				ZhcxAdviceService.startConfixTableConfig(sysZhcxTab, multiDatasource, sysDbmsAdviMessInfoDao, jdbcTemplate);
+				ZhcxAdviceService.startConfixOracleTableConfig(sysZhcxTab, multiDatasource, sysDbmsAdviMessInfoDao, jdbcTemplate);
 				SysDbmsTabsColsInfo info = new SysDbmsTabsColsInfo();
 				info.setTabsUuid(sysZhcxTab.getUuid());
 				Example<SysDbmsTabsColsInfo> example = Example.of(info);
 				List<SysDbmsTabsColsInfo> colList = sysDbmsTabsColsInfoDao.findAll(example);
 				// 列配置比较建议修正(列修改，列配置修改,列统计配置修改，列长度修改)
-				ZhcxAdviceService.startConfixTableColumnsConfig(sysZhcxTab, multiDatasource, sysDbmsAdviMessInfoDao, jdbcTemplate, colList);
-
+				ZhcxAdviceService.startConfixOracleTableColumnsConfig(sysZhcxTab, multiDatasource, sysDbmsAdviMessInfoDao, jdbcTemplate, colList);
+				
 				// }
+			} else if ("mysql".equals(sysZhcxTab.getDbType().toLowerCase())) {
+				// 表配置比较建议修正 (表修改，表配置修改)
+				ZhcxAdviceService.startConfixMysqlTableConfig(sysZhcxTab, multiDatasource, sysDbmsAdviMessInfoDao, jdbcTemplate);
+				SysDbmsTabsColsInfo info = new SysDbmsTabsColsInfo();
+				info.setTabsUuid(sysZhcxTab.getUuid());
+				Example<SysDbmsTabsColsInfo> example = Example.of(info);
+				List<SysDbmsTabsColsInfo> colList = sysDbmsTabsColsInfoDao.findAll(example);
+				// 列配置比较建议修正(列修改，列配置修改,列统计配置修改，列长度修改)
+				ZhcxAdviceService.startConfixMysqlTableColumnsConfig(sysZhcxTab, multiDatasource, sysDbmsAdviMessInfoDao, jdbcTemplate, colList);
+				
 			}
 		}
+		destroyMultiDatasource(multiDatasource);
 		System.err.println("本次处理配置表信息执行完毕！");
+	}
+
+	/**
+	 * @方法名 destroyMultiDatasource
+	 * @功能 TODO(这里用一句话描述这个方法的作用)
+	 * @参数 @param multiDatasource
+	 * @返回 void
+	 * @author Administrator
+	 * @throws
+	 */
+	private void destroyMultiDatasource(Map<String, DataSource> multiDatasource) {
+		Set<String> keySet = multiDatasource.keySet();
+		for (String string : keySet) {
+			DataSource dataSource = multiDatasource.get(string);
+			try {
+				dataSource.getConnection().close();
+			} catch (SQLException e) {
+				System.err.println(e.getMessage());
+			}
+		}
 	}
 	
 	private Map<String, DataSource> getMultiDatasource() throws ClassNotFoundException {
@@ -110,7 +143,7 @@ public class LogsClearScheduled {
 					break;
 			}
 			DataSource dataSource = DataSourceBuilder.create().driverClassName(driverClassName).url(url).username(sysZhcxAddr.getUsername()).password(sysZhcxAddr.getPassword()).type(type).build();
-			
+
 			map.put(sysZhcxAddr.getUuid(), dataSource);
 		}
 		return map;

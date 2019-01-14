@@ -17,6 +17,7 @@ import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsColsInfoDao;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsInfoDao;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
+import org.danyuan.application.dbms.tabs.vo.MulteityParam;
 import org.danyuan.application.dbms.tabs.vo.SysDbmsTabsInfoVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -385,6 +386,54 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 	public List<SysDbmsTabsInfo> findAll(SysDbmsTabsInfo info) {
 		Example<SysDbmsTabsInfo> example = Example.of(info);
 		return sysDbmsTabsInfoDao.findAll(example);
+	}
+
+	/**
+	 * 方法名： findAllTable
+	 * 功 能： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数： @param username
+	 * 参 数： @param userindex
+	 * 参 数： @param uservalue
+	 * 参 数： @return
+	 * 返 回： List<SysZhcxTab>
+	 * 作 者 ： Administrator
+	 * @throws
+	 */
+	public List<SysDbmsTabsInfo> findAllTable(SysDbmsTabsInfoVo vo) {
+		
+		if (vo.getParamList() == null || vo.getParamList().size() == 0) {
+			// 无条件查询
+			return sysDbmsTabsInfoDao.findAllByUserIndexAndTypeUuid(vo.getUserindex(), vo.getTypeUuid());
+		} else {
+			// 多条件时循环查询并找出userindex都有的表
+			List<SysDbmsTabsInfo> minusList = null;
+			for (MulteityParam val : vo.getParamList()) {
+				List<SysDbmsTabsInfo> tabsList = sysDbmsTabsInfoDao.findAllByUserIndexAndTypeUuid(val.getUserIndex(), vo.getTypeUuid());
+				if (tabsList == null) {
+					return null;
+				}
+				if (minusList == null) {
+					minusList = tabsList;
+				} else {
+					List<SysDbmsTabsInfo> existsList = new ArrayList<>();
+					// 多个userindex对比找到相同表
+					for (SysDbmsTabsInfo sysZhcxTab : minusList) {
+						for (SysDbmsTabsInfo sysZhcxTab2 : tabsList) {
+							if (sysZhcxTab.getUuid().equals(sysZhcxTab2.getUuid())) {
+								existsList.add(sysZhcxTab);
+							}
+						}
+					}
+					minusList = existsList;
+					if (minusList.size() == 0) {
+						return null;
+					}
+				}
+			}
+			
+			// 多条件查询
+			return minusList;
+		}
 	}
 	
 	/**
