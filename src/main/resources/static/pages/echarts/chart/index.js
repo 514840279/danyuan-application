@@ -5,7 +5,7 @@ window.groupoperateEvents = {
     	    	winId:"add_config_table",
     	    	title:'修改分组信息',
     	    	width:'400px',
-    	    	url:"/sysPlantChartDimensionGroup/addBefor?uuid="+row.uuid
+    	    	url:"/sysDbmsChartDimensionGroup/addBefor?uuid="+row.uuid
     	    });
         	
     },
@@ -17,7 +17,7 @@ window.groupoperateEvents = {
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var url = "/sysPlantChartDimensionGroup/deleteAll";
+						var url = "/sysDbmsChartDimensionGroup/deleteAll";
 						var param={list:[row]};
 						ajaxPost(url, param, deleteInfoSuccess, 5000, findError);
 					}
@@ -27,7 +27,7 @@ window.groupoperateEvents = {
 	// 查看
     'click #clickB ': function (e, value, row, index) {
 		groupUuid = row.uuid;
-    	url = "/sysPlantChartDimension/findAllDime?uuid="+groupUuid;
+    	url = "/sysDbmsChartDimension/findAllDime?uuid="+groupUuid;
 		$("#chart_context").load(url);
     },
 	// 查看
@@ -35,7 +35,7 @@ window.groupoperateEvents = {
 		groupUuid = row.uuid;
 		
 		// 获取屏幕宽度
-		url = "/sysPlantChartDimension/showAllDime?uuid="+groupUuid;
+		url = "/sysDbmsChartDimension/showAllDime?uuid="+groupUuid;
     	
     	modals.openWin({
 	    	winId:"show_config_table",
@@ -115,7 +115,7 @@ $(function(){
 	    	winId:"add_config_table",
 	    	title:'修改模板',
 	    	width:'1500px',
-	    	url:"/sysPlantChartDimension/addBefor"
+	    	url:"/sysDbmsChartDimension/addBefor"
 	    });
 	})
 	
@@ -143,7 +143,7 @@ $(function(){
 });
 var groupUuid = null;
 function loadGroup(){
-	url = "/sysPlantChartDimension/findAllDime3?uuid="+groupUuid;
+	url = "/sysDbmsChartDimension/findAllDime?uuid="+groupUuid;
 	$("#chart_context").load(url);
 }
 
@@ -159,7 +159,7 @@ function loadgrouptable(){
 	
 	// bootstrap table
 	$('#dbm_demgroup_datagrid').bootstrapTable({
-		url : "/sysPlantChartDimensionGroup/findAll",
+		url : "/sysDbmsChartDimensionGroup/findAll",
 		dataType : "json",
 //		toolbar : '#dbm_config_table_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）

@@ -1,5 +1,10 @@
 /**
- * 文件名：SysPlantChartDimensionDataDataController.java 版本信息： 日期：2018年5月22日 Copyright 足下 Corporation 2018 版权所有
+ * 文件名：SysPlantLableConfController.java
+ *
+ * 版本信息：
+ * 日期：2018年5月18日
+ * Copyright 足下 Corporation 2018
+ * 版权所有
  */
 package org.danyuan.application.dbms.echarts.controller;
 
@@ -7,8 +12,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.danyuan.application.common.base.Pagination;
-import org.danyuan.application.dbms.echarts.po.SysDbmsChartDimensionData;
-import org.danyuan.application.dbms.echarts.service.SysDbmsChartDimensionDataService;
+import org.danyuan.application.dbms.echarts.po.SysPlantLableConf;
+import org.danyuan.application.dbms.echarts.service.SysPlantLableConfService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +23,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
- * 文件名 ： SysPlantChartDimensionDataDataController.java
+ * 文件名 ： SysPlantLableConfController.java
  * 包 名 ： com.shumeng.application.application.plant.controller
- * 描 述 ： TODO(用一句话描述该文件做什么)
+ * 描 述 ： 平台分析纬度管理
  * 机能名称：
  * 技能ID ：
  * 作 者 ： Administrator
- * 时 间 ： 2018年5月22日 下午2:58:59
+ * 时 间 ： 2018年5月18日 下午4:15:23
  * 版 本 ： V1.0
  */
 @RestController
-@RequestMapping("/sysDbmsChartDimensionData")
-public class SysDbmsChartDimensionDataController {
-	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsChartDimensionDataController.class);
+@RequestMapping("/sysPlantLableConf")
+@Api(value = "/SysPlantLableConf", description = "平台分析纬度管理")
+public class SysPlantLableConfController {
+	private static final Logger	logger	= LoggerFactory.getLogger(SysPlantLableConfController.class);
 	@Autowired
-	SysDbmsChartDimensionDataService	sysDbmsChartDimensionDataService;
+	SysPlantLableConfService	sysPlantLableConfService;
 
 	/**
 	 * 方法名 ： page
@@ -42,11 +51,11 @@ public class SysDbmsChartDimensionDataController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
+	@ApiOperation(value = "查询全部信息", notes = "")
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
-	public Page<SysDbmsChartDimensionData> page(Pagination<SysDbmsChartDimensionData> vo) {
-		logger.info("page", SysDbmsChartDimensionDataController.class);
-		return sysDbmsChartDimensionDataService.page(vo);
-
+	public Page<SysPlantLableConf> page(@RequestBody Pagination<SysPlantLableConf> vo) {
+		logger.info("page", SysPlantLableConfController.class);
+		return sysPlantLableConfService.page(vo);
 	}
 
 	/**
@@ -56,10 +65,11 @@ public class SysDbmsChartDimensionDataController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
+	@ApiOperation(value = "查询全部信息", notes = "")
 	@RequestMapping(path = "/findAll", method = RequestMethod.POST)
-	public List<SysDbmsChartDimensionData> findAll(@RequestBody SysDbmsChartDimensionData info) {
-		logger.info("findAll", SysDbmsChartDimensionDataController.class);
-		return sysDbmsChartDimensionDataService.findAll(info);
+	public List<SysPlantLableConf> findAll(@RequestBody SysPlantLableConf info) {
+		logger.info("findAll", SysPlantLableConfController.class);
+		return sysPlantLableConfService.findAll(info);
 	}
 
 	/**
@@ -69,10 +79,11 @@ public class SysDbmsChartDimensionDataController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
+	@ApiOperation(value = "查询信息", notes = "")
 	@RequestMapping(path = "/findOne", method = RequestMethod.POST)
-	public SysDbmsChartDimensionData findOne(SysDbmsChartDimensionData info) {
-		logger.info("findOne", SysDbmsChartDimensionDataController.class);
-		return sysDbmsChartDimensionDataService.findOne(info);
+	public SysPlantLableConf findOne(@RequestBody SysPlantLableConf info) {
+		logger.info("findOne", SysPlantLableConfController.class);
+		return sysPlantLableConfService.findOne(info);
 	}
 
 	/**
@@ -82,13 +93,14 @@ public class SysDbmsChartDimensionDataController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
+	@ApiOperation(value = "保存信息", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
-	public String save(@RequestBody SysDbmsChartDimensionData info) {
-		logger.info("save", SysDbmsChartDimensionDataController.class);
+	public String save(@RequestBody SysPlantLableConf info) {
+		logger.info("save", SysPlantLableConfController.class);
 		if (info.getUuid() == null || "".equals(info.getUuid())) {
 			info.setUuid(UUID.randomUUID().toString());
 		}
-		sysDbmsChartDimensionDataService.save(info);
+		sysPlantLableConfService.save(info);
 		return "1";
 	}
 
@@ -99,10 +111,11 @@ public class SysDbmsChartDimensionDataController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
+	@ApiOperation(value = "批量保存信息", notes = "")
 	@RequestMapping(path = "/saveAll", method = RequestMethod.POST)
-	public String save(@RequestBody Pagination<SysDbmsChartDimensionData> vo) {
-		logger.info("save", SysDbmsChartDimensionDataController.class);
-		sysDbmsChartDimensionDataService.saveAll(vo.getList());
+	public String save(@RequestBody Pagination<SysPlantLableConf> vo) {
+		logger.info("save", SysPlantLableConfController.class);
+		sysPlantLableConfService.saveAll(vo.getList());
 		return "1";
 	}
 
@@ -113,13 +126,11 @@ public class SysDbmsChartDimensionDataController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
+	@ApiOperation(value = "批量删除信息", notes = "")
 	@RequestMapping(path = "/deleteAll", method = RequestMethod.POST)
-	public String delete(@RequestBody Pagination<SysDbmsChartDimensionData> vo) {
-		for (SysDbmsChartDimensionData data : vo.getList()) {
-			System.err.println(data.toString());
-		}
-		logger.info("delete", SysDbmsChartDimensionDataController.class);
-		sysDbmsChartDimensionDataService.deleteAll(vo.getList());
+	public String delete(@RequestBody Pagination<SysPlantLableConf> vo) {
+		logger.info("delete", SysPlantLableConfController.class);
+		sysPlantLableConfService.deleteAll(vo.getList());
 		return "1";
 	}
 
@@ -130,10 +141,11 @@ public class SysDbmsChartDimensionDataController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
+	@ApiOperation(value = "删除信息", notes = "")
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
-	public String delete(@RequestBody SysDbmsChartDimensionData info) {
-		logger.info("delete", SysDbmsChartDimensionDataController.class);
-		sysDbmsChartDimensionDataService.delete(info);
+	public String delete(@RequestBody SysPlantLableConf info) {
+		logger.info("delete", SysPlantLableConfController.class);
+		sysPlantLableConfService.delete(info);
 		return "1";
 	}
 
@@ -143,10 +155,12 @@ public class SysDbmsChartDimensionDataController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
+	@ApiOperation(value = "清空表", notes = "")
 	@RequestMapping(path = "/trunc", method = RequestMethod.POST)
 	public String trunc() {
-		logger.info("trunc", SysDbmsChartDimensionDataController.class);
-		sysDbmsChartDimensionDataService.trunc();
+		logger.info("trunc", SysPlantLableConfController.class);
+		sysPlantLableConfService.trunc();
 		return "1";
 	}
+
 }

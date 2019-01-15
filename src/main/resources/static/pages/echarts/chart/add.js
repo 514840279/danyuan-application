@@ -7,7 +7,7 @@ window.operateEvents = {
 		title : "系统提示",
 		callback : function(result) {
 				if (result) {
-					var url = "/sysPlantChartDimensionData/deleteAll";
+					var url = "/sysDbmsChartDimensionData/deleteAll";
 					var param={list:[row]};
 					ajaxPost(url, param, deleteDataSuccess, 5000, findError);
 				}
@@ -59,7 +59,7 @@ function init(){
 	var url = "/sysPlantBindConf/findAll";
 	ajaxPost(url, null, addPlantBindSuccess, 5000, findError);
 	// 分组
-	var url = "/sysPlantChartDimensionGroup/findAll";
+	var url = "/sysDbmsChartDimensionGroup/findAll";
 	var param={};
 	ajaxPost(url, param, addGroupSelectSuccess, 5000, findError);
 	// 横坐标
@@ -135,7 +135,7 @@ function conformSaveData(){
 			createUser:username,
 			updateUser:username,
 	}
-	var url = "/sysPlantChartDimensionData/save";
+	var url = "/sysDbmsChartDimensionData/save";
 	ajaxPost(url, params, addDataSuccess);
 	
 }
@@ -240,7 +240,7 @@ function submit_add_addr(){
 				createUser:username,
 				updateUser:username,
 		}
-		var url = "/sysPlantChartDimension/save";
+		var url = "/sysDbmsChartDimension/save";
 		ajaxPost(url, params, addSuccess);
 	}
 	
@@ -344,7 +344,7 @@ function loadConfParam(result){
 	setTimeout(function () { 
 		// 重新加载条件数据
 		// 回填数据
-		var submiturl = "/sysPlantChartDimensionData/findAll";
+		var submiturl = "/sysDbmsChartDimensionData/findAll";
 		ajaxPost(submiturl, {dimeUuid:sysPlantChartDimension.uuid}, resetParamsConf);
 	},800); 
 }
@@ -612,7 +612,7 @@ function submit_add_param(result){
 		username:username
 	};
 	console.log(param);
-	var url ="/sysPlantChartDimensionData/saveData";
+	var url ="/sysDbmsChartDimensionData/saveData";
 	ajaxPost(url,param,successSaveParams);
 }
 function successSaveParams(result){

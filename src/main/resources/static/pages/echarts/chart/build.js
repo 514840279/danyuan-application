@@ -50,7 +50,7 @@ function init(){
 		    	winId:"add_config_table",
 		    	title:'图表修改',
 		    	width:'1500px',
-		    	url:"/sysPlantChartDimension/addBefor3?uuid="+uuid
+		    	url:"/sysDbmsChartDimension/addBefor?uuid="+uuid
 		    });
 		})
 		
@@ -61,7 +61,7 @@ function init(){
 		    	winId:"add_config_table",
 		    	title:'查看大图',
 		    	width:'1500px',
-		    	url:"/pages/plant/chart3/onechart.html"
+		    	url:"/pages/echarts/chart/onechart.html"
 		    });
 			
 			new showCharts({
@@ -83,7 +83,7 @@ function init(){
 		    	winId:"add_config_table",
 		    	title:'修改分组',
 		    	width:'500px',
-		    	url:"/pages/plant/chart/change.html"
+		    	url:"/pages/echarts/chart/change.html"
 		    });
 		})
 		
@@ -102,7 +102,7 @@ function init(){
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var url = "/sysPlantChartDimension/delete";
+						var url = "/sysDbmsChartDimension/delete";
 						var param={uuid:uuid};
 						ajaxPost(url, param, deleteSuccess, 5000, findError);
 					}

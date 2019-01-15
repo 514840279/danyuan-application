@@ -36,14 +36,14 @@ import org.springframework.web.servlet.ModelAndView;
  * 版 本 ： V1.0
  */
 @RestController
-@RequestMapping("/sysPlantChartDimension")
+@RequestMapping("/sysDbmsChartDimension")
 public class SysDbmsChartDimensionController {
 	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsChartDimensionController.class);
 	@Autowired
 	SysDbmsChartDimensionService		sysDbmsChartDimensionService;
 	@Autowired
 	SysDbmsChartDimensionDataService	sysDbmsChartDimensionDataService;
-	
+
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -54,10 +54,10 @@ public class SysDbmsChartDimensionController {
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<SysDbmsChartDimension> page(Pagination<SysDbmsChartDimension> vo) {
 		logger.info("page", SysDbmsChartDimensionController.class);
-		
+
 		return sysDbmsChartDimensionService.page(vo);
 	}
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -70,7 +70,7 @@ public class SysDbmsChartDimensionController {
 		logger.info("findAll", SysDbmsChartDimensionController.class);
 		return sysDbmsChartDimensionService.findAll(info);
 	}
-	
+
 	/**
 	 * 方法名 ： findAllDime
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -81,14 +81,14 @@ public class SysDbmsChartDimensionController {
 	@RequestMapping(path = "/findAllDime", method = RequestMethod.GET)
 	public ModelAndView findAllDime(HttpServletRequest request) {
 		logger.info("findAllDime", SysDbmsChartDimensionController.class);
-		if (request.getParameter("uuid") == null || "null".equals(request.getParameter("uuid"))) {
+		if (request.getParameter("uuid") == null || "".equals(request.getParameter("uuid"))) {
 			List<SysDbmsChartDimension> list = sysDbmsChartDimensionService.findAllDime();
-			
+
 			if (list.size() == 0) {
-				ModelAndView view = new ModelAndView("plant/chart/chart");
+				ModelAndView view = new ModelAndView("echarts/chart");
 				return view;
 			} else {
-				ModelAndView view = new ModelAndView("plant/chart/build");
+				ModelAndView view = new ModelAndView("echarts/build");
 				view.addObject("sysPlantChartDimensionList", list);
 				return view;
 			}
@@ -97,27 +97,27 @@ public class SysDbmsChartDimensionController {
 			dime.setGroupUuid(request.getParameter("uuid"));
 			List<SysDbmsChartDimension> list = sysDbmsChartDimensionService.findAll(dime);
 			if (list.size() == 0 && "null".equals(request.getParameter("uuid"))) {
-				ModelAndView view = new ModelAndView("plant/chart/chart");
+				ModelAndView view = new ModelAndView("echarts/chart");
 				return view;
 			} else {
-				ModelAndView view = new ModelAndView("plant/chart/build");
+				ModelAndView view = new ModelAndView("echarts/build");
 				view.addObject("sysPlantChartDimensionList", list);
 				return view;
 			}
 		}
 	}
-	
+
 	@RequestMapping(path = "/showAllDime", method = RequestMethod.GET)
 	public ModelAndView showAllDime(HttpServletRequest request) {
 		logger.info("findAllDime", SysDbmsChartDimensionController.class);
 		SysDbmsChartDimension dime = new SysDbmsChartDimension();
 		dime.setGroupUuid(request.getParameter("uuid"));
 		List<SysDbmsChartDimension> list = sysDbmsChartDimensionService.findAll(dime);
-		ModelAndView view = new ModelAndView("plant/chart/show");
+		ModelAndView view = new ModelAndView("echarts/show");
 		view.addObject("sysPlantChartDimensionList", list);
 		return view;
 	}
-	
+
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -130,7 +130,7 @@ public class SysDbmsChartDimensionController {
 		logger.info("findOne", SysDbmsChartDimensionController.class);
 		return sysDbmsChartDimensionService.findOne(info);
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -149,7 +149,7 @@ public class SysDbmsChartDimensionController {
 		map.put("uuid", info.getUuid());
 		return map;
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -163,7 +163,7 @@ public class SysDbmsChartDimensionController {
 		sysDbmsChartDimensionService.saveAll(vo.getList());
 		return "1";
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -177,7 +177,7 @@ public class SysDbmsChartDimensionController {
 		sysDbmsChartDimensionService.deleteAll(vo.getList());
 		return "1";
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -193,7 +193,7 @@ public class SysDbmsChartDimensionController {
 		map.put("uuid", info.getUuid());
 		return map;
 	}
-	
+
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -206,32 +206,32 @@ public class SysDbmsChartDimensionController {
 		sysDbmsChartDimensionService.trunc();
 		return "1";
 	}
-	
+
 	@RequestMapping(path = "/updBefor", method = RequestMethod.GET)
 	public ModelAndView updBefor(HttpServletRequest request) {
 		logger.info("updBefor", SysDbmsChartDimensionController.class);
-		ModelAndView view = new ModelAndView("plant/chart/add");
+		ModelAndView view = new ModelAndView("echarts/add");
 		SysDbmsChartDimension task = new SysDbmsChartDimension();
 		task.setUuid(request.getParameter("uuid"));
 		task = sysDbmsChartDimensionService.findOne(task);
 		view.addObject("sysPlantChartDimension", task);
-		
+
 		if (task == null) {
 			view.addObject("sysPlantChartDimensionDataList", null);
 		} else {
 			SysDbmsChartDimensionData data = new SysDbmsChartDimensionData();
 			data.setDimeUuid(task.getUuid());
 			List<SysDbmsChartDimensionData> list = sysDbmsChartDimensionDataService.findAll(data);
-			
+
 			view.addObject("sysPlantChartDimensionDataList", list);
 		}
 		return view;
 	}
-	
+
 	@RequestMapping(path = "/addBefor", method = RequestMethod.GET)
 	public ModelAndView addBefor(HttpServletRequest request) {
 		logger.info("addBefor", SysDbmsChartDimensionController.class);
-		ModelAndView view = new ModelAndView("plant/chart/add");
+		ModelAndView view = new ModelAndView("echarts/add");
 		String uuid = request.getParameter("uuid");
 		if (uuid == null) {
 			SysDbmsChartDimension task = new SysDbmsChartDimension();
@@ -245,7 +245,7 @@ public class SysDbmsChartDimensionController {
 			return view;
 		}
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -261,5 +261,5 @@ public class SysDbmsChartDimensionController {
 		map.put("uuid", info.getUuid());
 		return map;
 	}
-	
+
 }

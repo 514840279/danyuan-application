@@ -58,7 +58,7 @@ public class SysDbmsChartDimension implements Serializable {
 
 	private String				theme;
 	private String				width;
-	private String				heigth;
+	private String				height;
 
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -152,7 +152,7 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getCountType
 	 * 功 能 ： 返回变量 countType 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getCountType() {
@@ -178,7 +178,7 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getCreateTime
 	 * 功 能 ： 返回变量 createTime 的值
-	 * 
+	 *
 	 * @return: Date
 	 */
 	public Date getCreateTime() {
@@ -196,7 +196,7 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getUpdateTime
 	 * 功 能 ： 返回变量 updateTime 的值
-	 * 
+	 *
 	 * @return: Date
 	 */
 	public Date getUpdateTime() {
@@ -214,7 +214,7 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getDeleteFlag
 	 * 功 能 ： 返回变量 deleteFlag 的值
-	 * 
+	 *
 	 * @return: Integer
 	 */
 	public Integer getDeleteFlag() {
@@ -232,7 +232,7 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getDimeOrder
 	 * 功 能 ： 返回变量 dimeOrder 的值
-	 * 
+	 *
 	 * @return: Integer
 	 */
 	public Integer getDimeOrder() {
@@ -250,7 +250,7 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getTheme
 	 * 功 能 ： 返回变量 theme 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getTheme() {
@@ -268,7 +268,7 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getWidth
 	 * 功 能 ： 返回变量 width 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getWidth() {
@@ -284,27 +284,26 @@ public class SysDbmsChartDimension implements Serializable {
 	}
 
 	/**
-	 * 方法名 ： getHeigth
-	 * 功 能 ： 返回变量 heigth 的值
-	 * 
-	 * @return: String
+	 * @方法名 getHeight
+	 * @功能 返回变量 height 的值
+	 * @return String
 	 */
-	public String getHeigth() {
-		return heigth;
+	public String getHeight() {
+		return height;
 	}
 
 	/**
-	 * 方法名 ： setHeigth
-	 * 功 能 ： 设置变量 heigth 的值
+	 * @方法名 setHeight
+	 * @功能 设置变量 height 的值
 	 */
-	public void setHeigth(String heigth) {
-		this.heigth = heigth;
+	public void setHeight(String height) {
+		this.height = height;
 	}
 
 	/**
 	 * 方法名 ： getLableUuid2
 	 * 功 能 ： 返回变量 lableUuid2 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getLableUuid2() {
@@ -322,7 +321,7 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getLableUuid3
 	 * 功 能 ： 返回变量 lableUuid3 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getLableUuid3() {
@@ -340,7 +339,7 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getLableUuid4
 	 * 功 能 ： 返回变量 lableUuid4 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getLableUuid4() {
@@ -358,7 +357,7 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getGroupUuid
 	 * 功 能 ： 返回变量 groupUuid 的值
-	 * 
+	 *
 	 * @return: String
 	 */
 	public String getGroupUuid() {
@@ -383,7 +382,7 @@ public class SysDbmsChartDimension implements Serializable {
 
 	@Override
 	public String toString() {
-		return "SysPlantChartDimension [uuid=" + uuid + ", chartType=" + chartType + ", endNum=" + endNum + ", lableUuid=" + lableUuid + ", lableUuid2=" + lableUuid2 + ", lableUuid3=" + lableUuid3 + ", lableUuid4=" + lableUuid4 + ", groupUuid=" + groupUuid + ", startNum=" + startNum + ", title=" + title + ", dimeOrder=" + dimeOrder + ", countType=" + countType + ", theme=" + theme + ", width=" + width + ", heigth=" + heigth + ", createTime=" + createTime + ", createUser=" + createUser + ", updateTime=" + updateTime + ", updateUser=" + updateUser + ", deleteFlag=" + deleteFlag + ", discription=" + discription + "]";
+		return "SysPlantChartDimension [uuid=" + uuid + ", chartType=" + chartType + ", endNum=" + endNum + ", lableUuid=" + lableUuid + ", lableUuid2=" + lableUuid2 + ", lableUuid3=" + lableUuid3 + ", lableUuid4=" + lableUuid4 + ", groupUuid=" + groupUuid + ", startNum=" + startNum + ", title=" + title + ", dimeOrder=" + dimeOrder + ", countType=" + countType + ", theme=" + theme + ", width=" + width + ", height=" + height + ", createTime=" + createTime + ", createUser=" + createUser + ", updateTime=" + updateTime + ", updateUser=" + updateUser + ", deleteFlag=" + deleteFlag + ", discription=" + discription + "]";
 	}
 
 }

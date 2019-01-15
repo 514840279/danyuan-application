@@ -42,30 +42,21 @@
 						</div>
 					</div>
 					
-					<!-- 分组管理 -->
-					<div class="box-body">
-						<div  class="row">
-							<div class="col-sm-6">
-								<select id="chart_layout_select_id" ></select>
-							</div>
-							<div class="col-sm-6">
-								<select id="chartTheme_select_id" ></select>
-							</div>
-						</div>
-						<div  class="row" style="margin-top: 5px;">
-							<div class="pull-right col-sm-5">
-								<button  type="button" class='btn btn-primary' id="add_group_btn"><i class='fa fa-plus-square-o '> 新建分组 </i></button>
-							</div>
-						</div>
-					</div>
-					<hr/>
 					<!-- 筛选条件 -->
 					<div class="box-body">
+						<div  class="row" style="margin-top: 5px;">
+							<div class="col-sm-5">
+								<button  type="button" class='btn btn-primary' id="add_group_btn"><i class='fa fa-plus-square-o '> 新建分组 </i></button>
+							</div>
+							<div class="pull-right col-sm-5">
+								<button  type="button" class='btn btn-primary' id="add_dime_btn"><i class='fa fa-plus-square-o '> 新建模型 </i></button>
+							</div>
+						</div>
 						<div  class="row" id="chart_params_head_id">
 							<div class="col-sm-6">
 								<select id="chart_group_select_id" style="width: 120px;"></select> 
 							</div>
-							<div class="col-sm-6">
+							<div class="pull-right col-sm-5">
 								<button  type="button" class='btn btn-primary' id="remove_group_btn"><i class='fa fa-remove '> 删除分组 </i></button>
 							</div>
 						</div>
@@ -134,9 +125,9 @@
 	<script type="text/javascript" src="/plugins/echarts/theme/westeros.js"></script>
 	<script type="text/javascript" src="/plugins/echarts/theme/wonderland.js"></script>
 		
-<!-- 	<script type="text/javascript" src="/pages/plant/chart/add.js"></script> -->
-<!-- 	<script type="text/javascript" src="/pages/plant/chart3/index.js"></script> -->
-	<script type="text/javascript" src="/pages/plant/chart3/loadCharts.js"></script>
-	<script type="text/javascript" src="/pages/plant/chart3/trools.js"></script>
+<!-- 	<script type="text/javascript" src="/pages/echarts/chart/add.js"></script> -->
+	<script type="text/javascript" src="/pages/echarts/chart/index.js"></script>
+	<script type="text/javascript" src="/pages/echarts/chart/loadCharts.js"></script>
+	<script type="text/javascript" src="/pages/echarts/chart/trools.js"></script>
 </body>
 </html>

@@ -34,7 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
  * 版 本 ： V1.0
  */
 @RestController
-@RequestMapping("/sysPlantChartDimensionGroup")
+@RequestMapping("/sysDbmsChartDimensionGroup")
 public class SysDbmsChartDimensionGroupController {
 	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsChartDimensionGroupController.class);
 	@Autowired
@@ -157,7 +157,7 @@ public class SysDbmsChartDimensionGroupController {
 	@RequestMapping(path = "/addBefor", method = RequestMethod.GET)
 	public ModelAndView addBefor(HttpServletRequest request) {
 		logger.info("addBefor", SysDbmsChartDimensionGroupController.class);
-		ModelAndView view = new ModelAndView("plant/group/add");
+		ModelAndView view = new ModelAndView("echarts/add");
 		SysDbmsChartDimensionGroup group = new SysDbmsChartDimensionGroup();
 		group.setUuid(request.getParameter("uuid"));
 		if (group.getUuid() == null || "".equals(group.getUuid())) {

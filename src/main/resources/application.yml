@@ -5,7 +5,7 @@ spring:
     elasticsearch:
     
       cluster-name: my-application
-      cluster-nodes: 192.168.0.11:9300      repositories:        enabled: false
+      cluster-nodes: localhost:9300      repositories:        enabled: false
     neo4j:
       uri: bolt://localhost:7687
       username: neo4j
