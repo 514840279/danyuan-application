@@ -230,7 +230,14 @@ function bindClick(){
 				$("#add_ruler_param_end").val(row.end),
 				$("#add_ruler_param_str").val(row.param),
 				$("#add_ruler_param_new").val(row.paramNew)
-				
+				var xpath = row.ruler;
+				if(xpath.indexOf("@href")>-1){
+					$("input[name='md5Flag'][value='是']").prop("checked","checked");
+					$("input[name='md5Flag'][value='否']").prop("checked","");
+				}else{
+					$("input[name='md5Flag'][value='是']").prop("checked","");
+					$("input[name='md5Flag'][value='否']").prop("checked","checked");
+				};
 			}, 1200);
 		}
 	})

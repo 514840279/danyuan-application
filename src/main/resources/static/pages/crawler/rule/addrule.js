@@ -17,7 +17,17 @@ function init(){
 	var url ="/sysCrawlerRulerColumInfo/findParent";
 	ajaxPost(url,rows[0],loadParentUuid)
 	
-	
+	// 规则修改监控事件 
+	$("#add_ruler_xpath").keyup(function(){
+		var xpath = $("#add_ruler_xpath").val();
+		if(xpath.indexOf("@href")>-1){
+			$("input[name='md5Flag'][value='是']").prop("checked","checked");
+			$("input[name='md5Flag'][value='否']").prop("checked","");
+		}else{
+			$("input[name='md5Flag'][value='是']").prop("checked","");
+			$("input[name='md5Flag'][value='否']").prop("checked","checked");
+		}
+	})
 }
 
 function loadParentUuid(result){
@@ -100,6 +110,7 @@ function submit_add_ruler(){
 	var rows = $('#crawler_rule_group_config_table_datagrid').bootstrapTable("getAllSelections");
 	if(rows.length==1){
 		var param={
+				uuid:$("#add_ruler_uuid").val(),
 			rulerUuid:rows[0].uuid,
 			columName:$("#add_ruler_name").val(),
 			ruler:$("#add_ruler_xpath").val(),
@@ -108,7 +119,8 @@ function submit_add_ruler(){
 			start:$("#add_ruler_param_start").val(),
 			end:$("#add_ruler_param_end").val(),
 			param:$("#add_ruler_param_str").val(),
-			paramNew:$("#add_ruler_param_new").val()
+			paramNew:$("#add_ruler_param_new").val(),
+			md5Flag:$("input[name='md5Flag']:checked").val()
 		}
 		
 		var url = "/sysCrawlerRulerColumInfo/save";
