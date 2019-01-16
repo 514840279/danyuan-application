@@ -1,7 +1,9 @@
 package org.danyuan.application.common.base;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -14,19 +16,17 @@ import org.springframework.data.repository.NoRepositoryBean;
 /**
  * 文件名 ： BaseServiceImpl.java
  * 包 名 ： org.danyuan.application.common.base
- * 描 述 ： TODO(用一句话描述该文件做什么)
- * 机能名称：
- * 技能ID ：
+ * 描 述 ： 通用服务层实现
  * 作 者 ： wang
  * 时 间 ： 2018年12月8日 上午9:41:12
  * 版 本 ： V1.0
  */
 @NoRepositoryBean
 public class BaseServiceImpl<T> implements BaseService<T> {
-	
+
 	@Autowired
 	BaseDao<T> baseDao;
-	
+
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -35,7 +35,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public T findOne(T entity) {
 		if (entity == null) {
@@ -48,16 +48,16 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		}
 		return null;
 	}
-	
-	/** 
-	*  方法名 ： findById
-	*  功    能 ： TODO(这里用一句话描述这个方法的作用)  
-	*  参    数 ： @param id
-	*  参    数 ： @return  
-	*  参    考 ： @see org.danyuan.application.common.base.BaseService#findById(java.lang.String)  
-	*  作    者 ： wang  
-	*/
-	
+
+	/**
+	 * 方法名 ： findById
+	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数 ： @param id
+	 * 参 数 ： @return
+	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findById(java.lang.String)
+	 * 作 者 ： wang
+	 */
+
 	@Override
 	public T findById(String id) {
 		if (id == null || "".equals(id)) {
@@ -69,7 +69,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -78,7 +78,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public List<T> findAll(T entity) {
 		if (entity == null) {
@@ -88,9 +88,9 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 			List<T> list = baseDao.findAll(example);
 			return list;
 		}
-		
+
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -98,16 +98,30 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#save(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public T save(T entity) {
 		if (entity == null) {
-			// TODO 判断空的方法
 			return null;
+		}
+		Field[] fields = entity.getClass().getDeclaredFields();
+		for (Field field : fields) {
+			// # 要求实体类必须要有uuid 或者需要继承 @MappedSuperclass<BaseEntity>
+			if ("uuid".equals(field.getName())) {
+				try {
+					if (field.get(entity) == null || "".equals(field.get(entity).toString())) {
+						field.set(entity, UUID.randomUUID().toString());
+					}
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return baseDao.save(entity);
 	}
-	
+
 	/**
 	 * 方法名 ： saveAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -115,12 +129,12 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#saveAll(java.util.List)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void saveAll(List<T> entities) {
 		baseDao.saveAll(entities);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -128,12 +142,12 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void delete(T entity) {
 		baseDao.delete(entity);
 	}
-	
+
 	/**
 	 * 方法名 ： deleteAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -141,12 +155,12 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#deleteAll(java.util.List)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void deleteAll(List<T> entities) {
 		baseDao.deleteAll(entities);
 	}
-	
+
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -154,12 +168,12 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#trunc()
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public void trunc() {
 		baseDao.deleteAllInBatch();
 	}
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -168,7 +182,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findAll(org.danyuan.application.common.base.Pagination)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public List<T> findAll(Pagination<T> vo) {
 		if (vo.getInfo() == null) {
@@ -187,9 +201,9 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 				return baseDao.findAll(example);
 			}
 		}
-		
+
 	}
-	
+
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -198,7 +212,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#page(org.danyuan.application.common.base.Pagination)
 	 * 作 者 ： wang
 	 */
-	
+
 	@Override
 	public Page<T> page(Pagination<T> vo) {
 		if (vo.getInfo() == null) {
@@ -221,7 +235,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 				return baseDao.findAll(example, request);
 			}
 		}
-		
+
 	}
-	
+
 }

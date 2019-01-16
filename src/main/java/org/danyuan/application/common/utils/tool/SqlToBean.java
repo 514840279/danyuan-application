@@ -14,12 +14,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * 文件名 ： SqlToBean.java
@@ -30,28 +26,12 @@ import java.sql.Statement;
  * 版 本 ： V1.0
  */
 public class SqlToBean {
-	private Connection			conn		= null;					// 保存链接路径
-	private Statement			stmt		= null;					// 建立连接
-	private ResultSetMetaData	meta		= null;					// 保存表属性信息
-	private ResultSet			rs			= null;					// 查询结果集
-	private OutputStreamWriter	osw			= null;
-	private BufferedWriter		bw			= null;
-	private FileOutputStream	fos			= null;
-	private static StringBuffer	coding		= new StringBuffer();	// 字符串缓冲区
-	private String				driver		= null;					// 数据库包名
-	private String				url			= null;					// 路径名
-	private String				table		= null;					// 表空间名
-	private String				password	= null;					// 密码
-	private String				tableName	= null;					// 表名
-	
-	public SqlToBean(String driver, String url, String table, String password, String tableName) {
-		this.driver = driver;
-		this.url = url;
-		this.table = table;
-		this.password = password;
-		this.tableName = tableName;
-	}
-	
+	private ResultSetMetaData	meta	= null;					// 保存表属性信息
+	private OutputStreamWriter	osw		= null;
+	private BufferedWriter		bw		= null;
+	private FileOutputStream	fos		= null;
+	private static StringBuffer	coding	= new StringBuffer();	// 字符串缓冲区
+
 	private String getCoding(StringBuffer code) {
 		return code.toString();
 	}
@@ -76,95 +56,6 @@ public class SqlToBean {
 		return coding;
 	}
 	
-	/*
-	 * 关闭与数据库的所有链接
-	 * */
-	private void destroy() {
-		try {
-			if (conn != null) {
-				conn.close();
-				conn = null;
-			}
-			if (stmt != null) {
-				stmt.close();
-				stmt = null;
-			}
-			if (rs != null) {
-				rs.close();
-				rs = null;
-			}
-			
-			if (bw != null) {
-				bw.close();
-				bw = null;
-			}
-			if (fos != null) {
-				fos.close();
-				fos = null;
-			}
-			if (osw != null) {
-				osw.close();
-				osw = null;
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/*
-	 * 数据库连接发生异常就关闭链接
-	 * */
-	private void connect() {
-		try {
-			Class.forName(driver);
-			conn = DriverManager.getConnection(url, table, password);
-			stmt = conn.createStatement();
-			
-			rs = stmt.executeQuery("select  * from " + tableName); // 查询下确定结果集是那个表的
-			meta = rs.getMetaData(); // 调用结果集的记录表信息的方法
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			try {
-				if (conn != null) {
-					conn.close();
-					conn = null;
-				}
-				if (stmt != null) {
-					stmt.close();
-					stmt = null;
-				}
-				if (rs != null) {
-					rs.close();
-					rs = null;
-				}
-			} catch (SQLException e1) {
-				e.printStackTrace();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			try {
-				if (conn != null) {
-					conn.close();
-					conn = null;
-				}
-				if (stmt != null) {
-					stmt.close();
-					stmt = null;
-				}
-				if (rs != null) {
-					rs.close();
-					rs = null;
-				}
-			} catch (SQLException e1) {
-				e.printStackTrace();
-			}
-		}
-		
-	}
-	
 	private String[] getColumenName() {
 		/*得到表的所有列名以字符串数组的形式返回
 		 * */
@@ -185,6 +76,7 @@ public class SqlToBean {
 	
 	/**
 	 * 写入指定的文件中
+	 *
 	 * @param message
 	 */
 	private void writeData(String message, String className) {
@@ -211,22 +103,21 @@ public class SqlToBean {
 	public static void main(String[] args) {
 		String className = "Hellow";
 		// SqlToBean sqlToBean = new SqlToBean("oracle.jdbc.driver.OracleDriver","jdbc:oracle:thin:@192.168.3.11:1521:orcl","mamibon","mamibon","my_standard_data2");
-		SqlToBean sqlToBean = new SqlToBean("org.gjt.mm.mysql.Driver", "jdbc:mysql://117.79.84.144:3306/wordpress", "wangjun", "wangjun", "wp_users");
+		// SqlToBean sqlToBean = new SqlToBean("org.gjt.mm.mysql.Driver", "jdbc:mysql:///wordpress", "wangjun", "wangjun", "wp_users");
+		SqlToBean sqlToBean = new SqlToBean();
 		// 连接数据库
-		sqlToBean.connect();
 		sqlToBean.createClassName(className);
 		// 获取表的字段
 		String[] str;
 		str = sqlToBean.getColumenName();
-		for (int i = 0; i < str.length; i++) {
-			sqlToBean.createGenerate(str[i]);
+		for (String element : str) {
+			sqlToBean.createGenerate(element);
 		}
 		coding.append("\n");
 		sqlToBean.createMethod(str);
 		coding.append("\n}");
 		// 写入文件
 		sqlToBean.writeData(sqlToBean.getCoding(coding), className);
-		sqlToBean.destroy();
 		
 		System.out.println("如果觉得这工具类不错,请关注我们的网站:http://www.itbuluoge.com,期待你的入住，程序员俱乐部,为您提供更多的帮助!");
 		System.out.println("如果觉得这工具类不错,请关注我们的网站:http://www.itbuluoge.com,期待你的入住，程序员俱乐部,为您提供更多的帮助!");

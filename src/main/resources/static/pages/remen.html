@@ -3,57 +3,276 @@
 <head>
 <meta charset="UTF-8">
 <title>热门推荐</title>
+<style type="text/css">
+/**     背景样式结束*/
+table tr {
+	border: 0;
+	border-top: 1px solid #DDD;
+	background-color: #fff
+}
+
+。bodercell {
+	border: 0;
+	border-top: 1px solid #DDD;
+	background-color: #fff
+}
+
+table {
+	border-collapse: collapse;
+	display: table;
+	width: 100%;
+	text-align: left;
+	margin-bottom: 24px
+}
+
+tbody {
+	border: 0
+}
+
+table tr:nth-child(2n) {
+	background-color: #F7F7F7
+}
+
+table tr td, table tr th {
+	border: 1px solid #DDD;
+	font-size: 14px;
+	color: #4f4f4f;
+	line-height: 22px;
+	padding: 8px;
+	text-align: left
+}
+
+table tr td p, table tr th p {
+	font-size: 14px;
+	color: #4f4f4f;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	line-height: 22px
+}
+
+table tr th p {
+	font-weight: 700
+}
+
+table tr td code, table tr th code {
+	white-space: normal;
+	word-break: break-all
+}
+
+table tr th {
+	font-weight: 700;
+	background-color: #eff3f5
+}
+</style>
 </head>
 <body>
 	<!-- 头部设计 -->
 	<section class="content-header">
-		<h1>热门推荐</h1>
+		<h1>系统列表</h1>
 		<ol class="breadcrumb">
 			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
-			<li class="active">热门推荐</li>
+			<li class="active">系统信息</li>
 		</ol>
 	</section>
 	<!-- Main content -->
 	<section class="content">
-		<h4 class="row">
-			<div class="col-xs-1">
-				<a href="http://www.sknet.top/" target="_blank">老王博客</a>
-			</div>
-			<div class="col-xs-2">
-				<a href="http://www.java.pet/" target="_blank">Alex Ann 博客</a>
-			</div>
-		</h4>
-	</section>
-	<section class="content-header">
-		<h1>系统信息</h1>
-	</section>
-	<section class="content">
-		<div class="row">
-			<ol>
-				<li>前端采用 adminLTE 前台模板 <a href=" https://github.com/almasaeed2010/AdminLTE" target="_blank">点击跳转 adminLTE</a></li>
-				<li>后台框架是用spring-boot <a href="http://projects.spring.io/spring-boot/" target="_blank">点击跳转Spring Boot</a>
-				</li>
-				<li>源代码开源在github上 <a href=" https://github.com/514840279/danyuan-application" target="_blank">点击跳转</a>
-				</li>
-				<li>点击链接加入群【maven】 ： <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a"> <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven">
-				</a> 点击链接加入群【AdminEAP】：<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=5WtxngZ"> <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven">
-				</a>
-				</li>
-				<!-- 			<li>联系人QQ：514840279 </li> -->
-				<li>采集程序在github上：<a href="https://github.com/514840279/crawler" target="_blank">点击跳转</a></li>
-			</ol>
-			<section class="content-header">
-				<h1>社区技术信息</h1>
-			</section>
-			<ol>
-				<li>spring4all 中文社区：<a href="http://www.spring4all.com/" target="_blank">点击跳转</a></li>
-				<li>jhipster：<a href="http://www.jhipster.tech/" target="_blank">点击跳转</a></li>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th><a href="http://doc.danyuan.wang" target="_blank">功能</a></th>
+						<th><a href=" https://github.com/514840279/danyuan-application" target="_blank">A版</a> <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a"> <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven"></a></th>
+						<th><a href=" https://github.com/danyuan-danyuan/danyuan-application" target="_blank">C版</a> <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=92a8803b57d14a51e9f5d4e91532cb615431bb40372a751616940b5f7d2e51ce"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="初学者" title="初学者"></a></th>
+					</tr>
+				</thead>
+				<tbody title="爬虫管理">
+					<tr>
+						<td scope="row" colspan="3" style="text-align: center;">爬虫管理</td>
+					</tr>
+					<tr>
+						<td>采集任务</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+					</tr>
+					<tr>
+						<td>规则管理</td>
+						<td><span style="margin-left: 20px;">前端页面</span><i class="fa fa-check" style="color: green;"></i></td>
+						<td><span style="margin-left: 20px;">前端页面</span><i class="fa fa-check" style="color: green;"></i> <span style="margin-left: 20px;">后端(python) 导航页面</span><i class="fa fa-check" style="color: green;"></i> <span style="margin-left: 20px;"> 列表页面</span><i class="fa fa-check" style="color: green;"></i> <span style="margin-left: 20px;"> 数据页面</span><i class="fa fa-check" style=""></i></td>
+					</tr>
+					<tr>
+						<td>数据映射</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+					</tr>
+					<tr>
+						<td>爬取错误消息</td>
+						<td><i class="fa fa-check" style=""></i></td>
+						<td><i class="fa fa-check" style=""></i></td>
+					</tr>
+					<tr>
+						<td>用户定义采集程序管理</td>
+						<td><i class="fa fa-check" style=""></i></td>
+						<td><i class="fa fa-check" style=""></i></td>
+					</tr>
+				</tbody>
+				<tbody title="数据管理">
+					<tr>
+						<td scope="row" colspan="3" style="text-align: center;">数据管理</td>
+					</tr>
+					<tr>
+						<td>数据库连接管理</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+					</tr>
+					<tr>
+						<td>数据分类管理</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+					</tr>
+					<tr>
+						<td>数据表管理</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+					</tr>
+					<tr>
+						<td>表字段管理</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+					</tr>
+					<tr>
+						<td>数据库维护建议管理</td>
+						<td><span style="margin-left: 20px;">（oracle）</span><i class="fa fa-check" style="color: green;"></i><span style="margin-left: 20px;">（mysql）</span><i class="fa fa-check" style=""></i></td>
+						<td><span style="margin-left: 20px;">（oracle）</span><i class="fa fa-check" style="color: green;"></i><span style="margin-left: 20px;">（mysql）</span><i class="fa fa-check" style=""></i></td>
+					</tr>
+					<tr>
+						<td>表查询</td>
+						<td><span style="margin-left: 20px;">（多表查询1）</span><i class="fa fa-check" style="color: green;"></i> <span style="margin-left: 20px;">（多表查询2）</span><i class="fa fa-check" style="color: green;"></i> <span style="margin-left: 20px;">（单表查询1）</span><i class="fa fa-check" style="color: green;"></i> <span style="margin-left: 20px;">（单表查询2）</span><i class="fa fa-check" style="color: green;"></i></td>
+						<td><span style="margin-left: 20px;">（多表查询1）</span><i class="fa fa-check" style="color: green;"></i> <span style="margin-left: 20px;">（多表查询2）</span><i class="fa fa-check" style=""></i> <span style="margin-left: 20px;">（单表查询1）</span><i class="fa fa-check" style="color: green;"></i> <span style="margin-left: 20px;">（单表查询2）</span><i class="fa fa-check" style=""></i></td>
+					</tr>
+					<tr>
+						<td>图表管理</td>
+						<td><span style="margin-left: 20px;">（页面配置）</span><i class="fa fa-check" style="color: green;"></i> <span style="margin-left: 20px;">（后台）</span><i class="fa fa-check" style=""></td>
+						<td><i class="fa fa-check" style=""></i></td>
+					</tr>
+				</tbody>
+				<tbody title="关系图管理">
+					<tr>
+						<td scope="row" colspan="3" style="text-align: center;">关系图管理</td>
+					</tr>
+					<tr>
+						<td>节点管理</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style=""></i></td>
+					</tr>
+					<tr>
+						<td>节点属性管理</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style=""></i></td>
+					</tr>
+					<tr>
+						<td>关系管理</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style=""></i></td>
+					</tr>
+					<tr>
+						<td>关系图展示</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style=""></i></td>
+					</tr>
+				</tbody>
 
-			</ol>
+				<tbody title="系统工具">
+					<tr>
+						<td scope="row" colspan="3" style="text-align: center;">系统工具</td>
+					</tr>
+					<tr>
+						<td>邮箱<span style="margin-left: 20px;">（使用qq邮箱服务）</span></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+					</tr>
+					<tr>
+						<td>短信<span style="margin-left: 20px;">（阿里云服务）</span></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+					</tr>
+					<tr>
+						<td>字典</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+					</tr>
+					<tr>
+						<td>字典</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+					</tr>
+					<tr>
+						<td>文件上传</td>
+						<td><i class="fa fa-check" style=""></i></td>
+						<td><i class="fa fa-check" style=""></i></td>
+					</tr>
+					<tr>
+						<td>代码生成</td>
+						<td><i class="fa fa-hand-o-left" style="color: orange;"></i></td>
+						<td><i class="fa fa-hand-o-left" style=""></i></td>
+					</tr>
+				</tbody>
+				<tbody title="系统管理">
+					<tr>
+						<td scope="row" colspan="3" style="text-align: center;">系统管理</td>
+					</tr>
+					<tr>
+						<td>系统管理</td>
+						<td><i class="fa fa-check" style=""></i></td>
+						<td><i class="fa fa-check" style=""></i></td>
+					</tr>
+					<tr>
+						<td>系统菜单</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+					</tr>
+					<tr>
+						<td>企业管理</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+					</tr>
+					<tr>
+						<td>部门角色管理</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+					</tr>
+					<tr>
+						<td>用户管理</td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+						<td><i class="fa fa-check" style="color: green;"></i></td>
+					</tr>
+				</tbody>
+				<tfoot title="其他信息">
+					<tr>
+						<td scope="row" colspan="3" style="text-align: center;">其他信息</td>
+					</tr>
+					<tr>
+						<td>页面</td>
+						<td colspan="2">
+							<a href=" https://github.com/almasaeed2010/AdminLTE" target="_blank">adminLTE</a>
+						</td>
+					</tr>
+					<tr>
+						<td>后端</td>
+						<td >
+							spring-boot<a href=" https://github.com/514840279/danyuan-application" target="_blank">（A版）</a>
+						</td>
+						<td >
+							spring-cloud<a href=" https://github.com/danyuan-danyuan/danyuan-application" target="_blank">（C版）</a>
+						</td>
+					</tr>
+					<tr>
+						<td>文档</td>
+						<td scope="row" colspan="2" > <a href="http://doc.danyuan.wang" target="_blank">doc</a></td>
+					</tr>
+				</tfoot>
+			</table>
 		</div>
 	</section>
-
-
-
 </body>
 </html>

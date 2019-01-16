@@ -16,9 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  * 文件名 ： BaseEntity.java
  * 包 名 ： tk.ainiyue.danyuan.application.common.base
- * 描 述 ： TODO(用一句话描述该文件做什么)
- * 机能名称：
- * 技能ID ：
+ * 描 述 ： 通用实体类超类
  * 作 者 ： Administrator
  * 时 间 ： 2018年6月4日 上午11:11:47
  * 版 本 ： V1.0

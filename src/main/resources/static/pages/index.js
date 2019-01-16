@@ -21,6 +21,7 @@ _history = [];
 				$("ul.treeview-menu li").removeClass("active");
 				$(this).parent().addClass("active");
 			});
+		loadMainPage()
 	}
 
 	// 添加《li》
@@ -32,7 +33,7 @@ _history = [];
 					+ item.id + "' data-name='" + item.name + "' ><i class='"
 					+ item.icon + "'></i>" + item.name + "</a></li>";
 			if (item.homePage) {
-				loadPage(item.url);
+//				loadPage(item.url);
 			}
 		} else {
 			html = "<li class='treeview'>" + "<a href='#'>" + "<i class='"
@@ -51,32 +52,37 @@ _history = [];
 	}
 
 
+
+})(jQuery);
+
+function loadMainPage(){
 	// 获取屏幕宽度
 	url = "pages/remen.html";
 
-	// modals.openWin({
-	// winId:"show_config_table",
-	// title:'修改分组信息',
-	// width:screen.width-20+'px',
-	// url:url
-	// });
+	//	窗口形式
+//	 modals.openWin({
+//	 winId:"show_config_table",
+//	 title:'修改分组信息',
+//	 width:screen.width-20+'px',
+//	 url:url
+//	 });
 
 	// 默认显示页面
+	 loadPage(url);
 
-	// loadPage('/pages/zhcx/search/chart.html');
-
+	 // tab形式
 	// $("#tabContainer").tabs({
 	// data : [ {
 	// id : 'remen',
 	// text : '热门推荐',
 	// closeable : true,
-	// url : "pages/remen.html"
+	// url : url
 	// } ],
 	// showIndex : 0,
 	// loadAll : false
 	// })
 	// _history.push('remen');
-})(jQuery);
+}
 
 $("#show_profile").click(function() {
 	loadPage("/pages/user/profile.html");

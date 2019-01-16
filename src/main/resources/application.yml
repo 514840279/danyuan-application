@@ -3,7 +3,6 @@ server:
 spring:
   data:
     elasticsearch:
-    
       cluster-name: my-application
       cluster-nodes: localhost:9300      repositories:        enabled: false
     neo4j:
@@ -28,10 +27,10 @@ spring:
       max-lifetime: 180000
       connection-timeout: 1800
       connection-test-query: SELECT 1
-  http:
+  servlet:
     multipart:
-      maxFileSize: 100Mb
-      maxRequestSize: 1000Mb
+      max-file-size: 100Mb
+      max-request-size: 1000Mb
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     joda-date-time-format: yyyy-MM-dd HH:mm:ss
@@ -44,7 +43,11 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
     show-sql: true
+    
   mail:
     host: smtp.qq.com
     username: 514840279
@@ -60,10 +63,12 @@ spring:
   session:
     store-type: none
   thymeleaf:
-    content-type: text/html
+    servlet:      content-type: text/html
     encoding: UTF-8
     mode: HTML5
   main:
+    banner-mode: console
+    web-application-type: servlet
     allow-bean-definition-overriding: true
 logging:
   level:
