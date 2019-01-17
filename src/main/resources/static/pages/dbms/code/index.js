@@ -28,18 +28,23 @@ $(function() {
 		if(data.length == 0){
 			alert("先选中一条数据");
 		}else if(data.length == 1){
-			$("#dbm_type_add_uuid").val(data[0].uuid);
-			$("#dbm_type_add_typeName").val(data[0].typeName);
-			$("#dbm_type_add_typeIcon").val(data[0].typeIcon);
-			$("#dbm_type_add_typeOrder").val(data[0].typeOrder);
-			$("#dbm_type_add_discription").val(data[0].discription);
-			if(data[0].deleteFlag==1){
-				$('#dbm_type_add_deleteFlag[value="0"]').attr('checked',false);
-				$('#dbm_type_add_deleteFlag[value="1"]').attr('checked',true);
-			}else if(data[0].deleteFlag==0){
-				$('#dbm_type_add_deleteFlag[value="0"]').attr('checked',true);
-				$('#dbm_type_add_deleteFlag[value="1"]').attr('checked',false);
-			}
+			
+			$("#add_generate_classPath").val(data[0].classPath);
+			$("#add_generate_className").val(data[0].className);
+			search_config_table_tabsUuid = data[0].uuid;
+			search_config_table_typeUuid = data[0].typeUuid;
+			search_config_table_addrUuid = data[0].jdbcUuid;
+			$("#search_config_table_addrUuid").val(search_config_table_addrUuid).trigger("change");
+			$("#search_config_table_typeUuid").val(search_config_table_typeUuid).trigger("change",searchtableNames());
+			$("#add_generate_po").prop({checked:data[0].generateEntity});
+			$("#add_generate_dao").prop({checked:data[0].generateDao});
+			$("#add_generate_service").prop({checked:data[0].generateService});
+			$("#add_generate_controller").prop({checked:data[0].generateController});
+			$("#add_generate_html").prop({checked:data[0].generateHtml});
+			$("#add_generate_js").prop({checked:data[0].generateJs});
+			$("#add_generate_sql").prop({checked:data[0].generateSql});
+			
+			
 			$("#dbm_type_add_modal").modal({
 				show:true,
 			})
@@ -49,10 +54,42 @@ $(function() {
 	});
 	$('#deleteold_type').click(function() {
 		var data = $('#dbm_type_datagrid').bootstrapTable('getAllSelections');
-		var url = "/sysDbmsGenerateCodeInfo/deleteAll";
-		var param={list:data};
-		ajaxPost(url, param, addSysTableTypeInfoSuccess, 5000, findError);
+		bootbox.setLocale("zh_CN");
+		bootbox.confirm({
+		message : "确定要删除选定行",
+		title : "系统提示",
+		callback : function(result) {
+				if (result) {
+
+					var url = "/sysDbmsGenerateCodeInfo/deleteAll";
+					var param={list:data};
+					ajaxPost(url, param, addSysTableTypeInfoSuccess, 5000, findError);
+				}
+			}
+		});
+		
 	});
+	
+	$("#generate_code_down").bind("click",function(){
+		var data = $('#dbm_type_datagrid').bootstrapTable('getAllSelections');
+		if(data.length == 0){
+			alert("先选中一条数据");
+		}else if(data.length>0){
+			bootbox.setLocale("zh_CN");
+			bootbox.confirm({
+			message : "确定要导出代码",
+			title : "系统提示",
+			callback : function(result) {
+					if (result) {
+						var url = "/sysDbmsGenerateCodeInfo/generate";
+						var param={username:username,list:data};
+						ajaxPost(url, param, successGenerate);
+					}
+				}
+			});
+			
+		}
+	})
 	
 	$('#dbm_type_add_button').click(function() {
 		
@@ -63,13 +100,13 @@ $(function() {
 			jdbcUuid:search_config_table_addrUuid,
 			classPath:$("#add_generate_classPath").val(),
 			className:$("#add_generate_className").val(),
-			generateEntity:$("#add_generate_po:checked").val(),
-			generateDao: $("#add_generate_dao:checked").val(),
-			generateService: $("#add_generate_service:checked").val(),
-			generateController: $("#add_generate_controller:checked").val(),
-			generateHtml: $("#add_generate_html:checked").val(),
-			generateJs: $("#add_generate_js:checked").val(),
-			generateSql: $("#add_generate_sql:checked").val(),
+			generateEntity:$("#add_generate_po:checked").val()==null?0:1,
+			generateDao: $("#add_generate_dao:checked").val()==null?0:1,
+			generateService: $("#add_generate_service:checked").val()==null?0:1,
+			generateController: $("#add_generate_controller:checked").val()==null?0:1,
+			generateHtml: $("#add_generate_html:checked").val()==null?0:1,
+			generateJs: $("#add_generate_js:checked").val()==null?0:1,
+			generateSql: $("#add_generate_sql:checked").val()==null?0:1,
 			deleteFlag:1,
 			createUser:username,
 			updateUser:username,
@@ -129,9 +166,15 @@ $(function() {
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 			{title : 'id',field : 'uuid',align : 'center',sortable : true,valign : 'middle',switchable:false,visible:false},
-			{title : '表名称',field : 'tabsName',sortable : true,align : 'center'},
-			{title : '类名称',field : 'className',align : 'center',sortable : true,valign : 'middle'},
+//			{title : '类路径',field : 'classPath',align : 'center',sortable : true,valign : 'middle'},
+			{title : '类名称',field : 'className',align : 'left',sortable : true,valign : 'middle'},
 			{title : 'po',field : 'generateEntity',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
+			{title : 'dao',field : 'generateDao',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
+			{title : 'service',field : 'generateService',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
+			{title : 'controller',field : 'generateController',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
+			{title : 'html',field : 'generateHtml',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
+			{title : 'js',field : 'generateJs',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
+			{title : 'sql',field : 'generateSql',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
 			{title : '记录时间',field : 'createTime',align : 'center',sortable : true,valign : 'middle'},
 			{title : '更新时间',field : 'updateTime',sortable : true,align : 'center'},
 			{title : '标记',field : 'deleteFlag',sortable : true,align : 'center'}
@@ -146,6 +189,13 @@ $(function() {
 var search_config_table_typeUuid=null;
 var search_config_table_addrUuid=null;
 var search_config_table_tabsUuid=null;
+
+
+// 生成完进行下载代码
+function successGenerate(result){
+	var url="/sysDbmsGenerateCodeInfo/downloadCode";
+	windows.open(url,"_blank","downloadCode");
+}
 
 //数据库列表下拉
 function successSearchDatabaseInfoindex(result){
@@ -209,6 +259,9 @@ function addSelectedTableSuccess(result){
 	});
 	$('#search_config_table_tabsUuid').empty();   
 	$('#search_config_table_tabsUuid').select2({data:data});
+	if(search_config_table_tabsUuid!=null){
+		$("#search_config_table_tabsUuid").val(search_config_table_tabsUuid).trigger("change");
+	}
 	
 }
 

@@ -1,10 +1,17 @@
 package org.danyuan.application.dbms.code.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.danyuan.application.common.base.BaseController;
 import org.danyuan.application.common.base.BaseControllerImpl;
+import org.danyuan.application.common.base.BaseResult;
+import org.danyuan.application.common.base.Pagination;
+import org.danyuan.application.common.base.ResultUtil;
 import org.danyuan.application.dbms.code.po.SysDbmsGenerateCodeInfo;
 import org.danyuan.application.dbms.code.service.SysDbmsGenerateCodeInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,5 +29,17 @@ public class SysDbmsGenerateCodeInfoController extends BaseControllerImpl<SysDbm
 
 	@Autowired
 	SysDbmsGenerateCodeInfoService sysDbmsGenerateCodeInfoService;
-	
+
+	@RequestMapping("/generate")
+	public BaseResult<String> generate(@RequestBody Pagination<SysDbmsGenerateCodeInfo> vo) {
+		try {
+			String pathString = "";
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+			pathString = simpleDateFormat.format(new Date());
+			sysDbmsGenerateCodeInfoService.generate(vo.getList(), vo.getUsername(), pathString);
+			return ResultUtil.success(pathString);
+		} catch (Exception e) {
+			return ResultUtil.error(-1, e.getMessage());
+		}
+	}
 }
