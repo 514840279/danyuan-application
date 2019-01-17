@@ -1,8 +1,12 @@
 package org.danyuan.application;
 
 import org.apache.catalina.connector.Connector;
+import org.apache.tomcat.util.descriptor.web.SecurityCollection;
+import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 
 /**
  * 文件名 ： App.java
@@ -16,21 +20,44 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class App {
-	
+
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(App.class, args);
 	}
 	
-	// @Bean
-	public Connector httpConnector() {
+	//下面是2.0的配置，1.x请搜索对应的设置
+	//	@Bean
+	//	public ServletWebServerFactory servletContainer() {
+	//		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+	//		tomcat.addAdditionalTomcatConnectors(createHTTPConnector());
+	//		return tomcat;
+	//	}
+	
+	//	@Bean
+	public ServletWebServerFactory servletContainer() {
+		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
+			@Override
+			protected void postProcessContext(org.apache.catalina.Context context) {
+				SecurityConstraint constraint = new SecurityConstraint();
+				constraint.setUserConstraint("CONFIDENTIAL");
+				SecurityCollection collection = new SecurityCollection();
+				collection.addPattern("/*");
+				constraint.addCollection(collection);
+				context.addConstraint(constraint);
+			}
+		};
+		tomcat.addAdditionalTomcatConnectors(createHTTPConnector());
+		return tomcat;
+	}
+	
+	private Connector createHTTPConnector() {
 		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+		//同时启用http（8080）、https（8443）两个端口
 		connector.setScheme("http");
-		// Connector监听的http的端口号
-		connector.setPort(80);
 		connector.setSecure(false);
-		// 监听到http的端口号后转向到的https的端口号
+		connector.setPort(80);
 		connector.setRedirectPort(8443);
 		return connector;
 	}
-	
+
 }

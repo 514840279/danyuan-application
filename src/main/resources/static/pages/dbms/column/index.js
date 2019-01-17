@@ -137,9 +137,9 @@ function addSelectedTypeSuccess(result){
 function searchtableNames(){
 	var param ={
 			typeUuid:search_config_table_typeUuid,
-			addrUuid:search_config_table_addrUuid,
+			jdbcUuid:search_config_table_addrUuid,
 	}
-	var url = "/sysDbmsTabsInfo/findAll";
+	var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
 	ajaxPost(url, param, addSelectedTableSuccess, 5000, findError);
 }
 
