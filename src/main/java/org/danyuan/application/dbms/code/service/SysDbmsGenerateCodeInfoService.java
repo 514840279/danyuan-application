@@ -95,8 +95,9 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 				}
 				getGenerateController(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString + "/controller");
 			}
+
 			pathtempString = path + "/resources/" + sysDbmsGenerateCodeInfo.getClassName().toLowerCase();
-			file = new File(path);
+			file = new File(pathtempString);
 			if (!file.exists()) {
 				file.mkdirs();
 			}
@@ -104,21 +105,21 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 			// html类生成
 			if (sysDbmsGenerateCodeInfo.getGenerateHtml() == 1) {
 
-				GenerateHtml.generate(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathString);
+				GenerateHtml.generate(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString);
 			}
 			// js类生成
 			if (sysDbmsGenerateCodeInfo.getGenerateJs() == 1) {
-				GenerateJs.generate(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathString);
+				GenerateJs.generate(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString);
 			}
 			pathtempString = path + "/sql/";
-			file = new File(path);
+			file = new File(pathtempString);
 			if (!file.exists()) {
 				file.mkdirs();
 			}
 
 			// Sql ddl 语句
 			if (sysDbmsGenerateCodeInfo.getGenerateSql() == 1) {
-				GenerateSql.generate(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathString);
+				GenerateSql.generate(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString);
 			}
 			
 		}
