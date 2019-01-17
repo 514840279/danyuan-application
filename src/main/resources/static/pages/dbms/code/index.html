@@ -59,17 +59,46 @@
 					<h4 class="modal-title" id="myModalLabel-type">添加信息</h4>
 				</div>
 				<div class="modal-body">
-					<input type="text" id="add_addr_uuid" name="type" placeholder="uuid"  hidden="hedden" />
 					<div class=" row form-group">
 						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">数据库名:</label>
 						<div class="col-sm-9">
-							<select id="add_addr_" ></select>
+							<select  style="width: 100%;" id="search_config_table_addrUuid" ></select>
+						</div>
+					</div>
+					<div class=" row form-group">
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">分类名:</label>
+						<div class="col-sm-9">
+							<select  style="width: 100%;" id="search_config_table_typeUuid" ></select>
+						</div>
+					</div>
+					<div class=" row form-group">
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">表名:</label>
+						<div class="col-sm-9">
+							<select  style="width: 100%;" id="search_config_table_tabsUuid" ></select>
 						</div>
 					</div>
 					<div class="row form-group">
-						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">数据库名:</label>
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">生成包名:</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="add_addr_databaseName" name="databaseName"   placeholder="数据库名"/>
+							<input type="text" class="form-control" id="add_generate_classPath" name="classPath" value="org.danyuan.application."   placeholder="生成包名"/>
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">生成实体类名:</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="add_generate_className" name="className" placeholder="生成实体类名"/>
+						</div>
+					</div>
+					<div class="row form-group">
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">生成类别:</label>
+						<div class="col-sm-9" style="padding-top: 8px;">
+							<input type="checkbox" id="add_generate_po" name="po"  checked="checked"/> po
+							<input type="checkbox" id="add_generate_dao" name="dao" checked="checked"/> dao
+							<input type="checkbox" id="add_generate_service" name="service" checked="checked"/> service
+							<input type="checkbox" id="add_generate_controller" name="controller" checked="checked"/> controller
+							<input type="checkbox" id="add_generate_html" name="html" checked="checked"/> html
+							<input type="checkbox" id="add_generate_js" name="js" checked="checked"/> js
+							<input type="checkbox" id="add_generate_sql" name="sql" checked="checked"/> sql
 						</div>
 					</div>
 				</div>

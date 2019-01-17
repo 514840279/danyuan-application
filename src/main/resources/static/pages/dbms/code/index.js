@@ -1,4 +1,22 @@
 $(function() {
+	
+	// 数据库列表下拉
+	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', null, successSearchDatabaseInfoindex, null, findError);
+	// 表类型列表下拉
+	ajaxPost('/sysDbmsTabsTypeInfo/findAll', null, successSearchTableTypeInfoindex, null, findError);
+
+	
+	$('#search_config_table_tabsUuid').select2({
+	    tags: true,
+	    placeholder: "请选择",
+	}).on('select2:select', function (evt) {
+		search_config_table_tabsUuid = evt.params.data.id;
+		if(search_config_table_tabsUuid=="请选择"){
+			search_config_table_tabsUuid=null;
+		}
+		
+	});
+	
 	$('#addnew_type').click(function() {
 		$("#dbm_type_add_uuid").val(getUuid());
 		$('#dbm_type_add_modal').modal({
@@ -40,12 +58,21 @@ $(function() {
 		
 		var url = "/sysDbmsGenerateCodeInfo/save";
 		var	sysTableTypeInfo={
-			uuid:$("#dbm_type_add_uuid").val(),
-			typeName:$("#dbm_type_add_typeName").val(),
-			typeIcon:$("#dbm_type_add_typeIcon").val(),
-			typeOrder:$("#dbm_type_add_typeOrder").val(),
-			discription:$("#dbm_type_add_discription").val(),
-			deleteFlag:$('#dbm_type_add_deleteFlag:checked').val(),
+			uuid:search_config_table_tabsUuid,
+			typeUuid:search_config_table_typeUuid,
+			jdbcUuid:search_config_table_addrUuid,
+			classPath:$("#add_generate_classPath").val(),
+			className:$("#add_generate_className").val(),
+			generateEntity:$("#add_generate_po:checked").val(),
+			generateDao: $("#add_generate_dao:checked").val(),
+			generateService: $("#add_generate_service:checked").val(),
+			generateController: $("#add_generate_controller:checked").val(),
+			generateHtml: $("#add_generate_html:checked").val(),
+			generateJs: $("#add_generate_js:checked").val(),
+			generateSql: $("#add_generate_sql:checked").val(),
+			deleteFlag:1,
+			createUser:username,
+			updateUser:username,
 		}
 		console.log(sysTableTypeInfo);
 		ajaxPost(url, sysTableTypeInfo, addSysTableTypeInfoSuccess, 5000, findError);
@@ -116,6 +143,76 @@ $(function() {
 	});
 
 });
+var search_config_table_typeUuid=null;
+var search_config_table_addrUuid=null;
+var search_config_table_tabsUuid=null;
+
+//数据库列表下拉
+function successSearchDatabaseInfoindex(result){
+	var data =[{id:'请选择',text:'请选择'}];
+	$.each(result,function(index,value){
+		data.push({id:value.uuid,text: value.databaseName});
+	})
+	
+	$("#search_config_table_addrUuid").select2({
+	    tags: true,
+	    placeholder: "请选择",
+	    data: data
+	});
+	search_config_table_addrUuid = null;
+	$('#search_config_table_addrUuid').on('select2:select', function (evt) {
+		search_config_table_addrUuid = evt.params.data.id;
+		if(search_config_table_addrUuid == "请选择"){
+			search_config_table_addrUuid = null;
+		}
+		searchtableNames();
+	});
+}
+
+
+//表类型列表下拉
+function successSearchTableTypeInfoindex(result){
+	var data =[{id:'请选择',text:'请选择'}];
+	$.each(result,function(index,value){
+		data.push({id:value.uuid,text: value.typeName});
+	})
+	
+	$("#search_config_table_typeUuid").select2({
+	    tags: true,
+	    placeholder: "请选择",
+	    data: data
+	});
+	search_config_table_typeUuid = null;
+	$('#search_config_table_typeUuid').on('select2:select', function (evt) {
+		search_config_table_typeUuid = evt.params.data.id;
+		if(search_config_table_typeUuid == "请选择"){
+			search_config_table_typeUuid = null;
+		}
+		searchtableNames();
+	});
+}
+
+
+function searchtableNames(){
+	var param ={
+		typeUuid:search_config_table_typeUuid,
+		jdbcUuid:search_config_table_addrUuid,
+	}
+	var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
+	ajaxPost(url, param, addSelectedTableSuccess, 5000, findError);
+}
+
+function addSelectedTableSuccess(result){
+	var data = [{id:"请选择",text:"请选择"}];
+	$.each(result,function(index,value){
+		data.push({id:value.uuid,text:value.tabsDesc+"("+value.tabsName+")"});
+	});
+	$('#search_config_table_tabsUuid').empty();   
+	$('#search_config_table_tabsUuid').select2({data:data});
+	
+}
+
+
 // 窗口大小改变时 重设表头
 $(window).resize(function() {
 	$('#dbm_type_datagrid').bootstrapTable('resetView');
