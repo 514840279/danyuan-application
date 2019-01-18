@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 public class MultiDatasourceConfig {
 	@Autowired
 	SysDbmsTabsJdbcInfoDao sysDbmsTabsJdbcInfoDao;
-
+	
 	public Map<String, DataSource> multiDatasource() throws ClassNotFoundException {
 		List<SysDbmsTabsJdbcInfo> list = sysDbmsTabsJdbcInfoDao.findAll();
 		Map<String, DataSource> map = new HashMap<>();
@@ -40,9 +40,10 @@ public class MultiDatasourceConfig {
 					break;
 			}
 			DataSource dataSource = DataSourceBuilder.create().driverClassName(driverClassName).url(url).username(sysZhcxAddr.getUsername()).password(sysZhcxAddr.getPassword()).type(type).build();
-			
+
 			map.put(sysZhcxAddr.getUuid(), dataSource);
 		}
 		return map;
 	}
+	
 }

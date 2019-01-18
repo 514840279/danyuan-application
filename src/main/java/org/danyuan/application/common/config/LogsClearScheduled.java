@@ -1,5 +1,6 @@
 package org.danyuan.application.common.config;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,6 +12,7 @@ import java.util.TimeZone;
 
 import javax.sql.DataSource;
 
+import org.danyuan.application.common.utils.files.FileDelete;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsAdviMessInfoDao;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsColsInfoDao;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsInfoDao;
@@ -22,6 +24,7 @@ import org.danyuan.application.dbms.tabs.service.ZhcxAdviceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.data.domain.Example;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -51,18 +54,29 @@ public class LogsClearScheduled {
 	SysDbmsAdviMessInfoDao					sysDbmsAdviMessInfoDao;
 	@Autowired
 	SysDbmsTabsInfoDao						sysDbmsTabsInfoDao;
-
+	@Value(value = "${user.file.outputfile}")
+	public String							OUTPUTFILE;
 	private static final SimpleDateFormat	dateFormat	= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	long									nd			= 1000 * 60 * 60 * 24;
 	long									nh			= 1000 * 60 * 60;
-
+	
 	@Scheduled(cron = "1 0 0 * * *")
 	// @Scheduled(fixedDelay = 1000)
 	public void delete() {
 		String sql = "DELETE FROM sys_comn_logs WHERE TIMESTAMPDIFF(DAY,create_time,NOW())>30";
 		jdbcTemplate.update(sql);
-	}
 
+		File file = new File(OUTPUTFILE);
+		File[] files = file.listFiles();
+		for (File file2 : files) {
+			if (file2.isDirectory()) {
+				FileDelete.delFolder(file2.getAbsolutePath());
+			} else {
+				file2.delete();
+			}
+		}
+	}
+	
 	@Scheduled(cron = "0 8-18/1 * * * *")
 	// @Scheduled(fixedDelay = 10000000)
 	public void zhcxConfix() throws ClassNotFoundException {
@@ -82,7 +96,7 @@ public class LogsClearScheduled {
 				List<SysDbmsTabsColsInfo> colList = sysDbmsTabsColsInfoDao.findAll(example);
 				// 列配置比较建议修正(列修改，列配置修改,列统计配置修改，列长度修改)
 				ZhcxAdviceService.startConfixOracleTableColumnsConfig(sysZhcxTab, multiDatasource, sysDbmsAdviMessInfoDao, jdbcTemplate, colList);
-				
+
 				// }
 			} else if ("mysql".equals(sysZhcxTab.getDbType().toLowerCase())) {
 				// 表配置比较建议修正 (表修改，表配置修改)
@@ -93,13 +107,13 @@ public class LogsClearScheduled {
 				List<SysDbmsTabsColsInfo> colList = sysDbmsTabsColsInfoDao.findAll(example);
 				// 列配置比较建议修正(列修改，列配置修改,列统计配置修改，列长度修改)
 				ZhcxAdviceService.startConfixMysqlTableColumnsConfig(sysZhcxTab, multiDatasource, sysDbmsAdviMessInfoDao, jdbcTemplate, colList);
-				
+
 			}
 		}
 		destroyMultiDatasource(multiDatasource);
 		System.err.println("本次处理配置表信息执行完毕！");
 	}
-
+	
 	/**
 	 * @方法名 destroyMultiDatasource
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -119,7 +133,7 @@ public class LogsClearScheduled {
 			}
 		}
 	}
-	
+
 	private Map<String, DataSource> getMultiDatasource() throws ClassNotFoundException {
 		List<SysDbmsTabsJdbcInfo> list = sysDbmsTabsJdbcInfoDao.findAll();
 		Map<String, DataSource> map = new HashMap<>();
@@ -143,7 +157,7 @@ public class LogsClearScheduled {
 					break;
 			}
 			DataSource dataSource = DataSourceBuilder.create().driverClassName(driverClassName).url(url).username(sysZhcxAddr.getUsername()).password(sysZhcxAddr.getPassword()).type(type).build();
-
+			
 			map.put(sysZhcxAddr.getUuid(), dataSource);
 		}
 		return map;

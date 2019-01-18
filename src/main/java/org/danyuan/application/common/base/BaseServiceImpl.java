@@ -104,7 +104,8 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		if (entity == null) {
 			return null;
 		}
-		Field[] fields = entity.getClass().getDeclaredFields();
+		Field[] fields = entity.getClass().getSuperclass().getDeclaredFields();
+		boolean fluxFlag = true;
 		for (Field field : fields) {
 			// # 要求实体类必须要有uuid 或者需要继承 @MappedSuperclass<BaseEntity>
 			if ("uuid".equals(field.getName())) {
@@ -112,10 +113,31 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 					if (field.get(entity) == null || "".equals(field.get(entity).toString())) {
 						field.set(entity, UUID.randomUUID().toString());
 					}
+					fluxFlag = false;
+					// 成功赋值id 中断循环
+					break;
 				} catch (IllegalArgumentException e) {
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
 					e.printStackTrace();
+				}
+			}
+		}
+		// 如果超类中没有 这访问entity
+		if (fluxFlag) {
+			fields = entity.getClass().getDeclaredFields();
+			for (Field field : fields) {
+				// # 要求实体类必须要有uuid 或者需要继承 @MappedSuperclass<BaseEntity>
+				if ("uuid".equals(field.getName())) {
+					try {
+						if (field.get(entity) == null || "".equals(field.get(entity).toString())) {
+							field.set(entity, UUID.randomUUID().toString());
+						}
+					} catch (IllegalArgumentException e) {
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}

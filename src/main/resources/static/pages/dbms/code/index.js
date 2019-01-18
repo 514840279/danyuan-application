@@ -1,3 +1,4 @@
+var blockclassPathtips = false;
 $(function() {
 	
 	// 数据库列表下拉
@@ -11,14 +12,27 @@ $(function() {
 	    placeholder: "请选择",
 	}).on('select2:select', function (evt) {
 		search_config_table_tabsUuid = evt.params.data.id;
+		search_config_table_tabsName = evt.params.data.tabsName;
 		if(search_config_table_tabsUuid=="请选择"){
 			search_config_table_tabsUuid=null;
+			search_config_table_tabsName=null;
+			$("#add_generate_className").val("");
+		}
+		if(search_config_table_tabsName!=null){
+			var tabsName = search_config_table_tabsName.substr(search_config_table_tabsName.indexOf(".")+1);
+			var str = tabsName.split("_");
+			var className ="";
+			$.each(str,function(index,value){
+				className = className+value.substr(0,1).toUpperCase()+value.substr(1);
+			})
+			$("#add_generate_className").val(className);
 		}
 		
 	});
 	
 	$('#addnew_type').click(function() {
 		$("#dbm_type_add_uuid").val(getUuid());
+		
 		$('#dbm_type_add_modal').modal({
 			show:true,
 		});
@@ -180,12 +194,49 @@ $(function() {
 			{title : '标记',field : 'deleteFlag',sortable : true,align : 'center'}
 		],
 		responseHandler: function(result){  // 成功时执行
-			
-			return {rows:result.data.content,total:result.data.totalElements};
-		}, 
+			return {rows:result.data.content,total:result.data.totalElements}; // 绑定数据 
+		}
 	});
-
+	
+	// 提示信息
+	blockclassPathtips = true;
+	$("#add_generate_classPath").bind("keyup",function(){
+		if(blockclassPathtips){
+			blockclassPathtips = false;
+			checkPath($("#add_generate_classPath").val());
+		}
+	})
 });
+
+function checkPath(classpath){
+	var subpath = classpath.replace("org.danyuan.application.","");
+	if(subpath.length==0){
+		showPopover($("#add_generate_classPath"), "需要输入更多的两层路径");
+	}
+	if(subpath.indexOf(".")<1){
+		showPopover($("#add_generate_classPath"), "需要输入更多的两层路径");
+	}
+	if(subpath.lastIndexOf(".")==subpath.length-1){
+		showPopover($("#add_generate_classPath"), "需要输入更多的两层路径");
+	}
+}
+function showPopover(target, msg) {
+	  target.attr("data-original-title", msg);
+	  $('[data-toggle="tooltip"]').tooltip();
+	  target.tooltip('show');
+	  target.focus();
+	  //2秒后消失提示框
+	  var id = setTimeout(
+	    function () {
+	      target.attr("data-original-title", "");
+	      target.tooltip('hide');
+	      blockclassPathtips = true;
+	      checkPath(target.val());
+	    }, 2000
+	  );
+	 
+}
+
 var search_config_table_typeUuid=null;
 var search_config_table_addrUuid=null;
 var search_config_table_tabsUuid=null;
@@ -193,8 +244,9 @@ var search_config_table_tabsUuid=null;
 
 // 生成完进行下载代码
 function successGenerate(result){
-	var url="/sysDbmsGenerateCodeInfo/downloadCode";
-	windows.open(url,"_blank","downloadCode");
+	var url="/sysDbmsGenerateCodeInfo/downloadCode/"+result.data;
+//	window.open(url,"_blank","downloadCode");
+	window.location.href=url;
 }
 
 //数据库列表下拉
@@ -255,7 +307,7 @@ function searchtableNames(){
 function addSelectedTableSuccess(result){
 	var data = [{id:"请选择",text:"请选择"}];
 	$.each(result,function(index,value){
-		data.push({id:value.uuid,text:value.tabsDesc+"("+value.tabsName+")"});
+		data.push({id:value.uuid,text:value.tabsDesc+"("+value.tabsName+")",tabsName:value.tabsName});
 	});
 	$('#search_config_table_tabsUuid').empty();   
 	$('#search_config_table_tabsUuid').select2({data:data});

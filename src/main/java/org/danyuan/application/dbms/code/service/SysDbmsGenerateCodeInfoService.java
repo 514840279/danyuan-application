@@ -1,12 +1,16 @@
 package org.danyuan.application.dbms.code.service;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.danyuan.application.common.base.BaseService;
 import org.danyuan.application.common.base.BaseServiceImpl;
+import org.danyuan.application.common.utils.compress.CompressFile;
+import org.danyuan.application.common.utils.files.FileDelete;
 import org.danyuan.application.common.utils.files.TxtFilesWriter;
 import org.danyuan.application.dbms.code.po.SysDbmsGenerateCodeInfo;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsColsInfoDao;
@@ -32,11 +36,12 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 	private SysDbmsTabsColsInfoDao	sysDbmsTabsColsInfoDao;
 	@Autowired
 	private SysDbmsTabsInfoDao		sysDbmsTabsInfoDao;
-	
+
 	@Value(value = "${user.file.outputfile}")
 	public String					OUTPUTFILE;
-	
+
 	/**
+	 * @throws FileNotFoundException
 	 * @方法名 generate
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
 	 * @参数 @param list
@@ -46,14 +51,14 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 	 * @author Administrator
 	 * @throws
 	 */
-	public void generate(List<SysDbmsGenerateCodeInfo> list, String username, String pathString) {
-		String path = OUTPUTFILE + "/" + pathString + "/";
+	public void generate(List<SysDbmsGenerateCodeInfo> list, String username, String pathString) throws FileNotFoundException {
+		String path = OUTPUTFILE + "/" + pathString;
 		File file = new File(path);
 		if (!file.exists()) {
 			file.mkdirs();
 		}
 		for (SysDbmsGenerateCodeInfo sysDbmsGenerateCodeInfo : list) {
-			String pathtempString = path + "src/" + sysDbmsGenerateCodeInfo.getClassPath().replace(".", "/");
+			String pathtempString = path + "/src/" + sysDbmsGenerateCodeInfo.getClassPath().replace(".", "/");
 			file = new File(path);
 			if (!file.exists()) {
 				file.mkdirs();
@@ -62,10 +67,10 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 			colsInfo.setTabsUuid(sysDbmsGenerateCodeInfo.getUuid());
 			Example<SysDbmsTabsColsInfo> example = Example.of(colsInfo);
 			List<SysDbmsTabsColsInfo> colsInfos = sysDbmsTabsColsInfoDao.findAll(example);
-
+			
 			SysDbmsTabsInfo tabsInfo = new SysDbmsTabsInfo();
 			tabsInfo = sysDbmsTabsInfoDao.findById(sysDbmsGenerateCodeInfo.getUuid()).get();
-
+			
 			// 实体类生成
 			if (sysDbmsGenerateCodeInfo.getGenerateEntity() == 1) {
 				file = new File(pathtempString + "/po");
@@ -98,16 +103,13 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 				}
 				getGenerateController(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString + "/controller");
 			}
-			
-			pathtempString = path + "/resources/static/pages/" + sysDbmsGenerateCodeInfo.getClassPath().substring(sysDbmsGenerateCodeInfo.getClassPath().lastIndexOf(".") + 1).toLowerCase();
+			pathtempString = path + "/resources/static/pages/" + sysDbmsGenerateCodeInfo.getClassPath().replace("org.danyuan.application.", "").replace(".", "/").toLowerCase();
 			file = new File(pathtempString);
 			if (!file.exists()) {
 				file.mkdirs();
 			}
-			
 			// html类生成
 			if (sysDbmsGenerateCodeInfo.getGenerateHtml() == 1) {
-				
 				GenerateHtml.generate(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString);
 			}
 			// js类生成
@@ -119,21 +121,24 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 			if (!file.exists()) {
 				file.mkdirs();
 			}
-			
 			// Sql ddl 语句
 			if (sysDbmsGenerateCodeInfo.getGenerateSql() == 1) {
 				GenerateSql.generate(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString);
 			}
-
+			
 		}
-		
+
 		// 打包文件
-		
+		FileOutputStream fos1 = new FileOutputStream(new File(path + ".zip"));
+		CompressFile.toZip(path, fos1, true);
+
+		// 清空 文件夹 TODO
+		FileDelete.delFolder(path);
 	}
-	
+
 	/**
 	 * @方法名 getGenerateController
-	 * @功能  生成controller
+	 * @功能 生成controller
 	 * @参数 @param sysDbmsGenerateCodeInfo
 	 * @参数 @param tabsInfo
 	 * @参数 @param colsInfos
@@ -172,12 +177,12 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 		stringBuilder.append("	" + sysDbmsGenerateCodeInfo.getClassName() + "Service " + sysDbmsGenerateCodeInfo.getClassName().substring(0, 1).toLowerCase() + sysDbmsGenerateCodeInfo.getClassName().substring(1) + "Service;\r\n");
 		stringBuilder.append("\r\n");
 		stringBuilder.append("}");
-		
+
 		// 文件写入
 		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName() + "Controller.java";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
 	}
-	
+
 	/**
 	 * @方法名 getGenerateService
 	 * @功能 service层代码生成
@@ -217,12 +222,12 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 		stringBuilder.append("\r\n");
 		stringBuilder.append("}\r\n");
 		stringBuilder.append("");
-		
+
 		// 文件写入
 		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName() + "Service.java";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
 	}
-	
+
 	/**
 	 * @方法名 getGenerateDao
 	 * @功能 dao层代码生成
@@ -257,11 +262,11 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 		stringBuilder.append("	\r\n");
 		stringBuilder.append("}\r\n");
 		stringBuilder.append("");
-		
+
 		// 文件写入
 		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName() + "Dao.java";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
-
+		
 	}
-	
+
 }

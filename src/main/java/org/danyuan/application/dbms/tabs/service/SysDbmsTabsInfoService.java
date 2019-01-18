@@ -1,5 +1,6 @@
 package org.danyuan.application.dbms.tabs.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import javax.persistence.criteria.Root;
 import org.danyuan.application.common.base.BaseService;
 import org.danyuan.application.common.base.BaseServiceImpl;
 import org.danyuan.application.common.base.Pagination;
+import org.danyuan.application.common.config.MultiDatasourceConfig;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsColsInfoDao;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsInfoDao;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
@@ -44,6 +46,8 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysDbmsTabsInfoService")
 public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> implements BaseService<SysDbmsTabsInfo> {
+	@Autowired
+	MultiDatasourceConfig				multiDatasourceConfig;
 	
 	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsTabsInfoService.class);
 	//
@@ -134,6 +138,24 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 		return null;
 	}
 	
+	public List<String> findAllSchema(SysDbmsTabsInfo info) throws ClassNotFoundException, SQLException {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(multiDatasourceConfig.multiDatasource().get(info.getJdbcUuid()));
+		String databaseProductNameString = jdbcTemplate.getDataSource().getConnection().getMetaData().getDatabaseProductName();
+		List<String> list = new ArrayList<>();
+		StringBuilder sBuilder = new StringBuilder();
+		switch (databaseProductNameString.toLowerCase()) {
+			case ("oracle"):
+				sBuilder.append(" select username from all_users where username not like '%$%' " + " and username not in('SYS','SYSTEM','DBSNMP','CTXSYS','MDSYS'\r\n" + ",'FLOWS_020100','FLOWS_FILES','TSMSYS','XDB','OUTLN','APEX_030200','SYSMAN','ORDSYS','TOAD','ORDSYS'\r\n" + ",'ORDDATA','OLAPSYS','APPQOSSYS','OWBSYS') ");
+				
+				break;
+			case ("mysql"):
+				
+				break;
+		}
+		list = jdbcTemplate.queryForList(sBuilder.toString(), String.class);
+		return list;
+	}
+	
 	public void savev(SysDbmsTabsInfo info) {
 		sysDbmsTabsInfoDao.save(info);
 		
@@ -175,6 +197,10 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 				case "电话号":
 				case "电话":
 				case "手机号":
+				case "联系电话":
+				case "发件人电话":
+				case "收件人电话":
+				case "联系方式":
 				case "手机号码":
 				case "手机":
 					if (col.getColsDesc() == null || "".equals(col.getColsDesc())) {
@@ -185,12 +211,24 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 				case "name":
 				case "姓名":
 				case "名称":
-				case "RYXM":
+				case "作者":
+				case "联系人":
+				case "收件人":
+				case "发件人":
+				case "关系人":
+				case "rymc":
 					if (col.getColsDesc() == null || "".equals(col.getColsDesc())) {
 						col.setColsDesc("姓名");
 					}
-					
 					col.setUserIndex("RYXM");
+					break;
+				case "nick":
+				case "昵称":
+				case "网名":
+					if (col.getColsDesc() == null || "".equals(col.getColsDesc())) {
+						col.setColsDesc("昵称");
+					}
+					col.setUserIndex("NIKE");
 					break;
 				case "email":
 				case "dzyx":
@@ -199,7 +237,6 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 					if (col.getColsDesc() == null || "".equals(col.getColsDesc())) {
 						col.setColsDesc("邮箱");
 					}
-					
 					col.setUserIndex("DZYX");
 					break;
 				case "qq":
@@ -208,7 +245,6 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 					if (col.getColsDesc() == null || "".equals(col.getColsDesc())) {
 						col.setColsDesc("QQ");
 					}
-
 					col.setUserIndex("QQHM");
 					break;
 				case "企业名称":
@@ -220,6 +256,11 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 				case "单位名称":
 				case "单位名":
 				case "单位":
+				case "店铺名称":
+				case "店铺名":
+				case "店铺":
+				case "网店名称":
+				case "网店":
 				case "机构名称":
 				case "机构名":
 				case "机构":
@@ -231,6 +272,46 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 						col.setColsDesc("企业名称");
 					}
 					col.setUserIndex("GSMC");
+					break;
+				case "url":
+				case "连接地址":
+				case "连接":
+					if (col.getColsDesc() == null || "".equals(col.getColsDesc())) {
+						col.setColsDesc("连接");
+					}
+					break;
+				case "md5":
+					if (col.getColsDesc() == null || "".equals(col.getColsDesc())) {
+						col.setColsDesc("url值");
+					}
+					col.setUserIndex("MD5");
+				case "title":
+				case "标题":
+					if (col.getColsDesc() == null || "".equals(col.getColsDesc())) {
+						col.setColsDesc("标题");
+					}
+					col.setUserIndex("TITLE");
+					break;
+				case "bookname":
+				case "书名":
+					if (col.getColsDesc() == null || "".equals(col.getColsDesc())) {
+						col.setColsDesc("书名");
+					}
+					col.setUserIndex("BOOKNAME");
+					break;
+				case "地址":
+				case "联系地址":
+				case "发件人地址":
+				case "收件人地址":
+				case "省份":
+				case "province":
+				case "市":
+				case "city":
+				case "dz":
+					if (col.getColsDesc() == null || "".equals(col.getColsDesc())) {
+						col.setColsDesc("地址");
+					}
+					col.setUserIndex("DZ");
 					break;
 				
 				default:
