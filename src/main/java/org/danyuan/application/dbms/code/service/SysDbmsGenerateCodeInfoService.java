@@ -1,10 +1,13 @@
 package org.danyuan.application.dbms.code.service;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.danyuan.application.common.base.BaseService;
 import org.danyuan.application.common.base.BaseServiceImpl;
+import org.danyuan.application.common.utils.files.TxtFilesWriter;
 import org.danyuan.application.dbms.code.po.SysDbmsGenerateCodeInfo;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsColsInfoDao;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsInfoDao;
@@ -29,10 +32,10 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 	private SysDbmsTabsColsInfoDao	sysDbmsTabsColsInfoDao;
 	@Autowired
 	private SysDbmsTabsInfoDao		sysDbmsTabsInfoDao;
-
+	
 	@Value(value = "${user.file.outputfile}")
 	public String					OUTPUTFILE;
-
+	
 	/**
 	 * @方法名 generate
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -50,7 +53,7 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 			file.mkdirs();
 		}
 		for (SysDbmsGenerateCodeInfo sysDbmsGenerateCodeInfo : list) {
-			String pathtempString = path + "/src/" + sysDbmsGenerateCodeInfo.getClassPath().replace(".", "/");
+			String pathtempString = path + "src/" + sysDbmsGenerateCodeInfo.getClassPath().replace(".", "/");
 			file = new File(path);
 			if (!file.exists()) {
 				file.mkdirs();
@@ -59,10 +62,10 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 			colsInfo.setTabsUuid(sysDbmsGenerateCodeInfo.getUuid());
 			Example<SysDbmsTabsColsInfo> example = Example.of(colsInfo);
 			List<SysDbmsTabsColsInfo> colsInfos = sysDbmsTabsColsInfoDao.findAll(example);
-			
+
 			SysDbmsTabsInfo tabsInfo = new SysDbmsTabsInfo();
 			tabsInfo = sysDbmsTabsInfoDao.findById(sysDbmsGenerateCodeInfo.getUuid()).get();
-			
+
 			// 实体类生成
 			if (sysDbmsGenerateCodeInfo.getGenerateEntity() == 1) {
 				file = new File(pathtempString + "/po");
@@ -95,16 +98,16 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 				}
 				getGenerateController(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString + "/controller");
 			}
-
-			pathtempString = path + "/resources/" + sysDbmsGenerateCodeInfo.getClassName().toLowerCase();
+			
+			pathtempString = path + "/resources/static/pages/" + sysDbmsGenerateCodeInfo.getClassPath().substring(sysDbmsGenerateCodeInfo.getClassPath().lastIndexOf(".") + 1).toLowerCase();
 			file = new File(pathtempString);
 			if (!file.exists()) {
 				file.mkdirs();
 			}
-
+			
 			// html类生成
 			if (sysDbmsGenerateCodeInfo.getGenerateHtml() == 1) {
-
+				
 				GenerateHtml.generate(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString);
 			}
 			// js类生成
@@ -116,21 +119,21 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 			if (!file.exists()) {
 				file.mkdirs();
 			}
-
+			
 			// Sql ddl 语句
 			if (sysDbmsGenerateCodeInfo.getGenerateSql() == 1) {
 				GenerateSql.generate(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString);
 			}
-			
+
 		}
-
+		
 		// 打包文件
-
+		
 	}
-
+	
 	/**
 	 * @方法名 getGenerateController
-	 * @功能 TODO(这里用一句话描述这个方法的作用)
+	 * @功能  生成controller
 	 * @参数 @param sysDbmsGenerateCodeInfo
 	 * @参数 @param tabsInfo
 	 * @参数 @param colsInfos
@@ -141,13 +144,43 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 	 * @throws
 	 */
 	private void getGenerateController(SysDbmsGenerateCodeInfo sysDbmsGenerateCodeInfo, SysDbmsTabsInfo tabsInfo, List<SysDbmsTabsColsInfo> colsInfos, String username, String pathString) {
-		// TODO Auto-generated method stub
-
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("package " + sysDbmsGenerateCodeInfo.getClassPath() + ".controller;\r\n");
+		stringBuilder.append("\r\n");
+		stringBuilder.append("import org.danyuan.application.common.base.BaseController;\r\n");
+		stringBuilder.append("import org.danyuan.application.common.base.BaseControllerImpl;\r\n");
+		stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".po." + sysDbmsGenerateCodeInfo.getClassName() + ";\r\n");
+		stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".service." + sysDbmsGenerateCodeInfo.getClassName() + "Service;\r\n");
+		stringBuilder.append("import org.springframework.beans.factory.annotation.Autowired;\r\n");
+		stringBuilder.append("import org.springframework.web.bind.annotation.RequestMapping;\r\n");
+		stringBuilder.append("import org.springframework.web.bind.annotation.RestController;\r\n");
+		stringBuilder.append("\r\n");
+		stringBuilder.append("/**\r\n");
+		stringBuilder.append(" * @文件名 " + sysDbmsGenerateCodeInfo.getClassName() + "Controller.java\r\n");
+		stringBuilder.append(" * @包名 " + sysDbmsGenerateCodeInfo.getClassPath() + ".controller\r\n");
+		stringBuilder.append(" * @描述 controller层\r\n");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+		stringBuilder.append(" * @时间 " + simpleDateFormat.format(new Date()) + "\r\n");
+		stringBuilder.append(" * @author " + username + "\r\n");
+		stringBuilder.append(" * @版本 V1.0\r\n");
+		stringBuilder.append(" */\r\n");
+		stringBuilder.append("@RestController\r\n");
+		stringBuilder.append("@RequestMapping(\"/" + sysDbmsGenerateCodeInfo.getClassName().substring(0, 1).toLowerCase() + sysDbmsGenerateCodeInfo.getClassName().substring(1) + "\")\r\n");
+		stringBuilder.append("public class " + sysDbmsGenerateCodeInfo.getClassName() + "Controller extends BaseControllerImpl<" + sysDbmsGenerateCodeInfo.getClassName() + "> implements BaseController<" + sysDbmsGenerateCodeInfo.getClassName() + "> {\r\n");
+		stringBuilder.append("\r\n");
+		stringBuilder.append("	@Autowired\r\n");
+		stringBuilder.append("	" + sysDbmsGenerateCodeInfo.getClassName() + "Service " + sysDbmsGenerateCodeInfo.getClassName().substring(0, 1).toLowerCase() + sysDbmsGenerateCodeInfo.getClassName().substring(1) + "Service;\r\n");
+		stringBuilder.append("\r\n");
+		stringBuilder.append("}");
+		
+		// 文件写入
+		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName() + "Controller.java";
+		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
 	}
-
+	
 	/**
 	 * @方法名 getGenerateService
-	 * @功能 TODO(这里用一句话描述这个方法的作用)
+	 * @功能 service层代码生成
 	 * @参数 @param sysDbmsGenerateCodeInfo
 	 * @参数 @param tabsInfo
 	 * @参数 @param colsInfos
@@ -158,13 +191,41 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 	 * @throws
 	 */
 	private void getGenerateService(SysDbmsGenerateCodeInfo sysDbmsGenerateCodeInfo, SysDbmsTabsInfo tabsInfo, List<SysDbmsTabsColsInfo> colsInfos, String username, String pathString) {
-		// TODO Auto-generated method stub
-
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("package " + sysDbmsGenerateCodeInfo.getClassPath() + ".service;\r\n");
+		stringBuilder.append("\r\n");
+		stringBuilder.append("import org.danyuan.application.common.base.BaseService;\r\n");
+		stringBuilder.append("import org.danyuan.application.common.base.BaseServiceImpl;\r\n");
+		stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".po." + sysDbmsGenerateCodeInfo.getClassName() + ";\r\n");
+		stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".dao." + sysDbmsGenerateCodeInfo.getClassName() + "Dao;\r\n");
+		stringBuilder.append("import org.springframework.beans.factory.annotation.Autowired;\r\n");
+		stringBuilder.append("import org.springframework.stereotype.Service;\r\n");
+		stringBuilder.append("\r\n");
+		stringBuilder.append("/**\r\n");
+		stringBuilder.append(" * @文件名 " + sysDbmsGenerateCodeInfo.getClassName() + "Service.java\r\n");
+		stringBuilder.append(" * @包名 " + sysDbmsGenerateCodeInfo.getClassPath() + ".service\r\n");
+		stringBuilder.append(" * @描述 service层\r\n");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+		stringBuilder.append(" * @时间 " + simpleDateFormat.format(new Date()) + "\r\n");
+		stringBuilder.append(" * @author " + username + "\r\n");
+		stringBuilder.append(" * @版本 V1.0\r\n");
+		stringBuilder.append(" */\r\n");
+		stringBuilder.append("@Service\r\n");
+		stringBuilder.append("public class " + sysDbmsGenerateCodeInfo.getClassName() + "Service extends BaseServiceImpl<" + sysDbmsGenerateCodeInfo.getClassName() + "> implements BaseService<" + sysDbmsGenerateCodeInfo.getClassName() + "> {\r\n");
+		stringBuilder.append("	@Autowired\r\n");
+		stringBuilder.append("	private " + sysDbmsGenerateCodeInfo.getClassName() + "Dao	" + sysDbmsGenerateCodeInfo.getClassName().substring(0, 1).toLowerCase() + sysDbmsGenerateCodeInfo.getClassName().substring(1) + "Dao;\r\n");
+		stringBuilder.append("\r\n");
+		stringBuilder.append("}\r\n");
+		stringBuilder.append("");
+		
+		// 文件写入
+		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName() + "Service.java";
+		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
 	}
-
+	
 	/**
 	 * @方法名 getGenerateDao
-	 * @功能 TODO(这里用一句话描述这个方法的作用)
+	 * @功能 dao层代码生成
 	 * @参数 @param sysDbmsGenerateCodeInfo
 	 * @参数 @param tabsInfo
 	 * @参数 @param colsInfos
@@ -175,8 +236,32 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 	 * @throws
 	 */
 	private void getGenerateDao(SysDbmsGenerateCodeInfo sysDbmsGenerateCodeInfo, SysDbmsTabsInfo tabsInfo, List<SysDbmsTabsColsInfo> colsInfos, String username, String pathString) {
-		// TODO Auto-generated method stub
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("package " + sysDbmsGenerateCodeInfo.getClassPath() + ".dao;\r\n");
+		stringBuilder.append("\r\n");
+		stringBuilder.append("import org.danyuan.application.common.base.BaseDao;\r\n");
+		stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".po." + sysDbmsGenerateCodeInfo.getClassName() + ";\r\n");
+		stringBuilder.append("import org.springframework.stereotype.Repository;\r\n");
+		stringBuilder.append("\r\n");
+		stringBuilder.append("/**\r\n");
+		stringBuilder.append(" * @文件名 " + sysDbmsGenerateCodeInfo.getClassName() + "Dao.java\r\n");
+		stringBuilder.append(" * @包名 " + sysDbmsGenerateCodeInfo.getClassPath() + ".dao\r\n");
+		stringBuilder.append(" * @描述 dao层\r\n");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+		stringBuilder.append(" * @时间 " + simpleDateFormat.format(new Date()) + "\r\n");
+		stringBuilder.append(" * @author " + username + "\r\n");
+		stringBuilder.append(" * @版本 V1.0\r\n");
+		stringBuilder.append(" */\r\n");
+		stringBuilder.append("@Repository\r\n");
+		stringBuilder.append("public interface " + sysDbmsGenerateCodeInfo.getClassName() + "Dao extends BaseDao<" + sysDbmsGenerateCodeInfo.getClassName() + "> {\r\n");
+		stringBuilder.append("	\r\n");
+		stringBuilder.append("}\r\n");
+		stringBuilder.append("");
+		
+		// 文件写入
+		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName() + "Dao.java";
+		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
 
 	}
-
+	
 }

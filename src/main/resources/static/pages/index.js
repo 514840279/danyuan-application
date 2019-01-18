@@ -33,7 +33,7 @@ _history = [];
 					+ item.id + "' data-name='" + item.name + "' ><i class='"
 					+ item.icon + "'></i>" + item.name + "</a></li>";
 			if (item.homePage) {
-//				loadPage(item.url);
+				//loadPage(item.url);
 			}
 		} else {
 			html = "<li class='treeview'>" + "<a href='#'>" + "<i class='"

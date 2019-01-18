@@ -19,6 +19,7 @@ $(function() {
 			$("#update_config_column_colsName").text(d.colsName);
 			$("#update_config_column_colsDesc").val(d.colsDesc);
 			$("#update_config_column_colsOrder").val(d.colsOrder);
+			$("#update_config_column_colsSort").val(d.colsSort);
 //			$("#update_config_column_pageInput").val(d.pageInput);
 //			$("#update_config_column_pageList").val(d.pageList);
 //			$("#update_config_column_pageView").val(d.pageView);
@@ -68,6 +69,7 @@ $(function() {
 		var d = $('#dbm_config_column_datagrid').bootstrapTable('getAllSelections')[0];
 		d.colsDesc=$("#update_config_column_colsDesc").val();
 		d.colsOrder=$("#update_config_column_colsOrder").val();
+		d.colsSort=$("#update_config_column_colsSort").val();
 		d.userIndex=$("#update_config_column_userIndex").val();
 		d.userIcon=$("#update_config_column_userIcon").val();
 		d.colsWidth=$("#update_config_column_colsWidth").val();

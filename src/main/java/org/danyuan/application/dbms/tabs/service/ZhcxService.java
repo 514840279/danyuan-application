@@ -153,6 +153,18 @@ public class ZhcxService {
 		// 拼接查询条件与参数
 		Map<String, String> params = new HashMap<>();
 		searchSqlByParams(sql, groupListList, vo.getParamList(), params);
+		// 拼接排序字段
+		boolean sortColumnFlag = false;
+		for (SysDbmsTabsColsInfo sysDbmsTabsColsInfo : vo.getList()) {
+			if (sysDbmsTabsColsInfo.getColsSort() != null && ("asc".equals(sysDbmsTabsColsInfo.getColsSort().toLowerCase()) || "desc".equals(sysDbmsTabsColsInfo.getColsSort().toLowerCase()))) {
+				if (!sortColumnFlag) {
+					sql.append(" order by " + sysDbmsTabsColsInfo.getColsName() + " " + sysDbmsTabsColsInfo.getColsSort());
+					sortColumnFlag = true;
+				} else {
+					sql.append(" , " + sysDbmsTabsColsInfo.getColsName() + " " + sysDbmsTabsColsInfo.getColsSort());
+				}
+			}
+		}
 		// 求结果
 		resultMap(sql.toString(), params, vo, map);
 		System.err.println(sql.toString());
