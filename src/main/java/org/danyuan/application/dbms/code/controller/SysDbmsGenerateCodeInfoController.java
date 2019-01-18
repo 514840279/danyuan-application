@@ -57,7 +57,7 @@ public class SysDbmsGenerateCodeInfoController extends BaseControllerImpl<SysDbm
 	public String OUTPUTFILE;
 
 	@RequestMapping(value = "/downloadCode/{path}", method = RequestMethod.GET)
-	public void bidsDownload(HttpServletResponse response, @PathVariable("path") String path) throws IOException {
+	public void downloadCode(HttpServletResponse response, @PathVariable("path") String path) throws IOException {
 		// 根据参数进行导出xml 并打包返回zip文件路径
 		// System.err.println(path);
 		File file = new File(OUTPUTFILE + "/" + path + ".zip");
@@ -88,6 +88,7 @@ public class SysDbmsGenerateCodeInfoController extends BaseControllerImpl<SysDbm
 				}
 			}
 		}
-
+		file.delete();
+		
 	}
 }
