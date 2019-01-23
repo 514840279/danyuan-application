@@ -16,10 +16,6 @@ $(function() {
 
 	searchButtonClick();
 	
-	// 全屏
-	$("#full_screen_button_id").bind("click",function(){
-		$("#full_screen_id").css({"width":window.screen.width,"heigth":window.screen.heigth})
-	})
 
 });
 function add_all_node_sucess(result){
