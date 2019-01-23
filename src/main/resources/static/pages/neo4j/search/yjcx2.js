@@ -339,7 +339,11 @@ function makegraph(){
 	        		title = p.value;
 	        	}
 	        })
-	        
+	        if(title==null){
+	        	title="";
+	        }else{
+	        	title = title+"";
+	        }
 	        //如果是全英文，不换行
 	        if(title.match(re_en)){
 	             d3.select(this).append('tspan')

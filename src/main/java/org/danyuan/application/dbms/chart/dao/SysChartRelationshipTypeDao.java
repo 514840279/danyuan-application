@@ -33,7 +33,7 @@ public interface SysChartRelationshipTypeDao extends BaseDao<SysChartRelationshi
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	@Query("select t from SysChartRelationshipType t where t.deleteFlag > 0")
+	@Query("select t from SysChartRelationshipType t where t.deleteFlag = 0")
 	List<SysChartRelationshipType> findAllByDelete();
 
 }
