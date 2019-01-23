@@ -26,6 +26,8 @@ $(function() {
 			$("#update_config_table_tableName").text(data[0].nodeName);
 			$("#update_config_table_tableDesc").val(data[0].nodeDesc);
 			$("#update_config_table_deleteFlag").val(data[0].deleteFlag);
+			$("#update_config_table_fillColor").val(data[0].fillColor);
+			$("#update_config_table_strokeColor").val(data[0].strokeColor);
 			$('#update-show-myModal').modal({
 		        show: true
 		    })
@@ -57,8 +59,10 @@ $(function() {
 	$("#update_config_table_button").click(function(){
 		var data = $('#dbm_config_table_datagrid').bootstrapTable('getAllSelections');
 		var param=data[0];
-		param.nodeDesc=$("#update_config_table_tableDesc").val();
-		param.deleteFlag=$("#update_config_table_deleteFlag").val();
+		param.nodeDesc = $("#update_config_table_tableDesc").val();
+		param.deleteFlag = $("#update_config_table_deleteFlag").val();
+		param.fillColor = $("#update_config_table_fillColor").val();
+		param.strokeColor = $("#update_config_table_strokeColor").val();
 		var url = "/sysChartNode/save";
 		ajaxPost(url, param, addSysTableInfoSuccess, 5000, findError);
 	});

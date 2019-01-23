@@ -82,7 +82,7 @@ public class SysDbmsUserIndexInfoService {
 	public void delete(List<SysDbmsUserIndexInfo> list) {
 		sysDbmsUserIndexInfoDao.deleteAll(list);
 	}
-
+	
 	/**
 	 * 方法名： chartList
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -91,7 +91,7 @@ public class SysDbmsUserIndexInfoService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	// public List<SysDicUserIndexCode> chartList() {
-	// return sysDbmsUserIndexInfoDao.findAllByChart();
-	// }
+	public List<SysDbmsUserIndexInfo> chartList() {
+		return sysDbmsUserIndexInfoDao.findAllByChart();
+	}
 }

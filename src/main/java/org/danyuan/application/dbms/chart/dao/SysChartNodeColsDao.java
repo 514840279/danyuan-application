@@ -34,7 +34,7 @@ public interface SysChartNodeColsDao extends BaseDao<SysChartNodeCols> {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	@Query("select t from SysChartNodeCols  t where t.nodeUuid =:nodeUuid")
+	@Query("select t from SysChartNodeCols  t where t.nodeUuid =:nodeUuid order by t.columnOrder asc")
 	List<SysChartNodeCols> findAllByNodeUuid(@Param("nodeUuid") String uuid);
 
 	/**
@@ -46,7 +46,7 @@ public interface SysChartNodeColsDao extends BaseDao<SysChartNodeCols> {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	@Query("select t from SysChartNodeCols  t where t.userIndex =:userIndex")
+	@Query("select t from SysChartNodeCols  t where t.userIndex =:userIndex order by t.columnOrder asc")
 	List<SysChartNodeCols> findAllByValue(@Param("userIndex") String userIndex);
 
 }

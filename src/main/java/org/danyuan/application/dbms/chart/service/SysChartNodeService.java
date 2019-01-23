@@ -2,6 +2,8 @@ package org.danyuan.application.dbms.chart.service;
 
 import java.util.List;
 
+import org.danyuan.application.common.base.BaseService;
+import org.danyuan.application.common.base.BaseServiceImpl;
 import org.danyuan.application.dbms.chart.dao.SysChartNodeDao;
 import org.danyuan.application.dbms.chart.po.SysChartNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class SysChartNodeService {
+public class SysChartNodeService extends BaseServiceImpl<SysChartNode> implements BaseService<SysChartNode> {
 	@Autowired
 	private SysChartNodeDao sysChartNodeDao;
 
@@ -49,19 +51,7 @@ public class SysChartNodeService {
 
 		return sourceCodes;
 	}
-
-	/**
-	 * 方法名： save
-	 * 功 能： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数： @param info
-	 * 返 回： void
-	 * 作 者 ： Administrator
-	 * @throws
-	 */
-	public void save(SysChartNode info) {
-		sysChartNodeDao.save(info);
-	}
-
+	
 	/**
 	 * 方法名： delete
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -83,8 +73,9 @@ public class SysChartNodeService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
+	@Override
 	public List<SysChartNode> findAll(SysChartNode sysChartNode) {
-		return sysChartNodeDao.findAllByUuid();
+		return sysChartNodeDao.findAllByDelete();
 	}
 
 }

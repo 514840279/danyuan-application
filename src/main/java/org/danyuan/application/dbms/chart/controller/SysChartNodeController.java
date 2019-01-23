@@ -3,6 +3,8 @@ package org.danyuan.application.dbms.chart.controller;
 import java.util.List;
 import java.util.UUID;
 
+import org.danyuan.application.common.base.BaseController;
+import org.danyuan.application.common.base.BaseControllerImpl;
 import org.danyuan.application.dbms.chart.po.SysChartNode;
 import org.danyuan.application.dbms.chart.service.SysChartNodeService;
 import org.danyuan.application.dbms.chart.vo.SysChartNodeVo;
@@ -29,7 +31,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping("/sysChartNode")
-public class SysChartNodeController {
+public class SysChartNodeController extends BaseControllerImpl<SysChartNode> implements BaseController<SysChartNode> {
 	private static final Logger	logger	= LoggerFactory.getLogger(SysChartNodeController.class);
 	@Autowired
 	private SysChartNodeService	sysChartNodeService;
@@ -47,19 +49,13 @@ public class SysChartNodeController {
 		logger.info("savev", SysChartNodeController.class);
 		for (SysChartNode info : vo.getList()) {
 			info.setUuid(UUID.randomUUID().toString());
+			info.setFillColor("#6DCE9E");
+			info.setStrokeColor("#60B58B");
 			info.setDeleteFlag(0);
 			info.setCreateUser(vo.getUsername());
 			info.setUpdateUser(vo.getUsername());
 			sysChartNodeService.save(info);
 		}
-		return "1";
-	}
-
-	@ApiOperation(value = "更新", notes = "")
-	@RequestMapping(path = "/save", method = RequestMethod.POST)
-	public String save(@RequestBody SysChartNode info) {
-		logger.info("save", SysChartNodeController.class);
-		sysChartNodeService.save(info);
 		return "1";
 	}
 

@@ -23,19 +23,7 @@ import org.springframework.stereotype.Repository;
 @DynamicUpdate(true)
 @DynamicInsert(true)
 public interface SysChartNodeDao extends BaseDao<SysChartNode> {
-
-	/**
-	 * 方法名： findAllByNodeUuid
-	 * 功 能： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数： @param uuid
-	 * 参 数： @return
-	 * 返 回： List<SysChartNode>
-	 * 作 者 ： Administrator
-	 * @throws
-	 */
-	@Query("select t from SysChartNode t where t.deleteFlag > 0")
-	List<SysChartNode> findAllByUuid();
-
+	
 	/**
 	 * 方法名： findAllByDelete
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -44,7 +32,7 @@ public interface SysChartNodeDao extends BaseDao<SysChartNode> {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	@Query("select t from SysChartNode t where t.deleteFlag > 0")
+	@Query("select t from SysChartNode t where t.deleteFlag = 0")
 	List<SysChartNode> findAllByDelete();
-
+	
 }

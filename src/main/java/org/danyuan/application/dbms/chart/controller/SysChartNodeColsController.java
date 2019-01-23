@@ -32,28 +32,31 @@ public class SysChartNodeColsController {
 	private static final Logger		logger	= LoggerFactory.getLogger(SysChartNodeColsController.class);
 	@Autowired
 	private SysChartNodeColsService	sysChartNodeColsService;
-	
+
 	@ApiOperation(value = "分页查询符合名称信息", notes = "")
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<SysChartNodeCols> page(@RequestBody SysChartNodeColsVo vo) {
 		logger.info("page", SysChartNodeColsController.class);
 		return sysChartNodeColsService.page(vo.getPageNumber().intValue(), vo.getPageSize().intValue(), vo.getInfo());
 	}
-	
+
 	@ApiOperation(value = "更新", notes = "")
 	@RequestMapping(path = "/savev", method = RequestMethod.POST)
 	public String save(@RequestBody SysChartNodeColsVo vo) {
 		logger.info("savev", SysChartNodeController.class);
+		int i = 0;
 		for (SysChartNodeCols info : vo.getList()) {
 			info.setUuid(UUID.randomUUID().toString());
 			info.setDeleteFlag(0);
+			info.setColumnOrder(i);
 			info.setCreateUser(vo.getUsername());
 			info.setUpdateUser(vo.getUsername());
 			sysChartNodeColsService.save(info);
+			i++;
 		}
 		return "1";
 	}
-	
+
 	@ApiOperation(value = "更新", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	public String save(@RequestBody SysChartNodeCols info) {
@@ -61,7 +64,7 @@ public class SysChartNodeColsController {
 		sysChartNodeColsService.save(info);
 		return "1";
 	}
-	
+
 	@ApiOperation(value = "删除", notes = "")
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestBody SysChartNodeColsVo vo) {

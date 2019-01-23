@@ -65,6 +65,11 @@ public class SysChartNode implements Serializable {
 	private Integer				deleteFlag;									// delete_flag
 	// 标记
 	
+	@Column(name = "fill_color", columnDefinition = " varchar(25)  COMMENT '节点颜色填充'")
+	private String				fillColor;
+	@Column(name = "stroke_color", columnDefinition = " varchar(25)  COMMENT '节点边框颜色填充'")
+	private String				strokeColor;
+	
 	/**
 	 * 方法名 ： getNodeName
 	 * 功 能 ： 返回变量 nodeName 的值
@@ -207,6 +212,40 @@ public class SysChartNode implements Serializable {
 	 */
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
+	}
+	
+	/**
+	 * @方法名 getFillColor
+	 * @功能 返回变量 fillColor 的值
+	 * @return String
+	 */
+	public String getFillColor() {
+		return fillColor;
+	}
+	
+	/**
+	 * @方法名 setFillColor
+	 * @功能 设置变量 fillColor 的值
+	 */
+	public void setFillColor(String fillColor) {
+		this.fillColor = fillColor;
+	}
+	
+	/**
+	 * @方法名 getStrokeColor
+	 * @功能 返回变量 strokeColor 的值
+	 * @return String
+	 */
+	public String getStrokeColor() {
+		return strokeColor;
+	}
+	
+	/**
+	 * @方法名 setStrokeColor
+	 * @功能 设置变量 strokeColor 的值
+	 */
+	public void setStrokeColor(String strokeColor) {
+		this.strokeColor = strokeColor;
 	}
 	
 	public SysChartNode() {

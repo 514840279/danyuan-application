@@ -1,3 +1,4 @@
+var search_config_table_typeUuid = null;
 $(function() {
 	$('#addnew_config_table').click(function() {
 		var data = $('#dbm_view_table_datagrid').bootstrapTable('getAllSelections');
@@ -26,6 +27,9 @@ $(function() {
 			$("#update_config_table_tableName").text(data[0].columName);
 			$("#update_config_table_userIndex").val(data[0].userIndex);
 			$("#update_config_table_tableDesc").val(data[0].columnDesc);
+			$("#update_config_table_columnOrder").val(data[0].columnOrder);
+			$("#update_config_table_columnType").val(data[0].columnType);
+			$("#update_config_table_columnTitle").val(data[0].columnTitle);
 			$("#update_config_table_deleteFlag").val(data[0].deleteFlag);
 			$('#update-show-myModal').modal({
 		        show: true
@@ -60,6 +64,9 @@ $(function() {
 		var param=data[0];
 		param.columnDesc=$("#update_config_table_tableDesc").val();
 		param.userIndex=$("#update_config_table_userIndex").val();
+		param.columnOrder=$("#update_config_table_columnOrder").val();
+		param.columnType=$("#update_config_table_columnType").val();
+		param.columnTitle=$("#update_config_table_columnTitle").val();
 		param.deleteFlag=$("#update_config_table_deleteFlag").val();
 		var url = "/sysChartNodeCols/save";
 		ajaxPost(url, param, addSysTableInfoSuccess, 5000, findError);
@@ -82,7 +89,7 @@ function selectedType(){
 }
 update_config_table_typeUuid=" ";
 function addSelectedTypeSuccess(result){
-	var data = [{id:" ",text:"请选择"}];
+	var data = [{id:"请选择",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value.uuid,text:value.nodeDesc+"{"+value.nodeName+"}"});
 	});
@@ -94,6 +101,10 @@ function addSelectedTypeSuccess(result){
 	
 	$('#search_config_table_typeUuid').on('select2:select', function (evt) {
 		search_config_table_typeUuid = evt.params.data.id;
+		if(search_config_table_typeUuid == "请选择"){
+			search_config_table_typeUuid = null;
+		}
+		
 		$('#dbm_config_table_datagrid').bootstrapTable("refresh");
 		$('#dbm_view_table_datagrid').bootstrapTable("refresh");
 	});

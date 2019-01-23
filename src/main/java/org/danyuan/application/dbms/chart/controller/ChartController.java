@@ -3,6 +3,7 @@ package org.danyuan.application.dbms.chart.controller;
 import java.util.Map;
 
 import org.danyuan.application.dbms.chart.service.ChartService;
+import org.danyuan.application.dbms.chart.vo.NodeParams;
 import org.danyuan.application.dbms.tabs.vo.SysDbmsTabsColsInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,12 +28,17 @@ import io.swagger.annotations.ApiOperation;
 public class ChartController {
 	@Autowired
 	ChartService chartService;
-	
+
 	@ApiOperation(value = "分页查询符合名称信息", notes = "")
-	@RequestMapping(path = "/rel2", method = RequestMethod.POST)
-	public Map<String, Object> rel2(@RequestBody SysDbmsTabsColsInfoVo vo) throws NoSuchFieldException, SecurityException {
+	@RequestMapping(path = "/rel", method = RequestMethod.POST)
+	public Map<String, Object> rel(@RequestBody SysDbmsTabsColsInfoVo vo) throws NoSuchFieldException, SecurityException {
 		Map<String, Object> map = chartService.findAll(vo);
 		return map;
 	}
 	
+	@RequestMapping(path = "/node", method = RequestMethod.POST)
+	public Map<String, Object> node(@RequestBody NodeParams params) throws NoSuchFieldException, SecurityException {
+		Map<String, Object> map = chartService.findAll(params);
+		return map;
+	}
 }

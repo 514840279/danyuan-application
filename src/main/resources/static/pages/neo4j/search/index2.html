@@ -32,11 +32,14 @@
 			</div>
 		</div>
 
-		<div class="box ">
+		<div class="box " id="full_screen_id">
 			<!-- 每个tab页对应的内容 -->
 			<div class="box-header with-border">
 				<h3 class="box-title" id="type_text_id">结果</h3>
 				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="expand" id="full_screen_button_id">
+						<i class="fa fa fa-expand"></i>
+					</button>
 					<button type="button" class="btn btn-box-tool" data-widget="collapse">
 						<i class="fa fa-minus"></i>
 					</button>
@@ -52,7 +55,7 @@
 <!-- 					<li><a href="#neo4j" data-toggle="tab"> 关系图</a></li> -->
 				</ul>
 				<div id="myTabContent" class="tab-content">
-					<div class="tab-pane fade  in active" id="oracle">
+					<div class="tab-pane fade" id="oracle">
 						<div id="mainOracleDiv" style="padding: 15px;">
 							<div id="table_box" style="display: none;" class="row">
 								<div class="panel-group" id="accordionTable">
@@ -76,16 +79,13 @@
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="neo4j">
-						<div id="neo4jmap" style="width: 1100px; height: 635px;"></div>
-						<div class="item">
-							<table class="table" id="table">
-								<tbody id="context_input_tab">
-									<tr id="context_input_line">
-										<td class="bt0"><span class="color_a"></span> <span id="data"></span></td>
-									</tr>
-								</tbody>
-							</table>
+					<div class="tab-pane fade in active" id="neo4j">
+						<div id="group_title">
+						</div>
+						<div id="show_greph">
+							<svg width="960" height="500"></svg>
+						</div>
+						<div  id="show_detial_infor" >
 						</div>
 					</div>
 				</div>
@@ -97,8 +97,7 @@
     <ul id="context-menu" class="dropdown-menu">
         <li data-item="edit"><a>待定。。。</a></li>
     </ul>  
-    
-    
+   
     
 	<form id="zhlbform" name="zhlbform" action="/zhcx/forwordZhlb" method="post" target="_blank" hidden="hidden">
 		<input id="tableuuid" name="tableuuid" value="" /> <input id="tableName" name="tableName" value="" /> <input id="dbType" name="dbType" value="" /> <input id="esName" name="esName" value="" /> <input id="tableDesc" name="tableDesc" value="" /> <input id="tableRows" name="tableRows" value="" /> <input id="type" name="type" value="" /> <input id="paramString" name="paramString" value="" />
@@ -112,7 +111,8 @@
 	
 	<script type="text/javascript" src="/plugins/bootstrap/table/extensions/contextmenu/bootstrap-table-contextmenu.min.js"></script>
 	
-	<script type="text/javascript" src="/pages/zhcx/search/yjcx2.js"></script>
+	<script src="/plugins/jQuery/d3.v3.min.js"></script>
+	<script type="text/javascript" src="/pages/neo4j/search/yjcx2.js"></script>
 
 </body>
 </html>
