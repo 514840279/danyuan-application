@@ -60,7 +60,7 @@ public class SysDbmsGenerateCodeInfoController extends BaseControllerImpl<SysDbm
 	public void downloadCode(HttpServletResponse response, @PathVariable("path") String path) throws IOException {
 		// 根据参数进行导出xml 并打包返回zip文件路径
 		// System.err.println(path);
-		File file = new File(OUTPUTFILE + "/" + path + ".zip");
+		File file = new File(System.getProperty("user.dir")+"/"+OUTPUTFILE + "/" + path + ".zip");
 		System.err.println(file.getAbsolutePath());
 		response.setHeader("content-type", "application/octet-stream");
 		response.setContentType("application/octet-stream");

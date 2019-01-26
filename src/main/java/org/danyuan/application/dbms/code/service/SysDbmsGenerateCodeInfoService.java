@@ -52,7 +52,7 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 	 * @throws
 	 */
 	public void generate(List<SysDbmsGenerateCodeInfo> list, String username, String pathString) throws FileNotFoundException {
-		String path = OUTPUTFILE + "/" + pathString;
+		String path = System.getProperty("user.dir")+"/"+OUTPUTFILE + "/" + pathString;
 		File file = new File(path);
 		if (!file.exists()) {
 			file.mkdirs();
