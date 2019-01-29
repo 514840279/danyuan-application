@@ -126,6 +126,9 @@ function loadPage(url, id, name, paramter, flag_r) {
 		if (status == "success") {
 			if (response) {
 				try {
+					if($(response).find("form").find("input[name='username']").attr("placeholder")=="Full name"){
+						window.location.href="/";
+					}
 					var result = jQuery.parseJSON(response);
 					if (result.code == 100) {
 						$("#mainDiv").html("");
