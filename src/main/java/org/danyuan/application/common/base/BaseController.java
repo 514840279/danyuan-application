@@ -38,6 +38,9 @@ public interface BaseController<T> {
 	@RequestMapping("/delete")
 	BaseResult<T> delete(T info);
 
+	@RequestMapping("/count")
+	BaseResult<Long> count(T info);
+
 	@RequestMapping("/trunc")
 	BaseResult<T> trunc();
 

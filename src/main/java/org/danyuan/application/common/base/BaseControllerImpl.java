@@ -142,7 +142,7 @@ public class BaseControllerImpl<T> implements BaseController<T> {
 	}
 
 	/**
-	 * 单挑记录删除
+	 * 单条记录删除
 	 *
 	 * @方法名 delete
 	 * @参数 @param info
@@ -175,6 +175,26 @@ public class BaseControllerImpl<T> implements BaseController<T> {
 		try {
 			baseService.trunc();
 			return ResultUtil.success();
+		} catch (Exception e) {
+			return ResultUtil.error(-1, e.getMessage());
+		}
+	}
+
+	/**
+	 * 统计数量
+	 *
+	 * @方法名 count
+	 * @参数 @param info
+	 * @参数 @return
+	 * @参考 @see org.danyuan.application.common.base.BaseController#count(java.lang.Object)
+	 * @author Administrator
+	 */
+	
+	@Override
+	public BaseResult<Long> count(T info) {
+		try {
+			Long lengthLong = baseService.count(info);
+			return ResultUtil.success(lengthLong);
 		} catch (Exception e) {
 			return ResultUtil.error(-1, e.getMessage());
 		}

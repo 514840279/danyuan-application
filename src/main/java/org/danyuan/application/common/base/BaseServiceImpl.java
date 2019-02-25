@@ -23,19 +23,19 @@ import org.springframework.data.repository.NoRepositoryBean;
  */
 @NoRepositoryBean
 public class BaseServiceImpl<T> implements BaseService<T> {
-
+	
 	@Autowired
 	BaseDao<T> baseDao;
-
+	
 	/**
 	 * 方法名 ： findOne
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 功 能 ： 安条件查询一条
 	 * 参 数 ： @param entity
 	 * 参 数 ： @return
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public T findOne(T entity) {
 		if (entity == null) {
@@ -48,16 +48,16 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		}
 		return null;
 	}
-
+	
 	/**
 	 * 方法名 ： findById
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 功 能 ： 按id查询一条
 	 * 参 数 ： @param id
 	 * 参 数 ： @return
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findById(java.lang.String)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public T findById(String id) {
 		if (id == null || "".equals(id)) {
@@ -69,16 +69,16 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		}
 		return null;
 	}
-
+	
 	/**
 	 * 方法名 ： findAll
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 功 能 ： 按条件查询全部数据
 	 * 参 数 ： @param entity
 	 * 参 数 ： @return
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public List<T> findAll(T entity) {
 		if (entity == null) {
@@ -88,17 +88,17 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 			List<T> list = baseDao.findAll(example);
 			return list;
 		}
-
+		
 	}
-
+	
 	/**
 	 * 方法名 ： save
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 功 能 ： 保存数据
 	 * 参 数 ： @param entity
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#save(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public T save(T entity) {
 		if (entity == null) {
@@ -143,68 +143,68 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		}
 		return baseDao.save(entity);
 	}
-
+	
 	/**
 	 * 方法名 ： saveAll
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 功 能 ： 更改多个数据
 	 * 参 数 ： @param entities
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#saveAll(java.util.List)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public void saveAll(List<T> entities) {
 		baseDao.saveAll(entities);
 	}
-
+	
 	/**
 	 * 方法名 ： delete
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 功 能 ： 删除数据
 	 * 参 数 ： @param entity
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public void delete(T entity) {
 		baseDao.delete(entity);
 	}
-
+	
 	/**
 	 * 方法名 ： deleteAll
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 功 能 ： 删除多个数据
 	 * 参 数 ： @param entities
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#deleteAll(java.util.List)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public void deleteAll(List<T> entities) {
 		baseDao.deleteAll(entities);
 	}
-
+	
 	/**
 	 * 方法名 ： trunc
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 功 能 ： 清空表数据
 	 * 参 数 ：
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#trunc()
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public void trunc() {
 		baseDao.deleteAllInBatch();
 	}
-
+	
 	/**
 	 * 方法名 ： findAll
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 功 能 ： 按条件查询多个信息
 	 * 参 数 ： @param vo
 	 * 参 数 ： @return
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#findAll(org.danyuan.application.common.base.Pagination)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public List<T> findAll(Pagination<T> vo) {
 		if (vo.getInfo() == null) {
@@ -223,18 +223,18 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 				return baseDao.findAll(example);
 			}
 		}
-
+		
 	}
-
+	
 	/**
 	 * 方法名 ： page
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
+	 * 功 能 ： 分页查询
 	 * 参 数 ： @param vo
 	 * 参 数 ： @return
 	 * 参 考 ： @see org.danyuan.application.common.base.BaseService#page(org.danyuan.application.common.base.Pagination)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public Page<T> page(Pagination<T> vo) {
 		if (vo.getInfo() == null) {
@@ -257,7 +257,27 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 				return baseDao.findAll(example, request);
 			}
 		}
-
+		
 	}
+	
+	/**
+	 * 统计数量
+	 *
+	 * @方法名 count
+	 * @参数 @param info
+	 * @参数 @return
+	 * @参考 @see org.danyuan.application.common.base.BaseService#count(java.lang.Object)
+	 * @author Administrator
+	 */
 
+	@Override
+	public Long count(T info) {
+		if (info == null) {
+			return baseDao.count();
+		} else {
+			Example<T> example = Example.of(info);
+			return baseDao.count(example);
+		}
+	}
+	
 }
