@@ -221,6 +221,8 @@ function showClomnTable(){
 		    var param = {  
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
+                 sortOrder:params.sortOrder,
+                 sortName:params.sortName,
                  info:{tabsUuid: _tableUuid}
              }; 
              return param;
