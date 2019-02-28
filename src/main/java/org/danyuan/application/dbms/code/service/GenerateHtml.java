@@ -170,13 +170,13 @@ public class GenerateHtml {
 		stringBuilder.append("		<li data-item=\"edit\"><a>待定。。。</a></li>\r\n");
 		stringBuilder.append("	</ul>\r\n");
 		// 结尾
-		stringBuilder.append("	<script type=\"text/javascript\" src=\"/pages/" + subPathString.replace(".", "/") + "/index.js\"></script>\r\n");
+		stringBuilder.append("	<script type=\"text/javascript\" src=\"/pages/" + subPathString.replace(".", "/") + "/" + sysDbmsGenerateCodeInfo.getClassName().toLowerCase() + ".js\"></script>\r\n");
 		stringBuilder.append("</body>\r\n");
 		stringBuilder.append("</html>\r\n");
 		stringBuilder.append("\r\n");
 		
 		// 文件写入
-		String fineName = pathString + "/index.html";
+		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName().toLowerCase() + ".html";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
 	}
 

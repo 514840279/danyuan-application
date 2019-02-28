@@ -32,16 +32,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sysUserBase")
 public class SysUserBaseController {
-	
+
 	@Autowired
 	PasswordEncoder				passwordEncoder;
 	//
 	private static final Logger	logger	= LoggerFactory.getLogger(SysUserBaseController.class);
-	
+
 	//
 	@Autowired
 	private SysUserBaseService	sysUserBaseService;
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -55,13 +55,13 @@ public class SysUserBaseController {
 		logger.info("sysUserBaseList", SysUserBaseController.class);
 		return sysUserBaseService.findAll();
 	}
-	
+
 	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
 	public Page<SysUserBaseInfo> findAllBySearchText(int pageNumber, int pageSize, SysUserBaseInfo sysUserBaseInfo) {
 		logger.info("findAllBySearchText", SysUserBaseController.class);
 		return sysUserBaseService.findAllBySearchText(pageNumber, pageSize, sysUserBaseInfo);
 	}
-	
+
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public String save(@RequestBody SysUserBaseInfo info) {
@@ -80,20 +80,20 @@ public class SysUserBaseController {
 			return "0";
 		}
 	}
-	
+
 	@RequestMapping(path = "/saveu", method = RequestMethod.POST)
 	@ResponseBody
 	public String saveu(@RequestBody SysUserBaseInfo info) {
 		logger.info("saveu", SysUserBaseController.class);
 		try {
-			sysUserBaseService.saveu(info.getUuid(), info.getPersionName(), info.getAge(), info.getUserName(), info.getEmail(), info.getPhone(), info.getSex(), info.getDiscription());
+			sysUserBaseService.saveu(info);
 			return "1";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return e.toString();
 		}
 	}
-	
+
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public String delete(@RequestBody SysUserBaseVo vo) {
@@ -105,7 +105,7 @@ public class SysUserBaseController {
 			return "0";
 		}
 	}
-	
+
 	/**
 	 * 加密密码
 	 */
@@ -114,7 +114,7 @@ public class SysUserBaseController {
 		password = passwordEncoder.encode(password);
 		userEntity.setPassword(password);
 	}
-
+	
 	@RequestMapping(path = "/checkUserName", method = RequestMethod.POST)
 	public Map<String, Boolean> checkUserName(String userName) {
 		logger.info("checkUserName", SysUserBaseController.class);
@@ -123,7 +123,7 @@ public class SysUserBaseController {
 		map.put("valid", boo);
 		return map;
 	}
-	
+
 	@RequestMapping(path = "/changePassword", method = RequestMethod.POST)
 	@ResponseBody
 	public String changePassword(@RequestBody SysUserBaseVo vo) {

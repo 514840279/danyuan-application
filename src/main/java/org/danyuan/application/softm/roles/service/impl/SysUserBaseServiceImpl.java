@@ -28,35 +28,35 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysUserBaseService")
 public class SysUserBaseServiceImpl implements SysUserBaseService {
-
+	
 	//
 	@Autowired
 	private SysUserBaseDao	sysUserBaseDao;
-	
+
 	@Autowired
 	private SysRolesDao		sysRolesDao;
-	
+
 	@Autowired
 	private SysUserRolesDao	sysUserRolesDao;
-
+	
 	/**
 	 * 方法名 ： findAll 功 能 ： TODO(这里用一句话描述这个方法的作用) 参 数 ： @return 参 考 ： @see
 	 * tk.ainiyue.admin.userbase.service.SysUserBaseService#findAll() 作 者 ：
 	 * Tenghui.Wang
 	 */
-
+	
 	@Override
 	public List<SysUserBaseInfo> findAll() {
 		return sysUserBaseDao.findAll();
 	}
-
+	
 	/**
 	 * 方法名 ： findByName 功 能 ： TODO(这里用一句话描述这个方法的作用) 参 数 ： @param userName 参 数
 	 * ： @return 参 考 ： @see
 	 * tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService#findByName(java.lang.String)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public SysUserBaseInfo findByName(String userName) {
 		SysUserBaseInfo info = new SysUserBaseInfo();
@@ -68,28 +68,28 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 		}
 		return null;
 	}
-
+	
 	/**
 	 * 方法名 ： getRoleByUser 功 能 ： TODO(这里用一句话描述这个方法的作用) 参 数 ： @param user 参 数
 	 * ： @return 参 考 ： @see
 	 * tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService#getRoleByUser(tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public List<SysRolesInfo> getRoleByUser(String uuid) {
 		// 用户 > 角色 > 菜单
-
+		
 		return sysUserBaseDao.getRoleByUser(uuid);
 	}
-
+	
 	/**
 	 * 方法名 ： findByUuid 功 能 ： TODO(这里用一句话描述这个方法的作用) 参 数 ： @param uuid 参 数
 	 * ： @return 参 考 ： @see
 	 * tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService#findByUuid(java.lang.String)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public SysUserBaseInfo findByUuid(String uuid) {
 		Optional<SysUserBaseInfo> tBaseInfo = sysUserBaseDao.findById(uuid);
@@ -98,7 +98,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 		}
 		return null;
 	}
-
+	
 	/**
 	 * 方法名 ： findAllBySearchText 功 能 ： TODO(这里用一句话描述这个方法的作用) 参 数 ： @param
 	 * pageNumber 参 数 ： @param pageSize 参 数 ： @param info 参 数 ： @return 参 考
@@ -107,7 +107,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 	 * int, tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo) 作 者
 	 * ： Administrator
 	 */
-
+	
 	@Override
 	public Page<SysUserBaseInfo> findAllBySearchText(int pageNumber, int pageSize, SysUserBaseInfo info) {
 		// logger.info(tableUuid, SysColumnServiceImpl.class);
@@ -119,16 +119,16 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 		Page<SysUserBaseInfo> sourceCodes = sysUserBaseDao.findAll(example, request);
 		return sourceCodes;
 	}
-
+	
 	/**
 	 * 方法名 ： save 功 能 ： TODO(这里用一句话描述这个方法的作用) 参 数 ： @param info 参 考 ： @see
 	 * tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService#save(tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void save(SysUserBaseInfo info) {
-		
+
 		sysUserBaseDao.save(info);
 		// 初始化权限
 		// 取出角色 循环比较时用户权限就设置check 其他角色就设置0
@@ -150,43 +150,43 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 		}
 		sysUserRolesDao.saveAll(userRoleList);
 	}
-
+	
 	/**
 	 * 方法名 ： delete 功 能 ： TODO(这里用一句话描述这个方法的作用) 参 数 ： @param info 参 考 ： @see
 	 * tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService#delete(tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void delete(SysUserBaseVo vo) {
 		sysUserBaseDao.deleteAll(vo.getList());
-
+		
 	}
-
+	
 	/**
 	 * 方法名 ： delete 功 能 ： TODO(这里用一句话描述这个方法的作用) 参 数 ： @param list 参 考 ： @see
 	 * tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void delete(List<SysUserBaseInfo> list) {
 		sysUserBaseDao.deleteAll(list);
-
+		
 	}
-
+	
 	/**
 	 * 方法名 ： trunc 功 能 ： TODO(这里用一句话描述这个方法的作用) 参 数 ： 参 考 ： @see
 	 * tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService#trunc()
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void trunc() {
 		sysUserBaseDao.deleteAll();
-
+		
 	}
-
+	
 	/**
 	 * 方法名 ： saveu 功 能 ： TODO(这里用一句话描述这个方法的作用) 参 数 ： @param uuid 参 数 ： @param
 	 * persionName 参 数 ： @param age 参 数 ： @param userName 参 数 ： @param email 参 数
@@ -195,12 +195,12 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 	 * java.lang.String, java.lang.Integer, java.lang.String, java.lang.String,
 	 * java.lang.String, java.lang.String) 作 者 ： Administrator
 	 */
-
+	
 	@Override
-	public void saveu(String uuid, String persionName, Integer age, String userName, String email, String phone, String sex, String discription) {
-		sysUserBaseDao.saveu(uuid, persionName, age, userName, email, phone, sex, discription);
+	public void saveu(SysUserBaseInfo info) {
+		sysUserBaseDao.saveu(info.getUuid(), info.getPersionName(), info.getAge(), info.getUserName(), info.getEmail(), info.getPhone(), info.getSex(), info.getDiscription());
 	}
-
+	
 	/**
 	 * 方法名 ： checkurl<br />
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用) <br />
@@ -209,7 +209,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 	 * 参 考 ： @see com.shumeng.application.softm.roles.service.SysUserBaseService#checkurl(java.lang.String) <br />
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public boolean checkUserName(String userName) {
 		SysUserBaseInfo info = new SysUserBaseInfo();
@@ -222,7 +222,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 			return false;
 		}
 	}
-
+	
 	/**
 	 * 方法名 ： changePassword<br />
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用) <br />
@@ -230,12 +230,12 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 	 * 参 考 ： @see com.shumeng.application.softm.roles.service.SysUserBaseService#changePassword(com.shumeng.application.softm.roles.po.SysUserBaseInfo) <br />
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void changePassword(SysUserBaseInfo info) {
 		sysUserBaseDao.changePassword(info.getPassword(), info.getUuid());
 	}
-
+	
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -244,7 +244,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 	 * 参 考 ： @see com.shumeng.application.softm.roles.service.SysUserBaseService#findOne(com.shumeng.application.softm.roles.po.SysUserBaseInfo)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public SysUserBaseInfo findOne(SysUserBaseInfo sysUserBaseInfo) {
 		Example<SysUserBaseInfo> example = Example.of(sysUserBaseInfo);
@@ -254,7 +254,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 		}
 		return null;
 	}
-
+	
 	/**
 	 * 方法名 ： savec
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -267,11 +267,11 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 	 * 参 考 ： @see com.shumeng.application.softm.roles.service.SysUserBaseService#savec(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void savec(String uuid, String userName, String email, String phone, String organization, String department) {
 		sysUserBaseDao.savec(uuid, userName, email, phone, organization, department);
-
+		
 	}
-
+	
 }
