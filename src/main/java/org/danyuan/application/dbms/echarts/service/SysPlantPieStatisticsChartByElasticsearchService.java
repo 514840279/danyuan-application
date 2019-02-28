@@ -13,6 +13,7 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
+import org.elasticsearch.search.aggregations.metrics.sum.Sum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
@@ -39,7 +40,9 @@ public class SysPlantPieStatisticsChartByElasticsearchService {
 	
 	@Value(value = "${elasticsearch.index.type}")
 	public String			ELASTICSEARCH_INDEX_TYPE;
-
+	@Value(value = "${elasticsearch.index.amount}")
+	public String			ELASTICSEARCH_INDEX_AMOUNT;
+	
 	/**
 	 * 方法名： buildPie
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -80,6 +83,48 @@ public class SysPlantPieStatisticsChartByElasticsearchService {
 		map.put("series_data", series_data);
 		map.put("chartType", info.getChartType());
 		
+	}
+
+	/**
+	 * @方法名 buildPieSum
+	 * @功能 TODO(这里用一句话描述这个方法的作用)
+	 * @参数 @param map
+	 * @参数 @param info
+	 * @参数 @param queryBuilder
+	 * @参数 @param type1
+	 * @返回 void
+	 * @author Administrator
+	 * @throws
+	 */
+	public void buildPieSum(Map<String, Object> map, SysDbmsChartDimension info, QueryBuilder queryBuilder, String type1) {
+		Client client = elasticsearchTemplate.getClient();
+		SearchRequestBuilder requestBuilder = client.prepareSearch(ELASTICSEARCH_INDEX_NAME).setTypes(ELASTICSEARCH_INDEX_TYPE);
+		
+		TermsAggregationBuilder termsAggregationBuilder = AggregationBuilders.terms(type1 + "_count").field(type1).size(0).subAggregation(AggregationBuilders.sum(ELASTICSEARCH_INDEX_AMOUNT + "_SUM").field(ELASTICSEARCH_INDEX_AMOUNT));
+
+		requestBuilder.setQuery(queryBuilder).addAggregation(termsAggregationBuilder);
+		SearchResponse response = requestBuilder.get();
+		
+		Terms aggregation = response.getAggregations().get(type1 + "_count");
+		// System.err.println(response.toString());
+		List<String> legend_data = new ArrayList<>();
+		List<Map<String, Object>> series_data = new ArrayList<>();
+		for (Terms.Bucket bucket : aggregation.getBuckets()) {
+			if (bucket.getKey() == null || "".equals(bucket.getKey().toString())) {
+				continue;
+			}
+			legend_data.add(bucket.getKey().toString());
+			// {value:92503371, name:'男'}
+			Map<String, Object> data = new HashMap<>();
+			Sum sum = bucket.getAggregations().get(ELASTICSEARCH_INDEX_AMOUNT + "_SUM");
+			data.put("value", sum.getValue());
+			data.put("name", bucket.getKey().toString());
+			series_data.add(data);
+			
+		}
+		map.put("legend_data", legend_data);
+		map.put("series_data", series_data);
+		map.put("chartType", info.getChartType());
 	}
 
 }

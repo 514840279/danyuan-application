@@ -113,4 +113,5 @@ elasticsearch:
   index:
     name: 标讯数据5
     type: text    
+    amount: 中标金额数值
     
