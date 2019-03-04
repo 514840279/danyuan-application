@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.bootcss.com/admin-lte/2.3.8/css/AdminLTE.min.css" />
+<!-- <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css"/> -->
+<link rel="stylesheet" href="/dist/css/resume.css" />
+<title>个人简历</title>
+<meta charset="UTF-8" />
+</head>
+<body class="hold-transition layout-top-nav" id="body">
+	<div class="wrapper">
+		<div class="content-wrapper">
+			<div class="container mainborder" id="mainDiv" style="width: 56%">
+				<!-- 正文	-->
+				<section class="content">
+					<h2 class="text-center">个人简历</h2>
+					<!-- 	基本信息 -->
+					<div class="subborder">
+						<div class="bdblue text-center">基本信息</div>
+						<div class="row">
+							<div class="col-xs-4">
+								<div class="col-xs-4 ">姓名：</div>
+								<div class="col-xs-8" th:text="${base.userName}">123</div>
+							</div>
+							<div class="col-xs-4">
+								<div class="col-xs-4 ">性别：</div>
+								<div class="col-xs-8" th:text="${base.sex}">123</div>
+							</div>
+							<div class="col-xs-4">
+								<div class="col-xs-4 ">年龄：</div>
+								<div class="col-xs-8" th:text="${base.age}">123</div>
+							</div>
+							<div class="col-xs-4">
+								<div class="col-xs-6 ">居住地址：</div>
+								<div class="col-xs-6" th:text="${base.addr}">123</div>
+							</div>
+							<div class="col-xs-4">
+								<div class="col-xs-6 ">联系电话：</div>
+								<div class="col-xs-6" th:text="${base.phone}">123</div>
+							</div>
+							<div class="col-xs-4">
+								<div class="col-xs-4 ">邮箱：</div>
+								<div class="col-xs-8" th:text="${base.email}">123</div>
+							</div>
+							<div class="col-xs-4">
+								<div class="col-xs-6 ">最高学历：</div>
+								<div class="col-xs-6" th:text="${base.education}">123</div>
+							</div>
+							<div class="col-xs-4">
+								<div class="col-xs-4 ">专业：</div>
+								<div class="col-xs-8" th:text="${base.major}">123</div>
+							</div>
+							<div class="col-xs-4">
+								<div class="col-xs-6 ">毕业院校：</div>
+								<div class="col-xs-6" th:text="${base.university}">123</div>
+							</div>
+						</div>
+					</div>
+					<!-- 	求职意向信息 -->
+					<div class="subborder">
+						<div class="bdblue text-center">求职意向</div>
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="col-xs-6 ">应聘职位：</div>
+								<div class="col-xs-6" th:text="${base.position}">123</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="col-xs-6 ">工作性质：</div>
+								<div class="col-xs-6" th:text="${base.workNature}">123</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="col-xs-6 ">期望工资：</div>
+								<div class="col-xs-6" th:text="${base.expectedSalary}">123</div>
+							</div>
+
+							<div class="col-xs-6">
+								<div class="col-xs-6 ">期望工作地址：</div>
+								<div class="col-xs-6" th:text="${base.expectedPlace}">123</div>
+							</div>
+							<div class="col-xs-6">
+								<div class="col-xs-6 ">在职状态：</div>
+								<div class="col-xs-6" th:text="${base.statue}">123</div>
+							</div>
+						</div>
+					</div>
+					<!-- 	教育信息 -->
+					<div class="subborder">
+						<div class="bdblue text-center">教育信息</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="col-xs-1 ">序号</div>
+								<div class="col-xs-2">学历</div>
+								<div class="col-xs-2">专业</div>
+								<div class="col-xs-2">毕业院校</div>
+								<div class="col-xs-2">毕业时间</div>
+							</div>
+							<div class="col-xs-12" th:each="education,row : ${educations}">
+								<div class="col-xs-1 " th:text="${row.index+1}"></div>
+								<div class="col-xs-2" th:text="${education.education}">123</div>
+								<div class="col-xs-2" th:text="${education.major}">123</div>
+								<div class="col-xs-2" th:text="${education.graduationSchool}">123</div>
+								<div class="col-xs-2" th:text="${education.graduationTime}">123</div>
+							</div>
+						</div>
+					</div>
+					<!-- 	技能信息 -->
+					<div class="subborder">
+						<div class="bdblue text-center">技能信息</div>
+						<div class="row">
+							<div class="col-xs-4" th:each="skill,row : ${skills}">
+								<span th:text="${skill.proficiency}">熟练度</span> <span th:text="${skill.skill}">技能</span>(<span th:text="${skill.month}">月份</span>)
+							</div>
+						</div>
+					</div>
+					<!-- 	工作信息 -->
+					<div class="subborder">
+						<div class="bdblue text-center">工作信息</div>
+						<div class="row">
+							<div class="col-xs-12" th:each="expreience,row : ${workExpreiences}">
+								<div class="col-xs-8">
+									<strong th:text="${expreience.unit}">单位</strong> <span th:text="${expreience.position}">职务</span> <span th:text="${expreience.startDate}">任职时间</span>~<span th:text="${expreience.endDate==null?'至今':expreience.endDate}">离职时间</span>
+								</div>
+								<div class="col-xs-4">
+									<span th:text="${expreience.workingLife}"></span>年
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 	项目信息 -->
+					<div class="subborder">
+						<div class="bdblue text-center">项目信息</div>
+						<div class="row">
+							<div class="col-xs-12" th:each="project,row : ${projects}">
+								<div class="col-xs-8">
+									<strong th:text="${project.projectName}">项目名</strong>
+									 <span th:text="${project.startDate}">进入项目时间</span>~<span th:text="${project.endDate==null?'至今':project.endDate}">离开时间</span>
+								</div>
+								<div class="col-xs-12" >
+									<span th:text="${project.unit}">单位</span><span th:text="${project.position}">职务</span>
+								</div>
+								<div class="col-xs-12" >
+									<span th:text="${project.projectContent}">项目描述</span>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<!-- 	自我评价信息 -->
+					<div class="subborder">
+						<div class="bdblue text-center">自我评价</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<span th:text="${evaluate.content}">姓名</span>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
