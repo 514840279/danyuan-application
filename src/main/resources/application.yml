@@ -13,6 +13,11 @@ server:
 #
 
 spring:
+  resources:    static-locations:    - classpath:/META-INF/resources/
+    - classpath:/resources/
+    - classpath:/static/
+    - classpath:/public/
+    - file:./file/
   data:
     elasticsearch:
       cluster-name: my-application
@@ -81,7 +86,7 @@ spring:
   main:
     banner-mode: console
     web-application-type: servlet
-    allow-bean-definition-overriding: true
+    allow-bean-definition-overriding: true
 logging:
   level:
     root: INFO
