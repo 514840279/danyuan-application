@@ -16,7 +16,7 @@ import org.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
  * @版本 V1.0
  */
 public class GenerateHtml {
-	
+
 	/**
 	 * @方法名 generate
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -55,34 +55,6 @@ public class GenerateHtml {
 		stringBuilder.append("\r\n");
 		stringBuilder.append("	<!-- Main content -->\r\n");
 		stringBuilder.append("	<section class=\"content\">\r\n");
-		// 条件查询区域
-		stringBuilder.append("		<div class=\"row\">\r\n");
-		for (SysDbmsTabsColsInfo sysDbmsTabsColsInfo : colsInfos) {
-			if (sysDbmsTabsColsInfo.getUserIndex() != null && !"".equals(sysDbmsTabsColsInfo.getUserIndex())) {
-				String[] colsNames = sysDbmsTabsColsInfo.getColsName().toLowerCase().split("_");
-				String colsNameString = "";
-				for (int i = 0; i < colsNames.length; i++) {
-					if (i > 0) {
-						colsNameString += colsNames[i].substring(0, 1).toUpperCase() + colsNames[i].substring(1);
-					} else {
-						colsNameString = colsNames[i];
-					}
-				}
-				String colsDescString = sysDbmsTabsColsInfo.getColsDesc();
-				if (colsDescString == null || "".equals(colsDescString)) {
-					colsDescString = colsNameString;
-				}
-				stringBuilder.append("			<div class=\" col-md-6\">\r\n");
-				stringBuilder.append("				<div class=\" col-md-12 form-group\">\r\n");
-				stringBuilder.append("					<label class=\"col-sm-3 control-label text-right font16\">" + colsDescString + ":</label>\r\n");
-				stringBuilder.append("					<div class=\"col-sm-9\">\r\n");
-				stringBuilder.append("						<input type=\"text\" class=\"form-control\" id=\"search_" + subNameIdString + "_" + colsNameString + "\" name=\"" + colsNameString + "\" placeholder=\"" + colsDescString + "\" />\r\n");
-				stringBuilder.append("					</div>\r\n");
-				stringBuilder.append("				</div>\r\n");
-				stringBuilder.append("			</div>\r\n");
-			}
-		}
-		stringBuilder.append("		</div>\r\n");
 		
 		// 表格展示区域
 		stringBuilder.append("		<div class=\"box\">\r\n");
@@ -103,6 +75,36 @@ public class GenerateHtml {
 		stringBuilder.append("				</div>\r\n");
 		stringBuilder.append("			</div>\r\n");
 		stringBuilder.append("			<div class=\"box-body\">\r\n");
+
+		// 条件查询区域
+		stringBuilder.append("				<div class=\"row\">\r\n");
+		for (SysDbmsTabsColsInfo sysDbmsTabsColsInfo : colsInfos) {
+			if (sysDbmsTabsColsInfo.getUserIndex() != null && !"".equals(sysDbmsTabsColsInfo.getUserIndex())) {
+				String[] colsNames = sysDbmsTabsColsInfo.getColsName().toLowerCase().split("_");
+				String colsNameString = "";
+				for (int i = 0; i < colsNames.length; i++) {
+					if (i > 0) {
+						colsNameString += colsNames[i].substring(0, 1).toUpperCase() + colsNames[i].substring(1);
+					} else {
+						colsNameString = colsNames[i];
+					}
+				}
+				String colsDescString = sysDbmsTabsColsInfo.getColsDesc();
+				if (colsDescString == null || "".equals(colsDescString)) {
+					colsDescString = colsNameString;
+				}
+				stringBuilder.append("					<div class=\" col-md-6\">\r\n");
+				stringBuilder.append("						<div class=\" col-md-12 form-group\">\r\n");
+				stringBuilder.append("							<label class=\"col-sm-3 control-label text-right font16\">" + colsDescString + ":</label>\r\n");
+				stringBuilder.append("							<div class=\"col-sm-9\">\r\n");
+				stringBuilder.append("								<input type=\"text\" class=\"form-control\" id=\"search_" + subNameIdString + "_" + colsNameString + "\" name=\"" + colsNameString + "\" placeholder=\"" + colsDescString + "\" />\r\n");
+				stringBuilder.append("							</div>\r\n");
+				stringBuilder.append("						</div>\r\n");
+				stringBuilder.append("					</div>\r\n");
+			}
+		}
+		stringBuilder.append("				</div>\r\n");
+
 		stringBuilder.append("				<div id=\"dbm_type_toolbar\" class=\"btn-group\">\r\n");
 		stringBuilder.append("					<button type=\"button\" class=\"btn btn-default\" id=\"addnew_" + subNameIdString + "\">\r\n");
 		stringBuilder.append("						<i class=\"glyphicon glyphicon-plus\"></i> 新增\r\n");
@@ -146,7 +148,7 @@ public class GenerateHtml {
 			if (colsDescString == null || "".equals(colsDescString)) {
 				colsDescString = colsNameString;
 			}
-
+			
 			stringBuilder.append("					<div class=\" row form-group\">\r\n");
 			stringBuilder.append("						<label class=\"col-sm-3 control-label text-right font16\" style=\"height: 34px;padding-top: 5px;\">" + colsDescString + ":</label>\r\n");
 			stringBuilder.append("						<div class=\"col-sm-9\">\r\n");
@@ -154,7 +156,7 @@ public class GenerateHtml {
 			stringBuilder.append("						</div>\r\n");
 			stringBuilder.append("					</div>\r\n");
 		}
-		
+
 		stringBuilder.append("				</div>\r\n");
 		stringBuilder.append("				<div class=\"modal-footer\">\r\n");
 		stringBuilder.append("					<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">关闭</button>\r\n");
@@ -174,10 +176,10 @@ public class GenerateHtml {
 		stringBuilder.append("</body>\r\n");
 		stringBuilder.append("</html>\r\n");
 		stringBuilder.append("\r\n");
-		
+
 		// 文件写入
 		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName().toLowerCase() + ".html";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
 	}
-
+	
 }

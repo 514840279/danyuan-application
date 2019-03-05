@@ -17,6 +17,10 @@ spring:
     - classpath:/resources/
     - classpath:/static/
     - classpath:/public/
+    - file:./resume/
+    - file:./outputfile/
+    - file:./uploadfile/
+    - file:./headimg/
     - file:./file/
   data:
     elasticsearch:
