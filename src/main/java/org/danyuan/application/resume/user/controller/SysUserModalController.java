@@ -43,28 +43,28 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 @RestController
 @RequestMapping("/sysUserModal")
 public class SysUserModalController extends BaseControllerImpl<SysUserModal> implements BaseController<SysUserModal> {
-	
+
 	@Autowired
 	SysUserModalService				sysUserModalService;
-
+	
 	@Autowired
 	SysUserBaseInfoService			sysUserBaseInfoService;			// 基本信息
-
+	
 	@Autowired
 	SysUserEducationService			sysUserEducationService;		// 教育信息
-
+	
 	@Autowired
 	SysUserSkillService				sysUserSkillService;			// 技能信息
-
+	
 	@Autowired
 	SysUserWorkExpreienceService	sysUserWorkExpreienceService;	// 工作履历
-
+	
 	@Autowired
 	SysUserProjectService			sysUserProjectService;			// 项目经验
-
+	
 	@Autowired
 	SysUserEvaluateService			sysUserEvaluateService;			// 评价信息
-	
+
 	@RequestMapping(path = "/writeResume", method = RequestMethod.POST)
 	public BaseResult<String> writeResume(@RequestBody SysUserModal info) {
 		BaseResult<String> result = new BaseResult<>();
@@ -75,7 +75,7 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 			resolver.setSuffix(".html");// 模板文件后缀
 			TemplateEngine templateEngine = new TemplateEngine();
 			templateEngine.setTemplateResolver(resolver);
-			
+
 			// 构造上下文(Model)
 			Context context = new Context();
 			// 基本
@@ -91,7 +91,7 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 			skill.setUserUuid(info.getUserUuid());
 			List<SysUserSkill> skills = sysUserSkillService.findAll(skill);
 			context.setVariable("skills", skills);
-			
+
 			// 技能
 			SysUserWorkExpreience workExpreience = new SysUserWorkExpreience();
 			workExpreience.setUserUuid(info.getUserUuid());
@@ -102,14 +102,14 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 			project.setUserUuid(info.getUserUuid());
 			List<SysUserProject> projects = sysUserProjectService.findAll(project);
 			context.setVariable("projects", projects);
-			
+
 			// 评价
 			SysUserEvaluate evaluate = new SysUserEvaluate();
 			evaluate.setUserUuid(info.getUserUuid());
 			evaluate.setType("自我评价");
 			evaluate = sysUserEvaluateService.findOne(evaluate);
 			context.setVariable("evaluate", evaluate);
-
+			
 			// 渲染模板
 			String dirString = System.getProperty("user.dir");
 			FileWriter write = new FileWriter(dirString + "/file/" + info.getUserUuid() + ".html");
@@ -124,7 +124,7 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 		}
 		return result;
 	}
-
+	
 	@RequestMapping(path = "/showResume/{userUuid}/{resume}")
 	public ModelAndView showResume(@PathVariable("userUuid") String userid, @PathVariable("resume") String resume) {
 		// 构造模板引擎
@@ -133,7 +133,7 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 		resolver.setSuffix(".html");// 模板文件后缀
 		TemplateEngine templateEngine = new TemplateEngine();
 		templateEngine.setTemplateResolver(resolver);
-		
+
 		// 构造上下文(Model)
 		ModelAndView view = new ModelAndView("resume/modal/" + resume + ".html");
 		// 基本
@@ -148,7 +148,7 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 		skill.setUserUuid(userid);
 		List<SysUserSkill> skills = sysUserSkillService.findAll(skill);
 		view.addObject("skills", skills);
-		
+
 		// 技能
 		SysUserWorkExpreience workExpreience = new SysUserWorkExpreience();
 		workExpreience.setUserUuid(userid);
@@ -159,15 +159,16 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 		project.setUserUuid(userid);
 		List<SysUserProject> projects = sysUserProjectService.findAll(project);
 		view.addObject("projects", projects);
-		
+
 		// 评价
 		SysUserEvaluate evaluate = new SysUserEvaluate();
 		evaluate.setUserUuid(userid);
 		evaluate.setType("自我评价");
 		evaluate = sysUserEvaluateService.findOne(evaluate);
 		view.addObject("evaluate", evaluate);
-		
+
 		// 渲染模板
 		return view;
 	}
+	
 }

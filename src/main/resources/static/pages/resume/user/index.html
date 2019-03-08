@@ -2,7 +2,16 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<link rel="stylesheet" href="/plugins/bootstrap/fileinput/css/fileinput.min.css"/>
+<link rel="stylesheet" href="/plugins/bootstrap/fileinput/css/fileinput.min.css" />
+<style type="text/css">
+.auto-tip {
+	background-color: #fff;
+	-webkit-transition: .5s ease-in-out;
+	/* css的transition允许css的属性值在一定的时间内从一个状态平滑的过渡到另一个状态 */
+	-moz-transition: .5s ease-in-out; /*这里为了兼容其他浏览器*/
+	-o-transition: .5s ease-in-out;
+}
+</style>
 </head>
 <body id="body">
 	<!-- 头部设计 -->
@@ -34,38 +43,44 @@
 			<div class="box-body">
 				<p>简历上传：</p>
 				<p>1. 必须上传html格式的页面</p>
-				<p>2. 需要邮箱以及验证确保正确后方可上传。</p>
+				<p>2. 需要邮箱以及验证确保正确后方可上传，和找回已经上传的html文件。</p>
 				<p>3. 上传成功后，你会收到一份专属你自己的简历网页地址以及二维码，你可以发送给朋友你的朋友可以直接查看到你编写的简历。</p>
 				<p>4. 简历上传后没有任何限制，理论上任何人拿到你的链接都会查看到信息，请保管好你的链接。</p>
 				<p>5. 理论上html页面的东西都可展示，请不要上传一些不当言论和危害国家的行为，拒绝黄赌毒从你我做起。</p>
 				<p>6. 如果你不是程序员不会写html，请联系你身边的程序小哥。</p>
-				<p>7. 如果你不会写html身边也没有程序小哥，请找广大群友帮忙。<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a"> <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven"></a></p>
-				<p>8. 如果你不想做简历，但是你有要求，有利广大群众也请找我。<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a"> <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven"></a></p>
+				<p>
+					7. 如果你不会写html身边也没有程序小哥，请找广大群友帮忙。<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a"> <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven"></a>
+				</p>
+				<p>
+					8. 如果你不想做简历，但是你有要求，有利广大群众也请找我。<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a"> <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven"></a>
+				</p>
+				<p>9. 后期会增加word版本直接上传</p>
 				<div>
-					<form action="post">
-						<div class="form-group has-feedback">
-							<input type="email" class="form-control" placeholder="email" name="email" id="email" /> <span class="glyphicon glyphicon-user form-control-feedback"></span>
+					<div class="form-group has-feedback parentCls">
+						<input type="email" class="inputElem form-control" placeholder="email" name="email" id="email"  /> <span class="glyphicon glyphicon-user form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback  form-iniline">
+						<div class="input-group">
+							<input type=text class="form-control" placeholder="code" name="code" id="code" /> <span class="input-group-btn">
+								<button class="btn btn-primary" id="btn" value="免费获取验证码" onclick="dosettime(this)" type="button">获取验证码</button>
+							</span>
 						</div>
-						<div class="form-group has-feedback  form-iniline">
-							<div class="input-group">
-								<input type=text class="form-control" placeholder="code" name="code" id="code" /> <span class="input-group-btn">
-									<button class="btn btn-primary" id="btn" value="免费获取验证码" onclick="dosettime(this)" type="button">获取验证码</button>
-								</span>
-							</div>
-						</div>
-						<div class="form-group has-feedback">
-							<input id="input-b2" name="input-b2" type="file" class="file" data-show-preview="false">
-						</div>
-						<div class="form-group has-feedback">
-							<button type="button"  class="btn btn-success" value="提交" >提交</button>
-						</div>
-						 
-					</form>
+					</div>
+					<div class="form-group has-feedback">
+						<input id="file" name="file" type="file" class="file" data-show-preview="false">
+					</div>
+					<div class="form-group has-feedback">
+						<button type="button" class="btn btn-success" disabled="disabled" value="提交">找回</button>
+<!-- 						<button type="button" class="btn btn-success" value="提交" id="upload">提交</button> -->
+					</div>
+
 				</div>
 			</div>
 		</div>
 	</section>
-<script type="text/javascript" src="/plugins/bootstrap/fileinput/js/fileinput.min.js"></script>
-<script type="text/javascript" src="/pages/resume/user/index.js"></script>
+<!-- 	<script type="text/javascript" src="/plugins/jQuery/emailAutoComplete.js"></script> -->
+	<script type="text/javascript" src="/plugins/bootstrap/fileinput/js/fileinput.min.js"></script>
+	<script type="text/javascript" src="/plugins/bootstrap/fileinput/js/locales/zh.js"></script>
+	<script type="text/javascript" src="/pages/resume/user/index.js"></script>
 </body>
 </html>
