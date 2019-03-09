@@ -33,7 +33,7 @@ public class SysUserModal extends BaseEntity implements Serializable {
 	private  String 	modalUuid;
 
 	// 
-	@Column(name = "use")
+	@Column(name = "`use`",columnDefinition=" int ")
 	private  Integer 	use;
 
 	/**  

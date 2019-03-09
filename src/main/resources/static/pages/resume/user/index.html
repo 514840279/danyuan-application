@@ -2,16 +2,6 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<link rel="stylesheet" href="/plugins/bootstrap/fileinput/css/fileinput.min.css" />
-<style type="text/css">
-.auto-tip {
-	background-color: #fff;
-	-webkit-transition: .5s ease-in-out;
-	/* css的transition允许css的属性值在一定的时间内从一个状态平滑的过渡到另一个状态 */
-	-moz-transition: .5s ease-in-out; /*这里为了兼容其他浏览器*/
-	-o-transition: .5s ease-in-out;
-}
-</style>
 </head>
 <body id="body">
 	<!-- 头部设计 -->
@@ -49,15 +39,17 @@
 				<p>5. 理论上html页面的东西都可展示，请不要上传一些不当言论和危害国家的行为，拒绝黄赌毒从你我做起。</p>
 				<p>6. 如果你不是程序员不会写html，请联系你身边的程序小哥。</p>
 				<p>
-					7. 如果你不会写html身边也没有程序小哥，请找广大群友帮忙。<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a"> <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven"></a>
+					7. 如果你不会写html身边也没有程序小哥，请找广大群友帮忙。<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a"> <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven">
+					</a>
 				</p>
 				<p>
-					8. 如果你不想做简历，但是你有要求，有利广大群众也请找我。<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a"> <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven"></a>
+					8. 如果你不想做简历，但是你有要求，有利广大群众也请找我。<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a"> <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven">
+					</a>
 				</p>
 				<p>9. 后期会增加word版本直接上传</p>
 				<div>
-					<div class="form-group has-feedback parentCls">
-						<input type="email" class="inputElem form-control" placeholder="email" name="email" id="email"  /> <span class="glyphicon glyphicon-user form-control-feedback"></span>
+					<div class="form-group has-feedback">
+						<input type="email" class="form-control" placeholder="email" name="email" id="email" /> <span class="glyphicon glyphicon-user form-control-feedback"></span>
 					</div>
 					<div class="form-group has-feedback  form-iniline">
 						<div class="input-group">
@@ -67,20 +59,73 @@
 						</div>
 					</div>
 					<div class="form-group has-feedback">
-						<input id="file" name="file" type="file" class="file" data-show-preview="false">
+						<input id="file" type="file" class="file" name="file" />
 					</div>
 					<div class="form-group has-feedback">
 						<button type="button" class="btn btn-success" disabled="disabled" value="提交">找回</button>
-<!-- 						<button type="button" class="btn btn-success" value="提交" id="upload">提交</button> -->
+						<!-- 						<button type="button" class="btn btn-success" value="提交" id="upload">提交</button> -->
 					</div>
 
 				</div>
 			</div>
 		</div>
 	</section>
-<!-- 	<script type="text/javascript" src="/plugins/jQuery/emailAutoComplete.js"></script> -->
-	<script type="text/javascript" src="/plugins/bootstrap/fileinput/js/fileinput.min.js"></script>
-	<script type="text/javascript" src="/plugins/bootstrap/fileinput/js/locales/zh.js"></script>
+
 	<script type="text/javascript" src="/pages/resume/user/index.js"></script>
+	<script type="text/javascript">
+	var code ="";
+		$("#file").fileinput({
+			uploadUrl : '/sysUserBaseInfo/uploadResume', //上传的地址
+			language : 'zh', //设置语言
+			slugCallback: function(filename) {
+	            return filename.replace('(', '_').replace(']', '_');
+	        },
+			allowedFileExtensions:['shtml','html','doc','docx','pdf'],//接收的文件后缀
+			showUpload:true,//是否显示上传按钮
+// 			showCaption: false,//是否显示标题
+			showPreview:false,
+			browseClass: "btn btn-primary", //按钮样式     
+	//		dropZoneEnabled : false,
+			maxFileCount : 1,
+// 			mainClass : "input-group-lg",
+			enctype: 'multipart/form-data',
+			validateInitialCount:true,
+			previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+			uploadExtraData:function(){
+				return {
+					username:username,
+					email:$("#email").val()
+				}
+			},
+			uploadAsync:false,
+	 	}).on("filepreupload",function(event,data,previewId,index){
+	 		alert(1);
+			var codetext = $("#code").val();
+			if(codetext!=code){
+				bootbox.alert("验证码不正确！");
+				return false;
+			}
+		}).on("filepreajax",function(event,data,previewId,index){
+			if(code==""){
+				bootbox.alert("验证码不正确！"); 
+				$("#file").fileinput('clear').fileinput('refresh').fileinput('enable');
+				return false;
+			}
+			var codetext = $("#code").val();
+			console.log(codetext,code);
+			if(code!=""&&codetext!=""&&codetext!=code){
+				bootbox.alert("验证码不正确！"); 
+				return false;
+			}
+		}).on("fileuploaded", function (event, data, previewId, index) {
+			alert(3);
+			//导入文件上传完成之后的事件
+
+		}).on('fileerror', function(event, data, msg) {  //一个文件上传失败
+			alert(4);
+	   		console.log('文件上传失败！'+msg);
+
+		});
+	</script>
 </body>
 </html>

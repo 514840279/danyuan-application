@@ -1,33 +1,5 @@
 $(function() {
-	$("#file").fileinput({
-		dropZoneEnabled : false,
-		allowedFileExtensions:['html','doc','docx','pdf'],
-		maxFileCount : 1,
-		mainClass : "input-group-lg",
-		uploadExtraData:function(){
-			return {
-				username:username,
-				email:$("#email").val()
-			}
-		},
-		showPreview:false,
-		uploadAsync:false,
-		language:'zh',
-		enctype:'multipart/form-data',
-		uploadUrl:'/sysUserBaseInfo/uploadResume',
-	}).on("filepreupload",function(event,data,previewId,index){
-		var codetext = $("#code").val();
-		if(codetext!=code){
-			alert("验证码不正确！");
-			return;
-		}
-	}).on("filepreajax",function(event,data,previewId,index){
-		var codetext = $("#code").val();
-		if(codetext!=code){
-			alert("验证码不正确！");
-			return;
-		}
-	});
+	
 
 	$("#upload").bind("click",function(){
 		var codetext = $("#code").val();
@@ -37,7 +9,7 @@ $(function() {
 		}
 	})
 })
-var code ="";
+
 function dosettime(val) {
 	var email = $("input[name='email']").val();
 	if (email == "") {

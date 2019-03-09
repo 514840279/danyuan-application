@@ -100,6 +100,147 @@ public class SysUserBaseInfo {
 	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
 	private Integer	deleteFlag;			// delete_flag 标记
 	
+
+		//
+		@Column(name = "position")
+		private String				position;
+
+
+		//
+		@Column(name = "statue")
+		private String				statue;
+
+
+		//
+		@Column(name = "expected_place")
+		private String				expectedPlace;
+
+
+		//
+		@Column(name = "work_nature")
+		private String				workNature;
+
+
+		//
+		@Column(name = "expected_salary")
+		private String				expectedSalary;
+		
+		@Column(name = "resume_path")
+		private String				resumePath;
+
+		
+		/**
+		 * 方法名 ： getPosition
+		 * 功 能 ： 返回变量 position 的值
+		 *
+		 * @return: String
+		 */
+		public String getPosition() {
+			return position;
+		}
+
+		/**
+		 * 方法名 ： setPosition
+		 * 功 能 ： 设置变量 position 的值
+		 */
+		public void setPosition(String position) {
+			this.position = position;
+		}
+		
+
+		/**
+		 * 方法名 ： getStatue
+		 * 功 能 ： 返回变量 statue 的值
+		 *
+		 * @return: String
+		 */
+		public String getStatue() {
+			return statue;
+		}
+
+		/**
+		 * 方法名 ： setStatue
+		 * 功 能 ： 设置变量 statue 的值
+		 */
+		public void setStatue(String statue) {
+			this.statue = statue;
+		}
+
+
+		/**
+		 * 方法名 ： getExpectedPlace
+		 * 功 能 ： 返回变量 expectedPlace 的值
+		 *
+		 * @return: String
+		 */
+		public String getExpectedPlace() {
+			return expectedPlace;
+		}
+
+		/**
+		 * 方法名 ： setExpectedPlace
+		 * 功 能 ： 设置变量 expectedPlace 的值
+		 */
+		public void setExpectedPlace(String expectedPlace) {
+			this.expectedPlace = expectedPlace;
+		}
+
+
+		/**
+		 * 方法名 ： getWorkNature
+		 * 功 能 ： 返回变量 workNature 的值
+		 *
+		 * @return: String
+		 */
+		public String getWorkNature() {
+			return workNature;
+		}
+
+		/**
+		 * 方法名 ： setWorkNature
+		 * 功 能 ： 设置变量 workNature 的值
+		 */
+		public void setWorkNature(String workNature) {
+			this.workNature = workNature;
+		}
+
+
+		/**
+		 * 方法名 ： getExpectedSalary
+		 * 功 能 ： 返回变量 expectedSalary 的值
+		 *
+		 * @return: String
+		 */
+		public String getExpectedSalary() {
+			return expectedSalary;
+		}
+
+		/**
+		 * 方法名 ： setExpectedSalary
+		 * 功 能 ： 设置变量 expectedSalary 的值
+		 */
+		public void setExpectedSalary(String expectedSalary) {
+			this.expectedSalary = expectedSalary;
+		}
+
+		/**
+		 * @方法名 getResumePath
+		 * @功能 返回变量 resumePath 的值
+		 * @return String
+		 */
+		public String getResumePath() {
+			return resumePath;
+		}
+
+		/**
+		 * @方法名 setResumePath
+		 * @功能 设置变量 resumePath 的值
+		 */
+		public void setResumePath(String resumePath) {
+			this.resumePath = resumePath;
+		}
+
+	
 	/**
 	 * 方法名 ： getUuid
 	 * 功 能 ： 返回变量 uuid 的值
