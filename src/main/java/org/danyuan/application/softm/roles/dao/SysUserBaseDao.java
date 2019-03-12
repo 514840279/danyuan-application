@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.danyuan.application.common.base.BaseDao;
 import org.danyuan.application.softm.roles.po.SysRolesInfo;
 import org.danyuan.application.softm.roles.po.SysUserBaseInfo;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Repository;
  * 版 本 ： V1.0
  */
 @Repository("sysUserBaseDao")
-public interface SysUserBaseDao extends JpaRepository<SysUserBaseInfo, String> {
+public interface SysUserBaseDao  extends BaseDao<SysUserBaseInfo> {
 	
 	@Query("   select t from  SysRolesInfo t where t.uuid in ( " + " select a.rolesId from SysUserRolesInfo a where a.userId =:uuid) ")
 	List<SysRolesInfo> getRoleByUser(@Param("uuid") String uuid);

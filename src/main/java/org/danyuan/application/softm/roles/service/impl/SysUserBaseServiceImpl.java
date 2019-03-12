@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.danyuan.application.common.base.BaseServiceImpl;
 import org.danyuan.application.softm.roles.dao.SysRolesDao;
 import org.danyuan.application.softm.roles.dao.SysUserBaseDao;
 import org.danyuan.application.softm.roles.dao.SysUserRolesDao;
@@ -27,7 +28,7 @@ import org.springframework.stereotype.Service;
  * 作 者 ： Tenghui.Wang 时 间 ： 2016年7月17日 下午3:58:07 版 本 ： V1.0
  */
 @Service("sysUserBaseService")
-public class SysUserBaseServiceImpl implements SysUserBaseService {
+public class SysUserBaseServiceImpl extends BaseServiceImpl<SysUserBaseInfo> implements SysUserBaseService {
 	
 	//
 	@Autowired
@@ -124,10 +125,10 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 	 * 方法名 ： save 功 能 ： TODO(这里用一句话描述这个方法的作用) 参 数 ： @param info 参 考 ： @see
 	 * tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService#save(tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo)
 	 * 作 者 ： Administrator
+	 * @return 
 	 */
 	
-	@Override
-	public void save(SysUserBaseInfo info) {
+	public SysUserBaseInfo save(SysUserBaseInfo info) {
 
 		sysUserBaseDao.save(info);
 		// 初始化权限
@@ -149,6 +150,7 @@ public class SysUserBaseServiceImpl implements SysUserBaseService {
 			userRoleList.add(userRolesInfo);
 		}
 		sysUserRolesDao.saveAll(userRoleList);
+		return info;
 	}
 	
 	/**

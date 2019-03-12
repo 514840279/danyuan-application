@@ -2,6 +2,7 @@ package org.danyuan.application.softm.roles.service;
 
 import java.util.List;
 
+import org.danyuan.application.common.base.BaseService;
 import org.danyuan.application.softm.roles.po.SysRolesInfo;
 import org.danyuan.application.softm.roles.po.SysUserBaseInfo;
 import org.danyuan.application.softm.roles.vo.SysUserBaseVo;
@@ -12,7 +13,7 @@ import org.springframework.data.domain.Page;
  * TODO(用一句话描述该文件做什么) 机能名称： 技能ID ： 作 者 ： Tenghui.Wang 时 间 ： 2016年7月17日 下午3:57:41
  * 版 本 ： V1.0
  */
-public interface SysUserBaseService {
+public interface SysUserBaseService extends BaseService<SysUserBaseInfo>{
 
 	/**
 	 * 方法名： findAll 功 能： TODO(这里用一句话描述这个方法的作用) 参 数： @return 返 回：
@@ -36,7 +37,6 @@ public interface SysUserBaseService {
 
 	Page<SysUserBaseInfo> findAllBySearchText(int pageNumber, int pageSize, SysUserBaseInfo info);
 
-	void save(SysUserBaseInfo info);
 
 	void delete(SysUserBaseVo vo);
 
@@ -99,5 +99,6 @@ public interface SysUserBaseService {
 	 * @throws
 	 */
 	void savec(String uuid, String userName, String email, String phone, String organization, String department);
+
 
 }

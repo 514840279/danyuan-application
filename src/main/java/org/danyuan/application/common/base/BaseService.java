@@ -24,7 +24,7 @@ public interface BaseService<T> {
 
 	Page<T> page(Pagination<T> vo);
 
-	T save(T entity) throws IllegalArgumentException, IllegalAccessException;
+	T save(T entity);
 
 	void saveAll(List<T> entities);
 

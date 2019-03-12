@@ -7,20 +7,19 @@ import java.util.List;
 import org.danyuan.application.common.base.BaseController;
 import org.danyuan.application.common.base.BaseControllerImpl;
 import org.danyuan.application.common.base.BaseResult;
-import org.danyuan.application.resume.user.po.SysUserBaseInfo;
 import org.danyuan.application.resume.user.po.SysUserEducation;
 import org.danyuan.application.resume.user.po.SysUserEvaluate;
 import org.danyuan.application.resume.user.po.SysUserModal;
 import org.danyuan.application.resume.user.po.SysUserProject;
 import org.danyuan.application.resume.user.po.SysUserSkill;
 import org.danyuan.application.resume.user.po.SysUserWorkExpreience;
-import org.danyuan.application.resume.user.service.SysUserBaseInfoService;
 import org.danyuan.application.resume.user.service.SysUserEducationService;
 import org.danyuan.application.resume.user.service.SysUserEvaluateService;
 import org.danyuan.application.resume.user.service.SysUserModalService;
 import org.danyuan.application.resume.user.service.SysUserProjectService;
 import org.danyuan.application.resume.user.service.SysUserSkillService;
 import org.danyuan.application.resume.user.service.SysUserWorkExpreienceService;
+import org.danyuan.application.softm.roles.service.SysUserBaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,7 +47,7 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 	SysUserModalService				sysUserModalService;
 	
 	@Autowired
-	SysUserBaseInfoService			sysUserBaseInfoService;			// 基本信息
+	SysUserBaseService			sysUserBaseService;			// 基本信息
 	
 	@Autowired
 	SysUserEducationService			sysUserEducationService;		// 教育信息
@@ -66,7 +65,7 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 	SysUserEvaluateService			sysUserEvaluateService;			// 评价信息
 
 	@RequestMapping(path = "/writeResume", method = RequestMethod.POST)
-	public BaseResult<String> writeResume(@RequestBody SysUserModal info) {
+	public BaseResult<String> writeResume(@RequestBody SysUserModal info) throws IllegalArgumentException, IllegalAccessException {
 		BaseResult<String> result = new BaseResult<>();
 		try {
 			// 构造模板引擎
@@ -79,7 +78,7 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 			// 构造上下文(Model)
 			Context context = new Context();
 			// 基本
-			SysUserBaseInfo base = sysUserBaseInfoService.findById(info.getUserUuid());
+			org.danyuan.application.softm.roles.po.SysUserBaseInfo base = sysUserBaseService.findById(info.getUserUuid());
 			context.setVariable("base", base);
 			// 教育
 			SysUserEducation education = new SysUserEducation();
@@ -116,7 +115,7 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 			templateEngine.process("resume/modal/" + info.getModalUuid(), context, write);
 			// 保存简历路径
 			base.setResumePath("/file/" + info.getUserUuid() + ".html");
-			sysUserBaseInfoService.save(base);
+			sysUserBaseService.save(base);
 			result.setCode(200);
 		} catch (IOException e) {
 			result.setCode(-100);
@@ -137,7 +136,7 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 		// 构造上下文(Model)
 		ModelAndView view = new ModelAndView("resume/modal/" + resume + ".html");
 		// 基本
-		view.addObject("base", sysUserBaseInfoService.findById(userid));
+		view.addObject("base", sysUserBaseService.findById(userid));
 		// 教育
 		SysUserEducation education = new SysUserEducation();
 		education.setUserUuid(userid);

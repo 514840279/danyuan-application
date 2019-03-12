@@ -19,8 +19,7 @@ import org.danyuan.application.common.utils.MailVo;
 import org.danyuan.application.common.utils.SimapleMailRegist;
 import org.danyuan.application.common.utils.excel.WordToHtml;
 import org.danyuan.application.common.utils.string.StringUtils;
-import org.danyuan.application.resume.user.po.SysUserBaseInfo;
-import org.danyuan.application.resume.user.service.SysUserBaseInfoService;
+import org.danyuan.application.softm.roles.po.SysUserBaseInfo;
 import org.danyuan.application.softm.roles.service.SysUserBaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -44,14 +43,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInfo> implements BaseController<SysUserBaseInfo> {
 	
 	@Autowired
-	SysUserBaseInfoService		sysUserBaseInfoService;
-
-	@Autowired
 	private SysUserBaseService	sysUserBaseService;
-	
+
 	@Autowired
 	SimapleMailRegist			mailRegist;
-
+	
 	@RequestMapping(path = "/sendMail", method = RequestMethod.POST)
 	public BaseResult<String> sendMail(@RequestBody SysUserBaseInfo info) {
 		MailVo mailMessage = new MailVo();
@@ -66,7 +62,7 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 		sBuilder.append("\n 请妥善保管好，不要发送给任何人，谢谢合作！");
 		sBuilder.append("\n 初学者：http://www.danyuan.wang");
 		sBuilder.append("\n 一个致力于使用代码改变生活的网站！");
-
+		
 		mailMessage.setMessage(sBuilder.toString());
 		mailMessage.setTitle("简历注册验证码");
 		mailMessage.setMail(info.getEmail());
@@ -77,8 +73,8 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 		result.setData(codeString);
 		return result;
 	}
-
-	@RequestMapping(path = "/uploadResume", method = RequestMethod.POST)
+	
+	@RequestMapping(path = "/uploadResume")
 	public BaseResult<String> uploadResume(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 		BaseResult<String> result = new BaseResult<>();
 		// 文件保存
@@ -91,7 +87,10 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 			String filename = multipartFile.getOriginalFilename();
 			InputStream inputStream = null;
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-			String path = System.getProperty("user.dir") + "\\" + simpleDateFormat.format(new Date());
+			
+			String path = System.getProperty("user.dir") + "\\file\\" + simpleDateFormat.format(new Date());
+			result.setData("\\file\\" + simpleDateFormat.format(new Date()) + "\\" + filename);
+			
 			File file = new File(path);
 			try {
 				inputStream = multipartFile.getInputStream();
@@ -102,7 +101,7 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 				}
 				path = path + "\\" + filename;
 				FileOutputStream fos = new FileOutputStream(path);
-				
+
 				byte[] b = new byte[1024];
 				while ((inputStream.read(b)) != -1) {
 					fos.write(b);
@@ -112,12 +111,12 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 				// word 转html
 				if (filename.toLowerCase().contains(".docx")) {
 					WordToHtml.Word2007ToHtml(path, filename);
-					result.setData(simpleDateFormat.format(new Date()) + "\\" + filename.substring(0, filename.lastIndexOf(".")) + ".html");
+					result.setData("\\file\\" + simpleDateFormat.format(new Date()) + "\\" + filename.substring(0, filename.lastIndexOf(".")) + ".html");
 				} else {
 					WordToHtml.Word2003ToHtml(path, filename);
-					result.setData(simpleDateFormat.format(new Date()) + "\\" + filename.substring(0, filename.lastIndexOf(".")) + ".html");
+					result.setData("\\file\\" + simpleDateFormat.format(new Date()) + "\\" + filename.substring(0, filename.lastIndexOf(".")) + ".html");
 				}
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -125,12 +124,12 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 		// 更新信息
 		SysUserBaseInfo entity = new SysUserBaseInfo();
 		entity.setEmail(emailString);
-		entity = sysUserBaseInfoService.findOne(entity);
+		entity = sysUserBaseService.findOne(entity);
 		MailVo mailMessage = new MailVo();
 		StringBuilder sBuilder = new StringBuilder();
 		if (entity == null) {
 			// 新建
-			org.danyuan.application.softm.roles.po.SysUserBaseInfo info = new org.danyuan.application.softm.roles.po.SysUserBaseInfo();
+			SysUserBaseInfo info = new SysUserBaseInfo();
 			info.setUuid(UUID.randomUUID().toString());
 			info.setEmail(emailString);
 			info.setDeleteFlag(0);
@@ -140,46 +139,50 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 			info.setPersionName(emailString);
 			String codeString = StringUtils.genRandomNumByLen(8);
 			info.setPassword(codeString);
+			info.setResumePath("http://www.danyuan.wang/" + result.getData());
 			encryptPassword(info);
 			sysUserBaseService.save(info);
 			//
-			
+
 			sBuilder.append("欢迎您使用《初学者》《简历管理系统》：");
 			sBuilder.append("\n 已为您创建好简历 并在系统中为您注册新的账户 ");
 			sBuilder.append("\n 账号： " + info.getUserName());
 			sBuilder.append("\n 默认密码： " + codeString);
-			sBuilder.append("\n 您的简历地址：http://www.danyuan.wang/" + result.getData());
+			sBuilder.append("\n 您的简历地址：http://www.danyuan.wang" + result.getData());
 			sBuilder.append("\n 账号密码用户后期登录使用。");
 			sBuilder.append("\n 请妥善保管好，不要发送给任何人，谢谢合作！");
 			sBuilder.append("\n 初学者：http://www.danyuan.wang");
 			sBuilder.append("\n 一个致力于使用代码改变生活的网站！");
-			
-		} else {
 
+		} else {
+			
 			sBuilder.append("欢迎您使用《初学者》《简历管理系统》：");
 			sBuilder.append("\n 已为您创建好简历 ");
-			sBuilder.append("\n 您的简历地址：http://www.danyuan.wang/" + result.getData());
+			sBuilder.append("\n 您的简历地址：http://www.danyuan.wang" + result.getData());
 			sBuilder.append("\n 请妥善保管好，不要发送给任何人，谢谢合作！");
 			sBuilder.append("\n 初学者：http://www.danyuan.wang");
 			sBuilder.append("\n 一个致力于使用代码改变生活的网站！");
+			entity.setResumePath("http://www.danyuan.wang" + result.getData());
 			entity.setResumePath(result.getData());
-			sysUserBaseInfoService.save(entity);
+			sysUserBaseService.save(entity);
 		}
-		
+
 		mailMessage.setMessage(sBuilder.toString());
 		mailMessage.setTitle("简历注册");
 		mailMessage.setMail(emailString);
 		// 发送邮件
 		mailRegist.SendMailToCustom(mailMessage);
+		// 生成简历二维码，个人名片信息
+
 		return result;
 	}
-	
+
 	/**
 	 * 加密密码
 	 */
 	@Autowired
 	PasswordEncoder passwordEncoder;
-
+	
 	private void encryptPassword(org.danyuan.application.softm.roles.po.SysUserBaseInfo userEntity) {
 		String password = userEntity.getPassword();
 		password = passwordEncoder.encode(password);
