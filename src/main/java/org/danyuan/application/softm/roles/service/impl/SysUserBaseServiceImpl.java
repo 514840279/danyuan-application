@@ -1,6 +1,7 @@
 package org.danyuan.application.softm.roles.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -125,9 +126,11 @@ public class SysUserBaseServiceImpl extends BaseServiceImpl<SysUserBaseInfo> imp
 	 * 方法名 ： save 功 能 ： TODO(这里用一句话描述这个方法的作用) 参 数 ： @param info 参 考 ： @see
 	 * tk.ainiyue.danyuan.application.user.userbase.service.SysUserBaseService#save(tk.ainiyue.danyuan.application.user.userbase.po.SysUserBaseInfo)
 	 * 作 者 ： Administrator
-	 * @return 
+	 *
+	 * @return
 	 */
 	
+	@Override
 	public SysUserBaseInfo save(SysUserBaseInfo info) {
 
 		sysUserBaseDao.save(info);
@@ -140,6 +143,8 @@ public class SysUserBaseServiceImpl extends BaseServiceImpl<SysUserBaseInfo> imp
 			userRolesInfo.setUserId(info.getUuid());
 			userRolesInfo.setRolesId(sysRolesInfo.getUuid());
 			userRolesInfo.setDeleteFlag(0);
+			userRolesInfo.setCreateTime(new Date());
+			userRolesInfo.setUpdateTime(new Date());
 			userRolesInfo.setCreateUser(info.getUserName());
 			userRolesInfo.setUpdateUser(info.getUserName());
 			if ("user".equals(sysRolesInfo.getRoleName())) {
