@@ -28,6 +28,8 @@
 		<!-- 指明使用JDK8 -->
 		<java.version>1.8</java.version>
 		<docker.image.prefix>danyuan</docker.image.prefix>
+		<poi-version>3.15</poi-version>
+		<hanlp-version>portable-1.7.2</hanlp-version>
 	</properties>
 
 	<!-- Inherit defaults from Spring Boot -->
@@ -38,11 +40,7 @@
 	</parent>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>1.1.31</version>
-		</dependency>
+
 		<!-- spring boot web支持：mvc,aop... -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -107,7 +105,36 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.httpcomponents</groupId> -->
+		<!-- <artifactId>httpclient</artifactId> -->
+		<!-- </dependency> -->
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.1.31</version>
+		</dependency>
 		<!-- jsoup -->
 		<dependency>
 			<!-- jsoup HTML parser library @ http://jsoup.org/ -->
@@ -128,26 +155,6 @@
 			<version>1.1.0</version>
 		</dependency>
 
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-httpclient</groupId>
-			<artifactId>commons-httpclient</artifactId>
-			<version>3.1</version>
-		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.httpcomponents</groupId> -->
-		<!-- <artifactId>httpclient</artifactId> -->
-		<!-- </dependency> -->
-
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpmime</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -174,11 +181,7 @@
 		<!-- <version>10.2.0.2.0</version> -->
 		<!-- </dependency> -->
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
@@ -200,27 +203,26 @@
 		<dependency>
 			<groupId>com.hankcs</groupId>
 			<artifactId>hanlp</artifactId>
-			<version>portable-1.2.9</version>
+			<version>${hanlp-version}</version>
 		</dependency>
 
 		<!-- 支持Word文档的操作 -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-scratchpad</artifactId>
-			<version>3.10-beta2</version>
+			<version>${poi-version}</version>
 		</dependency>
-
 		<!-- 加入POI核心依赖 -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>3.10-beta2</version>
+			<version>${poi-version}</version>
 		</dependency>
 		<!-- 为POI支持Office Open XML -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>3.10-beta2</version>
+			<version>${poi-version}</version>
 		</dependency>
 		<!-- 加入CXF依赖包 -->
 		<dependency>
@@ -234,6 +236,23 @@
 			<version>2.7.7</version>
 		</dependency>
 
+		<dependency>
+			<groupId>fr.opensagres.xdocreport</groupId>
+			<artifactId>fr.opensagres.poi.xwpf.converter.xhtml</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.opensagres.xdocreport</groupId>
+			<artifactId>xdocreport</artifactId>
+			<version>1.0.6</version>
+		</dependency>
 
 	</dependencies>
 	<build>

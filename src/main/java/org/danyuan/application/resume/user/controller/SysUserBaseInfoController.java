@@ -17,6 +17,7 @@ import org.danyuan.application.common.base.BaseControllerImpl;
 import org.danyuan.application.common.base.BaseResult;
 import org.danyuan.application.common.utils.MailVo;
 import org.danyuan.application.common.utils.SimapleMailRegist;
+import org.danyuan.application.common.utils.excel.WordToHtml;
 import org.danyuan.application.common.utils.string.StringUtils;
 import org.danyuan.application.resume.user.po.SysUserBaseInfo;
 import org.danyuan.application.resume.user.service.SysUserBaseInfoService;
@@ -90,16 +91,16 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 			String filename = multipartFile.getOriginalFilename();
 			InputStream inputStream = null;
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-			String path = System.getProperty("user.dir") + "/" + simpleDateFormat.format(new Date());
+			String path = System.getProperty("user.dir") + "\\" + simpleDateFormat.format(new Date());
 			File file = new File(path);
 			try {
 				inputStream = multipartFile.getInputStream();
-				result.setData(simpleDateFormat.format(new Date()) + "/" + filename);
+				result.setData(simpleDateFormat.format(new Date()) + "\\" + filename);
 				
 				if (!file.exists()) {
 					file.mkdirs();
 				}
-				path = path + "/" + filename;
+				path = path + "\\" + filename;
 				FileOutputStream fos = new FileOutputStream(path);
 				
 				byte[] b = new byte[1024];
@@ -108,6 +109,15 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 				}
 				fos.close();
 				inputStream.close();
+				// word 转html
+				if (filename.toLowerCase().contains(".docx")) {
+					WordToHtml.Word2007ToHtml(path, filename);
+					result.setData(simpleDateFormat.format(new Date()) + "\\" + filename.substring(0, filename.lastIndexOf(".")) + ".html");
+				} else {
+					WordToHtml.Word2003ToHtml(path, filename);
+					result.setData(simpleDateFormat.format(new Date()) + "\\" + filename.substring(0, filename.lastIndexOf(".")) + ".html");
+				}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

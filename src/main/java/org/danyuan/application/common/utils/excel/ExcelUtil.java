@@ -18,6 +18,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  * Excel文件操作工具类，包括读、写、合并等功能
+ *
  * @author : 龙轩
  * @group : tgb8
  * @Version : 1.00
@@ -168,6 +169,7 @@ public class ExcelUtil {
 	
 	/**
 	 * 还原设定（其实是重新new一个新的对象并返回）
+	 *
 	 * @return
 	 */
 	public ExcelUtil RestoreSettings() {
@@ -177,6 +179,7 @@ public class ExcelUtil {
 	
 	/**
 	 * 自动根据文件扩展名，调用对应的读取方法
+	 *
 	 * @Title: writeExcel
 	 * @Date : 2014-9-11 下午01:50:38
 	 * @param xlsPath
@@ -188,6 +191,7 @@ public class ExcelUtil {
 	
 	/**
 	 * 自动根据文件扩展名，调用对应的读取方法
+	 *
 	 * @Title: writeExcel
 	 * @Date : 2014-9-11 下午01:50:38
 	 * @param xlsPath
@@ -235,6 +239,7 @@ public class ExcelUtil {
 	
 	/**
 	 * 自动根据文件扩展名，调用对应的写入方法
+	 *
 	 * @Title: writeExcel
 	 * @Date : 2014-9-11 下午01:50:38
 	 * @param rowList
@@ -246,6 +251,7 @@ public class ExcelUtil {
 	
 	/**
 	 * 自动根据文件扩展名，调用对应的写入方法
+	 *
 	 * @Title: writeExcel
 	 * @Date : 2014-9-11 下午01:50:38
 	 * @param rowList
@@ -289,6 +295,7 @@ public class ExcelUtil {
 	
 	/**
 	 * 修改Excel（97-03版，xls格式）
+	 *
 	 * @Title: writeExcel_xls
 	 * @Date : 2014-9-11 下午01:50:38
 	 * @param rowList
@@ -301,6 +308,7 @@ public class ExcelUtil {
 	
 	/**
 	 * 修改Excel（97-03版，xls格式）
+	 *
 	 * @Title: writeExcel_xls
 	 * @Date : 2014-9-11 下午01:50:38
 	 * @param rowList
@@ -361,6 +369,7 @@ public class ExcelUtil {
 	
 	/**
 	 * 修改Excel（97-03版，xls格式）
+	 *
 	 * @Title: writeExcel_xls
 	 * @Date : 2014-9-11 下午01:50:38
 	 * @param rowList
@@ -373,6 +382,7 @@ public class ExcelUtil {
 	
 	/**
 	 * 修改Excel（2007版，xlsx格式）
+	 *
 	 * @Title: writeExcel_xlsx
 	 * @Date : 2014-9-11 下午01:50:38
 	 * @param rowList
@@ -444,6 +454,7 @@ public class ExcelUtil {
 	
 	/**
 	 * //读取Excel 2007版，xlsx格式
+	 *
 	 * @Title: readExcel_xlsx
 	 * @Date : 2014-9-11 上午11:43:11
 	 * @return
@@ -457,7 +468,7 @@ public class ExcelUtil {
 		}
 		
 		XSSFWorkbook wb = null;
-		List<List<Row>> rowList = new ArrayList<List<Row>>();
+		List<List<Row>> rowList = new ArrayList<>();
 		try {
 			FileInputStream fis = new FileInputStream(file);
 			// 去读Excel
@@ -485,6 +496,7 @@ public class ExcelUtil {
 	
 	/***
 	 * 读取Excel(97-03版，xls格式)
+	 *
 	 * @throws Exception
 	 * @Title: readExcel
 	 * @Date : 2014-9-11 上午09:53:21
@@ -498,7 +510,7 @@ public class ExcelUtil {
 		}
 		
 		HSSFWorkbook wb = null;// 用于Workbook级的操作，创建、删除Excel
-		List<List<Row>> rowList = new ArrayList<List<Row>>();
+		List<List<Row>> rowList = new ArrayList<>();
 		
 		try {
 			// 读取Excel
@@ -515,31 +527,33 @@ public class ExcelUtil {
 	
 	/***
 	 * 读取单元格的值
+	 *
 	 * @Title: getCellValue
 	 * @Date : 2014-9-11 上午10:52:07
 	 * @param cell
 	 * @return
 	 */
+	@SuppressWarnings("deprecation")
 	public String getCellValue(Cell cell) {
 		Object result = "";
 		if (cell != null) {
-			switch (cell.getCellType()) {
-				case Cell.CELL_TYPE_STRING:
+			switch (cell.getCellTypeEnum()) {
+				case STRING:
 					result = cell.getStringCellValue();
 					break;
-				case Cell.CELL_TYPE_NUMERIC:
+				case NUMERIC:
 					result = cell.getNumericCellValue();
 					break;
-				case Cell.CELL_TYPE_BOOLEAN:
+				case BOOLEAN:
 					result = cell.getBooleanCellValue();
 					break;
-				case Cell.CELL_TYPE_FORMULA:
+				case FORMULA:
 					result = cell.getCellFormula();
 					break;
-				case Cell.CELL_TYPE_ERROR:
+				case ERROR:
 					result = cell.getErrorCellValue();
 					break;
-				case Cell.CELL_TYPE_BLANK:
+				case BLANK:
 					break;
 				default:
 					break;
@@ -550,14 +564,15 @@ public class ExcelUtil {
 	
 	/**
 	 * 通用读取Excel
+	 *
 	 * @Title: readExcel
 	 * @Date : 2014-9-11 上午11:26:53
 	 * @param wb
 	 * @return
 	 */
 	public List<List<Row>> readExcel(Workbook wb) {
-		List<List<Row>> list = new ArrayList<List<Row>>();
-		List<Row> rowList = new ArrayList<Row>();
+		List<List<Row>> list = new ArrayList<>();
+		List<Row> rowList = new ArrayList<>();
 		int sheetCount = 1;// 需要操作的sheet数量
 		
 		Sheet sheet = null;
@@ -607,6 +622,7 @@ public class ExcelUtil {
 	
 	/**
 	 * 修改Excel，并另存为
+	 *
 	 * @Title: WriteExcel
 	 * @Date : 2014-9-11 下午01:33:59
 	 * @param wb
@@ -627,8 +643,9 @@ public class ExcelUtil {
 		int t = 0;// 记录最新添加的行数
 		out("要添加的数据总条数为：" + rowList.size());
 		for (Row row : rowList) {
-			if (row == null)
+			if (row == null) {
 				continue;
+			}
 			// 判断是否已经存在该数据
 			int pos = findInExcel(sheet, row);
 			
@@ -648,8 +665,9 @@ public class ExcelUtil {
 				Cell cell = r.createCell(i);// 获取数据类型
 				cell.setCellValue(getCellValue(row.getCell(i)));// 复制单元格的值到新的单元格
 				// cell.setCellStyle(row.getCell(i).getCellStyle());//出错
-				if (row.getCell(i) == null)
+				if (row.getCell(i) == null) {
 					continue;
+				}
 				copyCellStyle(row.getCell(i).getCellStyle(), newstyle); // 获取原来的单元格样式
 				cell.setCellStyle(newstyle);// 设置样式
 				// sheet.autoSizeColumn(i);//自动跳转列宽度
@@ -674,6 +692,7 @@ public class ExcelUtil {
 	
 	/**
 	 * 查找某行数据是否在Excel表中存在，返回行数。
+	 *
 	 * @Title: findInExcel
 	 * @Date : 2014-9-11 下午02:23:12
 	 * @param sheet
@@ -707,16 +726,17 @@ public class ExcelUtil {
 	
 	/**
 	 * 复制一个单元格样式到目的单元格样式
+	 *
 	 * @param fromStyle
 	 * @param toStyle
 	 */
 	public static void copyCellStyle(CellStyle fromStyle, CellStyle toStyle) {
-		toStyle.setAlignment(fromStyle.getAlignment());
+		toStyle.setAlignment(fromStyle.getAlignmentEnum());
 		// 边框和边框颜色
-		toStyle.setBorderBottom(fromStyle.getBorderBottom());
-		toStyle.setBorderLeft(fromStyle.getBorderLeft());
-		toStyle.setBorderRight(fromStyle.getBorderRight());
-		toStyle.setBorderTop(fromStyle.getBorderTop());
+		toStyle.setBorderBottom(fromStyle.getBorderBottomEnum());
+		toStyle.setBorderLeft(fromStyle.getBorderLeftEnum());
+		toStyle.setBorderRight(fromStyle.getBorderRightEnum());
+		toStyle.setBorderTop(fromStyle.getBorderTopEnum());
 		toStyle.setTopBorderColor(fromStyle.getTopBorderColor());
 		toStyle.setBottomBorderColor(fromStyle.getBottomBorderColor());
 		toStyle.setRightBorderColor(fromStyle.getRightBorderColor());
@@ -728,19 +748,20 @@ public class ExcelUtil {
 		
 		// 数据格式
 		toStyle.setDataFormat(fromStyle.getDataFormat());
-		toStyle.setFillPattern(fromStyle.getFillPattern());
+		toStyle.setFillPattern(fromStyle.getFillPatternEnum());
 		// toStyle.setFont(fromStyle.getFont(null));
 		toStyle.setHidden(fromStyle.getHidden());
 		toStyle.setIndention(fromStyle.getIndention());// 首行缩进
 		toStyle.setLocked(fromStyle.getLocked());
 		toStyle.setRotation(fromStyle.getRotation());// 旋转
-		toStyle.setVerticalAlignment(fromStyle.getVerticalAlignment());
+		toStyle.setVerticalAlignment(fromStyle.getVerticalAlignmentEnum());
 		toStyle.setWrapText(fromStyle.getWrapText());
 		
 	}
 	
 	/**
 	 * 获取合并单元格的值
+	 *
 	 * @param sheet
 	 * @param row
 	 * @param column
@@ -772,6 +793,7 @@ public class ExcelUtil {
 	
 	/**
 	 * 打印消息，
+	 *
 	 * @param msg
 	 *            消息内容
 	 * @param tr
@@ -785,6 +807,7 @@ public class ExcelUtil {
 	
 	/**
 	 * 打印消息，
+	 *
 	 * @param msg
 	 *            消息内容
 	 * @param tr

@@ -29,106 +29,113 @@ import com.fasterxml.jackson.databind.exc.InvalidFormatException;
  * 版 本 ： V1.0
  */
 public class ExcelHandle {
-	
+
+	@SuppressWarnings({ "resource", "deprecation" })
 	public List<String[]> readXLS(String path, int num) throws FileNotFoundException, IOException {
 		File file = new File(path);
 		POIFSFileSystem poifsFileSystem = new POIFSFileSystem(new FileInputStream(file));
 		HSSFWorkbook hssfWorkbook = new HSSFWorkbook(poifsFileSystem);
 		HSSFSheet hssfSheet = hssfWorkbook.getSheetAt(num);
-		
+
 		int rowstart = hssfSheet.getFirstRowNum();
 		int rowEnd = hssfSheet.getLastRowNum();
 		for (int i = rowstart; i <= rowEnd; i++) {
 			HSSFRow row = hssfSheet.getRow(i);
-			if (null == row)
+			if (null == row) {
 				continue;
+			}
 			int cellStart = row.getFirstCellNum();
 			int cellEnd = row.getLastCellNum();
-			
+
 			for (int k = cellStart; k <= cellEnd; k++) {
 				HSSFCell cell = row.getCell(k);
-				if (null == cell)
+				if (null == cell) {
 					continue;
+				}
 				System.out.print("" + k + "  ");
 				// System.out.print("type:"+cell.getCellType());
-				
-				switch (cell.getCellType()) {
-					case HSSFCell.CELL_TYPE_NUMERIC: // 数字
+
+				switch (cell.getCellTypeEnum()) {
+					case NUMERIC: // 数字
 						System.out.print(cell.getNumericCellValue() + "   ");
 						break;
-					case HSSFCell.CELL_TYPE_STRING: // 字符串
+					case STRING: // 字符串
 						System.out.print(cell.getStringCellValue() + "   ");
 						break;
-					case HSSFCell.CELL_TYPE_BOOLEAN: // Boolean
+					case BOOLEAN: // Boolean
 						System.out.println(cell.getBooleanCellValue() + "   ");
 						break;
-					case HSSFCell.CELL_TYPE_FORMULA: // 公式
+					case FORMULA: // 公式
 						System.out.print(cell.getCellFormula() + "   ");
 						break;
-					case HSSFCell.CELL_TYPE_BLANK: // 空值
+					case BLANK: // 空值
 						System.out.println(" ");
 						break;
-					case HSSFCell.CELL_TYPE_ERROR: // 故障
+					case ERROR: // 故障
 						System.out.println(" ");
 						break;
 					default:
 						System.out.print("未知类型   ");
 						break;
 				}
-				
+
 			}
 			System.out.print("\n");
 		}
 		return null;
-		
+
 	}
-	
+
+	@SuppressWarnings("deprecation")
 	public void readXLSX(String path, int num) throws InvalidFormatException, IOException {
 		File file = new File(path);
+		@SuppressWarnings("resource")
 		XSSFWorkbook xssfWorkbook = new XSSFWorkbook(new FileInputStream(file));
 		XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(num);
-		
+
 		int rowstart = xssfSheet.getFirstRowNum();
 		int rowEnd = xssfSheet.getLastRowNum();
 		for (int i = rowstart; i <= rowEnd; i++) {
 			XSSFRow row = xssfSheet.getRow(i);
-			if (null == row)
+			if (null == row) {
 				continue;
+			}
 			int cellStart = row.getFirstCellNum();
 			int cellEnd = row.getLastCellNum();
-			
+
 			for (int k = cellStart; k <= cellEnd; k++) {
 				XSSFCell cell = row.getCell(k);
-				if (null == cell)
+				if (null == cell) {
 					continue;
-				
-				switch (cell.getCellType()) {
-					case HSSFCell.CELL_TYPE_NUMERIC: // 数字
+				}
+
+				switch (cell.getCellTypeEnum()) {
+					case NUMERIC: // 数字
 						System.out.print(cell.getNumericCellValue() + "   ");
 						break;
-					case HSSFCell.CELL_TYPE_STRING: // 字符串
+					case STRING: // 字符串
 						System.out.print(cell.getStringCellValue() + "   ");
 						break;
-					case HSSFCell.CELL_TYPE_BOOLEAN: // Boolean
+					case BOOLEAN: // Boolean
 						System.out.println(cell.getBooleanCellValue() + "   ");
 						break;
-					case HSSFCell.CELL_TYPE_FORMULA: // 公式
+					case FORMULA: // 公式
 						System.out.print(cell.getCellFormula() + "   ");
 						break;
-					case HSSFCell.CELL_TYPE_BLANK: // 空值
+					case BLANK: // 空值
 						System.out.println(" ");
 						break;
-					case HSSFCell.CELL_TYPE_ERROR: // 故障
+					case ERROR: // 故障
 						System.out.println(" ");
 						break;
 					default:
 						System.out.print("未知类型   ");
 						break;
 				}
-				
+
 			}
 			System.out.print("\n");
 		}
-		
+
 	}
 }
