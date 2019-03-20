@@ -32,7 +32,7 @@ import org.w3c.dom.Document;
  * word 转换成html
  */
 public class WordToHtml {
-	
+
 	/**
 	 * 2007版本word转换成html
 	 *
@@ -40,28 +40,28 @@ public class WordToHtml {
 	 */
 	public static void Word2007ToHtml(String filepath, String fileName) throws IOException {
 		String htmlName = fileName.substring(0, fileName.lastIndexOf(".")) + ".html";
-		final String file = filepath + "\\" + fileName;
+		final String file = filepath + "/" + fileName;
 		File f = new File(file);
 		if (!f.exists()) {
 			System.out.println("Sorry File does not Exists!");
 		} else {
 			if (f.getName().toLowerCase().endsWith(".docx") || f.getName().toLowerCase().endsWith(".doc")) {
-				
+
 				// 1) 加载word文档生成 XWPFDocument对象
 				InputStream in = new FileInputStream(f);
 				XWPFDocument document = new XWPFDocument(in);
-				
+
 				// 2) 解析 XHTML配置 (这里设置IURIResolver来设置图片存放的目录)
 				File imageFolderFile = new File(filepath);
 				XHTMLOptions options = XHTMLOptions.create().URIResolver(new FileURIResolver(imageFolderFile));
 				options.setExtractor(new FileImageExtractor(imageFolderFile));
 				options.setIgnoreStylesIfUnused(false);
 				options.setFragment(true);
-				
+
 				// 3) 将 XWPFDocument转换成XHTML
-				OutputStream out = new FileOutputStream(new File(filepath + "\\" + htmlName));
+				OutputStream out = new FileOutputStream(new File(filepath + "/" + htmlName));
 				XHTMLConverter.getInstance().convert(document, out, options);
-				
+
 				// 也可以使用字符数组流获取解析的内容
 //                ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //                XHTMLConverter.getInstance().convert(document, baos, options);
@@ -73,7 +73,7 @@ public class WordToHtml {
 			}
 		}
 	}
-	
+
 	/**
 	 * /**
 	 * 2003版本word转换成html
@@ -84,7 +84,7 @@ public class WordToHtml {
 	 */
 	public static void Word2003ToHtml(String filepath, String fileName) throws IOException, TransformerException, ParserConfigurationException {
 		String htmlName = fileName.substring(0, fileName.lastIndexOf(".")) + ".html";
-		final String file = filepath + "\\" + fileName;
+		final String file = filepath + "/" + fileName;
 		InputStream input = new FileInputStream(new File(file));
 		HWPFDocument wordDocument = new HWPFDocument(input);
 		WordToHtmlConverter wordToHtmlConverter = new WordToHtmlConverter(DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument());
@@ -109,36 +109,36 @@ public class WordToHtml {
 				return filepath + "\\" + fileName.substring(0, fileName.lastIndexOf(".")) + "\\" + suggestedName;
 			}
 		});
-		
+
 		// 解析word文档
 		wordToHtmlConverter.processDocument(wordDocument);
 		Document htmlDocument = wordToHtmlConverter.getDocument();
-		
-		File htmlFile = new File(filepath + "\\" + htmlName);
+
+		File htmlFile = new File(filepath + "/" + htmlName);
 		OutputStream outStream = new FileOutputStream(htmlFile);
-		
+
 		// 也可以使用字符数组流获取解析的内容
 //        ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //        OutputStream outStream = new BufferedOutputStream(baos);
-		
+
 		DOMSource domSource = new DOMSource(htmlDocument);
 		StreamResult streamResult = new StreamResult(outStream);
-		
+
 		TransformerFactory factory = TransformerFactory.newInstance();
 		Transformer serializer = factory.newTransformer();
 		serializer.setOutputProperty(OutputKeys.ENCODING, "utf-8");
 		serializer.setOutputProperty(OutputKeys.INDENT, "yes");
 		serializer.setOutputProperty(OutputKeys.METHOD, "html");
-		
+
 		serializer.transform(domSource, streamResult);
-		
+
 		// 也可以使用字符数组流获取解析的内容
 //        String content = baos.toString();
 //        System.out.println(content);
 //        baos.close();
 		outStream.close();
 	}
-
+	
 	public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException {
 		Word2007ToHtml("D:\\workspace1\\ZHXXYYPT\\文档\\文档", "《ZHXXYYPT职务犯罪平台》数据库说明文档.docx");
 		Word2003ToHtml("D:\\workspace1\\ZHXXYYPT\\文档\\文档", "《ZHXXYYPT职务犯罪平台》安装部署说明20160926.doc");

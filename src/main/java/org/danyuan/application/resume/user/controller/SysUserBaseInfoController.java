@@ -92,7 +92,7 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 			InputStream inputStream = null;
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 
-			String path = System.getProperty("user.dir") + "\\file\\" + simpleDateFormat.format(new Date());
+			String path = System.getProperty("user.dir") + "/file/" + simpleDateFormat.format(new Date());
 			result.setData(simpleDateFormat.format(new Date()) + "/" + URLEncoder.encode(filename, "utf-8"));
 
 			File file = new File(path);
@@ -102,7 +102,7 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 				if (!file.exists()) {
 					file.mkdirs();
 				}
-				path = path + "\\" + filename;
+				path = path + "/" + filename;
 				FileOutputStream fos = new FileOutputStream(path);
 				
 				byte[] b = new byte[1024];
@@ -112,23 +112,23 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 				fos.close();
 				inputStream.close();
 				// word 转html
-				path = System.getProperty("user.dir") + "\\file\\" + simpleDateFormat.format(new Date());
-				String imgPathString = System.getProperty("user.dir") + "\\file\\";
+				path = System.getProperty("user.dir") + "/file/" + simpleDateFormat.format(new Date());
+				String imgPathString = System.getProperty("user.dir") + "/file/";
 				if (filename.toLowerCase().indexOf(".docx") > -1) {
-					WordToHtml.Word2007ToHtml(path, filename);
+					WordToHtml.Word2007ToHtml(path.replace("\\", "/"), filename);
 					result.setData(simpleDateFormat.format(new Date()) + "/" + URLEncoder.encode(filename.substring(0, filename.lastIndexOf(".")), "utf-8") + ".html");
 					// 重写图片位置
-					replaceImgPath(path, filename.substring(0, filename.lastIndexOf(".")) + ".html", imgPathString);
+					replaceImgPath(path.replace("\\", "/"), filename.substring(0, filename.lastIndexOf(".")) + ".html", imgPathString);
 
 				} else if (filename.toLowerCase().indexOf(".doc") > -1) {
 					try {
-						WordToHtml.Word2003ToHtml(path, filename);
+						WordToHtml.Word2003ToHtml(path.replace("\\", "/"), filename);
 						// 重写图片位置
 					} catch (OfficeXmlFileException e) {
-						WordToHtml.Word2007ToHtml(path, filename);
+						WordToHtml.Word2007ToHtml(path.replace("\\", "/"), filename);
 						// 重写图片位置
 					}
-					replaceImgPath(path, filename.substring(0, filename.lastIndexOf(".")) + ".html", imgPathString);
+					replaceImgPath(path.replace("\\", "/"), filename.substring(0, filename.lastIndexOf(".")) + ".html", imgPathString);
 					result.setData(simpleDateFormat.format(new Date()) + "/" + URLEncoder.encode(filename.substring(0, filename.lastIndexOf(".")), "utf-8") + ".html");
 				}
 				
@@ -203,12 +203,12 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 	 * @throws
 	 */
 	private void replaceImgPath(String path, String filename, String imgPathString) {
-		List<String> htmlString = TxtFilesReader.readFileByLines(path + "\\" + filename);
+		List<String> htmlString = TxtFilesReader.readFileByLines(path + "/" + filename);
 		StringBuilder stringBuilder = new StringBuilder();
 		for (String string : htmlString) {
-			stringBuilder.append(string.replaceAll(imgPathString.replace("\\", "\\\\"), "/"));
+			stringBuilder.append(string.replaceAll(imgPathString.replace("\\", "/"), "/"));
 		}
-		TxtFilesWriter.writeToFile(stringBuilder.toString(), path + "\\" + filename);
+		TxtFilesWriter.writeToFile(stringBuilder.toString(), path + "/" + filename);
 	}
 	
 	/**
