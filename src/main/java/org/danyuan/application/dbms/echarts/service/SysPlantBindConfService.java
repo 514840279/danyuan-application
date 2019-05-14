@@ -32,10 +32,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysPlantBindConfService extends BaseServiceImpl<SysPlantBindConf> implements BaseService<SysPlantBindConf> {
-	
+
 	@Autowired
 	SysPlantBindConfDao sysPlantBindConfDao;
-	
+
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -44,7 +44,7 @@ public class SysPlantBindConfService extends BaseServiceImpl<SysPlantBindConf> i
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public SysPlantBindConf findOne(SysPlantBindConf info) {
 		Example<SysPlantBindConf> example = Example.of(info);
@@ -54,7 +54,7 @@ public class SysPlantBindConfService extends BaseServiceImpl<SysPlantBindConf> i
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -63,7 +63,7 @@ public class SysPlantBindConfService extends BaseServiceImpl<SysPlantBindConf> i
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public List<SysPlantBindConf> findAll(SysPlantBindConf info) {
 		Order[] order = { new Order(Direction.ASC, "colsOrder"), new Order(Direction.ASC, "createTime") };
@@ -71,7 +71,7 @@ public class SysPlantBindConfService extends BaseServiceImpl<SysPlantBindConf> i
 		Example<SysPlantBindConf> example = Example.of(info);
 		return sysPlantBindConfDao.findAll(example, sort);
 	}
-	
+
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -87,11 +87,17 @@ public class SysPlantBindConfService extends BaseServiceImpl<SysPlantBindConf> i
 	@Override
 	public Page<SysPlantBindConf> page(Pagination<SysPlantBindConf> vo) {
 		Example<SysPlantBindConf> example = Example.of(vo.getInfo());
-		Sort sort = Sort.by(vo.getOrders());
+		Order order;
+		if (vo.getSortOrder().equals("desc")) {
+			order = Order.desc(vo.getSortName());
+		} else {
+			order = Order.asc(vo.getSortName());
+		}
+		Sort sort = Sort.by(order);
 		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		return sysPlantBindConfDao.findAll(example, request);
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -99,12 +105,12 @@ public class SysPlantBindConfService extends BaseServiceImpl<SysPlantBindConf> i
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void saveAll(List<SysPlantBindConf> list) {
 		sysPlantBindConfDao.saveAll(list);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -112,12 +118,12 @@ public class SysPlantBindConfService extends BaseServiceImpl<SysPlantBindConf> i
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void delete(SysPlantBindConf info) {
 		sysPlantBindConfDao.delete(info);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -125,12 +131,12 @@ public class SysPlantBindConfService extends BaseServiceImpl<SysPlantBindConf> i
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void deleteAll(List<SysPlantBindConf> list) {
 		sysPlantBindConfDao.deleteAll(list);
 	}
-	
+
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -138,10 +144,10 @@ public class SysPlantBindConfService extends BaseServiceImpl<SysPlantBindConf> i
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#trunc()
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void trunc() {
 		sysPlantBindConfDao.deleteAllInBatch();
 	}
-	
+
 }

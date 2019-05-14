@@ -1,6 +1,5 @@
 package org.danyuan.application.dbms.tabs.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -158,20 +157,22 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 
 	@Override
 	public Page<SysDbmsTabsColsInfo> page(Pagination<SysDbmsTabsColsInfo> vo) {
-		List<Sort.Order> orders = new ArrayList<>();
-
+		Order order;
 		if (vo.getSortName() != null) {
-			orders = vo.getOrders();
+			if (vo.getSortOrder().equals("desc")) {
+				order = Order.desc(vo.getSortName());
+			} else {
+				order = Order.asc(vo.getSortName());
+			}
 		} else {
-			Order order = new Order(Direction.DESC, "createTime");
-			orders.add(order);
+			order = new Order(Direction.DESC, "createTime");
 		}
 		if (vo.getInfo() == null) {
 			vo.setInfo(new SysDbmsTabsColsInfo());
 		}
 
 		Example<SysDbmsTabsColsInfo> example = Example.of(vo.getInfo());
-		Sort sort = Sort.by(orders);
+		Sort sort = Sort.by(order);
 		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		Page<SysDbmsTabsColsInfo> page = sysDbmsTabsColsInfoDao.findAll(example, request);
 		return page;

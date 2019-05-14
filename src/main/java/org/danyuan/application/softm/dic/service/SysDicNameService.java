@@ -58,7 +58,13 @@ public class SysDicNameService extends BaseServiceImpl<SysDicName> implements Ba
 	public Page<SysDicName> page(Pagination<SysDicName> vo) {
 		List<Order> orders = new ArrayList<>();
 		if (vo.getSortName() != null) {
-			orders = vo.getOrders();
+			Order order;
+			if (vo.getSortOrder().equals("desc")) {
+				order = Order.desc(vo.getSortName());
+			} else {
+				order = Order.asc(vo.getSortName());
+			}
+			orders.add(order);
 		} else {
 			Order order = new Order(Direction.DESC, "createTime");
 			orders.add(order);

@@ -1,17 +1,13 @@
 package org.danyuan.application.share.file.po;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.danyuan.application.common.base.BaseEntity;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * @文件名 SysShareFilePathInfo.java
@@ -35,10 +31,6 @@ public class SysShareFilePathInfo extends BaseEntity implements Serializable {
 	@Column(name = "file_size")
 	private String				fileSize;
 	
-	// 更新人
-	@Column(name = "updata_user")
-	private String				updataUser;
-	
 	// md5
 	@Column(name = "md5")
 	private String				md5;
@@ -50,12 +42,6 @@ public class SysShareFilePathInfo extends BaseEntity implements Serializable {
 	// 文件名
 	@Column(name = "file_name")
 	private String				fileName;
-	
-	// 更新时间
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	@Column(name = "updata_time")
-	private Date				updataTime;
 	
 	// sha256
 	@Column(name = "sha256")
@@ -125,24 +111,6 @@ public class SysShareFilePathInfo extends BaseEntity implements Serializable {
 	}
 	
 	/**
-	 * 方法名 ： getUpdataUser
-	 * 功 能 ： 返回变量 updataUser 更新人 的值
-	 *
-	 * @return: String
-	 */
-	public String getUpdataUser() {
-		return updataUser;
-	}
-	
-	/**
-	 * 方法名 ： setUpdataUser
-	 * 功 能 ： 设置变量 updataUser 更新人 的值
-	 */
-	public void setUpdataUser(String updataUser) {
-		this.updataUser = updataUser;
-	}
-	
-	/**
 	 * 方法名 ： getMd5
 	 * 功 能 ： 返回变量 md5 md5 的值
 	 *
@@ -194,24 +162,6 @@ public class SysShareFilePathInfo extends BaseEntity implements Serializable {
 	 */
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
-	}
-	
-	/**
-	 * 方法名 ： getUpdataTime
-	 * 功 能 ： 返回变量 updataTime 更新时间 的值
-	 *
-	 * @return: String
-	 */
-	public Date getUpdataTime() {
-		return updataTime;
-	}
-	
-	/**
-	 * 方法名 ： setUpdataTime
-	 * 功 能 ： 设置变量 updataTime 更新时间 的值
-	 */
-	public void setUpdataTime(Date updataTime) {
-		this.updataTime = updataTime;
 	}
 	
 	/**

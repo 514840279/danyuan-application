@@ -32,10 +32,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysDicKeyListService extends BaseServiceImpl<SysDicKeyList> implements BaseService<SysDicKeyList> {
-
+	
 	@Autowired
 	private SysDicKeyListDao sysDicKeyListDao;
-
+	
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -48,24 +48,30 @@ public class SysDicKeyListService extends BaseServiceImpl<SysDicKeyList> impleme
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#page(int, int, java.lang.Object, java.util.Map, org.springframework.data.domain.Sort.Order[])
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public Page<SysDicKeyList> page(Pagination<SysDicKeyList> vo) {
 		List<Order> orders = new ArrayList<>();
 		orders.add(new Order(Direction.ASC, "keyOrder"));
 		if (vo.getSortName() != null) {
-			orders = vo.getOrders();
+			Order order;
+			if (vo.getSortOrder().equals("desc")) {
+				order = Order.desc(vo.getSortName());
+			} else {
+				order = Order.asc(vo.getSortName());
+			}
+			orders.add(order);
 		}
 		if (vo.getInfo() == null) {
 			vo.setInfo(new SysDicKeyList());
 		}
-
+		
 		Example<SysDicKeyList> example = Example.of(vo.getInfo());
 		Sort sort = Sort.by(orders);
-
+		
 		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		Page<SysDicKeyList> page = sysDicKeyListDao.findAll(example, request);
 		return page;
 	}
-
+	
 }
