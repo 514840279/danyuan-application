@@ -92,36 +92,63 @@ table tr th {
 								<th><a href=" https://github.com/danyuan-danyuan/danyuan-application" target="_blank">C版</a> <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=92a8803b57d14a51e9f5d4e91532cb615431bb40372a751616940b5f7d2e51ce"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="初学者" title="初学者"></a></th>
 							</tr>
 						</thead>
-						<tbody title="爬虫管理">
+						<tbody title="资料分享">
+							<tr>
+								<td scope="row" colspan="3" style="text-align: center;">资料管理</td>
+							</tr>
+							<tr>
+								<td>资料查询</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="" style=""></i></td>
+							</tr>
+							<tr>
+								<td>资料信息添加</td>
+								<td><i class="fa fa-check" style=""></i></td>
+								<td><i class="" style=""></i></td>
+							</tr>
+							<tr>
+								<td>资料下载地址添加</td>
+								<td><i class="fa fa-check" style=""></i></td>
+								<td><i class="" style=""></i></td>
+							</tr>
+							<tr>
+								<td>失效链接验证</td>
+								<td><i class="fa fa-check" style=""></i></td>
+								<td><i class="" style=""></i></td>
+							</tr>
+						</tbody>
+						<tbody title="简历管理">
 							<tr>
 								<td scope="row" colspan="3" style="text-align: center;">简历管理</td>
 							</tr>
 							<tr>
 								<td>简历html上传</td>
 								<td><i class="fa fa-check" style="color: green;"></i></td>
-								<td><i class="fa fa-check" style=""></i></td>
+								<td><i class="" style=""></i></td>
 							</tr>
 							<tr>
 								<td>简历信息录入</td>
 								<td><i class="fa fa-check" style=""></i></td>
-								<td><i class="fa fa-check" style=""></i></td>
+								<td><i class="" style=""></i></td>
 							</tr>
 							<tr>
 								<td>简历生成</td>
 								<td><i class="fa fa-check" style="color: green;"></i></td>
-								<td><i class="fa fa-check" style=""></i></td>
+								<td><i class="" style=""></i></td>
 							</tr>
+						</tbody>
+						<tbody title="爬虫管理">
 							<tr>
 								<td scope="row" colspan="3" style="text-align: center;">爬虫管理</td>
 							</tr>
 							<tr>
 								<td>采集任务</td>
-								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa fa-check" style=""></i></td>
 								<td><i class="fa fa-check" style="color: green;"></i></td>
 							</tr>
 							<tr>
 								<td>规则管理</td>
-								<td><span style="margin-left: 20px;">前端页面</span><i class="fa fa-check" style="color: green;"></i></td>
+								<td><span style="margin-left: 20px;">前端页面</span><i class="fa fa-check" style=""></i></td>
 								<td><span style="margin-left: 20px;">前端页面</span><i class="fa fa-check" style="color: green;"></i>
 									 <span style="margin-left: 20px;">后端(python) 导航页面</span><i class="fa fa-check" style="color: green;"></i> 
 									 <span style="margin-left: 20px;"> 列表页面</span><i class="fa fa-check" style="color: green;"></i> 
@@ -130,7 +157,7 @@ table tr th {
 							</tr>
 							<tr>
 								<td>数据映射</td>
-								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa fa-check" style=""></i></td>
 								<td><i class="fa fa-check" style="color: green;"></i></td>
 							</tr>
 							<tr>
@@ -305,7 +332,24 @@ table tr th {
 				<!-- timeLine式 日志表 -->
 				<div class="tab-pane" id="timeline">
 					<ul class="timeline timeline-inverse">
-						<li class="time-label"><span class="bg-yellow">2019年3月14号</span></li>
+						<li class="time-label"><span class="bg-red">2019年5月17号</span></li>
+						<li><i class="fa fa-clock-o bg-red"></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>添加资料查询功能，计划以资料功能收集网络上学习资料，教程视频，电影，电视剧，动漫等。</span></li>
+									<li><i>2.</i><span>计划爬虫功能将不在A版中继续开发，后续调整支持桌面爬虫和C版同步开发</span></li>
+									<li><i>3.</i><span>升级springboot版本</span></li>
+									<li><i>4.</i><span>调整common.base.Pagination 的代码，删除orders属性，及相关代码</span></li>
+									<li><i>5.</i><span>编写initbootstrap.js 脚本，整合部分功能</span></li>
+									<li><i>6.</i><span>修改配置数据库连接添加 “&serverTimezone=UTC” ，由mysql8带来的问题</span></li>
+									<li><i>7.</i><span>修改配置数据库驱动类，由springboot2.1带来的问题</span></li>
+									<li><i>8.</i><span>修改配置数据库连接词Hikari：idle-timeout: 600000 由配置要求最低不少于 600000</span></li>
+									<li><i>9.</i><span>修改配置文件上传限制 max-file-size 和 max-request-size ,由springboot2.1要求必须是Long行，100M 不识别</span></li>
+								</ul>
+								</div>
+							</div></li>
+						<li class="time-label"><span class="bg-red">2019年3月14号</span></li>
 						<li><i class="fa fa-clock-o bg-red"></i>
 							<div class="timeline-item">
 								<div class="timeline-body">
