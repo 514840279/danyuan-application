@@ -30,7 +30,7 @@ import org.danyuan.application.common.utils.string.StringUtils;
 
 public class HttpUtil {
 
-	public static String send(String url, Map<String, String> map, String encoding) throws ParseException, IOException {
+	public static String post(String url, Map<String, String> map, String encoding) throws ParseException, IOException {
 		String body = "";
 
 		// 创建httpclient对象
@@ -142,7 +142,7 @@ public class HttpUtil {
 		
 	}
 
-	public static String upload2(String url, File file) throws ClientProtocolException, IOException {
+	public static String uploadFile(String url, File file) throws ClientProtocolException, IOException {
 		CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 		CloseableHttpResponse httpResponse = null;
 		RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(200000).setSocketTimeout(200000000).build();
