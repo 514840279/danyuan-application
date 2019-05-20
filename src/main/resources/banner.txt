@@ -16,6 +16,4 @@ neo4j start
 ps -ef |grep redis
 nohup java -jar danyuan.jar >/dev/null 2>&1 &
 
-# mysql调整 以root 登录后执行
-SHOW VARIABLES LIKE '%time_zone%';
-SET GLOBAL time_zone='+8:00';
+
