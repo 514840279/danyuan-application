@@ -271,8 +271,8 @@ function reset(tabsName,column,sysColumn,dbType) {
 		$("#zhxx_tableDesc").val(tabsDesc);
 		$("#zhxxform").submit();
 	}).on('click-row.bs.table', function (e, row, ele,field) {
-		$(".success").removeClass("success");
-		$(ele).addClass("success");
+		$(".info").removeClass("info");
+		$(ele).addClass("info");
 	});
 	// 窗口大小改变时 重设表头
 	$(window).resize(function() {

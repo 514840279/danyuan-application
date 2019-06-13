@@ -41,7 +41,6 @@
 	</parent>
 
 	<dependencies>
-
 		<!-- spring boot web支持：mvc,aop... -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
