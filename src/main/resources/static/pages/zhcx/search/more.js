@@ -60,6 +60,6 @@ function findAllType_Sucess(result){
 				});
 			}
 		});
-		$("#mainDiv").append(type);
+		$("#main_section").append(type);
 	})
 }
