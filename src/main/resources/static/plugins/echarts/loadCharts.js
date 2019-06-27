@@ -5,7 +5,8 @@
 			id : "1",
 			uuid:'',
 			title : '',
-			theme : "walden"
+			theme : "walden",
+			mainDiv:"mainDiv"
 		}, options);
 		this.init(options);
 	};
@@ -128,11 +129,13 @@ function setChart1(id,title,legend_data,series_data,theme){
 
     // 使用刚指定的配置项和数据显示图表。
     myChart1.setOption(option,true);
+    //根据窗口的大小变动图表 --- 重点
+	$('#'+mainDiv).resize(function () {
+		myChart1.resize();
+   });
 }
  
 function setChart2(id,title,legend_data,series_data,theme){
-	console.log(legend_data);
-	console.log(JSON.stringify(series_data));
     // 指定图表的配置项和数据
 	max=0;
 	$.each(series_data,function(index,value){
@@ -190,6 +193,10 @@ function setChart2(id,title,legend_data,series_data,theme){
 
     // 使用刚指定的配置项和数据显示图表。
     myChart2.setOption(option2,true);
+    //根据窗口的大小变动图表 --- 重点
+	$('#'+mainDiv).resize(function () {
+		myChart2.resize();
+   });
 }
 
 function setChart3(id,title,legend_data,xAxis_data,series_data,theme){
@@ -230,6 +237,10 @@ function setChart3(id,title,legend_data,xAxis_data,series_data,theme){
 
     // 使用刚指定的配置项和数据显示图表。
     myChart3.setOption(option,true);
+    //根据窗口的大小变动图表 --- 重点
+	$('#'+mainDiv).resize(function () {
+		myChart3.resize();
+   });
 }
  
 function setChart4(id,title,legend_data,xAxis_data,series_data,theme){
@@ -280,6 +291,10 @@ function setChart4(id,title,legend_data,xAxis_data,series_data,theme){
 
     // 使用刚指定的配置项和数据显示图表。
     myChart4.setOption(option,true);
+    //根据窗口的大小变动图表 --- 重点
+	$('#'+mainDiv).resize(function () {
+		myChart4.resize();
+   });
 }
 
 function setChart5(id,series_data,theme){
@@ -335,6 +350,10 @@ function setChart5(id,series_data,theme){
 
     // 使用刚指定的配置项和数据显示图表。
     myChart5.setOption(option,true);
+    //根据窗口的大小变动图表 --- 重点
+	$('#'+mainDiv).resize(function () {
+		myChart5.resize();
+   });
 }
 
 function setChart6(id,series_data,theme){
@@ -355,6 +374,10 @@ function setChart6(id,series_data,theme){
 
     // 使用刚指定的配置项和数据显示图表。
     myChart6.setOption(option,true);
+    //根据窗口的大小变动图表 --- 重点
+	$('#'+mainDiv).resize(function () {
+		myChart6.resize();
+   });
 }
 
 function setChart7(id,title,legend_data,series_data,theme){
@@ -414,6 +437,10 @@ function setChart7(id,title,legend_data,series_data,theme){
 
     // 使用刚指定的配置项和数据显示图表。
     myChart7.setOption(option,true);
+    //根据窗口的大小变动图表 --- 重点
+	$('#'+mainDiv).resize(function () {
+		myChart7.resize();
+   });
 }
 
 function setChart8(id,title,legend_data,series_data,theme){
@@ -463,6 +490,10 @@ function setChart8(id,title,legend_data,series_data,theme){
 
     // 使用刚指定的配置项和数据显示图表。
     myChart8.setOption(option,true);
+    //根据窗口的大小变动图表 --- 重点
+	$('#'+mainDiv).resize(function () {
+		myChart8.resize();
+   });
 }
 
 function setChart9(id,title,legend_data,xAxis_data,series_data,theme){
@@ -504,5 +535,9 @@ function setChart9(id,title,legend_data,xAxis_data,series_data,theme){
 
     // 使用刚指定的配置项和数据显示图表。
     myChart9.setOption(option,true);
+    //根据窗口的大小变动图表 --- 重点
+	$('#'+mainDiv).resize(function () {
+		myChart9.resize();
+   });
 }
  
