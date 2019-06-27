@@ -103,7 +103,13 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 				}
 				getGenerateController(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString + "/controller");
 			}
-			pathtempString = path + "/resources/static/pages/" + sysDbmsGenerateCodeInfo.getClassPath().replace("org.danyuan.application.", "").replace(".", "/").toLowerCase();
+			
+			String thirdString = "";
+			String[] subpathString = sysDbmsGenerateCodeInfo.getClassPath().split("\\.");
+			for (int i = 0; i < 3; i++) {
+				thirdString += subpathString[i] + ".";
+			}
+			pathtempString = path + "/resources/static/pages/" + sysDbmsGenerateCodeInfo.getClassPath().replace(thirdString, "").replace(".", "/").toLowerCase();
 			file = new File(pathtempString);
 			if (!file.exists()) {
 				file.mkdirs();
@@ -149,11 +155,16 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 	 * @throws
 	 */
 	private void getGenerateController(SysDbmsGenerateCodeInfo sysDbmsGenerateCodeInfo, SysDbmsTabsInfo tabsInfo, List<SysDbmsTabsColsInfo> colsInfos, String username, String pathString) {
+		String thirdString = "";
+		String[] subpathString = sysDbmsGenerateCodeInfo.getClassPath().split("\\.");
+		for (int i = 0; i < 3; i++) {
+			thirdString += subpathString[i] + ".";
+		}
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("package " + sysDbmsGenerateCodeInfo.getClassPath() + ".controller;\r\n");
 		stringBuilder.append("\r\n");
-		stringBuilder.append("import org.danyuan.application.common.base.BaseController;\r\n");
-		stringBuilder.append("import org.danyuan.application.common.base.BaseControllerImpl;\r\n");
+		stringBuilder.append("import " + thirdString + "common.base.BaseController;\r\n");
+		stringBuilder.append("import " + thirdString + "common.base.BaseControllerImpl;\r\n");
 		stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".po." + sysDbmsGenerateCodeInfo.getClassName() + ";\r\n");
 		stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".service." + sysDbmsGenerateCodeInfo.getClassName() + "Service;\r\n");
 		stringBuilder.append("import org.springframework.beans.factory.annotation.Autowired;\r\n");
@@ -196,11 +207,16 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 	 * @throws
 	 */
 	private void getGenerateService(SysDbmsGenerateCodeInfo sysDbmsGenerateCodeInfo, SysDbmsTabsInfo tabsInfo, List<SysDbmsTabsColsInfo> colsInfos, String username, String pathString) {
+		String thirdString = "";
+		String[] subpathString = sysDbmsGenerateCodeInfo.getClassPath().split("\\.");
+		for (int i = 0; i < 3; i++) {
+			thirdString += subpathString[i] + ".";
+		}
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("package " + sysDbmsGenerateCodeInfo.getClassPath() + ".service;\r\n");
 		stringBuilder.append("\r\n");
-		stringBuilder.append("import org.danyuan.application.common.base.BaseService;\r\n");
-		stringBuilder.append("import org.danyuan.application.common.base.BaseServiceImpl;\r\n");
+		stringBuilder.append("import " + thirdString + "common.base.BaseService;\r\n");
+		stringBuilder.append("import " + thirdString + "common.base.BaseServiceImpl;\r\n");
 //		stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".po." + sysDbmsGenerateCodeInfo.getClassName() + ";\r\n");
 //		stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".dao." + sysDbmsGenerateCodeInfo.getClassName() + "Dao;\r\n");
 		stringBuilder.append("import org.springframework.beans.factory.annotation.Autowired;\r\n");
@@ -241,10 +257,15 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 	 * @throws
 	 */
 	private void getGenerateDao(SysDbmsGenerateCodeInfo sysDbmsGenerateCodeInfo, SysDbmsTabsInfo tabsInfo, List<SysDbmsTabsColsInfo> colsInfos, String username, String pathString) {
+		String thirdString = "";
+		String[] subpathString = sysDbmsGenerateCodeInfo.getClassPath().split("\\.");
+		for (int i = 0; i < 3; i++) {
+			thirdString += subpathString[i] + ".";
+		}
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("package " + sysDbmsGenerateCodeInfo.getClassPath() + ".dao;\r\n");
 		stringBuilder.append("\r\n");
-		stringBuilder.append("import org.danyuan.application.common.base.BaseDao;\r\n");
+		stringBuilder.append("import " + thirdString + "common.base.BaseDao;\r\n");
 		stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".po." + sysDbmsGenerateCodeInfo.getClassName() + ";\r\n");
 		stringBuilder.append("import org.springframework.stereotype.Repository;\r\n");
 		stringBuilder.append("\r\n");

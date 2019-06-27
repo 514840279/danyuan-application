@@ -16,7 +16,7 @@ import org.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
  * @版本 V1.0
  */
 public class GenerateJs {
-	
+
 	/**
 	 * @方法名 generate
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -30,8 +30,13 @@ public class GenerateJs {
 	 * @throws
 	 */
 	public static void generate(SysDbmsGenerateCodeInfo sysDbmsGenerateCodeInfo, SysDbmsTabsInfo tabsInfo, List<SysDbmsTabsColsInfo> colsInfos, String username, String pathString) {
+		String thirdString = "";
+		String[] subpathString = sysDbmsGenerateCodeInfo.getClassPath().split("\\.");
+		for (int i = 0; i < 3; i++) {
+			thirdString += subpathString[i] + ".";
+		}
 		String tabsNameString = sysDbmsGenerateCodeInfo.getClassName().substring(0, 1).toLowerCase() + sysDbmsGenerateCodeInfo.getClassName().substring(1);
-		String subNameIdString = sysDbmsGenerateCodeInfo.getClassPath().toLowerCase().replace("org.danyuan.application.", "").replace(".", "_") + "_" + tabsNameString;
+		String subNameIdString = sysDbmsGenerateCodeInfo.getClassPath().toLowerCase().replace(thirdString, "").replace(".", "_") + "_" + tabsNameString;
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("$(function() {\r\n");
 		stringBuilder.append("	// 初始化\r\n");
@@ -42,7 +47,7 @@ public class GenerateJs {
 		stringBuilder.append("function init() {\r\n");
 		stringBuilder.append("	// 弹出编辑窗口\r\n");
 		stringBuilder.append("	$('#addnew_" + subNameIdString + "').click(function() {\r\n");
-
+		
 		stringBuilder.append("		$(\"#" + subNameIdString + "_uuid\").val(\"\");\r\n");
 		stringBuilder.append("		$(\"#" + subNameIdString + "_deleteFlag\").val(\"\");\r\n");
 		stringBuilder.append("		$(\"#" + subNameIdString + "_discription\").val(\"\");\r\n");
@@ -58,19 +63,19 @@ public class GenerateJs {
 			}
 			stringBuilder.append("		$(\"#" + subNameIdString + "_" + colsNameString + "\").val(\"\");\r\n");
 		}
-		
+
 		stringBuilder.append("		$('#" + subNameIdString + "_modal').modal({\r\n");
 		stringBuilder.append("			show:true,\r\n");
 		stringBuilder.append("		});\r\n");
 		stringBuilder.append("	});\r\n");
 		stringBuilder.append("	// 反填数据并弹出编辑窗口\r\n");
 		stringBuilder.append("	$('#editold_" + subNameIdString + "').click(function() {\r\n");
-		
+
 		stringBuilder.append("		var data = $('#" + subNameIdString + "_datagrid').bootstrapTable('getAllSelections');\r\n");
 		stringBuilder.append("		if(data.length == 0||data.length >1){\r\n");
 		stringBuilder.append("			alert(\"必须选中一条数据\");\r\n");
 		stringBuilder.append("		}else if(data.length > 0){\r\n");
-		
+
 		stringBuilder.append("			$(\"#" + subNameIdString + "_uuid\").val(data[0].uuid);\r\n");
 		stringBuilder.append("			$(\"#" + subNameIdString + "_deleteFlag\").val(data[0].deleteFlag);\r\n");
 		stringBuilder.append("			$(\"#" + subNameIdString + "_discription\").val(data[0].discription);\r\n");
@@ -86,7 +91,7 @@ public class GenerateJs {
 			}
 			stringBuilder.append("			$(\"#" + subNameIdString + "_" + colsNameString + "\").val(data[0]." + colsNameString + ");\r\n");
 		}
-		
+
 		stringBuilder.append("			\r\n");
 		stringBuilder.append("			// 模态框\r\n");
 		stringBuilder.append("			$('#" + subNameIdString + "_modal').modal({\r\n");
@@ -240,7 +245,7 @@ public class GenerateJs {
 		stringBuilder.append("		contextMenu: '#context-menu', // 右键菜单绑定\r\n");
 		stringBuilder.append("		onContextMenuItem: function(row,$ele){ // 右键菜单事件\r\n");
 		stringBuilder.append("		}\r\n");
-
+		
 		stringBuilder.append("	}).on('dbl-click-row.bs.table', function (e, row, ele,field) { // 行双击事件 \r\n");
 		stringBuilder.append("	}).on('click-row.bs.table', function (e, row, ele,field) { // 行单击事件\r\n");
 		stringBuilder.append("	});\r\n");
@@ -259,5 +264,5 @@ public class GenerateJs {
 		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName().toLowerCase() + ".js";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
 	}
-
+	
 }
