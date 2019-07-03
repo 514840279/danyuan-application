@@ -1,6 +1,7 @@
 package org.danyuan.application.dbms.code.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.danyuan.application.common.utils.files.TxtFilesWriter;
 import org.danyuan.application.common.utils.string.StringUtils;
@@ -100,6 +101,41 @@ public class GenerateSql {
 		// 文件写入
 		String fineName = pathString + "/" + tabsInfo.getTabsName() + "_ddl.sql";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
+	}
+
+	/**
+	 * @方法名 generateConfig
+	 * @功能 TODO(这里用一句话描述这个方法的作用)
+	 * @参数 @param sysDbmsGenerateCodeInfo
+	 * @参数 @param tabsInfo
+	 * @参数 @param colsInfos
+	 * @参数 @param username
+	 * @参数 @param pathtempString
+	 * @返回 void
+	 * @author Administrator
+	 * @throws
+	 */
+	public static void generateConfig(SysDbmsGenerateCodeInfo sysDbmsGenerateCodeInfo, SysDbmsTabsInfo tabsInfo, List<SysDbmsTabsColsInfo> colsInfos, String username, String pathString) {
+		StringBuilder stringBuilder = new StringBuilder();
+		String thirdString = "";
+		String[] subpathString = sysDbmsGenerateCodeInfo.getClassPath().split("\\.");
+		for (int i = 0; i < 3; i++) {
+			thirdString += subpathString[i] + ".";
+		}
+		String subPathString = sysDbmsGenerateCodeInfo.getClassPath().toLowerCase().replace(thirdString, "");
+
+		// 路径配置
+		stringBuilder.append("-- ================" + tabsInfo.getTabsName() + "(" + tabsInfo.getTabsDesc() + ")配置开始======================= \r\n");
+		stringBuilder.append("-- 菜单配置 \r\n");
+		String id = UUID.randomUUID().toString().replace("-", "");
+		stringBuilder.append(" INSERT INTO application.sys_menu_info (`uuid`,`parents_id`,`name`,`icon`,`sort`,`uri`,`discription`,`update_user`,`update_time`, `create_user`, `create_time`, `delete_flag`, `home_page`) VALUES ('" + id + "','0','" + tabsInfo.getTabsDesc() + "','fa fa-checked','1','/pages/" + subPathString.replace(".", "/") + "/" + sysDbmsGenerateCodeInfo.getClassName().toLowerCase() + ".html','" + tabsInfo.getTabsDesc() + "','system',CURRENT_TIMESTAMP,'system',CURRENT_TIMESTAMP,0,0); \r\n");
+		stringBuilder.append(" INSERT INTO application.sys_roles_jurisdiction_info(checked, create_time, create_user, delete_flag, discription, menu_id, role_id) VALUES (1,CURRENT_TIMESTAMP, 'system', 0, '生成语句', '" + id + "', 'BEB0D81B918DD968D24D6F95AC15A753'); \r\n");
+		stringBuilder.append("\r\n");
+		stringBuilder.append("-- ================" + tabsInfo.getTabsName() + "(" + tabsInfo.getTabsDesc() + ")配置结束======================= \r\n");
+		// 文件写入
+		String fineName = pathString + "/" + tabsInfo.getTabsName() + "_config.sql";
+		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
+		
 	}
 	
 }

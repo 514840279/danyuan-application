@@ -18,7 +18,7 @@ import org.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
  * @版本 V1.0
  */
 public class GenerateEntity {
-
+	
 	/**
 	 * @方法名 generate
 	 * @功能 生成实体类文件
@@ -32,6 +32,11 @@ public class GenerateEntity {
 	 * @throws
 	 */
 	public static void generate(SysDbmsGenerateCodeInfo sysDbmsGenerateCodeInfo, SysDbmsTabsInfo tabsInfo, List<SysDbmsTabsColsInfo> colsInfos, String username, String pathString) {
+		String thirdString = "";
+		String[] subpathString = sysDbmsGenerateCodeInfo.getClassPath().split("\\.");
+		for (int i = 0; i < 3; i++) {
+			thirdString += subpathString[i] + ".";
+		}
 		// 拼接文件内容
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("package " + sysDbmsGenerateCodeInfo.getClassPath() + ".po;\r\n");
@@ -49,7 +54,7 @@ public class GenerateEntity {
 		stringBuilder.append("import javax.persistence.NamedQuery;\r\n");
 		stringBuilder.append("import javax.persistence.Table;\r\n");
 		stringBuilder.append("\r\n");
-		stringBuilder.append("import org.danyuan.application.common.base.BaseEntity;\r\n");
+		stringBuilder.append("import " + thirdString + "common.base.BaseEntity;\r\n");
 		stringBuilder.append("\r\n");
 		stringBuilder.append("/**\r\n");
 		stringBuilder.append(" * @文件名 " + sysDbmsGenerateCodeInfo.getClassName() + ".java\r\n");
@@ -66,7 +71,7 @@ public class GenerateEntity {
 		stringBuilder.append("public class " + sysDbmsGenerateCodeInfo.getClassName() + " extends BaseEntity implements Serializable {\r\n");
 		stringBuilder.append("	private static final long	serialVersionUID	= 1L;\r\n");
 		stringBuilder.append("\r\n");
-		
+
 		// 拼接属性
 		stringBuilder.append(stringBuilderProperties);
 		stringBuilder.append("\r\n");
@@ -85,32 +90,32 @@ public class GenerateEntity {
 		// 拼接get，set
 		stringBuilder.append(stringBuilderMethod);
 		stringBuilder.append("\r\n");
-
-		// TODO 构造
 		
-		// TODO tostring
+		// TODO 构造
 
+		// TODO tostring
+		
 		// ...
 		stringBuilder.append("\r\n");
 		stringBuilder.append("}");
-
+		
 		// 文件写入
 		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName() + ".java";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
 	}
-	
+
 	/**
-	*  方法名： spellString
-	*  功    能： 拼接字段和get，set方法
-	*  参    数： @param colsInfos
-	*  参    数： @param stringBuilderProperties
-	*  参    数： @param stringBuilderMethod
-	*  返    回： void
-	*  作    者 ： wang
-	*  @throws
-	*/
+	 * 方法名： spellString
+	 * 功 能： 拼接字段和get，set方法
+	 * 参 数： @param colsInfos
+	 * 参 数： @param stringBuilderProperties
+	 * 参 数： @param stringBuilderMethod
+	 * 返 回： void
+	 * 作 者 ： wang
+	 * @throws
+	 */
 	private static void spellString(List<SysDbmsTabsColsInfo> colsInfos, StringBuilder stringBuilderProperties, StringBuilder stringBuilderMethod, StringBuilder stringBuilderImport) {
-		
+
 		for (SysDbmsTabsColsInfo sysDbmsTabsColsInfo : colsInfos) {
 			// 属性
 			String colsName = sysDbmsTabsColsInfo.getColsName().toLowerCase();
@@ -141,32 +146,32 @@ public class GenerateEntity {
 			} else if (colsType.contains("double") || colsType.contains("float") || colsType.contains("decimal")) {
 				propertiesType = " BigDecimal ";
 			}
-			
+
 			// 拼写属性
 			spellProperties(stringBuilderProperties, propertiesName, propertiesType, colsDesc, colsType, colsName);
-
+			
 			// 拼写get，set
 			spellMethod(stringBuilderMethod, propertiesName, propertiesType, colsDesc, colsType, colsName);
 		}
 		if (stringBuilderImport.toString().length() > 0) {
 			stringBuilderImport.append("\r\n");
 		}
-
+		
 	}
-
+	
 	/**
-	*  方法名： spellMethod
-	*  功    能： 拼写get，set
-	*  参    数： @param stringBuilderMethod
-	*  参    数： @param propertiesName
-	*  参    数： @param propertiesType
-	*  参    数： @param colsDesc
-	*  参    数： @param colsType
-	*  参    数： @param colsName
-	*  返    回： void
-	*  作    者 ： wang
-	*  @throws
-	*/
+	 * 方法名： spellMethod
+	 * 功 能： 拼写get，set
+	 * 参 数： @param stringBuilderMethod
+	 * 参 数： @param propertiesName
+	 * 参 数： @param propertiesType
+	 * 参 数： @param colsDesc
+	 * 参 数： @param colsType
+	 * 参 数： @param colsName
+	 * 返 回： void
+	 * 作 者 ： wang
+	 * @throws
+	 */
 	private static void spellMethod(StringBuilder stringBuilderMethod, String propertiesName, String propertiesType, String colsDesc, String colsType, String colsName) {
 		String upPropertiesName = propertiesName.substring(0, 1).toUpperCase() + propertiesName.substring(1);
 		// get
@@ -190,46 +195,49 @@ public class GenerateEntity {
 		stringBuilderMethod.append("		this." + propertiesName + " = " + propertiesName + ";\r\n");
 		stringBuilderMethod.append("	}\r\n");
 	}
-
+	
 	/**
-	*  方法名： spellProperties
-	*  功    能： 拼写属性
-	*  参    数： @param stringBuilderProperties
-	*  参    数： @param propertiesName
-	*  参    数： @param propertiesType
-	*  参    数： @param colsDesc
-	*  参    数： @param colsType
-	*  参    数： @param colsName
-	*  返    回： void
-	*  作    者 ： wang
-	*  @throws
-	*/
+	 * 方法名： spellProperties
+	 * 功 能： 拼写属性
+	 * 参 数： @param stringBuilderProperties
+	 * 参 数： @param propertiesName
+	 * 参 数： @param propertiesType
+	 * 参 数： @param colsDesc
+	 * 参 数： @param colsType
+	 * 参 数： @param colsName
+	 * 返 回： void
+	 * 作 者 ： wang
+	 * @throws
+	 */
 	private static void spellProperties(StringBuilder stringBuilderProperties, String propertiesName, String propertiesType, String colsDesc, String colsType, String colsName) {
 		stringBuilderProperties.append("\r\n");
 		stringBuilderProperties.append("	// " + colsDesc + "\r\n");
-		if ("date".equals(colsType.toLowerCase()) || "datetime".equals(colsType.toLowerCase())) {
+		if ("date".equals(colsType.toLowerCase())) {
 			stringBuilderProperties.append("	@Temporal(TemporalType.DATE)\r\n");
-			stringBuilderProperties.append("	@DateTimeFormat(style = \"yyyy-MM-dd HH:mm:ss\")\r\n");
+			stringBuilderProperties.append("	@DateTimeFormat(style = \"yyyy-MM-dd\")\r\n");
 		} else if ("time".equals(colsType.toLowerCase())) {
 			stringBuilderProperties.append("	@Temporal(TemporalType.TIME)\r\n");
 			stringBuilderProperties.append("	@DateTimeFormat(style = \"HH:mm:ss\")\r\n");
 		} else if ("timestamp".equals(colsType.toLowerCase())) {
 			stringBuilderProperties.append("	@Temporal(TemporalType.TIMESTAMP)\r\n");
 			stringBuilderProperties.append("	@DateTimeFormat(style = \"yyyy-MM-dd HH:mm:ss\")\r\n");
+		} else if ("datetime".equals(colsType.toLowerCase())) {
+			stringBuilderProperties.append("	@Temporal(TemporalType.DATE)\r\n");
+			stringBuilderProperties.append("	@DateTimeFormat(style = \"yyyy-MM-dd HH:mm:ss\")\r\n");
 		}
 		stringBuilderProperties.append("	@Column(name = \"" + colsName + "\")\r\n");
 		stringBuilderProperties.append("	private " + propertiesType + "	" + propertiesName + ";\r\n");
 	}
-
+	
 	/**
-	*  方法名： makeProperties
-	*  功    能： TODO(这里用一句话描述这个方法的作用)
-	*  参    数： @param colsName
-	*  参    数： @return
-	*  返    回： String
-	*  作    者 ： wang
-	*  @throws
-	*/
+	 * 方法名： makeProperties
+	 * 功 能： TODO(这里用一句话描述这个方法的作用)
+	 * 参 数： @param colsName
+	 * 参 数： @return
+	 * 返 回： String
+	 * 作 者 ： wang
+	 * @throws
+	 */
 	private static String makeProperties(String colsName) {
 		String[] strs = colsName.split("_");
 		String propertiesName = "";
@@ -242,5 +250,5 @@ public class GenerateEntity {
 		}
 		return propertiesName;
 	}
-
+	
 }

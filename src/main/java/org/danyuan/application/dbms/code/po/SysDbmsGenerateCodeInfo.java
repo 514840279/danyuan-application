@@ -28,25 +28,25 @@ public class SysDbmsGenerateCodeInfo extends BaseEntity implements Serializable 
 	@Column(name = "class_name", columnDefinition = " varchar(100) COMMENT '类名称'")
 	private String				className;
 
-	@Column(name = "generate_entity", columnDefinition = " varchar(100) COMMENT '生成实体类标识'")
+	@Column(name = "generate_entity", columnDefinition = " int(6) COMMENT '生成实体类标识'")
 	private Integer				generateEntity;
 
-	@Column(name = "generate_dao", columnDefinition = " varchar(100) COMMENT '生成dao层标识'")
+	@Column(name = "generate_dao", columnDefinition = " int(6) COMMENT '生成dao层标识'")
 	private Integer				generateDao;
 
-	@Column(name = "generate_service", columnDefinition = " varchar(100) COMMENT '生成业务处理层标识'")
+	@Column(name = "generate_service", columnDefinition = " int(6) COMMENT '生成业务处理层标识'")
 	private Integer				generateService;
 
-	@Column(name = "generate_controller", columnDefinition = " varchar(100) COMMENT '生成控制层标识'")
+	@Column(name = "generate_controller", columnDefinition = " int(6) COMMENT '生成控制层标识'")
 	private Integer				generateController;
 
-	@Column(name = "generate_html", columnDefinition = " varchar(100) COMMENT '生成html标识'")
+	@Column(name = "generate_html", columnDefinition = " int(6) COMMENT '生成html标识'")
 	private Integer				generateHtml;
 
-	@Column(name = "generate_js", columnDefinition = " varchar(100) COMMENT '生成js标识'")
-	private Integer				generateJs;
+	@Column(name = "generate_detail", columnDefinition = " int(6) COMMENT '生成js标识'")
+	private Integer				generateDetail;
 
-	@Column(name = "generate_sql", columnDefinition = " varchar(100) COMMENT '生成sql标识'")
+	@Column(name = "generate_sql", columnDefinition = " int(6) COMMENT '生成sql标识'")
 	private Integer				generateSql;
 	
 	public SysDbmsGenerateCodeInfo() {
@@ -215,21 +215,21 @@ public class SysDbmsGenerateCodeInfo extends BaseEntity implements Serializable 
 	}
 
 	/**
-	 * 方法名 ： getGenerateJs
-	 * 功 能 ： 返回变量 generateJs 的值
+	 * 方法名 ： getGenerateDetail
+	 * 功 能 ： 返回变量 generateDetail 的值
 	 *
 	 * @return: Integer
 	 */
-	public Integer getGenerateJs() {
-		return generateJs;
+	public Integer getGenerateDetail() {
+		return generateDetail;
 	}
 
 	/**
-	 * 方法名 ： setGenerateJs
-	 * 功 能 ： 设置变量 generateJs 的值
+	 * 方法名 ： setGenerateDetail
+	 * 功 能 ： 设置变量 generateDetail 的值
 	 */
-	public void setGenerateJs(Integer generateJs) {
-		this.generateJs = generateJs;
+	public void setGenerateDetail(Integer generateDetail) {
+		this.generateDetail = generateDetail;
 	}
 
 	/**

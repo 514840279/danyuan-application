@@ -55,7 +55,7 @@ $(function() {
 			$("#add_generate_service").prop({checked:data[0].generateService});
 			$("#add_generate_controller").prop({checked:data[0].generateController});
 			$("#add_generate_html").prop({checked:data[0].generateHtml});
-			$("#add_generate_js").prop({checked:data[0].generateJs});
+			$("#add_generate_detail").prop({checked:data[0].generateDetail});
 			$("#add_generate_sql").prop({checked:data[0].generateSql});
 			
 			
@@ -119,7 +119,7 @@ $(function() {
 			generateService: $("#add_generate_service:checked").val()==null?0:1,
 			generateController: $("#add_generate_controller:checked").val()==null?0:1,
 			generateHtml: $("#add_generate_html:checked").val()==null?0:1,
-			generateJs: $("#add_generate_js:checked").val()==null?0:1,
+			generateDetail: $("#add_generate_detail:checked").val()==null?0:1,
 			generateSql: $("#add_generate_sql:checked").val()==null?0:1,
 			deleteFlag:1,
 			createUser:username,
@@ -187,7 +187,7 @@ $(function() {
 			{title : 'service',field : 'generateService',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
 			{title : 'controller',field : 'generateController',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
 			{title : 'html',field : 'generateHtml',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
-			{title : 'js',field : 'generateJs',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
+			{title : 'detail',field : 'generateDetail',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
 			{title : 'sql',field : 'generateSql',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
 			{title : '记录时间',field : 'createTime',align : 'center',sortable : true,valign : 'middle'},
 			{title : '更新时间',field : 'updateTime',sortable : true,align : 'center'},
@@ -209,11 +209,8 @@ $(function() {
 });
 
 function checkPath(classpath){
-	var subpath = classpath.replace("org.danyuan.application.","");
-	if(subpath.length==0){
-		showPopover($("#add_generate_classPath"), "需要输入更多的两层路径");
-	}
-	if(subpath.indexOf(".")<1){
+	var subpath = classpath.splite("\\.");
+	if(subpath.length<5){
 		showPopover($("#add_generate_classPath"), "需要输入更多的两层路径");
 	}
 	if(subpath.lastIndexOf(".")==subpath.length-1){
