@@ -369,7 +369,7 @@ table a, table a:hover{text-decoration:underline}
 .list_g li:hover{opacity:.8}
 
 /*** box ***/
-.box{background:#fff; border:solid 1px #ddd; border-radius:4px; -webkit-box-shadow:0 1px 1px rgba(0,0,0,0.05); box-shadow:0 1px 1px rgba(0,0,0,0.05); margin-top:10px; overflow:hidden}
+/* .box{background:#fff; border:solid 1px #ddd; border-radius:4px; -webkit-box-shadow:0 1px 1px rgba(0,0,0,0.05); box-shadow:0 1px 1px rgba(0,0,0,0.05); margin-top:10px; overflow:hidden} */
 
 .box_top{background:#fafafa; padding:15px; display:-webkit-flex; display:flex}
 .header_avatar{margin-right:15px}
