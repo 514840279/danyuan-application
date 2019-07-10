@@ -277,7 +277,7 @@ public class ZhcxAdviceService {
 
 		StringBuffer sBuffer = new StringBuffer();
 		sBuffer.append(" SELECT t.TABLE_SCHEMA AS OWNER,CONCAT(t.TABLE_SCHEMA,'.',t.TABLE_NAME) AS tabs_name,t.TABLE_ROWS AS  num_rows,t.TABLE_COMMENT AS comments  FROM information_schema.TABLES t ");
-		sBuffer.append(" where t.owner||'.'||t.table_name = :tablename");
+		sBuffer.append(" where CONCAT(t.TABLE_SCHEMA,'.',t.TABLE_NAME) = :tablename");
 		Map<String, String> map = new HashMap<>();
 		String tableName = sysZhcxTab.getTabsName();
 		map.put("tablename", tableName);
@@ -289,7 +289,7 @@ public class ZhcxAdviceService {
 			Map<String, Object> resultmap = list.get(0);
 			// 表数据量更新
 			if (sysZhcxTab.getTabsRows() == null || sysZhcxTab.getTabsSpace() == null || sysZhcxTab.getTabsRows() != resultmap.get("num_rows") || sysZhcxTab.getTabsSpace() != resultmap.get("table_space")) {
-				String executeSql = "update sys_dbms_tabs_info t set  t.tabs_rows = " + resultmap.get("num_rows") + ",t.update_time = sysdate where t.uuid='" + sysZhcxTab.getUuid() + "'";
+				String executeSql = "update sys_dbms_tabs_info t set  t.tabs_rows = " + resultmap.get("num_rows") + ",t.update_time = current_timestamp()  where t.uuid='" + sysZhcxTab.getUuid() + "'";
 				advice.setExecuteSql(executeSql + ";");
 				jdbcTemplate2.execute(executeSql);
 				advice.setDeleteFlag(1);
@@ -301,16 +301,16 @@ public class ZhcxAdviceService {
 				StringBuilder sBuilder = new StringBuilder();
 				if (sysZhcxTab.getTabsDesc() == null || "".equals(sysZhcxTab.getTabsDesc())) {
 					sBuilder.append("-- 由于配置中的信息没有，建议执行以下语句进行统一：\n");
-					sBuilder.append("update sys_dbms_tabs_info t set t.tabs_desc ='" + resultmap.get("comments") + "' ,t.update_time = sysdate where t.uuid='" + sysZhcxTab.getUuid() + "'; \n");
+					sBuilder.append("update sys_dbms_tabs_info t set t.tabs_desc ='" + resultmap.get("comments") + "' ,t.update_time = current_timestamp()  where t.uuid='" + sysZhcxTab.getUuid() + "'; \n");
 				} else if (resultmap.get("comments") == null || "".equals(resultmap.get("comments"))) {
 					sBuilder.append("-- 由于表中注释信息没有，建议执行以下语句进行统一：\n");
-					sBuilder.append("comment on table " + tableName + "  is '" + sysZhcxTab.getTabsDesc() + "';\n");
+					sBuilder.append("alter table " + tableName + "  comment  '" + sysZhcxTab.getTabsDesc() + "';\n");
 				} else if (!sysZhcxTab.getTabsDesc().equals(resultmap.get("comments"))) {
 					sBuilder.append("-- 由于表中注释信息和配置中的信息不一致，建议执行以下语句进行统一：\n");
 					sBuilder.append("-- 建议 一 根据表信息 更新配置表中的信息.\n");
-					sBuilder.append("--  update sys_dbms_tabs_info t set t.tabs_desc ='" + resultmap.get("comments") + "' ,t.update_time = sysdate where t.uuid='" + sysZhcxTab.getUuid() + "'; \n");
+					sBuilder.append("--  update sys_dbms_tabs_info t set t.tabs_desc ='" + resultmap.get("comments") + "' ,t.update_time = current_timestamp()  where t.uuid='" + sysZhcxTab.getUuid() + "'; \n");
 					sBuilder.append("-- 建议 二 根据配置表中的信息更新表信息 .\n");
-					sBuilder.append("comment on table " + tableName + "  is '" + sysZhcxTab.getTabsDesc() + "';\n");
+					sBuilder.append("alter table " + tableName + "  comment  '" + sysZhcxTab.getTabsDesc() + "';\n");
 				} else {
 					return;
 				}
@@ -356,7 +356,7 @@ public class ZhcxAdviceService {
 				// 配置列类型
 				if (!resultmap.get("DATA_TYPE").toString().contains((sysZhcxCol.getColsType().toUpperCase()))) {
 					advice = new SysDbmsAdviMessInfo(UUID.randomUUID().toString(), "列配置修改", sysZhcxTab.getTabsDesc(), sysZhcxTab.getTabsName(), sysZhcxTab.getJdbcUuid());
-					String executeSql = "update sys_dbms_tabs_cols_info t set  t.COLD_TYPE = '" + resultmap.get("DATA_TYPE") + "',t.update_time = sysdate where t.uuid='" + sysZhcxCol.getUuid() + "'";
+					String executeSql = "update sys_dbms_tabs_cols_info t set  t.cols_type = '" + resultmap.get("DATA_TYPE") + "',t.update_time = current_timestamp() where t.uuid='" + sysZhcxCol.getUuid() + "'";
 					advice.setExecuteSql(executeSql + ";");
 					jdbcTemplate2.execute(executeSql);
 					advice.setDeleteFlag(1);
@@ -370,7 +370,7 @@ public class ZhcxAdviceService {
 //							advice = new SysDbmsAdviMessInfo(UUID.randomUUID().toString(), "列配置修改", sysZhcxTab.getTabsDesc(), tableName, sysZhcxTab.getJdbcUuid());
 //							StringBuilder sBuilder = new StringBuilder();
 //							sBuilder.append("-- 表中的空值超过 60% 建议默认列表不展示");
-//							advice = new SysDbmsAdviMessInfo(UUID.randomUUID().toString(), "列配置修改", sysZhcxTab.getTabsDesc(), sysZhcxTab.getTabsName(), sysZhcxTab.getJdbcUuid());
+//							advice = new SysDbmsAdviMessInfo(UUID.randomUUID().toString(), "列配置修改", sysZhcxTab.getTabsDesc(), sysZhcx4Tab.getTabsName(), sysZhcxTab.getJdbcUuid());
 //							sBuilder.append("update sys_dbms_tabs_cols_info t set  t.PAGE_LIST = '0',t.update_time = sysdate where t.uuid='" + sysZhcxCol.getUuid() + "'");
 //							advice.setMessage(sBuilder.toString() + ";");
 //							advice.setDeleteFlag(0);
@@ -387,13 +387,13 @@ public class ZhcxAdviceService {
 						sBuilder.append("update sys_dbms_tabs_cols_info t set t.COLS_DESC ='" + resultmap.get("comments") + "' ,t.update_time = sysdate where t.uuid='" + sysZhcxCol.getUuid() + "'; \n");
 					} else if (resultmap.get("comments") == null || "".equals(resultmap.get("comments"))) {
 						sBuilder.append("-- 由于表中字段注释信息没有，建议执行以下语句进行统一：\n");
-						sBuilder.append("comment on table " + tableName + "." + sysZhcxCol.getColsName() + "  is '" + sysZhcxCol.getColsDesc() + "';\n");
+						sBuilder.append("alter table " + tableName + "  modify column " + sysZhcxCol.getColsName() + " VARCHAR(500) comment '" + sysZhcxCol.getColsDesc() + "';\n");
 					} else if (!sysZhcxCol.getColsDesc().equals(resultmap.get("comments"))) {
 						sBuilder.append("-- 由于表中字段注释信息和配置中的信息不一致，建议执行以下语句进行统一：\n");
 						sBuilder.append("-- 建议 一 根据表信息 更新配置表中的信息.\n");
 						sBuilder.append("--  update sys_dbms_tabs_cols_info t set t.COLS_DESC ='" + resultmap.get("comments") + "' ,t.update_time = sysdate where t.uuid='" + sysZhcxCol.getUuid() + "'; \n");
 						sBuilder.append("-- 建议 二 根据配置表中的信息更新表信息 .\n");
-						sBuilder.append("comment on table " + tableName + "." + sysZhcxCol.getColsName() + "  is '" + sysZhcxCol.getColsDesc() + "';\n");
+						sBuilder.append("alter table  " + tableName + " modify column " + sysZhcxCol.getColsName() + " VARCHAR(500) comment '" + sysZhcxCol.getColsDesc() + "';\n");
 					} else {
 						return;
 					}

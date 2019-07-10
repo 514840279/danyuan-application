@@ -27,9 +27,9 @@ import org.springframework.stereotype.Repository;
 @DynamicUpdate(true)
 @DynamicInsert(true)
 public interface SysDbmsTabsInfoDao extends BaseDao<SysDbmsTabsInfo> {
-
-	SysDbmsTabsInfo findSysDbmsTabsInfoByUuid(String uuid);
 	
+	SysDbmsTabsInfo findSysDbmsTabsInfoByUuid(String uuid);
+
 	/**
 	 * 方法名： findAllByUserIndex
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -41,10 +41,10 @@ public interface SysDbmsTabsInfoDao extends BaseDao<SysDbmsTabsInfo> {
 	 */
 	@Query("select distinct t from SysDbmsTabsInfo t where t.uuid in  (  select c.tabsUuid from SysDbmsTabsColsInfo c where c.userIndex=:userindex and c.deleteFlag='0') and t.deleteFlag ='0'   order by t.tabsOrder")
 	List<SysDbmsTabsInfo> findAllByUserIndex(@Param("userindex") String userindex);
-
+	
 	@Query("select distinct t from SysDbmsTabsInfo t " + " where t.typeUuid=:typeUuid " + " and t.uuid in  (  " + "  select c.tabsUuid from SysDbmsTabsColsInfo c " + "  where c.userIndex=:userindex " + "  and c.deleteFlag='0' ) and t.deleteFlag ='0'  order by t.tabsOrder")
 	List<SysDbmsTabsInfo> findAllByUserIndexAndTypeUuid(@Param("userindex") String userindex, @Param("typeUuid") String typeUuid);
-
+	
 	/**
 	 * 方法名： findAllByTypeUuid
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -56,7 +56,7 @@ public interface SysDbmsTabsInfoDao extends BaseDao<SysDbmsTabsInfo> {
 	 */
 	@Query("select distinct t from SysDbmsTabsInfo t   where t.typeUuid=:typeUuid and t.deleteFlag ='0'  order by t.tabsOrder")
 	List<SysDbmsTabsInfo> findAllByTypeUuid(@Param("typeUuid") String typeUuid);
-
+	
 	/**
 	 * 方法名： findByAddrUuidIsNotNullAndUpdateTimeGreaterThan
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -66,9 +66,9 @@ public interface SysDbmsTabsInfoDao extends BaseDao<SysDbmsTabsInfo> {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	@Query("select distinct t from SysDbmsTabsInfo t   where t.jdbcUuid is not null and t.deleteFlag =0   and t.updateTime> sysdate-300 order by t.updateTime")
+	@Query("select distinct t from SysDbmsTabsInfo t   where t.jdbcUuid is not null and t.deleteFlag =0 order by t.updateTime")
 	List<SysDbmsTabsInfo> findByAddrUuidIsNotNullAndUpdateTimeGreaterThan();
-
+	
 	/**
 	 * @方法名 change
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -84,7 +84,7 @@ public interface SysDbmsTabsInfoDao extends BaseDao<SysDbmsTabsInfo> {
 	@Transactional
 	@Modifying
 	@Query(" update SysDbmsTabsInfo t set tabsName =:tabsName,tabsDesc=:tabsDesc,typeUuid=:typeUuid,jdbcUuid=:jdbcUuid,updateTime = CURRENT_TIMESTAMP,updateUser = :username  where uuid =:uuid")
-
+	
 	void change(@Param("tabsName") String tabsName, @Param("tabsDesc") String tabsDesc, @Param("typeUuid") String typeUuid, @Param("jdbcUuid") String jdbcUuid, @Param("uuid") String uuid, @Param("username") String username);
-
+	
 }
