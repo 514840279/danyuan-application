@@ -85,7 +85,7 @@ public class LogsClearScheduled {
 		Date date = new Date();
 		for (SysDbmsTabsInfo sysZhcxTab : list) {
 			System.err.println(sysZhcxTab.getUpdateTime());
-			if (getDatePoor(date, sysZhcxTab.getUpdateTime()) > 3) {
+			if (getDatePoor(date, sysZhcxTab.getUpdateTime()) > -1) {
 				Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+8"));
 				logger.info("当前时间：" + dateFormat.format(calendar.getTime()));
 				if ("oracle".equals(sysZhcxTab.getDbType().toLowerCase())) {

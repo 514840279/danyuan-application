@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>tk.ainiyue.danyuan</groupId>
+	<groupId>org.danyuan.application</groupId>
 	<artifactId>danyuan-application</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>B1.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>danyuan-application</name>
