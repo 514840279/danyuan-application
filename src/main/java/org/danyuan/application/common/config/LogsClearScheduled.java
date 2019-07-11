@@ -76,8 +76,8 @@ public class LogsClearScheduled {
 		}
 	}
 
-//	@Scheduled(cron = "0 8-18/1 * * * *")
-	@Scheduled(fixedDelay = 100000)
+	@Scheduled(cron = "0 8-18/1 * * * *")
+	// @Scheduled(fixedDelay = 100000)
 	public void zhcxConfix() {
 		sysDbmsAdviMessInfoDao.deleteAllInBatch();
 		List<SysDbmsTabsInfo> list = sysDbmsTabsInfoDao.findByAddrUuidIsNotNullAndUpdateTimeGreaterThan();
@@ -85,7 +85,7 @@ public class LogsClearScheduled {
 		Date date = new Date();
 		for (SysDbmsTabsInfo sysZhcxTab : list) {
 			System.err.println(sysZhcxTab.getUpdateTime());
-			if (getDatePoor(date, sysZhcxTab.getUpdateTime()) > -1) {
+			if (getDatePoor(date, sysZhcxTab.getUpdateTime()) > 1) {
 				Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+8"));
 				logger.info("当前时间：" + dateFormat.format(calendar.getTime()));
 				if ("oracle".equals(sysZhcxTab.getDbType().toLowerCase())) {
@@ -120,7 +120,7 @@ public class LogsClearScheduled {
 		}
 		System.err.println("本次处理配置表信息执行完毕！");
 	}
-	
+
 	public long getDatePoor(Date endDate, Date nowDate) {
 
 		long nd = 1000 * 24 * 60 * 60;
