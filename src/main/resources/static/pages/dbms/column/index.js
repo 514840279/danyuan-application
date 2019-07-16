@@ -241,7 +241,7 @@ function showClomnTable(){
 			}},
 			{title : '查询显示标识',field : 'pageInput',align : 'left',sortable : true,valign : 'middle'},
 			{title : '标记',field : 'deleteFlag',sortable : true,align : 'left'},
-			{title : '更新时间',field : 'updateTime',align : 'left',sortable : true,valign : 'middle',formatter:dateTimeFormatter},
+			{title : '更新时间',field : 'updateTime',align : 'left',sortable : true,valign : 'middle'},
 			{title : '更新人',field : 'updateUser',sortable : true,align : 'left',valign : 'middle',visible:false},
 		],
 		responseHandler: function(result){  // 成功时执行

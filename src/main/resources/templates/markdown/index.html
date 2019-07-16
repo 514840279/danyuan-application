@@ -15,15 +15,16 @@
 <body>
 <!-- 头部设计 -->
 	<section class="content-header">
-		<div>
-			<div id="test-editormd" class="content-wrapper"></div>
-		</div>
 		<div class="sider" >
 			<ul class="sidebar-menu" >
 				<li><a href="#">初学者项目展示</a></li>
 				<li><a href="#">docker-使用总结</a></li>
 			</ul>
 		</div>
+		<div>
+			<div id="test-editormd" class="content-wrapper"></div>
+		</div>
+		
 	</section>
 <!-- 	<script src="/plugins/editor.md/js/jquery.min.js"></script> -->
 	<script src="/plugins/editor.md/js/editormd.js"></script>
@@ -44,13 +45,13 @@
 				testEditor.markdown = md;
 			}
 
-			$.get('test.md', markdown);
+			$.get('/md/初学者项目展示.md', markdown);
 
 			function markdown(md) {
 				testEditor = editormd("test-editormd",
 						{
 // 							width : "85%",
-							height : 740,
+							height : 860,
 							path : '/plugins/editor.md/lib/',
 							theme : "dark",
 							previewTheme : "dark",
@@ -76,8 +77,7 @@
 							//dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
 							//dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
 							imageUpload : true,
-							imageFormats : [ "jpg", "jpeg", "gif", "png",
-									"bmp", "webp" ],
+							imageFormats : [ "jpg", "jpeg", "gif", "png","bmp", "webp" ],
 							imageUploadURL : "./php/upload.php",
 							tocDropdown : true,
 							tocTitle : "目录 Table of Contents",
@@ -88,8 +88,8 @@
 								//                             this.watch().fullscreen();
 
 								//this.setMarkdown("#PHP");
-								this.width("85%");
-								this.hideToolbar();
+// 								this.width("85%");
+// 								this.hideToolbar();
 								//                             this.show();
 								this.previewing();
 								//this.height(480);
@@ -107,10 +107,10 @@
 								//                          this.watch().fullscreen();
 
 								//this.setMarkdown("#PHP");
-								this.width("85%");
-								this.hideToolbar();
-								this.show();
-								this.previewing();
+// 								this.width("85%");
+// 								this.hideToolbar();
+// 								this.show();
+// 								this.previewing();
 							}
 
 						});

@@ -94,7 +94,7 @@ function configTable(){
 			{title : '维度名称',field : 'name',sortable : true,align : 'left'},
 //			{title : '维度排序',field : 'lableOrder',sortable : true,align : 'left' },
 //			{title : '状态',align : 'left',formatter:showbuttonformatter },
-//			{title : '添加时间',field : 'createTime',sortable : true,align : 'left',formatter:dateTimeFormatter },
+//			{title : '添加时间',field : 'createTime',sortable : true,align : 'left' },
 //			{title : '添加人',field : 'createUser',sortable : true,align : 'left'},
 		],
 		responseHandler: function(result){  // 成功时执行
@@ -180,8 +180,8 @@ function InitSubRoleTable(row){
 			{title : '排序',field : 'keyOrder',sortable : true,align : 'left',sortable:true,width:50},
 			{title : '描述',field : 'description',sortable : true,align : 'left',width:500},
 			{title : 'parentId',field : 'parentId',	align : 'center',sortable : true,valign : 'middle',visible:false},
-			{title : '记录时间',field : 'createTime',align : 'center',	sortable : true,valign : 'middle',visible:false,formatter:dateTimeFormatter},
-			{title : '更新时间',field : 'updateTime',sortable : true,align : 'center',visible:false,formatter:dateTimeFormatter},
+			{title : '记录时间',field : 'createTime',align : 'center',	sortable : true,valign : 'middle',visible:false},
+			{title : '更新时间',field : 'updateTime',sortable : true,align : 'center',visible:false},
 			{title : '操作',	field : '',sortable : true, events: operateEvents,formatter:optionFormatter ,width:240}
 		],
 //        responseHandler: function(result){  // 成功时执行

@@ -196,7 +196,7 @@ function configTable(){
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 			{title : '关系名',field : 'relationshipName',sortable : true,align : 'left'},
 			{title : '关系含义',field : 'relationshipDesc',sortable : true,align : 'right'},
-			{title : '更新时间',field : 'updateTime',align : 'center',sortable : true,valign : 'middle',formatter:dateTimeFormatter},
+			{title : '更新时间',field : 'updateTime',align : 'center',sortable : true,valign : 'middle'},
 			{title : '更新人',field : 'updateUser',sortable : true,align : 'center',valign : 'left'},
 			{title : '标记',field : 'deleteFlag',sortable : true,align : 'right'}
 		],

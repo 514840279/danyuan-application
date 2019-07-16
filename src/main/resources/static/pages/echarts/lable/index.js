@@ -208,7 +208,7 @@ function configTable(){
 			{title : '展示类型',field : 'type',sortable : true,align : 'left' },
 			{title : '展示更多',field : 'more',sortable : true,align : 'left',formatter:showMoreFormatter  },
 			{title : '状态',align : 'left',formatter:showbuttonformatter },
-			{title : '添加时间',field : 'createTime',sortable : true,align : 'left',formatter:dateTimeFormatter },
+			{title : '添加时间',field : 'createTime',sortable : true,align : 'left' },
 			{title : '添加人',field : 'createUser',sortable : true,align : 'left'},
 		],
 		responseHandler: function(result){  // 成功时执行

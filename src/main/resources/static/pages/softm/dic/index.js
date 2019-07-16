@@ -290,8 +290,8 @@ $(function() {
 		  	{title : '名称',field : 'name',sortable : true,align : 'left'  },
 		  	{title : '调用代码',field : 'code',align : 'left',sortable : true,valign : 'middle'  }, 
 		  	{title : '控件类型',field : 'buttonType',align : 'left',sortable : true,valign : 'middle', formatter:buttonTypeFormatter  }, 
-		  	{title : '录入时间',field : 'createTime',align : 'left',sortable : true,valign : 'middle' ,visible:false,formatter:dateTimeFormatter }, 
-		  	{title : '更新时间',field : 'updateTime',align : 'center' ,visible:false,formatter:dateTimeFormatter }, 
+		  	{title : '录入时间',field : 'createTime',align : 'left',sortable : true,valign : 'middle' ,visible:false }, 
+		  	{title : '更新时间',field : 'updateTime',align : 'center' ,visible:false }, 
     	] ,
     	responseHandler: function(result){  // 成功时执行
 			return {rows:result.content,total:result.totalElements};
@@ -379,8 +379,8 @@ function InitSubRoleTable(row) {
 			{title : '显示数据',field : 'keyword',sortable : true,align : 'left'},
 			{title : '值',field : 'keyValue',sortable : true,align : 'left'},
 			{title : '排序',field : 'keyOrder',sortable : true,align : 'left',sortable:true},
-			{title : '记录时间',field : 'createTime',align : 'center',	sortable : true,valign : 'middle',visible:false,formatter:dateTimeFormatter},
-			{title : '更新时间',field : 'updateTime',sortable : true,align : 'center',visible:false,formatter:dateTimeFormatter},
+			{title : '记录时间',field : 'createTime',align : 'center',	sortable : true,valign : 'middle',visible:false},
+			{title : '更新时间',field : 'updateTime',sortable : true,align : 'center',visible:false},
 //			{title : '标记',	field : 'deleteFlag',	sortable : true,align : 'center'}
 		],
         responseHandler: function(result){  // 成功时执行

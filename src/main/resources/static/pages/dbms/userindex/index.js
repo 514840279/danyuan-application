@@ -124,7 +124,7 @@ $(function() {
 			{title : '显示信息',field : 'userDesc',align : 'left',valign : 'middle'},
 			{title : '排序',field : 'userOrder',align : 'left',valign : 'middle'},
 			{title : '说明',field : 'userPlaceholder',align : 'left',valign : 'middle'},
-			{title : '更新时间',field : 'updateTime',align : 'left',valign : 'middle',formatter:dateTimeFormatter},
+			{title : '更新时间',field : 'updateTime',align : 'left',valign : 'middle'},
 			{title : '更新人',field : 'updateUser',align : 'left',valign : 'middle'},
 			{title : '多条件查询',field : 'multeity',align : 'left',valign : 'middle'},
 			{title : '图表显示',field : 'chart',align : 'left',valign : 'middle'},

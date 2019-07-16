@@ -216,7 +216,7 @@ function configTable(){
 			{title : '属性名',field : 'columName',sortable : true,align : 'left'},
 			{title : '属性含义',field : 'columnDesc',sortable : true,align : 'right'},
 			{title : '检索类型',field : 'userIndex',sortable : true,align : 'right'},
-			{title : '更新时间',field : 'updateTime',align : 'center',sortable : true,valign : 'middle',formatter:dateTimeFormatter},
+			{title : '更新时间',field : 'updateTime',align : 'center',sortable : true,valign : 'middle'},
 			{title : '更新人',field : 'updateUser',sortable : true,align : 'center',valign : 'left'},
 			{title : '标记',field : 'deleteFlag',sortable : true,align : 'right'}
 		],

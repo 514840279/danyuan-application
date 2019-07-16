@@ -193,7 +193,7 @@ function configTable(){
 			{title : '图表统计条件',field : 'paramFlag',sortable : true,align : 'left',formatter:showbuttonformatter },
 			{title : '是否默认显示列',field : 'according',align : 'left',sortable : true,formatter:showbuttonformatter1 },
 			{title : '允许展示列',field : 'deleteFlag',sortable : true,align : 'left',formatter:showbuttonformatter },
-			{title : '添加时间',field : 'createTime',sortable : true,align : 'left',formatter:dateTimeFormatter },
+			{title : '添加时间',field : 'createTime',sortable : true,align : 'left' },
 			{title : '添加人',field : 'createUser',sortable : true,align : 'left'},
 		],
 		responseHandler: function(result){  // 成功时执行

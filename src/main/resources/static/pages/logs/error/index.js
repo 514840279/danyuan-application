@@ -57,7 +57,7 @@ function configTable(){
 			{title : '查询的参数',field : 'paramList',sortable : true,align : 'right'},
 			{title : '表名',field : 'tableName',sortable : true,align : 'left'},
 			{title : '错误信息',field : 'message',sortable : true,align : 'left'},
-			{title : '记录时间',field : 'createTime',sortable : true,align : 'left',formatter:dateTimeFormatter},
+			{title : '记录时间',field : 'createTime',sortable : true,align : 'left'},
 		],
 		responseHandler: function(result){  // 成功时执行
 			return {rows:result.content,total:result.totalElements};

@@ -115,7 +115,7 @@ function loadRuleGroup(){
 			{title : 'id',field : 'uuid',align : 'center',sortable : true,valign : 'top',visible:false},
 			{title : '规则名称',field : 'name',align : 'center',sortable : true,valign : 'top'},
 			{title : '规则类型',field : 'type',sortable : true,align : 'center',valign : 'top', sortable: true},
-			{title : '修改时间',field : 'updateTime',sortable : true,align : 'center',valign : 'top',formatter:dateTimeFormatter},
+			{title : '修改时间',field : 'updateTime',sortable : true,align : 'center',valign : 'top'},
 		],
 		responseHandler: function(result){  // 成功时执行
 			return {rows:result.content,total:result.totalElements};
@@ -179,7 +179,7 @@ function loadRule(){
 			{title : '规则类型',field : 'type',sortable : true,align : 'center',valign : 'top', sortable: true},
 			{title : '规则内容',field : 'context',sortable : true,align : 'center',valign : 'top'},
 			{title : '规则状态',field : 'status',sortable : true,align : 'center',valign : 'top'},
-			{title : '修改时间',field : 'updateTime',sortable : true,align : 'center',valign : 'top',formatter:dateTimeFormatter},
+			{title : '修改时间',field : 'updateTime',sortable : true,align : 'center',valign : 'top'},
 		],
 		responseHandler: function(result){  // 成功时执行
 			return {rows:result.content,total:result.totalElements};

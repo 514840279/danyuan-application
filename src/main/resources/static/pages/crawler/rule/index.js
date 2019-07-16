@@ -304,7 +304,7 @@ function loadRuleGroup(){
 //        exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],  //导出文件类型
 		locales : "zh-CN", // 表格汉化
 //		search : true, // 显示搜索框
-//		sidePagination: "server", // 服务端处理分页 server
+		sidePagination: "client", // 服务端处理分页 server
 		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
         //设置为limit可以获取limit, offset, search, sort, order  
         queryParamsType : "undefined",
@@ -327,7 +327,7 @@ function loadRuleGroup(){
 			{title : '.',field : 'uuid',align : 'left',sortable : true,valign : 'middle',visible:false},
 			{title : '规则名称',field : 'name',align : 'left',sortable : true,valign : 'middle'},
 			{title : '规则类型',field : 'type',sortable : true,align : 'left',valign : 'middle', sortable: true},
-			{title : '修改时间',field : 'updateTime',sortable : true,align : 'left',valign : 'middle',formatter:dateTimeFormatter},
+			{title : '修改时间',field : 'updateTime',sortable : true,align : 'left',valign : 'middle'},
 			{title : '操作', align : 'left',valign : 'middle', events: operateEvents,formatter : function(value, row, index) {
 				var A = "<i  type='button' id='clickA'  class=' btn btn-default fa fa-edit' title='编辑' ></i> ";
 				var B = "<i  type='button' id='clickB'  class=' btn btn-default fa fa-remove' title='删除'></i> ";
@@ -336,7 +336,7 @@ function loadRuleGroup(){
 		],
 		responseHandler: function(result){  // 成功时执行
 			console.log(result)
-			return {data:result};
+			return {rows:result};
 		}, 
 		onClickRow:function(row,index){
 //			$("#crawler_rule_config_table_datagrid").bootstrapTable("destroy");
@@ -409,7 +409,7 @@ function loadRule(row){
 			{title : '结束位置',field : 'end',sortable : true,align : 'left',valign : 'middle'},
 			{title : '拼接字符（需要替换的、分割符）',field : 'param',sortable : true,align : 'left',valign : 'middle'},
 			{title : '替换成',field : 'paramNew',sortable : true,align : 'left',valign : 'middle'},
-			{title : '修改时间',field : 'updateTime',sortable : true,align : 'left',valign : 'middle',formatter:dateTimeFormatter},
+			{title : '修改时间',field : 'updateTime',sortable : true,align : 'left',valign : 'middle'},
 		],
 		responseHandler: function(result){  // 成功时执行
 			return {rows:result.content,total:result.totalElements};
