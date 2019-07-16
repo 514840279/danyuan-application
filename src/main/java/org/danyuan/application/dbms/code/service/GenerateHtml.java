@@ -16,7 +16,7 @@ import org.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
  * @版本 V1.0
  */
 public class GenerateHtml {
-	
+
 	/**
 	 * @方法名 generate
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -60,7 +60,7 @@ public class GenerateHtml {
 		stringBuilder.append("\r\n");
 		stringBuilder.append("	<!-- Main content -->\r\n");
 		stringBuilder.append("	<section class=\"content\">\r\n");
-
+		
 		// 表格展示区域
 		stringBuilder.append("		<div class=\"box\">\r\n");
 		stringBuilder.append("			<div class=\"box-header with-border\">\r\n");
@@ -80,7 +80,7 @@ public class GenerateHtml {
 		stringBuilder.append("				</div>\r\n");
 		stringBuilder.append("			</div>\r\n");
 		stringBuilder.append("			<div class=\"box-body\">\r\n");
-		
+
 		// 条件查询区域
 		stringBuilder.append("				<div class=\"row\">\r\n");
 		for (SysDbmsTabsColsInfo sysDbmsTabsColsInfo : colsInfos) {
@@ -112,7 +112,7 @@ public class GenerateHtml {
 		stringBuilder.append("						<button class=\"btn btn-primary\" id=\"make_sure_search_" + subNameIdString + "_button_id\">确定</button>\r\n");
 		stringBuilder.append("					</div>\r\n");
 		stringBuilder.append("				</div>\r\n");
-		
+
 		stringBuilder.append("				<div id=\"" + subNameIdString + "_toolbar\" class=\"btn-group\">\r\n");
 		stringBuilder.append("					<button type=\"button\" class=\"btn btn-default\" id=\"addnew_" + subNameIdString + "\">\r\n");
 		stringBuilder.append("						<i class=\"glyphicon glyphicon-plus\"></i> 新增\r\n");
@@ -161,7 +161,7 @@ public class GenerateHtml {
 			if (colsDescString == null || "".equals(colsDescString)) {
 				colsDescString = colsNameString;
 			}
-
+			
 			stringBuilder.append("					<div class=\" row form-group\">\r\n");
 			stringBuilder.append("						<label class=\"col-sm-3 control-label text-right font16\" style=\"height: 34px;padding-top: 5px;\">" + colsDescString + ":</label>\r\n");
 			stringBuilder.append("						<div class=\"col-sm-9\">\r\n");
@@ -169,7 +169,7 @@ public class GenerateHtml {
 			stringBuilder.append("						</div>\r\n");
 			stringBuilder.append("					</div>\r\n");
 		}
-		
+
 		stringBuilder.append("				</div>\r\n");
 		stringBuilder.append("				<div class=\"modal-footer\">\r\n");
 		stringBuilder.append("					<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">关闭</button>\r\n");
@@ -189,12 +189,12 @@ public class GenerateHtml {
 		stringBuilder.append("</body>\r\n");
 		stringBuilder.append("</html>\r\n");
 		stringBuilder.append("\r\n");
-		
+
 		// 文件写入
 		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName().toLowerCase() + ".html";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
 	}
-	
+
 	/**
 	 * @方法名 generateDetail
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -225,7 +225,7 @@ public class GenerateHtml {
 		stringBuilder.append("</head>\r\n");
 		stringBuilder.append("<body>\r\n");
 		stringBuilder.append("	<section class=\"content\">\r\n");
-		stringBuilder.append("		<div class=\"box box-warning\" id=\"section-1\">\r\n");
+		stringBuilder.append("		<div class=\"box box-warning\" id=\"section_" + subNameIdString + "\">\r\n");
 		stringBuilder.append("			<div class=\"box-header with-border\">\r\n");
 		stringBuilder.append("				<h3 class=\"box-title\">企业信息</h3>\r\n");
 		stringBuilder.append("				<div class=\"box-tools pull-right\">\r\n");
@@ -238,11 +238,11 @@ public class GenerateHtml {
 		stringBuilder.append("				</div>\r\n");
 		stringBuilder.append("			</div>\r\n");
 		stringBuilder.append("			<div class=\"box-body\">\r\n");
-
-		stringBuilder.append("				<input type=\"text\" style=\"display:none;\" id=\"" + subNameIdString + "_uuid\" name=\"uuid\" />\r\n");
-		stringBuilder.append("				<input type=\"text\" style=\"display:none;\" id=\"" + subNameIdString + "_deleteFlag\" name=\"deleteFlag\" />\r\n");
-		stringBuilder.append("				<input type=\"text\" style=\"display:none;\" id=\"" + subNameIdString + "_discription\" name=\"discription\" />\r\n");
-
+		
+		stringBuilder.append("				<input type=\"text\" style=\"display:none;\" id=\"" + subNameIdString + "_uuid\" name=\"uuid\" th:value=\"${" + tabsNameString + ".uuid}\"/>\r\n");
+		stringBuilder.append("				<input type=\"text\" style=\"display:none;\" id=\"" + subNameIdString + "_deleteFlag\" name=\"deleteFlag\"  th:value=\"${" + tabsNameString + ".deleteFlag}\"/>\r\n");
+		stringBuilder.append("				<input type=\"text\" style=\"display:none;\" id=\"" + subNameIdString + "_discription\" name=\"discription\" th:value=\"${" + tabsNameString + ".discription}\"/>\r\n");
+		
 		for (SysDbmsTabsColsInfo sysDbmsTabsColsInfo : colsInfos) {
 			// 属性
 			String colsName = sysDbmsTabsColsInfo.getColsName().toLowerCase();
@@ -258,45 +258,46 @@ public class GenerateHtml {
 					colsNameString = colsNames[i];
 				}
 			}
-
+			
 			String colsDescString = sysDbmsTabsColsInfo.getColsDesc();
 			if (colsDescString == null || "".equals(colsDescString)) {
 				colsDescString = colsNameString;
 			}
-			
+
 			stringBuilder.append("					<div class=\" row form-group\">\r\n");
 			stringBuilder.append("						<label class=\"col-sm-3 control-label text-right font16\" style=\"height: 34px;padding-top: 5px;\">" + colsDescString + ":</label>\r\n");
 			stringBuilder.append("						<div class=\"col-sm-9\">\r\n");
-			stringBuilder.append("							<input type=\"text\" class=\"form-control\" id=\"" + subNameIdString + "_" + colsNameString + "\" name=\"" + colsNameString + "\" placeholder=\"" + colsDescString + "\"/>\r\n");
+			stringBuilder.append("							<input type=\"text\" class=\"form-control\" id=\"" + subNameIdString + "_" + colsNameString + "\" name=\"" + colsNameString + "\" th:value=\"${" + tabsNameString + "['" + colsNameString + "']}\" placeholder=\"" + colsDescString + "\" disabled=\"disabled\"/>\r\n");
 			stringBuilder.append("						</div>\r\n");
 			stringBuilder.append("					</div>\r\n");
 		}
-		
+
 		stringBuilder.append("				<div class=\"row text-center\">\r\n");
 		stringBuilder.append("					<button type=\"button\" class=\"btn btn-primary\" id=\"" + subNameIdString + "_edit_button\">编辑</button>\r\n");
 		stringBuilder.append("					<button type=\"button\" class=\"btn btn-primary\" id=\"" + subNameIdString + "_save_button\" style=\"display: none;\">提交</button>\r\n");
+		stringBuilder.append("					<button type=\"button\" class=\"btn btn-danger\" id=\"" + subNameIdString + "_exit_button\">关闭</button>\r\n");
 		stringBuilder.append("				</div>\r\n");
 		stringBuilder.append("			</div>\r\n");
 		stringBuilder.append("		</div>\r\n");
 		stringBuilder.append("	</section>\r\n");
 		stringBuilder.append("	\r\n");
 		stringBuilder.append("	\r\n");
-
+		
 		// theamleaf传值部分
 		stringBuilder.append("	<script th:inline=\"javascript\">\r\n");
 		stringBuilder.append("		var " + tabsNameString + " = [[${" + tabsNameString + "}]];\r\n");
 		stringBuilder.append("	</script>\r\n");
-		
+
 		// 结尾
 		stringBuilder.append("	<script type=\"text/javascript\" src=\"/pages/" + subPathString.replace(".", "/") + "/" + sysDbmsGenerateCodeInfo.getClassName().toLowerCase() + "detail.js\"></script>\r\n");
 		stringBuilder.append("</body>\r\n");
 		stringBuilder.append("</html>\r\n");
 		stringBuilder.append("\r\n");
-		
+
 		// 文件写入
 		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName().toLowerCase() + "detail.html";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
-		
-	}
 
+	}
+	
 }

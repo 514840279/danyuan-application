@@ -127,7 +127,7 @@ function loadPage(url, id, name, paramter, flag_r) {
 			if (response) {
 				try {
 					if($(response).find("form").attr("action")=="/login"){
-						window.location.href="/";
+						window.top.location.href="/";
 					}
 					var result = jQuery.parseJSON(response);
 					if (result.code == 100) {

@@ -39,23 +39,23 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/chartConfig")
 public class ChartConfigController {
-
+	
 	@Autowired
 	private Driver						driver;
-
+	
 	@Autowired
 	private SysChartNodeDao				sysChartNodeDao;
-
+	
 	@Autowired
 	private SysChartRelationshipTypeDao	sysChartRelationshipTypeDao;
-
+	
 	@Autowired
 	private SysChartNodeColsDao			sysChartNodeColsDao;
-
+	
 	@ApiOperation(value = "分页查询符合名称信息", notes = "")
 	@RequestMapping(path = "/list", method = RequestMethod.POST)
 	public List<Map<String, String>> findAll() {
-
+		
 		List<SysChartNode> aEs = sysChartNodeDao.findAll();
 		Session session = driver.session();
 		StatementResult stat = session.run("CALL db.labels()");
@@ -77,11 +77,11 @@ public class ChartConfigController {
 		}
 		return re;
 	}
-
+	
 	@ApiOperation(value = "分页查询符合名称信息", notes = "")
 	@RequestMapping(path = "/relationship", method = RequestMethod.POST)
 	public List<Map<String, String>> relationship() {
-
+		
 		List<SysChartRelationshipType> aEs = sysChartRelationshipTypeDao.findAll();
 		Session session = driver.session();
 		StatementResult stat = session.run("CALL db.relationshipTypes()");
@@ -103,7 +103,7 @@ public class ChartConfigController {
 		}
 		return re;
 	}
-
+	
 	@ApiOperation(value = "分页查询符合名称信息", notes = "")
 	@RequestMapping(path = "/listcols", method = RequestMethod.POST)
 	public List<Map<String, String>> listcols(@RequestBody SysChartNodeVo vo) {
@@ -114,9 +114,9 @@ public class ChartConfigController {
 			SysChartNode nodes = null;
 			if (optional.isPresent()) {
 				nodes = optional.get();
-
+				
 				List<SysChartNodeCols> aEs = sysChartNodeColsDao.findAllByNodeUuid(vo.getInfo().getUuid());
-
+				
 				Session session = driver.session();
 				StatementResult stat = session.run("MATCH (n:" + nodes.getNodeName() + ") RETURN n LIMIT 1");
 				List<Record> list = stat.list();
@@ -142,5 +142,5 @@ public class ChartConfigController {
 		}
 		return re;
 	}
-
+	
 }

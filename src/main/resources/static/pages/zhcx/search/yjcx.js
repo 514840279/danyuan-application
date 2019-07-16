@@ -298,9 +298,6 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 	    columns : column,
 	    responseHandler: function(result){  // 成功时执行
 //	    	console.log(result);
-	    	if($(result).find("form").attr("action")=="/login"){
-				window.location.href="/";
-			}
 	    	if(result!=null && result.list!=null ){
 		    	if(result.list.length>0){
 		    		table.css("display","");
@@ -316,6 +313,11 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 //			
 			return {data:result.list};
 		}, 
+		onLoadError:function(status,result){ // 错误时执行
+			if($(result.responseText).find("form").attr("action")=="/login"){
+				window.location.href="/";
+			}
+		},
 		 contextMenu: '#context-menu',
 		 onContextMenuItem: function(row,$ele){
 			 

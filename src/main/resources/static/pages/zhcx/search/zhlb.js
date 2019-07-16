@@ -222,13 +222,14 @@ function reset(id,tabsName,column,sysColumn) {
 	    },
 	    columns : column,
 	    responseHandler: function(result){  // 成功时执行
-	    	if($(result).find("form").attr("action")=="/login"){
-				window.location.href="/";
-			}
 	    	_total = result.total
 			return {rows:result.list,total:_total};
 		}, 
-	    
+		onLoadError:function(status,result){ // 错误时执行
+			if($(result.responseText).find("form").attr("action")=="/login"){
+				window.location.href="/";
+			}
+		},
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
 		$("#zhxx_mapString").val(JSON.stringify(row));
 		$("#zhxx_paramString").val(JSON.stringify(sysColumn));

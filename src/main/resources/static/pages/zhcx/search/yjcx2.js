@@ -336,9 +336,6 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 	    columns : column,
 	    responseHandler: function(result){  // 成功时执行
 //	    	console.log(result);
-	    	if($(result).find("form").attr("action")=="/login"){
-				window.location.href="/";
-			}
 	    	if(result!=null && result.list!=null ){
 		    	if(result.list.length>0){
 		    		table.css("display","");
@@ -354,7 +351,10 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 //			
 			return {data:result.list};
 		}, 
-		onLoadError:function(status){
+		onLoadError:function(status,result){ // 错误时执行
+			if($(result.responseText).find("form").attr("action")=="/login"){
+				window.location.href="/";
+			}
 			var width_persent = (temp_index_number/lenth)*100 +'%';
 			temp_index_number +=1;
 			$('#progress_bar_id').css('width', width_persent);

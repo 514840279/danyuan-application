@@ -60,9 +60,6 @@
 			},
 			columns : options.cloumns,
 			responseHandler : function(result) { // 成功时执行
-				if($(result).find("form").attr("action")=="/login"){
-					window.location.href="/";
-				}
 				if (options.sidePagination == "server") {
 					console.log(result)
 					return result;
@@ -75,7 +72,12 @@
 				// contextMenu: '#context-menu',
 				// onContextMenuItem: function(row,$ele){
 				//				 
-			}
+			},
+			onLoadError:function(result,res){ // 错误时执行
+				if($(result).find("form").attr("action")=="/login"){
+					window.location.href="/";
+				}
+			},
 		}).on('dbl-click-row.bs.table', function(e, row, ele, field) {
 		}).on('click-row.bs.table', function(e, row, ele, field) {
 			$(".info").removeClass("info");

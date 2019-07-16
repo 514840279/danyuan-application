@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+</head>
+<body>
+	<section class="content">
+		<div class="box box-warning" id="section_file_upload_sysFileUploadInfo">
+			<div class="box-header with-border">
+				<h3 class="box-title">企业信息</h3>
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body">
+				<input type="text" style="display:none;" id="file_upload_sysFileUploadInfo_uuid" name="uuid" th:value="${sysFileUploadInfo.uuid}"/>
+				<input type="text" style="display:none;" id="file_upload_sysFileUploadInfo_deleteFlag" name="deleteFlag"  th:value="${sysFileUploadInfo.deleteFlag}"/>
+				<input type="text" style="display:none;" id="file_upload_sysFileUploadInfo_discription" name="discription" th:value="${sysFileUploadInfo.discription}"/>
+					<div class=" row form-group">
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">type:</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="file_upload_sysFileUploadInfo_type" name="type" th:value="${sysFileUploadInfo['type']}" placeholder="type" disabled="disabled"/>
+						</div>
+					</div>
+					<div class=" row form-group">
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">size:</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="file_upload_sysFileUploadInfo_size" name="size" th:value="${sysFileUploadInfo['size']}" placeholder="size" disabled="disabled"/>
+						</div>
+					</div>
+					<div class=" row form-group">
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">姓名:</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="file_upload_sysFileUploadInfo_name" name="name" th:value="${sysFileUploadInfo['name']}" placeholder="姓名" disabled="disabled"/>
+						</div>
+					</div>
+					<div class=" row form-group">
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">path:</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="file_upload_sysFileUploadInfo_path" name="path" th:value="${sysFileUploadInfo['path']}" placeholder="path" disabled="disabled"/>
+						</div>
+					</div>
+				<div class="row text-center">
+					<button type="button" class="btn btn-primary" id="file_upload_sysFileUploadInfo_edit_button">编辑</button>
+					<button type="button" class="btn btn-primary" id="file_upload_sysFileUploadInfo_save_button" style="display: none;">提交</button>
+					<button type="button" class="btn btn-danger" id="file_upload_sysFileUploadInfo_exit_button">关闭</button>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+	<script th:inline="javascript">
+		var sysFileUploadInfo = [[${sysFileUploadInfo}]];
+	</script>
+	<script type="text/javascript" src="/pages/file/upload/sysfileuploadinfodetail.js"></script>
+</body>
+</html>
+
+

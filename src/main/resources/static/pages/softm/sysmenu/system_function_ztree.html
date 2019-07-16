@@ -41,17 +41,19 @@ div#rMenu ul li {
 	<!-- Main content -->
 	<section class="content ">
 		<div class="row">
-			<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="box">
 					<div class="box-header with-border">
-		              <h3 class="box-title">菜单</h3>
-		
-		              <div class="box-tools pull-right">
-		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-		                </button>
-		                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-		              </div>
-		            </div>
+						<h3 class="box-title">菜单</h3>
+						<div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse">
+								<i class="fa fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-box-tool" data-widget="remove">
+								<i class="fa fa-times"></i>
+							</button>
+						</div>
+					</div>
 					<div class="box-body">
 						<div style="margin-left: 15px;">
 							<ul id="ztree" class="ztree"></ul>
@@ -60,17 +62,20 @@ div#rMenu ul li {
 				</div>
 			</div>
 
-			<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+			<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12" style="display: none;">
 				<div class="box">
 					<div class="box-header with-border">
-		              <h3 class="box-title">方法预留</h3>
-		
-		              <div class="box-tools pull-right">
-		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-		                </button>
-		                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-		              </div>
-		            </div>
+						<h3 class="box-title">方法预留</h3>
+
+						<div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse">
+								<i class="fa fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-box-tool" data-widget="remove">
+								<i class="fa fa-times"></i>
+							</button>
+						</div>
+					</div>
 					<div class="box-body"></div>
 				</div>
 			</div>
@@ -105,19 +110,19 @@ div#rMenu ul li {
 					<h4 class="modal-title" id="addMenuModal">新增节点</h4>
 				</div>
 				<form action="" method="post" id="add_ztree_form">
-					<div class="modal-body" >
-						<input class="col-md-5" type="text" name="uuid" id="add_menu_uuid"  style="display: none"/>
+					<div class="modal-body">
+						<input class="col-md-5" type="text" name="uuid" id="add_menu_uuid" style="display: none" />
 						<div class=" row form-group">
 							<label class="col-sm-3 control-label text-right">地址名称 :</label>
 							<div class="col-sm-9">
-								<input class="form-control" type="text" name="name" id="add_menu_name"  placeholder="地址名称"/>
+								<input class="form-control" type="text" name="name" id="add_menu_name" placeholder="地址名称" />
 							</div>
 						</div>
 						<div class=" row form-group">
-							<label class="col-sm-3 control-label text-right">图标  :</label>
+							<label class="col-sm-3 control-label text-right">图标 :</label>
 							<div class="col-sm-9">
 								<div class="col-sm-9 pull-left">
-									<input class="form-control" type="text" name="icon" id="add_menu_icon"    placeholder="icon"/>
+									<input class="form-control" type="text" name="icon" id="add_menu_icon" placeholder="icon" />
 								</div>
 								<div class="col-sm-2 pull-left">
 									<button type="button" id="selectIcon" class="btn btn-primary btn-sm " data-btn-type="selectIcon" onclick="add_select_icon()">
@@ -129,41 +134,40 @@ div#rMenu ul li {
 						<div class=" row form-group">
 							<label class="col-sm-3 control-label text-right">描述 : </label>
 							<div class="col-sm-9">
-								<input class="form-control" type="text" name="discription" id="add_menu_discription"   placeholder="描述"/>
+								<input class="form-control" type="text" name="discription" id="add_menu_discription" placeholder="描述" />
 							</div>
 						</div>
 						<div class=" row form-group">
 							<label class="col-sm-3 control-label text-right">uri地址: </label>
 							<div class="col-sm-9">
-								<input class="form-control" type="text" name="uri" id="add_menu_uri"   placeholder="uri地址"/>
+								<input class="form-control" type="text" name="uri" id="add_menu_uri" placeholder="uri地址" />
 							</div>
 						</div>
-						
+
 						<div class=" row form-group">
 							<label class="col-sm-3 control-label text-right">上一级目录: </label>
 							<div class="col-sm-9">
-								<input class="form-control" type="text" name="parentName" id="add_menu_parentName"  value="0" disabled="disabled"  placeholder="上一级目录"/>
-								<input type="text" name="parentsId" id="add_menu_parentId" value="0" hidden="hidden" />
+								<input class="form-control" type="text" name="parentName" id="add_menu_parentName" value="0" disabled="disabled" placeholder="上一级目录" /> <input type="text" name="parentsId" id="add_menu_parentId" value="0" hidden="hidden" />
 							</div>
 						</div>
 						<div class=" row form-group">
 							<label class="col-sm-3 control-label text-right">排序: </label>
 							<div class="col-sm-9">
-								<input class="form-control" type="text" name="sort" id="add_menu_sort"   placeholder="排序"/>
+								<input class="form-control" type="text" name="sort" id="add_menu_sort" placeholder="排序" />
 							</div>
 						</div>
-						
+
 						<div class=" row form-group">
 							<label class="col-sm-3 control-label text-right">停用标识: </label>
 							<div class="col-sm-9">
-								<input class="form-control" type="text" name="deleteFlag" id="add_menu_deleteFlag" value="0"   placeholder="停用标识"/>
+								<input class="form-control" type="text" name="deleteFlag" id="add_menu_deleteFlag" value="0" placeholder="停用标识" />
 							</div>
 						</div>
-						
+
 						<div class=" row form-group">
 							<label class="col-sm-3 control-label text-right">首页: </label>
 							<div class="col-sm-9">
-								<input class="form-control" type="text" name="homePage" id="add_menu_homePage" value="false"  placeholder="首页"/>
+								<input class="form-control" type="text" name="homePage" id="add_menu_homePage" value="false" placeholder="首页" />
 							</div>
 						</div>
 
@@ -173,13 +177,9 @@ div#rMenu ul li {
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button type="button" class="btn btn-primary" onclick="addMenusubmit();">提交添加</button>
 				</div>
-
 			</div>
-			<!-- /.modal-content -->
 		</div>
-		<!-- /.modal -->
 	</div>
-
 
 	<!-- 	修改的modal -->
 	<div class="modal fade bs-example-modal-lg" id="updateMenuModal" tabindex="0" role="dialog" aria-labelledby="updateMenuModalLabel" aria-hidden="true">
@@ -191,18 +191,18 @@ div#rMenu ul li {
 				</div>
 				<form action="" method="post" id="upd_ztree_form">
 					<div class="modal-body">
-						<input class="col-md-5" type="text" name="uuid" id="upd_menu_uuid" style="display: none;"/> 
+						<input class="col-md-5" type="text" name="uuid" id="upd_menu_uuid" style="display: none;" />
 						<div class=" row form-group">
 							<label class="col-sm-3 control-label text-right">地址名称 :</label>
 							<div class="col-sm-9">
-								<input class="form-control" type="text" type="text" name="name" id="upd_menu_name" placeholder="地址名称"/>
+								<input class="form-control" type="text" type="text" name="name" id="upd_menu_name" placeholder="地址名称" />
 							</div>
 						</div>
 						<div class=" row form-group">
-							<label class="col-sm-3 control-label text-right">图标  :</label>
+							<label class="col-sm-3 control-label text-right">图标 :</label>
 							<div class="col-sm-9">
 								<div class="col-sm-9 pull-left">
-									<input class="form-control" type="text" name="icon" id="upd_menu_icon"    placeholder="icon"/>
+									<input class="form-control" type="text" name="icon" id="upd_menu_icon" placeholder="icon" />
 								</div>
 								<div class="col-sm-2 pull-left">
 									<button type="button" id="selectIcon" class="btn btn-primary btn-sm " data-btn-type="selectIcon" onclick="add_select_icon()">
@@ -214,41 +214,40 @@ div#rMenu ul li {
 						<div class=" row form-group">
 							<label class="col-sm-3 control-label text-right">描述 : </label>
 							<div class="col-sm-9">
-								<input class="form-control" type="text" name="discription" id="upd_menu_discription"   placeholder="描述"/>
+								<input class="form-control" type="text" name="discription" id="upd_menu_discription" placeholder="描述" />
 							</div>
 						</div>
 						<div class=" row form-group">
 							<label class="col-sm-3 control-label text-right">uri地址: </label>
 							<div class="col-sm-9">
-								<input class="form-control" type="text" name="uri" id="upd_menu_uri"   placeholder="uri地址"/>
+								<input class="form-control" type="text" name="uri" id="upd_menu_uri" placeholder="uri地址" />
 							</div>
 						</div>
-						
+
 						<div class=" row form-group">
 							<label class="col-sm-3 control-label text-right">上一级目录: </label>
 							<div class="col-sm-9">
-								<input class="form-control" type="text" name="parentName" id="upd_menu_parentName"  value="0" disabled="disabled"  placeholder="上一级目录"/>
-								<input type="text" name="parentsId" id="upd_menu_parentId" value="0" hidden="hidden" />
+								<input class="form-control" type="text" name="parentName" id="upd_menu_parentName" value="0" disabled="disabled" placeholder="上一级目录" /> <input type="text" name="parentsId" id="upd_menu_parentId" value="0" hidden="hidden" />
 							</div>
 						</div>
 						<div class=" row form-group">
 							<label class="col-sm-3 control-label text-right">排序: </label>
 							<div class="col-sm-9">
-								<input class="form-control" type="text" name="sort" id="upd_menu_sort"   placeholder="排序"/>
+								<input class="form-control" type="text" name="sort" id="upd_menu_sort" placeholder="排序" />
 							</div>
 						</div>
-						
+
 						<div class=" row form-group">
 							<label class="col-sm-3 control-label text-right">停用标识: </label>
 							<div class="col-sm-9">
-								<input class="form-control" type="text" name="deleteFlag" id="upd_menu_deleteFlag" value="1"   placeholder="停用标识"/>
+								<input class="form-control" type="text" name="deleteFlag" id="upd_menu_deleteFlag" value="1" placeholder="停用标识" />
 							</div>
 						</div>
-						
+
 						<div class=" row form-group">
 							<label class="col-sm-3 control-label text-right">首页: </label>
 							<div class="col-sm-9">
-								<input class="form-control" type="text" name="homePage" id="upd_menu_homePage"   placeholder="首页"/>
+								<input class="form-control" type="text" name="homePage" id="upd_menu_homePage" placeholder="首页" />
 							</div>
 						</div>
 					</div>
@@ -257,13 +256,9 @@ div#rMenu ul li {
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button type="button" class="btn btn-primary" onclick="updatesubmitMenu();">提交添加</button>
 				</div>
-
 			</div>
-			<!-- /.modal-content -->
 		</div>
-		<!-- /.modal -->
 	</div>
-
 
 	<script type="text/javascript" src="/pages/softm/sysmenu/system_function_ztree.js"></script>
 </body>
