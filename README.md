@@ -4,27 +4,25 @@
 
 ## 系统采用技术或开源框架：
 
-1. 前端框架：adminLTE
-2. 前端技术：bootstrap,bootstrap-table,js,juqery,ajax,ztree,
-3. 后端技术：spring-boot,security,jpa
-4. 数据库: mysql
-5. 其他工具：maven
+1. 前端框架：adminLTE-2.3.6
+2. 前端技术：bootstrap-3.x,bootstrap-table,juqery-2.2,ajax,ztree,
+3. 后端技术：spring-boot-2.x,security,jpa
+4. 数据库: mysql-5+
+5. 其他工具：maven-3.3+
 
 ## 项目启动配置:
 
-1. 系统安装jdk1.8，mysql5.7，maven3.3
+1. 系统安装jdk1.8，mysql8，maven3.3
 2. 新建数据库:application
 3. 导入数据库脚本 sql/All.sql
-4. 修改项目配置：src/main/resources/application.properties
+4. 修改项目配置：src/main/resources/application.yml
 	1. 修改数据库链接地址数据库用户名密码 
 	2. 修改 server.port=80 # 项目端口号
-	3. 修改 security.user.name=admin # 项目验证登录用户	       
-	4. 修改 security.user.password=admin # 项目验证登录密码
 5. 执行mvn clean
 6. 执行mvn install
 7. 执行mvn spring-boot:run(java -jar target/danyuan.jar)
 8. 访问http://localhost # 端口号
-9. 输入用户名、密码 admin/admin
+9. 输入用户名、密码 test/test
 
 ## 演示地址
 http://www.danyuan.wang/#

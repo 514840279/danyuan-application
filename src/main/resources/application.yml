@@ -23,6 +23,7 @@ spring:
     - file:./uploadfile/
     - file:./headimg/
     - file:./file/
+    - file:./markdown/
   aop:
     proxy-target-class: true
   datasource:
