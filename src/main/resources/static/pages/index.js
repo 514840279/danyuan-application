@@ -126,7 +126,7 @@ function loadPage(url, id, name, paramter, flag_r) {
 		if (status == "success") {
 			if (response) {
 				try {
-					if($(response).find("form").find("input[name='username']").attr("placeholder")=="Full name"){
+					if($(response).find("form").attr("action")=="/login"){
 						window.location.href="/";
 					}
 					var result = jQuery.parseJSON(response);

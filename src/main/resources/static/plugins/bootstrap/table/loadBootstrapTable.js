@@ -60,6 +60,9 @@
 			},
 			columns : options.cloumns,
 			responseHandler : function(result) { // 成功时执行
+				if($(result).find("form").attr("action")=="/login"){
+					window.location.href="/";
+				}
 				if (options.sidePagination == "server") {
 					console.log(result)
 					return result;

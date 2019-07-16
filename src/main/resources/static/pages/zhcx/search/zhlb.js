@@ -222,6 +222,9 @@ function reset(id,tabsName,column,sysColumn) {
 	    },
 	    columns : column,
 	    responseHandler: function(result){  // 成功时执行
+	    	if($(result).find("form").attr("action")=="/login"){
+				window.location.href="/";
+			}
 	    	_total = result.total
 			return {rows:result.list,total:_total};
 		}, 

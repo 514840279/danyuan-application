@@ -25,41 +25,41 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 开启security注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 //	@Override
 //	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //		// 暂时使用基于内存的AuthenticationProvider
 //		auth.inMemoryAuthentication().withUser("root").password("root").roles("USER");
 //	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+
 		// 允许所有用户访问"/"和"/home"
 		http.csrf().disable().authorizeRequests()
 		        // 不需要验证就可以访问的路径
-		        .antMatchers("/*/js/**", "/*/css/**", "/*/img/**", "/plugins/**", "/pages/*/js/**", "/dist/*/**", "/register.html", "/sysUserBase/save", "/login").permitAll()
+		        .antMatchers("/dist/*/**", "/plugins/*/**", "/pages/*/js/**", "/register.html", "/sysUserBase/save", "/login", "/*/**.md").permitAll()
 		        // 限制所有请求都需要验证
 		        .anyRequest().authenticated().and().formLogin()
 		        // 登录页
 		        .defaultSuccessUrl("/index").loginPage("/login").failureUrl("/login?error").permitAll().and().logout().permitAll();
-		
+
 	}
-	
+
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
+		
 		auth.userDetailsService(customUserDetailsService()).passwordEncoder(passwordEncoder())
 		//
 		;
-
+		
 	}
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
-	
+
 	/**
 	 * 自定义UserDetailsService，从数据库中读取用户信息
 	 *
@@ -69,5 +69,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public CustomUserDetailsService customUserDetailsService() {
 		return new CustomUserDetailsService();
 	}
-	
+
 }

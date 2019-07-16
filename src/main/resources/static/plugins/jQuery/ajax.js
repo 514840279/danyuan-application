@@ -9,6 +9,9 @@
 		data : JSON.stringify(params),
 		success : function(result) {
 			if (result) {
+				if($(result).find("form").attr("action")=="/login"){
+					window.location.href="/";
+				}
 				if (result.code == 'timeout') {
 					alert(result.mess);
 					window.top.location.href = result.url;

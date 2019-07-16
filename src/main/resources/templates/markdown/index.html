@@ -13,18 +13,18 @@
 
 </head>
 <body>
-
-	<div id="layout" class="row">
-		<div style="width: 85%;">
+<!-- 头部设计 -->
+	<section class="content-header">
+		<div>
 			<div id="test-editormd" class="content-wrapper"></div>
 		</div>
-		<div class="sider" style="width: 15%;">
-			<ul class="sidebar-menu" style="width: 100%;">
+		<div class="sider" >
+			<ul class="sidebar-menu" >
 				<li><a href="#">初学者项目展示</a></li>
 				<li><a href="#">docker-使用总结</a></li>
 			</ul>
 		</div>
-	</div>
+	</section>
 <!-- 	<script src="/plugins/editor.md/js/jquery.min.js"></script> -->
 	<script src="/plugins/editor.md/js/editormd.js"></script>
 <!-- 	<script src="/plugins/bootstrap/js/bootstrap.min.js"></script> -->
@@ -49,9 +49,9 @@
 			function markdown(md) {
 				testEditor = editormd("test-editormd",
 						{
-							width : "85%",
+// 							width : "85%",
 							height : 740,
-							path : '/editor.md/lib/',
+							path : '/plugins/editor.md/lib/',
 							theme : "dark",
 							previewTheme : "dark",
 							editorTheme : "pastel-on-dark",
@@ -83,7 +83,7 @@
 							tocTitle : "目录 Table of Contents",
 							onload : function() {
 								console.log('onload', this);
-								this.fullscreen();
+// 								this.fullscreen();
 								//                             this.unwatch();
 								//                             this.watch().fullscreen();
 
@@ -102,7 +102,7 @@
 												+ this.getValue());
 								console.log("onchange =>", this, this.id,
 										this.settings, this.state);
-								this.fullscreen();
+// 								this.fullscreen();
 								//                          this.unwatch();
 								//                          this.watch().fullscreen();
 

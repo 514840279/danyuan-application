@@ -298,6 +298,9 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 	    columns : column,
 	    responseHandler: function(result){  // 成功时执行
 //	    	console.log(result);
+	    	if($(result).find("form").attr("action")=="/login"){
+				window.location.href="/";
+			}
 	    	if(result!=null && result.list!=null ){
 		    	if(result.list.length>0){
 		    		table.css("display","");

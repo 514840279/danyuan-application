@@ -4,7 +4,7 @@
 
 ## 系统采用技术或开源框架：
 
-1. 前端框架：adminLTE-2.3.6
+1. 前端框架：adminLTE-2.4.12
 2. 前端技术：bootstrap-3.x,bootstrap-table,juqery-2.2,ajax,ztree,
 3. 后端技术：spring-boot-2.x,security,jpa
 4. 数据库: mysql-5+
