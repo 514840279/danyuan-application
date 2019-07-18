@@ -11,10 +11,35 @@ spring:
       uri: bolt://localhost:7687
       username: neo4j
       password: admin
-      
+      driver: org.neo4j.ogm.drivers.embedded.driver.EmbeddedDriver
       repositories:
         enabled: false
-
+    mongodb:
+      database: config
+      host: 192.168.0.85
+      port: 27017
+      username: timely
+      password: GBt20981Sc
+      option: 
+        min-connection-per-host: 0
+        max-connection-per-host: 100
+        threads-allowed-to-block-for-connection-multiplier: 5
+        server-selection-timeout: 30000
+        max-wait-time: 120000
+        max-connection-idle-time: 0
+        max-connection-life-time: 0
+        connect-timeout: 10000
+        socket-timeout: 0
+        socket-keep-alive: false
+        ssl-enabled: false
+        ssl-invalid-host-name-allowed: false
+        always-use-m-beans: false
+        heartbeat-socket-timeout: 20000
+        heartbeat-connect-timeout: 20000
+        min-heartbeat-frequency: 500
+        heartbeat-frequency: 10000
+        local-threshold: 15
+        
   datasource:
     #driverClassName: com.mysql.jdbc.Driver
     driver-class-name: com.mysql.cj.jdbc.Driver
