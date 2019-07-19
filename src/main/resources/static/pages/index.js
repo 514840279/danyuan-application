@@ -21,7 +21,7 @@ _history = [];
 				$("ul.treeview-menu li").removeClass("active");
 				$(this).parent().addClass("active");
 			});
-		loadMainPage()
+//		loadMainPage()
 	}
 
 	// 添加《li》
@@ -33,7 +33,7 @@ _history = [];
 					+ item.id + "' data-name='" + item.name + "' ><i class='"
 					+ item.icon + "'></i>" + item.name + "</a></li>";
 			if (item.homePage) {
-				//loadPage(item.url);
+				loadPage(item.url);
 			}
 		} else {
 			html = "<li class='treeview'>" + "<a href='#'>" + "<i class='"
