@@ -13,7 +13,7 @@ ${spring-boot.version}
 若你喜欢请给我关注，若需要使用请发布版本后注册成为开发者使用
 
 # mongodb 配置用户
-<use config>
+use config
 db.createUser(
   {
     user: "root",
