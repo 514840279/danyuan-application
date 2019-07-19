@@ -16,10 +16,9 @@ $(function() {
 
 	searchButtonClick();
 	
-
+	$("#search_button").click();
 });
 function add_all_node_sucess(result){
-	console.log(result);
 	nodeList = result.data;
 	var group = $("#group_title")
 	result.data.forEach(function(data){
@@ -58,6 +57,8 @@ function searchButtonClick() {
 			paramList : paramList
 		}, findAllTypeSucess, null, findError);
 	})
+	
+	
 }
 
 // search bar
@@ -82,7 +83,7 @@ function add_user_index_sucess(result) {
 		}
 
 	});
-	$(".search_bar").find("li:eq(0)").click();
+	$(".search_bar").find("li:eq(1)").click();
 }
 
 var links = [];

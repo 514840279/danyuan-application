@@ -9,8 +9,19 @@
 ${spring-boot.version}             
 
 本项目 目前个人单机版本github 地址：https://github.com/514840279/danyuan-application/tree/A0.0.1-SNAPSHOT
-集群版本github地址：https://github.com/danyuan-danyuan/danyuan-application
+集群版本github地址：https://github.com/514840279/danyuan-application-cloud
 若你喜欢请给我关注，若需要使用请发布版本后注册成为开发者使用
+
+# mongodb 配置用户
+<use config>
+db.createUser(
+  {
+    user: "root",
+    pwd: "514840279@qq.com",
+    roles: [ { role: "readWrite", db: "config"}]
+  }
+)
+
 # 执行
 neo4j start
 ps -ef |grep redis

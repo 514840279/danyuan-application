@@ -8,21 +8,24 @@
 <!-- <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" /> -->
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> -->
 <!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
-<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
 
 </head>
 <body>
 <!-- 头部设计 -->
 	<section class="content-header">
-		<div class="sider" >
+		<div class="sider col-xs-12"  >
+		<div class="col-xs-2" >
 			<ul class="sidebar-menu" >
-				<li><a href="#">初学者项目展示</a></li>
-				<li><a href="#">docker-使用总结</a></li>
+				<li><a href="#" data-uuid="1">初学者项目展示</a></li>
+				<li><a href="#" data-uuid="2">docker-使用总结</a></li>
+				<li><a href="#" data-uuid="pyinstaller">pyinstaller</a></li>
 			</ul>
 		</div>
-		<div>
+		<div class="col-xs-10">
 			<div id="test-editormd" class="content-wrapper"></div>
+		</div>
 		</div>
 		
 	</section>
@@ -34,8 +37,8 @@
 
 		$(function() {
 
-			$('li a').bind('click', function() {
-				var name = $(this).text();
+			$('.sider li a').bind('click', function() {
+				var name = $(this).data("uuid");
 				name = "/md/" + name + ".md";
 				$("#test-editormd").empty();
 				$.get(name, markdown);
@@ -45,7 +48,7 @@
 				testEditor.markdown = md;
 			}
 
-			$.get('/md/初学者项目展示.md', markdown);
+			$.get('/md/1.md', markdown);
 
 			function markdown(md) {
 				testEditor = editormd("test-editormd",
@@ -82,7 +85,7 @@
 							tocDropdown : true,
 							tocTitle : "目录 Table of Contents",
 							onload : function() {
-								console.log('onload', this);
+// 								console.log('onload', this);
 // 								this.fullscreen();
 								//                             this.unwatch();
 								//                             this.watch().fullscreen();
@@ -100,8 +103,8 @@
 										"onchange : this.id =>" + this.id
 												+ ", markdown =>"
 												+ this.getValue());
-								console.log("onchange =>", this, this.id,
-										this.settings, this.state);
+// 								console.log("onchange =>", this, this.id,
+// 										this.settings, this.state);
 // 								this.fullscreen();
 								//                          this.unwatch();
 								//                          this.watch().fullscreen();

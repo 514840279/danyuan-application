@@ -29,7 +29,6 @@ function successSaveSysTableInfo(result){
 //	$("#tabContainer").data("tabs").remove('add_table_tab_id');
 //	// 固定 表的tab 的id
 //	$("#tabContainer").data("tabs").showTab('4c87ffe1-6447-11e7-a272-0025d3a93601');
-//	removeByValue(_history,'add_table_tab_id');
 	$("#add_tabs_id").modal("hide")
 	$('#db_table_datagrid').bootstrapTable('refresh');
 }

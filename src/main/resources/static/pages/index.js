@@ -21,7 +21,7 @@ _history = [];
 				$("ul.treeview-menu li").removeClass("active");
 				$(this).parent().addClass("active");
 			});
-//		loadMainPage()
+		loadMainPage()
 	}
 
 	// 添加《li》
@@ -33,7 +33,7 @@ _history = [];
 					+ item.id + "' data-name='" + item.name + "' ><i class='"
 					+ item.icon + "'></i>" + item.name + "</a></li>";
 			if (item.homePage) {
-				loadPage(item.url);
+//				loadPage(item.url);
 			}
 		} else {
 			html = "<li class='treeview'>" + "<a href='#'>" + "<i class='"
@@ -140,15 +140,6 @@ function loadPage(url, id, name, paramter, flag_r) {
 			}
 		}
 	});
-}
-
-function removeByValue(arr, val) {
-	for (var i = 0; i < arr.length; i++) {
-		if (arr[i] == val) {
-			arr.splice(i, 1);
-			break;
-		}
-	}
 }
 /**
  * Load a url into a page

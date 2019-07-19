@@ -18,8 +18,8 @@ spring:
       database: config
       host: 192.168.0.85
       port: 27017
-      username: timely
-      password: GBt20981Sc
+      username: root
+      password: 514840279@qq.com
       option: 
         min-connection-per-host: 0
         max-connection-per-host: 100
