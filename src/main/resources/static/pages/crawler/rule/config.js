@@ -13,7 +13,7 @@ function init(){
 		
 		// 初始化一个空的tab
 		$("#tab-context").tabs({
-			data:[{id: ruler['pageType'], text: ruler['pageName'], closeable: true, url: '/crawler/ruler/'+ruler['pageType']+'/'+ruler['uuid']}],
+			data:[{id: ruler['uuid'], text: ruler['pageName'], closeable: false, url: '/crawler/ruler/'+ruler['pageType']+'/'+ruler['uuid']}],
 			showIndex: 0,
 	        loadAll: false
         })
@@ -23,7 +23,8 @@ function init(){
 		data:[
 			{"id":"","text":"请选择"},
 			{"id":"pageList","text":"列表型页面"},
-			{"id":"pageDetail","text":"详细信息页面"}
+			{"id":"pageDetail","text":"详细信息页面"},
+			{"id":"pageDict","text":"字典页面"}
 			]
 	}).on('select2:select', function (evt) {
 		ruler['pageType']=evt.params.data.id;
@@ -35,7 +36,7 @@ function init(){
 		saveRuler(ruler);
 		// 初始化一个空的tab
 		$("#tab-context").tabs({
-			data:[{id: ruler['uuid'], text: ruler['pageName'], closeable: true, url: '/crawler/ruler/'+ruler['pageType']+'/'+ruler['uuid']}],
+			data:[{id: ruler['uuid'], text: ruler['pageName'], closeable: false, url: '/crawler/ruler/'+ruler['pageType']+'/'+ruler['uuid']}],
 			showIndex: 0,
 	        loadAll: false
         })
@@ -49,10 +50,10 @@ function loadsubConfigContext(uuid,pageType,pageName){
 	
 	switch(pageType){
 		case "pageList":
-			$("#tab-context").data("tabs").addTab({id: uuid, text: pageName, closeable: true, url: '/crawler/ruler/pageList/'+uuid});
+			$("#tab-context").data("tabs").addTab({id: uuid, text: pageName, closeable: false, url: '/crawler/ruler/pageList/'+uuid});
 			break;
 		case "pageDetail":
-			$("#tab-context").data("tabs").addTab({id: uuid, text: pageName, closeable: true, url: '/crawler/ruler/pageDetail/'+uuid});
+			$("#tab-context").data("tabs").addTab({id: uuid, text: pageName, closeable: false, url: '/crawler/ruler/pageDetail/'+uuid});
 			break;
 		default:
 			break;

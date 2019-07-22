@@ -12,10 +12,27 @@ import java.util.List;
  * @版本 V1.0
  */
 public class GroupList {
-
+	private String				groupRule;
 	private List<RuleColumn>	columns	= new ArrayList<>();
-
+	
 	private String				nextPageRule;
+	
+	/**
+	 * @方法名 getGroupRule
+	 * @功能 返回变量 groupRule 的值
+	 * @return String
+	 */
+	public String getGroupRule() {
+		return groupRule;
+	}
+	
+	/**
+	 * @方法名 setGroupRule
+	 * @功能 设置变量 groupRule 的值
+	 */
+	public void setGroupRule(String groupRule) {
+		this.groupRule = groupRule;
+	}
 	
 	/**
 	 * @方法名 getColumns
@@ -25,7 +42,7 @@ public class GroupList {
 	public List<RuleColumn> getColumns() {
 		return columns;
 	}
-	
+
 	/**
 	 * @方法名 setColumns
 	 * @功能 设置变量 columns 的值
@@ -33,7 +50,7 @@ public class GroupList {
 	public void setColumns(List<RuleColumn> columns) {
 		this.columns = columns;
 	}
-	
+
 	/**
 	 * @方法名 getNextPageRule
 	 * @功能 返回变量 nextPageRule 的值
@@ -42,7 +59,7 @@ public class GroupList {
 	public String getNextPageRule() {
 		return nextPageRule;
 	}
-	
+
 	/**
 	 * @方法名 setNextPageRule
 	 * @功能 设置变量 nextPageRule 的值
@@ -50,5 +67,5 @@ public class GroupList {
 	public void setNextPageRule(String nextPageRule) {
 		this.nextPageRule = nextPageRule;
 	}
-	
+
 }
