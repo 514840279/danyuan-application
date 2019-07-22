@@ -16,7 +16,7 @@ spring:
         enabled: false
     mongodb:
       database: config
-      host: 47.52.93.94
+      host: localhost
       port: 27017
       username: root
       password: 514840279@qq.com
