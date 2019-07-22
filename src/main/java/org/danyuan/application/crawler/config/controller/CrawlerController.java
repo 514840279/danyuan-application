@@ -20,10 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/crawler")
 public class CrawlerController {
-
+	
 	@Autowired
 	SysRuleInfoService sysRuleInfoService;
-
+	
 	@RequestMapping("/ruler/config/{taskId}")
 	public ModelAndView cogPageView(@PathVariable("taskId") String taskid) {
 		ModelAndView view = new ModelAndView("crawler/rule/config");
@@ -31,27 +31,28 @@ public class CrawlerController {
 		info.setUuid(taskid);
 		view.addObject("ruler", sysRuleInfoService.findOne(info));
 		return view;
-
+		
 	}
-	
-	@RequestMapping("/ruler/pageList/{uuid}")
+
+	@RequestMapping(path = { "/ruler/pageList/{uuid}", "/ruler/pageDict/{uuid}" })
 	public ModelAndView pageList(@PathVariable("uuid") String uuid) {
 		ModelAndView view = new ModelAndView("crawler/rule/pageList");
 		view.addObject("uuid", uuid);
 		return view;
-
+		
 	}
-
+	
 	@RequestMapping("/ruler/pageDetail/{uuid}")
 	public ModelAndView pageDetail(@PathVariable("uuid") String uuid) {
 		ModelAndView view = new ModelAndView("crawler/rule/pageDetail");
 		view.addObject("uuid", uuid);
 		return view;
-
+		
 	}
-	
+
 	@RequestMapping("/ruler/save")
 	public void save(@RequestBody SysRuleInfo info) {
 		sysRuleInfoService.save(info);
 	}
+	
 }

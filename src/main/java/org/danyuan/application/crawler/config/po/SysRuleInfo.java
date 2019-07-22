@@ -1,8 +1,5 @@
 package org.danyuan.application.crawler.config.po;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,13 +16,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class SysRuleInfo {
 	
 	@Id
-	private String			uuid;
+	private String		uuid;
 
-	private String			pageType;
+	private String		pageType;
 
-	private String			pageName;
+	private String		pageName;
 
-	private List<GroupList>	pageLists	= new ArrayList<>();
+	private GroupList	groupList;
 
 	/**
 	 * @方法名 getUuid
@@ -77,22 +74,22 @@ public class SysRuleInfo {
 	public void setPageName(String pageName) {
 		this.pageName = pageName;
 	}
-	
+
 	/**
-	 * @方法名 getPageLists
-	 * @功能 返回变量 pageLists 的值
-	 * @return List<GroupList>
+	 * @方法名 getGroupList
+	 * @功能 返回变量 groupList 的值
+	 * @return GroupList
 	 */
-	public List<GroupList> getPageLists() {
-		return pageLists;
+	public GroupList getGroupList() {
+		return groupList;
 	}
-	
+
 	/**
-	 * @方法名 setPageLists
-	 * @功能 设置变量 pageLists 的值
+	 * @方法名 setGroupList
+	 * @功能 设置变量 groupList 的值
 	 */
-	public void setPageLists(List<GroupList> pageLists) {
-		this.pageLists = pageLists;
+	public void setGroupList(GroupList groupList) {
+		this.groupList = groupList;
 	}
-	
+
 }
