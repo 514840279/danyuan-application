@@ -55,6 +55,9 @@ function loadsubConfigContext(uuid,pageType,pageName){
 		case "pageDetail":
 			$("#tab-context").data("tabs").addTab({id: uuid, text: pageName, closeable: false, url: '/crawler/ruler/pageDetail/'+uuid});
 			break;
+		case "pageDict":
+			$("#tab-context").data("tabs").addTab({id: uuid, text: pageName, closeable: false, url: '/crawler/ruler/pageDetail/'+uuid});
+			break;
 		default:
 			break;
 	}

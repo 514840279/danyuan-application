@@ -34,7 +34,7 @@ public class CrawlerController {
 		
 	}
 
-	@RequestMapping(path = { "/ruler/pageList/{uuid}", "/ruler/pageDict/{uuid}" })
+	@RequestMapping(path = { "/ruler/pageList/{uuid}" })
 	public ModelAndView pageList(@PathVariable("uuid") String uuid) {
 		ModelAndView view = new ModelAndView("crawler/rule/pageList");
 		view.addObject("uuid", uuid);
@@ -45,6 +45,14 @@ public class CrawlerController {
 	@RequestMapping("/ruler/pageDetail/{uuid}")
 	public ModelAndView pageDetail(@PathVariable("uuid") String uuid) {
 		ModelAndView view = new ModelAndView("crawler/rule/pageDetail");
+		view.addObject("uuid", uuid);
+		return view;
+		
+	}
+	
+	@RequestMapping("/ruler/pageDict/{uuid}")
+	public ModelAndView pageDict(@PathVariable("uuid") String uuid) {
+		ModelAndView view = new ModelAndView("crawler/rule/pageDict");
 		view.addObject("uuid", uuid);
 		return view;
 		

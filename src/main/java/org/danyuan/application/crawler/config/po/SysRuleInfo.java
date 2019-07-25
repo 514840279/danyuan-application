@@ -23,6 +23,7 @@ public class SysRuleInfo {
 	private String		pageName;
 
 	private GroupList	groupList;
+	private GroupList	dictList;
 
 	/**
 	 * @方法名 getUuid
@@ -91,5 +92,22 @@ public class SysRuleInfo {
 	public void setGroupList(GroupList groupList) {
 		this.groupList = groupList;
 	}
-
+	
+	/**
+	 * @方法名 getDictList
+	 * @功能 返回变量 dictList 的值
+	 * @return GroupList
+	 */
+	public GroupList getDictList() {
+		return dictList;
+	}
+	
+	/**
+	 * @方法名 setDictList
+	 * @功能 设置变量 dictList 的值
+	 */
+	public void setDictList(GroupList dictList) {
+		this.dictList = dictList;
+	}
+	
 }

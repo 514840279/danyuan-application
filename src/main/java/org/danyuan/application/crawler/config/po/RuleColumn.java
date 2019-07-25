@@ -17,7 +17,8 @@ public class RuleColumn {
 	private String			type;
 	private String			detialUrl;
 	private String			imgUrl;
-
+	private String			pageType;
+	private String			pageName;
 	private List<GroupList>	groupLists;
 	
 	/**
@@ -138,5 +139,39 @@ public class RuleColumn {
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
-
+	
+	/**
+	 * @方法名 getPageType
+	 * @功能 返回变量 pageType 的值
+	 * @return String
+	 */
+	public String getPageType() {
+		return pageType;
+	}
+	
+	/**
+	 * @方法名 setPageType
+	 * @功能 设置变量 pageType 的值
+	 */
+	public void setPageType(String pageType) {
+		this.pageType = pageType;
+	}
+	
+	/**
+	 * @方法名 getPageName
+	 * @功能 返回变量 pageName 的值
+	 * @return String
+	 */
+	public String getPageName() {
+		return pageName;
+	}
+	
+	/**
+	 * @方法名 setPageName
+	 * @功能 设置变量 pageName 的值
+	 */
+	public void setPageName(String pageName) {
+		this.pageName = pageName;
+	}
+	
 }

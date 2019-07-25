@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="row">
+			<label class="col-sm-2 control-label text-right">组规则:</label>
+			<div class="col-xs-10 form-group">
+				<input type="text" class="form-control" id="pageDict_colum_group_id" />
+			</div>
+		</div>
+		<div class="row"> 
+			<div class="col-xs-12">
+				<div id="pageDict_rule_group_table_toolbar">
+						<div class="btn-group">
+							<button type="button" class="btn btn-default" id="add_pageDict_rule_group_config_btn" title="新增">
+								<i class="fa fa-plus"></i> 新增
+							</button>
+							<button type="button" class="btn btn-default" id="del_pageDict_rule_group_config_btn" title="删除">
+								<i class="glyphicon glyphicon-trash"></i> 删除
+							</button>
+						</div>
+					</div>
+				<table id="dict_table_cloumns_id"></table>
+			</div>
+		</div>
+		<div class="row">
+			<label class="col-sm-2 control-label text-right">下一页规则:</label>
+			<div class="col-xs-10 form-group">
+				<input type="text" class="form-control" id="pageDict_next_page_rule_id" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<button class="btn btn-info btn-sm" id="pageDict_makeSure_button_id">确定</button>
+				<button class="btn btn-danger btn-sm" id="pageDict_reback_button_id">返回任务页</button>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- 添加模态框 -->
+	<div class="modal fade" id="pageDict_add_column_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-admin_userBase_upd_" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" >
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel-admin_userBase_upd_">添加标题信息</h4>
+				</div>
+				<div class="modal-body">
+					<input type="text"  name="uuid" id="pageDict_column_upd_uuid" style="display: none;" />
+					<div class="row" >
+						<div class=" col-md-12 form-group">
+							<label class="col-sm-2 control-label text-right">名称:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="columnName" id="pageDict_column_upd_name" />
+							</div>
+						</div>
+						<div class=" col-md-12 form-group">
+							<label class="col-sm-2 control-label text-right">规则:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="columnRule" id="pageDict_column_upd_rule" />
+							</div>
+						</div>
+						<div class=" col-md-12 form-group">
+							<label class="col-sm-2 control-label text-right">执行规则:</label>
+							<div class="col-sm-10">
+								<select id="pageDict_columnRuleType" ></select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="pageDict_column_upd_button">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- 添加模态框 -->
+	<div class="modal fade" id="dict_pageType_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-admin_userBase_upd_" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" style="width: 85%;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel-admin_userBase_upd_">添加标题信息</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row" id="showTiming">
+						<div class=" col-md-12 form-group">
+							<label class="col-sm-2 control-label text-right">类型:</label>
+							<div class="col-sm-10">
+								<select id="dict_pageType_select"></select>
+							</div>
+						</div>
+						<div class=" col-md-12 form-group">
+							<label class="col-sm-2 control-label text-right">标题:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="dict_pageName" name="pageName" placeholder="标题,创建后不可修改" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="dict_pageType_upd_button">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script th:inline="javascript">
+	var uuid = [[${uuid}]];
+	console.log(uuid);
+	</script>
+	<script type="text/javascript" src="/pages/crawler/rule/pageDict.js"></script>
+</body>
+</html>
