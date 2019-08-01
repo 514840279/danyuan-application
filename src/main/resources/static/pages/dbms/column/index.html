@@ -153,15 +153,33 @@
 					</div>
 					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
 						<label for="update_config_column_colsAlign">横向对齐</label> 
-						<input type="text" class="form-control" id="update_config_column_colsAlign" placeholder="横向对齐">
+						<div id="update_config_column_colsAlign" class="form-control">
+							<input type="radio" name="colsAlign"  value="left" id="update_config_column_colsAlign_left"><label for="update_config_column_colsAlign_left">左对齐</label>
+							<input type="radio" name="colsAlign"  value="center" id="update_config_column_colsAlign_center"><label for="update_config_column_colsAlign_center">居中</label>
+							<input type="radio" name="colsAlign"  value="right" id="update_config_column_colsAlign_right"><label for="update_config_column_colsAlign_right">右对齐</label> 
+						</div>
 					</div>
 					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
-						<label for="update_config_column_colsValign">纵向对齐</label>
-						<input type="text" class="form-control" id="update_config_column_colsValign" placeholder="纵向对齐">
+						<label for="update_config_column_colsValign">纵向对齐</label> 
+						<div id="update_config_column_colsValign" class="form-control">
+							<input type="radio" name="colsValign"  value="top" id="update_config_column_colsValign_top"><label for="update_config_column_colsValign_top">靠上</label>
+							<input type="radio" name="colsValign"  value="middle" id="update_config_column_colsValign_middle"><label for="update_config_column_colsValign_middle">居中</label>
+							<input type="radio" name="colsValign"  value="bottom" id="update_config_column_colsValign_bottom"><label for="update_config_column_colsValign_bottom">底部</label> 
+						</div>
 					</div>
 					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
 						<label for="update_config_column_colsSwitchable">switch开关</label> 
-						<input type="text" class="form-control" id="update_config_column_colsSwitchable" placeholder="switch开关">
+						<div id="update_config_column_colsSwitchable" class="form-control">
+							<input type="radio" name="colsSwitchable"  value="true" id="update_config_column_colsSwitchable_true"><label for="update_config_column_colsSwitchable_true">可选</label>
+							<input type="radio" name="colsSwitchable"  value="false" id="update_config_column_colsSwitchable_false"><label for="update_config_column_colsSwitchable_false">不可选</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsSwitchable">列表展示</label> 
+						<div id="update_config_column_colsVisible" class="form-control">
+							<input type="radio" name="colsVisible"  value="true" id="update_config_column_colsVisible_true"><label for="update_config_column_colsVisible_true">展示</label>
+							<input type="radio" name="colsVisible"  value="false" id="update_config_column_colsVisible_false"><label for="update_config_column_colsVisible_false">隐藏</label>
+						</div>
 					</div>
 <!-- 					<div class="col-lg-6   col-md-6 col-sm-12 form-group"> -->
 <!-- 						<label for="update_config_column_indexIndex">indexIndex</label>  -->

@@ -5,8 +5,13 @@ $(function() {
 		$("#dbm_useridex_add_userOrder").val("");
 		$("#dbm_useridex_add_userIndex").val("");
 		$("#dbm_useridex_add_userPlaceholder").val("");
+		
 		$("#dbm_useridex_add_multeity").val("");
 		$("#dbm_useridex_add_chart").val("");
+		$("input[name='deleteFlag'][value='1']").prop("checked",true);
+		$("input[name='multeity'][value='1']").prop("checked",true);
+		$("input[name='chart'][value='1']").prop("checked",true);
+		
 		$('#dbm_userindex_add_modal').modal({
 			show:true,
 		});
@@ -23,8 +28,9 @@ $(function() {
 			$("#dbm_useridex_add_userOrder").val(data[0].userOrder);
 			$("#dbm_useridex_add_userIndex").val(data[0].userIndex);
 			$("#dbm_useridex_add_userPlaceholder").val(data[0].userPlaceholder);
-			$("#dbm_useridex_add_multeity").val(data[0].multeity);
-			$("#dbm_useridex_add_chart").val(data[0].chart);
+			$("input[name='multeity'][value='"+data[0].multeity+"']").prop("checked",true);;
+			$("input[name='chart'][value='"+data[0].chart+"']").prop("checked",true);
+			$("input[name='deleteFlag'][value='"+data[0].deleteFlag+"']").prop("checked",true);
 			$("#dbm_userindex_add_modal").modal({
 				show:true,
 			})
@@ -62,9 +68,9 @@ $(function() {
 			userOrder:$("#dbm_useridex_add_userOrder").val(),
 			userIndex:$("#dbm_useridex_add_userIndex").val(),
 			userPlaceholder:$("#dbm_useridex_add_userPlaceholder").val(),
-			deleteFlag:$("#dbm_useridex_add_deleteFlag").val(),
-			multeity:$("#dbm_useridex_add_multeity").val(),
-			chart:$("#dbm_useridex_add_chart").val(),
+			deleteFlag:$("input[name='deleteFlag']:checked").val(),
+			multeity:$("input[name='multeity']:checked").val(),
+			chart:$("input[name='chart']:checked").val(),
 			createUser:username,
 			updateUser:username,
 		}
@@ -100,7 +106,7 @@ $(function() {
 //		showExport: true,                    
 //        exportDataType: 'all',
 //        exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],  //导出文件类型
-		singleSelect : false,
+		singleSelect : true,
 		locales : "zh-CN", // 表格汉化
 //		search : true, // 显示搜索框
 		sidePagination: "server", // 服务端处理分页 server

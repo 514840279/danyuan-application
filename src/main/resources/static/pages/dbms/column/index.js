@@ -25,10 +25,17 @@ $(function() {
 //			$("#update_config_column_pageView").val(d.pageView);
 			$("#update_config_column_userIndex").val(d.userIndex);
 			$("#update_config_column_userIcon").val(d.userIcon);
-			$("#update_config_column_colsAlign").val(d.colsAlign);
 			$("#update_config_column_colsWidth").val(d.colsWidth);
-			$("#update_config_column_colsValign").val(d.colsValign);
-			$("#update_config_column_colsSwitchable").val(d.colsSwitchable);
+			
+			
+//			$("#update_config_column_colsAlign").val(d.colsAlign);
+			$("input[name='colsAlign'][value='"+(d.colsAlign==null?"left":d.colsAlign)+"']").prop("checked",true);
+//			$("#update_config_column_colsValign").val(d.colsValign);
+			$("input[name='colsValign'][value='"+(d.colsValign==null?"middle":d.colsValign)+"']").prop("checked",true);
+//			$("#update_config_column_colsSwitchable").val(d.colsSwitchable);
+			$("input[name='colsSwitchable'][value='"+(d.colsSwitchable==null?"true":d.colsSwitchable)+"']").prop("checked",true);
+//			$("#update_config_column_colsVisible").val(d.colsVisible);
+			$("input[name='colsVisible'][value='"+(d.colsVisible==null?"true":d.colsVisible)+"']").prop("checked",true);
 //			$("#update_config_column_indexIndex").val(d.indexIndex);
 //			$("#update_config_column_indexKeyword").val(d.indexKeyword);
 //			$("#update_config_column_indexIkmaxword").val(d.indexIkmaxword);
@@ -73,9 +80,11 @@ $(function() {
 		d.userIndex=$("#update_config_column_userIndex").val();
 		d.userIcon=$("#update_config_column_userIcon").val();
 		d.colsWidth=$("#update_config_column_colsWidth").val();
-		d.colsAlign=$("#update_config_column_colsAlign").val();
-		d.colsValign=$("#update_config_column_colsValign").val();
-		d.colsSwitchable=$("#update_config_column_colsSwitchable").val();
+		
+		d.colsAlign=$("input[name='colsAlign']:checked").val();
+		d.colsValign=$("input[name='colsValign']:checked").val();
+		d.colsSwitchable=$("input[name='colsSwitchable']:checked").val();
+		d.colsVisible=$("input[name='colsVisible']:checked").val();
 		var url ='/sysDbmsTabsColsInfo/save';
 		d.createTime=null;
 		d.updateTime=null;
@@ -208,7 +217,7 @@ function showClomnTable(){
 //		showExport: true,                    
 //        exportDataType: 'all',
 //        exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],  //导出文件类型
-		singleSelect : false,
+		singleSelect : true,
 		locales : "zh-CN", // 表格汉化
 //		search : true, // 显示搜索框
 		sidePagination: "server", // 服务端处理分页 server

@@ -89,16 +89,26 @@
 						</tr>
 						<tr>
 							<td class="tableleft">多条件查询</td>
-							<td><input type="text" id="dbm_useridex_add_multeity" name="multeity" /></td>
+							<td>
+							<input type="radio" id="dbm_useridex_add_multeity_true" name="multeity" value="1"/><label for="dbm_useridex_add_multeity_true" >支持</label>
+							<input type="radio" id="dbm_useridex_add_multeity_false" name="multeity" value="0"/><label for="dbm_useridex_add_multeity_false" >不支持</label>
+							
+							</td>
 						</tr>
 						<tr>
-							<td class="tableleft">图表查询</td>
-							<td><input type="text" id="dbm_useridex_add_chart" name="multeity" /></td>
+							<td class="tableleft">关系图查询</td>
+							<td>
+							<input type="radio" id="dbm_useridex_add_chart_true" name="chart" value="1"/><label for="dbm_useridex_add_chart_true" >支持</label>
+							<input type="radio" id="dbm_useridex_add_chart_false" name="chart" value="0"/><label for="dbm_useridex_add_chart_false" >支持</label>
+							
+							</td>
 						</tr>
 						<tr>
 							<td class="tableleft">是否启用</td>
-							<td><input type="text" id="dbm_useridex_add_deleteFlag" name="deleteFlag" /></td>
-							<td>1 or 0</td>
+							<td>
+								<input type="radio" id="dbm_useridex_add_deleteFlag_true" name="deleteFlag" value="1"/><label for="dbm_useridex_add_deleteFlag_true" >启用</label>
+								<input type="radio" id="dbm_useridex_add_deleteFlag_false" name="deleteFlag" value="0"/><label for="dbm_useridex_add_deleteFlag_false" >废弃</label>
+							</td>
 						</tr>
 					</table>
 				</div>
