@@ -279,7 +279,7 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 	    // 设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
 	    // 设置为limit可以获取limit, offset, search, sort, order
 	    queryParamsType : "undefined",
-	     contentType: "application/json",
+	    contentType: "application/json",
 	    method : "post", // 使用get请求到服务器获取数据
 	    queryParams : function queryParams(params) {
 		    var param = {
@@ -297,7 +297,7 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 	    },
 	    columns : column,
 	    responseHandler: function(result){  // 成功时执行
-//	    	console.log(result);
+	    	console.log(result.list);
 	    	if(result!=null && result.list!=null ){
 		    	if(result.list.length>0){
 		    		table.css("display","");
@@ -311,7 +311,7 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 			temp_index_number +=1;
 			$('#progress_bar_id').css('width', width_persent);
 //			
-			return {data:result.list};
+			return {rows:result.list};
 		}, 
 		onLoadError:function(status,result){ // 错误时执行
 			if($(result.responseText).find("form").attr("action")=="/login"){

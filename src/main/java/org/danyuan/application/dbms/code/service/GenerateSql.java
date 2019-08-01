@@ -55,7 +55,7 @@ public class GenerateSql {
 		
 		// fda VARCHAR(20) NOT NULL DEFAULT '1' COMMENT 'fdsa'
 		stringBuilder.append(" create_time timestamp NOT NULL default CURRENT_TIMESTAMP COMMENT '记录时间',\r\n");
-		stringBuilder.append(" update_time timestamp NOT NULL default CURRENT_TIMESTAMP COMMENT '更新时间',\r\n");
+		stringBuilder.append(" update_time timestamp NOT NULL default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT  '更新时间',\r\n");
 		stringBuilder.append(" create_user varchar(50) NOT NULL default 'system' COMMENT '记录人',\r\n");
 		stringBuilder.append(" update_user varchar(50) NOT NULL default 'system' COMMENT '更新人',\r\n");
 		stringBuilder.append(" delete_flag tinyint NOT NULL default 0 COMMENT '应用标识',\r\n");

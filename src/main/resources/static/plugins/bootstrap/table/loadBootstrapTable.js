@@ -65,7 +65,7 @@
 					return result;
 				} else if (options.sidePagination == "client") {
 					return {
-						data : result.list
+						rows : result.list
 					};
 				}
 				// },

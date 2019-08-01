@@ -349,7 +349,7 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 			temp_index_number +=1;
 			$('#progress_bar_id').css('width', width_persent);
 //			
-			return {data:result.list};
+			return {rows:result.list};
 		}, 
 		onLoadError:function(status,result){ // 错误时执行
 			if($(result.responseText).find("form").attr("action")=="/login"){
