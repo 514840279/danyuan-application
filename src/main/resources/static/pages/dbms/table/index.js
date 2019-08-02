@@ -161,6 +161,7 @@ $(function() {
 			{title : '显示顺序',field : 'tabsOrder',align : 'center',sortable : true,valign : 'middle'},
 			{title : '表数据量',field : 'tabsRows',sortable : true,align : 'left'},
 			{title : '数据库表大小',field : 'tabsSpace',sortable : true,align : 'left'},
+			{title : '表类型',field : 'typeUuid',sortable : true,align : 'left',visible:false},
 			{title : '描述',field : 'discription',sortable : true,align : 'left'}
 		],responseHandler: function(result){  // 成功时执行
 			return {rows:result.content,total:result.totalElements};
