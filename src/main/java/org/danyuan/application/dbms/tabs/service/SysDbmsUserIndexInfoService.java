@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.danyuan.application.dbms.tabs.dao.SysDbmsUserIndexInfoDao;
 import org.danyuan.application.dbms.tabs.po.SysDbmsUserIndexInfo;
+import org.danyuan.application.dbms.tabs.vo.SysDbmsUserIndexInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -27,7 +28,7 @@ import org.springframework.stereotype.Service;
 public class SysDbmsUserIndexInfoService {
 	@Autowired
 	private SysDbmsUserIndexInfoDao sysDbmsUserIndexInfoDao;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -39,7 +40,7 @@ public class SysDbmsUserIndexInfoService {
 	public List<SysDbmsUserIndexInfo> findAll() {
 		return sysDbmsUserIndexInfoDao.findAllByDeleteFlag();
 	}
-
+	
 	/**
 	 * 方法名： page
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -51,14 +52,21 @@ public class SysDbmsUserIndexInfoService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	public Page<SysDbmsUserIndexInfo> page(int pageNumber, int pageSize, SysDbmsUserIndexInfo col) {
-		Example<SysDbmsUserIndexInfo> example = Example.of(col);
+	public Page<SysDbmsUserIndexInfo> page(SysDbmsUserIndexInfoVo vo) {
+		Example<SysDbmsUserIndexInfo> example = Example.of(vo.getInfo());
 		Sort sort = Sort.by(new Order(Direction.ASC, "userOrder"), new Order(Direction.DESC, "createTime"));
-		PageRequest request = PageRequest.of(pageNumber - 1, pageSize, sort);
+		if (vo.getSortName() != null && !"".equals(vo.getSortName())) {
+			if (vo.getSortOrder().equals("asc")) {
+				sort = Sort.by(new Order(Direction.ASC, vo.getSortName()));
+			} else {
+				sort = Sort.by(new Order(Direction.DESC, vo.getSortName()));
+			}
+		}
+		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		Page<SysDbmsUserIndexInfo> sourceCodes = sysDbmsUserIndexInfoDao.findAll(example, request);
 		return sourceCodes;
 	}
-
+	
 	/**
 	 * 方法名： save
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -70,7 +78,7 @@ public class SysDbmsUserIndexInfoService {
 	public void save(SysDbmsUserIndexInfo info) {
 		sysDbmsUserIndexInfoDao.save(info);
 	}
-
+	
 	/**
 	 * 方法名： delete
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -82,7 +90,7 @@ public class SysDbmsUserIndexInfoService {
 	public void delete(List<SysDbmsUserIndexInfo> list) {
 		sysDbmsUserIndexInfoDao.deleteAll(list);
 	}
-	
+
 	/**
 	 * 方法名： chartList
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)

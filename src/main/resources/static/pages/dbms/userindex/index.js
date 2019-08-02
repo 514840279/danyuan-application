@@ -119,21 +119,26 @@ $(function() {
 		    var param = {  
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
-                 searchText: params.searchText
+                 sortOrder:params.sortOrder,
+                 sortName:params.sortName,
+                 searchText: params.searchText,
+                 info:{
+                	 
+                 }
              }; 
              return param;
 		},
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 //			{title : 'uuid',field : 'uuid',align : 'left',sortable : true,valign : 'middle',switchable:false,visible:false},
-			{title : '索引类型',field : 'userIndex',align : 'left',valign : 'middle'},
-			{title : '显示信息',field : 'userDesc',align : 'left',valign : 'middle'},
-			{title : '排序',field : 'userOrder',align : 'left',valign : 'middle'},
+			{title : '索引类型',field : 'userIndex',align : 'left',valign : 'middle',sortable : true},
+			{title : '显示信息',field : 'userDesc',align : 'left',valign : 'middle',sortable : true},
+			{title : '排序',field : 'userOrder',align : 'left',valign : 'middle',sortable : true},
 			{title : '说明',field : 'userPlaceholder',align : 'left',valign : 'middle'},
-			{title : '更新时间',field : 'updateTime',align : 'left',valign : 'middle'},
-			{title : '更新人',field : 'updateUser',align : 'left',valign : 'middle'},
-			{title : '多条件查询',field : 'multeity',align : 'left',valign : 'middle'},
-			{title : '图表显示',field : 'chart',align : 'left',valign : 'middle'},
+			{title : '更新时间',field : 'updateTime',align : 'left',valign : 'middle',sortable : true},
+			{title : '更新人',field : 'updateUser',align : 'left',valign : 'middle',sortable : true},
+			{title : '多条件查询',field : 'multeity',align : 'left',valign : 'middle',sortable : true},
+			{title : '图表显示',field : 'chart',align : 'left',valign : 'middle',sortable : true},
 			{title : '标记',field : 'deleteFlag',align : 'left',valign : 'middle'}
 		],
 		responseHandler: function(result){  // 成功时执行

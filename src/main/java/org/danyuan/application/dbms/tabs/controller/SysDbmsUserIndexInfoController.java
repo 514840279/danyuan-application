@@ -32,43 +32,42 @@ import io.swagger.annotations.ApiOperation;
 public class SysDbmsUserIndexInfoController {
 	//
 	private static final Logger	logger	= LoggerFactory.getLogger(SysDbmsUserIndexInfoController.class);
-	
+
 	@Autowired
 	SysDbmsUserIndexInfoService	sysDbmsUserIndexInfoService;
-	
+
 	@RequestMapping(path = "/findAll", method = RequestMethod.POST)
 	public List<SysDbmsUserIndexInfo> findAll() {
 		logger.info("findAll", SysDbmsUserIndexInfoController.class);
 		return sysDbmsUserIndexInfoService.findAll();
-		
+
 	}
-	
+
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<SysDbmsUserIndexInfo> page(@RequestBody SysDbmsUserIndexInfoVo vo) {
 		logger.info("page", SysDbmsUserIndexInfoController.class);
-		SysDbmsUserIndexInfo col = new SysDbmsUserIndexInfo();
-		return sysDbmsUserIndexInfoService.page(vo.getPageNumber(), vo.getPageSize(), col);
+		return sysDbmsUserIndexInfoService.page(vo);
 	}
-	
+
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	public String save(@RequestBody SysDbmsUserIndexInfo info) {
 		logger.info("save", SysDbmsUserIndexInfoController.class);
 		sysDbmsUserIndexInfoService.save(info);
 		return "1";
 	}
-	
+
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestBody SysDbmsUserIndexInfoVo vo) {
 		logger.info("delete", SysDbmsUserIndexInfoController.class);
 		sysDbmsUserIndexInfoService.delete(vo.getList());
 		return "1";
 	}
-	
+
 	@ApiOperation(value = "查询图表信息", notes = "")
 	@RequestMapping(path = "/chartList", method = RequestMethod.POST)
 	public List<SysDbmsUserIndexInfo> chartList() {
 		logger.info("findAll", SysDbmsUserIndexInfoController.class);
 		return sysDbmsUserIndexInfoService.chartList();
-		
+
 	}
 }
