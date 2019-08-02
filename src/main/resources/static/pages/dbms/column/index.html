@@ -36,15 +36,15 @@
 			</div>
 			<div class="box-body">
 				<div class="col-lg-6   col-md-6 col-sm-12 form-group">
-					<label class="col-sm-3 control-label text-left">数据库类型:</label>
-					<div class="col-sm-9">
-						<select style="width: 100%;" id="search_config_table_typeUuid"></select>
-					</div>
-				</div>
-				<div class="col-lg-6   col-md-6 col-sm-12 form-group">
 					<label class="col-sm-3 control-label text-left">数据库名称:</label>
 					<div class="col-sm-9">
 						<select style="width: 100%;" id="search_config_table_addrUuid"></select>
+					</div>
+				</div>
+				<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+					<label class="col-sm-3 control-label text-left">数据库类型:</label>
+					<div class="col-sm-9">
+						<select style="width: 100%;" id="search_config_table_typeUuid"></select>
 					</div>
 				</div>
 				<div class="col-lg-6   col-md-6 col-sm-12 form-group">
@@ -120,7 +120,7 @@
 					</div>
 					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
 						<label for="update_config_column_colsSort">排序</label> 
-						<input type="text" class="form-control" id="update_config_column_colsSort" placeholder="数据排序">
+						<input type="number" class="form-control" id="update_config_column_colsSort" placeholder="数据排序">
 					</div>
 <!-- 					<div class="col-lg-6   col-md-6 col-sm-12 form-group"> -->
 <!-- 						<label for="update_config_column_pageInput">pageInput</label>  -->
@@ -175,10 +175,17 @@
 						</div>
 					</div>
 					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
-						<label for="update_config_column_colsSwitchable">列表展示</label> 
+						<label for="update_config_column_colsVisible">列表展示</label> 
 						<div id="update_config_column_colsVisible" class="form-control">
 							<input type="radio" name="colsVisible"  value="true" id="update_config_column_colsVisible_true"><label for="update_config_column_colsVisible_true">展示</label>
 							<input type="radio" name="colsVisible"  value="false" id="update_config_column_colsVisible_false"><label for="update_config_column_colsVisible_false">隐藏</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsSort">排序条件支持</label> 
+						<div id="update_config_column_colsSort" class="form-control">
+							<input type="radio" name="colsSort"  value="true" id="update_config_column_colsSort_true"><label for="update_config_column_colsSort_true">允许</label>
+							<input type="radio" name="colsSort"  value="false" id="update_config_column_colsSort_false"><label for="update_config_column_colsSort_false">不允许</label>
 						</div>
 					</div>
 <!-- 					<div class="col-lg-6   col-md-6 col-sm-12 form-group"> -->
@@ -211,7 +218,10 @@
 <!-- 					</div> -->
 					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
 						<label for="update_config_column_deleteFlag">标记</label> 
-						<input type="text" class="form-control" id="update_config_column_deleteFlag" placeholder="标记">
+						<div id="update_config_column_deleteFlag" class="form-control">
+							<input type="radio" name="deleteFlag"  value="1" id="update_config_column_deleteFlag_true"><label for="update_config_column_deleteFlag_true">删除</label>
+							<input type="radio" name="deleteFlag"  value="0" id="update_config_column_deleteFlag_false"><label for="update_config_column_deleteFlag_false">启用</label>
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer">

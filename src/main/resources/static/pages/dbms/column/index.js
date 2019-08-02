@@ -19,16 +19,13 @@ $(function() {
 			$("#update_config_column_colsName").text(d.colsName);
 			$("#update_config_column_colsDesc").val(d.colsDesc);
 			$("#update_config_column_colsOrder").val(d.colsOrder);
-			$("#update_config_column_colsSort").val(d.colsSort);
-//			$("#update_config_column_pageInput").val(d.pageInput);
-//			$("#update_config_column_pageList").val(d.pageList);
-//			$("#update_config_column_pageView").val(d.pageView);
 			$("#update_config_column_userIndex").val(d.userIndex);
 			$("#update_config_column_userIcon").val(d.userIcon);
 			$("#update_config_column_colsWidth").val(d.colsWidth);
 			
-			
-//			$("#update_config_column_colsAlign").val(d.colsAlign);
+			$("input[name='deleteFlag'][value='"+(d.deleteFlag==null?"0":d.deleteFlag)+"']").prop("checked",true);
+			$("input[name='colsSort'][value='"+(d.colsSort==null?"true":d.colsSort)+"']").prop("checked",true);
+			//			$("#update_config_column_colsAlign").val(d.colsAlign);
 			$("input[name='colsAlign'][value='"+(d.colsAlign==null?"left":d.colsAlign)+"']").prop("checked",true);
 //			$("#update_config_column_colsValign").val(d.colsValign);
 			$("input[name='colsValign'][value='"+(d.colsValign==null?"middle":d.colsValign)+"']").prop("checked",true);
@@ -76,11 +73,11 @@ $(function() {
 		var d = $('#dbm_config_column_datagrid').bootstrapTable('getAllSelections')[0];
 		d.colsDesc=$("#update_config_column_colsDesc").val();
 		d.colsOrder=$("#update_config_column_colsOrder").val();
-		d.colsSort=$("#update_config_column_colsSort").val();
+		d.colsSort=$("input[name='colsSort']:checked").val();
 		d.userIndex=$("#update_config_column_userIndex").val();
 		d.userIcon=$("#update_config_column_userIcon").val();
 		d.colsWidth=$("#update_config_column_colsWidth").val();
-		
+		d.deleteFlag = $("input[name='deleteFlag']:checked").val();
 		d.colsAlign=$("input[name='colsAlign']:checked").val();
 		d.colsValign=$("input[name='colsValign']:checked").val();
 		d.colsSwitchable=$("input[name='colsSwitchable']:checked").val();
@@ -242,14 +239,19 @@ function showClomnTable(){
 			{title : '列中文含义',field : 'colsDesc',align : 'left',sortable : true,valign : 'middle'},
 //			{title : '列数据类型',field : 'coldType',sortable : true,align : 'left'},
 			{title : '列顺序',field : 'colsOrder',sortable : true,align : 'right'},
-			{title : '用户配置索引列',field : 'userIndex',sortable : true,align : 'left',valign : 'middle',visible:false},
-			{title : '详细显示标识',field : 'pageView',sortable : true,align : 'left'},
-			{title : '列表显示标识',field : 'pageList',sortable : true,align : 'left'},
+			{title : '用户配置索引列',field : 'userIndex',sortable : true,align : 'left',valign : 'middle',visible:true},
+			{title : '列表显示标识',field : 'colsVisible',sortable : true,align : 'left'},
+			{title : '字段选择标识',field : 'colsSwitchable',sortable : true,align : 'left'},
+			{title : '支持排序条件',field : 'colsSort',sortable : true,align : 'left'},
+			{title : '显示宽度',field : 'colsWidth',sortable : true,align : 'left'},
+			{title : '对齐（横）',field : 'colsAlign',sortable : true,align : 'left'},
+			{title : '对齐（纵）',field : 'colsValign',sortable : true,align : 'left'},
 			{title : '显示图标',field : 'userIcon',align : 'left',sortable : true,valign : 'middle',formatter:function(userIcon){
 				return "<i class='"+userIcon+"'></i>";
 			}},
-			{title : '查询显示标识',field : 'pageInput',align : 'left',sortable : true,valign : 'middle'},
-			{title : '标记',field : 'deleteFlag',sortable : true,align : 'left'},
+			{title : '启用标记',field : 'deleteFlag',sortable : true,align : 'left',formatter:function(deleteFlag){
+				return  deleteFlag==1?"删除":"启用";
+			}},
 			{title : '更新时间',field : 'updateTime',align : 'left',sortable : true,valign : 'middle'},
 			{title : '更新人',field : 'updateUser',sortable : true,align : 'left',valign : 'middle',visible:false},
 		],

@@ -61,7 +61,7 @@ function columnFix(result){
 			    "width":value.colsWidth==null?150:value.colsWidth,
 			    "align":value.colsAlign==null?"left":value.colsAlign,
 			    "valign":value.colsValign==null?"middle":value.colsValign,
-			    "visible":value.pageList==null?true:value.pageList,
+			    "visible":value.colsVisible==null?true:value.colsVisible,
 			    "switchable":value.colsSwitchable==null?true:value.colsSwitchable,
 	    		formatter:function iconFormatter(value, row, index){
 	    			if(value==null){
@@ -86,7 +86,7 @@ function columnFix(result){
 			    "width":value.colsWidth==null?150:value.colsWidth,
 			    "align":value.colsAlign==null?"left":value.colsAlign,
 			    "valign":value.colsValign==null?"middle":value.colsValign,
-			    "visible":value.pageList==null?true:value.pageList,
+			    "visible":value.colsVisible==null?true:value.colsVisible,
 			    "switchable":value.colsSwitchable==null?true:value.colsSwitchable,
 	    		formatter:function otherFormatter(value, row, index){
 	    			if(value==null){
