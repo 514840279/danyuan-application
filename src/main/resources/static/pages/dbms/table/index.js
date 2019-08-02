@@ -141,6 +141,8 @@ $(function() {
 		    var param = {  
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
+                 sortOrder:params.sortOrder,
+                 sortName:params.sortName,
                  info:{
                 	 jdbcUuid:search_table_addrName,
             		 typeUuid:search_table_typeName,
