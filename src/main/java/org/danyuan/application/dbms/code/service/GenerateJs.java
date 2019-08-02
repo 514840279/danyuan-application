@@ -85,7 +85,7 @@ public class GenerateJs {
 		stringBuilder.append("	\r\n");
 		stringBuilder.append("	// 弹出编辑窗口\r\n");
 		stringBuilder.append("	$('#addnew_" + subNameIdString + "').click(function() {\r\n");
-
+		
 		stringBuilder.append("		$(\"#" + subNameIdString + "_uuid\").val(\"\");\r\n");
 		stringBuilder.append("		$(\"#" + subNameIdString + "_deleteFlag\").val(\"\");\r\n");
 		stringBuilder.append("		$(\"#" + subNameIdString + "_discription\").val(\"\");\r\n");
@@ -288,7 +288,24 @@ public class GenerateJs {
 			if (sysDbmsTabsColsInfo.getColsWidth() != null && sysDbmsTabsColsInfo.getColsWidth().intValue() > 0) {
 				widthInteger = sysDbmsTabsColsInfo.getColsWidth();
 			}
-			stringBuilder.append("			{title : '" + colsDescString + "',	field : '" + colsNameString + "','width':" + widthInteger.intValue() + ",align : '" + alignString + "',sortable : true,valign : 'middle',switchable:true,visible:true},\r\n");
+			Boolean colsSortable = false;
+			if (sysDbmsTabsColsInfo.getColsSort() != null && sysDbmsTabsColsInfo.getColsSort().equals("true")) {
+				colsSortable = true;
+			}
+			String colsValign = sysDbmsTabsColsInfo.getColsValign();
+			if (colsValign == null || "".equals(colsValign)) {
+				colsValign = "middle";
+			}
+			Boolean colsSwitchable = sysDbmsTabsColsInfo.getColsSwitchable();
+			if (colsSwitchable == null) {
+				colsSwitchable = true;
+			}
+			Boolean colsVisible = sysDbmsTabsColsInfo.getColsVisible();
+			if (colsVisible == null) {
+				colsVisible = true;
+			}
+
+			stringBuilder.append("			{title : '" + colsDescString + "',	field : '" + colsNameString + "','width':" + widthInteger.intValue() + ",align : '" + alignString + "',sortable : " + colsSortable + ",valign : '" + colsValign + "',switchable:" + colsSwitchable + ",visible:" + colsVisible + "},\r\n");
 		}
 		stringBuilder.append("			{title : '项目描述',	field : 'discription',align : 'left',sortable : true,	valign : 'middle',switchable:true,visible:false},\r\n");
 		stringBuilder.append("			{title : '创建时间',	field : 'createTime',align : 'left',sortable : true,valign : 'middle',switchable:true,visible:false},\r\n");
@@ -315,7 +332,7 @@ public class GenerateJs {
 		stringBuilder.append("		contextMenu: '#context-menu', // 右键菜单绑定\r\n");
 		stringBuilder.append("		onContextMenuItem: function(row,$ele){ // 右键菜单事件\r\n");
 		stringBuilder.append("		}\r\n");
-
+		
 		stringBuilder.append("	}).on('dbl-click-row.bs.table', function (e, row, ele,field) { // 行双击事件 \r\n");
 		stringBuilder.append("	}).on('click-row.bs.table', function (e, row, ele,field) { // 行单击事件\r\n");
 		stringBuilder.append("	});\r\n");
