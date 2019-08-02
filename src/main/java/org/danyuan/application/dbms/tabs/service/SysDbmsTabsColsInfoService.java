@@ -113,21 +113,6 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	}
 
 	/**
-	 * 方法名 ： findOne
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param info
-	 * 参 数 ： @return
-	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#findOne(java.lang.Object)
-	 * 作 者 ： Administrator
-	 */
-
-	@Override
-	public SysDbmsTabsColsInfo findOne(SysDbmsTabsColsInfo info) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
 	 * 参 数 ： @param info
@@ -199,20 +184,6 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param info
-	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#delete(java.lang.Object)
-	 * 作 者 ： Administrator
-	 */
-
-	@Override
-	public void delete(SysDbmsTabsColsInfo info) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * 方法名 ： delete
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
 	 * 参 数 ： @param list
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#delete(java.util.List)
 	 * 作 者 ： Administrator
@@ -223,20 +194,6 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 		sysDbmsTabsColsInfoDao.deleteAll(list);
 	}
 
-	/**
-	 * 方法名 ： trunc
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ：
-	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#trunc()
-	 * 作 者 ： Administrator
-	 */
-
-	@Override
-	public void trunc() {
-		// TODO Auto-generated method stub
-
-	}
-	
 	/**
 	 * @方法名 pagev
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -266,6 +223,11 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 		pageSql.append("   t.`COLUMN_COMMENT` AS colsDesc  ");
 		pageSql.append(" FROM  `information_schema`.`COLUMNS` t  ");
 		pageSql.append(" WHERE CONCAT(t.`TABLE_SCHEMA`,'.',t.`TABLE_NAME`) = '" + tabs.getTabsName() + "'  ");
+		pageSql.append(" and t.`COLUMN_NAME` not in( ");
+		pageSql.append(" 		select c.cols_name from application.sys_dbms_tabs_cols_info c ");
+		pageSql.append(" 		where c.tabs_uuid='" + tabs.getUuid() + "'");
+		pageSql.append(" 	)");
+
 		pageSql.append(" ORDER BY t.`ORDINAL_POSITION`  ");
 
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
