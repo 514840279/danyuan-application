@@ -16,13 +16,13 @@ import java.util.Map;
 import org.danyuan.application.common.utils.string.StringUtils;
 import org.danyuan.application.dbms.echarts.po.SysDbmsChartDimension;
 import org.danyuan.application.dbms.echarts.po.SysDbmsChartDimensionData;
-import org.danyuan.application.dbms.echarts.po.SysPlantBindConf;
 import org.danyuan.application.dbms.echarts.service.SysDbmsChartDimensionDataService;
 import org.danyuan.application.dbms.echarts.service.SysDbmsChartDimensionService;
 import org.danyuan.application.dbms.echarts.service.SysPlantBarOrLineStatisticsChartByElasticsearchService;
-import org.danyuan.application.dbms.echarts.service.SysPlantBindConfService;
 import org.danyuan.application.dbms.echarts.service.SysPlantMapStatisticsChartByElasticsearchService;
 import org.danyuan.application.dbms.echarts.service.SysPlantPieStatisticsChartByElasticsearchService;
+import org.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
+import org.danyuan.application.dbms.tabs.service.SysDbmsTabsColsInfoService;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -65,10 +65,10 @@ public class SysPlanStatisticsChartByElasticsearchController {
 	SysPlantPieStatisticsChartByElasticsearchService		sysPlantPieStatisticsChartByElasticsearchService;
 	@Autowired
 	SysPlantMapStatisticsChartByElasticsearchService		sysPlantMapStatisticsChartByElasticsearchService;
-	
+
 	@Autowired
-	SysPlantBindConfService									sysPlantBindConfService;
-	
+	private SysDbmsTabsColsInfoService						sysDbmsTabsColsInfoService;
+
 	@ApiOperation(value = "构建图形数据", notes = "")
 	@RequestMapping(path = "/build", method = RequestMethod.POST)
 	public Map<String, Object> build(@RequestBody SysDbmsChartDimension info) {
@@ -80,8 +80,8 @@ public class SysPlanStatisticsChartByElasticsearchController {
 		sysPlantChartDimensionData.setDimeUuid(info.getUuid());
 		List<SysDbmsChartDimensionData> listParam = sysPlantChartDimensionDataService.findAll(sysPlantChartDimensionData);
 		
-		SysPlantBindConf conf = new SysPlantBindConf();
-		List<SysPlantBindConf> confs = sysPlantBindConfService.findAll(conf);
+		SysDbmsTabsColsInfo conf = new SysDbmsTabsColsInfo();
+		List<SysDbmsTabsColsInfo> confs = sysDbmsTabsColsInfoService.findAll(conf);
 
 		String type3 = findTypeName(info.getLableUuid2(), confs);
 		String type2 = findTypeName(info.getLableUuid(), confs);
@@ -147,7 +147,7 @@ public class SysPlanStatisticsChartByElasticsearchController {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	private QueryBuilder buildWhereSql(List<SysDbmsChartDimensionData> listParam, List<SysPlantBindConf> confs) {
+	private QueryBuilder buildWhereSql(List<SysDbmsChartDimensionData> listParam, List<SysDbmsTabsColsInfo> confs) {
 		if (listParam.size() == 0) {
 			return null;
 		}
@@ -193,7 +193,7 @@ public class SysPlanStatisticsChartByElasticsearchController {
 			if ("keyword".equals(colsUuid)) {
 				colsName = "keyword";
 			} else {
-				for (SysPlantBindConf conf : confs) {
+				for (SysDbmsTabsColsInfo conf : confs) {
 					if (colsUuid.equals(conf.getUuid())) {
 						colsName = conf.getColsName();
 						break;
@@ -271,11 +271,11 @@ public class SysPlanStatisticsChartByElasticsearchController {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	private String findTypeName(String lableUuid2, List<SysPlantBindConf> confs) {
+	private String findTypeName(String lableUuid2, List<SysDbmsTabsColsInfo> confs) {
 		if (StringUtils.isNullOrNone(lableUuid2)) {
 			return null;
 		}
-		for (SysPlantBindConf sysPlantBindConf : confs) {
+		for (SysDbmsTabsColsInfo sysPlantBindConf : confs) {
 			if (lableUuid2.equals(sysPlantBindConf.getUuid())) {
 				return sysPlantBindConf.getColsName();
 			}

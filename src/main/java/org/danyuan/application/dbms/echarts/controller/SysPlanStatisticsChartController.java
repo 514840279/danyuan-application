@@ -16,13 +16,13 @@ import java.util.Map;
 import org.danyuan.application.common.utils.string.StringUtils;
 import org.danyuan.application.dbms.echarts.po.SysDbmsChartDimension;
 import org.danyuan.application.dbms.echarts.po.SysDbmsChartDimensionData;
-import org.danyuan.application.dbms.echarts.po.SysPlantBindConf;
 import org.danyuan.application.dbms.echarts.service.SysDbmsChartDimensionDataService;
 import org.danyuan.application.dbms.echarts.service.SysDbmsChartDimensionService;
 import org.danyuan.application.dbms.echarts.service.SysPlantBarOrLineStatisticsChartService;
-import org.danyuan.application.dbms.echarts.service.SysPlantBindConfService;
 import org.danyuan.application.dbms.echarts.service.SysPlantMapStatisticsChartService;
 import org.danyuan.application.dbms.echarts.service.SysPlantPieStatisticsChartService;
+import org.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
+import org.danyuan.application.dbms.tabs.service.SysDbmsTabsColsInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +50,7 @@ import io.swagger.annotations.ApiOperation;
 public class SysPlanStatisticsChartController {
 	//
 	private static final Logger				logger	= LoggerFactory.getLogger(SysPlanStatisticsChartController.class);
-	
+
 	@Autowired
 	SysDbmsChartDimensionService			sysPlantChartDimensionService;
 	@Autowired
@@ -61,28 +61,28 @@ public class SysPlanStatisticsChartController {
 	SysPlantPieStatisticsChartService		sysPlantPieStatisticsChartService;
 	@Autowired
 	SysPlantMapStatisticsChartService		sysPlantMapStatisticsChartService;
-
+	
 	@Autowired
-	SysPlantBindConfService					sysPlantBindConfService;
-
+	SysDbmsTabsColsInfoService				sysDbmsTabsColsInfoService;
+	
 	@ApiOperation(value = "构建图形数据", notes = "")
 	@RequestMapping(path = "/build", method = RequestMethod.POST)
 	public Map<String, Object> build(@RequestBody SysDbmsChartDimension info) {
 		logger.info("build", SysPlanStatisticsChartController.class);
-
+		
 		info = sysPlantChartDimensionService.findOne(info);
-
+		
 		SysDbmsChartDimensionData sysPlantChartDimensionData = new SysDbmsChartDimensionData();
 		sysPlantChartDimensionData.setDimeUuid(info.getUuid());
 		List<SysDbmsChartDimensionData> listParam = sysPlantChartDimensionDataService.findAll(sysPlantChartDimensionData);
-
-		SysPlantBindConf conf = new SysPlantBindConf();
-		List<SysPlantBindConf> confs = sysPlantBindConfService.findAll(conf);
 		
+		SysDbmsTabsColsInfo conf = new SysDbmsTabsColsInfo();
+		List<SysDbmsTabsColsInfo> confs = sysDbmsTabsColsInfoService.findAll(conf);
+
 		String type3 = findTypeName(info.getLableUuid2(), confs);
 		String type2 = findTypeName(info.getLableUuid(), confs);
 		String type1 = info.getChartType();
-
+		
 		if (type3 != null && type2 == null) {
 			type2 = type3;
 			type3 = null;
@@ -96,11 +96,11 @@ public class SysPlanStatisticsChartController {
 		if (type1 == null && !"map".equals(info.getChartType())) {
 			return map;
 		}
-
+		
 		// 组织条件语句
 		StringBuilder sbWhere = new StringBuilder();
 		buildWhereSql(listParam, confs, sbWhere);
-
+		
 		switch (info.getChartType()) {
 			case "pie":
 			case "rompie":
@@ -129,11 +129,11 @@ public class SysPlanStatisticsChartController {
 			default:
 				break;
 		}
-		
+
 		return map;
-		
+
 	}
-	
+
 	/**
 	 * @param list
 	 * 方法名： buildSunburst
@@ -145,10 +145,10 @@ public class SysPlanStatisticsChartController {
 	 * @throws
 	 */
 	private void buildSunburst(Map<String, Object> map, SysDbmsChartDimension info, List<SysDbmsChartDimensionData> list) {
-		
+
 		map.put("series_data", "");
 	}
-	
+
 	/**
 	 * @param list
 	 * 方法名： buildTree
@@ -160,9 +160,9 @@ public class SysPlanStatisticsChartController {
 	 * @throws
 	 */
 	private void buildTree(Map<String, Object> map, SysDbmsChartDimension info, List<SysDbmsChartDimensionData> list) {
-		
-	}
 
+	}
+	
 	/**
 	 * 方法名： findTypeName
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -173,18 +173,18 @@ public class SysPlanStatisticsChartController {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	private String findTypeName(String lableUuid2, List<SysPlantBindConf> confs) {
+	private String findTypeName(String lableUuid2, List<SysDbmsTabsColsInfo> confs) {
 		if (StringUtils.isNullOrNone(lableUuid2)) {
 			return null;
 		}
-		for (SysPlantBindConf sysPlantBindConf : confs) {
+		for (SysDbmsTabsColsInfo sysPlantBindConf : confs) {
 			if (lableUuid2.equals(sysPlantBindConf.getUuid())) {
 				return sysPlantBindConf.getColsName();
 			}
 		}
 		return null;
 	}
-
+	
 	/**
 	 * 方法名： buildWhereSql
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -195,7 +195,7 @@ public class SysPlanStatisticsChartController {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	private void buildWhereSql(List<SysDbmsChartDimensionData> list, List<SysPlantBindConf> confs, StringBuilder sbWhere) {
+	private void buildWhereSql(List<SysDbmsChartDimensionData> list, List<SysDbmsTabsColsInfo> confs, StringBuilder sbWhere) {
 		if (list.size() == 0) {
 			return;
 		}
@@ -224,15 +224,15 @@ public class SysPlanStatisticsChartController {
 					temlist.add(data);
 					pList.add(temlist);
 				}
-				
+
 			} else {
 				List<SysDbmsChartDimensionData> temlist = new ArrayList<>();
 				temlist.add(data);
 				pList.add(temlist);
 			}
-
+			
 		}
-		
+
 		// 组织条件语句
 		for (List<SysDbmsChartDimensionData> list2 : pList) {
 			String colsUuid = list2.get(0).getColsUuid();
@@ -240,7 +240,7 @@ public class SysPlanStatisticsChartController {
 			if ("keyword".equals(colsUuid)) {
 				colsName = "keyword";
 			} else {
-				for (SysPlantBindConf conf : confs) {
+				for (SysDbmsTabsColsInfo conf : confs) {
 					if (colsUuid.equals(conf.getUuid())) {
 						colsName = conf.getColsName();
 						break;
@@ -267,9 +267,9 @@ public class SysPlanStatisticsChartController {
 			} else if ("gt".equals(symbol)) {
 				sbWhere.append(" and " + colsName + " > '" + regexps.toString() + "' ");
 			}
-			
-		}
 
+		}
+		
 	}
-	
+
 }
