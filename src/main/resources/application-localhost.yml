@@ -80,14 +80,6 @@ phone:
   # 此处代码无需修改 仅需在模板中需要出现的位置填写 ${order}或 ${username}
   templateParam: '{"order":{order_title},"username":{username}}'
   
-user:
-  #结果分析表名称
-  table:
-    base: bids_bx_基本信息_v3
-    pingbiao: bids_bx_评标专家_v3
-    zhongbiao: bids_bx_中标信息_v3
-  file:
-    outputfile: outputfile
 
 # 自定义管理查询的 es 名称
 elasticsearch:

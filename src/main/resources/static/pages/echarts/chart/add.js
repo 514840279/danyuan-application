@@ -40,7 +40,7 @@ $(function(){
 	init();
 	
 	// 条件渲染
-	initParam();
+	//initParam();
 	
 });
 
@@ -55,9 +55,13 @@ function init(){
 	var url = "/sysDicName/findkeyList";
 	var param={code:"chartType"};
 	ajaxPost(url, param, addchartTypeSuccess, 5000, findError);
-	// 纬度类型
-	var url = "/sysPlantBindConf/findAll";
-	ajaxPost(url, null, addPlantBindSuccess, 5000, findError);
+	// 选择数据库
+	var url = "/sysDbmsTabsJdbcInfo/findAll";
+	ajaxPost(url, null, addSelectedAddrSuccess, 5000, findError);
+	// 选择数据类型
+	var url = "/sysDbmsTabsTypeInfo/findAll";
+	ajaxPost(url, null, addSelectedTypeSuccess, 5000, findError);
+
 	// 分组
 	var url = "/sysDbmsChartDimensionGroup/findAll";
 	var param={};
@@ -77,6 +81,92 @@ function init(){
 
 }
 
+search_config_table_typeUuid=null;
+function addSelectedTypeSuccess(result){
+	var data = [{id:"",text:"请选择"}];
+	$.each(result,function(index,value){
+		data.push({id:value.uuid,text:value.typeName});
+	});
+	
+	$('#search_config_table_typeUuid').select2({
+	    tags: true,
+	    data:data,
+	    placeholder: "请选择",
+	});
+	search_config_table_typeUuid = sysPlantChartDimension.tableTypeUuid;
+	if(search_config_table_typeUuid!=null&&search_config_table_typeUuid!=""){
+		$("#search_config_table_typeUuid").val(search_config_table_typeUuid).trigger("change");
+		searchtableNames();
+	}
+	$('#search_config_table_typeUuid').on('select2:select', function (evt) {
+		search_config_table_typeUuid = evt.params.data.id;
+		searchtableNames();
+	});
+}
+
+search_config_table_addrUuid="";
+function addSelectedAddrSuccess(result){
+	var data = [{id:"",text:"请选择"}];
+	$.each(result,function(index,value){
+		data.push({id:value.uuid,text:value.databaseName});
+	});
+	
+	$('#search_config_table_addrUuid').select2({
+	    tags: true,
+	    data:data,
+	    placeholder: "请选择",
+	});
+	search_config_table_addrUuid = sysPlantChartDimension.dbUuid;
+	$("#search_config_table_addrUuid").val(search_config_table_addrUuid).trigger("change");
+
+	$('#search_config_table_addrUuid').on('select2:select', function (evt) {
+		search_config_table_addrUuid = evt.params.data.id;
+		searchtableNames();
+	});
+}
+
+
+function searchtableNames(){
+	var param ={
+			typeUuid:search_config_table_typeUuid,
+			jdbcUuid:search_config_table_addrUuid,
+	}
+	var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
+	ajaxPost(url, param, addSelectedTableSuccess, 5000, findError);
+}
+
+function addSelectedTableSuccess(result){
+	var data = [{id:" ",text:"请选择"}];
+	$.each(result,function(index,value){
+		data.push({id:value.uuid,text:value.tabsDesc+"("+value.tabsName+")"});
+	});
+	$('#search_config_table_tableUuid').empty();   
+	$('#search_config_table_tableUuid').select2({
+	    tags: true,
+	    data:data,
+	    placeholder: "请选择",
+	});
+	_tableUuid = sysPlantChartDimension.tableUuid;
+	$("#search_config_table_tableUuid").val(_tableUuid).trigger("change");
+	if(_tableUuid){
+		loadheng(_tableUuid)
+	}
+	$('#search_config_table_tableUuid').on('select2:select', function (evt) {
+		_tableUuid = evt.params.data.id;
+		loadheng(_tableUuid)
+	});
+}
+
+function loadheng(_tableUuid){
+	if(_tableUuid ==" "){
+		_tableUuid=null;
+	}
+	// 纬度类型
+	var url = "/sysDbmsTabsColsInfo/findAllBySysDbmsTabsColsInfo";
+	ajaxPost(url, {"tabsUuid":_tableUuid}, addPlantBindSuccess, 5000, findError);
+
+}
+
 // 横轴 日期 选择 下拉 渲染
 function addchartDateTypeSuccess(result){
 	var data=[{id:'请选择',text:'请选择'}]
@@ -88,7 +178,7 @@ function addchartDateTypeSuccess(result){
 		tags: true,
 	    data:data
 	});
-	add_sysPlantChartDimension_dateType = sysPlantChartDimension.dateType;
+	add_sysPlantChartDimension_dateType = sysPlantChartDimension.countType;
 	$("#add_sysPlantChartDimension_dateType").val(add_sysPlantChartDimension_dateType==null ?"请选择":add_sysPlantChartDimension_dateType).trigger("change");
 	$('#add_sysPlantChartDimension_dateType').on('select2:select', function (evt) {
 		add_sysPlantChartDimension_dateType = evt.params.data.id;
@@ -142,10 +232,11 @@ function conformSaveData(){
 
 // 统计纬度
 function addPlantBindSuccess(result){
+	console.log(result)
 	var data=[{id:'请选择',text:'请选择'}];
 	$.each(result,function(index,value){
-		if(value.dimeFlag==1&&value.deleteFlag==1){
-			data.push({id:value.uuid,text:value.colsDesc});
+		if(value.dimeFlag==1&&value.deleteFlag!=1){
+			data.push({id:value.uuid,text:value.colsDesc==null||value.colsDesc==""?value.colsName:value.colsDesc});
 		}
 	})
 	$('#add_sysPlantChartDimension_lableUuid').select2({
@@ -221,24 +312,27 @@ function submit_add_addr(){
 		}
 		
 		var params={
-				uuid:sysPlantChartDimension.uuid,
-				theme:sysPlantChartDimension.theme,
-				title:$("#add_sysPlantChartDimension_title").val(),
-				chartType:add_sysPlantChartDimension_chartType,
-				lableUuid:add_sysPlantChartDimension_lableUuid,
-				lableUuid2:add_sysPlantChartDimension_lableUuid2,
-				lableUuid3:add_sysPlantChartDimension_lableUuid3,
-				lableUuid4:add_sysPlantChartDimension_lableUuid4,
-				dateType:add_sysPlantChartDimension_dateType,
-				startNum:$("#add_sysPlantChartDimension_startNum").val()==""?0:$("#add_sysPlantChartDimension_startNum").val(),
-				endNum:$("#add_sysPlantChartDimension_endNum").val()==""?10:$("#add_sysPlantChartDimension_endNum").val(),
-				width:$("#add_sysPlantChartDimension_width").val()==""?3:$("#add_sysPlantChartDimension_width").val(),
-				height:$("#add_sysPlantChartDimension_heigth").val()==""?2:$("#add_sysPlantChartDimension_heigth").val(),
-				dimeOrder:$("#add_sysPlantChartDimension_dimeOrder").val(),
-				groupUuid:add_sysPlantChartDimension_groupUuid,
-				deleteFlag:$('input[name="deleteFlag"]:checked').val(),
-				createUser:username,
-				updateUser:username,
+			uuid:sysPlantChartDimension.uuid,
+			theme:sysPlantChartDimension.theme,
+			title:$("#add_sysPlantChartDimension_title").val(),
+			chartType:add_sysPlantChartDimension_chartType,
+			lableUuid:add_sysPlantChartDimension_lableUuid,
+			lableUuid2:add_sysPlantChartDimension_lableUuid2,
+			lableUuid3:add_sysPlantChartDimension_lableUuid3,
+			lableUuid4:add_sysPlantChartDimension_lableUuid4,
+			countType:add_sysPlantChartDimension_dateType,
+			dbUuid:search_config_table_addrUuid,
+			tableTypeUuid:search_config_table_typeUuid,
+			tableUuid:_tableUuid,
+			startNum:$("#add_sysPlantChartDimension_startNum").val()==""?0:$("#add_sysPlantChartDimension_startNum").val(),
+			endNum:$("#add_sysPlantChartDimension_endNum").val()==""?10:$("#add_sysPlantChartDimension_endNum").val(),
+			width:$("#add_sysPlantChartDimension_width").val()==""?3:$("#add_sysPlantChartDimension_width").val(),
+			height:$("#add_sysPlantChartDimension_heigth").val()==""?2:$("#add_sysPlantChartDimension_heigth").val(),
+			dimeOrder:$("#add_sysPlantChartDimension_dimeOrder").val(),
+			groupUuid:add_sysPlantChartDimension_groupUuid,
+			deleteFlag:$('input[name="deleteFlag"]:checked').val(),
+			createUser:username,
+			updateUser:username,
 		}
 		var url = "/sysDbmsChartDimension/save";
 		ajaxPost(url, params, addSuccess);
@@ -268,7 +362,7 @@ function addSuccess(result){
 function initParam(){
 	// -----  条件数据加载  --
 	// 加载查询参数 公告类型 地址
-	var submiturl = "/sysPlantLableConf/findAll";
+	var submiturl = "/sysDbmsChartDimensionData/findAll";
 	ajaxPost(submiturl, {}, loadParamsConf);
 
 }

@@ -19,7 +19,7 @@ $(function(){
     ]
 	title='性别比例';
 	
-	setChart1('dbm_config_table_datagrid1',title,legend_data,series_data,theme);
+	setChart1('dbm_config_table_datagrid1',title,legend_data,series_data,theme,"mainDiv");
 	
 	id='dbm_config_table_datagrid2';
 	title='全国';
@@ -79,7 +79,7 @@ $(function(){
 	series_data=[
     	{name:'2003',type:'line',data:[170136,148402,183381,184953,139008,143590,139528,133734,146689,112495,132594,120718]},
 	]
-	setChart3(id,'折线图',legend_data,xAxis_data,series_data,theme);
+	setChart3(id,'折线图',legend_data,xAxis_data,series_data,theme,"mainDiv");
 	
 	id='dbm_config_table_datagrid4';
 	xAxis_data=['50后','60后','70后','80后','90后']
@@ -87,7 +87,7 @@ $(function(){
         { name:'数量',  type:'bar',  data:[7299687,25983299,45972918,49693143,7191219]}
     ]
 	legend_data=[];
-	setChart4(id,'柱图',legend_data,xAxis_data,series_data,theme);
+	setChart4(id,'柱图',legend_data,xAxis_data,series_data,theme,"mainDiv");
 	
 	id='dbm_config_table_datagrid5';
 	series_data=[{
@@ -537,7 +537,7 @@ $(function(){
     	{name:'全款',value:121675293},
 	]
 	title='全国'
-	setChart7(id,title,legend_data,series_data,theme);
+	setChart7(id,title,legend_data,series_data,theme,"mainDiv");
 	
 	
 	$('button[data-widget="remove"]').bind("click",function(){
@@ -572,5 +572,5 @@ $(function(){
     ]
 	xAxis_data=['巴西','印尼','美国','印度','中国','世界人口(万)']
 	title='条形图';
-	setChart9('dbm_config_table_datagrid9',title,legend_data,xAxis_data,series_data,theme);
+	setChart9('dbm_config_table_datagrid9',title,legend_data,xAxis_data,series_data,theme,"mainDiv");
 });

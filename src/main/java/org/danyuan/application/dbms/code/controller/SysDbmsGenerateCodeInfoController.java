@@ -18,7 +18,6 @@ import org.danyuan.application.common.base.ResultUtil;
 import org.danyuan.application.dbms.code.po.SysDbmsGenerateCodeInfo;
 import org.danyuan.application.dbms.code.service.SysDbmsGenerateCodeInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,10 +35,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sysDbmsGenerateCodeInfo")
 public class SysDbmsGenerateCodeInfoController extends BaseControllerImpl<SysDbmsGenerateCodeInfo> implements BaseController<SysDbmsGenerateCodeInfo> {
-	
+
 	@Autowired
 	SysDbmsGenerateCodeInfoService sysDbmsGenerateCodeInfoService;
-	
+
 	@RequestMapping("/generate")
 	public BaseResult<String> generate(@RequestBody Pagination<SysDbmsGenerateCodeInfo> vo) {
 		try {
@@ -52,15 +51,14 @@ public class SysDbmsGenerateCodeInfoController extends BaseControllerImpl<SysDbm
 			return ResultUtil.error(-1, e.getMessage());
 		}
 	}
-	
-	@Value(value = "${user.file.outputfile}")
-	public String OUTPUTFILE;
 
+	public String OUTPUTFILE = "outputfile";
+	
 	@RequestMapping(value = "/downloadCode/{path}", method = RequestMethod.GET)
 	public void downloadCode(HttpServletResponse response, @PathVariable("path") String path) throws IOException {
 		// 根据参数进行导出xml 并打包返回zip文件路径
 		// System.err.println(path);
-		File file = new File(System.getProperty("user.dir")+"/"+OUTPUTFILE + "/" + path + ".zip");
+		File file = new File(System.getProperty("user.dir") + "/" + OUTPUTFILE + "/" + path + ".zip");
 		System.err.println(file.getAbsolutePath());
 		response.setHeader("content-type", "application/octet-stream");
 		response.setContentType("application/octet-stream");
@@ -89,6 +87,6 @@ public class SysDbmsGenerateCodeInfoController extends BaseControllerImpl<SysDbm
 			}
 		}
 		file.delete();
-		
+
 	}
 }

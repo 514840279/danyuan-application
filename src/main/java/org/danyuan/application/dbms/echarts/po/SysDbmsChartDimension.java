@@ -30,6 +30,12 @@ public class SysDbmsChartDimension implements Serializable {
 	@Column(name = "end_num")
 	private Integer				endNum;
 
+	@Column(name = "db_uuid")
+	private String				dbUuid;
+	@Column(name = "table_type_uuid")
+	private String				tableTypeUuid;
+	@Column(name = "table_uuid")
+	private String				tableUuid;
 	@Column(name = "lable_uuid")
 	private String				lableUuid;
 
@@ -384,5 +390,56 @@ public class SysDbmsChartDimension implements Serializable {
 	public String toString() {
 		return "SysPlantChartDimension [uuid=" + uuid + ", chartType=" + chartType + ", endNum=" + endNum + ", lableUuid=" + lableUuid + ", lableUuid2=" + lableUuid2 + ", lableUuid3=" + lableUuid3 + ", lableUuid4=" + lableUuid4 + ", groupUuid=" + groupUuid + ", startNum=" + startNum + ", title=" + title + ", dimeOrder=" + dimeOrder + ", countType=" + countType + ", theme=" + theme + ", width=" + width + ", height=" + height + ", createTime=" + createTime + ", createUser=" + createUser + ", updateTime=" + updateTime + ", updateUser=" + updateUser + ", deleteFlag=" + deleteFlag + ", discription=" + discription + "]";
 	}
-
+	
+	/**
+	 * @方法名 getDbUuid
+	 * @功能 返回变量 dbUuid 的值
+	 * @return String
+	 */
+	public String getDbUuid() {
+		return dbUuid;
+	}
+	
+	/**
+	 * @方法名 setDbUuid
+	 * @功能 设置变量 dbUuid 的值
+	 */
+	public void setDbUuid(String dbUuid) {
+		this.dbUuid = dbUuid;
+	}
+	
+	/**
+	 * @方法名 getTableTypeUuid
+	 * @功能 返回变量 tableTypeUuid 的值
+	 * @return String
+	 */
+	public String getTableTypeUuid() {
+		return tableTypeUuid;
+	}
+	
+	/**
+	 * @方法名 setTableTypeUuid
+	 * @功能 设置变量 tableTypeUuid 的值
+	 */
+	public void setTableTypeUuid(String tableTypeUuid) {
+		this.tableTypeUuid = tableTypeUuid;
+	}
+	
+	/**
+	 * @方法名 getTableUuid
+	 * @功能 返回变量 tableUuid 的值
+	 * @return String
+	 */
+	public String getTableUuid() {
+		return tableUuid;
+	}
+	
+	/**
+	 * @方法名 setTableUuid
+	 * @功能 设置变量 tableUuid 的值
+	 */
+	public void setTableUuid(String tableUuid) {
+		this.tableUuid = tableUuid;
+	}
+	
 }

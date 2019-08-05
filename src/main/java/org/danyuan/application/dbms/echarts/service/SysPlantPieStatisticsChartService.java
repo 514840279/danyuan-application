@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.danyuan.application.dbms.echarts.po.SysDbmsChartDimension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -24,13 +23,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysPlantPieStatisticsChartService {
-	
-	@Autowired
-	JdbcTemplate	jdbcTemplate;
-	
-	@Value(value = "${user.table.base}")
-	public String	TABLE_BASE_NAME;
 
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	
 	/**
 	 * 方法名： buildPie
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -41,21 +37,21 @@ public class SysPlantPieStatisticsChartService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	public void buildPie(Map<String, Object> map, SysDbmsChartDimension info, StringBuilder sbWhere, String type1) {
-
+	public void buildPie(Map<String, Object> map, SysDbmsChartDimension info, StringBuilder sbWhere, String type1, String tableName) {
+		
 		List<String> legend_data = new ArrayList<>();
 		List<Map<String, Object>> series_data = new ArrayList<>();
 		StringBuilder sql = new StringBuilder();
 		Map<String, Object> param = new HashMap<>();
 		// 默认表结构
 		sql.append(" select  " + type1 + " as aks,count(1) as num");
-		sql.append(" from " + TABLE_BASE_NAME + "  ");
+		sql.append(" from " + tableName + "  ");
 		sql.append(" where 1=1 ");
 		sql.append(" and  " + type1 + " is not null ");
 		sql.append(" and  " + type1 + " <> '' ");
 		sql.append(sbWhere.toString());
 		sql.append(" group by  " + type1);
-		
+
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
 		List<Map<String, Object>> listMap = template.queryForList(sql.toString(), param);
 		// System.err.println(sql.toString());
@@ -71,7 +67,7 @@ public class SysPlantPieStatisticsChartService {
 		map.put("series_data", series_data);
 		map.put("chartType", info.getChartType());
 	}
-	
+
 	/**
 	 * @方法名 buildPieSum
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -83,21 +79,21 @@ public class SysPlantPieStatisticsChartService {
 	 * @author Administrator
 	 * @throws
 	 */
-	public void buildPieSum(Map<String, Object> map, SysDbmsChartDimension info, StringBuilder sbWhere, String type1) {
+	public void buildPieSum(Map<String, Object> map, SysDbmsChartDimension info, StringBuilder sbWhere, String type1, String tableName) {
 		List<String> legend_data = new ArrayList<>();
 		List<Map<String, Object>> series_data = new ArrayList<>();
 		StringBuilder sql = new StringBuilder();
 		Map<String, Object> param = new HashMap<>();
 		// 默认表结构
 		sql.append(" SELECT  " + type1 + " AS AKS,SUM(`总中标金额`) AS NUM");
-		sql.append(" FROM " + TABLE_BASE_NAME + "  ");
+		sql.append(" FROM " + tableName + "  ");
 		sql.append(" WHERE  DELETE_FLAG = 0  ");
 		sql.append(" AND  " + type1 + " IS NOT NULL ");
 		sql.append(" AND  " + type1 + " <> '' ");
 		sql.append(" AND  公告类型 IN('中标公告','成交公告') ");
 		sql.append(sbWhere.toString());
 		sql.append(" group by  " + type1);
-
+		
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
 		List<Map<String, Object>> listMap = template.queryForList(sql.toString(), param);
 		// System.err.println(sql.toString());
@@ -112,6 +108,6 @@ public class SysPlantPieStatisticsChartService {
 		map.put("legend_data", legend_data);
 		map.put("series_data", series_data);
 		map.put("chartType", info.getChartType());
-		
+
 	}
 }

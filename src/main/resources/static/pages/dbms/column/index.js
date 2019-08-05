@@ -33,6 +33,7 @@ $(function() {
 			$("input[name='colsSwitchable'][value='"+(d.colsSwitchable==null?"true":d.colsSwitchable)+"']").prop("checked",true);
 //			$("#update_config_column_colsVisible").val(d.colsVisible);
 			$("input[name='colsVisible'][value='"+(d.colsVisible==null?"true":d.colsVisible)+"']").prop("checked",true);
+			$("input[name='dimeFlag'][value='"+(d.dimeFlag==null?"false":d.dimeFlag)+"']").prop("checked",true);
 //			$("#update_config_column_indexIndex").val(d.indexIndex);
 //			$("#update_config_column_indexKeyword").val(d.indexKeyword);
 //			$("#update_config_column_indexIkmaxword").val(d.indexIkmaxword);
@@ -82,6 +83,7 @@ $(function() {
 		d.colsValign=$("input[name='colsValign']:checked").val();
 		d.colsSwitchable=$("input[name='colsSwitchable']:checked").val();
 		d.colsVisible=$("input[name='colsVisible']:checked").val();
+		d.dimeFlag=$("input[name='dimeFlag']:checked").val();
 		var url ='/sysDbmsTabsColsInfo/save';
 		d.createTime=null;
 		d.updateTime=null;
@@ -243,6 +245,9 @@ function showClomnTable(){
 			{title : '列表显示标识',field : 'colsVisible',sortable : true,align : 'left'},
 			{title : '字段选择标识',field : 'colsSwitchable',sortable : true,align : 'left'},
 			{title : '支持排序条件',field : 'colsSort',sortable : true,align : 'left'},
+			{title : '支持图表纬度',field : 'dimeFlag',sortable : true,align : 'left',formatter:function(deleteFlag){
+				return  deleteFlag==0?"不支持":"支持";
+			}},
 			{title : '显示宽度',field : 'colsWidth',sortable : true,align : 'left'},
 			{title : '对齐（横）',field : 'colsAlign',sortable : true,align : 'left'},
 			{title : '对齐（纵）',field : 'colsValign',sortable : true,align : 'left'},

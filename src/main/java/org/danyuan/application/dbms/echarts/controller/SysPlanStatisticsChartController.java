@@ -22,7 +22,9 @@ import org.danyuan.application.dbms.echarts.service.SysPlantBarOrLineStatisticsC
 import org.danyuan.application.dbms.echarts.service.SysPlantMapStatisticsChartService;
 import org.danyuan.application.dbms.echarts.service.SysPlantPieStatisticsChartService;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
+import org.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
 import org.danyuan.application.dbms.tabs.service.SysDbmsTabsColsInfoService;
+import org.danyuan.application.dbms.tabs.service.SysDbmsTabsInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +66,9 @@ public class SysPlanStatisticsChartController {
 	
 	@Autowired
 	SysDbmsTabsColsInfoService				sysDbmsTabsColsInfoService;
+
+	@Autowired
+	SysDbmsTabsInfoService					sysDbmsTabsInfoService;
 	
 	@ApiOperation(value = "构建图形数据", notes = "")
 	@RequestMapping(path = "/build", method = RequestMethod.POST)
@@ -71,17 +76,26 @@ public class SysPlanStatisticsChartController {
 		logger.info("build", SysPlanStatisticsChartController.class);
 		
 		info = sysPlantChartDimensionService.findOne(info);
-		
+
+		// 表名称拼接
+		SysDbmsTabsInfo tabsInfo = new SysDbmsTabsInfo();
+		tabsInfo.setUuid(info.getTableUuid());
+		tabsInfo = sysDbmsTabsInfoService.findOne(tabsInfo);
+		String tableName = tabsInfo.getTabsName();
+		// 图表参数名称查询
 		SysDbmsChartDimensionData sysPlantChartDimensionData = new SysDbmsChartDimensionData();
 		sysPlantChartDimensionData.setDimeUuid(info.getUuid());
 		List<SysDbmsChartDimensionData> listParam = sysPlantChartDimensionDataService.findAll(sysPlantChartDimensionData);
 		
+		// 表字段名称查询
 		SysDbmsTabsColsInfo conf = new SysDbmsTabsColsInfo();
+		conf.setTabsUuid(info.getTableUuid());
 		List<SysDbmsTabsColsInfo> confs = sysDbmsTabsColsInfoService.findAll(conf);
 
-		String type3 = findTypeName(info.getLableUuid2(), confs);
-		String type2 = findTypeName(info.getLableUuid(), confs);
-		String type1 = info.getChartType();
+		// 维度整理
+		String type3 = findTypeName(info.getLableUuid3(), confs);
+		String type2 = findTypeName(info.getLableUuid2(), confs);
+		String type1 = findTypeName(info.getLableUuid(), confs);
 		
 		if (type3 != null && type2 == null) {
 			type2 = type3;
@@ -100,36 +114,66 @@ public class SysPlanStatisticsChartController {
 		// 组织条件语句
 		StringBuilder sbWhere = new StringBuilder();
 		buildWhereSql(listParam, confs, sbWhere);
-		
-		switch (info.getChartType()) {
-			case "pie":
-			case "rompie":
-			case "nanpie":
-				// 饼图
-				sysPlantPieStatisticsChartService.buildPie(map, info, sbWhere, type1);
-				break;
-			case "bar":
-			case "tbar":
-			case "line":
-				// 柱图、线图 param map返回结果 info 图表属性 ，list 图表条件
-				sysPlantBarOrLineStatisticsChartService.buildBarOrLine(map, info, sbWhere, type1, type2, type3);
-				break;
-			case "map":
-				// 地图
-				sysPlantMapStatisticsChartService.buildMap(map, info, sbWhere, type1);
-				break;
-			case "tree":
-				// 树图
-				buildTree(map, info, listParam);
-				break;
-			case "sunburst":
-				// 旭日图
-				buildSunburst(map, info, listParam);
-				break;
-			default:
-				break;
+		if (!"money".equals(info.getCountType())) {
+			switch (info.getChartType()) {
+				case "pie":
+				case "rompie":
+				case "nanpie":
+					// 饼图
+					sysPlantPieStatisticsChartService.buildPie(map, info, sbWhere, type1, tableName);
+					break;
+				case "bar":
+				case "tbar":
+				case "line":
+					// 柱图、线图 param map返回结果 info 图表属性 ，list 图表条件
+					sysPlantBarOrLineStatisticsChartService.buildBarOrLine(map, info, sbWhere, type1, type2, type3, tableName);
+					break;
+				case "map":
+					// 地图
+					sysPlantMapStatisticsChartService.buildMap(map, info, sbWhere, type1, tableName);
+					break;
+				case "tree":
+					// 树图
+					buildTree(map, info, listParam);
+					break;
+				case "sunburst":
+					// 旭日图
+					buildSunburst(map, info, listParam);
+					break;
+				default:
+					break;
+			}
+		} else {
+			switch (info.getChartType()) {
+				case "pie":
+				case "rompie":
+				case "nanpie":
+					// 饼图
+					sysPlantPieStatisticsChartService.buildPieSum(map, info, sbWhere, type1, tableName);
+					break;
+				case "bar":
+				case "tbar":
+				case "line":
+					// 柱图、线图 param map返回结果 info 图表属性 ，list 图表条件
+					sysPlantBarOrLineStatisticsChartService.buildBarOrLineSum(map, info, sbWhere, type1, type2, type3, tableName);
+					break;
+				case "map":
+					// 地图
+					sysPlantMapStatisticsChartService.buildMapSum(map, info, sbWhere, type1, tableName);
+					break;
+				case "tree":
+					// 树图
+					buildTree(map, info, listParam);
+					break;
+				case "sunburst":
+					// 旭日图
+					buildSunburst(map, info, listParam);
+					break;
+				default:
+					break;
+			}
 		}
-
+		
 		return map;
 
 	}
@@ -257,11 +301,7 @@ public class SysPlanStatisticsChartController {
 			// 根据smbol 组织 条件
 			String symbol = list2.get(0).getSymbol();
 			if ("in".equals(symbol)) {
-				if (colsName.equals("keyword")) {
-					sbWhere.append(" and DLSM_UUID in (select DLSM_UUID from bids_bx_display_content where title  REGEXP '" + regexps.toString() + "' )");
-				} else {
-					sbWhere.append(" and " + colsName + " REGEXP '" + regexps.toString() + "' ");
-				}
+				sbWhere.append(" and " + colsName + " REGEXP '" + regexps.toString() + "' ");
 			} else if ("lt".equals(symbol)) {
 				sbWhere.append(" and " + colsName + " < '" + regexps.toString() + "' ");
 			} else if ("gt".equals(symbol)) {

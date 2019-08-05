@@ -22,7 +22,6 @@ import org.danyuan.application.dbms.tabs.service.ZhcxAdviceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Example;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -51,20 +50,19 @@ public class LogsClearScheduled {
 	SysDbmsAdviMessInfoDao					sysDbmsAdviMessInfoDao;
 	@Autowired
 	SysDbmsTabsInfoDao						sysDbmsTabsInfoDao;
-	@Value(value = "${user.file.outputfile}")
-	public String							OUTPUTFILE;
+	public String							OUTPUTFILE	= "outputfile";
 	@Autowired
 	MultiDatasourceConfig					multiDatasourceConfig;
 	private static final SimpleDateFormat	dateFormat	= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	long									nd			= 1000 * 60 * 60 * 24;
 	long									nh			= 1000 * 60 * 60;
-
+	
 	@Scheduled(cron = "1 0 0 * * *")
 	// @Scheduled(fixedDelay = 1000)
 	public void delete() {
 		String sql = "DELETE FROM sys_comn_logs WHERE TIMESTAMPDIFF(DAY,create_time,NOW())>30";
 		jdbcTemplate.update(sql);
-
+		
 		File file = new File(OUTPUTFILE);
 		File[] files = file.listFiles();
 		for (File file2 : files) {
@@ -75,7 +73,7 @@ public class LogsClearScheduled {
 			}
 		}
 	}
-
+	
 	@Scheduled(cron = "0 8-18/1 * * * *")
 	// @Scheduled(fixedDelay = 100000)
 	public void zhcxConfix() {
@@ -98,7 +96,7 @@ public class LogsClearScheduled {
 					List<SysDbmsTabsColsInfo> colList = sysDbmsTabsColsInfoDao.findAll(example);
 					// 列配置比较建议修正(列修改，列配置修改,列统计配置修改，列长度修改)
 					ZhcxAdviceService.startConfixOracleTableColumnsConfig(sysZhcxTab, multiDatasource, sysDbmsAdviMessInfoDao, jdbcTemplate, colList);
-
+					
 					// }
 				} else if ("mysql".equals(sysZhcxTab.getDbType().toLowerCase())) {
 					// 表配置比较建议修正 (表修改，表配置修改)
@@ -109,7 +107,7 @@ public class LogsClearScheduled {
 					List<SysDbmsTabsColsInfo> colList = sysDbmsTabsColsInfoDao.findAll(example);
 					// 列配置比较建议修正(列修改，列配置修改,列统计配置修改，列长度修改)
 					ZhcxAdviceService.startConfixMysqlTableColumnsConfig(sysZhcxTab, multiDatasource, sysDbmsAdviMessInfoDao, jdbcTemplate, colList);
-
+					
 				}
 			}
 		}
@@ -120,9 +118,9 @@ public class LogsClearScheduled {
 		}
 		System.err.println("本次处理配置表信息执行完毕！");
 	}
-
+	
 	public long getDatePoor(Date endDate, Date nowDate) {
-
+		
 		long nd = 1000 * 24 * 60 * 60;
 		// long ns = 1000;
 		// 获得两个时间的毫秒时间差异

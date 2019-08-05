@@ -17,8 +17,8 @@
 		};
 		jQuery.ajax({
 			type : 'POST',
-//			url : "/sysPlanStatisticsChart/build",
-			url : "/sysPlanStatisticsChartByElasticsearch/build",
+			url : "/sysPlanStatisticsChart/build",
+//			url : "/sysPlanStatisticsChartByElasticsearch/build",
 			dataType : 'json',
 			cache : false,
 			contentType : 'application/json',
@@ -28,28 +28,28 @@
 					var chartType = result.chartType;
 					if("pie" == chartType){
 						// 饼图 pie
-						setChart1(options.id,options.title,result.legend_data, result.series_data, options.theme);
+						setChart1(options.id,options.title,result.legend_data, result.series_data, options.theme,options.mainDiv);
 					}else if("map" == chartType){
 						// 地图
-						setChart2(options.id,options.title,result.legend_data,result.series_data,options.theme);
+						setChart2(options.id,options.title,result.legend_data,result.series_data,options.theme,options.mainDiv);
 					}else if("line" == chartType){
 						// 折线
-						setChart3(options.id,options.title,result.legend_data,result.xAxis_data,result.series_data, options.theme);
+						setChart3(options.id,options.title,result.legend_data,result.xAxis_data,result.series_data, options.theme,options.mainDiv);
 					}else if("bar" == chartType){
 						// 柱图
-						setChart4(options.id,options.title,result.legend_data,result.xAxis_data,result.series_data, options.theme);
+						setChart4(options.id,options.title,result.legend_data,result.xAxis_data,result.series_data, options.theme,options.mainDiv);
 					}else if("tree" == chartType){
 						// 树图
-						setChart5(options.id,result.series_data, options.theme);
+						setChart5(options.id,result.series_data, options.theme,options.mainDiv);
 					}else if("sunburst" == chartType){
 						// 旭日图
-						setChart6(options.id,result.series_data, options.theme);
+						setChart6(options.id,result.series_data, options.theme,options.mainDiv);
 					}else if("rompie" == chartType){
 						// 环形图
-						setChart7(options.id,options.title,result.legend_data,result.series_data, options.theme);
+						setChart7(options.id,options.title,result.legend_data,result.series_data, options.theme,options.mainDiv);
 					}else if("nanpie" == chartType){
 						// 南丁格尔图
-						setChart8(options.id,options.title,result.legend_data,result.series_data, options.theme);
+						setChart8(options.id,options.title,result.legend_data,result.series_data, options.theme,options.mainDiv);
 					}else if("tbar" == chartType){
 						le = [];
 						for (var i = 0; i < result.xAxis_data.length; i++) {
@@ -63,7 +63,7 @@
 							result.series_data[i].data=tt;
 						}
 						// 条形图
-						setChart9(options.id,options.title,result.legend_data,le,result.series_data, options.theme);
+						setChart9(options.id,options.title,result.legend_data,le,result.series_data, options.theme,options.mainDiv);
 					}
 				},100);
 			}
@@ -79,7 +79,7 @@
 
 
 
-function setChart1(id,title,legend_data,series_data,theme){
+function setChart1(id,title,legend_data,series_data,theme,mainDiv){
     // 指定图表的配置项和数据
 	myChart1 = echarts.init(document.getElementById(id),theme);
 	option = {
@@ -135,7 +135,7 @@ function setChart1(id,title,legend_data,series_data,theme){
    });
 }
  
-function setChart2(id,title,legend_data,series_data,theme){
+function setChart2(id,title,legend_data,series_data,theme,mainDiv){
     // 指定图表的配置项和数据
 	max=0;
 	$.each(series_data,function(index,value){
@@ -199,7 +199,7 @@ function setChart2(id,title,legend_data,series_data,theme){
    });
 }
 
-function setChart3(id,title,legend_data,xAxis_data,series_data,theme){
+function setChart3(id,title,legend_data,xAxis_data,series_data,theme,mainDiv){
     // 指定图表的配置项和数据
 	var myChart3 = echarts.init(document.getElementById(id),theme);
 
@@ -243,7 +243,7 @@ function setChart3(id,title,legend_data,xAxis_data,series_data,theme){
    });
 }
  
-function setChart4(id,title,legend_data,xAxis_data,series_data,theme){
+function setChart4(id,title,legend_data,xAxis_data,series_data,theme,mainDiv){
     // 指定图表的配置项和数据
 	var myChart4 = echarts.init(document.getElementById(id),theme);
 
@@ -297,7 +297,7 @@ function setChart4(id,title,legend_data,xAxis_data,series_data,theme){
    });
 }
 
-function setChart5(id,series_data,theme){
+function setChart5(id,series_data,theme,mainDiv){
     // 指定图表的配置项和数据
 	var myChart5 = echarts.init(document.getElementById(id),theme);
 
@@ -356,7 +356,7 @@ function setChart5(id,series_data,theme){
    });
 }
 
-function setChart6(id,series_data,theme){
+function setChart6(id,series_data,theme,mainDiv){
     // 指定图表的配置项和数据
 	var myChart6 = echarts.init(document.getElementById(id),theme);
 
@@ -380,7 +380,7 @@ function setChart6(id,series_data,theme){
    });
 }
 
-function setChart7(id,title,legend_data,series_data,theme){
+function setChart7(id,title,legend_data,series_data,theme,mainDiv){
     // 指定图表的配置项和数据
 	var myChart7 = echarts.init(document.getElementById(id),theme);
 
@@ -443,7 +443,7 @@ function setChart7(id,title,legend_data,series_data,theme){
    });
 }
 
-function setChart8(id,title,legend_data,series_data,theme){
+function setChart8(id,title,legend_data,series_data,theme,mainDiv){
     // 指定图表的配置项和数据
 	var myChart8 = echarts.init(document.getElementById(id),theme);
 
@@ -496,7 +496,7 @@ function setChart8(id,title,legend_data,series_data,theme){
    });
 }
 
-function setChart9(id,title,legend_data,xAxis_data,series_data,theme){
+function setChart9(id,title,legend_data,xAxis_data,series_data,theme,mainDiv){
     // 指定图表的配置项和数据
 	var myChart9 = echarts.init(document.getElementById(id),theme);
 
