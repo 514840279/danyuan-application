@@ -123,8 +123,9 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 
 	@Override
 	public List<SysDbmsTabsColsInfo> findAll(SysDbmsTabsColsInfo info) {
+		Sort sort = Sort.by(Order.asc("colsOrder"));
 		Example<SysDbmsTabsColsInfo> example = Example.of(info);
-		return sysDbmsTabsColsInfoDao.findAll(example);
+		return sysDbmsTabsColsInfoDao.findAll(example, sort);
 	}
 
 	/**
