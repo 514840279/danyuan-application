@@ -87,7 +87,7 @@ public class SysCrawlerTaskInfo {
 	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
 	private String	createUser;
 	
-	@Column(name = "update_time", insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP   COMMENT '更新时间'")
+	@Column(name = "update_time", insertable = false, updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP   COMMENT '更新时间'")
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
 	private Date	updateTime;		// updata_time 更新时间
@@ -513,7 +513,7 @@ public class SysCrawlerTaskInfo {
 	
 	/**
 	 * TODO(这里用一句话描述这个方法的作用)
-	 * 
+	 *
 	 * @方法名 toString
 	 * @参数 @return
 	 * @参考 @see java.lang.Object#toString()

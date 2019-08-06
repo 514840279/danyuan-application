@@ -1,8 +1,5 @@
 package org.danyuan.application.common.base;
 
-import java.io.Serializable;
-
-import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
 /**
@@ -14,6 +11,8 @@ import org.springframework.data.repository.NoRepositoryBean;
  * 版 本 ： V1.0
  */
 @NoRepositoryBean
-public interface BaseMongodbDao<T> extends MongoRepository<T, Serializable> {
-
+public interface BaseMongodbDao<T>
+//extends MongoRepository<T, Serializable>
+{
+	
 }

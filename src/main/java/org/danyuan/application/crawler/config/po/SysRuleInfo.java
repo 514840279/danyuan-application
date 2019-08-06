@@ -1,7 +1,6 @@
 package org.danyuan.application.crawler.config.po;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * @文件名 SysRuleInfo.java
@@ -12,19 +11,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @版本 V1.0
  */
 
-@Document("sys_rule_info")
+//@Document("sys_rule_info")
 public class SysRuleInfo {
-	
+
 	@Id
 	private String		uuid;
-
+	
 	private String		pageType;
-
+	
 	private String		pageName;
-
+	
 	private GroupList	groupList;
 	private GroupList	dictList;
-
+	
 	/**
 	 * @方法名 getUuid
 	 * @功能 返回变量 uuid 的值
@@ -33,7 +32,7 @@ public class SysRuleInfo {
 	public String getUuid() {
 		return uuid;
 	}
-
+	
 	/**
 	 * @方法名 setUuid
 	 * @功能 设置变量 uuid 的值
@@ -41,7 +40,7 @@ public class SysRuleInfo {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-	
+
 	/**
 	 * @方法名 getPageType
 	 * @功能 返回变量 pageType 的值
@@ -50,7 +49,7 @@ public class SysRuleInfo {
 	public String getPageType() {
 		return pageType;
 	}
-	
+
 	/**
 	 * @方法名 setPageType
 	 * @功能 设置变量 pageType 的值
@@ -58,7 +57,7 @@ public class SysRuleInfo {
 	public void setPageType(String pageType) {
 		this.pageType = pageType;
 	}
-	
+
 	/**
 	 * @方法名 getPageName
 	 * @功能 返回变量 pageName 的值
@@ -67,7 +66,7 @@ public class SysRuleInfo {
 	public String getPageName() {
 		return pageName;
 	}
-	
+
 	/**
 	 * @方法名 setPageName
 	 * @功能 设置变量 pageName 的值
@@ -75,7 +74,7 @@ public class SysRuleInfo {
 	public void setPageName(String pageName) {
 		this.pageName = pageName;
 	}
-
+	
 	/**
 	 * @方法名 getGroupList
 	 * @功能 返回变量 groupList 的值
@@ -84,7 +83,7 @@ public class SysRuleInfo {
 	public GroupList getGroupList() {
 		return groupList;
 	}
-
+	
 	/**
 	 * @方法名 setGroupList
 	 * @功能 设置变量 groupList 的值
@@ -92,7 +91,7 @@ public class SysRuleInfo {
 	public void setGroupList(GroupList groupList) {
 		this.groupList = groupList;
 	}
-	
+
 	/**
 	 * @方法名 getDictList
 	 * @功能 返回变量 dictList 的值
@@ -101,7 +100,7 @@ public class SysRuleInfo {
 	public GroupList getDictList() {
 		return dictList;
 	}
-	
+
 	/**
 	 * @方法名 setDictList
 	 * @功能 设置变量 dictList 的值
@@ -109,5 +108,5 @@ public class SysRuleInfo {
 	public void setDictList(GroupList dictList) {
 		this.dictList = dictList;
 	}
-	
+
 }
