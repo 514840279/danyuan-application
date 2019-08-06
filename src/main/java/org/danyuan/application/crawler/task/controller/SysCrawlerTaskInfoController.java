@@ -10,9 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 文件名 ： SysCrawlerTaskInfoController.java
@@ -161,5 +164,15 @@ public class SysCrawlerTaskInfoController {
 		sysCrawlerTaskInfoService.trunc();
 		return null;
 	}
-	
+
+	@RequestMapping(path = "/config/{uuid}", method = RequestMethod.GET)
+	public ModelAndView config(@PathVariable("uuid") String uuid) {
+		logger.info("config", SysCrawlerTaskInfoController.class);
+		ModelAndView view = new ModelAndView("crawler/config");
+		SysCrawlerTaskInfo task = new SysCrawlerTaskInfo();
+		task.setUuid(uuid);
+		task = sysCrawlerTaskInfoService.findOne(task);
+		view.addObject("task", task);
+		return view;
+	}
 }

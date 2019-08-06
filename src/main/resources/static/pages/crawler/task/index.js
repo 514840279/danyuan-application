@@ -10,11 +10,20 @@ window.operateEvents = {
 			url : "/pages/crawler/task/add.html"
 		});
 		// 
-		taskdata = row;
+		setTimeout(() => {
+			taskdata = row;
+			console.log(taskdata);
+			 $("#add_task_url").val(taskdata.url);
+			 $("#add_task_taskName").val(taskdata.taskName);
+			 $("#add_task_urlType").val(taskdata.urlType);
+			 $("#add_task_webIcon").val(taskdata.webIcon);
+			 $("#add_task_uuid").val(taskdata.uuid);
+		}, 300);
+		
 
 	},
 	'click #clickB ' : function(e, value, row, index) {
-		loadPage("/crawler/ruler/config/"+row['uuid'])
+		loadPage("/sysCrawlerTaskInfo/config/"+row['uuid'])
 	},
 	'click #clickE' : function(e, value, row, index) {
 		// 删除
@@ -202,11 +211,7 @@ $(function() {
 			{title : '网站类型',field : 'urlType',align : 'center',sortable : true,valign : 'middle',width : 120,	formatter : urlPathformatter},
 			{title : '网站图标',field : 'webIcon',align : 'center',sortable : true,valign : 'middle',width : 60,formatter : imgShowFormatter},
 			{title : '网址',field : 'url',sortable : true,align : 'center',valign : 'middle',sortable : true,	visible : false},
-			{title : '请求数据',field : 'requestData',sortable : true,align : 'center',valign : 'middle',visible : false},
-			{title : '请求方式',field : 'requestType',sortable : true,align : 'center',valign : 'middle',visible : false},
 			{title : '字符集',field : 'charset',sortable : true,align : 'center',	valign : 'middle',visible : false},
-			{title : '请求方式',field : 'postType',sortable : true,align : 'center',valign : 'middle',visible : false},
-			{title : '请求数据',field : 'postData',sortable : true,align : 'center',valign : 'middle',visible : false},
 			{title : '任务启动时间',field : 'startTime',sortable : true,align : 'center',valign : 'middle',visible : false},
 			{title : '最后一次执行时间',field : 'lastExcuteTime',align : 'center',sortable : true,valign : 'middle'},
 			{title : '预计剩余任务数',field : 'surplusNum',align : 'center',sortable : true,valign : 'middle',width : 35},
