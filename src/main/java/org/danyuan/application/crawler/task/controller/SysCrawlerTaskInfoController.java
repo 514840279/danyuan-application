@@ -1,8 +1,10 @@
 package org.danyuan.application.crawler.task.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.http.ParseException;
 import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.crawler.task.po.SysCrawlerTaskInfo;
 import org.danyuan.application.crawler.task.service.SysCrawlerTaskInfoService;
@@ -30,12 +32,12 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/sysCrawlerTaskInfo")
 public class SysCrawlerTaskInfoController {
-
+	
 	private static final Logger	logger	= LoggerFactory.getLogger(SysCrawlerTaskInfoController.class);
-
+	
 	@Autowired
 	SysCrawlerTaskInfoService	sysCrawlerTaskInfoService;
-
+	
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -52,7 +54,7 @@ public class SysCrawlerTaskInfoController {
 		}
 		return sysCrawlerTaskInfoService.page(vo);
 	}
-
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -66,13 +68,13 @@ public class SysCrawlerTaskInfoController {
 		logger.info("findAll", SysCrawlerTaskInfoController.class);
 		return sysCrawlerTaskInfoService.findAll(info);
 	}
-
+	
 	@RequestMapping("/findUrlType")
 	public List<String> findUrlType() {
 		logger.info("findUrlType", SysCrawlerTaskInfoController.class);
 		return sysCrawlerTaskInfoService.findUrlType();
 	}
-
+	
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -86,7 +88,7 @@ public class SysCrawlerTaskInfoController {
 		logger.info("findOne", SysCrawlerTaskInfoController.class);
 		return sysCrawlerTaskInfoService.findOne(info);
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -105,7 +107,7 @@ public class SysCrawlerTaskInfoController {
 		sysCrawlerTaskInfoService.save(info);
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -120,7 +122,7 @@ public class SysCrawlerTaskInfoController {
 		sysCrawlerTaskInfoService.saveAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -135,7 +137,7 @@ public class SysCrawlerTaskInfoController {
 		sysCrawlerTaskInfoService.deleteAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -150,7 +152,7 @@ public class SysCrawlerTaskInfoController {
 		sysCrawlerTaskInfoService.delete(info);
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -164,7 +166,7 @@ public class SysCrawlerTaskInfoController {
 		sysCrawlerTaskInfoService.trunc();
 		return null;
 	}
-	
+
 	@RequestMapping(path = "/config/{uuid}", method = RequestMethod.GET)
 	public ModelAndView config(@PathVariable("uuid") String uuid) {
 		logger.info("config", SysCrawlerTaskInfoController.class);
@@ -174,5 +176,10 @@ public class SysCrawlerTaskInfoController {
 		task = sysCrawlerTaskInfoService.findOne(task);
 		view.addObject("task", task);
 		return view;
+	}
+	
+	@RequestMapping("/start/run")
+	public void run(@RequestBody Pagination<SysCrawlerTaskInfo> vo) throws ParseException, IOException {
+		sysCrawlerTaskInfoService.run(vo.getList());
 	}
 }
