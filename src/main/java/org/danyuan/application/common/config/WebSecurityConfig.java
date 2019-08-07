@@ -1,5 +1,7 @@
 package org.danyuan.application.common.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 /**
  * 文件名 ： WebSecurityConfig.java
@@ -32,6 +36,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		auth.inMemoryAuthentication().withUser("root").password("root").roles("USER");
 //	}
 
+//	@Autowired
+//	private CustomUserDetailsService	userDetailsService;
+
+	@Autowired
+	private DataSource dataSource;
+
+	@Bean
+	public PersistentTokenRepository tokenRepository() {
+		JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+		jdbcTokenRepository.setDataSource(dataSource);
+		// 设置为true,则项目启动时，会在对应数据源中自动建表token表
+		jdbcTokenRepository.setCreateTableOnStartup(false);
+		return jdbcTokenRepository;
+	}
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
@@ -42,8 +61,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		        // 限制所有请求都需要验证
 		        .anyRequest().authenticated().and().formLogin()
 		        // 登录页
-		        .defaultSuccessUrl("/index").loginPage("/login").failureUrl("/login?error").permitAll().and().logout().permitAll();
-
+		        .defaultSuccessUrl("/index").loginPage("/login").failureUrl("/login?error").permitAll().and().logout().permitAll().clearAuthentication(true).and().rememberMe().tokenRepository(tokenRepository())// 设置tokenRepository
+		        .alwaysRemember(true) // 总是记住，会刷新过期时间
+		        .tokenValiditySeconds(1209600)// 设置过期时间为5分钟
+//		        .userDetailsService(userDetailsService) // 设置userDetailsService，用来获取username;
+		;
 	}
 
 	@Autowired
