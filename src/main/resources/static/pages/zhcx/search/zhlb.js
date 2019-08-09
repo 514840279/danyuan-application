@@ -28,12 +28,11 @@ function doSearch(context) {
 			paramList.push({
 				"userIndex" :jQuery(this).attr("userIndex") ,
 				"userDesc" : jQuery(this).parent().find(".context_input_line_left").text()+"("+jQuery(this).attr("colsName")+")",
-				"value" : jQuery(this).val(),
+				"value" : "%"+jQuery(this).val()+"%",
 				"operator" : "eq"
 			});
 		}
 	});
-	_total=tableRows;
 	_type="单表多条件查询";
 	$('#column_table_text_id').bootstrapTable('refresh');
 }
@@ -107,7 +106,8 @@ function columnFix(result){
 		}
 		// 查询列表
 		var coldType = (null != value.coldType ? value.coldType : "");
-		var pageInput = (false != value.pageInput ? value.pageInput : false);
+		var pageInput = (false != value.colsVisible ? value.colsVisible : false);
+		
 		if(pageInput&&userIndex) {
 			var context = jQuery("#context_input_context");
 			var inputline = null;
@@ -230,6 +230,10 @@ function reset(id,tabsName,column,sysColumn) {
 				window.location.href="/";
 			}
 		},
+		 contextMenu: '#context-menu',
+		 onContextMenuItem: function(row,$ele){
+			 
+		 }
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
 		$("#zhxx_mapString").val(JSON.stringify(row));
 		$("#zhxx_paramString").val(JSON.stringify(sysColumn));
