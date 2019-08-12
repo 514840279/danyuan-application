@@ -232,13 +232,14 @@ function conformSaveData(){
 
 // 统计纬度
 function addPlantBindSuccess(result){
-	console.log(result)
 	var data=[{id:'请选择',text:'请选择'}];
 	$.each(result,function(index,value){
-		if(value.dimeFlag==1&&value.deleteFlag!=1){
+		console.log(value.dimeFlag)
+		if((value.dimeFlag==1||value.dimeFlag==true)&&value.deleteFlag!=1){
 			data.push({id:value.uuid,text:value.colsDesc==null||value.colsDesc==""?value.colsName:value.colsDesc});
 		}
 	})
+	$('#add_sysPlantChartDimension_lableUuid').empty();
 	$('#add_sysPlantChartDimension_lableUuid').select2({
 		placeholder: "请选择",
 	    tags: true,
@@ -252,7 +253,7 @@ function addPlantBindSuccess(result){
 			add_sysPlantChartDimension_lableUuid=null;
 		}
 	});
-	
+	$('#add_sysPlantChartDimension_lableUuid2').empty();
 	$('#add_sysPlantChartDimension_lableUuid2').select2({
 		placeholder: "请选择",
 		tags: true,
@@ -266,7 +267,7 @@ function addPlantBindSuccess(result){
 			add_sysPlantChartDimension_lableUuid2=null;
 		}
 	});
-	
+	$('#add_sysPlantChartDimension_lableUuid3').empty();
 	$('#add_sysPlantChartDimension_lableUuid3').select2({
 		placeholder: "请选择",
 		tags: true,
@@ -280,7 +281,7 @@ function addPlantBindSuccess(result){
 			add_sysPlantChartDimension_lableUuid3=null;
 		}
 	});
-	
+	$('#add_sysPlantChartDimension_lableUuid4').empty();
 	$('#add_sysPlantChartDimension_lableUuid4').select2({
 		placeholder: "请选择",
 		tags: true,
