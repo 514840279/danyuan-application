@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
 <link rel="icon" type="image/x-icon" href="/dist/img/favicon_32x32.ico" />
-<link rel="shortcut icon"  type="image/x-icon" href="/dist/img/favicon_32x32.ico"/>
+<link rel="shortcut icon" type="image/x-icon" href="/dist/img/favicon_32x32.ico" />
 <!-- <title>数盟科技</title> -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
 <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css" />
@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/dist/css/AdminLTE.min.css" />
 <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css" />
 <link rel="stylesheet" href="/plugins/bootstrap/tab/css/bootstrap-tab.css" />
-<link rel="stylesheet" href="/plugins/bootstrap/table/bootstrap-table.min.css"/>
+<link rel="stylesheet" href="/plugins/bootstrap/table/bootstrap-table.min.css" />
 <link rel="stylesheet" href="/plugins/toastr/toastr.min.css" />
 
 <link rel="stylesheet" href="/dist/css/style.css" />
@@ -65,7 +65,7 @@
 								<!-- Menu Footer-->
 								<li class="user-footer">
 									<div class="pull-left">
-<!-- 										<a href="#" class="btn btn-default btn-flat">Profile</a> -->
+										<!-- 										<a href="#" class="btn btn-default btn-flat">Profile</a> -->
 									</div>
 									<div class="pull-right">
 										<form action="/logout" method="post">
@@ -88,7 +88,7 @@
 					<div class="box-header with-border">
 						<h3 class="box-title" id="type_text_id">部门设置</h3>
 						<div class="box-tools pull-right">
-							<button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#col-show-myModal" >
+							<button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#col-show-myModal">
 								<i class="fa fa-search"></i>
 							</button>
 							<button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -118,65 +118,138 @@
 			<!-- 			</strong> All rights reserved. -->
 		</footer>
 	</div>
-	
-	<div class="modal  fade" id="col-show-myModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    <div class="modal-dialog modal-lg" >
-	        <div class="modal-content">
-	            <div class="modal-header">
-	            
-	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
-	            </div>
-	            <div class="modal-body">
+
+	<div class="modal  fade" id="col-show-myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+				</div>
+				<div class="modal-body">
 					<!--  这里添加内容 -->
-	        		<div class="context_input_context" id="context_input_context">
-		        		<!-- JS代码复制context_input_line 开始 -->
-						<div class="context_input_char form-controll" style="display:none;">
-							<span class="context_input_line_left">姓名:</span>
-							<input class="context_input_line_center_char" type="text" />
-							<span class="context_input_line_right">可用"*"匹配多个字符，用"?"匹配单个字符</span>
+					<div class="context_input_context" id="context_input_context">
+						<!-- JS代码复制context_input_line 开始 -->
+						<div class="context_input_char form-controll" style="display: none;">
+							<span class="context_input_line_left">姓名:</span> <input class="context_input_line_center_char" type="text" /> <span class="context_input_line_right">可用"*"匹配多个字符，用"?"匹配单个字符</span>
 						</div>
-						<div class="context_input_date form-controll" style="display:none;">
-							<span class="context_input_line_left">姓名:</span>
-							<input class="context_input_line_center_date Wdate" type="date" />
-							<span class="context_input_line_split">-</span>
-							<input class="context_input_line_center_date Wdate" type="date" />
-							<span class="context_input_line_right">请输入时间上下限，可以只输入一个值</span>
+						<div class="context_input_date form-controll" style="display: none;">
+							<span class="context_input_line_left">姓名:</span> <input class="context_input_line_center_date Wdate" type="date" /> <span class="context_input_line_split">-</span> <input class="context_input_line_center_date Wdate" type="date" /> <span class="context_input_line_right">请输入时间上下限，可以只输入一个值</span>
 						</div>
-						<div class="context_input_number form-controll" style="display:none;">
-							<span class="context_input_line_left">姓名:</span>
-							<input class="context_input_line_center_number" type="number" />
-							<span class="context_input_line_split">-</span>
-							<input class="context_input_line_center_number" type="number" />
-							<span class="context_input_line_right">请输入数字上下限，可以只输入一个值</span>
+						<div class="context_input_number form-controll" style="display: none;">
+							<span class="context_input_line_left">姓名:</span> <input class="context_input_line_center_number" type="number" /> <span class="context_input_line_split">-</span> <input class="context_input_line_center_number" type="number" /> <span class="context_input_line_right">请输入数字上下限，可以只输入一个值</span>
 						</div>
-	              </div> 		
-	            </div>
-	            <div class="modal-footer">
-	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-	                <button type="button" class="btn btn-primary" id="searchbutton">提交更改</button>
-	            </div>
-	        </div><!-- /.modal-content -->
-	    </div><!-- /.modal -->
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="searchbutton">提交更改</button>
+				</div>
+			</div>
+		</div>
 	</div>
-	
-    <ul id="context-menu" class="dropdown-menu">
-        <li data-item="edit"><a>编辑</a></li>
-        <li><hr /></li>
-        <li data-item="hide"><a>隐藏列</a></li>
-    </ul>  
+
+
+	<div class="modal  fade" id="update-show-myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">修改配置</h4>
+				</div>
+				<div class="modal-body row">
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsName">列名称</label>
+						<div id="update_config_column_colsName"></div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsDesc">列含义</label> <input type="text" class="form-control" id="update_config_column_colsDesc" placeholder="列含义">
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsOrder">列显示顺序</label> <input type="text" class="form-control" id="update_config_column_colsOrder" placeholder="显示顺序">
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsSort">排序</label> <input type="number" class="form-control" id="update_config_column_colsSort" placeholder="数据排序">
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_userIndex">用户索引</label> <input type="text" class="form-control" id="update_config_column_userIndex" placeholder="用户索引">
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_userIcon">小图标</label>
+						<div role="toolbar">
+							<input class="form-control btn" type="text" name="icon" id="update_config_column_userIcon" placeholder="小图标" style="width: 60%;" />
+							<button type="button" id="selectIcon" class="btn btn-primary btn-sm " data-btn-type="selectIcon" onclick="add_select_icon()">
+								<span class="fa fa-hand-pointer-o">选择图标</span>
+							</button>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsWidth">列宽度</label> <input type="text" class="form-control" id="update_config_column_colsWidth" placeholder="列宽度">
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsAlign">横向对齐</label>
+						<div id="update_config_column_colsAlign" class="form-control">
+							<input type="radio" name="colsAlign" value="left" id="update_config_column_colsAlign_left"><label for="update_config_column_colsAlign_left">左对齐</label> <input type="radio" name="colsAlign" value="center" id="update_config_column_colsAlign_center"><label for="update_config_column_colsAlign_center">居中</label> <input type="radio" name="colsAlign" value="right" id="update_config_column_colsAlign_right"><label for="update_config_column_colsAlign_right">右对齐</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsValign">纵向对齐</label>
+						<div id="update_config_column_colsValign" class="form-control">
+							<input type="radio" name="colsValign" value="top" id="update_config_column_colsValign_top"><label for="update_config_column_colsValign_top">靠上</label> <input type="radio" name="colsValign" value="middle" id="update_config_column_colsValign_middle"><label for="update_config_column_colsValign_middle">居中</label> <input type="radio" name="colsValign" value="bottom" id="update_config_column_colsValign_bottom"><label for="update_config_column_colsValign_bottom">底部</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsSwitchable">switch开关</label>
+						<div id="update_config_column_colsSwitchable" class="form-control">
+							<input type="radio" name="colsSwitchable" value="true" id="update_config_column_colsSwitchable_true"><label for="update_config_column_colsSwitchable_true">可选</label> <input type="radio" name="colsSwitchable" value="false" id="update_config_column_colsSwitchable_false"><label for="update_config_column_colsSwitchable_false">不可选</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsVisible">列表展示</label>
+						<div id="update_config_column_colsVisible" class="form-control">
+							<input type="radio" name="colsVisible" value="true" id="update_config_column_colsVisible_true"><label for="update_config_column_colsVisible_true">展示</label> <input type="radio" name="colsVisible" value="false" id="update_config_column_colsVisible_false"><label for="update_config_column_colsVisible_false">隐藏</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsSort">排序条件支持</label>
+						<div id="update_config_column_colsSort" class="form-control">
+							<input type="radio" name="colsSort" value="true" id="update_config_column_colsSort_true"><label for="update_config_column_colsSort_true">允许</label> <input type="radio" name="colsSort" value="false" id="update_config_column_colsSort_false"><label for="update_config_column_colsSort_false">不允许</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_dimeFlag">图表统计纬度支持</label>
+						<div id="update_config_column_dimeFlag" class="form-control">
+							<input type="radio" name="dimeFlag" value="true" id="update_config_column_dimeFlag_true"><label for="update_config_column_dimeFlag_true">允许</label> <input type="radio" name="dimeFlag" value="false" id="update_config_column_dimeFlag_false"><label for="update_config_column_dimeFlag_false">不允许</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_deleteFlag">标记</label>
+						<div id="update_config_column_deleteFlag" class="form-control">
+							<input type="radio" name="deleteFlag" value="1" id="update_config_column_deleteFlag_true"><label for="update_config_column_deleteFlag_true">删除</label> <input type="radio" name="deleteFlag" value="0" id="update_config_column_deleteFlag_false"><label for="update_config_column_deleteFlag_false">启用</label>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="update_config_column_button">提交更改</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<ul id="context-menu" class="dropdown-menu">
+		<li data-item="edit"><a>编辑</a></li>
+		<li><hr /></li>
+		<li data-item="hide"><a>隐藏列</a></li>
+	</ul>
 	<!-- ./wrapper -->
-    <form id="sosuoform" name="sosuoform" action="/zhcx/forwardYjcx" method="post" target="_blank" hidden="hidden">
-		<input id="zhcx_type"  name="type" value="" />
-		<input id="zhcx_sousuo_paramString"  name="paramString" value="" />
-     </form>
-     
-    <form id="zhxxform" name="zhxxform" action="/zhcx/forwardZhxx" method="post" target="_blank" hidden="hidden">
-		<input id="zhxx_mapString"  name="mapString" value="" />
-		<input id="zhxx_paramString"  name="paramString" value="" />
-		<input id="zhxx_tableName"  name="tableName" value="" />
-		<input id="zhxx_tableDesc"  name="tableDesc" value="" />
-     </form>
+	<form id="sosuoform" name="sosuoform" action="/zhcx/forwardYjcx" method="post" target="_blank" hidden="hidden">
+		<input id="zhcx_type" name="type" value="" /> <input id="zhcx_sousuo_paramString" name="paramString" value="" />
+	</form>
+
+	<form id="zhxxform" name="zhxxform" action="/zhcx/forwardZhxx" method="post" target="_blank" hidden="hidden">
+		<input id="zhxx_mapString" name="mapString" value="" /> <input id="zhxx_paramString" name="paramString" value="" /> <input id="zhxx_tableName" name="tableName" value="" /> <input id="zhxx_tableDesc" name="tableDesc" value="" />
+	</form>
 	<!-- jQuery 2.2.3 -->
 	<script type="text/javascript" src="/plugins/jQuery/jquery.min.js"></script>
 	<script type="text/javascript" src="/plugins/bootstrap/js/bootstrap.min.js"></script>

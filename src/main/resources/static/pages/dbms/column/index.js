@@ -1,13 +1,12 @@
 _tableUuid="0";
 $(function() {
 	$('#addnew_column_table').click(function() {
-//			iconName=encodeURIComponent($("#add_menu_icon").val());
 			modals.openWin({
-		    	winId:"addnew_column_show_view_table",
-		    	title:'列选择',
-		    	width:'1000px',
-		    	url:"templates/dbms/column/add_column"
-		    });
+				winId:"addnew_column_show_view_table",
+				title:'列选择',
+				width:'1000px',
+				url:"templates/dbms/column/add_column"
+			});
 		
 	});
 	$('#editold_column_table').click(function() {
@@ -25,27 +24,15 @@ $(function() {
 			
 			$("input[name='deleteFlag'][value='"+(d.deleteFlag==null?"0":d.deleteFlag)+"']").prop("checked",true);
 			$("input[name='colsSort'][value='"+(d.colsSort==null?"true":d.colsSort)+"']").prop("checked",true);
-			//			$("#update_config_column_colsAlign").val(d.colsAlign);
 			$("input[name='colsAlign'][value='"+(d.colsAlign==null?"left":d.colsAlign)+"']").prop("checked",true);
-//			$("#update_config_column_colsValign").val(d.colsValign);
 			$("input[name='colsValign'][value='"+(d.colsValign==null?"middle":d.colsValign)+"']").prop("checked",true);
-//			$("#update_config_column_colsSwitchable").val(d.colsSwitchable);
 			$("input[name='colsSwitchable'][value='"+(d.colsSwitchable==null?"true":d.colsSwitchable)+"']").prop("checked",true);
-//			$("#update_config_column_colsVisible").val(d.colsVisible);
 			$("input[name='colsVisible'][value='"+(d.colsVisible==null?"true":d.colsVisible)+"']").prop("checked",true);
 			$("input[name='dimeFlag'][value='"+(d.dimeFlag==null?"false":d.dimeFlag)+"']").prop("checked",true);
-//			$("#update_config_column_indexIndex").val(d.indexIndex);
-//			$("#update_config_column_indexKeyword").val(d.indexKeyword);
-//			$("#update_config_column_indexIkmaxword").val(d.indexIkmaxword);
-//			$("#update_config_column_indexGeopoint").val(d.indexGeopoint);
-//			$("#update_config_column_indexIpaddress").val(d.indexIpaddress);
-//			$("#update_config_column_indexPinyin").val(d.indexPinyin);
-//			$("#update_config_column_indexAll").val(d.indexAll);
-//			$("#update_config_column_indexIkmaxword").val(d.indexIkmaxword);
 			
 			$('#update-show-myModal').modal({
-		        show: true
-		    });
+				show: true
+			});
 		}else{
 			alert("只能选中一条数据");
 		}
@@ -93,7 +80,6 @@ $(function() {
 	
 	showClomnTable();
 
-//	update_config_table_typeUuid
 	var url = "/sysDbmsTabsTypeInfo/findAll";
 	ajaxPost(url, null, addSelectedTypeSuccess, 5000, findError);
 	
@@ -104,25 +90,24 @@ $(function() {
 
 
 function add_select_icon(){
-//	$('#update-show-myModal').modal('hide');
 	winId="add_icon_modal";
 	var iconName;
-	if($("#add_menu_icon").val())
-	   iconName=encodeURIComponent($("#add_menu_icon").val());
+	if($("#add_menu_icon").val()){
+		iconName=encodeURIComponent($("#add_menu_icon").val());
+	}
 	modals.openWin({
-    	winId:winId,
-    	title:'图标选择器（双击选择）',
-    	width:'1000px',
-    	url:"/icon/nodecorator/select?iconName="+iconName
-    });
+		winId:winId,
+		title:'图标选择器（双击选择）',
+		width:'1000px',
+		url:"/icon/nodecorator/select?iconName="+iconName
+	});
 }
 //回填图标
 function fillBackIconName(icon_name){
 	$("#update_config_column_userIcon").val(icon_name); 
 	$('#update-show-myModal').modal({
-        show: true
-    });
-//	$("#icon_i").removeClass().addClass("form-control-feedback").addClass(icon_name);
+		show: true
+	});
 }
 update_config_table_typeUuid=" ";
 search_config_table_typeUuid=null;
@@ -133,21 +118,20 @@ function addSelectedTypeSuccess(result){
 	});
 	
 	$('#search_config_table_typeUuid').select2({
-	    tags: true,
-	    data:data,
-	    placeholder: "请选择",
+		tags: true,
+		data:data,
+		placeholder: "请选择",
 	});
 	search_config_table_typeUuid=null;
 	$('#search_config_table_typeUuid').on('select2:select', function (evt) {
 		search_config_table_typeUuid = evt.params.data.id;
 		searchtableNames();
-//		$('#dbm_config_table_datagrid').bootstrapTable("refresh");
 	});
 }
 function searchtableNames(){
 	var param ={
-			typeUuid:search_config_table_typeUuid,
-			jdbcUuid:search_config_table_addrUuid,
+		typeUuid:search_config_table_typeUuid,
+		jdbcUuid:search_config_table_addrUuid,
 	}
 	var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
 	ajaxPost(url, param, addSelectedTableSuccess, 5000, findError);
@@ -161,9 +145,9 @@ function addSelectedAddrSuccess(result){
 	});
 	
 	$('#search_config_table_addrUuid').select2({
-	    tags: true,
-	    data:data,
-	    placeholder: "请选择",
+		tags: true,
+		data:data,
+		placeholder: "请选择",
 	});
 	
 	$('#search_config_table_addrUuid').on('select2:select', function (evt) {
@@ -179,9 +163,9 @@ function addSelectedTableSuccess(result){
 	});
 	$('#search_config_table_tableUuid').empty();   
 	$('#search_config_table_tableUuid').select2({
-	    tags: true,
-	    data:data,
-	    placeholder: "请选择",
+		tags: true,
+		data:data,
+		placeholder: "请选择",
 	});
 	
 	$('#search_config_table_tableUuid').on('select2:select', function (evt) {
@@ -221,25 +205,24 @@ function showClomnTable(){
 //		search : true, // 显示搜索框
 		sidePagination: "server", // 服务端处理分页 server
 		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
-        //设置为limit可以获取limit, offset, search, sort, order  
-        queryParamsType : "undefined",
-        contentType: "application/json",
+		//设置为limit可以获取limit, offset, search, sort, order  
+		queryParamsType : "undefined",
+		contentType: "application/json",
 		method: "post",  //使用get请求到服务器获取数据  
 		queryParams: function queryParams(params) {  
-		    var param = {  
-                 pageNumber: params.pageNumber,    
-                 pageSize: params.pageSize,
-                 sortOrder:params.sortOrder,
-                 sortName:params.sortName,
-                 info:{tabsUuid: _tableUuid}
-             }; 
-             return param;
+			var param = {  
+					pageNumber: params.pageNumber,    
+					pageSize: params.pageSize,
+					sortOrder:params.sortOrder,
+					sortName:params.sortName,
+					info:{tabsUuid: _tableUuid}
+			}; 
+			return param;
 		},
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 			{title : '列名称',field : 'colsName',align : 'left',sortable : true,valign : 'middle'},
 			{title : '列中文含义',field : 'colsDesc',align : 'left',sortable : true,valign : 'middle'},
-//			{title : '列数据类型',field : 'coldType',sortable : true,align : 'left'},
 			{title : '列顺序',field : 'colsOrder',sortable : true,align : 'right'},
 			{title : '用户配置索引列',field : 'userIndex',sortable : true,align : 'left',valign : 'middle',visible:true},
 			{title : '列表显示标识',field : 'colsVisible',sortable : true,align : 'left'},

@@ -284,6 +284,57 @@ function reset(tabsName,column,sysColumn,dbType) {
 		$('#db_table_datagrid').bootstrapTable('resetView');
 	});
 	
+	
+	$('#db_table_datagrid').on('click','thead>tr>th',function () {
+		var index = $('tr>th').index(this);
+		var column = $(this).text();
+		$.each(sysColumn,function(index,value){
+			if(value.colsName == column){
+				d = value;
+				$("#update_config_column_colsName").text(d.colsName);
+				$("#update_config_column_colsDesc").val(d.colsDesc);
+				$("#update_config_column_colsOrder").val(d.colsOrder);
+				$("#update_config_column_userIndex").val(d.userIndex);
+				$("#update_config_column_userIcon").val(d.userIcon);
+				$("#update_config_column_colsWidth").val(d.colsWidth);
+				$("input[name='deleteFlag'][value='"+(d.deleteFlag==null?"0":d.deleteFlag)+"']").prop("checked",true);
+				$("input[name='colsSort'][value='"+(d.colsSort==null?"true":d.colsSort)+"']").prop("checked",true);
+				$("input[name='colsAlign'][value='"+(d.colsAlign==null?"left":d.colsAlign)+"']").prop("checked",true);
+				$("input[name='colsValign'][value='"+(d.colsValign==null?"middle":d.colsValign)+"']").prop("checked",true);
+				$("input[name='colsSwitchable'][value='"+(d.colsSwitchable==null?"true":d.colsSwitchable)+"']").prop("checked",true);
+				$("input[name='colsVisible'][value='"+(d.colsVisible==null?"true":d.colsVisible)+"']").prop("checked",true);
+				$("input[name='dimeFlag'][value='"+(d.dimeFlag==null?"false":d.dimeFlag)+"']").prop("checked",true);
+				
+				$('#update-show-myModal').modal({
+			        show: true
+			    });
+			}
+		})
+	});
+	
+	$("#update_config_column_button").click(function(){
+		d.colsDesc=$("#update_config_column_colsDesc").val();
+		d.colsOrder=$("#update_config_column_colsOrder").val();
+		d.colsSort=$("input[name='colsSort']:checked").val();
+		d.userIndex=$("#update_config_column_userIndex").val();
+		d.userIcon=$("#update_config_column_userIcon").val();
+		d.colsWidth=$("#update_config_column_colsWidth").val();
+		d.deleteFlag = $("input[name='deleteFlag']:checked").val();
+		d.colsAlign=$("input[name='colsAlign']:checked").val();
+		d.colsValign=$("input[name='colsValign']:checked").val();
+		d.colsSwitchable=$("input[name='colsSwitchable']:checked").val();
+		d.colsVisible=$("input[name='colsVisible']:checked").val();
+		d.dimeFlag=$("input[name='dimeFlag']:checked").val();
+		var url ='/sysDbmsTabsColsInfo/save';
+		d.createTime=null;
+		d.updateTime=null;
+		ajaxPost(url, d, updSysColumnInfoSuccess);
+	})
+	function updSysColumnInfoSuccess(){
+		$('#db_table_datagrid').bootstrapTable('destroy');
+		searchColumns(search_table_tabsName,tabsName,dbType);
+	}
+	
 }
 var paramList=[];
 _total=0;
