@@ -48,6 +48,13 @@ function searchButtonClick() {
 // 请求数据完成
 function findAllShareFileSucess(result){
 	var context = $("#main_context");
+	
+	$.each(context.find("div.item"),function(index,value){
+		if(index>0){
+			$(value).remove();
+		}
+	})
+	
 	$.each(result.content,function(index,value){
 		var row = context.find("div.item:eq(0)").clone(false);
 		row.css({"display":""});
@@ -58,7 +65,9 @@ function findAllShareFileSucess(result){
 			window.open("/sysShareFileInfo/fileinfo/"+value.uuid);
 		})
 		// 发布时间
-		row.find(".item_a .item_a_b").find("span:eq(0)").text("发布时间:"+value.publishDate);
+		if(value.publishDate){
+			row.find(".item_a .item_a_b").find("span:eq(0)").text("发布时间:"+value.publishDate);
+		}
 		
 		var item_b = row.find(".item_b");
 		// 作者
@@ -128,7 +137,34 @@ function findAllShareFileSucess(result){
 			row.find(".item_d").find(".item_a_b span:eq(0)").text("收录时间:"+value.createTime);
 		}
 		context.append(row);
-	})
+	});
+
+	// 分页
+	var options = {
+		size:"large",
+		bootstrapMajorVersion:3,
+		currentPage: result.number+1,
+		totalPages: result.totalPages,
+		numberOfPages:result.numberOfElements,
+		onPageClicked:function(event, originalEvent, type,page){
+			var searchText = $("#keyword").val();
+			var userDesc = $(".search_bar").find("li.active").text();
+			var param ={
+					"username":username,
+					"pageNumber":page,
+					"pageSize":15,
+					"info":{
+						"fileType" : userDesc,
+						"fileName" : searchText,
+					}
+				}
+			var url = '/sysShareFileInfo/search';
+			ajaxPost(url, param, findAllShareFileSucess);
+		}
+	}
+	
+	$('#example').bootstrapPaginator(options);
+	
 }
 
 // search bar
