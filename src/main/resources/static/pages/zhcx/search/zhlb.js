@@ -106,7 +106,7 @@ function columnFix(result){
 		}
 		// 查询列表
 		var coldType = (null != value.coldType ? value.coldType : "");
-		var pageInput = (false != value.colsVisible ? value.colsVisible : false);
+		var pageInput = (true != value.colsVisible ? false : value.colsVisible);
 		
 		if(pageInput&&userIndex) {
 			var context = jQuery("#context_input_context");
