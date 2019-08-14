@@ -287,9 +287,9 @@ function reset(tabsName,column,sysColumn,dbType) {
 	
 	$('#db_table_datagrid').on('click','thead>tr>th',function () {
 		var index = $('tr>th').index(this);
-		var column = $(this).text();
+		var columnName = $(this).data("field");
 		$.each(sysColumn,function(index,value){
-			if(value.colsName == column){
+			if(value.colsName == columnName){
 				d = value;
 				$("#update_config_column_colsName").text(d.colsName);
 				$("#update_config_column_colsDesc").val(d.colsDesc);
