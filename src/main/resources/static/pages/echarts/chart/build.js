@@ -49,7 +49,7 @@ function init(){
 			modals.openWin({
 		    	winId:"add_config_table",
 		    	title:'图表修改',
-		    	width:'1500px',
+		    	width:'100%',
 		    	url:"/sysDbmsChartDimension/addBefor?uuid="+uuid
 		    });
 		})
@@ -60,7 +60,7 @@ function init(){
 			modals.openWin({
 		    	winId:"add_config_table",
 		    	title:'查看大图',
-		    	width:'1500px',
+		    	width:'100%',
 		    	url:"/pages/echarts/chart/onechart.html"
 		    });
 			
@@ -82,7 +82,7 @@ function init(){
 			modals.openWin({
 		    	winId:"add_config_table",
 		    	title:'修改分组',
-		    	width:'500px',
+		    	width:'100%',
 		    	url:"/pages/echarts/chart/change.html"
 		    });
 		})

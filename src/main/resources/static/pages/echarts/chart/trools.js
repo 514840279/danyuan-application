@@ -88,7 +88,7 @@ function init(){
     	modals.openWin({
 	    	winId:"show_config_table",
 	    	title:'修改分组信息',
-	    	width:screen.width+'px',
+	    	width:'100%',
 	    	url:url
 	    });
 	})
