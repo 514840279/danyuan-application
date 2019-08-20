@@ -170,6 +170,8 @@ $(function() {
 		    var param = {  
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
+                 sortOrder:params.sortOrder,
+				 sortName:params.sortName,
                  sysDbmsGenerateCodeInfo:{
                 	 
                  }

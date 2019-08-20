@@ -1,5 +1,12 @@
 package org.danyuan.application.crawler.config.service;
 
+import java.util.List;
+
+import org.danyuan.application.crawler.param.dao.SysCrawlerRulerInfoDao;
+import org.danyuan.application.crawler.param.po.SysCrawlerRulerInfo;
+import org.danyuan.application.crawler.task.po.SysCrawlerTaskInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,6 +19,33 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysRuleInfoService {
+	
+	@Autowired
+	SysCrawlerRulerInfoDao sysCrawlerRulerInfoDao;
+	
+	/**
+	 * @param i
+	 * @方法名 startTask
+	 * @功能 TODO(这里用一句话描述这个方法的作用)
+	 * @参数 @param list
+	 * @参数 @return
+	 * @返回 String
+	 * @author Administrator
+	 * @throws
+	 */
+	public String startTask(List<SysCrawlerTaskInfo> list, int i) {
+		for (SysCrawlerTaskInfo sysCrawlerTaskInfo : list) {
+			SysCrawlerRulerInfo sysCrawlerRulerInfo = new SysCrawlerRulerInfo();
+			sysCrawlerRulerInfo.setTaskUuid(sysCrawlerTaskInfo.getUuid());
+			Example<SysCrawlerRulerInfo> example = Example.of(sysCrawlerRulerInfo);
+			List<SysCrawlerRulerInfo> ruleList = sysCrawlerRulerInfoDao.findAll(example);
+			for (SysCrawlerRulerInfo sysCrawlerTaskInfo2 : ruleList) {
+				sysCrawlerTaskInfo2.setStatue(i + "");
+				sysCrawlerRulerInfoDao.save(sysCrawlerTaskInfo2);
+			}
+		}
+		return "1";
+	}
 	
 //	@Autowired
 //	SysRuleInfoDao sysRuleInfoDao;

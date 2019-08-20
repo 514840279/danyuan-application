@@ -23,7 +23,7 @@ window.operateEvents = {
 
 	},
 	'click #clickB ' : function(e, value, row, index) {
-		loadPage("/sysCrawlerTaskInfo/config/"+row['uuid'])
+		loadPage("/sysCrawlerRulerInfo/index/"+row['uuid'])
 	},
 	'click #clickE' : function(e, value, row, index) {
 		// 删除
@@ -92,7 +92,7 @@ $(function() {
 				title : "系统提示",
 				callback : function(result) {
 					if (result) {
-						var url = "/python/start/run";
+						var url = "/crawler/startTask";
 						var param = {
 							list : data
 						};
@@ -117,7 +117,7 @@ $(function() {
 				title : "系统提示",
 				callback : function(result) {
 					if (result) {
-						var url = "/sysCrawlerTaskInfo/stopAll";
+						var url = "/crawler/stopTask";
 						var param = {
 							list : data
 						};
@@ -197,7 +197,7 @@ $(function() {
 				sortOrder : params.sortOrder,
 				sortName : params.sortName,
 				info : {
-					taskName : $("#search_task_taskName").val(),
+					taskName : $("#search_task_taskName").val()==""?null:$("#search_task_taskName").val(),
 					excuteFlag : search_task_excuteFlag
 				},
 				filter : params.filter
@@ -207,27 +207,23 @@ $(function() {
 		columns : [ 
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 			{title : 'id',field : 'uuid',align : 'center',sortable : true,valign : 'middle',visible : false},
-			{title : '任务名称',field : 'taskName',align : 'center',sortable : true,valign : 'middle'},
-			{title : '网站类型',field : 'urlType',align : 'center',sortable : true,valign : 'middle',width : 120,	formatter : urlPathformatter},
+			{title : '任务名称',field : 'taskName',align : 'center',sortable : true,valign : 'middle',	formatter : urlPathformatter},
+			{title : '网站类型',field : 'urlType',align : 'center',sortable : true,valign : 'middle',width : 120},
 			{title : '网站图标',field : 'webIcon',align : 'center',sortable : true,valign : 'middle',width : 60,formatter : imgShowFormatter},
 			{title : '网址',field : 'url',sortable : true,align : 'center',valign : 'middle',sortable : true,	visible : false},
-			{title : '字符集',field : 'charset',sortable : true,align : 'center',	valign : 'middle',visible : false},
-			{title : '任务启动时间',field : 'startTime',sortable : true,align : 'center',valign : 'middle',visible : false},
-			{title : '最后一次执行时间',field : 'lastExcuteTime',align : 'center',sortable : true,valign : 'middle'},
-			{title : '预计剩余任务数',field : 'surplusNum',align : 'center',sortable : true,valign : 'middle',width : 35},
-			{title : '执行成功任务数',field : 'successNum',align : 'center',sortable : true,valign : 'middle',width : 35},
-			{title : '是否是通用任务',field : 'taskFlag',	align : 'center',sortable : true,valign : 'middle',width : 35},
-			{title : '错误任务数',field : 'errorNum',align : 'center',sortable : true,valign : 'middle',width : 35},
-			{title : '执行标记',field : 'excuteFlag',align : 'center',sortable : true,valign : 'middle',width : 35},
+			{title : '字符集',field : 'charset',sortable : true,align : 'center',	valign : 'middle',visible : true},
+			{title : '请求方式',field : 'requestType',	align : 'center',sortable : true,valign : 'middle',width : 35},
+			{title : '通用任务',field : 'taskFlag',	align : 'center',sortable : true,valign : 'middle',width : 35,visible : false},
+			{title : '执行标记',field : 'excuteFlag',align : 'center',sortable : true,valign : 'middle',width : 35,visible : false},
 			{title : '执行命令',field : 'excuteBatch',align : 'center',sortable : true,valign : 'middle',	width : 35,visible : false},
-			{title : '创建时间',field : 'createTime',align : 'center',sortable : true,valign : 'middle',visible : false},
+			{title : '创建时间',field : 'createTime',align : 'center',sortable : true,valign : 'middle',visible : true},
 			{title : '更新时间',field : 'updateTime',align : 'center',sortable : true,valign : 'middle',visible : false},
 			{title : '操作',align : 'left',sortable : true,valign : 'middle',	events : operateEvents,formatter : optionFormatter,width : 240},
 		],
 		responseHandler : function(result) { // 成功时执行
 			return {
-				rows : result.content,
-				total : result.totalElements
+				rows : result.data.content,
+				total : result.data.totalElements
 			};
 		},
 	});
@@ -237,7 +233,7 @@ function urlPathformatter(e, row, index) {
 	return "<a href='" + row.url + "' target='_blank'>" + row.taskName + "</a>";
 }
 function imgShowFormatter(value, row, index) {
-	return "<img src='" + value + "'/>";
+	return "<a href='" + row.url + "' target='_blank'><img src='" + value + "'/></a>";
 }
 function optionFormatter(e, row, index) {
 	var result = "<i  type='button' id='clickA'  class=' btn btn-default fa fa-edit' title='编辑' ></i> "
@@ -247,6 +243,12 @@ function optionFormatter(e, row, index) {
 }
 
 function addSysCrawlerTaskInfoSuccess(result) {
-	$('#crawler_task_config_table_datagrid').bootstrapTable('refresh');
+//	$('#crawler_task_config_table_datagrid').bootstrapTable('refresh');
 	// $("#add_crawler_config_table_modal").modal('hide');
+	
+	if(result=="1"){
+		toastr.info("修改状态成功！","成功修改");
+	}else{
+		toastr.error("修改失败，系统遇到错误！","错误");
+	}
 }

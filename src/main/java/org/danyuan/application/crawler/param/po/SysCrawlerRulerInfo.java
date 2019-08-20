@@ -1,111 +1,65 @@
 package org.danyuan.application.crawler.param.po;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import org.danyuan.application.common.base.BaseEntity;
 
 /**
- * 文件名 ： SysRolerInfo.java
- * 包 名 ： tk.ainiyue.danyuan.application.crawler.param.po
- * 描 述 ： TODO(用一句话描述该文件做什么)
- * 机能名称：
- * 技能ID ：
- * 作 者 ： wang
- * 时 间 ： 2017年7月20日 下午2:51:48
- * 版 本 ： V1.0
+ * @文件名 SysCrawlerRulerInfo.java
+ * @包名 org.danyuan.application.crawler.ruler.po
+ * @描述 sys_crawler_ruler_info的实体类
+ * @时间 2019年08月20日 12:49:37
+ * @author test
+ * @版本 V1.0
  */
 @Entity
 @Table(name = "sys_crawler_ruler_info")
-public class SysCrawlerRulerInfo implements Serializable {
-	/**
-	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
-	 */
-	private static final long	serialVersionUID	= 7367302169131287220L;
+@NamedQuery(name = "SysCrawlerRulerInfo.findAll", query = "SELECT s FROM SysCrawlerRulerInfo s")
+public class SysCrawlerRulerInfo extends BaseEntity implements Serializable {
+	private static final long	serialVersionUID	= 1L;
 	
-	@Id
-	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键'")
-	private String				uuid;										// uuid
-	
-	@Column(name = "task_uuid", columnDefinition = " varchar(36) not null COMMENT '任务id'")
-	private String				taskUuid;
-	
-	@Column(name = "type", columnDefinition = " varchar(200) COMMENT '规则类别'")
+	// 规则类别
+	@Column(name = "type")
 	private String				type;
 	
-	private String				ruler;
+	// 规则信息
+	@Column(name = "content_info")
+	private String				contentInfo;
+	// json格式化的信息
+	@Column(name = "content_json_info")
+	private String				contentJsonInfo;
 	
-	@Column(name = "name", columnDefinition = " varchar(200) COMMENT '名称'")
-	private String				name;										// name 名称
-	
-	@Column(name = "parent_uuid", columnDefinition = " varchar(36) COMMENT '上一层id'")
-	private String				parentUuid;
-	// 父组作为字典的字段
-	private String				parentDicUuid;
-	// 筛选字典时 用的条件语句
-	private String				parentDicParams;							// sub_uri
-	
-	private String				itemsRuler;
-	private String				nextpageRuler;
-	
-	@Column(name = "discription", columnDefinition = " varchar(200) COMMENT '资源功能描述'")
-	private String				discription;								// discription
-	// 描述
-	
-	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date				createTime;									// create_time
-	// 插入时间
-	
-	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String				createUser;									// create_user
-	// 插入人
-	
-	@Column(name = "update_time", updatable = false, insertable = false, columnDefinition = " timestamp  default CURRENT_TIMESTAMP   COMMENT '更新时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date				updateTime;									// updata_time
-	// 更新时间
-	
-	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
-	private String				updateUser;									// updata_user
-	// 更新人
-	
-	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer				deleteFlag;									// delete_flag
-	// 标记
-	
+	//
+	@Column(name = "statue")
 	private String				statue;
 	
-	/**
-	 * 方法名 ： getUuid
-	 * 功 能 ： 返回变量 uuid 的值
-	 *
-	 * @return: String
-	 */
-	public String getUuid() {
-		return uuid;
-	}
+	// 任务id
+	@Column(name = "task_uuid")
+	private String				taskUuid;
+	
+	// 名称
+	@Column(name = "name")
+	private String				name;
 	
 	/**
-	 * 方法名 ： setUuid
-	 * 功 能 ： 设置变量 uuid 的值
+	 * 构造方法：
+	 * 描 述： 默认构造函数
+	 * 参 数：
+	 * 作 者 ： test
+	 * @throws
 	 */
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
+	public SysCrawlerRulerInfo() {
+		super();
 	}
 	
 	/**
 	 * 方法名 ： getType
-	 * 功 能 ： 返回变量 type 的值
+	 * 功 能 ： 返回变量 type 规则类别 的值
 	 *
 	 * @return: String
 	 */
@@ -115,226 +69,28 @@ public class SysCrawlerRulerInfo implements Serializable {
 	
 	/**
 	 * 方法名 ： setType
-	 * 功 能 ： 设置变量 type 的值
+	 * 功 能 ： 设置变量 type 规则类别 的值
 	 */
 	public void setType(String type) {
 		this.type = type;
 	}
 	
 	/**
-	 * 方法名 ： getName
-	 * 功 能 ： 返回变量 name 的值
+	 * 方法名 ： getContentInfo
+	 * 功 能 ： 返回变量 contentInfo 规则信息 的值
 	 *
 	 * @return: String
 	 */
-	public String getName() {
-		return name;
+	public String getContentInfo() {
+		return contentInfo;
 	}
 	
 	/**
-	 * 方法名 ： setName
-	 * 功 能 ： 设置变量 name 的值
+	 * 方法名 ： setContentInfo
+	 * 功 能 ： 设置变量 contentInfo 规则信息 的值
 	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	/**
-	 * 方法名 ： getDiscription
-	 * 功 能 ： 返回变量 discription 的值
-	 *
-	 * @return: String
-	 */
-	public String getDiscription() {
-		return discription;
-	}
-	
-	/**
-	 * 方法名 ： setDiscription
-	 * 功 能 ： 设置变量 discription 的值
-	 */
-	public void setDiscription(String discription) {
-		this.discription = discription;
-	}
-	
-	/**
-	 * 方法名 ： getCreateTime
-	 * 功 能 ： 返回变量 createTime 的值
-	 *
-	 * @return: Date
-	 */
-	public Date getCreateTime() {
-		return createTime;
-	}
-	
-	/**
-	 * 方法名 ： setCreateTime
-	 * 功 能 ： 设置变量 createTime 的值
-	 */
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-	
-	/**
-	 * 方法名 ： getCreateUser
-	 * 功 能 ： 返回变量 createUser 的值
-	 *
-	 * @return: String
-	 */
-	public String getCreateUser() {
-		return createUser;
-	}
-	
-	/**
-	 * 方法名 ： setCreateUser
-	 * 功 能 ： 设置变量 createUser 的值
-	 */
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
-	}
-	
-	/**
-	 * 方法名 ： getDeleteFlag
-	 * 功 能 ： 返回变量 deleteFlag 的值
-	 *
-	 * @return: Integer
-	 */
-	public Integer getDeleteFlag() {
-		return deleteFlag;
-	}
-	
-	/**
-	 * 方法名 ： setDeleteFlag
-	 * 功 能 ： 设置变量 deleteFlag 的值
-	 */
-	public void setDeleteFlag(Integer deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}
-	
-	/**
-	 * 方法名 ： getUpdateTime
-	 * 功 能 ： 返回变量 updateTime 的值
-	 *
-	 * @return: Date
-	 */
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-	
-	/**
-	 * 方法名 ： setUpdateTime
-	 * 功 能 ： 设置变量 updateTime 的值
-	 */
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-	
-	/**
-	 * 方法名 ： getUpdateUser
-	 * 功 能 ： 返回变量 updateUser 的值
-	 *
-	 * @return: String
-	 */
-	public String getUpdateUser() {
-		return updateUser;
-	}
-	
-	/**
-	 * 方法名 ： setUpdateUser
-	 * 功 能 ： 设置变量 updateUser 的值
-	 */
-	public void setUpdateUser(String updateUser) {
-		this.updateUser = updateUser;
-	}
-	
-	/**
-	 * 方法名 ： getTaskUuid
-	 * 功 能 ： 返回变量 taskUuid 的值
-	 *
-	 * @return: String
-	 */
-	public String getTaskUuid() {
-		return taskUuid;
-	}
-	
-	/**
-	 * 方法名 ： setTaskUuid
-	 * 功 能 ： 设置变量 taskUuid 的值
-	 */
-	public void setTaskUuid(String taskUuid) {
-		this.taskUuid = taskUuid;
-	}
-	
-	/**
-	 * 方法名 ： getParentUuid
-	 * 功 能 ： 返回变量 parentUuid 的值
-	 *
-	 * @return: String
-	 */
-	public String getParentUuid() {
-		return parentUuid;
-	}
-	
-	/**
-	 * 方法名 ： setParentUuid
-	 * 功 能 ： 设置变量 parentUuid 的值
-	 */
-	public void setParentUuid(String parentUuid) {
-		this.parentUuid = parentUuid;
-	}
-	
-	/**
-	 * 方法名 ： getRuler
-	 * 功 能 ： 返回变量 ruler 的值
-	 *
-	 * @return: String
-	 */
-	public String getRuler() {
-		return ruler;
-	}
-	
-	/**
-	 * 方法名 ： setRuler
-	 * 功 能 ： 设置变量 ruler 的值
-	 */
-	public void setRuler(String ruler) {
-		this.ruler = ruler;
-	}
-	
-	/**
-	 * 方法名 ： getItemsRuler
-	 * 功 能 ： 返回变量 itemsRuler 的值
-	 *
-	 * @return: String
-	 */
-	public String getItemsRuler() {
-		return itemsRuler;
-	}
-	
-	/**
-	 * 方法名 ： setItemsRuler
-	 * 功 能 ： 设置变量 itemsRuler 的值
-	 */
-	public void setItemsRuler(String itemsRuler) {
-		this.itemsRuler = itemsRuler;
-	}
-	
-	/**
-	 * 方法名 ： getNextpageRuler
-	 * 功 能 ： 返回变量 nextpageRuler 的值
-	 *
-	 * @return: String
-	 */
-	public String getNextpageRuler() {
-		return nextpageRuler;
-	}
-	
-	/**
-	 * 方法名 ： setNextpageRuler
-	 * 功 能 ： 设置变量 nextpageRuler 的值
-	 */
-	public void setNextpageRuler(String nextpageRuler) {
-		this.nextpageRuler = nextpageRuler;
+	public void setContentInfo(String contentInfo) {
+		this.contentInfo = contentInfo;
 	}
 	
 	/**
@@ -356,39 +112,56 @@ public class SysCrawlerRulerInfo implements Serializable {
 	}
 	
 	/**
-	 * 方法名 ： getParentDicUuid
-	 * 功 能 ： 返回变量 parentDicUuid 的值
+	 * 方法名 ： getTaskUuid
+	 * 功 能 ： 返回变量 taskUuid 任务id 的值
 	 *
 	 * @return: String
 	 */
-	public String getParentDicUuid() {
-		return parentDicUuid;
+	public String getTaskUuid() {
+		return taskUuid;
 	}
 	
 	/**
-	 * 方法名 ： setParentDicUuid
-	 * 功 能 ： 设置变量 parentDicUuid 的值
+	 * 方法名 ： setTaskUuid
+	 * 功 能 ： 设置变量 taskUuid 任务id 的值
 	 */
-	public void setParentDicUuid(String parentDicUuid) {
-		this.parentDicUuid = parentDicUuid;
+	public void setTaskUuid(String taskUuid) {
+		this.taskUuid = taskUuid;
 	}
 	
 	/**
-	 * 方法名 ： getParentDicParams
-	 * 功 能 ： 返回变量 parentDicParams 的值
+	 * 方法名 ： getName
+	 * 功 能 ： 返回变量 name 名称 的值
 	 *
 	 * @return: String
 	 */
-	public String getParentDicParams() {
-		return parentDicParams;
+	public String getName() {
+		return name;
 	}
 	
 	/**
-	 * 方法名 ： setParentDicParams
-	 * 功 能 ： 设置变量 parentDicParams 的值
+	 * 方法名 ： setName
+	 * 功 能 ： 设置变量 name 名称 的值
 	 */
-	public void setParentDicParams(String parentDicParams) {
-		this.parentDicParams = parentDicParams;
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	/**
+	 * @方法名 getContentJsonInfo
+	 * @功能 返回变量 contentJsonInfo 的值
+	 * @return String
+	 */
+	public String getContentJsonInfo() {
+		return contentJsonInfo;
+	}
+	
+	/**
+	 * @方法名 setContentJsonInfo
+	 * @功能 设置变量 contentJsonInfo 的值
+	 */
+	public void setContentJsonInfo(String contentJsonInfo) {
+		this.contentJsonInfo = contentJsonInfo;
 	}
 	
 }
