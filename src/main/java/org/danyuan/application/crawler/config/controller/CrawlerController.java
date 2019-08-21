@@ -1,5 +1,8 @@
 package org.danyuan.application.crawler.config.controller;
 
+import java.io.IOException;
+
+import org.apache.http.ParseException;
 import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.crawler.config.service.SysRuleInfoService;
 import org.danyuan.application.crawler.task.po.SysCrawlerTaskInfo;
@@ -25,16 +28,6 @@ public class CrawlerController {
 	@Autowired
 	SysRuleInfoService sysRuleInfoService;
 	
-//	@RequestMapping("/ruler/config/{taskId}")
-//	public ModelAndView cogPageView(@PathVariable("taskId") String taskid) {
-//		ModelAndView view = new ModelAndView("crawler/rule/config");
-//		SysRuleInfo info = new SysRuleInfo();
-//		info.setUuid(taskid);
-//		view.addObject("ruler", sysRuleInfoService.findOne(info));
-//		return view;
-//
-//	}
-
 	@RequestMapping(path = { "/ruler/pageList/{uuid}" })
 	public ModelAndView pageList(@PathVariable("uuid") String uuid) {
 		ModelAndView view = new ModelAndView("crawler/rule/pageList");
@@ -59,18 +52,18 @@ public class CrawlerController {
 		
 	}
 
-//	@RequestMapping("/ruler/save")
-//	public void save(@RequestBody SysRuleInfo info) {
-//		sysRuleInfoService.save(info);
-//	}
+	@RequestMapping("/start/run")
+	public void run(@RequestBody Pagination<SysCrawlerTaskInfo> vo) throws IOException {
+		sysRuleInfoService.run(vo.getList());
+	}
 
 	@RequestMapping("/startTask")
-	public String startTask(@RequestBody Pagination<SysCrawlerTaskInfo> vo) {
+	public String startTask(@RequestBody Pagination<SysCrawlerTaskInfo> vo) throws ParseException, IOException {
 		return sysRuleInfoService.startTask(vo.getList(), 1);
 	}
 	
 	@RequestMapping("/stopTask")
-	public String stopTask(@RequestBody Pagination<SysCrawlerTaskInfo> vo) {
+	public String stopTask(@RequestBody Pagination<SysCrawlerTaskInfo> vo) throws ParseException, IOException {
 		return sysRuleInfoService.startTask(vo.getList(), 0);
 	}
 	

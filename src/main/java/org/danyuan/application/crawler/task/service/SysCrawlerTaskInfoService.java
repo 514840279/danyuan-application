@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 public class SysCrawlerTaskInfoService extends BaseServiceImpl<SysCrawlerTaskInfo> implements BaseService<SysCrawlerTaskInfo> {
 	@Autowired
 	SysCrawlerTaskInfoDao sysCrawlerTaskInfoDao;
-	
+
 	/**
 	 * 方法名： findUrlType
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -35,7 +35,7 @@ public class SysCrawlerTaskInfoService extends BaseServiceImpl<SysCrawlerTaskInf
 	public List<String> findUrlType() {
 		return sysCrawlerTaskInfoDao.findUrlType();
 	}
-
+	
 	/**
 	 * 方法名： findTaskName
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -47,29 +47,5 @@ public class SysCrawlerTaskInfoService extends BaseServiceImpl<SysCrawlerTaskInf
 	public List<String> findTaskName() {
 		return sysCrawlerTaskInfoDao.findTaskName();
 	}
-	
-	/**
-	 * @throws IOException
-	 * @throws ParseException
-	 * @方法名 run
-	 * @功能 TODO(这里用一句话描述这个方法的作用)
-	 * @参数 @param list
-	 * @返回 void
-	 * @author Administrator
-	 * @throws
-	 */
-//	public void run(List<SysCrawlerTaskInfo> list) throws ParseException, IOException {
-//		if (list != null) {
-//			for (SysCrawlerTaskInfo sysCrawlerTaskInfo : list) {
-//				Map<String, String> map = new HashMap<>();
-//				map.put("uuid", sysCrawlerTaskInfo.getUuid());
-//				map.put("dictConf", JSON.parse(sysCrawlerTaskInfo.getDictConf()).toString());
-//				map.put("listConf", JSON.parse(sysCrawlerTaskInfo.getListConf()).toString());
-//				map.put("detailConf", JSON.parse(sysCrawlerTaskInfo.getDetailConf()).toString());
-//				HttpUtil.postJson("http://127.0.0.1:3000/crawler", map, "UTF-8");
-//			}
-//		}
-//
-//	}
 
 }

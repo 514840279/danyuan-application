@@ -26,12 +26,12 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/sysCrawlerTaskInfo")
 public class SysCrawlerTaskInfoController extends BaseControllerImpl<SysCrawlerTaskInfo> implements BaseController<SysCrawlerTaskInfo> {
-	
+
 	private static final Logger	logger	= LoggerFactory.getLogger(SysCrawlerTaskInfoController.class);
-	
+
 	@Autowired
 	SysCrawlerTaskInfoService	sysCrawlerTaskInfoService;
-	
+
 	@RequestMapping(path = "/config/{uuid}", method = RequestMethod.GET)
 	public ModelAndView config(@PathVariable("uuid") String uuid) {
 		logger.info("config", SysCrawlerTaskInfoController.class);
@@ -43,8 +43,4 @@ public class SysCrawlerTaskInfoController extends BaseControllerImpl<SysCrawlerT
 		return view;
 	}
 	
-//	@RequestMapping("/start/run")
-//	public void run(@RequestBody Pagination<SysCrawlerTaskInfo> vo) throws ParseException, IOException {
-//		sysCrawlerTaskInfoService.run(vo.getList());
-//	}
 }

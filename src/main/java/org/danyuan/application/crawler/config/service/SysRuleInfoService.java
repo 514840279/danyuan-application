@@ -1,7 +1,12 @@
 package org.danyuan.application.crawler.config.service;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.http.ParseException;
+import org.danyuan.application.common.utils.httpsdownload.HttpUtil;
 import org.danyuan.application.crawler.param.dao.SysCrawlerRulerInfoDao;
 import org.danyuan.application.crawler.param.po.SysCrawlerRulerInfo;
 import org.danyuan.application.crawler.task.po.SysCrawlerTaskInfo;
@@ -19,11 +24,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysRuleInfoService {
-	
+
 	@Autowired
 	SysCrawlerRulerInfoDao sysCrawlerRulerInfoDao;
-	
+
 	/**
+	 * @throws IOException
+	 * @throws ParseException
 	 * @param i
 	 * @方法名 startTask
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -33,53 +40,49 @@ public class SysRuleInfoService {
 	 * @author Administrator
 	 * @throws
 	 */
-	public String startTask(List<SysCrawlerTaskInfo> list, int i) {
+	public String startTask(List<SysCrawlerTaskInfo> list, int i) throws ParseException, IOException {
 		for (SysCrawlerTaskInfo sysCrawlerTaskInfo : list) {
 			SysCrawlerRulerInfo sysCrawlerRulerInfo = new SysCrawlerRulerInfo();
 			sysCrawlerRulerInfo.setTaskUuid(sysCrawlerTaskInfo.getUuid());
 			Example<SysCrawlerRulerInfo> example = Example.of(sysCrawlerRulerInfo);
 			List<SysCrawlerRulerInfo> ruleList = sysCrawlerRulerInfoDao.findAll(example);
-			for (SysCrawlerRulerInfo sysCrawlerTaskInfo2 : ruleList) {
-				sysCrawlerTaskInfo2.setStatue(i + "");
-				sysCrawlerRulerInfoDao.save(sysCrawlerTaskInfo2);
+			for (SysCrawlerRulerInfo sysCrawlerRulerInfo2 : ruleList) {
+				// 去重
+				if (!sysCrawlerRulerInfo2.getStatue().equals(i + "")) {
+					sysCrawlerRulerInfo2.setStatue(i + "");
+					// 修改状态
+					sysCrawlerRulerInfoDao.save(sysCrawlerRulerInfo2);
+					// 启动任务
+					Map<String, String> map = new HashMap<>();
+					map.put("uuid", sysCrawlerRulerInfo2.getUuid());
+					map.put("taskUuid", sysCrawlerRulerInfo2.getUuid());
+					map.put("contentInfo", sysCrawlerRulerInfo2.getContentJsonInfo());
+					map.put("delete", sysCrawlerRulerInfo2.getDeleteFlag() + "");
+					map.put("statue", sysCrawlerRulerInfo2.getStatue());
+					HttpUtil.postJson("http://127.0.0.1:3000/crawler", map, "UTF-8");
+				}
 			}
 		}
 		return "1";
 	}
-	
-//	@Autowired
-//	SysRuleInfoDao sysRuleInfoDao;
-//
-//	public void save(SysRuleInfo info) {
-//		sysRuleInfoDao.save(info);
-//	}
-//
-//	public void update(SysRuleInfo info) {
-//		sysRuleInfoDao.save(info);
-//	}
-//
-//	public SysRuleInfo findOne(SysRuleInfo info) {
-//		Example<SysRuleInfo> example = Example.of(info);
-//		Optional<SysRuleInfo> optional = sysRuleInfoDao.findOne(example);
-//		if (optional.isPresent()) {
-//			return optional.get();
-//		} else {
-//			save(info);
-//		}
-//		return info;
-//	}
-//
-//	public List<SysRuleInfo> findAll(SysRuleInfo info) {
-//		Example<SysRuleInfo> example = Example.of(info);
-//		return sysRuleInfoDao.findAll(example);
-//	}
-//
-//	public Page<SysRuleInfo> findAll(Pagination<SysRuleInfo> vo) {
-//		Example<SysRuleInfo> example = Example.of(vo.getInfo());
-//		Order order = Order.desc(vo.getSortName());
-//		Sort sort = Sort.by(order);
-//		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
-//		return sysRuleInfoDao.findAll(example, request);
-//	}
 
+	/**
+	 * @throws IOException
+	 * @throws ParseException
+	 * @方法名 run
+	 * @功能 TODO(这里用一句话描述这个方法的作用)
+	 * @参数 @param list
+	 * @返回 void
+	 * @author Administrator
+	 * @throws
+	 */
+	public void run(List<SysCrawlerTaskInfo> list) throws IOException {
+		if (list != null) {
+			for (SysCrawlerTaskInfo sysCrawlerTaskInfo : list) {
+
+			}
+		}
+		
+	}
+	
 }
