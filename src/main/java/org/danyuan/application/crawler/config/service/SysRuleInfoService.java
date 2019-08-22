@@ -52,37 +52,20 @@ public class SysRuleInfoService {
 					sysCrawlerRulerInfo2.setStatue(i + "");
 					// 修改状态
 					sysCrawlerRulerInfoDao.save(sysCrawlerRulerInfo2);
-					// 启动任务
-					Map<String, String> map = new HashMap<>();
-					map.put("uuid", sysCrawlerRulerInfo2.getUuid());
-					map.put("taskUuid", sysCrawlerRulerInfo2.getUuid());
-					map.put("contentInfo", sysCrawlerRulerInfo2.getContentJsonInfo());
-					map.put("delete", sysCrawlerRulerInfo2.getDeleteFlag() + "");
-					map.put("statue", sysCrawlerRulerInfo2.getStatue());
-					HttpUtil.postJson("http://127.0.0.1:3000/crawler", map, "UTF-8");
+					if (i == 1) {
+						// 启动任务
+						Map<String, String> map = new HashMap<>();
+						map.put("uuid", sysCrawlerRulerInfo2.getUuid());
+						map.put("taskUuid", sysCrawlerRulerInfo2.getUuid());
+						map.put("contentInfo", sysCrawlerRulerInfo2.getContentJsonInfo());
+						map.put("delete", sysCrawlerRulerInfo2.getDeleteFlag() + "");
+						map.put("statue", sysCrawlerRulerInfo2.getStatue());
+						HttpUtil.postJson("http://127.0.0.1:3000/crawler", map, "UTF-8");
+					}
 				}
 			}
 		}
 		return "1";
-	}
-
-	/**
-	 * @throws IOException
-	 * @throws ParseException
-	 * @方法名 run
-	 * @功能 TODO(这里用一句话描述这个方法的作用)
-	 * @参数 @param list
-	 * @返回 void
-	 * @author Administrator
-	 * @throws
-	 */
-	public void run(List<SysCrawlerTaskInfo> list) throws IOException {
-		if (list != null) {
-			for (SysCrawlerTaskInfo sysCrawlerTaskInfo : list) {
-
-			}
-		}
-		
 	}
 	
 }

@@ -24,47 +24,42 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/crawler")
 public class CrawlerController {
-	
+
 	@Autowired
 	SysRuleInfoService sysRuleInfoService;
-	
+
 	@RequestMapping(path = { "/ruler/pageList/{uuid}" })
 	public ModelAndView pageList(@PathVariable("uuid") String uuid) {
 		ModelAndView view = new ModelAndView("crawler/rule/pageList");
 		view.addObject("uuid", uuid);
 		return view;
-		
+
 	}
-	
+
 	@RequestMapping("/ruler/pageDetail/{uuid}")
 	public ModelAndView pageDetail(@PathVariable("uuid") String uuid) {
 		ModelAndView view = new ModelAndView("crawler/rule/pageDetail");
 		view.addObject("uuid", uuid);
 		return view;
-		
+
 	}
-	
+
 	@RequestMapping("/ruler/pageDict/{uuid}")
 	public ModelAndView pageDict(@PathVariable("uuid") String uuid) {
 		ModelAndView view = new ModelAndView("crawler/rule/pageDict");
 		view.addObject("uuid", uuid);
 		return view;
-		
-	}
 
-	@RequestMapping("/start/run")
-	public void run(@RequestBody Pagination<SysCrawlerTaskInfo> vo) throws IOException {
-		sysRuleInfoService.run(vo.getList());
 	}
-
+	
 	@RequestMapping("/startTask")
 	public String startTask(@RequestBody Pagination<SysCrawlerTaskInfo> vo) throws ParseException, IOException {
 		return sysRuleInfoService.startTask(vo.getList(), 1);
 	}
-	
+
 	@RequestMapping("/stopTask")
 	public String stopTask(@RequestBody Pagination<SysCrawlerTaskInfo> vo) throws ParseException, IOException {
 		return sysRuleInfoService.startTask(vo.getList(), 0);
 	}
-	
+
 }
