@@ -1,5 +1,8 @@
 package org.danyuan.application.crawler.param.controller;
 
+import java.io.IOException;
+
+import org.apache.http.ParseException;
 import org.danyuan.application.common.base.BaseController;
 import org.danyuan.application.common.base.BaseControllerImpl;
 import org.danyuan.application.common.base.Pagination;
@@ -31,7 +34,7 @@ public class SysCrawlerRulerInfoController extends BaseControllerImpl<SysCrawler
 	private static final Logger	logger	= LoggerFactory.getLogger(SysCrawlerRulerInfoController.class);
 	@Autowired
 	SysCrawlerRulerInfoService	sysCrawlerRulerInfoService;
-
+	
 	@RequestMapping(path = "/index/{uuid}", method = RequestMethod.GET)
 	public ModelAndView config(@PathVariable("uuid") String uuid) {
 		logger.info("index", SysCrawlerRulerInfoController.class);
@@ -39,15 +42,15 @@ public class SysCrawlerRulerInfoController extends BaseControllerImpl<SysCrawler
 		view.addObject("taskUuid", uuid);
 		return view;
 	}
-	
+
 	@RequestMapping("/start")
-	public String start(@RequestBody Pagination<SysCrawlerRulerInfo> vo) {
+	public String start(@RequestBody Pagination<SysCrawlerRulerInfo> vo) throws ParseException, IOException {
 		return sysCrawlerRulerInfoService.start(vo.getList());
 	}
-
+	
 	@RequestMapping("/stop")
 	public String stop(@RequestBody Pagination<SysCrawlerRulerInfo> vo) {
 		return sysCrawlerRulerInfoService.stop(vo.getList());
 	}
-	
+
 }

@@ -62,6 +62,7 @@ spring:
   thymeleaf:
     servlet:      content-type: text/html
     encoding: UTF-8
+    cache: false
     mode: HTML
   main:
     banner-mode: console

@@ -243,11 +243,10 @@ function optionFormatter(e, row, index) {
 }
 
 function addSysCrawlerTaskInfoSuccess(result) {
-//	$('#crawler_task_config_table_datagrid').bootstrapTable('refresh');
-	// $("#add_crawler_config_table_modal").modal('hide');
-	
-	if(result=="1"){
+	 $("#add_crawler_config_table_modal").modal('hide');
+	if(result.code == 200||result == "1"){
 		toastr.info("修改状态成功！","成功修改");
+	$('#crawler_task_config_table_datagrid').bootstrapTable('refresh');
 	}else{
 		toastr.error("修改失败，系统遇到错误！","错误");
 	}
