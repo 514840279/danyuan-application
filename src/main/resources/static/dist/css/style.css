@@ -504,9 +504,9 @@ table a, table a:hover{text-decoration:underline}
 
 /*** search ***/
 .search_bg{background:url("../images/bg_map.jpg") no-repeat center 230px}
-.search_index{width:650px; margin:50px auto 0}
+.search_index{ margin:50px auto 0}
 .search_index .h1{color:#3861a4; font-weight:bold; text-align:center; margin-bottom:10px}
-.search_index .col_01{width:100px; margin-left:10px}
+.search_index .col_01{width:60px; margin:0px}
 .search_bar{margin-top:10px}
 .search_bar li{float:left; margin-left:12px; padding-left:12px; position:relative}
 .search_bar li:after{content:""; width:1px; height:16px; background:#ccc; position:absolute; left:0; top:50%; margin-top:-8px}
@@ -515,7 +515,14 @@ table a, table a:hover{text-decoration:underline}
 .search_bar li a{color:#555}
 .search_bar li a:hover{color:#3861a4}
 .search_bar li.active a{color:#3861a4; border-bottom:solid 2px #3861a4; padding-bottom:3px}
-
+@media (min-width:768px){
+	.search_index{width:480px; margin:50px auto 0}
+	.search_index .col_01{width:60px;}
+}
+@media (min-width:1280px){
+	.search_index{width:650px; margin:50px auto 0}
+	.search_index .col_01{width:100px; margin-left:10px}
+}
 
 
 /*** nav_right ***/
