@@ -497,6 +497,13 @@ public class SysUserBaseInfo extends BaseEntity {
 		this.addr = addr;
 	}
 	
+	public SysUserBaseInfo(String uuid, String userName, String password) {
+		super();
+		this.uuid = uuid;
+		this.userName = userName;
+		this.password = password;
+	}
+	
 	/**
 	 * TODO(这里用一句话描述这个方法的作用)
 	 *

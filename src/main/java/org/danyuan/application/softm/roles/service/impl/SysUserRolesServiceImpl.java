@@ -1,5 +1,6 @@
 package org.danyuan.application.softm.roles.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,11 +28,11 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysUserRolesService")
 public class SysUserRolesServiceImpl implements SysUserRolesService {
-	
+
 	//
 	@Autowired
 	private SysUserRolesDao sysUserRolesDao;
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -40,12 +41,12 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 	 * tk.ainiyue.admin.userrole.service.SysUserRolesService#findAll()
 	 * 作 者 ： Tenghui.Wang
 	 */
-	
+
 	@Override
 	public List<SysUserRolesInfo> findAll() {
 		return sysUserRolesDao.findAll();
 	}
-	
+
 	/**
 	 * 方法名 ： findByUuid
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -55,7 +56,7 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 	 * tk.ainiyue.danyuan.application.user.userrole.service.SysUserRolesService#findByUuid(java.lang.String)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public SysUserRolesInfo findByUuid(String uuid) {
 		Optional<SysUserRolesInfo> info = sysUserRolesDao.findById(uuid);
@@ -64,7 +65,7 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 方法名 ： findAllBySearchText
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -77,7 +78,7 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 	 * int, tk.ainiyue.danyuan.application.user.userrole.po.SysUserRolesInfo)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public Page<SysUserRolesInfo> findAllBySearchText(int pageNumber, int pageSize, SysUserRolesInfo info) {
 		Example<SysUserRolesInfo> example = Example.of(info);
@@ -86,7 +87,7 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 		Page<SysUserRolesInfo> sourceCodes = sysUserRolesDao.findAll(example, request);
 		return sourceCodes;
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -95,12 +96,14 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 	 * tk.ainiyue.danyuan.application.user.userrole.service.SysUserRolesService#save(tk.ainiyue.danyuan.application.user.userrole.po.SysUserRolesInfo)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void save(SysUserRolesInfo info) {
+		info.setCreateTime(new Date());
+		info.setUpdateTime(new Date());
 		sysUserRolesDao.save(info);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -109,12 +112,12 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 	 * tk.ainiyue.danyuan.application.user.userrole.service.SysUserRolesService#delete(tk.ainiyue.danyuan.application.user.userrole.po.SysUserRolesInfo)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void delete(SysUserRolesInfo info) {
 		sysUserRolesDao.delete(info);
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -123,12 +126,12 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 	 * tk.ainiyue.danyuan.application.user.userrole.service.SysUserRolesService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void delete(List<SysUserRolesInfo> list) {
 		sysUserRolesDao.deleteAll(list);
 	}
-	
+
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -137,10 +140,10 @@ public class SysUserRolesServiceImpl implements SysUserRolesService {
 	 * tk.ainiyue.danyuan.application.user.userrole.service.SysUserRolesService#trunc()
 	 * 作 者 ： Administrator
 	 */
-	
+
 	@Override
 	public void trunc() {
 		sysUserRolesDao.deleteAll();
 	}
-	
+
 }
