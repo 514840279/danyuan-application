@@ -1,5 +1,7 @@
 package org.danyuan.application.common.config;
 
+import java.util.Arrays;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 /**
  * 文件名 ： WebSecurityConfig.java
@@ -29,7 +34,7 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 开启security注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+	
 //	@Override
 //	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //		// 暂时使用基于内存的AuthenticationProvider
@@ -38,10 +43,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 //	@Autowired
 //	private CustomUserDetailsService	userDetailsService;
-
+	
 	@Autowired
 	private DataSource dataSource;
-
+	
 	@Bean
 	public PersistentTokenRepository tokenRepository() {
 		JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
@@ -50,24 +55,38 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		jdbcTokenRepository.setCreateTableOnStartup(false);
 		return jdbcTokenRepository;
 	}
-
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
+		
 		// 允许所有用户访问"/"和"/home"
 		http.csrf().disable().authorizeRequests()
 		        // 不需要验证就可以访问的路径
 		        .antMatchers("/dist/*/**", "/plugins/*/**", "/pages/*/js/**", "/register.html", "/sysUserBase/save", "/login", "/*/**.md").permitAll()
 		        // 限制所有请求都需要验证
-		        .anyRequest().authenticated().and().formLogin()
+		        .anyRequest().authenticated()
+		        // form 登录
+		        .and().formLogin()
 		        // 登录页
-		        .defaultSuccessUrl("/index").loginPage("/login").failureUrl("/login?error").permitAll().and().logout().permitAll().clearAuthentication(true).and().rememberMe().tokenRepository(tokenRepository())// 设置tokenRepository
-		        .alwaysRemember(true) // 总是记住，会刷新过期时间
-		        .tokenValiditySeconds(1209600)// 设置过期时间为5分钟
+		        .defaultSuccessUrl("/index").loginPage("/login")
+		        // 登录错误
+		        .failureUrl("/login?error").permitAll()
+		        // 退出
+		        .and().logout().permitAll()
+		        // 重启清空验证信息
+		        .clearAuthentication(true)
+		        // 支持跨域
+		        .and().cors()
+		        // 记住我 token
+		        .and().rememberMe().tokenRepository(tokenRepository())// 设置tokenRepository
+		        // 总是记住，会刷新过期时间
+		        .alwaysRemember(true)
+		        // 设置过期时间为两周
+		        .tokenValiditySeconds(1209600)
 //		        .userDetailsService(userDetailsService) // 设置userDetailsService，用来获取username;
 		;
 	}
-
+	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		
@@ -76,12 +95,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		;
 		
 	}
-
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
-
+	
 	/**
 	 * 自定义UserDetailsService，从数据库中读取用户信息
 	 *
@@ -91,5 +110,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public CustomUserDetailsService customUserDetailsService() {
 		return new CustomUserDetailsService();
 	}
-
+	
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList("*"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "DELETE"));
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+	}
 }
