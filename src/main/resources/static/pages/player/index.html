@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>演示：DPlayer – H5视频播放器支持弹幕</title>
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/DPlayer.min.css">
+<link rel="stylesheet" type="text/css" href="css/demo.css">
+<style>
+
+</style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="row">
+            <div class="col-md-3 col-xs-12"><h1 class="logo"><a href="http://www.helloweba.net" title="返回helloweba首页">helloweba</a></h1></div>
+            <div class="col-md-9 text-right"></div>
+        </div>
+    </header>
+    <div class="row main">
+        <div class="col-md-12">
+            <h2 class="top_title"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><a href="http://www.helloweba.net/javascript/570.html">DPlayer – H5视频播放器支持弹幕</a></h2>
+            <div class="container" style="width: 96%; margin: 30px auto">
+                <div id="dplayer"></div>
+                
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Powered by helloweba.net  允许转载、修改和使用本站的DEMO，但请注明出处：<a href="http://www.helloweba.net">www.helloweba.net</a></p>
+    </footer>
+</div>
+
+<script src="DPlayer.min.js"></script>
+<script>
+const dp = new DPlayer({
+    container: document.getElementById('dplayer'),
+    screenshot: false,
+    video: {
+        url: '/【www.javaxxz.com】1-1 Vue环境搭建.mp4',
+        pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg',
+        thumbnails: 'https://moeplayer.b0.upaiyun.com/dplayer/hikarunara_thumbnails.jpg',
+    }
+    // subtitle: {
+    //     url: 'webvtt.vtt'
+    // },
+    // danmaku: {
+    //     id: 'demo',
+    //     api: 'https://api.prprpr.me/dplayer/'
+    // }
+});
+</script>
+</body>
+</html>
