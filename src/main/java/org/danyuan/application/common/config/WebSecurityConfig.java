@@ -34,19 +34,14 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 开启security注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
-//	@Override
-//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		// 暂时使用基于内存的AuthenticationProvider
-//		auth.inMemoryAuthentication().withUser("root").password("root").roles("USER");
-//	}
 
-//	@Autowired
-//	private CustomUserDetailsService	userDetailsService;
-	
 	@Autowired
 	private DataSource dataSource;
-	
+//	@Autowired
+//	private MyLoginSuccessHandler	myLoginSuccessHandler;
+//	@Autowired
+//	private MyLoginFailureHandler	myLoginFailureHandler;
+
 	@Bean
 	public PersistentTokenRepository tokenRepository() {
 		JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
@@ -58,7 +53,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+		/** JWT拦截器 */
+//		JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter = new JwtAuthenticationTokenFilter();
+		/** 将JWT拦截器添加到UsernamePasswordAuthenticationFilter之前 */
+//		http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 		// 允许所有用户访问"/"和"/home"
 		http.csrf().disable().authorizeRequests()
 		        // 不需要验证就可以访问的路径
@@ -67,12 +65,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		        .anyRequest().authenticated()
 		        // form 登录
 		        .and().formLogin()
+		        // 登录方法
+		        .loginProcessingUrl("/login")
+				// 成功处理
+//		        .successHandler(myLoginSuccessHandler)
+				// 错误处理
+//		        .failureHandler(myLoginFailureHandler)
+		        // 默认主页
+		        .defaultSuccessUrl("/index")
 		        // 登录页
-		        .defaultSuccessUrl("/index").loginPage("/login")
+		        .loginPage("/login")
 		        // 登录错误
 		        .failureUrl("/login?error").permitAll()
 		        // 退出
-		        .and().logout().permitAll()
+		        .and().logout()
+		        // .logoutSuccessUrl("/logoutSuccess")
+		        .permitAll()
 		        // 重启清空验证信息
 		        .clearAuthentication(true)
 		        // 支持跨域
@@ -88,11 +96,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		
-		auth.userDetailsService(customUserDetailsService()).passwordEncoder(passwordEncoder())
-		//
-		;
+	public void configureGlobal(AuthenticationManagerBuilder auth) {
+		try {
+			auth.userDetailsService(customUserDetailsService()).passwordEncoder(passwordEncoder());
+		} catch (Exception e) {
+			System.err.println(e);
+		}
 		
 	}
 	
