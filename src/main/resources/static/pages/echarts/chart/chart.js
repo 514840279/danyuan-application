@@ -12,18 +12,18 @@ $(function(){
 		el.remove();
 	})
 	
-	legend_data=['女','男'];
-	series_data=[
+	var legend_data=['女','男'];
+	var series_data=[
     	{value:92503371, name:'男'},
     	{value:44497979, name:'女'},
     ]
-	title='性别比例';
+	var title='性别比例';
 	
 	setChart1('dbm_config_table_datagrid1',title,legend_data,series_data,theme,"mainDiv");
 	
-	id='dbm_config_table_datagrid2';
-	title='全国';
-	series_data=  [
+	var id='dbm_config_table_datagrid2';
+	var title='全国';
+	var series_data=  [
         {
             name: "数量",
             type: 'map',
@@ -73,24 +73,24 @@ $(function(){
     ];
 	setChart2(id,title,["数量"],series_data,theme);
 	
-	id='dbm_config_table_datagrid3';
-	legend_data=['2003'];
-	xAxis_data=['01','02','03','04','05','06','07','08','09','10','11','12']
-	series_data=[
+	var id='dbm_config_table_datagrid3';
+	var legend_data=['2003'];
+	var xAxis_data=['01','02','03','04','05','06','07','08','09','10','11','12']
+	var series_data=[
     	{name:'2003',type:'line',data:[170136,148402,183381,184953,139008,143590,139528,133734,146689,112495,132594,120718]},
 	]
 	setChart3(id,'折线图',legend_data,xAxis_data,series_data,theme,"mainDiv");
 	
-	id='dbm_config_table_datagrid4';
-	xAxis_data=['50后','60后','70后','80后','90后']
-	series_data=[
+	var id='dbm_config_table_datagrid4';
+	var xAxis_data=['50后','60后','70后','80后','90后']
+	var series_data=[
         { name:'数量',  type:'bar',  data:[7299687,25983299,45972918,49693143,7191219]}
     ]
-	legend_data=[];
+	var legend_data=[];
 	setChart4(id,'柱图',legend_data,xAxis_data,series_data,theme,"mainDiv");
 	
-	id='dbm_config_table_datagrid5';
-	series_data=[{
+	var id='dbm_config_table_datagrid5';
+	var series_data=[{
    	 "name": "flare",
 	 "children": [
 	  {
@@ -472,8 +472,8 @@ $(function(){
 	}]
 //	setChart5(id,series_data,theme);
 	
-	id='dbm_config_table_datagrid6';
-	series_data=[{
+	var id='dbm_config_table_datagrid6';
+	var series_data=[{
 	    name: 'Grandpa',
 	    children: [{
 	        name: 'Uncle Leo',
@@ -530,13 +530,13 @@ $(function(){
 	}];
 //	setChart6(id,series_data,theme);
 	
-	id='dbm_config_table_datagrid7';
-	legend_data=['贷款', '全款'];
-	series_data=[
+	var id='dbm_config_table_datagrid7';
+	var legend_data=['贷款', '全款'];
+	var series_data=[
     	{name:'贷款',value:30672033},
     	{name:'全款',value:121675293},
 	]
-	title='全国'
+	var title='全国'
 	setChart7(id,title,legend_data,series_data,theme,"mainDiv");
 	
 	
@@ -546,8 +546,8 @@ $(function(){
 	})
 	
 	
-	legend_data=['rose1','rose2','rose3','rose4','rose5','rose6','rose7','rose8'];
-	series_data=[
+	var legend_data=['rose1','rose2','rose3','rose4','rose5','rose6','rose7','rose8'];
+	var series_data=[
         {value:10, name:'rose1'},
         {value:5, name:'rose2'},
         {value:15, name:'rose3'},
@@ -557,20 +557,20 @@ $(function(){
         {value:30, name:'rose7'},
         {value:40, name:'rose8'}
     ]
-	title='南丁格尔';
+	var title='南丁格尔';
 	// setChart8('dbm_config_table_datagrid8',title,legend_data,series_data,theme);
 	
 	
-	legend_data=[''];
+	var legend_data=[''];
 	
-	series_data=[
+	var series_data=[
         {
             name: '',
             type: 'bar',
             data: [18203, 23489, 29034, 104970, 131744, 630230]
         },
     ]
-	xAxis_data=['巴西','印尼','美国','印度','中国','世界人口(万)']
-	title='条形图';
+	var xAxis_data=['巴西','印尼','美国','印度','中国','世界人口(万)']
+	var title='条形图';
 	setChart9('dbm_config_table_datagrid9',title,legend_data,xAxis_data,series_data,theme,"mainDiv");
 });

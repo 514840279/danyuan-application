@@ -85,7 +85,7 @@ function setChart1(id,title,legend_data,series_data,theme,mainDiv){
 	myChart1.showLoading({
 	    text : '加载中...',
 	});
-	option = {
+	var option1 = {
 		    title : {
 		        x:'center',
 	        	text:title
@@ -131,10 +131,10 @@ function setChart1(id,title,legend_data,series_data,theme,mainDiv){
 		};
 
     // 使用刚指定的配置项和数据显示图表。
-	clearTimeout(loadingTicket);
-    var loadingTicket = setTimeout(function (){
+	clearTimeout(loadingTicket1);
+    var loadingTicket1 = setTimeout(function (){
     	myChart1.hideLoading();
-    	myChart1.setOption(option,true);
+    	myChart1.setOption(option1,true);
 	},500);
     //根据窗口的大小变动图表 --- 重点
 	$('#'+mainDiv).resize(function () {
@@ -159,7 +159,7 @@ function setChart2(id,title,legend_data,series_data,theme,mainDiv){
 	myChart2.showLoading({
 	    text : '加载中...',
 	});
-	  option2 = {
+	var option2 = {
         title: {
         	text:title
         },
@@ -202,10 +202,10 @@ function setChart2(id,title,legend_data,series_data,theme,mainDiv){
     };
 
     // 使用刚指定的配置项和数据显示图表。
-	  clearTimeout(loadingTicket);
-	    var loadingTicket = setTimeout(function (){
+	  clearTimeout(loadingTicket2);
+	    var loadingTicket2 = setTimeout(function (){
 	    	myChart2.hideLoading();
-	    	myChart2.setOption(option,true);
+	    	myChart2.setOption(option2,true);
 		},500);
     //根据窗口的大小变动图表 --- 重点
 	$('#'+mainDiv).resize(function () {
@@ -219,7 +219,7 @@ function setChart3(id,title,legend_data,xAxis_data,series_data,theme,mainDiv){
 	myChart3.showLoading({
 	    text : '加载中...',
 	});
-	option = {
+	var option3 = {
 	    title: {
 	        text: title
 	    },
@@ -252,10 +252,10 @@ function setChart3(id,title,legend_data,xAxis_data,series_data,theme,mainDiv){
 	};
 
     // 使用刚指定的配置项和数据显示图表。
-	clearTimeout(loadingTicket);
-    var loadingTicket = setTimeout(function (){
+	clearTimeout(loadingTicket3);
+    var loadingTicket3 = setTimeout(function (){
     	myChart3.hideLoading();
-    	myChart3.setOption(option,true);
+    	myChart3.setOption(option3,true);
 	},500);
     //根据窗口的大小变动图表 --- 重点
 	$('#'+mainDiv).resize(function () {
@@ -269,7 +269,7 @@ function setChart4(id,title,legend_data,xAxis_data,series_data,theme,mainDiv){
 	myChart4.showLoading({
 	    text : '加载中...',
 	});
-	option = {
+	var option4 = {
 //	    color: ['#3398DB'],
 		title: {
 	        text: title
@@ -312,10 +312,10 @@ function setChart4(id,title,legend_data,xAxis_data,series_data,theme,mainDiv){
 	};
 
     // 使用刚指定的配置项和数据显示图表。
-	clearTimeout(loadingTicket);
-    var loadingTicket = setTimeout(function (){
+	clearTimeout(loadingTicket4);
+    var loadingTicket4 = setTimeout(function (){
     	myChart4.hideLoading();
-    	myChart4.setOption(option,true);
+    	myChart4.setOption(option4,true);
 	},500);
     //根据窗口的大小变动图表 --- 重点
 	$('#'+mainDiv).resize(function () {
@@ -329,7 +329,7 @@ function setChart5(id,series_data,theme,mainDiv){
 	myChart5.showLoading({
 	    text : '加载中...',
 	});
-	option = {
+	var option5 = {
 	        tooltip: {
 	            trigger: 'item',
 	            triggerOn: 'mousemove'
@@ -377,10 +377,10 @@ function setChart5(id,series_data,theme,mainDiv){
 	    }
 
     // 使用刚指定的配置项和数据显示图表。
-	clearTimeout(loadingTicket);
-    var loadingTicket = setTimeout(function (){
+	clearTimeout(loadingTicket5);
+    var loadingTicket5 = setTimeout(function (){
     	myChart5.hideLoading();
-    	myChart5.setOption(option,true);
+    	myChart5.setOption(option5,true);
 	},500);
     //根据窗口的大小变动图表 --- 重点
 	$('#'+mainDiv).resize(function () {
@@ -394,7 +394,7 @@ function setChart6(id,series_data,theme,mainDiv){
 	myChart6.showLoading({
 	    text : '加载中...',
 	});
-	option = {
+	var option6 = {
 		    series: {
 		        type: 'sunburst',
 		        // highlightPolicy: 'ancestor',
@@ -407,10 +407,10 @@ function setChart6(id,series_data,theme,mainDiv){
 		};
 
     // 使用刚指定的配置项和数据显示图表。
-	clearTimeout(loadingTicket);
-    var loadingTicket = setTimeout(function (){
+	clearTimeout(loadingTicket6);
+    var loadingTicket6 = setTimeout(function (){
     	myChart6.hideLoading();
-    	myChart6.setOption(option,true);
+    	myChart6.setOption(option6,true);
 	},500);
     //根据窗口的大小变动图表 --- 重点
 	$('#'+mainDiv).resize(function () {
@@ -424,7 +424,7 @@ function setChart7(id,title,legend_data,series_data,theme,mainDiv){
 	myChart7.showLoading({
 	    text : '加载中...',
 	});
-	option = {
+	var option7 = {
 		    title: {
 		        text: title,
 		        subtext: '',
@@ -476,10 +476,10 @@ function setChart7(id,title,legend_data,series_data,theme,mainDiv){
 
 
     // 使用刚指定的配置项和数据显示图表。
-	clearTimeout(loadingTicket);
-    var loadingTicket = setTimeout(function (){
+	clearTimeout(loadingTicket7);
+    var loadingTicket7 = setTimeout(function (){
     	myChart7.hideLoading();
-    	myChart7.setOption(option,true);
+    	myChart7.setOption(option7,true);
 	},500);
     //根据窗口的大小变动图表 --- 重点
 	$('#'+mainDiv).resize(function () {
@@ -493,7 +493,7 @@ function setChart8(id,title,legend_data,series_data,theme,mainDiv){
 	myChart8.showLoading({
 	    text : '加载中...',
 	});
-	option = {
+	var option8 = {
 		    title : {
 		        text: title,
 		       // subtext: '纯属虚构',
@@ -535,10 +535,10 @@ function setChart8(id,title,legend_data,series_data,theme,mainDiv){
 
 
     // 使用刚指定的配置项和数据显示图表。
-	clearTimeout(loadingTicket);
-    var loadingTicket = setTimeout(function (){
+	clearTimeout(loadingTicket8);
+    var loadingTicket8 = setTimeout(function (){
     	myChart8.hideLoading();
-    	myChart8.setOption(option,true);
+    	myChart8.setOption(option8,true);
 	},500);
     //根据窗口的大小变动图表 --- 重点
 	$('#'+mainDiv).resize(function () {
@@ -552,7 +552,7 @@ function setChart9(id,title,legend_data,xAxis_data,series_data,theme,mainDiv){
 	myChart9.showLoading({
 	    text : '加载中...',
 	});
-	option = {
+	var option9 = {
 		    title: {
 		        text: title,
 //		        subtext: '数据来自网络'
@@ -586,10 +586,10 @@ function setChart9(id,title,legend_data,xAxis_data,series_data,theme,mainDiv){
 
 
     // 使用刚指定的配置项和数据显示图表。
-    clearTimeout(loadingTicket);
-    var loadingTicket = setTimeout(function (){
+    clearTimeout(loadingTicket9);
+    var loadingTicket9 = setTimeout(function (){
     	myChart9.hideLoading();
-    	myChart9.setOption(option,true);
+    	myChart9.setOption(option9,true);
 	},500);
     //根据窗口的大小变动图表 --- 重点
 	$('#'+mainDiv).resize(function () {
