@@ -2,6 +2,7 @@ package org.danyuan.application.softm.organization.controller;
 
 import java.util.List;
 
+import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.softm.organization.po.SysDepartmentInfo;
 import org.danyuan.application.softm.organization.service.SysDepartmentService;
 import org.danyuan.application.softm.organization.vo.SysDepartmentInfoVo;
@@ -28,14 +29,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sysDepartment")
 public class SysDepartmentController {
-
+	
 	//
 	private static final Logger		logger	= LoggerFactory.getLogger(SysDepartmentController.class);
-
+	
 	//
 	@Autowired
 	private SysDepartmentService	sysDepartmentService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -49,7 +50,7 @@ public class SysDepartmentController {
 		logger.info("sysSystemList", SysDepartmentController.class);
 		return sysDepartmentService.findAll();
 	}
-
+	
 	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
 	public Page<SysDepartmentInfo> findAllBySearchText(SysDepartmentInfoVo sysDepartmentInfoVo) {
 		logger.info("findAllBySearchText", SysDepartmentController.class);
@@ -57,7 +58,7 @@ public class SysDepartmentController {
 		info.setOrganizationId(sysDepartmentInfoVo.getOrganizationId());
 		return sysDepartmentService.findAllBySearchText(sysDepartmentInfoVo.getPageNumber(), sysDepartmentInfoVo.getPageSize(), info);
 	}
-
+	
 	@RequestMapping(path = "/sysDepartmentAdd", method = RequestMethod.POST)
 	@ResponseBody
 	public String save(@RequestBody SysDepartmentInfo info) {
@@ -66,13 +67,13 @@ public class SysDepartmentController {
 		sysDepartmentService.save(info);
 		return "1";
 	}
-
+	
 	@RequestMapping(path = "/sysDepartmentDelete", method = RequestMethod.POST)
 	@ResponseBody
-	public String sysDepartmentDelete(@RequestBody SysDepartmentInfo info) {
+	public String sysDepartmentDelete(@RequestBody Pagination<SysDepartmentInfo> info) {
 		logger.info("sysDepartmentDelete", SysDepartmentController.class);
 		try {
-			sysDepartmentService.delete(info);
+			sysDepartmentService.delete(info.getList());
 			return "1";
 		} catch (Exception e) {
 			return "0";

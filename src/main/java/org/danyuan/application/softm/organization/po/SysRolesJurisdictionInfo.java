@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -43,6 +45,8 @@ public class SysRolesJurisdictionInfo implements Serializable {
 
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '录入时间'")
 	@Temporal(TemporalType.TIMESTAMP)
+	@CreatedDate
+	@org.hibernate.annotations.CreationTimestamp
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
 	private Date						createTime;									// create_time
 	// 插入时间
@@ -53,6 +57,8 @@ public class SysRolesJurisdictionInfo implements Serializable {
 
 	@Column(name = "update_time", updatable = false, insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '更新时间'")
 	@Temporal(TemporalType.TIMESTAMP)
+	@org.hibernate.annotations.UpdateTimestamp
+	@LastModifiedDate
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
 	private Date						updateTime;									// updata_time
 	// 更新时间
@@ -200,7 +206,7 @@ public class SysRolesJurisdictionInfo implements Serializable {
 	/**
 	 * 方法名 ： getId
 	 * 功 能 ： 返回变量 id 的值
-	 * 
+	 *
 	 * @return: SysRolesJurisdictionInfoPK
 	 */
 	public SysRolesJurisdictionInfoPK getId() {

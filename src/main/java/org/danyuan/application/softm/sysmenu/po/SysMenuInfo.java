@@ -11,6 +11,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -44,6 +46,8 @@ public class SysMenuInfo {
 
 	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
 	@Temporal(TemporalType.TIMESTAMP)
+	@CreatedDate
+	@org.hibernate.annotations.CreationTimestamp
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
 	private Date	insertDatetime;
 
@@ -52,6 +56,8 @@ public class SysMenuInfo {
 
 	@Column(name = "update_time", updatable = false, insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '更新时间'")
 	@Temporal(TemporalType.TIMESTAMP)
+	@org.hibernate.annotations.UpdateTimestamp
+	@LastModifiedDate
 	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
 	private Date	updateTime;		// updata_time 更新时间
 
