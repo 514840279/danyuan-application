@@ -122,7 +122,7 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 			// detailhtml类生成
 			if (sysDbmsGenerateCodeInfo.getGenerateDetail() == 1) {
 				// templates 模板路径
-				pathtempString = path + "/src/main/resources/templates/";
+				pathtempString = path + "/src/main/resources/templates/" + sysDbmsGenerateCodeInfo.getClassPath().replace(thirdString, "").replace(".", "/").toLowerCase();
 				file = new File(pathtempString);
 				if (!file.exists()) {
 					file.mkdirs();
@@ -214,7 +214,7 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 		stringBuilder.append("\r\n");
 		stringBuilder.append("		@GetMapping(\"/detail/{uuid}\")\r\n");
 		stringBuilder.append("		public ModelAndView name(@PathVariable(\"uuid\") String uuid) {\r\n");
-		stringBuilder.append("			ModelAndView modelAndView = new ModelAndView(\"" + subServiceNameString.toLowerCase() + "detail\");\r\n");
+		stringBuilder.append("			ModelAndView modelAndView = new ModelAndView(\"" + sysDbmsGenerateCodeInfo.getClassPath().replace(thirdString, "").replace(".", "/") + "/" + subServiceNameString.toLowerCase() + "detail\");\r\n");
 		stringBuilder.append("			" + sysDbmsGenerateCodeInfo.getClassName() + " info = new " + sysDbmsGenerateCodeInfo.getClassName() + "();\r\n");
 		stringBuilder.append("			info.setUuid(uuid);\r\n");
 		stringBuilder.append("			modelAndView.addObject(\"" + subServiceNameString + "\", " + subServiceNameString + "Service.findOne(info));\r\n");

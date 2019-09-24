@@ -18,7 +18,7 @@ import org.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
  * @版本 V1.0
  */
 public class GenerateSql {
-	
+
 	/**
 	 * @方法名 generate
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -33,12 +33,12 @@ public class GenerateSql {
 	 */
 	public static void generate(SysDbmsGenerateCodeInfo sysDbmsGenerateCodeInfo, SysDbmsTabsInfo tabsInfo, List<SysDbmsTabsColsInfo> colsInfos, String username, String pathString) {
 		StringBuilder stringBuilder = new StringBuilder();
-
+		
 		// 创建表
 		stringBuilder.append("-- 表创建 表创建语句并不完全正确，需要确认后在执行 \r\n");
 		stringBuilder.append("create table " + tabsInfo.getTabsName() + "(\r\n");
 		stringBuilder.append(" uuid varchar(36) NOT NULL COMMENT '主键' primary key,\r\n");
-		
+
 		for (SysDbmsTabsColsInfo sysDbmsTabsColsInfo : colsInfos) {
 			String colsTypeString = sysDbmsTabsColsInfo.getColsType();
 			if (colsTypeString.contains("char")) {
@@ -52,7 +52,7 @@ public class GenerateSql {
 			}
 			stringBuilder.append(" " + sysDbmsTabsColsInfo.getColsName() + " " + colsTypeString + colsDescString + ",\r\n");
 		}
-		
+
 		// fda VARCHAR(20) NOT NULL DEFAULT '1' COMMENT 'fdsa'
 		stringBuilder.append(" create_time timestamp NOT NULL default CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '记录时间',\r\n");
 		stringBuilder.append(" update_time timestamp NOT NULL default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT  '更新时间',\r\n");
@@ -61,7 +61,7 @@ public class GenerateSql {
 		stringBuilder.append(" delete_flag tinyint NOT NULL default 0 COMMENT '应用标识',\r\n");
 		stringBuilder.append(" discription varchar(200) COMMENT '数据描述',\r\n");
 		stringBuilder.append(");\r\n");
-
+		
 		// 修改字段非空
 		stringBuilder.append("-- 修改字段非空 \r\n");
 		stringBuilder.append(" update " + tabsInfo.getTabsName() + " set uuid = UUID();\r\n");
@@ -82,7 +82,7 @@ public class GenerateSql {
 		stringBuilder.append("-- 修改字段 注释 \r\n");
 		for (SysDbmsTabsColsInfo sysDbmsTabsColsInfo : colsInfos) {
 			if (sysDbmsTabsColsInfo.getColsDesc() != null && !"".equals(sysDbmsTabsColsInfo.getColsDesc())) {
-				stringBuilder.append(" --" + sysDbmsTabsColsInfo.getColsName() + "注释 \r\n ");
+				stringBuilder.append(" -- " + sysDbmsTabsColsInfo.getColsName() + "注释 \r\n ");
 				stringBuilder.append(" alter table " + tabsInfo.getTabsName() + "  modify column " + sysDbmsTabsColsInfo.getColsName() + " VARCHAR(500) comment '" + sysDbmsTabsColsInfo.getColsDesc() + "'; \r\n");
 				stringBuilder.append("\r\n");
 			}
@@ -92,7 +92,7 @@ public class GenerateSql {
 		stringBuilder.append("-- 生成索引命令 \r\n");
 		for (SysDbmsTabsColsInfo sysDbmsTabsColsInfo : colsInfos) {
 			if (sysDbmsTabsColsInfo.getUserIndex() != null && !"".equals(sysDbmsTabsColsInfo.getUserIndex())) {
-				stringBuilder.append(" --" + sysDbmsTabsColsInfo.getColsDesc() + "索引\r\n ");
+				stringBuilder.append(" -- " + sysDbmsTabsColsInfo.getColsDesc() + "索引\r\n ");
 				stringBuilder.append(" alter table " + tabsInfo.getTabsName() + " add index index_" + StringUtils.genRandomNum(16) + " (" + sysDbmsTabsColsInfo.getColsName() + ") ; \r\n");
 				stringBuilder.append("\r\n");
 			}
@@ -102,7 +102,7 @@ public class GenerateSql {
 		String fineName = pathString + "/" + tabsInfo.getTabsName() + "_ddl.sql";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
 	}
-	
+
 	/**
 	 * @方法名 generateConfig
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -123,7 +123,7 @@ public class GenerateSql {
 			thirdString += subpathString[i] + ".";
 		}
 		String subPathString = sysDbmsGenerateCodeInfo.getClassPath().toLowerCase().replace(thirdString, "");
-		
+
 		// 路径配置
 		stringBuilder.append("-- ================" + tabsInfo.getTabsName() + "(" + tabsInfo.getTabsDesc() + ")配置开始======================= \r\n");
 		stringBuilder.append("-- 菜单配置 \r\n");
@@ -135,7 +135,7 @@ public class GenerateSql {
 		// 文件写入
 		String fineName = pathString + "/" + tabsInfo.getTabsName() + "_config.sql";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
-
+		
 	}
-
+	
 }
