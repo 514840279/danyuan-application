@@ -21,12 +21,14 @@ _history = [];
 			$("ul.treeview-menu li").removeClass("active");
 			$(this).parent().addClass("active");
 		});
-		// 选中状态
+		
+		// 系统选中状态
 		$.each($(".sidebar-menu").find("li").find("ul").find("li").find("a"),function(index,value){
 			if($(value).data("homepage") == true){
 				$(value).parent("li").addClass("active");
 				$(value).parent("li").parent("ul").parent("li").addClass("active");
 				hasHome=true;
+				loadPage($(value).data("url"));
 			}
 		});
 		// 默认欢迎页面、主页
@@ -43,9 +45,6 @@ _history = [];
 			html = "<li><a href='#' data-url='" + item.url + "' data-id='"
 					+ item.id + "' data-name='" + item.name + "' data-homepage='" + item.homePage + "' ><i class='"
 					+ item.icon + "'></i>" + item.name + "</a></li>";
-			if (item.homePage) {
-				loadPage(item.url);
-			}
 		} else {
 			html = "<li class='treeview'>" + "<a href='#'>" + "<i class='"
 					+ item.icon + "'></i>" + "<span>" + item.name + "</span>"

@@ -55,7 +55,7 @@ public class GenerateSql {
 
 		// fda VARCHAR(20) NOT NULL DEFAULT '1' COMMENT 'fdsa'
 		stringBuilder.append(" create_time timestamp NOT NULL default CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '记录时间',\r\n");
-		stringBuilder.append(" update_time timestamp NOT NULL default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT  '更新时间',\r\n");
+		stringBuilder.append(" update_time timestamp NOT NULL default CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT  '更新时间',\r\n");
 		stringBuilder.append(" create_user varchar(50) NOT NULL default 'system' COMMENT '记录人',\r\n");
 		stringBuilder.append(" update_user varchar(50) NOT NULL default 'system' COMMENT '更新人',\r\n");
 		stringBuilder.append(" delete_flag tinyint NOT NULL default 0 COMMENT '应用标识',\r\n");
@@ -67,10 +67,10 @@ public class GenerateSql {
 		stringBuilder.append(" update " + tabsInfo.getTabsName() + " set uuid = UUID();\r\n");
 		stringBuilder.append(" alter table " + tabsInfo.getTabsName() + " add primary key(uuid); \r\n");
 		stringBuilder.append(" alter table " + tabsInfo.getTabsName() + "  MODIFY `create_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL;\r\n");
-		stringBuilder.append(" alter table " + tabsInfo.getTabsName() + "  MODIFY `update_time` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP   NOT NULL;\r\n");
+		stringBuilder.append(" alter table " + tabsInfo.getTabsName() + "  MODIFY `update_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP   NOT NULL;\r\n");
 		stringBuilder.append(" alter table " + tabsInfo.getTabsName() + "  MODIFY `create_user` varchar(50)  NOT NULL;\r\n");
 		stringBuilder.append(" alter table " + tabsInfo.getTabsName() + "  MODIFY `update_user` varchar(50)  NOT NULL;\r\n");
-		stringBuilder.append(" alter table " + tabsInfo.getTabsName() + "  MODIFY `delete_flag` int  NOT NULL;\r\n");
+		stringBuilder.append(" alter table " + tabsInfo.getTabsName() + "  MODIFY `delete_flag` int  NOT NULL default 0 ;\r\n");
 		stringBuilder.append("\r\n");
 		// 表注释
 		stringBuilder.append("-- 表注释 \r\n");

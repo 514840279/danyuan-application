@@ -42,7 +42,6 @@ public class GenerateEntity {
 		stringBuilder.append("package " + sysDbmsGenerateCodeInfo.getClassPath() + ".po;\r\n");
 		stringBuilder.append("\r\n");
 		stringBuilder.append("import java.io.Serializable;\r\n");
-		stringBuilder.append("\r\n");
 		// 拼接字段和get，set方法和需要的引入
 		StringBuilder stringBuilderProperties = new StringBuilder();
 		StringBuilder stringBuilderMethod = new StringBuilder();
@@ -53,6 +52,12 @@ public class GenerateEntity {
 		stringBuilder.append("import javax.persistence.Entity;\r\n");
 		stringBuilder.append("import javax.persistence.NamedQuery;\r\n");
 		stringBuilder.append("import javax.persistence.Table;\r\n");
+		if (stringBuilderImport.toString().contains("import java.util.Date;")) {
+			stringBuilderImport.append("import javax.persistence.Temporal;\r\n");
+			stringBuilderImport.append("import javax.persistence.TemporalType;\r\n");
+			stringBuilderImport.append("\r\n");
+			stringBuilderImport.append("import com.fasterxml.jackson.annotation.JsonFormat;\r\n");
+		}
 		stringBuilder.append("\r\n");
 		stringBuilder.append("import " + thirdString + "common.base.BaseEntity;\r\n");
 		stringBuilder.append("\r\n");
@@ -215,17 +220,21 @@ public class GenerateEntity {
 		if ("date".equals(colsType.toLowerCase())) {
 			stringBuilderProperties.append("	@Temporal(TemporalType.DATE)\r\n");
 			stringBuilderProperties.append("	@DateTimeFormat(style = \"yyyy-MM-dd\")\r\n");
+			stringBuilderProperties.append("	@JsonFormat(locale = \"zh\", timezone = \"GMT+8\", pattern = \"yyyy-MM-dd\")\r\n");
 		} else if ("time".equals(colsType.toLowerCase())) {
 			stringBuilderProperties.append("	@Temporal(TemporalType.TIME)\r\n");
 			stringBuilderProperties.append("	@DateTimeFormat(style = \"HH:mm:ss\")\r\n");
+			stringBuilderProperties.append("	@JsonFormat(locale = \"zh\", timezone = \"GMT+8\", pattern = \"HH:mm:ss\")\r\n");
 		} else if ("timestamp".equals(colsType.toLowerCase())) {
 			stringBuilderProperties.append("	@Temporal(TemporalType.TIMESTAMP)\r\n");
 			stringBuilderProperties.append("	@DateTimeFormat(style = \"yyyy-MM-dd HH:mm:ss\")\r\n");
+			stringBuilderProperties.append("	@JsonFormat(locale = \"zh\", timezone = \"GMT+8\", pattern = \"yyyy-MM-dd HH:mm:ss\")\r\n");
 		} else if ("datetime".equals(colsType.toLowerCase())) {
 			stringBuilderProperties.append("	@Temporal(TemporalType.DATE)\r\n");
 			stringBuilderProperties.append("	@DateTimeFormat(style = \"yyyy-MM-dd HH:mm:ss\")\r\n");
+			stringBuilderProperties.append("	@JsonFormat(locale = \"zh\", timezone = \"GMT+8\", pattern = \"yyyy-MM-dd HH:mm:ss\")\r\n");
 		}
-		stringBuilderProperties.append("	@Column(name = \"" + colsName + "\")\r\n");
+		stringBuilderProperties.append("	@Column(name = \"" + colsName + ", columnDefinition = \" COMMENT '" + colsDesc + "\")\r\n");
 		stringBuilderProperties.append("	private " + propertiesType + "	" + propertiesName + ";\r\n");
 	}
 	
