@@ -1,0 +1,13 @@
+.mainborder{
+	border: 1px solid #000;
+}
+.subborder {
+	border: 1px dashed #000;
+}
+.bdblue{
+	background-color: #21c4e0;
+	border-bottom: 1px dashed #000;
+	font: 16px bold ;
+}
+
+thead{background: #5488c4;}

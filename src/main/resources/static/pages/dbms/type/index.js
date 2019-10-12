@@ -56,7 +56,7 @@ $(function() {
 
 	// bootstrap table
 	$('#dbm_type_datagrid').bootstrapTable({
-		url : "/sysDbmsTabsTypeInfo/findAllBySearchText",
+		url : "/sysDbmsTabsTypeInfo/page",
 		dataType : "json",
 		toolbar : '#dbm_type_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -92,7 +92,9 @@ $(function() {
 		    var param = {  
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
-                 sysTableTypeInfo:{
+                 sortOrder:params.sortOrder,
+                 sortName:params.sortName,
+                 info:{
                 	 
                  }
              }; 
@@ -110,7 +112,7 @@ $(function() {
 			{title : '标记',field : 'deleteFlag',sortable : true,align : 'center'}
 		],
 		responseHandler: function(result){  // 成功时执行
-			return {rows:result.content,total:result.totalElements};
+			return {rows:result.data.content,total:result.data.totalElements};
 		}, 
 	});
 

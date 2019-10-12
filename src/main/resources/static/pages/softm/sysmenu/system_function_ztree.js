@@ -283,7 +283,7 @@ function addMenusubmit() {
 			sort : $("#add_menu_sort").val(),
 			deleteFlag : $("#add_menu_deleteFlag").val(),
 			insertUser : username,
-			homePage:$("#add_menu_homePage").val()
+			homePage:$("input[name='homePage']:checked").val()
 		}
 		var url = "/sysMenuInfo/addSysMenuInfo";
 		console.log(param);
@@ -326,7 +326,12 @@ function loadUpdateMenu(result) {
 	$("#upd_menu_parentId").val(result.parentsId);
 	$("#upd_menu_sort").val(result.sort);
 	$("#upd_menu_deleteFlag").val(result.deleteFlag);
-	$("#upd_menu_homePage").val(result.homePage);
+	if(result.homePage==false||result.homePage==null){
+		$("input[name='upd_homePage'][value='false']").prop("checked", "checked");
+	}else if(result.homePage=="1"){
+		$("input[name='upd_homePage'][value='true']").prop("checked", "checked");
+	}
+	
 	$("#updateMenuModal").modal("show");
 }
 
@@ -392,7 +397,7 @@ function updatesubmitMenu() {
 			sort : $("#upd_menu_sort").val(),
 			deleteFlag : $("#upd_menu_deleteFlag").val(),
 			updateUser : username,
-			homePage:$("#upd_menu_homePage").val()
+			homePage:$("input[name='upd_homePage']:checked").val()
 		}
 		var url = "/sysMenuInfo/addSysMenuInfo";
 		// 重载

@@ -1,13 +1,14 @@
 var add_table_addrName = null;
+var add_table_addrUuid = null;
 var add_table_typeName = null;
 $(function() {
 	// 新建表
 	$('#db_create_table_button').click(function() {
 		//		alert("Something will happen!");
 		var param = {
-			tabsName: $("#add_table_tableName").val(),
+			tabsName: add_table_addrName+"."+$("#add_table_tableName").val(),
 			tabsDesc:$("#add_table_tableDesc").val(),
-			jdbcUuid:add_table_addrName,
+			jdbcUuid:add_table_addrUuid,
 			typeUuid:add_table_typeName
 		};
 		// 重载
@@ -28,7 +29,6 @@ function successSaveSysTableInfo(result){
 //	$("#tabContainer").data("tabs").remove('add_table_tab_id');
 //	// 固定 表的tab 的id
 //	$("#tabContainer").data("tabs").showTab('4c87ffe1-6447-11e7-a272-0025d3a93601');
-//	removeByValue(_history,'add_table_tab_id');
 	$("#add_tabs_id").modal("hide")
 	$('#db_table_datagrid').bootstrapTable('refresh');
 }
@@ -46,9 +46,12 @@ function successSearchDatabaseInfo(result){
 	    data: data
 	});
 	add_table_addrName = null;
+	add_table_addrUuid = null;
 	$('#add_table_addrName').on('select2:select', function (evt) {
-		add_table_addrName = evt.params.data.id;
-		if(add_table_addrName == "请选择"){
+		add_table_addrUuid = evt.params.data.id;
+		add_table_addrName = evt.params.data.text;
+		if(add_table_addrUuid == "请选择"){
+			add_table_addrUuid = null;
 			add_table_addrName = null;
 		}
 	});

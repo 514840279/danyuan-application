@@ -3,57 +3,509 @@
 <head>
 <meta charset="UTF-8">
 <title>热门推荐</title>
+<style type="text/css">
+/**     背景样式结束*/
+table tr {
+	border: 0;
+	border-top: 1px solid #DDD;
+	background-color: #fff
+}
+
+。bodercell {
+	border: 0;
+	border-top: 1px solid #DDD;
+	background-color: #fff
+}
+
+table {
+	border-collapse: collapse;
+	display: table;
+	width: 100%;
+	text-align: left;
+	margin-bottom: 24px
+}
+
+tbody {
+	border: 0
+}
+
+table tr:nth-child(2n) {
+	background-color: #F7F7F7
+}
+
+table tr td, table tr th {
+	border: 1px solid #DDD;
+	font-size: 14px;
+	color: #4f4f4f;
+	line-height: 22px;
+	padding: 8px;
+	text-align: left
+}
+
+table tr td p, table tr th p {
+	font-size: 14px;
+	color: #4f4f4f;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	line-height: 22px
+}
+
+table tr th p {
+	font-weight: 700
+}
+
+table tr td code, table tr th code {
+	white-space: normal;
+	word-break: break-all
+}
+
+table tr th {
+	font-weight: 700;
+	background-color: #eff3f5
+}
+</style>
 </head>
 <body>
 	<!-- 头部设计 -->
 	<section class="content-header">
-		<h1>热门推荐</h1>
+		<h1>系统列表</h1>
 		<ol class="breadcrumb">
 			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
-			<li class="active">热门推荐</li>
+			<li class="active">系统信息</li>
 		</ol>
 	</section>
-	<!-- Main content -->
 	<section class="content">
-		<h4 class="row">
-			<div class="col-xs-1">
-				<a href="http://www.sknet.top/" target="_blank">老王博客</a>
+		<div class="nav-tabs-custom">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#activity" data-toggle="tab">主要功能列表 </a></li>
+				<li><a href="#timeline" data-toggle="tab">更新记录 </a></li>
+			</ul>
+			<div class="tab-content">
+				<!-- 表格化功能列表 -->
+				<div class="active tab-pane" id="activity">
+					<table>
+						<thead>
+							<tr>
+								<th><a href="http://doc.danyuan.wang" target="_blank">功能</a></th>
+								<th><a href=" https://github.com/514840279/danyuan-application" target="_blank">B版（更新：20190812）</a> <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a"> <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven"></a></th>
+								<th><a href=" https://github.com/514840279/danyuan-application-cloud" target="_blank">C版</a> <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=92a8803b57d14a51e9f5d4e91532cb615431bb40372a751616940b5f7d2e51ce"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="初学者" title="初学者"></a></th>
+							</tr>
+						</thead>
+						<tbody title="资料分享">
+							<tr>
+								<td scope="row" colspan="3" style="text-align: center;">资料管理</td>
+							</tr>
+							<tr>
+								<td>资料查询</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="" style=""></i></td>
+							</tr>
+							<tr>
+								<td>资料信息添加</td>
+								<td><i class="fa fa-check" style=""></i></td>
+								<td><i class="" style=""></i></td>
+							</tr>
+							<tr>
+								<td>资料下载地址添加</td>
+								<td><i class="fa fa-check" style=""></i></td>
+								<td><i class="" style=""></i></td>
+							</tr>
+							<tr>
+								<td>失效链接验证</td>
+								<td><i class="fa fa-check" style=""></i></td>
+								<td><i class="" style=""></i></td>
+							</tr>
+							<tr>
+								<td>客户端页面</td>
+								<td><i class="fa fa-check" style=""></i></td>
+								<td><i class="" style=""></i></td>
+							</tr>
+						</tbody>
+						<tbody title="简历管理">
+							<tr>
+								<td scope="row" colspan="3" style="text-align: center;">简历管理</td>
+							</tr>
+							<tr>
+								<td>简历html上传</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="" style=""></i></td>
+							</tr>
+							<tr>
+								<td>简历信息录入</td>
+								<td><i class="fa fa-check" style=""></i></td>
+								<td><i class="" style=""></i></td>
+							</tr>
+							<tr>
+								<td>简历生成</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="" style=""></i></td>
+							</tr>
+						</tbody>
+						<tbody title="爬虫管理">
+							<tr>
+								<td scope="row" colspan="3" style="text-align: center;">爬虫管理（web手动配置，桌面版设计不熟还未完成）<a href="https://github.com/514840279/crawler" target="_blank">爬虫</a></td>
+							</tr>
+							<tr>
+								<td>web版采集任务</td>
+								<td>通过webapi方式调用python执行<i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa fa-check" style=""></i></td>
+							</tr>
+							<tr>
+								<td>桌面版任务管理</td>
+								<td><i class="fa fa-check" style=""></i></td>
+								<td><i class="fa fa-check" style=""></i></td>
+							</tr>
+							<tr>
+								<td>爬取错误消息</td>
+								<td><i class="fa " style=""></i></td>
+								<td><i class="fa " style=""></i></td>
+							</tr>
+							<tr>
+								<td>用户定义采集程序管理</td>
+								<td><i class="fa " style=""></i></td>
+								<td><i class="fa " style=""></i></td>
+							</tr>
+						</tbody>
+						<tbody title="数据管理">
+							<tr>
+								<td scope="row" colspan="3" style="text-align: center;">数据管理</td>
+							</tr>
+							<tr>
+								<td>数据库连接管理</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+							</tr>
+							<tr>
+								<td>数据分类管理</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+							</tr>
+							<tr>
+								<td>数据表管理</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+							</tr>
+							<tr>
+								<td>表字段管理</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+							</tr>
+							<tr>
+								<td>数据库维护建议管理</td>
+								<td><span style="margin-left: 20px;">(oracle)</span><i class="fa fa-check" style="color: green;"></i><span style="margin-left: 20px;">(mysql)</span><i class="fa fa-check" style="color: green;"></i></td>
+								<td><span style="margin-left: 20px;">(oracle)</span><i class="fa fa-check" style="color: green;"></i><span style="margin-left: 20px;">(mysql)</span><i class="fa fa-check" style=""></i></td>
+							</tr>
+							<tr>
+								<td>表查询</td>
+								<td><span style="margin-left: 20px;">(多表查询1)</span><i class="fa fa-check" style="color: green;"></i> <span style="margin-left: 20px;">(多表查询2)</span><i class="fa fa-check" style="color: green;"></i> <span style="margin-left: 20px;">(单表查询1)</span><i class="fa fa-check" style="color: green;"></i> <span style="margin-left: 20px;">(单表查询2)</span><i class="fa fa-check" style="color: green;"></i>
+								<p>单表查询时点击列表头，可以弹出配置列选项</p></td>
+								<td><span style="margin-left: 20px;">(多表查询1)</span><i class="fa fa-check" style="color: green;"></i> <span style="margin-left: 20px;">(多表查询2)</span><i class="fa " style=""></i> <span style="margin-left: 20px;">(单表查询1)</span><i class="fa fa-check" style="color: green;"></i> <span style="margin-left: 20px;">(单表查询2)</span><i class="fa " style=""></i></td>
+							</tr>
+							<tr>
+								<td>图表管理</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa " style=""></i></td>
+							</tr>
+						</tbody>
+						<tbody title="关系图管理 ，在使用严重不足并影响服务器和开发情况下删除" >
+							<tr>
+								<td scope="row" colspan="3" style="text-align: center;">关系图管理<i class="fa fa-remove" style="color: red;"></i></td>
+							</tr>
+							<tr>
+								<td>节点管理</td>
+								<td><i class="fa fa-remove" style="color: red;"></i></td>
+								<td><i class="fa fa-check" style=""></i></td>
+							</tr>
+							<tr>
+								<td>节点属性管理</td>
+								<td><i class="fa fa-remove" style="color: red;"></i></td>
+								<td><i class="fa fa-check" style=""></i></td>
+							</tr>
+							<tr>
+								<td>关系管理</td>
+								<td><i class="fa fa-remove" style="color: red;"></i></td>
+								<td><i class="fa fa-check" style=""></i></td>
+							</tr>
+							<tr>
+								<td>关系图展示</td>
+								<td><i class="fa fa-remove" style="color: red;"></i></td>
+								<td><i class="fa fa-check" style=""></i></td>
+							</tr>
+						</tbody>
+						<tbody title="系统工具">
+							<tr>
+								<td scope="row" colspan="3" style="text-align: center;">系统工具</td>
+							</tr>
+							<tr>
+								<td>邮箱<span style="margin-left: 20px;">(使用qq邮箱服务)</span></td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa " style=""></i></td>
+							</tr>
+							<tr>
+								<td>短信<span style="margin-left: 20px;">(阿里云服务)</span></td>
+								<td><i class="fa fa-check" style=""></i>只有代码</td>
+								<td><i class="fa " style=""></i></td>
+							</tr>
+							<tr>
+								<td>字典</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+							</tr>
+							<tr>
+								<td>文件上传</td>
+								<td><i class="fa fa-check" style=""></i></td>
+								<td><i class="fa fa-check" style=""></i></td>
+							</tr>
+							<tr>
+								<td>代码生成</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa " style=""></i></td>
+							</tr>
+						</tbody>
+						<tbody title="系统管理">
+							<tr>
+								<td scope="row" colspan="3" style="text-align: center;">系统管理</td>
+							</tr>
+							<tr>
+								<td>系统管理</td>
+								<td><i class="fa fa-check" style=""></i></td>
+								<td><i class="fa " style=""></i></td>
+							</tr>
+							<tr>
+								<td>系统菜单</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+							</tr>
+							<tr>
+								<td>企业管理</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+							</tr>
+							<tr>
+								<td>部门角色管理</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+							</tr>
+							<tr>
+								<td>用户管理</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+							</tr>
+						</tbody>
+						<tbody title="未来计划的功能">
+							<tr>
+								<td scope="row" colspan="3" style="text-align: center;"><span>未来计划的功能</span> 如果你希望有更多的功能欢迎提出意见，可以在群中提出，或者在github中</td>
+							</tr>
+							<tr>
+								<td>文件上传(头像处理)</td>
+								<td>图片识别</td>
+								<td>开发者认证(开放统一鉴权中心)</td>
+							</tr>
+						</tbody>
+						<tfoot title="其他信息">
+							<tr>
+								<td scope="row" colspan="3" style="text-align: center;">其他信息</td>
+							</tr>
+							<tr>
+								<td>页面</td>
+								<td colspan="2"><a href=" https://github.com/almasaeed2010/AdminLTE" target="_blank">adminLTE</a></td>
+							</tr>
+							<tr>
+								<td>后端</td>
+								<td>
+								<a href="https://docs.spring.io/spring-boot/docs/2.2.0.BUILD-SNAPSHOT/reference/html/" target="_blank">spring-boot</a>
+								<a href=" https://github.com/514840279/danyuan-application" target="_blank">(B版)</a>
+								</td>
+								<td>
+								<a href="https://cloud.spring.io/spring-cloud-static/Greenwich.SR1/" target="_blank">spring-cloud</a>
+								<a href="https://github.com/514840279/danyuan-application-cloud" target="_blank">(C版)</a>
+								</td>
+							</tr>
+							<tr>
+								<td>文档</td>
+								<td scope="row" colspan="2"><a href="http://doc.danyuan.wang" target="_blank">doc</a></td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+				
+				<!-- timeLine式 日志表 -->
+				<div class="tab-pane" id="timeline">
+					<ul class="timeline timeline-inverse">
+						<li class="time-label"><span class="bg-red">2019年10月12号</span></li>
+						<li><i class="fa fa-clock-o bg-red"></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>删掉了关系图节点功能，在极少情况下使用和占用服务内存，影响开发的情况下。</span></li>
+									<li><i>2.</i><span>创建分支备份了关系图功能。</span></li>
+									<li><i>3.</i><span>修改代码生成sql部分，整合一次生成的所有语句到一个文件中 。</span></li>
+								</ul>
+								</div>
+							</div>
+						</li>
+						<li class="time-label"><span class="bg-red">2019年9月20号</span></li>
+						<li><i class="fa fa-clock-o bg-red"></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>测试dplayer，dplayer 支持格式包含mp4，mkv不支持rmvb。</span></li>
+									<li><i>2.</i><span>修复echarts名称混淆。</span></li>
+									<li><i>3.</i><span>测试jwt 。</span></li>
+								</ul>
+								</div>
+							</div>
+						</li>
+						<li class="time-label"><span class="bg-red">2019年8月12号</span></li>
+						<li><i class="fa fa-clock-o bg-red"></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>爬虫设计web版本配置规则，通过webapi方式调用python执行。</span></li>
+									<li><i>2.</i><span>添加单表查询时点击列表头，可以弹出配置列选项</span></li>
+									<li><i>3.</i><span>修给图表配置，可以简单出图结合数据管理配置。</span></li>
+									<li><i>4.</i><span>去掉了mongodb测试。</span></li>
+								</ul>
+								</div>
+							</div>
+						</li>
+						<li class="time-label"><span class="bg-red">2019年8月5号</span></li>
+						<li><i class="fa fa-clock-o bg-red"></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>图表生成简易配置，取消掉条件配置，快速生成图表，简易版</span></li>
+									<li><i>2.</i><span>修改字段配置，字段类型页面，使用radio代替 text，</span></li>
+								</ul>
+								</div>
+							</div>
+						</li>
+						<li class="time-label"><span class="bg-red">2019年7月19号</span></li>
+						<li><i class="fa fa-clock-o bg-red"></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>升级adminLTE版本到2.3.11。(原本升级到2.4，发现通过loadPage方法添加的页面部分box 中box-tools的button没响应，但是直接写在首页的没有问题)</span></li>
+									<li><i>2.</i><span>修改代码生成用户失效重新登录跳转。</span></li>
+									<li><i>3.</i><span>添加markdown支持。</span></li>
+									<li><i>4.</i><span>添加mongodb支持。</span></li>
+									<li><i>5.</i><span>测试mongodb。</span></li>
+								</ul>
+								</div>
+							</div>
+						</li>
+						<li class="time-label"><span class="bg-red">2019年7月11号</span></li>
+						<li><i class="fa fa-clock-o bg-red"></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>更新版本A调整为B。</span></li>
+									<li><i>2.</i><span>修改代码生成路径。</span></li>
+									<li><i>3.</i><span>修改mysql版本数据库表维护建议。</span></li>
+								</ul>
+								</div>
+							</div>
+						</li>
+						<li class="time-label"><span class="bg-red">2019年6月28号</span></li>
+						<li><i class="fa fa-clock-o bg-red"></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>修改图表随窗口大小改变。</span></li>
+									<li><i>2.</i><span>修改代码生成路径。</span></li>
+									<li><i>3.</i><span>积极研究设计<a href="https://github.com/514840279/crawler" target="_blank">爬虫</a>中。</span></li>
+								</ul>
+								</div>
+							</div>
+						</li>
+						<li class="time-label"><span class="bg-red">2019年5月17号</span></li>
+						<li><i class="fa fa-clock-o bg-red"></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>添加资料查询功能，计划以资料功能收集网络上学习资料，教程视频，电影，电视剧，动漫等。</span></li>
+									<li><i>2.</i><span>计划爬虫功能将不在A版中继续开发，后续调整支持桌面爬虫和C版同步开发</span></li>
+									<li><i>3.</i><span>升级springboot版本</span></li>
+									<li><i>4.</i><span>调整common.base.Pagination 的代码，删除orders属性，及相关代码</span></li>
+									<li><i>5.</i><span>编写initbootstrap.js 脚本，整合部分功能</span></li>
+									<li><i>6.</i><span>修改配置数据库连接添加 “&serverTimezone=UTC” ，由mysql8带来的问题</span></li>
+									<li><i>7.</i><span>修改配置数据库驱动类，由springboot2.1带来的问题</span></li>
+									<li><i>8.</i><span>修改配置数据库连接词Hikari：idle-timeout: 600000 由配置要求最低不少于 600000</span></li>
+									<li><i>9.</i><span>修改配置文件上传限制 max-file-size 和 max-request-size ,由springboot2.1要求必须是Long行，100M 不识别</span></li>
+								</ul>
+								</div>
+							</div></li>
+						<li class="time-label"><span class="bg-red">2019年3月14号</span></li>
+						<li><i class="fa fa-clock-o bg-red"></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>简历支持上传html格式，并且其支持word文档上传，生成html页面。</span></li>
+								</ul>
+								</div>
+							</div></li>
+						<li class="time-label"><span class="bg-red">2019年3月8号</span></li>
+						<li><i class="fa fa-clock-o bg-red"></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>设计简历表（基础信息，教育，技能，工作，项目，评价）</span></li>
+									<li><i>2.</i><span>测试外部资源路径添加</span></li>
+									<li><i>3.</i><span>简历模板1根据简历表生成</span></li>
+								</ul>
+								</div>
+							</div></li>
+						<li class="time-label"><span class="bg-red">2019年1月29号</span></li>
+						<li><i class="fa fa-clock-o bg-red"></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>修改代码生成下载文件保存路径</span></li>
+									<li><i>2.</i><span>修改用户超时 登录页面强制跳转</span></li>
+									<li><i>3.</i><span>修改整理图数据库效果展示，配置</span></li>
+								</ul>
+								</div>
+							</div></li>
+						<li class="time-label"><span class="bg-red">2019年1月18号</span></li>
+						<li><i class="fa fa-clock-o bg-red"></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>代码生成  实体类 dao service controller</span></li>
+									<li><i>2.</i><span>代码生成 页面和js脚本导入到本项目中可以直接使用 crud 功能</span></li>
+									<li><i>3.</i><span>导出sql 完成 ，打包下载完成。</span></li>
+									<li><i>4.</i><span>表配置添加列时自动判断翻译类型增加。</span></li>
+								</ul>
+								</div>
+							</div></li>
+						<li class="time-label"><span class="bg-red">2019年1月17号</span></li>
+						<li><i class="fa fa-clock-o "></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>表查询可配置COLS_SORT，支持自定义字段排序</span></li>
+									<li><i>2.</i><span>代码生成配置</span></li>
+								</ul>
+								</div>
+							</div></li>
+						<li class="time-label"><span class="bg-red">2019年1月16号</span></li>
+						<li><i class="fa fa-clock-o"></i>
+							<div class="timeline-item">
+								<div class="timeline-body">
+								<ul>
+									<li><i>1.</i><span>编写通用类：BaseController，统一数据返回类BaseResult。</span></li>
+									<li><i>2.</i><span>设计代码生成页面组织代码生成功能字段</span></li>
+								</ul>
+								</div>
+							</div></li>
+						<li class="time-label"><span class="bg-green">2017年 </span></li>
+						<li><i class="fa fa-clock-o bg-gray"></i></li>
+					</ul>
+				</div>
 			</div>
-			<div class="col-xs-2">
-				<a href="http://www.java.pet/" target="_blank">Alex Ann 博客</a>
-			</div>
-		</h4>
-	</section>
-	<section class="content-header">
-		<h1>系统信息</h1>
-	</section>
-	<section class="content">
-		<div class="row">
-			<ol>
-				<li>前端采用 adminLTE 前台模板 <a href=" https://github.com/almasaeed2010/AdminLTE" target="_blank">点击跳转 adminLTE</a></li>
-				<li>后台框架是用spring-boot <a href="http://projects.spring.io/spring-boot/" target="_blank">点击跳转Spring Boot</a>
-				</li>
-				<li>源代码开源在github上 <a href=" https://github.com/514840279/danyuan-application" target="_blank">点击跳转</a>
-				</li>
-				<li>点击链接加入群【maven】 ： <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a"> <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven">
-				</a> 点击链接加入群【AdminEAP】：<a target="_blank" href="https://jq.qq.com/?_wv=1027&k=5WtxngZ"> <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven">
-				</a>
-				</li>
-				<!-- 			<li>联系人QQ：514840279 </li> -->
-				<li>采集程序在github上：<a href="https://github.com/514840279/crawler" target="_blank">点击跳转</a></li>
-			</ol>
-			<section class="content-header">
-				<h1>社区技术信息</h1>
-			</section>
-			<ol>
-				<li>spring4all 中文社区：<a href="http://www.spring4all.com/" target="_blank">点击跳转</a></li>
-				<li>jhipster：<a href="http://www.jhipster.tech/" target="_blank">点击跳转</a></li>
-
-			</ol>
 		</div>
+		<div></div>
 	</section>
-
-
-
 </body>
 </html>

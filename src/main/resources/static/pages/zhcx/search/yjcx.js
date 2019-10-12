@@ -64,9 +64,7 @@ function findAllType_Sucess(result){
 		var param_table ={
 				"username":username,
 				paramList:paramList,
-				info:{
-					typeUuid:typeUuid
-				}
+				typeUuid:typeUuid
 		}
 //		console.log(typeUuid);
 		jQuery.ajax({
@@ -84,6 +82,7 @@ function findAllType_Sucess(result){
 					var esName = value.esName;
 					var tabsName= value.tabsName;
 					var tabsDesc= value.tabsDesc;
+					tabsDesc = tabsDesc==""?tabsName:tabsDesc;
 					var tabsId=value.uuid;
 					var tabsRows = value.tabsRows==null?0:value.tabsRows;
 					var table = table_parrent.find("#table_box:eq(0)").clone();
@@ -145,7 +144,7 @@ function findAllType_Sucess(result){
 									    "width":value.colsWidth==null?150:value.colsWidth,
 									    "align":value.colsAlign==null?"left":value.colsAlign,
 									    "valign":value.colsValign==null?"middle":value.colsValign,
-									    "visible":value.pageList==null?true:value.pageList,
+									    "visible":value.colsVisible==null?true:value.colsVisible,
 									    "switchable":value.colsSwitchable==null?true:value.colsSwitchable,
 							    		formatter:function iconFormatter(value, row, index){
 							    			if(value==null){
@@ -168,7 +167,7 @@ function findAllType_Sucess(result){
 									    "width":value.colsWidth==null?150:value.colsWidth,
 									    "align":value.colsAlign==null?"left":value.colsAlign,
 									    "valign":value.colsValign==null?"middle":value.colsValign,
-									    "visible":value.pageList==null?true:value.pageList,
+									    "visible":value.colsVisible==null?true:value.colsVisible,
 									    "switchable":value.colsSwitchable==null?true:value.colsSwitchable,
 							    		formatter:function otherFormatter(value, row, index){
 							    			if(value==null){
@@ -280,7 +279,7 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 	    // 设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
 	    // 设置为limit可以获取limit, offset, search, sort, order
 	    queryParamsType : "undefined",
-	     contentType: "application/json",
+	    contentType: "application/json",
 	    method : "post", // 使用get请求到服务器获取数据
 	    queryParams : function queryParams(params) {
 		    var param = {
@@ -298,7 +297,7 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 	    },
 	    columns : column,
 	    responseHandler: function(result){  // 成功时执行
-//	    	console.log(result);
+	    	console.log(result.list);
 	    	if(result!=null && result.list!=null ){
 		    	if(result.list.length>0){
 		    		table.css("display","");
@@ -312,8 +311,13 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 			temp_index_number +=1;
 			$('#progress_bar_id').css('width', width_persent);
 //			
-			return {data:result.list};
+			return {rows:result.list};
 		}, 
+		onLoadError:function(status,result){ // 错误时执行
+			if($(result.responseText).find("form").attr("action")=="/login"){
+				window.location.href="/";
+			}
+		},
 		 contextMenu: '#context-menu',
 		 onContextMenuItem: function(row,$ele){
 			 
@@ -351,8 +355,8 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 		$("#zhxx_tableDesc").val(tabsDesc);
 		$("#zhxxform").submit();
     }).on('click-row.bs.table', function (e, row, ele,field) {
-    	$(".success").removeClass("success");
-    	$(ele).addClass("success");
+    	$(".info").removeClass("info");
+    	$(ele).addClass("info");
     });
 	// 窗口大小改变时 重设表头
 	$(window).resize(function() {

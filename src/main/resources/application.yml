@@ -1,0 +1,87 @@
+server:
+  port: 80
+  tomcat:    uri-encoding: utf-8
+#  ssl:#    key-store: classpath:danyuan.keystore
+#    key-password: danyuan
+#    key-store-type: JKS
+#    key-alias: DY
+#    enabled: true
+#  ssl:#    key-store: classpath:danyuan.p12
+#    key-password: danyuan
+#    key-store-type: PKCS12
+#    key-alias: 1
+#
+
+spring:
+  profiles:    active:    - localhost
+  resources:    static-locations:    - classpath:/META-INF/resources/
+    - classpath:/resources/
+    - classpath:/static/
+    - classpath:/public/
+    - file:./resume/
+    - file:./outputfile/
+    - file:./uploadfile/
+    - file:./headimg/
+    - file:./file/
+    - file:./markdown/
+    - file:./source/
+  aop:
+    proxy-target-class: true
+  datasource:
+    
+    hikari:      minimum-idle: 5
+      maximum-pool-size: 50
+      auto-commit: true
+      idle-timeout: 600000
+      pool-name: DatebookHikariCP
+      max-lifetime: 180000
+      connection-timeout: 1800
+      connection-test-query: SELECT 1
+  servlet:
+    multipart:
+      max-file-size: 100000000
+      max-request-size: 100000000
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  jpa:
+    database: MYSQL
+    #open-in-view: false
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+    show-sql: true
+  session:
+    store-type: none
+  thymeleaf:
+    servlet:      content-type: text/html
+    encoding: UTF-8
+    cache: false
+    mode: HTML5
+  main:
+    banner-mode: console
+    web-application-type: servlet
+    allow-bean-definition-overriding: true
+    
+jwt:
+  tokenHeader: Authorization
+  tokenPrefix: Bearer
+  secret: lanjwt
+  expiration: 3600
+  rememberExpiration: 604800
+  
+  
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+#    org.hibernate.type.descriptor.sql.BasicBinder: trace
+#    org.hibernate.type.descriptor.sql.BasicExtractor: trace
+    org.danyuan: DEBUG

@@ -1,4 +1,0 @@
-mvn clean 
-mvn install
-docker build -t danyuan:0.0.1 .
-docker run -p 80:80 --name danyuan-application danyuan:0.0.1

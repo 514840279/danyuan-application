@@ -30,5 +30,4 @@ function successSaveSysColumnInfo(result) {
 	// 固定 表的tab 的id
 	$("#tabContainer").data("tabs").showTab('upd_table_tab_id');
 	$("#db_colum_datagrid").bootstrapTable('refresh');
-	removeByValue(_history, 'add_column_tab_id');
 }

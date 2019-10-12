@@ -1,13 +1,12 @@
 _tableUuid="0";
 $(function() {
 	$('#addnew_column_table').click(function() {
-//			iconName=encodeURIComponent($("#add_menu_icon").val());
 			modals.openWin({
-		    	winId:"addnew_column_show_view_table",
-		    	title:'列选择',
-		    	width:'1000px',
-		    	url:"templates/dbms/column/add_column"
-		    });
+				winId:"addnew_column_show_view_table",
+				title:'列选择',
+				width:'1000px',
+				url:"templates/dbms/column/add_column"
+			});
 		
 	});
 	$('#editold_column_table').click(function() {
@@ -19,27 +18,21 @@ $(function() {
 			$("#update_config_column_colsName").text(d.colsName);
 			$("#update_config_column_colsDesc").val(d.colsDesc);
 			$("#update_config_column_colsOrder").val(d.colsOrder);
-//			$("#update_config_column_pageInput").val(d.pageInput);
-//			$("#update_config_column_pageList").val(d.pageList);
-//			$("#update_config_column_pageView").val(d.pageView);
 			$("#update_config_column_userIndex").val(d.userIndex);
 			$("#update_config_column_userIcon").val(d.userIcon);
-			$("#update_config_column_colsAlign").val(d.colsAlign);
 			$("#update_config_column_colsWidth").val(d.colsWidth);
-			$("#update_config_column_colsValign").val(d.colsValign);
-			$("#update_config_column_colsSwitchable").val(d.colsSwitchable);
-//			$("#update_config_column_indexIndex").val(d.indexIndex);
-//			$("#update_config_column_indexKeyword").val(d.indexKeyword);
-//			$("#update_config_column_indexIkmaxword").val(d.indexIkmaxword);
-//			$("#update_config_column_indexGeopoint").val(d.indexGeopoint);
-//			$("#update_config_column_indexIpaddress").val(d.indexIpaddress);
-//			$("#update_config_column_indexPinyin").val(d.indexPinyin);
-//			$("#update_config_column_indexAll").val(d.indexAll);
-//			$("#update_config_column_indexIkmaxword").val(d.indexIkmaxword);
+			
+			$("input[name='deleteFlag'][value='"+(d.deleteFlag==null?"0":d.deleteFlag)+"']").prop("checked",true);
+			$("input[name='colsSort'][value='"+(d.colsSort==null?"true":d.colsSort)+"']").prop("checked",true);
+			$("input[name='colsAlign'][value='"+(d.colsAlign==null?"left":d.colsAlign)+"']").prop("checked",true);
+			$("input[name='colsValign'][value='"+(d.colsValign==null?"middle":d.colsValign)+"']").prop("checked",true);
+			$("input[name='colsSwitchable'][value='"+(d.colsSwitchable==null?"true":d.colsSwitchable)+"']").prop("checked",true);
+			$("input[name='colsVisible'][value='"+(d.colsVisible==null?"true":d.colsVisible)+"']").prop("checked",true);
+			$("input[name='dimeFlag'][value='"+(d.dimeFlag==null?"false":d.dimeFlag)+"']").prop("checked",true);
 			
 			$('#update-show-myModal').modal({
-		        show: true
-		    });
+				show: true
+			});
 		}else{
 			alert("只能选中一条数据");
 		}
@@ -68,12 +61,16 @@ $(function() {
 		var d = $('#dbm_config_column_datagrid').bootstrapTable('getAllSelections')[0];
 		d.colsDesc=$("#update_config_column_colsDesc").val();
 		d.colsOrder=$("#update_config_column_colsOrder").val();
+		d.colsSort=$("input[name='colsSort']:checked").val();
 		d.userIndex=$("#update_config_column_userIndex").val();
 		d.userIcon=$("#update_config_column_userIcon").val();
 		d.colsWidth=$("#update_config_column_colsWidth").val();
-		d.colsAlign=$("#update_config_column_colsAlign").val();
-		d.colsValign=$("#update_config_column_colsValign").val();
-		d.colsSwitchable=$("#update_config_column_colsSwitchable").val();
+		d.deleteFlag = $("input[name='deleteFlag']:checked").val();
+		d.colsAlign=$("input[name='colsAlign']:checked").val();
+		d.colsValign=$("input[name='colsValign']:checked").val();
+		d.colsSwitchable=$("input[name='colsSwitchable']:checked").val();
+		d.colsVisible=$("input[name='colsVisible']:checked").val();
+		d.dimeFlag=$("input[name='dimeFlag']:checked").val();
 		var url ='/sysDbmsTabsColsInfo/save';
 		d.createTime=null;
 		d.updateTime=null;
@@ -83,7 +80,6 @@ $(function() {
 	
 	showClomnTable();
 
-//	update_config_table_typeUuid
 	var url = "/sysDbmsTabsTypeInfo/findAll";
 	ajaxPost(url, null, addSelectedTypeSuccess, 5000, findError);
 	
@@ -94,25 +90,24 @@ $(function() {
 
 
 function add_select_icon(){
-//	$('#update-show-myModal').modal('hide');
 	winId="add_icon_modal";
 	var iconName;
-	if($("#add_menu_icon").val())
-	   iconName=encodeURIComponent($("#add_menu_icon").val());
+	if($("#add_menu_icon").val()){
+		iconName=encodeURIComponent($("#add_menu_icon").val());
+	}
 	modals.openWin({
-    	winId:winId,
-    	title:'图标选择器（双击选择）',
-    	width:'1000px',
-    	url:"/icon/nodecorator/select?iconName="+iconName
-    });
+		winId:winId,
+		title:'图标选择器（双击选择）',
+		width:'1000px',
+		url:"/icon/nodecorator/select?iconName="+iconName
+	});
 }
 //回填图标
 function fillBackIconName(icon_name){
 	$("#update_config_column_userIcon").val(icon_name); 
 	$('#update-show-myModal').modal({
-        show: true
-    });
-//	$("#icon_i").removeClass().addClass("form-control-feedback").addClass(icon_name);
+		show: true
+	});
 }
 update_config_table_typeUuid=" ";
 search_config_table_typeUuid=null;
@@ -123,23 +118,22 @@ function addSelectedTypeSuccess(result){
 	});
 	
 	$('#search_config_table_typeUuid').select2({
-	    tags: true,
-	    data:data,
-	    placeholder: "请选择",
+		tags: true,
+		data:data,
+		placeholder: "请选择",
 	});
 	search_config_table_typeUuid=null;
 	$('#search_config_table_typeUuid').on('select2:select', function (evt) {
 		search_config_table_typeUuid = evt.params.data.id;
 		searchtableNames();
-//		$('#dbm_config_table_datagrid').bootstrapTable("refresh");
 	});
 }
 function searchtableNames(){
 	var param ={
-			typeUuid:search_config_table_typeUuid,
-			addrUuid:search_config_table_addrUuid,
+		typeUuid:search_config_table_typeUuid,
+		jdbcUuid:search_config_table_addrUuid,
 	}
-	var url = "/sysDbmsTabsInfo/findAll";
+	var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
 	ajaxPost(url, param, addSelectedTableSuccess, 5000, findError);
 }
 
@@ -151,9 +145,9 @@ function addSelectedAddrSuccess(result){
 	});
 	
 	$('#search_config_table_addrUuid').select2({
-	    tags: true,
-	    data:data,
-	    placeholder: "请选择",
+		tags: true,
+		data:data,
+		placeholder: "请选择",
 	});
 	
 	$('#search_config_table_addrUuid').on('select2:select', function (evt) {
@@ -169,9 +163,9 @@ function addSelectedTableSuccess(result){
 	});
 	$('#search_config_table_tableUuid').empty();   
 	$('#search_config_table_tableUuid').select2({
-	    tags: true,
-	    data:data,
-	    placeholder: "请选择",
+		tags: true,
+		data:data,
+		placeholder: "请选择",
 	});
 	
 	$('#search_config_table_tableUuid').on('select2:select', function (evt) {
@@ -206,38 +200,47 @@ function showClomnTable(){
 //		showExport: true,                    
 //        exportDataType: 'all',
 //        exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],  //导出文件类型
-		singleSelect : false,
+		singleSelect : true,
 		locales : "zh-CN", // 表格汉化
 //		search : true, // 显示搜索框
 		sidePagination: "server", // 服务端处理分页 server
 		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
-        //设置为limit可以获取limit, offset, search, sort, order  
-        queryParamsType : "undefined",
-        contentType: "application/json",
+		//设置为limit可以获取limit, offset, search, sort, order  
+		queryParamsType : "undefined",
+		contentType: "application/json",
 		method: "post",  //使用get请求到服务器获取数据  
 		queryParams: function queryParams(params) {  
-		    var param = {  
-                 pageNumber: params.pageNumber,    
-                 pageSize: params.pageSize,
-                 info:{tabsUuid: _tableUuid}
-             }; 
-             return param;
+			var param = {  
+					pageNumber: params.pageNumber,    
+					pageSize: params.pageSize,
+					sortOrder:params.sortOrder,
+					sortName:params.sortName,
+					info:{tabsUuid: _tableUuid}
+			}; 
+			return param;
 		},
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 			{title : '列名称',field : 'colsName',align : 'left',sortable : true,valign : 'middle'},
 			{title : '列中文含义',field : 'colsDesc',align : 'left',sortable : true,valign : 'middle'},
-//			{title : '列数据类型',field : 'coldType',sortable : true,align : 'left'},
 			{title : '列顺序',field : 'colsOrder',sortable : true,align : 'right'},
-			{title : '用户配置索引列',field : 'userIndex',sortable : true,align : 'left',valign : 'middle',visible:false},
-			{title : '详细显示标识',field : 'pageView',sortable : true,align : 'left'},
-			{title : '列表显示标识',field : 'pageList',sortable : true,align : 'left'},
+			{title : '用户配置索引列',field : 'userIndex',sortable : true,align : 'left',valign : 'middle',visible:true},
+			{title : '列表显示标识',field : 'colsVisible',sortable : true,align : 'left'},
+			{title : '字段选择标识',field : 'colsSwitchable',sortable : true,align : 'left'},
+			{title : '支持排序条件',field : 'colsSort',sortable : true,align : 'left'},
+			{title : '支持图表纬度',field : 'dimeFlag',sortable : true,align : 'left',formatter:function(deleteFlag){
+				return  deleteFlag==0?"不支持":"支持";
+			}},
+			{title : '显示宽度',field : 'colsWidth',sortable : true,align : 'left'},
+			{title : '对齐（横）',field : 'colsAlign',sortable : true,align : 'left'},
+			{title : '对齐（纵）',field : 'colsValign',sortable : true,align : 'left'},
 			{title : '显示图标',field : 'userIcon',align : 'left',sortable : true,valign : 'middle',formatter:function(userIcon){
 				return "<i class='"+userIcon+"'></i>";
 			}},
-			{title : '查询显示标识',field : 'pageInput',align : 'left',sortable : true,valign : 'middle'},
-			{title : '标记',field : 'deleteFlag',sortable : true,align : 'left'},
-			{title : '更新时间',field : 'updateTime',align : 'left',sortable : true,valign : 'middle',formatter:dateTimeFormatter},
+			{title : '启用标记',field : 'deleteFlag',sortable : true,align : 'left',formatter:function(deleteFlag){
+				return  deleteFlag==1?"删除":"启用";
+			}},
+			{title : '更新时间',field : 'updateTime',align : 'left',sortable : true,valign : 'middle'},
 			{title : '更新人',field : 'updateUser',sortable : true,align : 'left',valign : 'middle',visible:false},
 		],
 		responseHandler: function(result){  // 成功时执行

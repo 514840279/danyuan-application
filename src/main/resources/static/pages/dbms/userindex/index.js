@@ -5,8 +5,13 @@ $(function() {
 		$("#dbm_useridex_add_userOrder").val("");
 		$("#dbm_useridex_add_userIndex").val("");
 		$("#dbm_useridex_add_userPlaceholder").val("");
+		
 		$("#dbm_useridex_add_multeity").val("");
 		$("#dbm_useridex_add_chart").val("");
+		$("input[name='deleteFlag'][value='1']").prop("checked",true);
+		$("input[name='multeity'][value='1']").prop("checked",true);
+		$("input[name='chart'][value='1']").prop("checked",true);
+		
 		$('#dbm_userindex_add_modal').modal({
 			show:true,
 		});
@@ -23,8 +28,9 @@ $(function() {
 			$("#dbm_useridex_add_userOrder").val(data[0].userOrder);
 			$("#dbm_useridex_add_userIndex").val(data[0].userIndex);
 			$("#dbm_useridex_add_userPlaceholder").val(data[0].userPlaceholder);
-			$("#dbm_useridex_add_multeity").val(data[0].multeity);
-			$("#dbm_useridex_add_chart").val(data[0].chart);
+			$("input[name='multeity'][value='"+data[0].multeity+"']").prop("checked",true);;
+			$("input[name='chart'][value='"+data[0].chart+"']").prop("checked",true);
+			$("input[name='deleteFlag'][value='"+data[0].deleteFlag+"']").prop("checked",true);
 			$("#dbm_userindex_add_modal").modal({
 				show:true,
 			})
@@ -62,9 +68,9 @@ $(function() {
 			userOrder:$("#dbm_useridex_add_userOrder").val(),
 			userIndex:$("#dbm_useridex_add_userIndex").val(),
 			userPlaceholder:$("#dbm_useridex_add_userPlaceholder").val(),
-			deleteFlag:$("#dbm_useridex_add_deleteFlag").val(),
-			multeity:$("#dbm_useridex_add_multeity").val(),
-			chart:$("#dbm_useridex_add_chart").val(),
+			deleteFlag:$("input[name='deleteFlag']:checked").val(),
+			multeity:$("input[name='multeity']:checked").val(),
+			chart:$("input[name='chart']:checked").val(),
 			createUser:username,
 			updateUser:username,
 		}
@@ -100,7 +106,7 @@ $(function() {
 //		showExport: true,                    
 //        exportDataType: 'all',
 //        exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],  //导出文件类型
-		singleSelect : false,
+		singleSelect : true,
 		locales : "zh-CN", // 表格汉化
 //		search : true, // 显示搜索框
 		sidePagination: "server", // 服务端处理分页 server
@@ -113,21 +119,26 @@ $(function() {
 		    var param = {  
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
-                 searchText: params.searchText
+                 sortOrder:params.sortOrder,
+                 sortName:params.sortName,
+                 searchText: params.searchText,
+                 info:{
+                	 
+                 }
              }; 
              return param;
 		},
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 //			{title : 'uuid',field : 'uuid',align : 'left',sortable : true,valign : 'middle',switchable:false,visible:false},
-			{title : '索引类型',field : 'userIndex',align : 'left',valign : 'middle'},
-			{title : '显示信息',field : 'userDesc',align : 'left',valign : 'middle'},
-			{title : '排序',field : 'userOrder',align : 'left',valign : 'middle'},
+			{title : '索引类型',field : 'userIndex',align : 'left',valign : 'middle',sortable : true},
+			{title : '显示信息',field : 'userDesc',align : 'left',valign : 'middle',sortable : true},
+			{title : '排序',field : 'userOrder',align : 'left',valign : 'middle',sortable : true},
 			{title : '说明',field : 'userPlaceholder',align : 'left',valign : 'middle'},
-			{title : '更新时间',field : 'updateTime',align : 'left',valign : 'middle',formatter:dateTimeFormatter},
-			{title : '更新人',field : 'updateUser',align : 'left',valign : 'middle'},
-			{title : '多条件查询',field : 'multeity',align : 'left',valign : 'middle'},
-			{title : '图表显示',field : 'chart',align : 'left',valign : 'middle'},
+			{title : '更新时间',field : 'updateTime',align : 'left',valign : 'middle',sortable : true},
+			{title : '更新人',field : 'updateUser',align : 'left',valign : 'middle',sortable : true},
+			{title : '多条件查询',field : 'multeity',align : 'left',valign : 'middle',sortable : true},
+			{title : '图表显示',field : 'chart',align : 'left',valign : 'middle',sortable : true},
 			{title : '标记',field : 'deleteFlag',align : 'left',valign : 'middle'}
 		],
 		responseHandler: function(result){  // 成功时执行

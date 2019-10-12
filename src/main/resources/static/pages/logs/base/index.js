@@ -101,7 +101,7 @@ function configTable(){
 			{title : '浏览器',field : 'browserType',sortable : true,align : 'left'},
 			{title : '客户操作系统',field : 'os',sortable : true,align : 'left'},
 			{title : 'android手机型号',field : 'model',sortable : true,align : 'left',visible:false},
-			{title : '发起请求时间',field : 'createTime',sortable : true,align : 'left',formatter:dateTimeFormatter},
+			{title : '发起请求时间',field : 'createTime',sortable : true,align : 'left'},
 			{title : '查询的参数',field : 'args',sortable : true,align : 'left',visible:false,formatter:jsonFormatter},
 			{title : '查询的参数',field : 'paramList',sortable : true,align : 'left',visible:false},
 			{title : '综合查询的表名',field : 'tableName',sortable : true,align : 'left',visible:false},

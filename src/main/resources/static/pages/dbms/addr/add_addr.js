@@ -21,5 +21,4 @@ function sucessAddSysDatabaseInfo(result){
 	$("#add_addr_id").modal('hide')
 	// 固定数据库连接的id
 //	$("#tabContainer").data("tabs").showTab('4c87fd09-6447-11e7-a272-0025d3a93601');
-//	removeByValue(_history,'add_addr_id');
 }

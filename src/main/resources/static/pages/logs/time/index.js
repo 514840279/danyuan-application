@@ -45,7 +45,7 @@ function configTable(){
 		columns : [
 			{title : '全选',checkbox : true,align : 'center',valign : 'middle'},
 			{title : '表名',field : 'tableName',sortable : true,align : 'left'},
-			{title : '查询时间',field : 'createTime',sortable : true,align : 'left',formatter:dateTimeFormatter},
+			{title : '查询时间',field : 'createTime',sortable : true,align : 'left'},
 			{title : '查询用户',field : 'createUser',sortable : true,align : 'left'},
 			{title : '响应时间',field : 'requestLong',align : 'right',sortable : true,valign : 'middle'},
 		],

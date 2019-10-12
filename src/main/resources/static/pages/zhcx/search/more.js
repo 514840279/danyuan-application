@@ -35,7 +35,7 @@ function findAllType_Sucess(result){
 					var tabsUuid = value.uuid;
 					var tabsRows = value.tabsRows==null?0:value.tabsRows;
 					
-					var viewTable = value.tabsDesc==null?value.tabsName:value.tabsDesc;
+					var viewTable = value.tabsDesc==null||value.tabsDesc==""?value.tabsName:value.tabsDesc;
 					table.text(viewTable);
 					if(tabsRows==0){
 						table.css({"color":"red"});
@@ -60,12 +60,6 @@ function findAllType_Sucess(result){
 				});
 			}
 		});
-		$("#mainDiv").append(type);
+		$("#main_section").append(type);
 	})
 }
-
-
-
-function findError(result) {
-    window.parent.window.alert(JSON.stringify(result));
-};

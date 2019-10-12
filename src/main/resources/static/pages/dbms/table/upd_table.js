@@ -8,14 +8,15 @@ $(function() {
 		sysTableInfo.createTime=null;
 		
 		var param = {
-				old:sysTableInfo,
-				now:{				
-					uuid: $("#add_table_uuid").val(),
-					tabsName: $("#add_table_tableName").val(),
-					tabsDesc:$("#add_table_tableDesc").val(),
-					jdbcUuid:add_table_addrName,
-					typeUuid:add_table_typeName
-				}
+			old:sysTableInfo,
+			now:{				
+				uuid: $("#add_table_uuid").val(),
+				tabsName: $("#add_table_tableName").val(),
+				tabsDesc:$("#add_table_tableDesc").val(),
+				jdbcUuid:add_table_addrName,
+				typeUuid:add_table_typeName
+			},
+			username:username
 		};
 		// 重载
 		var url = "/sysDbmsTabsInfo/change";

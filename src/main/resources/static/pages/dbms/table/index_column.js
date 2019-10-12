@@ -125,7 +125,6 @@ function successSaveSysTableInfo(result){
 	// 固定 表的tab 的id
 	$("#tabContainer").data("tabs").showTab('4c87ffe1-6447-11e7-a272-0025d3a93601');
 	$("#db_table_datagrid").bootstrapTable('refresh');
-	removeByValue(_history,'add_table_tab_id');
 }
 
 // 删除表

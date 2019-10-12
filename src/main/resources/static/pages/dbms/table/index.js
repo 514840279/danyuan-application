@@ -141,12 +141,15 @@ $(function() {
 		    var param = {  
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
+                 sortOrder:params.sortOrder,
+                 sortName:params.sortName,
                  info:{
                 	 jdbcUuid:search_table_addrName,
             		 typeUuid:search_table_typeName,
-            		 tableName:$("#search_table_tableName").val(),
-        			 tableDesc:$("#search_table_tableDesc").val(),
-                 }
+            		 tabsName:$("#search_table_tabsName").val(),
+        			 tabsDesc:$("#search_table_tabsDesc").val(),
+                 },
+                 username:username
              }; 
              return param;
 		},
@@ -160,6 +163,7 @@ $(function() {
 			{title : '显示顺序',field : 'tabsOrder',align : 'center',sortable : true,valign : 'middle'},
 			{title : '表数据量',field : 'tabsRows',sortable : true,align : 'left'},
 			{title : '数据库表大小',field : 'tabsSpace',sortable : true,align : 'left'},
+			{title : '表类型',field : 'typeUuid',sortable : true,align : 'left',visible:false},
 			{title : '描述',field : 'discription',sortable : true,align : 'left'}
 		],responseHandler: function(result){  // 成功时执行
 			return {rows:result.content,total:result.totalElements};

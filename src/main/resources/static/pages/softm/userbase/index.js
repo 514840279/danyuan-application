@@ -1,3 +1,17 @@
+
+window.operateEvents = {
+	// 修改
+	'click #clickA ': function (e, value, row, index) {	
+		var userUuid = row.uuid;
+	},
+	'click #clickB ': function (e, value, row, index) {
+	},
+	'click #clickC ': function (e, value, row, index) {
+	},
+	'click #clickD ': function (e, value, row, index) {
+	}
+}
+
 // 验证
 function userUpdFormValidator(){
 	$('#user_upd_form').bootstrapValidator({
@@ -342,10 +356,13 @@ $(function() {
 		  	{title : '性别',field : 'sex',align : 'left',sortable : true,valign : 'middle'  }, 
 		  	{title : '年龄',field : 'age',align : 'left',sortable : true,valign : 'middle' ,visible:false }, 
 		  	{title : '联系电话',field : 'phone',align : 'left',sortable : true,valign : 'middle' ,visible:false }, 
-		  	{title : '联系邮箱',field : 'email',align : 'left',sortable : true,valign : 'middle'  }, 
+		  	{title : '联系邮箱',field : 'email',align : 'left',sortable : true,valign : 'middle',visible:false  }, 
 //		  	{title : '记录时间',field : 'createTime',align : 'center',sortable : true,valign : 'middle'  },
 		  	{title : '更新时间',field : 'updateTime',sortable : true,align : 'center' ,visible:false }, 
-//		  	{title : '标记',field : 'flag',sortable : true,align : 'center'  } 
+//		  	{title : '查看',field : 'flag',sortable : true,align : 'center' ,events: operateEvents,formatter : function(value, row, index) {
+//				var A = "<i  type='button' id='clickA'  class=' btn btn-default fa fa-edit' title='查看档案' ></i> ";
+//				return A ;
+//			}} 
     	] ,
 	    onClickRow:function(index){
 	    	$("#admin_userBase_role_datagrid").bootstrapTable("destroy");
@@ -359,6 +376,8 @@ $(function() {
 	});
 	
 });
+
+
 ////Modal验证销毁重构
 $('#admin_userBase_upd_modal').on('hidden.bs.modal', function() {
     $("#user_upd_form").data('bootstrapValidator').destroy();

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8" />
+<!-- <link href="/plugins/bootstrap/table/bootstrap-table.css" rel="stylesheet" /> -->
+
+<!-- <script src="/plugins/bootstrap/table/bootstrap-table.js"></script> -->
+<!-- <script src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.js"></script> -->
+<!-- <script src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.js"></script> -->
+</head>
+<body id="body">
+	<!-- 头部设计 -->
+	<section class="content-header">
+		<h1>
+			规则管理<small>爬虫规则组管理</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="index.html"><i class="fa fa-dashboard"></i>首页</a></li>
+			<li><a href="#">爬虫规则组管理 </a></li>
+			<li class="active">规则管理</li>
+		</ol>
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="row">
+			<input type="text" id="add_ruler_uuid" name="uuid" placeholder="id" hidden="hedden" />
+			<div class=" col-md-12 form-group">
+				<label class="col-sm-2 control-label text-right">名称:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="add_ruler_name" name="url" placeholder="数据项" />
+				</div>
+			</div>
+			<div class=" col-md-12 form-group">
+				<label class="col-sm-2 control-label text-right">采集规则:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="add_ruler_xpath" name="xpath" placeholder="//div//text()" />
+				</div>
+			</div>
+			<div class=" col-md-12 form-group" >
+				<label class="col-sm-2 control-label text-right">上一层:</label>
+				<div class="col-sm-10">
+					<select style="width: 100%;" id="add_ruler_colum_parentUuid" name="parentUuid"></select>
+				</div>
+			</div>
+			<div class=" col-md-12 form-group" >
+				<label class="col-sm-2 control-label text-right">处理方式:</label>
+				<div class="col-sm-10">
+					<select style="width: 100%;" id="add_ruler_process" name="process"></select>
+				</div>
+			</div>
+			<div class=" col-md-12 form-group" style="display: none;" id="add_ruler_param_start_id">
+				<label class="col-sm-2 control-label text-right">下标1:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="add_ruler_param_start" name="start" placeholder="0" />
+				</div>
+			</div>
+			<div class=" col-md-12 form-group" style="display: none;" id="add_ruler_param_end_id">
+				<label class="col-sm-2 control-label text-right">下标2:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="add_ruler_param_end" name="end" placeholder="1" />
+				</div>
+			</div>
+			<div class=" col-md-12 form-group" style="display: none;" id="add_ruler_param_str_id">
+				<label class="col-sm-2 control-label text-right">需要拼接、替换的字符串:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="add_ruler_param_str" name="param" placeholder="字符串" />
+				</div>
+			</div>
+			<div class=" col-md-12 form-group" style="display: none;" id="add_ruler_param_new_id">
+				<label class="col-sm-2 control-label text-right">替换成字符串:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="add_ruler_param_new" name="paramNew" placeholder="字符串" />
+				</div>
+			</div>
+			<div class=" col-md-12 form-group"  >
+				<label class="col-sm-2 control-label text-right">是否链接字典:</label>
+				<div class="col-sm-10">
+					<input type="radio"  name="md5Flag" value="是" checked="checked" /> 是
+					<input type="radio"  name="md5Flag" value="否" /> 否
+				</div>
+			</div>
+		</div>
+		<div class="row">
+				<div class="col-md-12 form-group text-center">
+					<div class="col-sm-12">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button class="btn btn-success" id="submit_add_ruler_id">确认</button>
+					</div>
+				</div>
+			</div>
+	</section>
+	<script type="text/javascript" src="/pages/crawler/rule/addrule.js"></script>
+</body>
+</html>

@@ -1,2 +1,0 @@
-mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.2.0 -Dpackaging=jar -Dfile=ojdbc14-10.2.0.2.0.jar
-mvn install:install-file -DgroupId=fakepath -DartifactId=taobao-sdk-java-auto_1455552377940 -Dversion=20160607 -Dpackaging=jar -Dfile=taobao-sdk-java-auto_1455552377940-20160607.jar
