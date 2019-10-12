@@ -6,14 +6,14 @@ spring:
       cluster-nodes: localhost:9300
       repositories:
         enabled: false
-    neo4j:
-      #open-in-view: false
-      uri: bolt://localhost:7687
-      username: neo4j
-      password: admin
-      driver: org.neo4j.ogm.drivers.embedded.driver.EmbeddedDriver
-      repositories:
-        enabled: false
+#    neo4j:
+#      #open-in-view: false
+#      uri: bolt://localhost:7687
+#      username: neo4j
+#      password: admin
+#      driver: org.neo4j.ogm.drivers.embedded.driver.EmbeddedDriver
+#      repositories:
+#        enabled: false
 #    mongodb:
 #      database: config
 #      host: localhost
