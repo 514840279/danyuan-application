@@ -9,7 +9,6 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
@@ -25,14 +24,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableJpaAuditing
 @EnableScheduling
-@EnableNeo4jRepositories(basePackages = "org.danyuan.application.dbms.chart")
 @EnableJpaRepositories(basePackages = "org.danyuan.application")
 public class App {
-	
+
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(App.class, args);
 	}
-
+	
 	// 下面是2.0的配置，1.x请搜索对应的设置
 	// @Bean
 	// public ServletWebServerFactory servletContainer() {
@@ -40,7 +38,7 @@ public class App {
 	// tomcat.addAdditionalTomcatConnectors(createHTTPConnector());
 	// return tomcat;
 	// }
-
+	
 	// @Bean
 	public ServletWebServerFactory servletContainer() {
 		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
@@ -57,7 +55,7 @@ public class App {
 		tomcat.addAdditionalTomcatConnectors(createHTTPConnector());
 		return tomcat;
 	}
-
+	
 	private Connector createHTTPConnector() {
 		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
 		// 同时启用http（8080）、https（8443）两个端口
@@ -67,5 +65,5 @@ public class App {
 		connector.setRedirectPort(8443);
 		return connector;
 	}
-	
+
 }
