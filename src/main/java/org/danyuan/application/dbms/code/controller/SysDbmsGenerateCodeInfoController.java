@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @文件名 SysDbmsGenerateCodeInfoController.java
  * @包名 org.danyuan.application.dbms.code.controller
- * @描述 TODO(用一句话描述该文件做什么)
+ * @描述 代码生成controller
  * @时间 2019年1月16日 下午1:26:24
  * @author Administrator
  * @版本 V1.0
@@ -35,10 +35,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sysDbmsGenerateCodeInfo")
 public class SysDbmsGenerateCodeInfoController extends BaseControllerImpl<SysDbmsGenerateCodeInfo> implements BaseController<SysDbmsGenerateCodeInfo> {
-
+	
 	@Autowired
 	SysDbmsGenerateCodeInfoService sysDbmsGenerateCodeInfoService;
-
+	
 	@RequestMapping("/generate")
 	public BaseResult<String> generate(@RequestBody Pagination<SysDbmsGenerateCodeInfo> vo) {
 		try {
@@ -51,9 +51,9 @@ public class SysDbmsGenerateCodeInfoController extends BaseControllerImpl<SysDbm
 			return ResultUtil.error(-1, e.getMessage());
 		}
 	}
-
-	public String OUTPUTFILE = "outputfile";
 	
+	public String OUTPUTFILE = "outputfile";
+
 	@RequestMapping(value = "/downloadCode/{path}", method = RequestMethod.GET)
 	public void downloadCode(HttpServletResponse response, @PathVariable("path") String path) throws IOException {
 		// 根据参数进行导出xml 并打包返回zip文件路径
@@ -87,6 +87,6 @@ public class SysDbmsGenerateCodeInfoController extends BaseControllerImpl<SysDbm
 			}
 		}
 		file.delete();
-
+		
 	}
 }

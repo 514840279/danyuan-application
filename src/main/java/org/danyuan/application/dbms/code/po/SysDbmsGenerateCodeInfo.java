@@ -49,6 +49,9 @@ public class SysDbmsGenerateCodeInfo extends BaseEntity implements Serializable 
 	@Column(name = "generate_sql", columnDefinition = " int(6) COMMENT '生成sql标识'")
 	private Integer				generateSql;
 	
+	@Column(name = "generate_doc", columnDefinition = " int(6) COMMENT '生成sql文档'")
+	private Integer				generateDoc;
+	
 	public SysDbmsGenerateCodeInfo() {
 	}
 	
@@ -248,6 +251,23 @@ public class SysDbmsGenerateCodeInfo extends BaseEntity implements Serializable 
 	 */
 	public void setGenerateSql(Integer generateSql) {
 		this.generateSql = generateSql;
+	}
+	
+	/**
+	 * @方法名 getGenerateDoc
+	 * @功能 返回变量 generateDoc 的值
+	 * @return Integer
+	 */
+	public Integer getGenerateDoc() {
+		return generateDoc;
+	}
+	
+	/**
+	 * @方法名 setGenerateDoc
+	 * @功能 设置变量 generateDoc 的值
+	 */
+	public void setGenerateDoc(Integer generateDoc) {
+		this.generateDoc = generateDoc;
 	}
 	
 }

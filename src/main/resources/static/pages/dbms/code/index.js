@@ -57,6 +57,7 @@ $(function() {
 			$("#add_generate_html").prop({checked:data[0].generateHtml});
 			$("#add_generate_detail").prop({checked:data[0].generateDetail});
 			$("#add_generate_sql").prop({checked:data[0].generateSql});
+			$("#add_generate_doc").prop({checked:data[0].generateDoc});
 			
 			
 			$("#dbm_type_add_modal").modal({
@@ -121,6 +122,7 @@ $(function() {
 			generateHtml: $("#add_generate_html:checked").val()==null?0:1,
 			generateDetail: $("#add_generate_detail:checked").val()==null?0:1,
 			generateSql: $("#add_generate_sql:checked").val()==null?0:1,
+			generateDoc: $("#add_generate_doc:checked").val()==null?0:1,
 			deleteFlag:1,
 			createUser:username,
 			updateUser:username,
@@ -191,6 +193,7 @@ $(function() {
 			{title : 'html',field : 'generateHtml',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
 			{title : 'detail',field : 'generateDetail',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
 			{title : 'sql',field : 'generateSql',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
+			{title : 'doc',field : 'generateDoc',align : 'center',sortable : true,valign : 'middle',formatter:generateFormatter},
 			{title : '记录时间',field : 'createTime',align : 'center',sortable : true,valign : 'middle'},
 			{title : '更新时间',field : 'updateTime',sortable : true,align : 'center'},
 			{title : '标记',field : 'deleteFlag',sortable : true,align : 'center'}

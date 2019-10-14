@@ -12,13 +12,13 @@ import org.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
 /**
  * @文件名 GenerateEntity.java
  * @包名 org.danyuan.application.dbms.code.service
- * @描述 TODO(用一句话描述该文件做什么)
+ * @描述 实体代码生成
  * @时间 2019年1月17日 上午11:46:53
  * @author Administrator
  * @版本 V1.0
  */
 public class GenerateEntity {
-	
+
 	/**
 	 * @方法名 generate
 	 * @功能 生成实体类文件
@@ -76,7 +76,7 @@ public class GenerateEntity {
 		stringBuilder.append("public class " + sysDbmsGenerateCodeInfo.getClassName() + " extends BaseEntity implements Serializable {\r\n");
 		stringBuilder.append("	private static final long	serialVersionUID	= 1L;\r\n");
 		stringBuilder.append("\r\n");
-
+		
 		// 拼接属性
 		stringBuilder.append(stringBuilderProperties);
 		stringBuilder.append("\r\n");
@@ -95,20 +95,20 @@ public class GenerateEntity {
 		// 拼接get，set
 		stringBuilder.append(stringBuilderMethod);
 		stringBuilder.append("\r\n");
-		
-		// TODO 构造
 
-		// TODO tostring
+		// TODO 构造
 		
+		// TODO tostring
+
 		// ...
 		stringBuilder.append("\r\n");
 		stringBuilder.append("}");
-		
+
 		// 文件写入
 		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName() + ".java";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
 	}
-
+	
 	/**
 	 * 方法名： spellString
 	 * 功 能： 拼接字段和get，set方法
@@ -120,7 +120,7 @@ public class GenerateEntity {
 	 * @throws
 	 */
 	private static void spellString(List<SysDbmsTabsColsInfo> colsInfos, StringBuilder stringBuilderProperties, StringBuilder stringBuilderMethod, StringBuilder stringBuilderImport) {
-
+		
 		for (SysDbmsTabsColsInfo sysDbmsTabsColsInfo : colsInfos) {
 			// 属性
 			String colsName = sysDbmsTabsColsInfo.getColsName().toLowerCase();
@@ -151,19 +151,19 @@ public class GenerateEntity {
 			} else if (colsType.contains("double") || colsType.contains("float") || colsType.contains("decimal")) {
 				propertiesType = " BigDecimal ";
 			}
-
+			
 			// 拼写属性
 			spellProperties(stringBuilderProperties, propertiesName, propertiesType, colsDesc, colsType, colsName);
-			
+
 			// 拼写get，set
 			spellMethod(stringBuilderMethod, propertiesName, propertiesType, colsDesc, colsType, colsName);
 		}
 		if (stringBuilderImport.toString().length() > 0) {
 			stringBuilderImport.append("\r\n");
 		}
-		
+
 	}
-	
+
 	/**
 	 * 方法名： spellMethod
 	 * 功 能： 拼写get，set
@@ -200,7 +200,7 @@ public class GenerateEntity {
 		stringBuilderMethod.append("		this." + propertiesName + " = " + propertiesName + ";\r\n");
 		stringBuilderMethod.append("	}\r\n");
 	}
-	
+
 	/**
 	 * 方法名： spellProperties
 	 * 功 能： 拼写属性
@@ -237,10 +237,10 @@ public class GenerateEntity {
 		stringBuilderProperties.append("	@Column(name = \"" + colsName + ", columnDefinition = \" COMMENT '" + colsDesc + "\")\r\n");
 		stringBuilderProperties.append("	private " + propertiesType + "	" + propertiesName + ";\r\n");
 	}
-	
+
 	/**
 	 * 方法名： makeProperties
-	 * 功 能： TODO(这里用一句话描述这个方法的作用)
+	 * 功 能： 属性生成
 	 * 参 数： @param colsName
 	 * 参 数： @return
 	 * 返 回： String
@@ -259,5 +259,5 @@ public class GenerateEntity {
 		}
 		return propertiesName;
 	}
-	
+
 }

@@ -55,53 +55,70 @@
 
 	<!-- 添加模态框 -->
 	<div class="modal fade" id="dbm_type_add_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-type" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
+		<div class="modal-dialog" style="width: 80%;">
+			<div class="modal-content" >
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel-type">添加信息</h4>
 				</div>
 				<div class="modal-body">
 					<div class=" row form-group">
-						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">数据库名:</label>
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">数据库名:</label>
 						<div class="col-sm-9">
-							<select  style="width: 100%;" id="search_config_table_addrUuid" ></select>
+							<select style="width: 100%;" id="search_config_table_addrUuid"></select>
 						</div>
 					</div>
 					<div class=" row form-group">
-						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">分类名:</label>
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">分类名:</label>
 						<div class="col-sm-9">
-							<select  style="width: 100%;" id="search_config_table_typeUuid" ></select>
+							<select style="width: 100%;" id="search_config_table_typeUuid"></select>
 						</div>
 					</div>
 					<div class=" row form-group">
-						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">表名:</label>
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">表名:</label>
 						<div class="col-sm-9">
-							<select  style="width: 100%;" id="search_config_table_tabsUuid" ></select>
+							<select style="width: 100%;" id="search_config_table_tabsUuid"></select>
 						</div>
 					</div>
 					<div class="row form-group">
-						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">生成包名:</label>
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">生成包名:</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="add_generate_classPath" name="classPath" value="org.danyuan.application."   placeholder="生成包名" data-toggle="tooltip" data-placement="top"/>
+							<input type="text" class="form-control" id="add_generate_classPath" name="classPath" value="org.danyuan.application." placeholder="生成包名" data-toggle="tooltip" data-placement="top" />
 						</div>
 					</div>
 					<div class="row form-group">
-						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">生成实体类名:</label>
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">生成实体类名:</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="add_generate_className" name="className" placeholder="生成实体类名"/>
+							<input type="text" class="form-control" id="add_generate_className" name="className" placeholder="生成实体类名" />
 						</div>
 					</div>
 					<div class="row form-group">
-						<label class="col-sm-3 control-label text-right font16" style="height: 34px;padding-top: 5px;">生成类别:</label>
+						<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">生成类别:</label>
 						<div class="col-sm-9" style="padding-top: 8px;">
-							<input type="checkbox" id="add_generate_po" name="po"  checked="checked"/> po
-							<input type="checkbox" id="add_generate_dao" name="dao" checked="checked"/> dao
-							<input type="checkbox" id="add_generate_service" name="service" checked="checked"/> service
-							<input type="checkbox" id="add_generate_controller" name="controller" checked="checked"/> controller
-							<input type="checkbox" id="add_generate_html" name="html" checked="checked"/> html
-							<input type="checkbox" id="add_generate_detail" name="detail" checked="checked"/> detail
-							<input type="checkbox" id="add_generate_sql" name="sql" checked="checked"/> sql
+							<div class="col-sm-3">
+								<input type="checkbox" id="add_generate_po" name="po" checked="checked" /> po
+							</div>
+							<div class="col-sm-3">
+								<input type="checkbox" id="add_generate_dao" name="dao" checked="checked" /> dao
+							</div>
+							<div class="col-sm-3">
+								<input type="checkbox" id="add_generate_service" name="service" checked="checked" /> service
+							</div>
+							<div class="col-sm-3">
+								<input type="checkbox" id="add_generate_controller" name="controller" checked="checked" /> controller
+							</div>
+							<div class="col-sm-3">
+								<input type="checkbox" id="add_generate_html" name="html" checked="checked" /> html
+							</div>
+							<div class="col-sm-3">
+								<input type="checkbox" id="add_generate_detail" name="detail" checked="checked" /> detail
+							</div>
+							<div class="col-sm-3">
+								<input type="checkbox" id="add_generate_sql" name="sql" checked="checked" /> sql
+							</div>
+							<div class="col-sm-3">
+								<input type="checkbox" id="add_generate_doc" name="doc" checked="checked" /> doc
+							</div>
 						</div>
 					</div>
 				</div>
