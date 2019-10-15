@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.danyuan.application.dbms.code.po.SysDbmsGenerateCodeInfo;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
-import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.ClassPathResource;
 
 /**
  * @文件名 GenerateDoc.java
@@ -49,8 +50,9 @@ public class GenerateDoc {
 		HSSFWorkbook wb = null;
 		if (!file.exists()) {
 			// 读取模板文件路径
-			File modelfile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "static/model/datamodel.xls");
-			FileInputStream modelfins = new FileInputStream(modelfile);
+//			File modelfile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "static/model/datamodel.xls");
+			ClassPathResource classPathResource = new ClassPathResource("static/model/datamodel.xls");
+			InputStream modelfins = classPathResource.getInputStream();
 			POIFSFileSystem modelfs = new POIFSFileSystem(modelfins);
 			// 读取Excel模板
 			wb = new HSSFWorkbook(modelfs);
@@ -113,12 +115,9 @@ public class GenerateDoc {
 					newSheet.setColumnWidth(intCol, newSheet.getColumnWidth(intCol));
 					cellFrom = rowFrom.getCell(intCol);
 					cellTo = rowTo.createCell(intCol);
-					if (null == cellFrom) {
-						continue;
-					}
+
 					// セルスタイルとタイプのコピー
 					cellTo.setCellStyle(cellFrom.getCellStyle());
-					cellTo.setCellType(cellFrom.getCellType());
 					
 					// タイトル内容のコピー
 					// 不同数据类型处理
@@ -146,21 +145,21 @@ public class GenerateDoc {
 				}
 
 				// 字段名
-				newSheet.getRow(18 + index).getCell(3).setCellValue(cols.getColsName());
+				newSheet.getRow(18 + index).getCell(2).setCellValue(cols.getColsName());
 				// 字段含义
-				newSheet.getRow(18 + index).getCell(12).setCellValue(cols.getColsDesc() == null ? "" : cols.getColsDesc());
+				newSheet.getRow(18 + index).getCell(11).setCellValue(cols.getColsDesc() == null ? "" : cols.getColsDesc());
 				// 是否主键
-				newSheet.getRow(18 + index).getCell(27).setCellValue("");
+				newSheet.getRow(18 + index).getCell(26).setCellValue("");
 				// 数据类型
-				newSheet.getRow(18 + index).getCell(31).setCellValue(cols.getColsType() == null ? "" : cols.getColsType().toString().toUpperCase());
+				newSheet.getRow(18 + index).getCell(30).setCellValue(cols.getColsType() == null ? "" : cols.getColsType().toString().toUpperCase());
 				// 数据长度
-				newSheet.getRow(18 + index).getCell(36).setCellValue(cols.getColsLength() == null ? "" : cols.getColsLength().toString());
+				newSheet.getRow(18 + index).getCell(35).setCellValue(cols.getColsLength() == null ? "" : cols.getColsLength().toString());
 				// 不为空
-				newSheet.getRow(18 + index).getCell(39).setCellValue("");
+				newSheet.getRow(18 + index).getCell(38).setCellValue("");
 				// default value
-				newSheet.getRow(18 + index).getCell(43).setCellValue("");
+				newSheet.getRow(18 + index).getCell(42).setCellValue("");
 				// 描述信息
-				newSheet.getRow(18 + index).getCell(48).setCellValue(cols.getDiscription() == null ? "" : cols.getDiscription().toString());
+				newSheet.getRow(18 + index).getCell(47).setCellValue(cols.getDiscription() == null ? "" : cols.getDiscription());
 			}
 			
 		}
