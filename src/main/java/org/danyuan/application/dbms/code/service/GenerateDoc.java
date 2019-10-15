@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -28,7 +29,7 @@ import org.springframework.util.ResourceUtils;
  * @版本 V1.0
  */
 public class GenerateDoc {
-
+	
 	/**
 	 * @throws IOException
 	 * @throws FileNotFoundException
@@ -58,24 +59,119 @@ public class GenerateDoc {
 			FileInputStream fins = new FileInputStream(file);
 			POIFSFileSystem fs = new POIFSFileSystem(fins);
 			wb = new HSSFWorkbook(fs);
-
+			
 		}
 		HSSFSheet demoSheet = wb.getSheet("demo");
 		HSSFSheet newSheet = wb.createSheet(tabsInfo.getTabsDesc());
-
+		
 		newSheet = copySheet(demoSheet, newSheet);
 		
+		// 日期
+		newSheet.getRow(1).getCell(42).setCellValue(new Date());
+		
+		// 作成者
+		newSheet.getRow(1).getCell(52).setCellValue(sysDbmsGenerateCodeInfo.getCreateUser());
+		// 数据库选择
+		newSheet.getRow(7).getCell(0).setCellValue(tabsInfo.getDbType());
 		// 表头
-		newSheet.getRow(1).getCell(1).setCellValue("123");
+		// 表名称
+		newSheet.getRow(9).getCell(11).setCellValue(tabsInfo.getTabsName());
+		// 表含义
+		newSheet.getRow(10).getCell(11).setCellValue(tabsInfo.getTabsDesc() == null ? "" : tabsInfo.getTabsDesc());
+		// 表描述
+		newSheet.getRow(10).getCell(30).setCellValue(tabsInfo.getDiscription() == null ? "" : tabsInfo.getDiscription());
 		// 表格
+		int index = 0;
+		for (SysDbmsTabsColsInfo cols : colsInfos) {
+			String colsNameString = cols.getColsName();
+			if ("uuid".equals(colsNameString) || "delete_flag".equals(colsNameString) || "discription".equals(colsNameString) || "create_time".equals(colsNameString) || "create_user".equals(colsNameString) || "update_time".equals(colsNameString) || "update_user".equals(colsNameString)) {
+				continue;
+			} else {
+				index++;
+				// セル幅のコピー
+				Row rowFrom = newSheet.getRow(13);
+				Row rowTo = newSheet.createRow(18 + index);
+				rowTo.setHeight(rowFrom.getHeight());
+				// 合并单元格
+				newSheet.addMergedRegion(CellRangeAddress.valueOf("A" + (18 + 1 + index) + ":B" + (18 + 1 + index)));
+				newSheet.addMergedRegion(CellRangeAddress.valueOf("C" + (18 + 1 + index) + ":K" + (18 + 1 + index)));
+				newSheet.addMergedRegion(CellRangeAddress.valueOf("L" + (18 + 1 + index) + ":Z" + (18 + 1 + index)));
+				newSheet.addMergedRegion(CellRangeAddress.valueOf("AA" + (18 + 1 + index) + ":AD" + (18 + 1 + index)));
+				newSheet.addMergedRegion(CellRangeAddress.valueOf("AE" + (18 + 1 + index) + ":AI" + (18 + 1 + index)));
+				newSheet.addMergedRegion(CellRangeAddress.valueOf("AJ" + (18 + 1 + index) + ":AL" + (18 + 1 + index)));
+				newSheet.addMergedRegion(CellRangeAddress.valueOf("AM" + (18 + 1 + index) + ":AP" + (18 + 1 + index)));
+				newSheet.addMergedRegion(CellRangeAddress.valueOf("AQ" + (18 + 1 + index) + ":AU" + (18 + 1 + index)));
+				newSheet.addMergedRegion(CellRangeAddress.valueOf("AV" + (18 + 1 + index) + ":BJ" + (18 + 1 + index)));
 
+				Cell cellFrom = null;
+				Cell cellTo = null;
+				newSheet.setDefaultColumnStyle(18 + index, newSheet.getColumnStyle(13));
+				newSheet.setColumnWidth(18 + index, newSheet.getColumnWidth(13));
+				for (int intCol = 0; intCol < rowFrom.getLastCellNum(); intCol++) {
+					// セル幅のコピー
+					newSheet.setDefaultColumnStyle(intCol, newSheet.getColumnStyle(intCol));
+					newSheet.setColumnWidth(intCol, newSheet.getColumnWidth(intCol));
+					cellFrom = rowFrom.getCell(intCol);
+					cellTo = rowTo.createCell(intCol);
+					if (null == cellFrom) {
+						continue;
+					}
+					// セルスタイルとタイプのコピー
+					cellTo.setCellStyle(cellFrom.getCellStyle());
+					cellTo.setCellType(cellFrom.getCellType());
+					
+					// タイトル内容のコピー
+					// 不同数据类型处理
+					int cellFromType = cellFrom.getCellType();
+					cellTo.setCellType(cellFromType);
+					if (cellFromType == HSSFCell.CELL_TYPE_NUMERIC) {
+						if (HSSFDateUtil.isCellDateFormatted(cellFrom)) {
+							cellTo.setCellValue(cellFrom.getDateCellValue());
+						} else {
+							cellTo.setCellValue(cellFrom.getNumericCellValue());
+						}
+					} else if (cellFromType == HSSFCell.CELL_TYPE_STRING) {
+						cellTo.setCellValue(cellFrom.getRichStringCellValue());
+					} else if (cellFromType == HSSFCell.CELL_TYPE_BLANK) {
+						// nothing21
+					} else if (cellFromType == HSSFCell.CELL_TYPE_BOOLEAN) {
+						cellTo.setCellValue(cellFrom.getBooleanCellValue());
+					} else if (cellFromType == HSSFCell.CELL_TYPE_ERROR) {
+						cellTo.setCellErrorValue(cellFrom.getErrorCellValue());
+					} else if (cellFromType == HSSFCell.CELL_TYPE_FORMULA) {
+						cellTo.setCellFormula(cellFrom.getCellFormula());
+					} else { // nothing29
+					}
+					
+				}
+
+				// 字段名
+				newSheet.getRow(18 + index).getCell(3).setCellValue(cols.getColsName());
+				// 字段含义
+				newSheet.getRow(18 + index).getCell(12).setCellValue(cols.getColsDesc() == null ? "" : cols.getColsDesc());
+				// 是否主键
+				newSheet.getRow(18 + index).getCell(27).setCellValue("");
+				// 数据类型
+				newSheet.getRow(18 + index).getCell(31).setCellValue(cols.getColsType() == null ? "" : cols.getColsType().toString().toUpperCase());
+				// 数据长度
+				newSheet.getRow(18 + index).getCell(36).setCellValue(cols.getColsLength() == null ? "" : cols.getColsLength().toString());
+				// 不为空
+				newSheet.getRow(18 + index).getCell(39).setCellValue("");
+				// default value
+				newSheet.getRow(18 + index).getCell(43).setCellValue("");
+				// 描述信息
+				newSheet.getRow(18 + index).getCell(48).setCellValue(cols.getDiscription() == null ? "" : cols.getDiscription().toString());
+			}
+			
+		}
+		
 		// 设置打印区域
 //		wb.setPrintArea(wb.getSheetIndex(tabsInfo.getTabsDesc()), "$A$1:$BO$" + colsInfos.size() + 13);
 		FileOutputStream fout = new FileOutputStream(pathString);
 		wb.write(fout);
 		fout.close();
 	}
-
+	
 	/**
 	 * @方法名 copySheet
 	 * @功能 复制sheet
@@ -87,7 +183,7 @@ public class GenerateDoc {
 	 * @throws
 	 */
 	private static HSSFSheet copySheet(HSSFSheet sheetFrom, HSSFSheet sheetTo) {
-
+		
 		// 初期化
 		CellRangeAddress region = null;
 		Row rowFrom = null;
@@ -97,14 +193,14 @@ public class GenerateDoc {
 		// セル結合のコピー
 		for (int i = 0; i < sheetFrom.getNumMergedRegions(); i++) {
 			region = sheetFrom.getMergedRegion(i);
-
+			
 			if ((region.getFirstColumn() >= sheetFrom.getFirstRowNum()) && (region.getLastRow() <= sheetFrom.getLastRowNum())) {
 				sheetTo.addMergedRegion(region);
 			}
 		}
-
+		
 		// セルのコピー
-		for (int intRow = sheetFrom.getFirstRowNum(); intRow < sheetFrom.getLastRowNum(); intRow++) {
+		for (int intRow = sheetFrom.getFirstRowNum(); intRow <= sheetFrom.getLastRowNum(); intRow++) {
 			rowFrom = sheetFrom.getRow(intRow);
 			rowTo = sheetTo.createRow(intRow);
 			if (null == rowFrom) {
@@ -147,21 +243,19 @@ public class GenerateDoc {
 				}
 			}
 		}
-
+		
 		// 枠線の設定
 		sheetTo.setDisplayGridlines(false);
 //		sheetTo.setDisplayGuts(true);
 //		sheetTo.setDisplayRowColHeadings(true);
 		// 剪切
 		// sheetTo.shiftRows(13, 15, 31, false, false, false);
-		//
-		sheetTo.setRepeatingRows(CellRangeAddress.valueOf("13:15"));
 		// Excelのズーム設定
-		sheetTo.setZoom(80, 100);
-
+		sheetTo.setZoom(85, 100);
+		
 		// シートを戻る。
 		return sheetTo;
-
+		
 	}
-
+	
 }
