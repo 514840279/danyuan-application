@@ -234,7 +234,7 @@ public class GenerateEntity {
 			stringBuilderProperties.append("	@DateTimeFormat(style = \"yyyy-MM-dd HH:mm:ss\")\r\n");
 			stringBuilderProperties.append("	@JsonFormat(locale = \"zh\", timezone = \"GMT+8\", pattern = \"yyyy-MM-dd HH:mm:ss\")\r\n");
 		}
-		stringBuilderProperties.append("	@Column(name = \"" + colsName + ", columnDefinition = \" COMMENT '" + colsDesc + "\")\r\n");
+		stringBuilderProperties.append("	@Column(name = \"" + colsName + "\", columnDefinition = \" COMMENT '" + colsDesc + "'\")\r\n");
 		stringBuilderProperties.append("	private " + propertiesType + "	" + propertiesName + ";\r\n");
 	}
 
