@@ -1,51 +1,18 @@
 <!DOCTYPE html>
 <html style="height: auto; min-height: 100%;">
-<head>
-<meta charset="utf-8" />
-<title>初学者</title>
-<meta name="keywords" content="初学者,微服务,快速开发,数据库管理,爬虫管理,客户管理,人才管理,crud,dbca,dbms,cms,orm,crm,spring,springboot,spring-cloud,bootstrap,adminLTE,任务调度,邮件推送,简历,python" />
-<meta name="description" content="《初学者》致力于以先进技术为快速的构建自己的一套系统。目前系统已经集成多套管理工具，方便上手使用，甚至于开发人员不必关心系统如何开发的。" />
-<meta name="Robots" content="index" />
-<meta name="author" content="初学者" />
-<meta http-equiv="Window-target" content="_top" />
-<meta http-equiv="content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Language" content="zh-cn" />
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+<!-- 模板导入head -->
+<head th:include="/template-context::head"></head>
 
-<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-<link rel="icon" type="image/x-icon" href="/dist/img/favicon_32x32.ico" />
-<link rel="shortcut icon" type="image/x-icon" href="/dist/img/favicon_32x32.ico" />
-
-<link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.3.6/css/bootstrap.css" />
-<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="https://cdn.bootcss.com/ionicons/4.5.6/css/ionicons.min.css" />
-<link rel="stylesheet" href="https://cdn.bootcss.com/admin-lte/2.3.11/css/AdminLTE.min.css">
-<link rel="stylesheet" href="https://cdn.bootcss.com/admin-lte/2.3.11/css/skins/_all-skins.min.css" />
-<link rel="stylesheet" href="/dist/css/style.css" />
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-table/1.14.2/bootstrap-table.min.css" />
-<link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css" />
-<link rel="stylesheet" href="https://cdn.bootcss.com/select2/4.0.7-rc.0/css/select2.min.css" />
-<link rel="stylesheet" href="https://cdn.bootcss.com/zTree.v3/3.5.25/css/metroStyle/metroStyle.min.css" />
-<link rel="stylesheet" href="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css" />
-<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css" /> -->
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-fileinput/5.0.3/css/fileinput.min.css" />
-
-<!--[if lt IE 9]>
-  <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
-</head>
 <body class="hold-transition skin-blue sidebar-mini" style="height: auto; min-height: 100%;">
 	<div class="wrapper" style="min-height: 926.8px;">
-
+		<!-- 头部工具栏具栏 -->
 		<header class="main-header">
-			<a href="index.html" class="logo"> <span class="logo-mini"><img src="/dist/img/favicon_32x32.ico"/></span> <span class="logo-lg"><b>初学者</b></span>
+			<a href="index.html" class="logo"> <span class="logo-mini"><img src="/dist/img/favicon_32x32.ico" /></span> <span class="logo-lg"><b>初学者</b></span>
 			</a>
 			<nav class="navbar navbar-static-top">
 				<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">Toggle navigation</span>
 				</a>
 				<div class="navbar-header">
-<!-- 					<a href="#" class="navbar-brand">后台管理</a> -->
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
 						<i class="fa fa-bars"></i>
 					</button>
@@ -55,20 +22,18 @@
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="/">后台管理</a></li>
 						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">233小游戏<span class="caret"></span></a>
-							 <ul class="dropdown-menu" role="menu">
-<!-- 							 	<li><a  href="/games.html">其他游戏</a></li> -->
-				                <li><a href="/index2.html" target="_blank">微信小游戏</a></li>
-				                <li><a href="/index1.html" target="_blank">热门游戏</a></li>
-<!-- 				                <li><a href="/ceshi/index.html" target="_blank">微信朋友圈测试游戏</a></li> -->
-				              </ul>
-						</li>
+							<ul class="dropdown-menu" role="menu">
+								<!-- 							 	<li><a  href="/games.html">其他游戏</a></li> -->
+								<li><a href="/index2.html" target="_blank">微信小游戏</a></li>
+								<li><a href="/index1.html" target="_blank">热门游戏</a></li>
+								<!-- 				                <li><a href="/ceshi/index.html" target="_blank">微信朋友圈测试游戏</a></li> -->
+							</ul></li>
 						<li><a href="/#" title="开发中，敬请期待">我的任务</a></li>
 						<li><a href="/#" title="开发中，敬请期待">教程文挡</a></li>
 					</ul>
 				</div>
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
-						<!-- 						<li><a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ef11d05488cd61e05426a370ee142e9e187fcceaef72a2f83155852e5359d13a"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="maven" title="maven"></a></li> -->
 						<!-- Messages: style can be found in dropdown.less-->
 						<li class="dropdown messages-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span class="label label-success">4</span>
 						</a>
@@ -77,19 +42,6 @@
 								<li>
 									<!-- inner menu: contains the actual data -->
 									<ul class="menu">
-										<!--                   <li>start message -->
-										<!--                     <a href="#"> -->
-										<!--                       <div class="pull-left"> -->
-										<!--                         <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> -->
-										<!--                       </div> -->
-										<!--                       <h4> -->
-										<!--                         Support Team -->
-										<!--                         <small><i class="fa fa-clock-o"></i> 5 mins</small> -->
-										<!--                       </h4> -->
-										<!--                       <p>Why not buy a new awesome theme?</p> -->
-										<!--                     </a> -->
-										<!--                   </li> -->
-										<!-- end message -->
 									</ul>
 								</li>
 								<li class="footer"><a href="#">See All Messages</a></li>
@@ -102,11 +54,6 @@
 								<li>
 									<!-- inner menu: contains the actual data -->
 									<ul class="menu">
-										<!--                   <li> -->
-										<!--                     <a href="#"> -->
-										<!--                       <i class="fa fa-users text-aqua"></i> 5 new members joined today -->
-										<!--                     </a> -->
-										<!--                   </li> -->
 									</ul>
 								</li>
 								<li class="footer"><a href="#">View all</a></li>
@@ -119,19 +66,6 @@
 								<li>
 									<!-- inner menu: contains the actual data -->
 									<ul class="menu">
-										<!--                   <li>Task item -->
-										<!--                     <a href="#"> -->
-										<!--                       <h3> -->
-										<!--                         Design some buttons -->
-										<!--                         <small class="pull-right">20%</small> -->
-										<!--                       </h3> -->
-										<!--                       <div class="progress xs"> -->
-										<!--                         <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"> -->
-										<!--                           <span class="sr-only">20% Complete</span> -->
-										<!--                         </div> -->
-										<!--                       </div> -->
-										<!--                     </a> -->
-										<!--                   </li> -->
 									</ul>
 								</li>
 								<li class="footer"><a href="#">View all tasks</a></li>
@@ -139,7 +73,7 @@
 						<li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image" /> <span class="hidden-xs" th:text="${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}"></span>
 						</a>
 							<ul class="dropdown-menu">
-								<li class="user-header"><img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+								<li class="user-header"><img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
 
 									<p th:text="${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}">
 										Alexander Pierce - Web Developer <small>Member since Nov. 2012</small>
@@ -175,208 +109,26 @@
 
 			</nav>
 		</header>
-		<aside class="main-sidebar">
-			<section class="sidebar">
-				<div class="user-panel">
-					<div class="pull-left image">
-						<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
-					</div>
-					<div class="pull-left info">
-						<p id="usernametext" th:text="${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}">Alexander Pierce</p>
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-					</div>
-				</div>
-				<!-- search form -->
-				<!--       <form action="#" method="get" class="sidebar-form"> -->
-				<!--         <div class="input-group"> -->
-				<!--           <input type="text" name="q" class="form-control" placeholder="Search..."> -->
-				<!--               <span class="input-group-btn"> -->
-				<!--                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i> -->
-				<!--                 </button> -->
-				<!--               </span> -->
-				<!--         </div> -->
-				<!--       </form> -->
-				<!-- /.search form -->
-				<!-- sidebar menu: : style can be found in sidebar.less -->
-				<ul class="sidebar-menu" data-widget="tree">
-					<li class="header">MAIN NAVIGATION</li>
-				</ul>
-			</section>
-			<!-- /.sidebar -->
-		</aside>
 
-		<div class="content-wrapper"   id="mainDiv">
+		<!-- 引入菜单栏 -->
+		<div th:replace="/template-context::main-sidebar"></div>
+
+		<div class="content-wrapper" id="mainDiv">
 			<div id="tabContainer"></div>
-			<!-- 						<div id="tab_content"></div> -->
-
 		</div>
 
 		<footer class="main-footer" style="text-align: center;">
 			<strong>IPC备案号: 辽ICP备17010736号 </strong>
 		</footer>
 
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Create the tabs -->
-			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-				<li><a href="#control-sidebar-home-tab1" data-toggle="tab"><i class="fa fa-wrench  active"></i></a></li>
-				<li><a href="#control-sidebar-home-tab2" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-				<li><a href="#control-sidebar-home-tab3" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-			</ul>
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<!-- Home tab content -->
-				<div class="tab-pane active" id="control-sidebar-home-tab1">
-					<div>
-						<h4 class="control-sidebar-heading">Layout Options</h4>
-						<div class="form-group">
-							<label class="control-sidebar-subheading"><input type="checkbox" data-layout="fixed" class="pull-right" /> Fixed layout</label>
-							<p>Activate the fixed layout. You can't use fixed and boxed layouts together</p>
-						</div>
-						<div class="form-group">
-							<label class="control-sidebar-subheading"><input type="checkbox" data-layout="layout-boxed" class="pull-right" /> Boxed Layout</label>
-							<p>Activate the boxed layout</p>
-						</div>
-						<div class="form-group">
-							<label class="control-sidebar-subheading"><input type="checkbox" data-layout="sidebar-collapse" class="pull-right" /> Toggle Sidebar</label>
-							<p>Toggle the left sidebar's state (open or collapse)</p>
-						</div>
-						<div class="form-group">
-							<label class="control-sidebar-subheading"><input type="checkbox" data-enable="expandOnHover" class="pull-right" /> Sidebar Expand on Hover</label>
-							<p>Let the sidebar mini expand on hover</p>
-						</div>
-						<div class="form-group">
-							<label class="control-sidebar-subheading"><input type="checkbox" data-controlsidebar="control-sidebar-open" class="pull-right" /> Toggle Right Sidebar Slide</label>
-							<p>Toggle between slide over content and push content effects</p>
-						</div>
-						<div class="form-group">
-							<label class="control-sidebar-subheading"><input type="checkbox" data-sidebarskin="toggle" class="pull-right" /> Toggle Right Sidebar Skin</label>
-							<p>Toggle between dark and light skins for the right sidebar</p>
-						</div>
-						<h4 class="control-sidebar-heading">Skins</h4>
-						<ul class="list-unstyled clearfix">
-							<li style="float: left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-blue" style="display: block; box-shadow: 0 0 3px rgba(0, 0, 0, 0.4)" class="clearfix full-opacity-hover"><div>
-										<span style="display: block; width: 20%; float: left; height: 7px; background: #367fa9;"></span><span class="bg-light-blue" style="display: block; width: 80%; float: left; height: 7px;"></span>
-									</div>
-									<div>
-										<span style="display: block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display: block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span>
-									</div></a>
-								<p class="text-center no-margin">Blue</p></li>
-							<li style="float: left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-black" style="display: block; box-shadow: 0 0 3px rgba(0, 0, 0, 0.4)" class="clearfix full-opacity-hover"><div style="box-shadow: 0 0 2px rgba(0, 0, 0, 0.1)" class="clearfix">
-										<span style="display: block; width: 20%; float: left; height: 7px; background: #fefefe;"></span><span style="display: block; width: 80%; float: left; height: 7px; background: #fefefe;"></span>
-									</div>
-									<div>
-										<span style="display: block; width: 20%; float: left; height: 20px; background: #222;"></span><span style="display: block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span>
-									</div></a>
-								<p class="text-center no-margin">Black</p></li>
-							<li style="float: left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-purple" style="display: block; box-shadow: 0 0 3px rgba(0, 0, 0, 0.4)" class="clearfix full-opacity-hover"><div>
-										<span style="display: block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display: block; width: 80%; float: left; height: 7px;"></span>
-									</div>
-									<div>
-										<span style="display: block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display: block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span>
-									</div></a>
-								<p class="text-center no-margin">Purple</p></li>
-							<li style="float: left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-green" style="display: block; box-shadow: 0 0 3px rgba(0, 0, 0, 0.4)" class="clearfix full-opacity-hover"><div>
-										<span style="display: block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display: block; width: 80%; float: left; height: 7px;"></span>
-									</div>
-									<div>
-										<span style="display: block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display: block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span>
-									</div></a>
-								<p class="text-center no-margin">Green</p></li>
-							<li style="float: left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-red" style="display: block; box-shadow: 0 0 3px rgba(0, 0, 0, 0.4)" class="clearfix full-opacity-hover"><div>
-										<span style="display: block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display: block; width: 80%; float: left; height: 7px;"></span>
-									</div>
-									<div>
-										<span style="display: block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display: block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span>
-									</div></a>
-								<p class="text-center no-margin">Red</p></li>
-							<li style="float: left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-yellow" style="display: block; box-shadow: 0 0 3px rgba(0, 0, 0, 0.4)" class="clearfix full-opacity-hover"><div>
-										<span style="display: block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display: block; width: 80%; float: left; height: 7px;"></span>
-									</div>
-									<div>
-										<span style="display: block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display: block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span>
-									</div></a>
-								<p class="text-center no-margin">Yellow</p></li>
-							<li style="float: left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-blue-light" style="display: block; box-shadow: 0 0 3px rgba(0, 0, 0, 0.4)" class="clearfix full-opacity-hover"><div>
-										<span style="display: block; width: 20%; float: left; height: 7px; background: #367fa9;"></span><span class="bg-light-blue" style="display: block; width: 80%; float: left; height: 7px;"></span>
-									</div>
-									<div>
-										<span style="display: block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display: block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span>
-									</div></a>
-								<p class="text-center no-margin" style="font-size: 12px">Blue Light</p></li>
-							<li style="float: left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-black-light" style="display: block; box-shadow: 0 0 3px rgba(0, 0, 0, 0.4)" class="clearfix full-opacity-hover"><div style="box-shadow: 0 0 2px rgba(0, 0, 0, 0.1)" class="clearfix">
-										<span style="display: block; width: 20%; float: left; height: 7px; background: #fefefe;"></span><span style="display: block; width: 80%; float: left; height: 7px; background: #fefefe;"></span>
-									</div>
-									<div>
-										<span style="display: block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display: block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span>
-									</div></a>
-								<p class="text-center no-margin" style="font-size: 12px">Black Light</p></li>
-							<li style="float: left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-purple-light" style="display: block; box-shadow: 0 0 3px rgba(0, 0, 0, 0.4)" class="clearfix full-opacity-hover"><div>
-										<span style="display: block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display: block; width: 80%; float: left; height: 7px;"></span>
-									</div>
-									<div>
-										<span style="display: block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display: block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span>
-									</div></a>
-								<p class="text-center no-margin" style="font-size: 12px">Purple Light</p></li>
-							<li style="float: left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-green-light" style="display: block; box-shadow: 0 0 3px rgba(0, 0, 0, 0.4)" class="clearfix full-opacity-hover"><div>
-										<span style="display: block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display: block; width: 80%; float: left; height: 7px;"></span>
-									</div>
-									<div>
-										<span style="display: block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display: block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span>
-									</div></a>
-								<p class="text-center no-margin" style="font-size: 12px">Green Light</p></li>
-							<li style="float: left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-red-light" style="display: block; box-shadow: 0 0 3px rgba(0, 0, 0, 0.4)" class="clearfix full-opacity-hover"><div>
-										<span style="display: block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display: block; width: 80%; float: left; height: 7px;"></span>
-									</div>
-									<div>
-										<span style="display: block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display: block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span>
-									</div></a>
-								<p class="text-center no-margin" style="font-size: 12px">Red Light</p></li>
-							<li style="float: left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-yellow-light" style="display: block; box-shadow: 0 0 3px rgba(0, 0, 0, 0.4)" class="clearfix full-opacity-hover"><div>
-										<span style="display: block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display: block; width: 80%; float: left; height: 7px;"></span>
-									</div>
-									<div>
-										<span style="display: block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display: block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span>
-									</div></a>
-								<p class="text-center no-margin" style="font-size: 12px;">Yellow Light</p></li>
-						</ul>
-					</div>
-				</div>
-				<div class="tab-pane" id="control-sidebar-home-tab2"></div>
-				<div class="tab-pane" id="control-sidebar-home-tab3"></div>
-			</div>
-		</aside>
+		<!-- 引入工具栏 -->
+		<div th:replace="/template-context::control-sidebar"></div>
 		<div class="control-sidebar-bg"></div>
+
 	</div>
 
-	<!-- jQuery 2.2.3 -->
-	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/admin-lte/2.3.11/js/app.min.js"></script>
-	<script type="text/javascript" src="/plugins/jQuery/base-modal.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/admin-lte/2.3.11/js/demo.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
-	<script type="text/javascript" src="/plugins/jQuery/ajax.js"></script>
-	<script type="text/javascript" src="/plugins/jQuery/alert.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/bootbox.js/4.4.0/bootbox.min.js"></script>
-
-	<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-table/1.14.2/bootstrap-table.min.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-table/1.14.2/extensions/export/bootstrap-table-export.min.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-table/1.14.2/extensions/editable/bootstrap-table-editable.min.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-table/1.14.2/locale/bootstrap-table-zh-CN.min.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/select2/4.0.7-rc.0/js/select2.min.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/zTree.v3/3.5.25/js/jquery.ztree.all.min.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
-	<!-- 	<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css"></script> -->
-	<script type="text/javascript" src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
-	<script type="text/javascript" src="/plugins/echarts/map/china.js"></script>
-	<script type="text/javascript" src="/plugins/echarts/theme/macarons.js"></script>
-	<script type="text/javascript" src="/plugins/jQuery/jquery.ba-resize.min.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
-	<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-fileinput/5.0.3/js/locales/zh.min.js"></script>
+	<!-- 引入script -->
+	<div th:include="/template-context::scriptBootcdn"></div>
 
 	<script th:inline="javascript">
 		var username = [[${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}]];
@@ -385,4 +137,5 @@
 	<script type="text/javascript" src="pages/index.js">	</script>
 
 </body>
+
 </html>
