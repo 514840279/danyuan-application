@@ -25,9 +25,16 @@
            </div>
 		<div class="box-body">
 			<div class="row" style="padding: 10px;">
-				<div id="imp_table_toolbar">
+				<div id="imp_table_toolbar" class="form-inline">
 					<div class="btn-group">
 						<select style="width: 100%;" id="imp_table_typeName"></select>
+					</div>
+					<div class="input-group ">
+						<input type="text" value="" id="search_sheam_id" class="form-control" placeholder="数据库名"/> 
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" id="search_sheam_btn_id" ><i class="fa fa-plus"></i> 查询
+	               			</button>
+               			</span>
 					</div>
 					<div class="btn-group">
 						<button type="button" class="btn btn-default" id="add_table_plus" ><i class="fa fa-plus"></i> 添加

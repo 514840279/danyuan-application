@@ -37,6 +37,7 @@ $(function() {
 		    var param = {  
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
+                 "searchText":$("#search_sheam_id").val(),
                  info:{
                 	 uuid:imp_table_typeName,
                  }
@@ -77,6 +78,11 @@ $(function() {
 		});
 		
 	})
+	
+	$("#search_sheam_btn_id").bind("click",function(){
+		$('#imp_table_datagrid').bootstrapTable('refresh');
+	})
+	
 	
 });
 function addSysDbmsTabsInfoSuccess(result){

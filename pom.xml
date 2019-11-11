@@ -81,10 +81,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.boot</groupId> -->
-<!-- 			<artifactId>spring-boot-starter-data-neo4j</artifactId> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.boot</groupId> -->
+		<!-- <artifactId>spring-boot-starter-data-neo4j</artifactId> -->
+		<!-- </dependency> -->
 		<!-- <dependency> -->
 		<!-- <groupId>org.springframework.boot</groupId> -->
 		<!-- <artifactId>spring-boot-starter-data-mongodb</artifactId> -->
@@ -194,11 +194,11 @@
 		<!-- <version>11.2.0.1.0</version> -->
 		<!-- </dependency> -->
 		<!-- oracle 单位用 不知道为什么 11g要用14 的 数据库驱动 -->
-		<!-- <dependency> -->
-		<!-- <groupId>oracle</groupId> -->
-		<!-- <artifactId>ojdbc14</artifactId> -->
-		<!-- <version>10.2.0.2.0</version> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>10.2.0.2.0</version>
+		</dependency>
 
 
 
