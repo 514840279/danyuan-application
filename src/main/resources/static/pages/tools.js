@@ -133,5 +133,8 @@ String.prototype.replaceAll = function(s1, s2) {
 }
 // 日期 时间的格式化
 function dateTimeFormatter(value, row, index) {
+	if(value==null||value==''){
+		return;
+	}
 	return new Date(value).toLocaleString();
 };
