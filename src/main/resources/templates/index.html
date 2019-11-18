@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html style="height: auto; min-height: 100%;">
 <!-- 模板导入head -->
-<head th:include="/template-context::head"></head>
+<head th:include="template-context::head"></head>
 
 <body class="hold-transition skin-blue sidebar-mini" style="height: auto; min-height: 100%;">
 	<div class="wrapper" style="min-height: 926.8px;">
@@ -105,7 +105,7 @@
 		</header>
 
 		<!-- 引入菜单栏 -->
-		<div th:replace="/template-context::main-sidebar"></div>
+		<div th:replace="template-context::main-sidebar"></div>
 
 		<div class="content-wrapper" id="mainDiv">
 			<div id="tabContainer"></div>
@@ -116,13 +116,13 @@
 		</footer>
 
 		<!-- 引入工具栏 -->
-		<div th:replace="/template-context::control-sidebar"></div>
+		<div th:replace="template-context::control-sidebar"></div>
 		<div class="control-sidebar-bg"></div>
 
 	</div>
 
 	<!-- 引入script -->
-	<div th:include="/template-context::scriptBootcdn"></div>
+	<div th:include="template-context::scriptBootcdn"></div>
 
 	<script th:inline="javascript">
 		var username = [[${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}]];
