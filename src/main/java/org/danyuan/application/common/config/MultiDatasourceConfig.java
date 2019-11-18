@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 public class MultiDatasourceConfig {
 	@Autowired
 	SysDbmsTabsJdbcInfoDao sysDbmsTabsJdbcInfoDao;
-	
+
 	@SuppressWarnings("unchecked")
 	public Map<String, DataSource> multiDatasource() {
 		Map<String, DataSource> map = new HashMap<>();
@@ -44,7 +44,7 @@ public class MultiDatasourceConfig {
 						break;
 				}
 				DataSource dataSource = DataSourceBuilder.create().driverClassName(driverClassName).url(url).username(sysZhcxAddr.getUsername()).password(sysZhcxAddr.getPassword()).type(type).build();
-
+				
 				map.put(sysZhcxAddr.getUuid(), dataSource);
 			}
 		} catch (ClassNotFoundException e) {
@@ -52,7 +52,7 @@ public class MultiDatasourceConfig {
 		}
 		return map;
 	}
-	
+
 	/**
 	 * @throws SQLException
 	 * @方法名 destroyMultiDatasource
@@ -62,7 +62,7 @@ public class MultiDatasourceConfig {
 	 * @author Administrator
 	 * @throws
 	 */
-	void destroyMultiDatasource(Map<String, DataSource> multiDatasource) throws SQLException {
+	public void destroyMultiDatasource(Map<String, DataSource> multiDatasource) throws SQLException {
 		Set<String> keySet = multiDatasource.keySet();
 		for (String string : keySet) {
 			multiDatasource.get(string).getConnection().close();

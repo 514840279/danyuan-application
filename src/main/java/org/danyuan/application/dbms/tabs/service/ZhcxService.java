@@ -28,9 +28,10 @@ import org.springframework.stereotype.Service;
 public class ZhcxService {
 	@Autowired
 	JdbcTemplate	jdbcTemplate;
+
 	@Value("${spring.jpa.database}")
 	private String	database;
-
+	
 	/**
 	 * 方法名： findAllSigleTableByMulitityParam
 	 * 功 能： 单表多条件查询
@@ -80,13 +81,13 @@ public class ZhcxService {
 				}
 			}
 		}
-
+		
 		resultMap(sql.toString(), null, vo, map);
 		return map;
 	}
-
+	
 	private void resultMap(String sqlString, Map<String, String> param, SysDbmsTabsColsInfoVo vo, Map<String, Object> resultMap) {
-
+		
 		StringBuilder pageSql = new StringBuilder();
 		if ("Oracle".equals(database)) {
 			pageSql.append(" select *  ");
@@ -101,7 +102,7 @@ public class ZhcxService {
 		} else if ("MYSQL".equals(database)) {
 			pageSql.append(sqlString.toString() + " limit " + (vo.getPageNumber().intValue() - 1) * vo.getPageSize().intValue() + "," + vo.getPageSize().intValue());
 		}
-
+		
 		System.out.println(pageSql.toString());
 		// List<Map<String, Object>> list = jdbcTemplate.queryForList(pageSql.toString());
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
@@ -127,7 +128,7 @@ public class ZhcxService {
 			}
 		}
 	}
-
+	
 	/**
 	 * 方法名： findBySingleTableByMulteityParam
 	 * 功 能： 单表多条件分组查询
@@ -170,7 +171,7 @@ public class ZhcxService {
 		System.err.println(sql.toString());
 		return map;
 	}
-
+	
 	/**
 	 * 方法名： searchSqlByParams
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -224,11 +225,11 @@ public class ZhcxService {
 			if (exists) {
 				sql.append(" and (  ").append(sqltem.toString()).append(" )");
 			}
-
+			
 		}
-
+		
 	}
-
+	
 	/**
 	 * @param paramList
 	 * 方法名： sortByUserIndex
@@ -268,5 +269,5 @@ public class ZhcxService {
 		}
 		return listlist;
 	}
-
+	
 }

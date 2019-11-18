@@ -26,43 +26,43 @@ public class VSysDbmsTableDis implements Serializable {
 	@Column(unique = true, nullable = false, columnDefinition = " varchar(36) COMMENT '主键'")
 	protected String			uuid;						// 主键
 	
-	@Column(name = "jdbc_uuid", columnDefinition = "varchar(36) COMMENT '数据库表id'")
+	@Column(name = "jdbc_uuid", columnDefinition = " varchar(36) COMMENT '数据库表id'")
 	private String				jdbcUuid;
 
 	//
-	@Column(name = "drop_sql", columnDefinition = " COMMENT ''")
+	@Column(name = "drop_sql", columnDefinition = " varchar(2000) COMMENT 'drop_sql'")
 	private String				dropSql;
 	
 	//
-	@Column(name = "rename_sql", columnDefinition = " COMMENT ''")
+	@Column(name = "rename_sql", columnDefinition = "varchar(2000) COMMENT 'rename_sql'")
 	private String				renameSql;
 	
 	// 表的含义
-	@Column(name = "tabs_desc", columnDefinition = " COMMENT '表的含义'")
+	@Column(name = "tabs_desc", columnDefinition = "varchar(200) COMMENT '表的含义'")
 	private String				tabsDesc;
 	
 	// 数据库类型
-	@Column(name = "type", columnDefinition = " COMMENT '数据库类型'")
+	@Column(name = "type", columnDefinition = "varchar(200) COMMENT '数据库类型'")
 	private String				type;
 	
 	// 类型名
-	@Column(name = "type_name", columnDefinition = " COMMENT '类型名'")
+	@Column(name = "type_name", columnDefinition = "varchar(200) COMMENT '类型名'")
 	private String				typeName;
 	
 	//
-	@Column(name = "dis_sql", columnDefinition = " COMMENT ''")
+	@Column(name = "dis_sql", columnDefinition = "varchar(2000) COMMENT 'dis_sql'")
 	private String				disSql;
 	
 	// 数据库表数据量
-	@Column(name = "tabs_rows", columnDefinition = " COMMENT '数据库表数据量'")
+	@Column(name = "tabs_rows", columnDefinition = "varchar(200) COMMENT '数据库表数据量'")
 	private Integer				tabsRows;
 	
 	// 数据库表名
-	@Column(name = "tabs_name", columnDefinition = " COMMENT '数据库表名'")
+	@Column(name = "tabs_name", columnDefinition = "varchar(200) COMMENT '数据库表名'")
 	private String				tabsName;
 	
 	//
-	@Column(name = "reset_sql", columnDefinition = " COMMENT ''")
+	@Column(name = "reset_sql", columnDefinition = "varchar(200) COMMENT 'reset_sql'")
 	private String				resetSql;
 	
 	/**
