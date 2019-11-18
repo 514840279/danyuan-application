@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+</head>
+<body>
+	<section class="content">
+		<div class="box box-warning" id="section_dbms_tabs_vSysDbmsTableDis">
+			<div class="box-header with-border">
+				<h3 class="box-title">企业信息</h3>
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body">
+				<input type="text" style="display: none;" id="dbms_tabs_vSysDbmsTableDis_uuid" name="uuid" th:value="${vSysDbmsTableDis.uuid}" />
+				<div class=" row form-group">
+					<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">数据库表名:</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="dbms_tabs_vSysDbmsTableDis_tabsName" name="tabsName" th:value="${vSysDbmsTableDis['tabsName']}" placeholder="数据库表名" disabled="disabled" />
+					</div>
+				</div>
+				<div class=" row form-group">
+					<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">表的含义:</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="dbms_tabs_vSysDbmsTableDis_tabsDesc" name="tabsDesc" th:value="${vSysDbmsTableDis['tabsDesc']}" placeholder="表的含义" disabled="disabled" />
+					</div>
+				</div>
+				<div class=" row form-group">
+					<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">数据库类型:</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="dbms_tabs_vSysDbmsTableDis_type" name="type" th:value="${vSysDbmsTableDis['type']}" placeholder="数据库类型" disabled="disabled" />
+					</div>
+				</div>
+				<div class=" row form-group">
+					<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">类型名:</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="dbms_tabs_vSysDbmsTableDis_typeName" name="typeName" th:value="${vSysDbmsTableDis['typeName']}" placeholder="类型名" disabled="disabled" />
+					</div>
+				</div>
+				<div class=" row form-group">
+					<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">数据库表数据量:</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="dbms_tabs_vSysDbmsTableDis_tabsRows" name="tabsRows" th:value="${vSysDbmsTableDis['tabsRows']}" placeholder="数据库表数据量" disabled="disabled" />
+					</div>
+				</div>
+				<div class=" row form-group">
+					<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">disSql:</label>
+					<div class="col-sm-9">
+						<textarea class="form-control" id="dbms_tabs_vSysDbmsTableDis_disSql" name="disSql" th:text="${vSysDbmsTableDis['disSql']}" placeholder="disSql" disabled="disabled" rows="4"></textarea>
+					</div>
+				</div>
+				<div class=" row form-group">
+					<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">dropSql:</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="dbms_tabs_vSysDbmsTableDis_dropSql" name="dropSql" th:value="${vSysDbmsTableDis['dropSql']}" placeholder="dropSql" disabled="disabled" />
+					</div>
+				</div>
+				<div class=" row form-group">
+					<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">renameSql:</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="dbms_tabs_vSysDbmsTableDis_renameSql" name="renameSql" th:value="${vSysDbmsTableDis['renameSql']}" placeholder="renameSql" disabled="disabled" />
+					</div>
+				</div>
+				<div class=" row form-group">
+					<label class="col-sm-3 control-label text-right font16" style="height: 34px; padding-top: 5px;">resetSql:</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" id="dbms_tabs_vSysDbmsTableDis_resetSql" name="resetSql" th:value="${vSysDbmsTableDis['resetSql']}" placeholder="resetSql" disabled="disabled" />
+					</div>
+				</div>
+				<div class="row text-center">
+					<button type="button" class="btn btn-danger" id="dbms_tabs_vSysDbmsTableDis_exit_button">关闭</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<script th:inline="javascript">
+		var vSysDbmsTableDis = [[${vSysDbmsTableDis}]];
+	</script>
+	<script type="text/javascript" src="/pages/dbms/tabs/vsysdbmstabledisdetail.js"></script>
+</body>
+</html>
+
+

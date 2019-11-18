@@ -304,6 +304,7 @@ function reset(tabsName,column,sysColumn,dbType) {
 				$("input[name='colsSwitchable'][value='"+(d.colsSwitchable==null?"true":d.colsSwitchable)+"']").prop("checked",true);
 				$("input[name='colsVisible'][value='"+(d.colsVisible==null?"true":d.colsVisible)+"']").prop("checked",true);
 				$("input[name='dimeFlag'][value='"+(d.dimeFlag==null?"false":d.dimeFlag)+"']").prop("checked",true);
+				$("input[name='useful'][value='"+(d.useful==null?"false":d.useful)+"']").prop("checked",true);
 				
 				$('#update-show-myModal').modal({
 			        show: true
@@ -325,6 +326,7 @@ function reset(tabsName,column,sysColumn,dbType) {
 		d.colsSwitchable=$("input[name='colsSwitchable']:checked").val();
 		d.colsVisible=$("input[name='colsVisible']:checked").val();
 		d.dimeFlag=$("input[name='dimeFlag']:checked").val();
+		d.useful=$("input[name='useful']:checked").val();
 		var url ='/sysDbmsTabsColsInfo/save';
 		d.createTime=null;
 		d.updateTime=null;

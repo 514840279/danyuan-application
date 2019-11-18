@@ -41,26 +41,26 @@ import org.springframework.web.servlet.ModelAndView;
 public class SysDbmsTabsInfoController {
 	//
 	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsTabsInfoController.class);
-	
+
 	//
 	@Autowired
 	private SysDbmsTabsInfoService		sysDbmsTabsInfoService;
 	@Autowired
 	private SysDbmsTabsJdbcInfoService	sysDbmsTabsJdbcInfoService;
-	
+
 	@Autowired
 	JdbcTemplate						jdbcTemplate;
-	
+
 	@Autowired
 	MultiDatasourceConfig				multiDatasourceConfig;
-	
+
 	@RequestMapping(path = "/pagev", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<SysDbmsTabsInfo> pagev(@RequestBody SysDbmsTabsJdbcInfoVo vo) throws Exception {
 		logger.info("pagev", SysDbmsTabsInfoController.class);
-
+		
 		List<SysDbmsTabsInfo> list = null;
 		SysDbmsTabsJdbcInfo info = sysDbmsTabsJdbcInfoService.findOne(vo.getInfo());
-		
+
 		DataSource connection = multiDatasourceConfig.multiDatasource().get(info.getUuid());
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(connection);
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
@@ -85,10 +85,10 @@ public class SysDbmsTabsInfoController {
 //			Map<String, String> param = new HashMap<>();
 			// Map<String, DataSource> multiDatasource = getMultiDatasource();
 			// JdbcTemplate jdbcTemplate = new JdbcTemplate(multiDatasource.get(info.getUuid()));
-
+			
 			list = template.getJdbcOperations().query(pageSql.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
 		} else {
-			
+
 //			String dblinkString = "";
 //			String url = jdbcTemplate.getDataSource().getConnection().getMetaData().getURL();
 //			if (url.contains(info.getIp())) {
@@ -104,7 +104,7 @@ public class SysDbmsTabsInfoController {
 //					throw new Exception("没有dblink连接无法直接连接");
 //				}
 //			}
-			
+
 			StringBuilder sBuilder = new StringBuilder();
 			sBuilder.append(" select  ");
 			sBuilder.append("  t.owner||'_'||t.table_name as UUID, ");
@@ -121,15 +121,15 @@ public class SysDbmsTabsInfoController {
 			sBuilder.append("  from all_tables  t ");
 			sBuilder.append(" left join all_tab_comments  t1   on t1.owner = t.owner   and t1.table_name=t.table_name ");
 			sBuilder.append("  where  t.owner = '" + ("".equals(vo.getSearchText()) ? info.getDatabaseName() : vo.getSearchText().toUpperCase()) + "' ");
-
+			
 			list = template.getJdbcOperations().query(sBuilder.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
-
+			
 		}
 		return list;
 		// String sql = "Select * from " + param.getSearchText() + " order by datetime desc limit 0,500";
-		
+
 	}
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -143,7 +143,7 @@ public class SysDbmsTabsInfoController {
 		logger.info("page", SysDbmsTabsInfoController.class);
 		return sysDbmsTabsInfoService.page(vo);
 	}
-	
+
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -155,17 +155,17 @@ public class SysDbmsTabsInfoController {
 	@RequestMapping(path = "/findAll", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<SysDbmsTabsInfo> findAll() {
 		logger.info("findAll", SysDbmsTabsInfoController.class);
-		
+
 		return sysDbmsTabsInfoService.findAll();
 	}
-	
+
 	@RequestMapping(path = "/findAllBySysTableInfo", method = RequestMethod.POST)
 	public List<SysDbmsTabsInfo> findAllBySysTableInfo(@RequestBody SysDbmsTabsInfo sysDbmsTabsInfo) {
 		logger.error(sysDbmsTabsInfo.toString());
 		logger.info("findAll", SysDbmsTabsInfoController.class);
 		return sysDbmsTabsInfoService.findAll(sysDbmsTabsInfo);
 	}
-	
+
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	public String save(@RequestBody SysDbmsTabsInfo sysDbmsTabsInfo) {
 		logger.info("save", SysDbmsTabsInfoController.class);
@@ -175,14 +175,14 @@ public class SysDbmsTabsInfoController {
 		sysDbmsTabsInfoService.save(sysDbmsTabsInfo);
 		return "1";
 	}
-	
+
 	@RequestMapping(path = "/change", method = RequestMethod.POST)
 	public String change(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("save", SysDbmsTabsInfoController.class);
 		sysDbmsTabsInfoService.change(vo);
 		return "1";
 	}
-	
+
 	@RequestMapping(path = "/savev", method = RequestMethod.POST)
 	public String save(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("savev", SysDbmsTabsInfoController.class);
@@ -192,6 +192,7 @@ public class SysDbmsTabsInfoController {
 			infot = sysDbmsTabsInfoService.findOne(infot);
 			if (infot == null) {
 				info.setDeleteFlag(0);
+				info.setDissql(0);
 				info.setCreateUser(vo.getUsername());
 				info.setUpdateUser(vo.getUsername());
 				sysDbmsTabsInfoService.savev(info);
@@ -199,28 +200,28 @@ public class SysDbmsTabsInfoController {
 		}
 		return "1";
 	}
-	
+
 	@RequestMapping(path = "/drop", method = RequestMethod.POST)
 	public String drop(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("drop", SysDbmsTabsInfoController.class);
 		sysDbmsTabsInfoService.drop(vo.getList());
 		return "1";
 	}
-	
+
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("delete", SysDbmsTabsInfoController.class);
 		sysDbmsTabsInfoService.deleteAll(vo.getList());
 		return "1";
 	}
-	
+
 	@RequestMapping(path = "/updateSysTableInfo", method = RequestMethod.POST)
 	public String updateSysTableInfo(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("updateSysTableInfo", SysDbmsTabsInfoController.class);
 		sysDbmsTabsInfoService.saveAll(vo.getList());
 		return "1";
 	}
-	
+
 	@RequestMapping(path = "/updBefor", method = RequestMethod.POST)
 	public ModelAndView updBefor(HttpServletRequest request) {
 		logger.info("updBefor", SysDbmsTabsInfoController.class);
@@ -231,7 +232,7 @@ public class SysDbmsTabsInfoController {
 		view.addObject("sysTableInfo", info);
 		return view;
 	}
-	
+
 	@RequestMapping(path = "/updBeforEdit", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView updBeforEdit(HttpServletRequest request) {
 		logger.info("updBeforEdit", SysDbmsTabsInfoController.class);
@@ -244,5 +245,5 @@ public class SysDbmsTabsInfoController {
 		view.addObject("sysTableInfo", info);
 		return view;
 	}
-	
+
 }

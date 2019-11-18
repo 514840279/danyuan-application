@@ -44,7 +44,7 @@ spring:
     #driverClassName: com.mysql.jdbc.Driver
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: 514840279@qq.com
-    url: jdbc:mysql:///application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql:///application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true
     username: root
     # SQLException: XAER_INVAL: Invalid arguments (or unsupported command)问题
     xa:
