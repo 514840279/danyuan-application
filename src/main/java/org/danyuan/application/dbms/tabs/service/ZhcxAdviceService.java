@@ -1,6 +1,7 @@
 package org.danyuan.application.dbms.tabs.service;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -190,6 +191,7 @@ public class ZhcxAdviceService {
 	}
 	
 	/**
+	 * @throws SQLException
 	 * @param jdbcTemplate2
 	 * @param sysAdviceMessDao
 	 * @param multiDatasource
@@ -201,7 +203,7 @@ public class ZhcxAdviceService {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	public static void startConfixOracleTableConfig(SysDbmsTabsInfo sysZhcxTab, Map<String, DataSource> multiDatasource, SysDbmsAdviMessInfoDao sysAdviceMessDao, JdbcTemplate jdbcTemplate2) {
+	public static void startConfixOracleTableConfig(SysDbmsTabsInfo sysZhcxTab, Map<String, DataSource> multiDatasource, SysDbmsAdviMessInfoDao sysAdviceMessDao, JdbcTemplate jdbcTemplate2) throws SQLException {
 		logger.info("startConfixTableConfig", ZhcxAdviceService.class);
 		// 表配置比较建议修正 (表修改，表配置修改)
 		// 表修改需要人工确认，所以当前不会生成表修改的类型
@@ -225,7 +227,12 @@ public class ZhcxAdviceService {
 			Map<String, Object> resultmap = list.get(0);
 			// 表数据量更新
 			if (sysZhcxTab.getTabsRows() == null || sysZhcxTab.getTabsSpace() == null || sysZhcxTab.getTabsRows() != resultmap.get("num_rows") || sysZhcxTab.getTabsSpace() != resultmap.get("table_space")) {
-				String executeSql = "update sys_dbms_tabs_info t set  t.tabs_rows = " + resultmap.get("num_rows") + ",t.tabs_space = " + resultmap.get("tabs_space") + ",t.update_time = sysdate where t.uuid='" + sysZhcxTab.getUuid() + "'";
+				String executeSql = "";
+				if (jdbcTemplate2.getDataSource().getConnection().getMetaData().getDatabaseProductName().equals("ORACLE")) {
+					executeSql = "update sys_dbms_tabs_info t set  t.tabs_rows = " + resultmap.get("num_rows") + ",t.tabs_space = " + resultmap.get("tabs_space") + ",t.update_time = sysdate where t.uuid='" + sysZhcxTab.getUuid() + "'";
+				} else if (jdbcTemplate2.getDataSource().getConnection().getMetaData().getDatabaseProductName().equals("MySQL")) {
+					executeSql = "update sys_dbms_tabs_info t set  t.tabs_rows = " + resultmap.get("num_rows") + ",t.tabs_space = " + resultmap.get("tabs_space") + ",t.update_time = CURRENT_TIMESTAMP() where t.uuid='" + sysZhcxTab.getUuid() + "'";
+				}
 				advice.setExecuteSql(executeSql + ";");
 				jdbcTemplate2.execute(executeSql);
 				advice.setDeleteFlag(1);
