@@ -277,9 +277,11 @@
 	<script type="text/javascript" src="/plugins/toastr/toastr.min.js"></script>
 
 	<script th:inline="javascript">
-		var tabsuuid = [[*{tabsuuid}]];
+		var tabsuuid = [[*{tabsUuid}]];
+		var jdbcuuid = [[*{jdbcUuid}]];
 		var tabsName = [[*{tabsName}]];
 		var tabsDesc = [[*{tabsDesc}]];
+		tabsDesc =(tabsDesc==""||tabsDesc==null)?tabsDesc:tabsName;
 		var tabsRows = [[*{tabsRows}]];
 		var dbType = [[*{dbType}]];
 		var esName = [[*{esName}]];

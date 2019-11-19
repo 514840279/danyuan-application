@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
+import org.danyuan.application.common.config.MultiDatasourceConfig;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
 import org.danyuan.application.dbms.tabs.vo.MulteityParam;
 import org.danyuan.application.dbms.tabs.vo.SysDbmsTabsColsInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -27,11 +29,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ZhcxService {
 	@Autowired
-	JdbcTemplate	jdbcTemplate;
-
-	@Value("${spring.jpa.database}")
-	private String	database;
+	JdbcTemplate			jdbcTemplate;
 	
+//	@Value("${spring.jpa.database}")
+//	private String	database;
+
+	@Autowired
+	MultiDatasourceConfig	multiDatasourceConfig;
+
 	/**
 	 * 方法名： findAllSigleTableByMulitityParam
 	 * 功 能： 单表多条件查询
@@ -81,15 +86,15 @@ public class ZhcxService {
 				}
 			}
 		}
-		
+
 		resultMap(sql.toString(), null, vo, map);
 		return map;
 	}
-	
+
 	private void resultMap(String sqlString, Map<String, String> param, SysDbmsTabsColsInfoVo vo, Map<String, Object> resultMap) {
-		
+
 		StringBuilder pageSql = new StringBuilder();
-		if ("Oracle".equals(database)) {
+		if ("ORACLE".equals(vo.dbType.toUpperCase())) {
 			pageSql.append(" select *  ");
 			pageSql.append(" from (select tp.*,    ");
 			pageSql.append("   rownum as tp_rownum ");
@@ -99,36 +104,40 @@ public class ZhcxService {
 			pageSql.append("   where rownum <= " + (vo.getPageNumber().intValue()) * vo.getPageSize().intValue() + "");
 			pageSql.append(" )                           	   ");
 			pageSql.append(" where tp_rownum > " + (vo.getPageNumber().intValue() - 1) * vo.getPageSize().intValue() + "  ");
-		} else if ("MYSQL".equals(database)) {
+		} else if ("MYSQL".equals(vo.dbType.toUpperCase())) {
 			pageSql.append(sqlString.toString() + " limit " + (vo.getPageNumber().intValue() - 1) * vo.getPageSize().intValue() + "," + vo.getPageSize().intValue());
 		}
-		
-		System.out.println(pageSql.toString());
-		// List<Map<String, Object>> list = jdbcTemplate.queryForList(pageSql.toString());
-		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
-		List<Map<String, Object>> list = template.queryForList(pageSql.toString(), param);
-		if (list != null) {
-			resultMap.put("list", list);
-		} else {
-			resultMap.put("list", new ArrayList<>());
-		}
-		if ("单表多条件查询".equals(vo.getType()) || "单表多条件更多查询".equals(vo.getType())) {
-			String countsql = "";
-			if ("Oracle".equals(database)) {
-				countsql = "select count(1) as total from (" + sqlString.toString() + "  and rownum < 500  ) count";
+		try {
+			Map<String, DataSource> multiDatasource = multiDatasourceConfig.multiDatasource();
+			System.out.println(pageSql.toString());
+			// List<Map<String, Object>> list = jdbcTemplate.queryForList(pageSql.toString());
+			NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(multiDatasource.get(vo.getJdbcUuid()));
+			List<Map<String, Object>> list = template.queryForList(pageSql.toString(), param);
+			if (list != null) {
+				resultMap.put("list", list);
 			} else {
-				countsql = "select count(1) as total from (" + sqlString.toString() + "  limit 0, 500  ) count";
+				resultMap.put("list", new ArrayList<>());
 			}
-			if ((vo.getTotal() == null || "0".equals(vo.getTotal().toString()))) {
-				// Map<String, Object> total = jdbcTemplate.queryForMap(countsql);
-				long count = template.queryForObject(countsql, param, Long.class);
-				resultMap.put("total", count);
-			} else {
-				resultMap.put("total", vo.getTotal().intValue());
+			if ("单表多条件查询".equals(vo.getType()) || "单表多条件更多查询".equals(vo.getType())) {
+				String countsql = "";
+				if ("ORACLE".equals(vo.dbType.toUpperCase())) {
+					countsql = "select count(1) as total from (" + sqlString.toString() + "  and rownum < 500  ) count";
+				} else {
+					countsql = "select count(1) as total from (" + sqlString.toString() + "  limit 0, 500  ) count";
+				}
+				if ((vo.getTotal() == null || "0".equals(vo.getTotal().toString()))) {
+					// Map<String, Object> total = jdbcTemplate.queryForMap(countsql);
+					long count = template.queryForObject(countsql, param, Long.class);
+					resultMap.put("total", count);
+				} else {
+					resultMap.put("total", vo.getTotal().intValue());
+				}
 			}
+			multiDatasourceConfig.destroyMultiDatasource(multiDatasource);
+		} catch (Exception e) {
 		}
 	}
-	
+
 	/**
 	 * 方法名： findBySingleTableByMulteityParam
 	 * 功 能： 单表多条件分组查询
@@ -171,7 +180,7 @@ public class ZhcxService {
 		System.err.println(sql.toString());
 		return map;
 	}
-	
+
 	/**
 	 * 方法名： searchSqlByParams
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -225,11 +234,11 @@ public class ZhcxService {
 			if (exists) {
 				sql.append(" and (  ").append(sqltem.toString()).append(" )");
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	/**
 	 * @param paramList
 	 * 方法名： sortByUserIndex
@@ -269,5 +278,5 @@ public class ZhcxService {
 		}
 		return listlist;
 	}
-	
+
 }

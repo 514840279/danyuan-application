@@ -47,6 +47,7 @@ function findAllType_Sucess(result){
 					table_parrent.append(table);
 					table.bind('click',function(){
 						jQuery("#tabsuuid").val(tabsUuid);
+						jQuery("#jdbcUuid").val(value.jdbcUuid);
 						jQuery("#tabsName").val(value.tabsName);
 						jQuery("#tabsDesc").val(value.tabsDesc);
 						jQuery("#tabsRows").val(tabsRows);

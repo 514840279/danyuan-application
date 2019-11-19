@@ -1,7 +1,6 @@
 temp_index_number = 1;
 lenth = 0;
 $(function() {
-
 	
 	// 查询条件展示
 	// paramList
@@ -79,10 +78,11 @@ function findAllType_Sucess(result){
 				var table_parrent = type.find("#show_table_id");
 				$.each(result,function(index,value){
 					var dbType = value.dbType;
+					var jdbcUuid = value.jdbcUuid;
 					var esName = value.esName;
 					var tabsName= value.tabsName;
 					var tabsDesc= value.tabsDesc;
-					tabsDesc = tabsDesc==""?tabsName:tabsDesc;
+					tabsDesc = (tabsDesc==""||tabsDesc==null)?tabsName:tabsDesc;
 					var tabsId=value.uuid;
 					var tabsRows = value.tabsRows==null?0:value.tabsRows;
 					var table = table_parrent.find("#table_box:eq(0)").clone();
@@ -102,6 +102,7 @@ function findAllType_Sucess(result){
 		    		more.css({ "cursor" : "pointer"});		
 					more.bind("click", function(){
 						jQuery("#tabsuuid").val(tabsId);
+						jQuery("#jdbcUuid").val(jdbcUuid);
 						jQuery("#tabsName").val(tabsName);
 						jQuery("#tabsRows").val(0);
 						jQuery("#dbType").val(dbType);
@@ -190,7 +191,7 @@ function findAllType_Sucess(result){
 							})
 							// 
 							tabsDesc = tabsDesc==null||tabsDesc==""?tabsName:tabsDesc
-							reset(tabsId,tabsName,column,result,table,tabsDesc,dbType,esName) ;
+							reset(tabsId,tabsName,column,result,table,tabsDesc,dbType,esName,jdbcUuid) ;
 						}
 					});
 
@@ -239,7 +240,7 @@ Date.prototype.format = function(fmt) {
 
 //var paramsNode=[];
 // 表数据加载
-function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
+function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName,jdbcUuid) {
 	console.log(dbType);
 //	var sysc = [];
 //	$.each(sysColumn,function(index,valu){
@@ -288,6 +289,7 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 	    		"username":username,
 		        tabsName : tabsName,
 		        dbType:dbType,
+		        jdbcUuid:jdbcUuid,
 		        esName:esName,
 		        type:_type,
 		        list:sysColumn,

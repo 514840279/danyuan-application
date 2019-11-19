@@ -57,80 +57,61 @@ public class SysDbmsTabsInfoController {
 	MultiDatasourceConfig				multiDatasourceConfig;
 	
 	@RequestMapping(path = "/pagev", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<SysDbmsTabsInfo> pagev(@RequestBody SysDbmsTabsJdbcInfoVo vo) throws Exception {
+	public List<SysDbmsTabsInfo> pagev(@RequestBody SysDbmsTabsJdbcInfoVo vo) throws SQLException {
 		logger.info("pagev", SysDbmsTabsInfoController.class);
-
-		List<SysDbmsTabsInfo> list = null;
-		SysDbmsTabsJdbcInfo info = sysDbmsTabsJdbcInfoService.findOne(vo.getInfo());
 		Map<String, DataSource> multiDatasource = multiDatasourceConfig.multiDatasource();
-		DataSource connection = multiDatasource.get(info.getUuid());
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(connection);
-		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
-		if (info != null && info.getType().equals("mysql")) {
-			// List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
-			StringBuilder pageSql = new StringBuilder();
-			pageSql.append(" SELECT UUID() AS uuid,   ");
-			pageSql.append("  '" + info.getUuid() + "' as jdbc_uuid,  ");
-			pageSql.append(" CONCAT(T.`TABLE_SCHEMA`,'.' ,T.`TABLE_NAME`) AS tabs_name,");
-			pageSql.append(" T.`TABLE_COMMENT`  AS tabs_desc, ");
-			pageSql.append(" 'mysql'  AS db_type, ");
-			pageSql.append(" T.`TABLE_ROWS` AS tabs_rows ");
-			pageSql.append(" FROM `INFORMATION_SCHEMA`.`TABLES` T ");
-			pageSql.append(" WHERE T.`TABLE_SCHEMA` = '" + ("".equals(vo.getSearchText()) ? info.getDatabaseName() : vo.getSearchText().toUpperCase()) + "'");
-			pageSql.append(" AND NOT EXISTS ( ");
-			pageSql.append("	SELECT 1 FROM application.`sys_dbms_tabs_info` a ");
-			pageSql.append("	WHERE CONCAT(    T.`TABLE_SCHEMA`,    '.',    T.`TABLE_NAME`  ) = a.`tabs_name` ");
-			pageSql.append(" )");
-			pageSql.append(" order by CONCAT(T.`TABLE_SCHEMA`,'.' ,T.`TABLE_NAME`),TABLE_ROWS desc");
-			// pageSql.append(" limit " + (vo.getPageNumber() - 1) * vo.getPageSize() + "," + vo.getPageSize());
-			System.err.println(pageSql.toString());
-//			Map<String, String> param = new HashMap<>();
-			// Map<String, DataSource> multiDatasource = getMultiDatasource();
-			// JdbcTemplate jdbcTemplate = new JdbcTemplate(multiDatasource.get(info.getUuid()));
+		try {
 
-			list = template.getJdbcOperations().query(pageSql.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
-		} else {
+			List<SysDbmsTabsInfo> list = null;
+			SysDbmsTabsJdbcInfo info = sysDbmsTabsJdbcInfoService.findOne(vo.getInfo());
+			DataSource connection = multiDatasource.get(info.getUuid());
+			JdbcTemplate jdbcTemplate = new JdbcTemplate(connection);
+			NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+			if (info != null && info.getType().equals("mysql")) {
+				// List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
+				StringBuilder pageSql = new StringBuilder();
+				pageSql.append(" SELECT UUID() AS uuid,   ");
+				pageSql.append("  '" + info.getUuid() + "' as jdbc_uuid,  ");
+				pageSql.append(" CONCAT(T.`TABLE_SCHEMA`,'.' ,T.`TABLE_NAME`) AS tabs_name,");
+				pageSql.append(" T.`TABLE_COMMENT`  AS tabs_desc, ");
+				pageSql.append(" 'mysql'  AS db_type, ");
+				pageSql.append(" T.`TABLE_ROWS` AS tabs_rows ");
+				pageSql.append(" FROM `INFORMATION_SCHEMA`.`TABLES` T ");
+				pageSql.append(" WHERE T.`TABLE_SCHEMA` = '" + ("".equals(vo.getSearchText()) ? info.getDatabaseName() : vo.getSearchText().toUpperCase()) + "'");
+				pageSql.append(" AND NOT EXISTS ( ");
+				pageSql.append("	SELECT 1 FROM application.`sys_dbms_tabs_info` a ");
+				pageSql.append("	WHERE CONCAT(    T.`TABLE_SCHEMA`,    '.',    T.`TABLE_NAME`  ) = a.`tabs_name` ");
+				pageSql.append(" )");
+				pageSql.append(" order by CONCAT(T.`TABLE_SCHEMA`,'.' ,T.`TABLE_NAME`),TABLE_ROWS desc");
 
-//			String dblinkString = "";
-//			String url = jdbcTemplate.getDataSource().getConnection().getMetaData().getURL();
-//			if (url.contains(info.getIp())) {
-//
-//			} else {
-//				// dblink
-//				StringBuilder stringBuilder = new StringBuilder();
-//				stringBuilder.append(" select db_link from all_db_links " + "where host like '%" + info.getIp() + "%' " + "and host like '%" + info.getDatabaseName() + "%'");
-//				List<String> dblinkList = jdbcTemplate.queryForList(stringBuilder.toString(), String.class);
-//				if (dblinkList != null && dblinkList.size() > 0) {
-//					dblinkString = "@" + dblinkList.get(0);
-//				} else {
-//					throw new Exception("没有dblink连接无法直接连接");
-//				}
-//			}
+				list = template.getJdbcOperations().query(pageSql.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
+			} else {
 
-			StringBuilder sBuilder = new StringBuilder();
-			sBuilder.append(" select  ");
-			sBuilder.append("  t.owner||'_'||t.table_name as UUID, ");
-			sBuilder.append("  '" + info.getUuid() + "' as jdbc_uuid,  ");
-			sBuilder.append("  'WEIFNENLEI' as type_uuid, ");
-			sBuilder.append("  t1.comments as tabs_desc, ");
-			sBuilder.append("  t.num_rows as tabs_rows, ");
-			sBuilder.append("  t.blocks*8*1024 as tab_space, ");
-			sBuilder.append("  rownum as tabs_order, ");
-			sBuilder.append("  '0' as delete_flag, ");
-			sBuilder.append("  'oracle' as db_type, ");
-			sBuilder.append("  t.owner||'.'||t.table_name  as tabs_name  ,");
-			sBuilder.append("  '" + info.getUuid() + "'  as addr_uUid  ");
-			sBuilder.append("  from all_tables  t ");
-			sBuilder.append(" left join all_tab_comments  t1   on t1.owner = t.owner   and t1.table_name=t.table_name ");
-			sBuilder.append("  where  t.owner = '" + info.getUsername().toUpperCase() + "' ");
+				StringBuilder sBuilder = new StringBuilder();
+				sBuilder.append(" select  ");
+				sBuilder.append("  t.owner||'_'||t.table_name as UUID, ");
+				sBuilder.append("  '" + info.getUuid() + "' as jdbc_uuid,  ");
+				sBuilder.append("  'WEIFENLEI' as type_uuid, ");
+				sBuilder.append("  t1.comments as tabs_desc, ");
+				sBuilder.append("  t.num_rows as tabs_rows, ");
+				sBuilder.append("  t.blocks*8*1024 as tab_space, ");
+				sBuilder.append("  rownum as tabs_order, ");
+				sBuilder.append("  '0' as delete_flag, ");
+				sBuilder.append("  'oracle' as db_type, ");
+				sBuilder.append("  t.owner||'.'||t.table_name  as tabs_name  ,");
+				sBuilder.append("  '" + info.getUuid() + "'  as addr_uUid  ");
+				sBuilder.append("  from all_tables  t ");
+				sBuilder.append(" left join all_tab_comments  t1   on t1.owner = t.owner   and t1.table_name=t.table_name ");
+				sBuilder.append("  where  t.owner = '" + info.getUsername().toUpperCase() + "' ");
 
-			list = template.getJdbcOperations().query(sBuilder.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
+				list = template.getJdbcOperations().query(sBuilder.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
 
+			}
+			
+			return list;
+		} finally {
+			multiDatasourceConfig.destroyMultiDatasource(multiDatasource);
 		}
-		multiDatasourceConfig.destroyMultiDatasource(multiDatasource);
-		return list;
-		// String sql = "Select * from " + param.getSearchText() + " order by datetime desc limit 0,500";
-
 	}
 	
 	/**

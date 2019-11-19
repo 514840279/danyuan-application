@@ -1,5 +1,7 @@
 package org.danyuan.application.dbms.tabs.controller;
 
+import java.sql.SQLException;
+
 import org.danyuan.application.common.base.BaseController;
 import org.danyuan.application.common.base.BaseControllerImpl;
 import org.danyuan.application.dbms.tabs.po.VSysDbmsTableDis;
@@ -23,10 +25,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/vSysDbmsTableDis")
 public class VSysDbmsTableDisController extends BaseControllerImpl<VSysDbmsTableDis> implements BaseController<VSysDbmsTableDis> {
-	
+
 	@Autowired
 	VSysDbmsTableDisService vSysDbmsTableDisService;
-	
+
 	@GetMapping("/detail/{uuid}")
 	public ModelAndView name(@PathVariable("uuid") String uuid) {
 		ModelAndView modelAndView = new ModelAndView("dbms/tabs/vsysdbmstabledisdetail");
@@ -35,10 +37,10 @@ public class VSysDbmsTableDisController extends BaseControllerImpl<VSysDbmsTable
 		modelAndView.addObject("vSysDbmsTableDis", vSysDbmsTableDisService.findOne(info));
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("runsql")
-	public String runsql(@RequestBody VSysDbmsTableDis sVSysDbmsTableDis) {
+	public String runsql(@RequestBody VSysDbmsTableDis sVSysDbmsTableDis) throws SQLException {
 		return vSysDbmsTableDisService.runsql(sVSysDbmsTableDis);
 	}
-
+	
 }

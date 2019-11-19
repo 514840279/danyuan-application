@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 public class MultiDatasourceConfig {
 	@Autowired
 	SysDbmsTabsJdbcInfoDao sysDbmsTabsJdbcInfoDao;
-
+	
 	@SuppressWarnings("unchecked")
 	public Map<String, DataSource> multiDatasource() {
 		Map<String, DataSource> map = new HashMap<>();
@@ -36,7 +36,7 @@ public class MultiDatasourceConfig {
 					case "mysql":
 //						driverClassName = "com.mysql.jdbc.Driver";
 						driverClassName = "com.mysql.cj.jdbc.Driver";
-						url = "jdbc:mysql://" + sysZhcxAddr.getIp() + ":" + sysZhcxAddr.getPort() + "/" + sysZhcxAddr.getDatabaseName() + "?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false";
+						url = "jdbc:mysql://" + sysZhcxAddr.getIp() + ":" + sysZhcxAddr.getPort() + "/" + sysZhcxAddr.getDatabaseName() + "?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true";
 						break;
 					default:
 						driverClassName = "oracle.jdbc.driver.OracleDriver";
@@ -44,7 +44,7 @@ public class MultiDatasourceConfig {
 						break;
 				}
 				DataSource dataSource = DataSourceBuilder.create().driverClassName(driverClassName).url(url).username(sysZhcxAddr.getUsername()).password(sysZhcxAddr.getPassword()).type(type).build();
-				
+
 				map.put(sysZhcxAddr.getUuid(), dataSource);
 			}
 		} catch (ClassNotFoundException e) {
@@ -52,7 +52,7 @@ public class MultiDatasourceConfig {
 		}
 		return map;
 	}
-
+	
 	/**
 	 * @throws SQLException
 	 * @方法名 destroyMultiDatasource

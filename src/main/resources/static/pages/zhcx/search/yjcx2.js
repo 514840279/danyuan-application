@@ -97,10 +97,11 @@ function findAllTypeSucess(result){
 				lenth = lenth+result.length;
 				$.each(result,function(index,value){
 					var dbType = value.dbType;
+					var jdbcUuid = value.jdbcUuid;
 					var esName = value.esName;
 					var tabsName= value.tabsName;
 					var tabsDesc= value.tabsDesc;
-					tabsDesc = tabsDesc==""?tabsName:tabsDesc;
+					tabsDesc = (tabsDesc==""||tabsDesc==null)?tabsName:tabsDesc;
 					var tabsId=value.uuid;
 					var tabsRows = value.tabsRows==null?0:value.tabsRows;
 					var table = $("#mainOracleDiv").find("#table_box:eq(0)").clone();
@@ -121,6 +122,7 @@ function findAllTypeSucess(result){
 		    		more.css({ "cursor" : "pointer"});		
 					more.bind("click", function(){
 						jQuery("#tabsuuid").val(tabsId);
+						jQuery("#jdbcUuid").val(jdbcUuid);
 						jQuery("#tabsName").val(tabsName);
 						jQuery("#tabsRows").val(0);
 						jQuery("#dbType").val(dbType);
@@ -209,7 +211,7 @@ function findAllTypeSucess(result){
 							})
 							// 
 							tabsDesc = tabsDesc==null||tabsDesc==""?tabsName:tabsDesc
-							reset(tabsId,tabsName,column,result,table,tabsDesc,dbType,esName) ;
+							reset(tabsId,tabsName,column,result,table,tabsDesc,dbType,esName,jdbcUuid) ;
 						}
 					});
 
@@ -258,7 +260,7 @@ Date.prototype.format = function(fmt) {
 
 //var paramsNode=[];
 // 表数据加载
-function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
+function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName,jdbcUuid) {
 //	var sysc = [];
 //	$.each(sysColumn,function(index,valu){
 //		if(valu.userIndex!=null&&valu.userIndex!=""){
@@ -326,6 +328,7 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName) {
 	    		"username":username,
 		        tabsName : tabsName,
 		        dbType:dbType,
+		        jdbcUuid:jdbcUuid,
 		        esName:esName,
 		        type:_type,
 		        list:sysColumn,

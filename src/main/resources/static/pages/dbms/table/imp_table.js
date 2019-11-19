@@ -72,7 +72,7 @@ $(function() {
 					var data =$('#imp_table_datagrid').bootstrapTable('getAllSelections');
 					var url = "/sysDbmsTabsInfo/savev";
 					var param={list:data,username:username};
-					ajaxPost(url, param, addSysDbmsTabsInfoSuccess, 5000, findError);
+					ajaxPost(url, param, addSysDbmsTabsInfoSuccess);
 				}
 			}
 		});

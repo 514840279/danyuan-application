@@ -1,5 +1,6 @@
 package org.danyuan.application.dbms.tabs.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,11 +25,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class VSysDbmsTableDisService extends BaseServiceImpl<VSysDbmsTableDis> implements BaseService<VSysDbmsTableDis> {
-
+	
 	@Autowired
 	MultiDatasourceConfig multiDatasourceConfig;
-
+	
 	/**
+	 * @throws SQLException
 	 * @方法名 runsql
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
 	 * @参数 @param sVSysDbmsTableDis
@@ -37,9 +39,9 @@ public class VSysDbmsTableDisService extends BaseServiceImpl<VSysDbmsTableDis> i
 	 * @author Administrator
 	 * @throws
 	 */
-	public String runsql(VSysDbmsTableDis sVSysDbmsTableDis) {
-		Map<String, DataSource> map = multiDatasourceConfig.multiDatasource();
-		DataSource dataSource = map.get(sVSysDbmsTableDis.getJdbcUuid());
+	public String runsql(VSysDbmsTableDis sVSysDbmsTableDis) throws SQLException {
+		Map<String, DataSource> multiDatasource = multiDatasourceConfig.multiDatasource();
+		DataSource dataSource = multiDatasource.get(sVSysDbmsTableDis.getJdbcUuid());
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		jdbcTemplate.execute(sVSysDbmsTableDis.getDisSql());
 		List<String> sqList = new ArrayList<>();
@@ -48,7 +50,8 @@ public class VSysDbmsTableDisService extends BaseServiceImpl<VSysDbmsTableDis> i
 		sqList.add(sVSysDbmsTableDis.getRenameSql());
 		sqList.add(sVSysDbmsTableDis.getResetSql());
 		jdbcTemplate.batchUpdate(sqList.toArray(new String[sqList.size()]));
+		multiDatasourceConfig.destroyMultiDatasource(multiDatasource);
 		return "1";
 	}
-	
+
 }

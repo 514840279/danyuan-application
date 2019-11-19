@@ -19,8 +19,10 @@ $(function() {
 		}else{
 			tabsDesc= evt.params.data.tabsDesc;
 			tabsName = evt.params.data.tabsName;
+			jdbcUuid = evt.params.data.jdbcUuid;
 			dbType=evt.params.data.dbType;
-			searchColumns(search_table_tabsName,tabsName,dbType);
+			_total=0;
+			searchColumns(search_table_tabsName,tabsName,dbType,jdbcUuid);
 		}
 	});
 	
@@ -39,7 +41,7 @@ function reloadTabsnameSelect(){
 function successreloadTabsnameSelect(result){
 	var data =[{id:'请选择',text:'请选择'}];
 	$.each(result,function(index,value){
-		data.push({id:value.uuid,text: value.tabsName,desc:value.tabsDesc,tabsName:value.tabsName,dbType:value.dbType});
+		data.push({id:value.uuid,text: value.tabsName,desc:value.tabsDesc,tabsName:value.tabsName,dbType:value.dbType,jdbcUuid:value.jdbcUuid});
 	});
 	$('#search_table_tabsName').empty();
 	$('#search_table_tabsName').select2({data:data});
@@ -87,7 +89,7 @@ function successSearchTableTypeInfoindex(result){
 	});
 }
 
-function searchColumns(search_table_tabsName,tabsName,dbType){
+function searchColumns(search_table_tabsName,tabsName,dbType,jdbcUuid){
 	// 列查询
 	var url_column = "/zhcx/findAllColumn";
 	var param_column={
@@ -165,7 +167,7 @@ function searchColumns(search_table_tabsName,tabsName,dbType){
 				
 			})
 			$('#db_table_datagrid').bootstrapTable('destroy');
-			reset(tabsName,column,result,dbType) ;
+			reset(tabsName,column,result,dbType,jdbcUuid) ;
 		}
 	});
 }
@@ -173,7 +175,7 @@ function searchColumns(search_table_tabsName,tabsName,dbType){
 
 //var paramsNode=[];
 //表数据加载
-function reset(tabsName,column,sysColumn,dbType) {
+function reset(tabsName,column,sysColumn,dbType,jdbcUuid) {
 	_type="单表多条件查询";
 //	var sysc = [];
 //	$.each(sysColumn,function(index,valu){
@@ -222,6 +224,7 @@ function reset(tabsName,column,sysColumn,dbType) {
 	    		pageSize: params.pageSize,
 	    		"username":username,
 		        tabsName : tabsName,
+		        jdbcUuid:jdbcUuid,
 		        dbType:dbType,
 		        type:_type,
 		        total:_total,

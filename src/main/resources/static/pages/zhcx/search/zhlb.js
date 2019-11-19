@@ -209,6 +209,7 @@ function reset(id,tabsName,column,sysColumn) {
 				dbType:dbType,
 				esName:esName,
 				total:_total,
+				jdbcUuid:jdbcuuid,
 				list:sysColumn,
 				paramList:paramList
 			};
