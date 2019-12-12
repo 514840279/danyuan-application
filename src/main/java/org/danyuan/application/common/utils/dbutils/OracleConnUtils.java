@@ -6,31 +6,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.springframework.stereotype.Component;
-
 /**
  * @author Administrator
  */
-@Component("oracleConnUtils")
 public class OracleConnUtils {
-	
+
 	// jdbc:oracle:thin
 	private static final String	URL			= "jdbc:mysql:///application?useUnicode=true&characterEncoding=UTF-8&useSSL=false&zeroDateTimeBehavior=convertToNull";
 	private static final String	USER		= "root";
 	private static final String	PASSWORD	= "514840279@qq.com";
-	
+
 	// 1
 	static {
 		try {
 			// OracleDriver
 			// Class.forName("oracle.jdbc.driver.OracleDriver");
 			Class.forName("com.mysql.jdbc.Driver");
-			
+
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static Connection getConnection() {
 		try {
 			return DriverManager.getConnection(URL, USER, PASSWORD);
@@ -39,7 +36,7 @@ public class OracleConnUtils {
 		}
 		return null;
 	}
-	
+
 	public static Connection getConnection(String url, String user, String password) {
 		try {
 			return DriverManager.getConnection(url, user, password);
@@ -48,7 +45,7 @@ public class OracleConnUtils {
 		}
 		return null;
 	}
-	
+
 	public static void close(Connection conn) {
 		try {
 			if (conn != null && !conn.isClosed()) {
@@ -58,7 +55,7 @@ public class OracleConnUtils {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void close(Statement state) {
 		try {
 			if (state != null) {
@@ -68,7 +65,7 @@ public class OracleConnUtils {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void close(ResultSet rs) {
 		try {
 			if (rs != null) {

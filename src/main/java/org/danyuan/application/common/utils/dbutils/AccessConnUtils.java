@@ -6,19 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.springframework.stereotype.Component;
-
 /**
  * @program: javalearning
  * @Date: 2018/7/11 11:03
  * @Author: hyman.hu
  * @Description: 工具类
  */
-@Component("accessConnUtils")
 public class AccessConnUtils {
-
+	
 	private static final String dbURL = "jdbc:ucanaccess://" + "F:\\data\\Database2.mdb";
-
+	
 	/*
 	 * 加载驱动
 	 */
@@ -31,7 +28,7 @@ public class AccessConnUtils {
 			cnfex.printStackTrace();
 		}
 	}
-
+	
 	// 建立连接
 	public static Connection getConnection() {
 		try {
@@ -44,7 +41,7 @@ public class AccessConnUtils {
 		}
 		return null;
 	}
-
+	
 	public static Connection getConnection(String filepath) {
 		try {
 			return DriverManager.getConnection("jdbc:ucanaccess://" + filepath);
@@ -53,7 +50,7 @@ public class AccessConnUtils {
 		}
 		return null;
 	}
-
+	
 	// 关闭资源
 	public static void close(Connection con, PreparedStatement ps, ResultSet rs) {
 		try {
