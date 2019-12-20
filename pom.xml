@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.danyuan.application</groupId>
@@ -49,7 +51,8 @@
 			<artifactId>tomcat-jdbc</artifactId>
 		</dependency>
 
-		<!-- 包含支持UI模版（Velocity，FreeMarker，JasperReports）， 邮件服务， 脚本服务(JRuby)， 缓存Cache（EHCache）， 任务计划Scheduling（uartz）。 -->
+		<!-- 包含支持UI模版（Velocity，FreeMarker，JasperReports）， 邮件服务， 脚本服务(JRuby)， 缓存Cache（EHCache）， 
+			任务计划Scheduling（uartz）。 -->
 		<!-- <dependency> -->
 		<!-- <groupId>org.springframework</groupId> -->
 		<!-- <artifactId>spring-context-support</artifactId> -->
@@ -104,6 +107,14 @@
 			<artifactId>mssql-jdbc</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- oracle 数据库驱动 -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>11.2.0.1.0</version>
+		</dependency>
+		
+		
 		<!--安全框架 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -196,25 +207,6 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.2.2</version>
 		</dependency>
-
-
-		<!-- oracle 数据库驱动 -->
-		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc14 -->
-		<!-- <dependency> -->
-		<!-- <groupId>com.oracle</groupId> -->
-		<!-- <artifactId>ojdbc14</artifactId> -->
-		<!-- <version>10.2.0.4.0</version> -->
-		<!-- </dependency> -->
-		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>12.1.0.1-atlassian-hosted</version>
-		</dependency>
-
-
-
-
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>

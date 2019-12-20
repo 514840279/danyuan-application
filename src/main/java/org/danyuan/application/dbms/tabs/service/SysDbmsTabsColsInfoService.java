@@ -1,12 +1,11 @@
 package org.danyuan.application.dbms.tabs.service;
 
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-
-import javax.sql.DataSource;
 
 import org.danyuan.application.common.base.BaseService;
 import org.danyuan.application.common.base.BaseServiceImpl;
@@ -28,7 +27,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.stereotype.Service;
 
 /**
@@ -208,6 +207,7 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	
 	/**
 	 * @throws SQLException
+	 * @throws SQLException
 	 * @方法名 pagev
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
 	 * @参数 @param vo
@@ -222,12 +222,14 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 		tabs.setUuid(uuid);
 		tabs = sysDbmsTabsInfoService.findOne(tabs);
 		SysDbmsTabsJdbcInfo info = sysDbmsTabsJdbcInfoService.findById(tabs.getJdbcUuid());
-		Map<String, DataSource> multiDatasource = multiDatasourceConfig.multiDatasource();
-		DataSource connection = multiDatasource.get(info.getUuid());
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(connection);
-		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+//		Map<String, DataSource> multiDatasource = multiDatasourceConfig.multiDatasource();
+		Connection connection = multiDatasourceConfig.getConnection(info.getUuid());
+		Statement statement = connection.createStatement();
+		RowMapperResultSetExtractor<SysDbmsTabsColsInfo> rse = new RowMapperResultSetExtractor<>(new BeanPropertyRowMapper<>(SysDbmsTabsColsInfo.class));
+//		JdbcTemplate jdbcTemplate = new JdbcTemplate(connection);
+//		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+		StringBuilder pageSql = new StringBuilder();
 		if (info != null && info.getType().equals("mysql")) {
-			StringBuilder pageSql = new StringBuilder();
 			pageSql.append(" SELECT  ");
 			pageSql.append("   UUID() AS 'uuid', ");
 			pageSql.append("   '" + tabs.getUuid() + "' as TABS_UUID,");
@@ -245,11 +247,10 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 			
 			pageSql.append(" ORDER BY t.`ORDINAL_POSITION`  ");
 			
-			List<SysDbmsTabsColsInfo> list = template.getJdbcOperations().query(pageSql.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsColsInfo.class));
-			multiDatasourceConfig.destroyMultiDatasource(multiDatasource);
-			return list;
+//			List<SysDbmsTabsColsInfo> list = template.getJdbcOperations().query(pageSql.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsColsInfo.class));
+//			multiDatasourceConfig.destroyMultiDatasource(multiDatasource);
+			
 		} else {
-			StringBuilder pageSql = new StringBuilder();
 			pageSql.append(" SELECT  ");
 			pageSql.append("   sys_guid() AS uuid, ");
 			pageSql.append("   '" + tabs.getUuid() + "' as TABS_UUID,");
@@ -264,10 +265,12 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 			
 			pageSql.append(" ORDER BY t.COLUMN_ID  ");
 			
-			List<SysDbmsTabsColsInfo> list = template.getJdbcOperations().query(pageSql.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsColsInfo.class));
-			multiDatasourceConfig.destroyMultiDatasource(multiDatasource);
-			return list;
+//			List<SysDbmsTabsColsInfo> list = template.getJdbcOperations().query(pageSql.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsColsInfo.class));
+//			multiDatasourceConfig.destroyMultiDatasource(multiDatasource);
 		}
-
+		List<SysDbmsTabsColsInfo> list = rse.extractData(statement.executeQuery(pageSql.toString()));
+		statement.close();
+		connection.close();
+		return list;
 	}
 }

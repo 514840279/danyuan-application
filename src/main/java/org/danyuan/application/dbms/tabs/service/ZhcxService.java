@@ -1,11 +1,15 @@
 package org.danyuan.application.dbms.tabs.service;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import javax.sql.DataSource;
+import java.util.Set;
 
 import org.danyuan.application.common.config.MultiDatasourceConfig;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
@@ -13,7 +17,6 @@ import org.danyuan.application.dbms.tabs.vo.MulteityParam;
 import org.danyuan.application.dbms.tabs.vo.SysDbmsTabsColsInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -30,13 +33,13 @@ import org.springframework.stereotype.Service;
 public class ZhcxService {
 	@Autowired
 	JdbcTemplate			jdbcTemplate;
-	
+
 //	@Value("${spring.jpa.database}")
 //	private String	database;
-
+	
 	@Autowired
 	MultiDatasourceConfig	multiDatasourceConfig;
-
+	
 	/**
 	 * 方法名： findAllSigleTableByMulitityParam
 	 * 功 能： 单表多条件查询
@@ -86,13 +89,13 @@ public class ZhcxService {
 				}
 			}
 		}
-
+		
 		resultMap(sql.toString(), null, vo, map);
 		return map;
 	}
-
-	private void resultMap(String sqlString, Map<String, String> param, SysDbmsTabsColsInfoVo vo, Map<String, Object> resultMap) {
-
+	
+	private void resultMap(String sqlString, Map<String, String> params, SysDbmsTabsColsInfoVo vo, Map<String, Object> resultMap) {
+		
 		StringBuilder pageSql = new StringBuilder();
 		if ("ORACLE".equals(vo.dbType.toUpperCase())) {
 			pageSql.append(" select *  ");
@@ -107,17 +110,50 @@ public class ZhcxService {
 		} else if ("MYSQL".equals(vo.dbType.toUpperCase())) {
 			pageSql.append(sqlString.toString() + " limit " + (vo.getPageNumber().intValue() - 1) * vo.getPageSize().intValue() + "," + vo.getPageSize().intValue());
 		}
-		try {
-			Map<String, DataSource> multiDatasource = multiDatasourceConfig.multiDatasource();
-			System.out.println(pageSql.toString());
-			// List<Map<String, Object>> list = jdbcTemplate.queryForList(pageSql.toString());
-			NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(multiDatasource.get(vo.getJdbcUuid()));
-			List<Map<String, Object>> list = template.queryForList(pageSql.toString(), param);
-			if (list != null) {
-				resultMap.put("list", list);
-			} else {
-				resultMap.put("list", new ArrayList<>());
+		String pageSqlstr = pageSql.toString();
+		if (params != null) {
+			Set<String> set = params.keySet();
+			Iterator<String> iterable = set.iterator();
+
+			while (iterable.hasNext()) {
+				String nameString = iterable.next();
+				pageSqlstr = pageSqlstr.replace(":" + nameString, "'" + params.get(nameString) + "'");
 			}
+		}
+		try {
+			Connection connection = multiDatasourceConfig.getConnection(vo.getJdbcUuid());
+			Statement statement = connection.createStatement();
+//			Map<String, DataSource> multiDatasource = multiDatasourceConfig.multiDatasource();
+			System.out.println(pageSqlstr);
+			// List<Map<String, Object>> list = jdbcTemplate.queryForList(pageSql.toString());
+//			NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(multiDatasource.get(vo.getJdbcUuid()));
+//			List<Map<String, Object>> list = template.queryForList(pageSql.toString(), param);
+			ResultSet resultSet = statement.executeQuery(pageSqlstr);
+			List<Map<String, Object>> list = new ArrayList<>();
+			ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+			
+			while (resultSet.next()) {
+				Map<String, Object> map = new HashMap<>();
+				for (int i = 0; i < resultSetMetaData.getColumnCount(); i++) {
+					String metadata = resultSetMetaData.getColumnName(i + 1);
+					switch (resultSetMetaData.getColumnType(i + 1)) {
+						case java.sql.Types.TIMESTAMP:
+							map.put(metadata, resultSet.getDate(i + 1));
+							break;
+						default:
+							map.put(metadata, resultSet.getObject(i + 1));
+							break;
+					}
+				}
+				list.add(map);
+			}
+			statement.close();
+			resultMap.put("list", list);
+//			if (list != null) {
+//				resultMap.put("list", list);
+//			} else {
+//				resultMap.put("list", new ArrayList<>());
+//			}
 			if ("单表多条件查询".equals(vo.getType()) || "单表多条件更多查询".equals(vo.getType())) {
 				String countsql = "";
 				if ("ORACLE".equals(vo.dbType.toUpperCase())) {
@@ -126,18 +162,23 @@ public class ZhcxService {
 					countsql = "select count(1) as total from (" + sqlString.toString() + "  limit 0, 500  ) count";
 				}
 				if ((vo.getTotal() == null || "0".equals(vo.getTotal().toString()))) {
+					statement = connection.createStatement();
 					// Map<String, Object> total = jdbcTemplate.queryForMap(countsql);
-					long count = template.queryForObject(countsql, param, Long.class);
-					resultMap.put("total", count);
+//					long count = template.queryForObject(countsql, param, Long.class);
+					resultSet = statement.executeQuery(countsql);
+					resultSet.next();
+
+					resultMap.put("total", resultSet.getLong(1));
 				} else {
 					resultMap.put("total", vo.getTotal().intValue());
 				}
 			}
-			multiDatasourceConfig.destroyMultiDatasource(multiDatasource);
+			connection.close();
+//			multiDatasourceConfig.destroyMultiDatasource(multiDatasource);
 		} catch (Exception e) {
 		}
 	}
-
+	
 	/**
 	 * 方法名： findBySingleTableByMulteityParam
 	 * 功 能： 单表多条件分组查询
@@ -180,7 +221,7 @@ public class ZhcxService {
 		System.err.println(sql.toString());
 		return map;
 	}
-
+	
 	/**
 	 * 方法名： searchSqlByParams
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -234,11 +275,11 @@ public class ZhcxService {
 			if (exists) {
 				sql.append(" and (  ").append(sqltem.toString()).append(" )");
 			}
-
+			
 		}
-
+		
 	}
-
+	
 	/**
 	 * @param paramList
 	 * 方法名： sortByUserIndex
@@ -278,5 +319,5 @@ public class ZhcxService {
 		}
 		return listlist;
 	}
-
+	
 }
