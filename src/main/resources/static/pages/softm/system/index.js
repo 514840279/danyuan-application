@@ -45,7 +45,11 @@ $(function() {
 			{title : '更新时间',field : 'updateTime',sortable : true,align : 'center'}, 
 			{title : '标记',field : 'flag',sortable : true,align : 'center'} 
 		]
-	});
+	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
+    }).on('click-row.bs.table', function (e, row, ele,field) {
+    	$(".info").removeClass("info");
+    	$(ele).addClass("info");
+    });
 
 });
 // 窗口大小改变时 重设表头

@@ -201,12 +201,13 @@ function loadgrouptable(){
 			{title : '操作',align : 'left',  events: groupoperateEvents,formatter:optionFormatter},
 		],
 	}).on('click-row.bs.table', function (e, row, element){
-		$('.success').removeClass('success');//去除之前选中的行的，选中样式
-		$(element).addClass('success');//添加当前选中的 success样式用于区别
+		$(".info").removeClass("info");
+    	$(ele).addClass("info");
 		groupUuid = row.uuid;
 //		url = "/pages/plant/chart/build.html";
 //		$("#chart_context").load(url);
-	});
+	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
+    });
 }
 
 function optionFormatter(e,row,index){

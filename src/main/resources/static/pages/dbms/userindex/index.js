@@ -144,7 +144,11 @@ $(function() {
 		responseHandler: function(result){  // 成功时执行
 			return {rows:result.content,total:result.totalElements};
 		}, 
-	});
+	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
+    }).on('click-row.bs.table', function (e, row, ele,field) {
+    	$(".info").removeClass("info");
+    	$(ele).addClass("info");
+    });
 
 });
 // 窗口大小改变时 重设表头

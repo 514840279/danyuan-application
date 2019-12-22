@@ -195,6 +195,8 @@ function init() {
 		}
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) { // 行双击事件 
 	}).on('click-row.bs.table', function (e, row, ele,field) { // 行单击事件
+		$(".info").removeClass("info");
+    	$(ele).addClass("info");
 	});
 }
 // 表格重载 事件

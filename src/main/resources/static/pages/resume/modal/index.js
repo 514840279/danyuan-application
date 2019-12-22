@@ -147,9 +147,11 @@ function init() {
 		contextMenu: '#context-menu', // 右键菜单绑定
 		onContextMenuItem: function(row,$ele){ // 右键菜单事件
 		}
-	}).on('dbl-click-row.bs.table', function (e, row, ele,field) { // 行双击事件 
-	}).on('click-row.bs.table', function (e, row, ele,field) { // 行单击事件
-	});
+	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
+    }).on('click-row.bs.table', function (e, row, ele,field) {
+    	$(".info").removeClass("info");
+    	$(ele).addClass("info");
+    });
 }
 // 表格重载 事件
 function refresh(){

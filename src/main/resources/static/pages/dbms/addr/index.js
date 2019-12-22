@@ -77,7 +77,7 @@ $(function() {
 		showToggle : true, // 是否显示详细视图和列表视图的切换按钮
 		cardView : false, // 是否显示详细视图
 		detailView : false, // 是否显示父子表
-		singleSelect : false,
+		singleSelect : true,
 		locales : "zh-CN", // 表格汉化
 		search : true, // 显示搜索框
 		sidePagination: "client", // 服务端处理分页
@@ -93,7 +93,11 @@ $(function() {
 			{title : '描述',field : 'discription',sortable : true,align : 'center',valign : 'middle'},
 			{title : '状态',field : 'deleteFlag',sortable : true,align : 'center',valign : 'middle'},
 		]
-	});
+	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
+    }).on('click-row.bs.table', function (e, row, ele,field) {
+    	$(".info").removeClass("info");
+    	$(ele).addClass("info");
+    });
 	// 窗口大小改变时 重设表头
 	$(window).resize(function() {
 		$('#db_addr_datagrid').bootstrapTable('resetView');
