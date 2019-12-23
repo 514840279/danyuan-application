@@ -310,8 +310,8 @@ function reset(tabsName,column,sysColumn,dbType,jdbcUuid) {
 				$("input[name='useful'][value='"+(d.useful==null?"false":d.useful)+"']").prop("checked",true);
 				
 				$('#update-show-myModal').modal({
-			        show: true
-			    });
+					show : true
+				});
 			}
 		})
 	});

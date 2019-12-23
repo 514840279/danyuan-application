@@ -158,10 +158,10 @@ public class SysDbmsTabsInfoController {
 	}
 	
 	@RequestMapping(path = "/change", method = RequestMethod.POST)
-	public String change(@RequestBody SysDbmsTabsInfoVo vo) {
+	public SysDbmsTabsInfo change(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("save", SysDbmsTabsInfoController.class);
 		sysDbmsTabsInfoService.change(vo);
-		return "1";
+		return vo.getNow();
 	}
 	
 	@RequestMapping(path = "/savev", method = RequestMethod.POST)
@@ -203,7 +203,7 @@ public class SysDbmsTabsInfoController {
 		return "1";
 	}
 	
-	@RequestMapping(path = "/updBefor", method = RequestMethod.POST)
+	@RequestMapping(path = "/updBefor", method = RequestMethod.GET)
 	public ModelAndView updBefor(HttpServletRequest request) {
 		logger.info("updBefor", SysDbmsTabsInfoController.class);
 		ModelAndView view = new ModelAndView("dbms/table/index_column");

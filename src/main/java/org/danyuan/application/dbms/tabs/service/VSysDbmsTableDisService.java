@@ -1,18 +1,14 @@
 package org.danyuan.application.dbms.tabs.service;
 
+import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.sql.DataSource;
+import java.sql.Statement;
 
 import org.danyuan.application.common.base.BaseService;
 import org.danyuan.application.common.base.BaseServiceImpl;
 import org.danyuan.application.common.config.MultiDatasourceConfig;
 import org.danyuan.application.dbms.tabs.po.VSysDbmsTableDis;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,10 +21,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class VSysDbmsTableDisService extends BaseServiceImpl<VSysDbmsTableDis> implements BaseService<VSysDbmsTableDis> {
-	
+
 	@Autowired
 	MultiDatasourceConfig multiDatasourceConfig;
-	
+
 	/**
 	 * @throws SQLException
 	 * @方法名 runsql
@@ -40,18 +36,16 @@ public class VSysDbmsTableDisService extends BaseServiceImpl<VSysDbmsTableDis> i
 	 * @throws
 	 */
 	public String runsql(VSysDbmsTableDis sVSysDbmsTableDis) throws SQLException {
-		Map<String, DataSource> multiDatasource = multiDatasourceConfig.multiDatasource();
-		DataSource dataSource = multiDatasource.get(sVSysDbmsTableDis.getJdbcUuid());
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcTemplate.execute(sVSysDbmsTableDis.getDisSql());
-		List<String> sqList = new ArrayList<>();
-//		sqList.add(sVSysDbmsTableDis.getDisSql());
-		sqList.add(sVSysDbmsTableDis.getDropSql());
-		sqList.add(sVSysDbmsTableDis.getRenameSql());
-		sqList.add(sVSysDbmsTableDis.getResetSql());
-		jdbcTemplate.batchUpdate(sqList.toArray(new String[sqList.size()]));
-		multiDatasourceConfig.destroyMultiDatasource(multiDatasource);
+		Connection connection = multiDatasourceConfig.getConnection(sVSysDbmsTableDis.getJdbcUuid());
+		Statement statement = connection.createStatement();
+		statement.execute(sVSysDbmsTableDis.getDisSql());
+		statement.close();
+		statement = connection.createStatement();
+		statement.addBatch(sVSysDbmsTableDis.getDropSql());
+		statement.addBatch(sVSysDbmsTableDis.getRenameSql());
+		statement.addBatch(sVSysDbmsTableDis.getResetSql());
+		statement.executeBatch();
 		return "1";
 	}
-
+	
 }

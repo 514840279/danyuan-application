@@ -1,5 +1,6 @@
 var select2_departmentName=null;
 $(function() {
+	
 	var url = '/sysOrganization/sysOrganizationList';
 	ajaxPost(url, null, sucessLoadSysOrganizationListSelect2, 1000, findError);
 	
@@ -256,13 +257,13 @@ function InitSubTable(index) {
 			winId="jurisdiction_selelect";
 			var iconName;
 			if(data[0].uuid)
-			   //iconName=encodeURIComponent($("#add_menu_icon").val());
+				//iconName=encodeURIComponent($("#add_menu_icon").val());
 			modals.openWin({
-		    	winId:winId,
-		    	title:'资源管理',
-		    	width:'1000px',
-		    	url:"/icon/nodecorator/ztree?uuid="+data[0].uuid
-		    });
+				winId:winId,
+				title:'资源管理',
+				width:'98%',
+				url:"/icon/nodecorator/ztree?uuid="+data[0].uuid
+			});
 			
 			_role_uuid=data[0].uuid;
 			$("#edit_jurisd_roles_add_modal").modal({
@@ -271,9 +272,11 @@ function InitSubTable(index) {
 		}else{
 			alert("只能选中一条数据");
 		}
-	})
-//return oTableInit;  
+	});
+
 };  
+
+
 var _role_uuid="";
 
 //种子下拉点击事件
@@ -389,7 +392,7 @@ function addDepartmentSuccess(result){
 }
 // 组织名称下拉选项
 function sucessLoadSysOrganizationListSelect2(result){
-	var data = [{id:"",text:"请选择"}];
+	var data = [{id:"请选择",text:"请选择"}];
 	$.each(result,function(index,value){
 		data.push({id:value.uuid,text:value.organizationName});
 	});
@@ -397,13 +400,12 @@ function sucessLoadSysOrganizationListSelect2(result){
 	    placeholder: "请选择",
 	    tags: true,
 	    data:data
-	});
-	
-	$('#search_table_organization_name').on('select2:select', function (evt) {
+	}).on('select2:select', function (evt) {
 		select2_departmentName = evt.params.data.id;
 		$('#admin_department_datagrid').bootstrapTable('refresh');
 		
 	});
+	
 }
 
 

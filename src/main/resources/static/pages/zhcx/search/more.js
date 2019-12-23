@@ -1,14 +1,14 @@
+var _table =null;
 $(function() {
 	// search bar 数据
 	var url = '/zhcx/findAllType';
 	ajaxPost(url, {"username":username}, findAllType_Sucess, 1000, findError);
-	
 });
 // 分类别添加
 function findAllType_Sucess(result){
 	$.each(result,function(index,value){
 		var typeUuid=value.uuid;
-//		console.log(value);
+// console.log(value);
 		var type = $("#mainDiv").find("#show_type_id:eq(0)").clone();
 		type.find("#type_text_id").text(value.typeName);
 		
@@ -57,10 +57,40 @@ function findAllType_Sucess(result){
 						jQuery("#zhlbform").attr("action",  "/zhcx/forwardZhlb");
 						jQuery("#zhlbform").submit();
 					})
+					
+					table.contextMenu('myMenu1', {
+						bindings : {
+							'edit' : function(t) {
+								_table = table;
+								var tabsuuid=$(t).attr("tabsuuid");
+								var url="/sysDbmsTabsInfo/findAllBySysTableInfo";
+								var param={"uuid":tabsuuid};
+								ajaxPost(url,param,successLoadTableParam);
+							}
+						}
+					});
+
 					type.css({"display":""});
 				});
 			}
 		});
 		$("#main_section").append(type);
 	})
+	
+	
 }
+
+
+function successLoadTableParam(result){
+	var uuid =result[0].uuid;
+	// 获取屏幕宽度
+	url = "/sysDbmsTabsInfo/updBeforEdit?uuid="+uuid;
+	
+	modals.openWin({
+    	winId:"upd_tabs_id",
+    	title:'添加连接信息',
+    	width:screen.width*0.5 +'px',
+    	url:url
+    });
+}
+

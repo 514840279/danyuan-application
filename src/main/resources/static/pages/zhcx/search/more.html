@@ -3,11 +3,7 @@
 <head>
 <title></title>
 <meta charset="UTF-8">
-<!-- <link href="/plugins/bootstrap/table/bootstrap-table.css" rel="stylesheet" /> -->
 
-<!-- <script src="/plugins/bootstrap/table/bootstrap-table.js"></script> -->
-<!-- <script src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.js"></script> -->
-<!-- <script src="/plugins/bootstrap/table/extensions/export/bootstrap-table-export.js"></script> -->
 <style type="text/css">
 .pg-show-color-row{
 	padding-left: 4px;
@@ -90,8 +86,103 @@
 				</div>
 			</div>
 	</section>
-    <form id="zhlbform" name="zhlbform" action="/zhcx/forwordZhlb" method="post" target="_blank" hidden="hidden">
-    	<input id="jdbcUuid"  name="jdbcUuid" value="" />
+	
+	<div class="modal  fade" id="update-show-myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">修改配置</h4>
+				</div>
+				<div class="modal-body row">
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsName">列名称</label>
+						<div id="update_config_column_colsName"></div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsDesc">列含义</label> <input type="text" class="form-control" id="update_config_column_colsDesc" placeholder="列含义">
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsOrder">列显示顺序</label> <input type="text" class="form-control" id="update_config_column_colsOrder" placeholder="显示顺序">
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsSort">排序</label> <input type="number" class="form-control" id="update_config_column_colsSort" placeholder="数据排序">
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_userIndex">用户索引</label> <input type="text" class="form-control" id="update_config_column_userIndex" placeholder="用户索引">
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_userIcon">小图标</label>
+						<div role="toolbar">
+							<input class="form-control btn" type="text" name="icon" id="update_config_column_userIcon" placeholder="小图标" style="width: 60%;" />
+							<button type="button" id="selectIcon" class="btn btn-primary btn-sm " data-btn-type="selectIcon" onclick="add_select_icon()">
+								<span class="fa fa-hand-pointer-o">选择图标</span>
+							</button>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsWidth">列宽度</label> <input type="text" class="form-control" id="update_config_column_colsWidth" placeholder="列宽度">
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsAlign">横向对齐</label>
+						<div id="update_config_column_colsAlign" class="form-control">
+							<input type="radio" name="colsAlign" value="left" id="update_config_column_colsAlign_left"><label for="update_config_column_colsAlign_left">左对齐</label> <input type="radio" name="colsAlign" value="center" id="update_config_column_colsAlign_center"><label for="update_config_column_colsAlign_center">居中</label> <input type="radio" name="colsAlign" value="right" id="update_config_column_colsAlign_right"><label for="update_config_column_colsAlign_right">右对齐</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsValign">纵向对齐</label>
+						<div id="update_config_column_colsValign" class="form-control">
+							<input type="radio" name="colsValign" value="top" id="update_config_column_colsValign_top"><label for="update_config_column_colsValign_top">靠上</label> <input type="radio" name="colsValign" value="middle" id="update_config_column_colsValign_middle"><label for="update_config_column_colsValign_middle">居中</label> <input type="radio" name="colsValign" value="bottom" id="update_config_column_colsValign_bottom"><label for="update_config_column_colsValign_bottom">底部</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsSwitchable">switch开关</label>
+						<div id="update_config_column_colsSwitchable" class="form-control">
+							<input type="radio" name="colsSwitchable" value="true" id="update_config_column_colsSwitchable_true"><label for="update_config_column_colsSwitchable_true">可选</label> <input type="radio" name="colsSwitchable" value="false" id="update_config_column_colsSwitchable_false"><label for="update_config_column_colsSwitchable_false">不可选</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsVisible">列表展示</label>
+						<div id="update_config_column_colsVisible" class="form-control">
+							<input type="radio" name="colsVisible" value="true" id="update_config_column_colsVisible_true"><label for="update_config_column_colsVisible_true">展示</label> <input type="radio" name="colsVisible" value="false" id="update_config_column_colsVisible_false"><label for="update_config_column_colsVisible_false">隐藏</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_colsSort">排序条件支持</label>
+						<div id="update_config_column_colsSort" class="form-control">
+							<input type="radio" name="colsSort" value="true" id="update_config_column_colsSort_true"><label for="update_config_column_colsSort_true">允许</label> <input type="radio" name="colsSort" value="false" id="update_config_column_colsSort_false"><label for="update_config_column_colsSort_false">不允许</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_dimeFlag">图表统计纬度支持</label>
+						<div id="update_config_column_dimeFlag" class="form-control">
+							<input type="radio" name="dimeFlag" value="true" id="update_config_column_dimeFlag_true"><label for="update_config_column_dimeFlag_true">允许</label> <input type="radio" name="dimeFlag" value="false" id="update_config_column_dimeFlag_false"><label for="update_config_column_dimeFlag_false">不允许</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_deleteFlag">标记</label>
+						<div id="update_config_column_deleteFlag" class="form-control">
+							<input type="radio" name="deleteFlag" value="1" id="update_config_column_deleteFlag_true"><label for="update_config_column_deleteFlag_true">删除</label> <input type="radio" name="deleteFlag" value="0" id="update_config_column_deleteFlag_false"><label for="update_config_column_deleteFlag_false">启用</label>
+						</div>
+					</div>
+					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
+						<label for="update_config_column_deleteFlag">标记有用</label>
+						<div id="update_config_column_deleteFlag" class="form-control">
+							<input type="radio" name="useful" value="0" id="update_config_column_useful_true"><label for="update_config_column_useful_true">无用</label> <input type="radio" name="useful" value="1" id="update_config_column_userful_false"><label for="update_config_column_userful_false">有用</label>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="update_config_column_button">提交更改</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<form id="zhlbform" name="zhlbform" action="/zhcx/forwordZhlb" method="post" target="_blank" hidden="hidden">
+		<input id="jdbcUuid"  name="jdbcUuid" value="" />
 		<input id="tabsuuid"  name="tabsuuid" value="" />
 		<input id="tabsName"  name="tabsName" value="" />
 		<input id="dbType"  name="dbType" value="" />
@@ -99,7 +190,15 @@
 		<input id="tabsRows"  name="tabsRows" value="" />
 		<input id="tabsDesc"  name="tabsDesc" value="" />
 		<input id="zhcx_type"  name="type" value="" />
-     </form>
+	</form>
+
+	<!--右键菜单的源-->
+	<div class="contextMenu" id="myMenu1" style="display: none;">
+		<ul>
+			<li id="edit">编辑表</li>
+		</ul>
+	</div>
+	
 	<script type="text/javascript" src="/pages/zhcx/search/more.js"></script>
 </body>
 </html>

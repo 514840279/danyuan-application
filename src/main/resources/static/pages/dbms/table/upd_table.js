@@ -1,9 +1,9 @@
 var add_table_addrName = null;
 var add_table_typeName = null;
+
 $(function() {
 	// 新建表
 	$('#db_create_table_button').click(function() {
-		//		alert("Something will happen!");
 		sysTableInfo.updateTime=null;
 		sysTableInfo.createTime=null;
 		
@@ -32,8 +32,15 @@ $(function() {
 
 // 创建表成功
 function successSaveSysTableInfo(result){
-	$("#add_tabs_id").modal("hide")
+	$("#upd_tabs_id").on("hidden.bs.modal", function() {
+		if(_table != undefined && _table != null){
+			_table.text(result.tabsDesc);
+			_table = null;
+		}
+	});
+	modals.hideWin("upd_tabs_id");
 	$('#db_table_datagrid').bootstrapTable('refresh');
+	
 }
 
 //数据库列表下拉

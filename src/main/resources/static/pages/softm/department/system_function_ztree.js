@@ -70,6 +70,8 @@ $(document).ready(function() {
 	/** ** 加载页面 树 数据 *** */
 	// 获取 加载数据
 	ajaxPost(url, _role_uuid, loadTree, null, findError);
+	
+	loadTabs();
 });
 // 加载 load。。。
 function loadTree(result) {
@@ -80,7 +82,116 @@ function loadTree(result) {
 };
 
 
+function loadTabs(){
+	// search bar 数据
+	var url = '/zhcx/findAllType';
+	ajaxPost(url, {"username":username}, findAllType_Sucess, 1000, findError);
+	// 分类别添加
+	function findAllType_Sucess(result){
+		$.each(result,function(index,value){
+			var typeUuid=value.uuid;
+			var type = $("#main_section").find("#show_type_id:eq(0)").clone();
+			type.find("#type_text_id").text(value.typeName);
+			// 调用表名查询
+			var url_table = '/zhcx/findAllTableByTypeUuid';
+			var param_table ={
+				info:{	
+					"username":username,
+					typeUuid:typeUuid
+				}
+			}
+			
+			jQuery.ajax({
+				type : 'POST',
+				url : url_table,
+				dataType : 'json',
+				cache : false,
+				contentType : 'application/json',
+				data : JSON.stringify(param_table),
+				success : function(result) {
+					var table_parrent = type.find("#show_table_id");
+					$.each(result,function(index,value){
+						var table = table_parrent.find("div:eq(0)").clone();
+						var tabsUuid = value.uuid;
+						var tabsRows = value.tabsRows==null?0:value.tabsRows;
+						
+						var viewTable = value.tabsDesc==null||value.tabsDesc==""?value.tabsName:value.tabsDesc;
+						table.text(viewTable);
+						if(tabsRows==0){
+							table.css({"color":"red"});
+							table.text(viewTable);
+						}
+						table.attr({"tabsUuid":tabsUuid})
+						table.attr({"tabsRows":tabsRows})
+						table.css({"display":""})
+						table_parrent.append(table);
+						table.bind('click',function(){
+							var url="/sysRolesTabsInfo/save";
+							var param={
+								roleId:_role_uuid,
+								tabsId:tabsUuid,
+								createUser:username,
+								updateUser:username
+							};
+							ajaxPost(url,param,successSaveTabs);
+						})
+						type.css({"display":""});
+					});
+				}
+			});
+			$("#main_section").append(type);
+		});
+		setTimeout(function(){ loadUserTabs(); }, 400);
+		
+	}
+	
+	
+}
 
+function successSaveTabs(result){
+	console.log(result)
+	var table = $("div[tabsuuid='"+result.data.tabsId+"']");
+	table.removeClass("pg-show-color");
+	table.addClass("pg-show-color2");
+	table.unbind("click");
+	table.bind("click",function(){
+		var url="/sysRolesTabsInfo/delete";
+		ajaxPost(url,result.data,successDeleteTabs);
+	});
+}
+
+function successDeleteTabs(result){
+	var table = $("div[tabsuuid='"+result.data.tabsId+"']");
+	table.removeClass("pg-show-color2");
+	table.addClass("pg-show-color");
+	table.unbind("click");
+	table.bind("click",function(){
+		var url="/sysRolesTabsInfo/save";
+		ajaxPost(url,result.data,successSaveTabs);
+	});
+}
+
+function loadUserTabs(){
+	var url="/sysRolesTabsInfo/findAll";
+	var param={
+		roleId:_role_uuid
+	};
+	ajaxPost(url,param,successLoadTabs);
+	function successLoadTabs(result){
+		$.each(result.data,function(index,data){
+			var tabsId = data.tabsId;
+			var table = $("div[tabsuuid='"+tabsId+"']");
+			table.removeClass("pg-show-color");
+			table.addClass("pg-show-color2");
+			table.unbind("click");
+			table.bind("click",function(){
+				var url="/sysRolesTabsInfo/delete";
+				ajaxPost(url,data,successDeleteTabs);
+			});
+		})
+	}
+	
+}
 
 
 

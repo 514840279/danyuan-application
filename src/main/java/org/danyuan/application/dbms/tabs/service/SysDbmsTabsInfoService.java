@@ -541,17 +541,24 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 		// 保存表配信息
 		// 动态生成表
 		try {
-			StringBuilder sBuilder = new StringBuilder();
-			sBuilder.append("ALTER TABLE ");
-			sBuilder.append(vo.getOld().getTabsName());
-			sBuilder.append(" RENAME TO ");
-			sBuilder.append(vo.getNow().getTabsName());
+			SysDbmsTabsInfo info = vo.getOld();
+			SysDbmsTabsInfo sysDbmsTabsInfo = vo.getNow();
+			if (!info.getTabsName().equals(sysDbmsTabsInfo.getTabsName())) {
+				StringBuilder sBuilder = new StringBuilder();
+				sBuilder.append("ALTER TABLE ");
+				sBuilder.append(vo.getOld().getTabsName());
+				sBuilder.append(" RENAME TO ");
+				sBuilder.append(vo.getNow().getTabsName());
 
-			jdbcTemplate.execute(sBuilder.toString());
+				jdbcTemplate.execute(sBuilder.toString());
+			}
+			if (sysDbmsTabsInfo.getTabsName() != null) {
+				sysDbmsTabsInfoDao.change(vo.getNow().getTabsName(), vo.getNow().getTabsDesc(), vo.getNow().getTypeUuid(), vo.getNow().getJdbcUuid(), vo.getNow().getUuid(), vo.getUsername());
+			}
+
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		sysDbmsTabsInfoDao.change(vo.getNow().getTabsName(), vo.getNow().getTabsDesc(), vo.getNow().getTypeUuid(), vo.getNow().getJdbcUuid(), vo.getNow().getUuid(), vo.getUsername());
 		
 	}
 	

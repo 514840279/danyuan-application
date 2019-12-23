@@ -24,6 +24,63 @@ div#rMenu ul li {
 .row-right {
 	text-align: right;
 }
+
+.pg-show-color-row{
+	padding-left: 4px;
+}
+.pg-show-color {
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	position: relative;
+	_position: static;
+	font-size: 14px;
+	background-color: #c0c0c0;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+.pg-show-color2 {
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	position: relative;
+	_position: static;
+	font-size: 14px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+.pg-show-color:hover,.pg-show-color2:hover {
+	text-align: center;
+	text-decoration: none;
+	background-color: #3c8dbc;
+	padding-left: 4px;
+	display: block;
+	position: relative;
+	font-size: 14px;
+	color: #FFFFFF;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+
+.pg-show-color:active,.pg-show-color2:active {
+	text-align: center;
+	text-decoration: none;
+	background-color: #3c8dbc;
+	padding-left: 4px; padding-right : 4px;
+	display: block;
+	position: relative;
+	font-size: 14px;
+	color: #FFFFFF;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: pointer;
+	padding-right: 4px;
+}
 </style>
 </head>
 <body id="body">
@@ -39,7 +96,7 @@ div#rMenu ul li {
 		</ol>
 	</section>
 	<!-- Main content -->
-	<section class="content ">
+	<section class="content "  id="main_section" >
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="box">
@@ -61,7 +118,7 @@ div#rMenu ul li {
 					</div>
 				</div>
 			</div>
-
+			
 			<div class="col-lg-10 col-md-8 col-sm-6 col-xs-12" style="display: none;">
 				<div class="box">
 					<div class="box-header with-border">
@@ -80,7 +137,26 @@ div#rMenu ul li {
 				</div>
 			</div>
 		</div>
+		<div class="box"  style="display: none;" id="show_type_id">
+			<div class="box-header with-border">
+				<h3 class="box-title" id="type_text_id">资源列表</h3>
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+					<button type="button" class="btn btn-box-tool" data-widget="remove">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body">
+				<div id="show_table_id" class="row pg-show-color-row">
+					<div class="btn col-lg-2 col-md-3 col-sm-4 pg-show-color" style="display: none;">123</div>
+				</div>
+			</div>
+		</div>
 	</section>
+	
 
 	<script type="text/javascript" src="/pages/softm/department/system_function_ztree.js"></script>
 </body>

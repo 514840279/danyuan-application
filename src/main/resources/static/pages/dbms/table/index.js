@@ -3,28 +3,27 @@ var search_table_typeName = null;
 
 $(function() {
 	$('#addnew_table').click(function() {
-//		loadPage('/pages/dbms/table/add_table.html','add_table_tab_id','新建表')
-		
+
 		// 获取屏幕宽度
 		url = "/pages/dbms/table/add_table.html";
-    	
-    	modals.openWin({
-	    	winId:"add_tabs_id",
-	    	title:'新建连接信息',
-	    	width:screen.width*0.5+'px',
-	    	url:url
-	    });
+
+		modals.openWin({
+			winId : "add_tabs_id",
+			title : '新建连接信息',
+			width : screen.width * 0.5 + 'px',
+			url : url
+		});
 	});
 	$('#impnew_table').click(function() {
 		// 获取屏幕宽度
 		url = "/pages/dbms/table/imp_table.html";
-    	
-    	modals.openWin({
-	    	winId:"imp_tabs_id",
-	    	title:'添加连接信息',
-	    	width:screen.width +'px',
-	    	url:url
-	    });
+
+		modals.openWin({
+			winId : "imp_tabs_id",
+			title : '添加连接信息',
+			width : screen.width + 'px',
+			url : url
+		});
 	});
 	
 	
@@ -38,14 +37,13 @@ $(function() {
 			var uuid =data[0].uuid;
 			// 获取屏幕宽度
 			url = "/sysDbmsTabsInfo/updBeforEdit?uuid="+uuid;
-	    	
-	    	modals.openWin({
-		    	winId:"upd_tabs_id",
-		    	title:'添加连接信息',
-		    	width:screen.width*0.5 +'px',
-		    	url:url
-		    });
-//			loadPage('/sysDbmsTabsInfo/updBeforEdit','upd_table_tab_id','修改表',data[0],'reload')
+			
+			modals.openWin({
+				winId : "upd_tabs_id",
+				title : '添加连接信息',
+				width : screen.width * 0.5 + 'px',
+				url : url
+			});
 		}
 	});
 	
@@ -135,23 +133,23 @@ $(function() {
 //		search : true, // 显示搜索框
 		sidePagination: "server", // 服务端处理分页
 		queryParamsType : "undefined",
-        contentType: "application/json",
-		method: "post",  //使用get请求到服务器获取数据  
-		queryParams: function queryParams(params) {  
-		    var param = {  
-                 pageNumber: params.pageNumber,    
-                 pageSize: params.pageSize,
-                 sortOrder:params.sortOrder,
-                 sortName:params.sortName,
-                 info:{
-                	 jdbcUuid:search_table_addrName,
-            		 typeUuid:search_table_typeName,
-            		 tabsName:$("#search_table_tabsName").val(),
-        			 tabsDesc:$("#search_table_tabsDesc").val(),
-                 },
-                 username:username
-             }; 
-             return param;
+		contentType : "application/json",
+		method : "post", // 使用get请求到服务器获取数据
+		queryParams : function queryParams(params) {
+			var param = {
+				pageNumber : params.pageNumber,
+				pageSize : params.pageSize,
+				sortOrder : params.sortOrder,
+				sortName : params.sortName,
+				info : {
+					jdbcUuid : search_table_addrName,
+					typeUuid : search_table_typeName,
+					tabsName : $("#search_table_tabsName").val(),
+					tabsDesc : $("#search_table_tabsDesc").val(),
+				},
+				username : username
+			};
+			return param;
 		},
 		columns : [
 			{title : '全选',	checkbox : true,align : 'center',valign : 'middle'},
@@ -190,11 +188,11 @@ function successSearchDatabaseInfoindex(result){
 	$.each(result,function(index,value){
 		data.push({id:value.uuid,text: value.databaseName});
 	})
-	
+
 	$("#search_table_addrName").select2({
-	    tags: true,
-	    placeholder: "请选择",
-	    data: data
+		tags : true,
+		placeholder : "请选择",
+		data : data
 	});
 	search_table_addrName = null;
 	$('#search_table_addrName').on('select2:select', function (evt) {
@@ -212,11 +210,11 @@ function successSearchTableTypeInfoindex(result){
 	$.each(result,function(index,value){
 		data.push({id:value.uuid,text: value.typeName});
 	})
-	
+
 	$("#search_table_typeName").select2({
-	    tags: true,
-	    placeholder: "请选择",
-	    data: data
+		tags : true,
+		placeholder : "请选择",
+		data : data
 	});
 	search_table_typeName = null;
 	$('#search_table_typeName').on('select2:select', function (evt) {

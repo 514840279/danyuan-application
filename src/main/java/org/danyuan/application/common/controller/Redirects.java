@@ -19,30 +19,31 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class Redirects {
-	
+
 	@RequestMapping("/login")
 	public String login() {
 		return "login/login";
 	}
-	
+
 	@RequestMapping({ "/index", "/", "/index.html", "/home" })
 	public ModelAndView index(Principal user) {
 		// TODO 可以根据用户权限不同跳转到不同的管理页面
 		ModelAndView view = new ModelAndView("index");
 		view.addObject("username", user.getName());
+//		view.addObject("authen", authen.get);
 		return view;
 	}
-	
+
 	@RequestMapping("/templates/{path1}/{path2}/{page}")
 	public String templates(@PathVariable("path1") String path1, @PathVariable("path2") String path2, @PathVariable("page") String page) {
 		return path1 + "/" + path2 + "/" + page;
 	}
-	
+
 	@RequestMapping("/templates/{path1}/{path2}")
 	public String templates(@PathVariable("path1") String path1, @PathVariable("path2") String path2) {
 		return path1 + "/" + path2;
 	}
-
+	
 	@RequestMapping("/templates/{path1}")
 	public String templates(@PathVariable("path1") String path1) {
 		return path1;
