@@ -309,6 +309,26 @@ function reset(id,tabsName,column,sysColumn) {
 }
 
 
+function add_select_icon(){
+	winId="add_icon_modal";
+	var iconName;
+	if($("#add_menu_icon").val()){
+		iconName=encodeURIComponent($("#add_menu_icon").val());
+	}
+	modals.openWin({
+		winId:winId,
+		title:'图标选择器（双击选择）',
+		width:'1000px',
+		url:"/icon/nodecorator/select?iconName="+iconName
+	});
+}
+//回填图标
+function fillBackIconName(icon_name){
+	$("#update_config_column_userIcon").val(icon_name); 
+	$('#update-show-myModal').modal({
+		show: true
+	});
+}
  
 
 function findError(result) {

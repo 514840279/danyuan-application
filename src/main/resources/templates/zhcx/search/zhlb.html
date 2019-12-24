@@ -281,7 +281,7 @@
 		var jdbcuuid = [[*{jdbcUuid}]];
 		var tabsName = [[*{tabsName}]];
 		var tabsDesc = [[*{tabsDesc}]];
-		tabsDesc =(tabsDesc==""||tabsDesc==null)?tabsDesc:tabsName;
+		tabsDesc =(tabsDesc!==""&&tabsDesc!=null)?tabsDesc:tabsName;
 		var tabsRows = [[*{tabsRows}]];
 		var dbType = [[*{dbType}]];
 		var esName = [[*{esName}]];
