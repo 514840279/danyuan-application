@@ -40,13 +40,13 @@ public class HttpAspect {
 	public static String		noDevice	= "未知设备";
 	@Autowired
 	SysComnLogsDao				sysComnLogsDao;
-	
+
 	private final static Logger	logger		= LoggerFactory.getLogger(HttpAspect.class);// 参数为当前使用的类名
-	
+
 	@Pointcut("execution(public * org.danyuan.application.*.*.controller.*.*(..))") // 要处理的方法，包名+类名+方法名
 	public void cut() {
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Around("cut()") // 在调用上面 @Pointcut标注的方法前执行以下方法
 	public Object doBefore(ProceedingJoinPoint joinPoint) throws IllegalArgumentException, IllegalAccessException {// 用于获取类方法
@@ -66,7 +66,7 @@ public class HttpAspect {
 		// 用户
 		String user = ((User) ((SecurityContextImpl) request.getSession().getAttribute("SPRING_SECURITY_CONTEXT")).getAuthentication().getPrincipal()).getUsername();
 		logs.setCreateUser(user);
-		
+
 		Map<String, Object> map = new HashMap<>();
 		String paramList = "";
 		if ("/zhcx/findAllTableRow".equals(logs.getUrl())) {
@@ -85,21 +85,21 @@ public class HttpAspect {
 							if (value != null) {
 								for (MulteityParam multeityParam : (List<MulteityParam>) value) {
 									paramList += (multeityParam.getUserDesc() == null ? multeityParam.getUserIndex() : multeityParam.getUserDesc()) + ":" + multeityParam.getValue() + ";";
-									
+
 								}
 							}
 						}
 						if ("tableName".equals(fieldName)) {
 							logs.setTableName(value.toString());
 						}
-						
+
 					}
 					logs.setArgs(map.toString());
 				} catch (Exception e) {
-					
+
 				}
 			}
-			
+
 		}
 		// 参数
 		ObjectMapper mapper = new ObjectMapper();
@@ -128,7 +128,7 @@ public class HttpAspect {
 			logs.setMessage(e.getMessage());
 			// TODO
 		}
-		
+
 		logs.setRequestLong(System.currentTimeMillis() - logs.getRequestLong());
 		String[] mods = { "iPhone", "Windows Phone", "iPad", "Nokia" };
 		for (String string : mods) {
@@ -152,13 +152,17 @@ public class HttpAspect {
 				}
 			}
 		}
-		sysComnLogsDao.save(logs);
+		try {
+			sysComnLogsDao.save(logs);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
 		return result;
 	}
-
+	
 	/**
 	 * 获取登录用户远程主机ip地址
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 */
@@ -175,5 +179,5 @@ public class HttpAspect {
 		}
 		return ip.equals("0:0:0:0:0:0:0:1") ? "127.0.0.1" : ip;
 	}
-	
+
 }

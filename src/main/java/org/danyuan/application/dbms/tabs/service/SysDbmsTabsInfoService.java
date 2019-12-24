@@ -33,7 +33,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -560,6 +562,127 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 			System.err.println(e.getMessage());
 		}
 		
+	}
+
+	/**
+	 * @方法名 findAllTableByUser
+	 * @功能 TODO(这里用一句话描述这个方法的作用)
+	 * @参数 @param vo
+	 * @参数 @return
+	 * @返回 List<SysDbmsTabsInfo>
+	 * @author Administrator
+	 * @throws
+	 */
+	public List<SysDbmsTabsInfo> findAllTableByUser(SysDbmsTabsInfoVo vo) {
+		// 多条件时循环查询并找出userindex都有的表
+		List<SysDbmsTabsInfo> minusList = null;
+		for (MulteityParam val : vo.getParamList()) {
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append("select distinct * from sys_dbms_tabs_info a ");
+			stringBuilder.append("  where a.uuid in ( ");
+			stringBuilder.append("   select b.tabs_id from sys_roles_tabs_info b ");
+			stringBuilder.append("    where b.role_id in (");
+			stringBuilder.append("     select c.roles_id from sys_user_roles_info c");
+			stringBuilder.append("      where c.user_id in ( ");
+			stringBuilder.append("       select d.uuid from sys_user_base_info d");
+			stringBuilder.append("        where d.user_name = '" + vo.getUsername() + "'");
+			stringBuilder.append("      ) and c.checked = 1");
+			stringBuilder.append("    ) ");
+			stringBuilder.append("  ) and a.delete_flag = 0");
+			stringBuilder.append("  and a.type_uuid='" + vo.getTypeUuid() + "' ");
+			stringBuilder.append("  and a.uuid in  ( ");
+			stringBuilder.append("  select c.tabs_uuid from sys_dbms_tabs_cols_info c ");
+			stringBuilder.append("   where c.user_index='" + val.getUserIndex() + "' ");
+			stringBuilder.append("   and c.delete_flag = 0  ");
+			stringBuilder.append("  ) ");
+			stringBuilder.append("  order by a.tabs_order ");
+			NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+			List<SysDbmsTabsInfo> tabsList = template.query(stringBuilder.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
+			
+//			List<SysDbmsTabsInfo> tabsList = sysDbmsTabsInfoDao.findAllByUserIndexAndTypeUuid(val.getUserIndex(), vo.getTypeUuid());
+			if (tabsList == null) {
+				return null;
+			}
+			if (minusList == null) {
+				minusList = tabsList;
+			} else {
+				List<SysDbmsTabsInfo> existsList = new ArrayList<>();
+				// 多个userindex对比找到相同表
+				for (SysDbmsTabsInfo sysZhcxTab : minusList) {
+					for (SysDbmsTabsInfo sysZhcxTab2 : tabsList) {
+						if (sysZhcxTab.getUuid().equals(sysZhcxTab2.getUuid())) {
+							existsList.add(sysZhcxTab);
+						}
+					}
+				}
+				minusList = existsList;
+				if (minusList.size() == 0) {
+					return null;
+				}
+			}
+		}
+		
+		// 多条件查询
+		return minusList;
+	}
+	
+	public List<SysDbmsTabsInfo> findAllTableByTypeUuidAndUsername(SysDbmsTabsInfoVo vo) {
+		// 多条件时循环查询并找出userindex都有的表
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("select distinct * from sys_dbms_tabs_info a ");
+		stringBuilder.append("  where a.uuid in ( ");
+		stringBuilder.append("   select b.tabs_id from sys_roles_tabs_info b ");
+		stringBuilder.append("    where b.role_id in (");
+		stringBuilder.append("     select c.roles_id from sys_user_roles_info c");
+		stringBuilder.append("      where c.user_id in ( ");
+		stringBuilder.append("       select d.uuid from sys_user_base_info d");
+		stringBuilder.append("        where d.user_name = '" + vo.getUsername() + "'");
+		stringBuilder.append("      ) and c.checked = 1");
+		stringBuilder.append("    ) ");
+		stringBuilder.append("  ) and a.delete_flag = 0");
+		stringBuilder.append("  and a.type_uuid='" + vo.getInfo().getTypeUuid() + "' ");
+		stringBuilder.append("  order by a.tabs_order ");
+		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+		List<SysDbmsTabsInfo> tabsList = template.query(stringBuilder.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
+		// 多条件查询
+		return tabsList;
+	}
+	
+	/**
+	 * @方法名 findAllBySysTableInfoAndUsername
+	 * @功能 TODO(这里用一句话描述这个方法的作用)
+	 * @参数 @param sysDbmsTabsInfo
+	 * @参数 @return
+	 * @返回 List<SysDbmsTabsInfo>
+	 * @author Administrator
+	 * @throws
+	 */
+	public List<SysDbmsTabsInfo> findAllBySysTableInfoAndUsername(SysDbmsTabsInfo sysDbmsTabsInfo) {
+		// 多条件时循环查询并找出userindex都有的表
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("select distinct * from sys_dbms_tabs_info a ");
+		stringBuilder.append("  where a.uuid in ( ");
+		stringBuilder.append("   select b.tabs_id from sys_roles_tabs_info b ");
+		stringBuilder.append("    where b.role_id in (");
+		stringBuilder.append("     select c.roles_id from sys_user_roles_info c");
+		stringBuilder.append("      where c.user_id in ( ");
+		stringBuilder.append("       select d.uuid from sys_user_base_info d");
+		stringBuilder.append("        where d.user_name = '" + sysDbmsTabsInfo.getCreateUser() + "'");
+		stringBuilder.append("      ) and c.checked = 1");
+		stringBuilder.append("    ) ");
+		stringBuilder.append("  ) and a.delete_flag = 0");
+		if (sysDbmsTabsInfo.getTypeUuid() != null && !"".equals(sysDbmsTabsInfo.getTypeUuid())) {
+			stringBuilder.append("  and a.type_uuid = '" + sysDbmsTabsInfo.getTypeUuid() + "' ");
+		}
+
+		if (sysDbmsTabsInfo.getJdbcUuid() != null && !"".equals(sysDbmsTabsInfo.getJdbcUuid())) {
+			stringBuilder.append("  and a.jdbc_uuid = '" + sysDbmsTabsInfo.getJdbcUuid() + "' ");
+		}
+		stringBuilder.append("  order by a.tabs_order ");
+		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+		List<SysDbmsTabsInfo> tabsList = template.query(stringBuilder.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
+		// 多条件查询
+		return tabsList;
 	}
 	
 }

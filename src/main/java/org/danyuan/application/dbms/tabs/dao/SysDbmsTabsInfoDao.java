@@ -42,7 +42,12 @@ public interface SysDbmsTabsInfoDao extends BaseDao<SysDbmsTabsInfo> {
 	@Query("select distinct t from SysDbmsTabsInfo t where t.uuid in  (  select c.tabsUuid from SysDbmsTabsColsInfo c where c.userIndex=:userindex and c.deleteFlag='0') and t.deleteFlag ='0'   order by t.tabsOrder")
 	List<SysDbmsTabsInfo> findAllByUserIndex(@Param("userindex") String userindex);
 	
-	@Query("select distinct t from SysDbmsTabsInfo t " + " where t.typeUuid=:typeUuid " + " and t.uuid in  (  " + "  select c.tabsUuid from SysDbmsTabsColsInfo c " + "  where c.userIndex=:userindex " + "  and c.deleteFlag='0' ) and t.deleteFlag ='0'  order by t.tabsOrder")
+	@Query("select distinct t from SysDbmsTabsInfo t " 
+			+ " where t.typeUuid=:typeUuid " 
+			+ " and t.uuid in  (  " 
+			+ "  select c.tabsUuid from SysDbmsTabsColsInfo c " 
+			+ "  where c.userIndex=:userindex " 
+			+ "  and c.deleteFlag='0' ) and t.deleteFlag ='0'  order by t.tabsOrder")
 	List<SysDbmsTabsInfo> findAllByUserIndexAndTypeUuid(@Param("userindex") String userindex, @Param("typeUuid") String typeUuid);
 	
 	/**

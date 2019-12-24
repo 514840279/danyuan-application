@@ -50,25 +50,26 @@ window.onload = function () {
 
 $(function() {
 	// search bar 数据
-	var url = '/zhcx/findAllType';
+//	var url = '/zhcx/findAllType';
+	var url = '/zhcx/findAllTypeByUser';
 	ajaxPost(url, {"username":username}, findAllType_Sucess, 1000, findError);
 });
 // 分类别添加
 function findAllType_Sucess(result){
 	$.each(result,function(index,value){
 		var typeUuid=value.uuid;
-// console.log(value);
 		var type = $("#mainDiv").find("#show_type_id:eq(0)").clone();
 		type.find("#type_text_id").text(value.typeName);
 		
 		// 调用表名查询
-		var url_table = '/zhcx/findAllTableByTypeUuid';
+//		var url_table = '/zhcx/findAllTableByTypeUuid';
+		var url_table = '/zhcx/findAllTableByTypeUuidAndUsername';
 		var param_table ={
 			info:{	
-				"username":username,
 				typeUuid:typeUuid
-			}
-		}
+			},
+			"username":username
+		};
 		
 		jQuery.ajax({
 			type : 'POST',

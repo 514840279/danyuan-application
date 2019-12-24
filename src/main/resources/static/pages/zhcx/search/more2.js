@@ -30,10 +30,12 @@ $(function() {
 var search_table_addrName = null;
 var search_table_typeName = null;
 function reloadTabsnameSelect(){
-	var url ='/sysDbmsTabsInfo/findAllBySysTableInfo';
+	var url ='/sysDbmsTabsInfo/findAllBySysTableInfoAndUsername';
 	var param={
 		jdbcUuid:search_table_addrName,
 		typeUuid:search_table_typeName,
+		createUser:username,
+		updateUser:username,
 	};
 	
 	ajaxPost(url, param, successreloadTabsnameSelect);
@@ -41,7 +43,8 @@ function reloadTabsnameSelect(){
 function successreloadTabsnameSelect(result){
 	var data =[{id:'请选择',text:'请选择'}];
 	$.each(result,function(index,value){
-		data.push({id:value.uuid,text: value.tabsName,desc:value.tabsDesc,tabsName:value.tabsName,dbType:value.dbType,jdbcUuid:value.jdbcUuid});
+		
+		data.push({id:value.uuid,text: value.tabsName+(value.tabsDesc == ""?"":"("+value.tabsDesc+")"),desc:value.tabsDesc,tabsName:value.tabsName,dbType:value.dbType,jdbcUuid:value.jdbcUuid});
 	});
 	$('#search_table_tabsName').empty();
 	$('#search_table_tabsName').select2({data:data});

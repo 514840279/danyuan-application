@@ -35,7 +35,8 @@ function searchButtonClick(){
 			"operator" : "eq"
 		});
 		paramString = JSON.stringify(paramList);
-		var url = '/zhcx/findAllType';
+//		var url = '/zhcx/findAllType';
+		var url = '/zhcx/findAllTypeByUser';
 		ajaxPost(url, {"username":username}, findAllTypeSucess, null, findError);
 	})
 }
@@ -78,7 +79,8 @@ function findAllTypeSucess(result){
 //		console.log(value);
 		
 		// 调用表名查询
-		var url_table = '/zhcx/findAllTable';
+//		var url_table = '/zhcx/findAllTable';
+		var url_table = '/zhcx/findAllTableByUser';
 		var param_table ={
 				"username":username,
 				paramList:paramList,
@@ -119,7 +121,7 @@ function findAllTypeSucess(result){
 					
 					var more = table.find("#for_more_table");
 
-		    		more.css({ "cursor" : "pointer"});		
+					more.css({ "cursor" : "pointer"});		
 					more.bind("click", function(){
 						jQuery("#tabsuuid").val(tabsId);
 						jQuery("#jdbcUuid").val(jdbcUuid);
@@ -161,50 +163,50 @@ function findAllTypeSucess(result){
 								if(userIndex==""||userIndex==null){
 									column.push({
 										"title" : colsView,
-									    "field" : colsName,
-									    "width":value.colsWidth==null?150:value.colsWidth,
-									    "align":value.colsAlign==null?"left":value.colsAlign,
-									    "valign":value.colsValign==null?"middle":value.colsValign,
-									    "visible":value.colsVisible==null?true:value.colsVisible,
-									    "switchable":value.colsSwitchable==null?true:value.colsSwitchable,
-							    		formatter:function iconFormatter(value, row, index){
-							    			if(value==null){
-							    				return null;
-							    			}
-							    			if(coldType.indexOf("DATE")>-1||coldType.indexOf("TIME")>-1){
-							    				value =new Date(parseInt(value)).format("yyyy/MM/dd"); 
+										"field" : colsName,
+										"width":value.colsWidth==null?150:value.colsWidth,
+										"align":value.colsAlign==null?"left":value.colsAlign,
+										"valign":value.colsValign==null?"middle":value.colsValign,
+										"visible":value.colsVisible==null?true:value.colsVisible,
+										"switchable":value.colsSwitchable==null?true:value.colsSwitchable,
+										formatter:function iconFormatter(value, row, index){
+											if(value==null){
+												return null;
+											}
+											if(coldType.indexOf("DATE")>-1||coldType.indexOf("TIME")>-1){
+												value =new Date(parseInt(value)).format("yyyy/MM/dd"); 
 //							    				value =new Date(parseInt(value)).toLocaleString(); 
-							    			}
-							    			if(userIcon!=null&&userIcon!=""){
-							    				return f = '<i class="'+userIcon+' text-grey" title="'+value+'" userIndex="'+userIndex+'" ></i>';
-							    			}
-							    			return value;
-							    		},
+											}
+											if(userIcon!=null&&userIcon!=""){
+												return f = '<i class="'+userIcon+' text-grey" title="'+value+'" userIndex="'+userIndex+'" ></i>';
+											}
+											return value;
+										},
 									});
 								}else if(userIndex!=""){
 									column.push({
 										"title" : colsView,
-									    "field" : colsName,
-									    "width":value.colsWidth==null?150:value.colsWidth,
-									    "align":value.colsAlign==null?"left":value.colsAlign,
-									    "valign":value.colsValign==null?"middle":value.colsValign,
-									    "visible":value.colsVisible==null?true:value.colsVisible,
-									    "switchable":value.colsSwitchable==null?true:value.colsSwitchable,
-							    		formatter:function otherFormatter(value, row, index){
-							    			if(value==null){
-							    				return null;
-							    			}
-							    			if(coldType.indexOf("DATE")>-1||coldType.indexOf("TIME")>-1){
-							    				value =new Date(parseInt(value)).format("yyyy/MM/dd"); 
-							    			}
-							    			var f = value;
-							    			if(userIcon==null||userIcon==""){
-							    				 f = '<a class="text-blue" title="'+value+'" userIndex="'+userIndex+'" onclick="forwordYjcx(\''+value+'\',\''+userIndex+'\',\''+colsName+'\')">'+value+' </a> ';
-							    			}else{
-							    				 f = f = '<i class="'+userIcon+' text-blue" title="'+value+'" userIndex="'+userIndex+'" onclick="forwordYjcx(\''+value+'\',\''+userIndex+'\',\''+colsName+'\')" id="sfzh_search"></i> ';
-							    			}
-							    			return f;
-							    		},
+										"field" : colsName,
+										"width":value.colsWidth==null?150:value.colsWidth,
+										"align":value.colsAlign==null?"left":value.colsAlign,
+										"valign":value.colsValign==null?"middle":value.colsValign,
+										"visible":value.colsVisible==null?true:value.colsVisible,
+										"switchable":value.colsSwitchable==null?true:value.colsSwitchable,
+										formatter:function otherFormatter(value, row, index){
+											if(value==null){
+												return null;
+											}
+											if(coldType.indexOf("DATE")>-1||coldType.indexOf("TIME")>-1){
+												value =new Date(parseInt(value)).format("yyyy/MM/dd"); 
+											}
+											var f = value;
+											if(userIcon==null||userIcon==""){
+												f = '<a class="text-blue" title="'+value+'" userIndex="'+userIndex+'" onclick="forwordYjcx(\''+value+'\',\''+userIndex+'\',\''+colsName+'\')">'+value+' </a> ';
+											}else{
+												f = f = '<i class="'+userIcon+' text-blue" title="'+value+'" userIndex="'+userIndex+'" onclick="forwordYjcx(\''+value+'\',\''+userIndex+'\',\''+colsName+'\')" id="sfzh_search"></i> ';
+											}
+											return f;
+										},
 									});
 								}
 								
@@ -238,25 +240,25 @@ function forwordYjcx(value,userIndex,colsName){
 }
 
 Date.prototype.format = function(fmt) { 
-    var o = { 
-       "M+" : this.getMonth()+1,                 //月份 
-       "d+" : this.getDate(),                    //日 
-       "h+" : this.getHours(),                   //小时 
-       "m+" : this.getMinutes(),                 //分 
-       "s+" : this.getSeconds(),                 //秒 
-       "q+" : Math.floor((this.getMonth()+3)/3), //季度 
-       "S"  : this.getMilliseconds()             //毫秒 
-   }; 
-   if(/(y+)/.test(fmt)) {
-           fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
-   }
-    for(var k in o) {
-       if(new RegExp("("+ k +")").test(fmt)){
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
-        }
-    }
-   return fmt; 
-} 
+	var o = { 
+		"M+" : this.getMonth()+1,                 //月份 
+		"d+" : this.getDate(),                    //日 
+		"h+" : this.getHours(),                   //小时 
+		"m+" : this.getMinutes(),                 //分 
+		"s+" : this.getSeconds(),                 //秒 
+		"q+" : Math.floor((this.getMonth()+3)/3), //季度 
+		"S"  : this.getMilliseconds()             //毫秒 
+	}; 
+	if(/(y+)/.test(fmt)) {
+		fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+	}
+	for(var k in o) {
+		if(new RegExp("("+ k +")").test(fmt)){
+			fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+		}
+	}
+	return fmt; 
+}
 
 //var paramsNode=[];
 // 表数据加载
@@ -289,9 +291,9 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName,jdbcUui
 	}
 	// bootstrap table
 	$('#'+id).bootstrapTable({
-	    url : "/zhcx/findAllTableRow",
-	    dataType : "json",
-	    // toolbar : '#toolbar', // 工具按钮用哪个容器
+		url : "/zhcx/findAllTableRow",
+		dataType : "json",
+		// toolbar : '#toolbar', // 工具按钮用哪个容器
 //	    cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 //	    sortable : true, // 是否启用排序
 //	    sortOrder : "asc", // 排序方式
@@ -311,43 +313,43 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName,jdbcUui
 //	    detailView : false, // 是否显示父子表
 //	    singleSelect : false,
 //	    showPaginationSwitch : true,
-	    locales : "zh-CN", // 表格汉化
+		locales : "zh-CN", // 表格汉化
 //	    showExport : true, // 是否显示导出
 //	    exportDataType : "basic", // basic', 'all', 'selected'.
 //	    search : true, // 显示搜索框
-	    sidePagination : "client", // 服务端处理分页 server
-	    // 设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
-	    // 设置为limit可以获取limit, offset, search, sort, order
-	    queryParamsType : "undefined",
-	     contentType: "application/json",
-	    method : "post", // 使用get请求到服务器获取数据
-	    queryParams : function queryParams(params) {
-		    var param = {
-	    		pageNumber: 1,    
-	    		pageSize: 8,
-	    		"username":username,
-		        tabsName : tabsName,
-		        dbType:dbType,
-		        jdbcUuid:jdbcUuid,
-		        esName:esName,
-		        type:_type,
-		        list:sysColumn,
-		        paramList:paramList
-		    };
-		    return param;
-	    },
-	    columns : column,
-	    responseHandler: function(result){  // 成功时执行
+		sidePagination : "client", // 服务端处理分页 server
+		// 	设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+		// 设置为limit可以获取limit, offset, search, sort, order
+		queryParamsType : "undefined",
+		contentType: "application/json",
+		method : "post", // 使用get请求到服务器获取数据
+		queryParams : function queryParams(params) {
+			var param = {
+					pageNumber: 1,    
+					pageSize: 8,
+					"username":username,
+					tabsName : tabsName,
+					dbType:dbType,
+					jdbcUuid:jdbcUuid,
+					esName:esName,
+					type:_type,
+					list:sysColumn,
+					paramList:paramList
+			};
+			return param;
+		},
+		columns : column,
+		responseHandler: function(result){  // 成功时执行
 //	    	console.log(result);
-	    	if(result!=null && result.list!=null ){
-		    	if(result.list.length>0){
-		    		table.css("display","");
-		    		table.parents().parents().css("display","");
-		    	}
-		    	if(result.list.length==8){
-		    		table.find("#for_more_table").css("display","");
-		    	}
-	    	}
+			if(result!=null && result.list!=null ){
+				if(result.list.length>0){
+					table.css("display","");
+					table.parents().parents().css("display","");
+				}
+				if(result.list.length==8){
+					table.find("#for_more_table").css("display","");
+				}
+			}
 			var width_persent = (temp_index_number/lenth)*100 +'%';
 			temp_index_number +=1;
 			$('#progress_bar_id').css('width', width_persent);
@@ -363,21 +365,21 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName,jdbcUui
 			$('#progress_bar_id').css('width', width_persent);
 			console.log(tableName,"没有找到数据" ,status);
 		},
-	 contextMenu: '#context-menu',
-	 onContextMenuItem: function(row,$el){
-		 console.log(row)
-		 
-	  }
+		contextMenu: '#context-menu',
+		onContextMenuItem: function(row,$el){
+			console.log(row)
+			
+		}
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
 		$("#zhxx_mapString").val(JSON.stringify(row));
 		$("#zhxx_paramString").val(JSON.stringify(sysColumn));
 		$("#zhxx_tableName").val(tabsName);
 		$("#zhxx_tableDesc").val(tabsDesc);
 		$("#zhxxform").submit();
-    }).on('click-row.bs.table', function (e, row, ele,field) {
-    	$(".info").removeClass("info");
-    	$(ele).addClass("info");
-    });
+	}).on('click-row.bs.table', function (e, row, ele,field) {
+		$(".info").removeClass("info");
+		$(ele).addClass("info");
+	});
 	// 窗口大小改变时 重设表头
 	$(window).resize(function() {
 		$('#'+id).bootstrapTable('resetView');
@@ -477,5 +479,5 @@ function findAllTable_Sucess(result){
 
 
 function findError(result) {
-    window.parent.window.alert(JSON.stringify(result));
+	window.parent.window.alert(JSON.stringify(result));
 };

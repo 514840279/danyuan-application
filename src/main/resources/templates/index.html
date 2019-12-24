@@ -127,6 +127,8 @@
 
 	<script th:inline="javascript">
 		var username = [[${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}]];
+		var Principal = [[${session.SPRING_SECURITY_CONTEXT.Authentication.Principal}]];
+		console.log(Principal.authorities);
 		console.log("欢迎用户{{"+username+"}}登录本系统！\n 	本系统为个人项目，已在网络上开源展示，\n 	最新消息请登录演示网站： http://danyuan.wang 进行详细查看，\n	如果有好多意见或建议请发邮箱到  514840279@qq.com");
 	</script>
 	<script type="text/javascript" src="pages/tools.js">	</script>
