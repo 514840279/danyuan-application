@@ -297,12 +297,15 @@ $(function() {
 			return {rows:result.content,total:result.totalElements};
 		},
 	    onClickRow:function(row){
-	    
 	    	$("#admin_dicKeyList_datagrid").bootstrapTable("destroy");
 	    	InitSubRoleTable(row);
 	    },
 	    
-	});
+	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
+    }).on('click-row.bs.table', function (e, row, ele,field) {
+    	$(".info").removeClass("info");
+    	$(ele).addClass("info");
+    });
 	
 });
 // 窗口大小改变时 重设表头

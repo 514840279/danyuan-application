@@ -79,7 +79,7 @@ $(function() {
 //		showExport: true,                    
 //        exportDataType: 'all',
 //        exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],  //导出文件类型
-		singleSelect : false,
+		singleSelect : true,
 		locales : "zh-CN", // 表格汉化
 //		search : true, // 显示搜索框
 		sidePagination: "server", // 服务端处理分页 server
@@ -114,7 +114,11 @@ $(function() {
 		responseHandler: function(result){  // 成功时执行
 			return {rows:result.data.content,total:result.data.totalElements};
 		}, 
-	});
+	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
+    }).on('click-row.bs.table', function (e, row, ele,field) {
+    	$(".info").removeClass("info");
+    	$(ele).addClass("info");
+    });
 
 });
 // 窗口大小改变时 重设表头

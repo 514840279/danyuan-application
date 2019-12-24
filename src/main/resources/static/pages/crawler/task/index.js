@@ -226,7 +226,11 @@ $(function() {
 				total : result.data.totalElements
 			};
 		},
-	});
+	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
+    }).on('click-row.bs.table', function (e, row, ele,field) {
+    	$(".info").removeClass("info");
+    	$(ele).addClass("info");
+    });
 });
 
 function urlPathformatter(e, row, index) {

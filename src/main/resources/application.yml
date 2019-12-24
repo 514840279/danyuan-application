@@ -35,7 +35,7 @@ spring:
       idle-timeout: 600000
       pool-name: DatebookHikariCP
       max-lifetime: 180000
-      connection-timeout: 1800
+      connection-timeout: 18000
       connection-test-query: SELECT 1
   servlet:
     multipart:
