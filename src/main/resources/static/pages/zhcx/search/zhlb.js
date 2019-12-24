@@ -55,53 +55,53 @@ function columnFix(result){
 		
 		if(userIndex==""||userIndex==null){
 			column.push({
-			    "title" : colsView,
-			    "field" : colsName,
-			    "width":value.colsWidth==null?150:value.colsWidth,
-			    "align":value.colsAlign==null?"left":value.colsAlign,
-			    "valign":value.colsValign==null?"middle":value.colsValign,
-			    "visible":value.colsVisible==null?true:value.colsVisible,
-			    "switchable":value.colsSwitchable==null?true:value.colsSwitchable,
-	    		formatter:function iconFormatter(value, row, index){
-	    			if(value==null){
-	    				return null;
-	    			}
-	    			if(coldType.indexOf("DATE")>-1||coldType.indexOf("TIME")>-1){
-	    				value =new Date(parseInt(value)).format("yyyy/MM/dd"); 
-	    			}
-	    			var  f=value;
-	    			if(userIcon==null||userIcon==""){
-	    				
-	    			}else{
-	    				f = '<i class="'+userIcon+' text-grey" title="'+value+'" userIndex="'+userIndex+'" ></i> ';
-	    			}
-	    			return f;
-	    		},
+				"title" : colsView,
+				"field" : colsName,
+				"width":value.colsWidth==null?150:value.colsWidth,
+				"align":value.colsAlign==null?"left":value.colsAlign,
+				"valign":value.colsValign==null?"middle":value.colsValign,
+				"visible":value.colsVisible==null?true:value.colsVisible,
+				"switchable":value.colsSwitchable==null?true:value.colsSwitchable,
+				formatter:function iconFormatter(value, row, index){
+					if(value==null){
+						return null;
+					}
+					if(coldType.indexOf("DATE")>-1||coldType.indexOf("TIME")>-1){
+						value =new Date(parseInt(value)).format("yyyy/MM/dd"); 
+					}
+					var  f=value;
+					if(userIcon==null||userIcon==""){
+						
+					}else{
+						f = '<i class="'+userIcon+' text-grey" title="'+value+'" userIndex="'+userIndex+'" ></i> ';
+					}
+					return f;
+				},
 			});
 		}else if(userIndex!=""){
 			column.push({
-			    "title" : colsView,
-			    "field" : colsName,
-			    "width":value.colsWidth==null?150:value.colsWidth,
-			    "align":value.colsAlign==null?"left":value.colsAlign,
-			    "valign":value.colsValign==null?"middle":value.colsValign,
-			    "visible":value.colsVisible==null?true:value.colsVisible,
-			    "switchable":value.colsSwitchable==null?true:value.colsSwitchable,
-	    		formatter:function otherFormatter(value, row, index){
-	    			if(value==null){
-	    				return null;
-	    			}
-	    			if(coldType.indexOf("DATE")>-1||coldType.indexOf("TIME")>-1){
-	    				value =new Date(parseInt(value)).format("yyyy/MM/dd"); 
-	    			}
-	    			var f = value
-	    			if(userIcon==null||userIcon==""){
-	    				 f = '<a class="text-blue" title="'+value+'" userIndex="'+userIndex+'" onclick="forwordYjcx(\''+value+'\',\''+userIndex+'\',\''+colsName+'\')">'+value+' </a> ';
-	    			}else{
-	    				 f = f = '<i class="'+userIcon+' text-blue" title="'+value+'" userIndex="'+userIndex+'" onclick="forwordYjcx(\''+value+'\',\''+userIndex+'\',\''+colsName+'\')" id="sfzh_search"></i> ';
-	    			}
-	    			return f;
-	    		},
+				"title" : colsView,
+				"field" : colsName,
+				"width":value.colsWidth==null?150:value.colsWidth,
+				"align":value.colsAlign==null?"left":value.colsAlign,
+				"valign":value.colsValign==null?"middle":value.colsValign,
+				"visible":value.colsVisible==null?true:value.colsVisible,
+				"switchable":value.colsSwitchable==null?true:value.colsSwitchable,
+				formatter:function otherFormatter(value, row, index){
+					if(value==null){
+						return null;
+					}
+					if(coldType.indexOf("DATE")>-1||coldType.indexOf("TIME")>-1){
+						value =new Date(parseInt(value)).format("yyyy/MM/dd"); 
+					}
+					var f = value
+					if(userIcon==null||userIcon==""){
+						f = '<a class="text-blue" title="'+value+'" userIndex="'+userIndex+'" onclick="forwordYjcx(\''+value+'\',\''+userIndex+'\',\''+colsName+'\')">'+value+' </a> ';
+					}else{
+						f = f = '<i class="'+userIcon+' text-blue" title="'+value+'" userIndex="'+userIndex+'" onclick="forwordYjcx(\''+value+'\',\''+userIndex+'\',\''+colsName+'\')" id="sfzh_search"></i> ';
+					}
+					return f;
+				},
 			});
 		}
 		// 查询列表
@@ -143,7 +143,8 @@ function columnFix(result){
 		}
 		
 		
-	})
+	});
+	$('#update-show-myModal').modal('hide');
 	// 
 	reset("column_table_text_id",tabsName,column,result) ;
 }
@@ -266,8 +267,8 @@ function reset(id,tabsName,column,sysColumn) {
 				$("input[name='useful'][value='"+(d.useful==null?"false":d.useful)+"']").prop("checked",true);
 				
 				$('#update-show-myModal').modal({
-			        show: true
-			    });
+					show: true
+				});
 			}
 		})
 	});

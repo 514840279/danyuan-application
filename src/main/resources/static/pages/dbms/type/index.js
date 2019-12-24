@@ -62,6 +62,7 @@ $(function() {
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
+		sortName : "typeOrder", // 排序名
 		pagination : true, // 分页
 		pageNumber : 1, // 初始化加载第一页，默认第一页
 		pageSize : 10, // 每页的记录行数（*）
@@ -84,21 +85,21 @@ $(function() {
 //		search : true, // 显示搜索框
 		sidePagination: "server", // 服务端处理分页 server
 		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
-        //设置为limit可以获取limit, offset, search, sort, order  
-        queryParamsType : "undefined",
-        contentType: "application/json",
+		//设置为limit可以获取limit, offset, search, sort, order  
+		queryParamsType : "undefined",
+		contentType: "application/json",
 		method: "post",  //使用get请求到服务器获取数据  
 		queryParams: function queryParams(params) {  
-		    var param = {  
-                 pageNumber: params.pageNumber,    
-                 pageSize: params.pageSize,
-                 sortOrder:params.sortOrder,
-                 sortName:params.sortName,
-                 info:{
-                	 
-                 }
-             }; 
-             return param;
+			var param = {  
+				pageNumber: params.pageNumber,    
+				pageSize: params.pageSize,
+				sortOrder:params.sortOrder,
+				sortName:params.sortName,
+				info:{
+					
+				}
+			}; 
+			return param;
 		},
 
 		columns : [
@@ -115,10 +116,10 @@ $(function() {
 			return {rows:result.data.content,total:result.data.totalElements};
 		}, 
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
-    }).on('click-row.bs.table', function (e, row, ele,field) {
-    	$(".info").removeClass("info");
-    	$(ele).addClass("info");
-    });
+	}).on('click-row.bs.table', function (e, row, ele,field) {
+		$(".info").removeClass("info");
+		$(ele).addClass("info");
+	});
 
 });
 // 窗口大小改变时 重设表头

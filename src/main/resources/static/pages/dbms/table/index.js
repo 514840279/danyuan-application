@@ -3,10 +3,8 @@ var search_table_typeName = null;
 
 $(function() {
 	$('#addnew_table').click(function() {
-
 		// 获取屏幕宽度
 		url = "/pages/dbms/table/add_table.html";
-
 		modals.openWin({
 			winId : "add_tabs_id",
 			title : '新建连接信息',
@@ -72,7 +70,7 @@ $(function() {
 			callback : function(result) {
 					if (result) {
 						var param = {
-								"list":data,
+							"list":data,
 						};
 						// 重载
 						var url = "/sysDbmsTabsInfo/delete";
@@ -95,7 +93,7 @@ $(function() {
 			callback : function(result) {
 					if (result) {
 						var param = {
-								"list":data,
+							"list":data,
 						};
 						// 重载
 						var url = "/sysDbmsTabsInfo/drop";
@@ -114,6 +112,7 @@ $(function() {
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
+		sortName : "tabsOrder", // 排序方式
 		pagination : true, // 分页
 		pageNumber : 1, // 初始化加载第一页，默认第一页
 		pageSize : 10, // 每页的记录行数（*）
@@ -167,10 +166,10 @@ $(function() {
 			return {rows:result.content,total:result.totalElements};
 		},
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
-    }).on('click-row.bs.table', function (e, row, ele,field) {
-    	$(".info").removeClass("info");
-    	$(ele).addClass("info");
-    });
+	}).on('click-row.bs.table', function (e, row, ele,field) {
+		$(".info").removeClass("info");
+		$(ele).addClass("info");
+	});
 	// 窗口大小改变时 重设表头
 	$(window).resize(function() {
 		$('#db_table_datagrid').bootstrapTable('resetView');

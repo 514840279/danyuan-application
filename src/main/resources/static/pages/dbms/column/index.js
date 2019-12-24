@@ -1,12 +1,12 @@
 _tableUuid="0";
 $(function() {
 	$('#addnew_column_table').click(function() {
-			modals.openWin({
-				winId:"addnew_column_show_view_table",
-				title:'列选择',
-				width:'1000px',
-				url:"templates/dbms/column/add_column"
-			});
+		modals.openWin({
+			winId:"addnew_column_show_view_table",
+			title:'列选择',
+			width:'1000px',
+			url:"templates/dbms/column/add_column"
+		});
 		
 	});
 	$('#editold_column_table').click(function() {
@@ -160,9 +160,9 @@ function addSelectedAddrSuccess(result){
 }
 
 function addSelectedTableSuccess(result){
-	var data = [{id:" ",text:"请选择"}];
+	var data = [{id:"请选择",text:"请选择"}];
 	$.each(result,function(index,value){
-		data.push({id:value.uuid,text:value.tabsDesc+"("+value.tabsName+")"});
+		data.push({id:value.uuid,text:value.tabsName + ((value.tabsDesc==""||value.tabsDesc==null)?"":"("+value.tabsDesc+")")});
 	});
 	$('#search_config_table_tableUuid').empty();   
 	$('#search_config_table_tableUuid').select2({
@@ -173,6 +173,9 @@ function addSelectedTableSuccess(result){
 	
 	$('#search_config_table_tableUuid').on('select2:select', function (evt) {
 		_tableUuid = evt.params.data.id;
+		if("请选择" == _tableUuid){
+			_tableUuid = "";
+		}
 		$('#dbm_config_column_datagrid').bootstrapTable("refresh");
 	});
 }
@@ -186,6 +189,7 @@ function showClomnTable(){
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
+		sortName : "colsOrder", // 排序名
 		pagination : true, // 分页
 		pageNumber : 1, // 初始化加载第一页，默认第一页
 		pageSize : 10, // 每页的记录行数（*）
