@@ -15,13 +15,8 @@ $(function() {
 			$("#dbm_type_add_typeIcon").val(data[0].typeIcon);
 			$("#dbm_type_add_typeOrder").val(data[0].typeOrder);
 			$("#dbm_type_add_discription").val(data[0].discription);
-			if(data[0].deleteFlag==1){
-				$('#dbm_type_add_deleteFlag[value="0"]').attr('checked',false);
-				$('#dbm_type_add_deleteFlag[value="1"]').attr('checked',true);
-			}else if(data[0].deleteFlag==0){
-				$('#dbm_type_add_deleteFlag[value="0"]').attr('checked',true);
-				$('#dbm_type_add_deleteFlag[value="1"]').attr('checked',false);
-			}
+			$('#dbm_type_add_deleteFlag[value="'+data[0].deleteFlag+'"]').prop('checked',true);
+
 			$("#dbm_type_add_modal").modal({
 				show:true,
 			})

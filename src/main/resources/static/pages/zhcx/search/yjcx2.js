@@ -44,7 +44,7 @@ function searchButtonClick(){
 //search bar
 function add_user_index_sucess(result){
 	$.each(result, function(index, value) {
-		if(value.deleteFlag ==1){
+		if(value.deleteFlag == 0){
 			// 加载数据
 			var li = '<li userIndex="'+value.userIndex+'" userPlaceholder="'+value.userPlaceholder+'"><a href="#">'+value.userDesc+'</a></li>'
 			$(".search_bar").append(li);

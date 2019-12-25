@@ -63,7 +63,7 @@ $(function() {
 		
 		var url = "/sysDbmsUserIndexInfo/save";
 		var	SysDicUserIndexCode={
-				uuid:$("#dbm_useridex_add_uuid").val(),
+			uuid:$("#dbm_useridex_add_uuid").val(),
 			userDesc:$("#dbm_useridex_add_desc").val(),
 			userOrder:$("#dbm_useridex_add_userOrder").val(),
 			userIndex:$("#dbm_useridex_add_userIndex").val(),
@@ -89,6 +89,7 @@ $(function() {
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
+		sortName : "userOrder", // 排序方式
 		pagination : true, // 分页
 		pageNumber : 1, // 初始化加载第一页，默认第一页
 		pageSize : 10, // 每页的记录行数（*）

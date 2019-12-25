@@ -22,15 +22,15 @@ import org.danyuan.application.common.base.BaseEntity;
 @NamedQuery(name = "SysRolesTabsInfo.findAll", query = "SELECT s FROM SysRolesTabsInfo s")
 public class SysRolesTabsInfo extends BaseEntity implements Serializable {
 	private static final long	serialVersionUID	= 1L;
-	
+
 	// 表id
-	@Column(name = "tabs_id", columnDefinition = " COMMENT '表id'")
+	@Column(name = "tabs_id", columnDefinition = " varchar(36) COMMENT '表id'")
 	private String				tabsId;
-	
+
 	// 角色id
-	@Column(name = "role_id", columnDefinition = " COMMENT '角色id'")
+	@Column(name = "role_id", columnDefinition = " varchar(36) COMMENT '角色id'")
 	private String				roleId;
-	
+
 	/**
 	 * @方法名 getTabsId
 	 * @功能 返回变量 tabsId 的值
@@ -39,7 +39,7 @@ public class SysRolesTabsInfo extends BaseEntity implements Serializable {
 	public String getTabsId() {
 		return tabsId;
 	}
-	
+
 	/**
 	 * @方法名 setTabsId
 	 * @功能 设置变量 tabsId 的值
@@ -47,7 +47,7 @@ public class SysRolesTabsInfo extends BaseEntity implements Serializable {
 	public void setTabsId(String tabsId) {
 		this.tabsId = tabsId;
 	}
-	
+
 	/**
 	 * @方法名 getRoleId
 	 * @功能 返回变量 roleId 的值
@@ -56,7 +56,7 @@ public class SysRolesTabsInfo extends BaseEntity implements Serializable {
 	public String getRoleId() {
 		return roleId;
 	}
-	
+
 	/**
 	 * @方法名 setRoleId
 	 * @功能 设置变量 roleId 的值
@@ -64,5 +64,5 @@ public class SysRolesTabsInfo extends BaseEntity implements Serializable {
 	public void setRoleId(String roleId) {
 		this.roleId = roleId;
 	}
-
+	
 }

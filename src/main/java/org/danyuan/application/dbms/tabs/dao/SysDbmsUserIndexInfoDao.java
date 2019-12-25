@@ -23,7 +23,7 @@ import org.springframework.stereotype.Repository;
 @DynamicUpdate(true)
 @DynamicInsert(true)
 public interface SysDbmsUserIndexInfoDao extends BaseDao<SysDbmsUserIndexInfo> {
-
+	
 	/**
 	 * 方法名： findAllByDeleteFlag
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -32,9 +32,9 @@ public interface SysDbmsUserIndexInfoDao extends BaseDao<SysDbmsUserIndexInfo> {
 	 * 作 者 ： Administrator
 	 * @throws
 	 */
-	@Query("select t from SysDbmsUserIndexInfo t where t.deleteFlag =1 order by userOrder ")
+	@Query("select t from SysDbmsUserIndexInfo t where t.deleteFlag = 0 order by userOrder ")
 	List<SysDbmsUserIndexInfo> findAllByDeleteFlag();
-
+	
 	/**
 	 * @方法名 findAllByChart
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -45,5 +45,5 @@ public interface SysDbmsUserIndexInfoDao extends BaseDao<SysDbmsUserIndexInfo> {
 	 */
 	@Query("select t from SysDbmsUserIndexInfo t where t.chart >0  order by userOrder ")
 	List<SysDbmsUserIndexInfo> findAllByChart();
-
+	
 }
