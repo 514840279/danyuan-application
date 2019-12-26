@@ -44,3 +44,4 @@ hs_err_pid*
 /uploadfile
 /file
 /source/
+/log.*
