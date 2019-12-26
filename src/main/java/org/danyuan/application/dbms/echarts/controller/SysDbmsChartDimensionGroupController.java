@@ -39,7 +39,7 @@ public class SysDbmsChartDimensionGroupController {
 	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsChartDimensionGroupController.class);
 	@Autowired
 	SysDbmsChartDimensionGroupService	sysDbmsChartDimensionGroupService;
-	
+
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -50,10 +50,10 @@ public class SysDbmsChartDimensionGroupController {
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<SysDbmsChartDimensionGroup> page(@RequestBody Pagination<SysDbmsChartDimensionGroup> vo) {
 		logger.info("page", SysDbmsChartDimensionGroupController.class);
-		
+
 		return sysDbmsChartDimensionGroupService.page(vo);
 	}
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -66,7 +66,7 @@ public class SysDbmsChartDimensionGroupController {
 		logger.info("findAll", SysDbmsChartDimensionGroupController.class);
 		return sysDbmsChartDimensionGroupService.findAll(info);
 	}
-	
+
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -79,7 +79,7 @@ public class SysDbmsChartDimensionGroupController {
 		logger.info("findOne", SysDbmsChartDimensionGroupController.class);
 		return sysDbmsChartDimensionGroupService.findOne(info);
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -98,7 +98,7 @@ public class SysDbmsChartDimensionGroupController {
 		map.put("uuid", info.getUuid());
 		return map;
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -112,7 +112,7 @@ public class SysDbmsChartDimensionGroupController {
 		sysDbmsChartDimensionGroupService.saveAll(vo.getList());
 		return "1";
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -126,7 +126,7 @@ public class SysDbmsChartDimensionGroupController {
 		sysDbmsChartDimensionGroupService.deleteAll(vo.getList());
 		return "1";
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -140,7 +140,7 @@ public class SysDbmsChartDimensionGroupController {
 		sysDbmsChartDimensionGroupService.delete(info);
 		return "1";
 	}
-	
+
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -153,7 +153,7 @@ public class SysDbmsChartDimensionGroupController {
 		sysDbmsChartDimensionGroupService.trunc();
 		return "1";
 	}
-	
+
 	@RequestMapping(path = "/addBefor", method = RequestMethod.GET)
 	public ModelAndView addBefor(HttpServletRequest request) {
 		logger.info("addBefor", SysDbmsChartDimensionGroupController.class);
@@ -166,8 +166,7 @@ public class SysDbmsChartDimensionGroupController {
 			group = sysDbmsChartDimensionGroupService.findOne(group);
 			view.addObject("sysPlantChartDimensionGroup", group);
 		}
-		System.err.println(group.toString());
 		return view;
 	}
-	
+
 }

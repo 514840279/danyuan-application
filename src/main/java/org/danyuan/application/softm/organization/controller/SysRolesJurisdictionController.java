@@ -30,11 +30,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class SysRolesJurisdictionController {
 	//
 	private static final Logger			logger	= LoggerFactory.getLogger(SysRolesJurisdictionController.class);
-
+	
 	//
 	@Autowired
 	private SysRolesJurisdictionService	sysRolesJurisdictionService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -48,13 +48,13 @@ public class SysRolesJurisdictionController {
 		logger.info("sysRolesJurisdictionList", SysRolesJurisdictionController.class);
 		return sysRolesJurisdictionService.findAll();
 	}
-
+	
 	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
 	public Page<SysRolesJurisdictionInfo> findAllBySearchText(int pageNumber, int pageSize, SysRolesJurisdictionInfo sysRolesJurisdictionInfo) {
 		logger.info("findAllBySearchText", SysRolesJurisdictionController.class);
 		return sysRolesJurisdictionService.findAllBySearchText(pageNumber, pageSize, sysRolesJurisdictionInfo);
 	}
-
+	
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public String save(@RequestBody SysRolesJurisdictionInfo info) {
@@ -66,14 +66,13 @@ public class SysRolesJurisdictionController {
 			return "0";
 		}
 	}
-
+	
 	@RequestMapping(path = "/saveAll", method = RequestMethod.POST)
 	@ResponseBody
 	public String save(@RequestBody SysRolesJurisdictionVo vo) {
 		logger.info("saveAll", SysRolesJurisdictionController.class);
 		try {
 			for (SysRolesJurisdictionInfo info : vo.getSysRolesJurisdictionInfolist()) {
-				System.out.println(info.toString());
 				sysRolesJurisdictionService.save(info);
 			}
 			return "1";
@@ -81,7 +80,7 @@ public class SysRolesJurisdictionController {
 			return "0";
 		}
 	}
-
+	
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public String delete(@RequestBody SysRolesJurisdictionInfo info) {

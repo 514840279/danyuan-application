@@ -87,7 +87,6 @@ public class SysPlantBarOrLineStatisticsChartByElasticsearchService {
 		SearchResponse response = requestBuilder.execute().actionGet();
 
 		Terms aggregation = response.getAggregations().get(type1 + "_count");
-		// System.err.println(response.toString());
 		List<Map<String, Object>> series_data = new ArrayList<>();
 		List<String> legend_data = new ArrayList<>();
 		legend_data.add("数量");
@@ -513,7 +512,6 @@ public class SysPlantBarOrLineStatisticsChartByElasticsearchService {
 		SearchResponse response = requestBuilder.get();
 		
 		Terms aggregation = response.getAggregations().get(type1 + "_count");
-		// System.err.println(response.toString());
 		List<Map<String, Object>> series_data = new ArrayList<>();
 		List<String> legend_data = new ArrayList<>();
 		legend_data.add("金额");

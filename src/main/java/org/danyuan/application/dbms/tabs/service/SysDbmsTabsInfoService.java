@@ -3,7 +3,6 @@ package org.danyuan.application.dbms.tabs.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -105,8 +104,6 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 		SysDbmsTabsInfo info = vo.getOld();
 		SysDbmsTabsInfo sysDbmsTabsInfo = vo.getNow();
 		
-		System.out.println(info.getTabsName() + "  " + sysDbmsTabsInfo.getTabsName());
-		
 		if (!info.getTabsName().equals(sysDbmsTabsInfo.getTabsName())) {
 			// 修改表名
 			String sql = "ALTER TABLE " + info.getTabsName() + "  RENAME TO  " + sysDbmsTabsInfo.getTabsName();
@@ -143,8 +140,8 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 	}
 	
 	public List<String> findAllSchema(SysDbmsTabsInfo info) throws ClassNotFoundException, SQLException {
-		Map<String, DataSource> multiDatasource = multiDatasourceConfig.multiDatasource();
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(multiDatasource.get(info.getJdbcUuid()));
+		DataSource dataSource = multiDatasourceConfig.getDataSource(info.getJdbcUuid());
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String databaseProductNameString = jdbcTemplate.getDataSource().getConnection().getMetaData().getDatabaseProductName();
 		List<String> list = new ArrayList<>();
 		StringBuilder sBuilder = new StringBuilder();
@@ -157,8 +154,8 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 				
 				break;
 		}
+		logger.debug(sBuilder.toString(), SysDbmsTabsInfoService.class);
 		list = jdbcTemplate.queryForList(sBuilder.toString(), String.class);
-		multiDatasourceConfig.destroyMultiDatasource(multiDatasource);
 		return list;
 	}
 	
@@ -437,8 +434,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 				sBuilder.append("drop table " + info.getTabsName());
 				jdbcTemplate.execute(sBuilder.toString());
 			} catch (Exception e) {
-				logger.error(info.getTabsName() + "表不存在");
-				System.err.println(e.getMessage());
+				logger.error(info.getTabsName() + "表不存在", SysDbmsTabsInfoService.class);
 			} finally {
 				sysDbmsTabsColsInfoDao.deleteByTabsUuid(info.getUuid());
 				sysDbmsTabsInfoDao.delete(info);
@@ -559,7 +555,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 			}
 
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			logger.error(e.getMessage(), SysDbmsTabsInfoService.class);
 		}
 		
 	}

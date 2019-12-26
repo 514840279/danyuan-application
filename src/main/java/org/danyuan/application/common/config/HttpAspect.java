@@ -123,8 +123,7 @@ public class HttpAspect {
 		try {
 			result = joinPoint.proceed();
 		} catch (Throwable e) {
-			System.err.println(e.getMessage());
-			logger.info("exception:" + e.getMessage(), HttpAspect.class);
+			logger.error("exception:" + e.getMessage(), HttpAspect.class);
 			logs.setMessage(e.getMessage());
 			// TODO
 		}
@@ -155,7 +154,7 @@ public class HttpAspect {
 		try {
 			sysComnLogsDao.save(logs);
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			logger.error(e.getMessage(), HttpAspect.class);
 		}
 		return result;
 	}

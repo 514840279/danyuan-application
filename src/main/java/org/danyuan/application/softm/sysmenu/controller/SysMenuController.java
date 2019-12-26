@@ -67,13 +67,11 @@ public class SysMenuController {
 	
 	@RequestMapping(path = "/findzTreeRole", method = RequestMethod.POST)
 	public List<AuthorityzTreeVO> findzTreeRole(@RequestBody String roleUuid) {
-		System.err.println(roleUuid);
 		return sysMenuService.findzTreeRole("0", roleUuid.replace("\"", ""));
 	}
 	
 	@RequestMapping(path = "/findzTreeByUser", method = RequestMethod.POST)
 	public List<AuthorityzTreeVO> findzTreeByUser(@RequestBody String username) {
-		System.err.println(username);
 		return sysMenuService.findzTreeByUser("0", username.replace("\"", ""));
 	}
 
@@ -87,7 +85,6 @@ public class SysMenuController {
 	 */
 	@RequestMapping(path = "/addSysMenuInfo", method = RequestMethod.POST)
 	public AuthorityzTreeVO addzTree(@RequestBody SysMenuInfo sysMenuInfo) {
-		System.err.println(sysMenuInfo.toString());
 		return sysMenuService.save(sysMenuInfo);
 	}
 

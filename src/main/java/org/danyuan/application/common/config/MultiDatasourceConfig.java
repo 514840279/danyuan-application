@@ -14,14 +14,19 @@ import org.danyuan.application.common.utils.dbutils.MysqlConnUtils;
 import org.danyuan.application.common.utils.dbutils.OracleConnUtils;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsJdbcInfoDao;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsJdbcInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MultiDatasourceConfig {
+	
+	private static final Logger	logger	= LoggerFactory.getLogger(MultiDatasourceConfig.class);
+
 	@Autowired
-	SysDbmsTabsJdbcInfoDao sysDbmsTabsJdbcInfoDao;
+	SysDbmsTabsJdbcInfoDao		sysDbmsTabsJdbcInfoDao;
 	
 	@SuppressWarnings("unchecked")
 	public Map<String, DataSource> multiDatasource() {
@@ -52,7 +57,7 @@ public class MultiDatasourceConfig {
 				map.put(sysZhcxAddr.getUuid(), dataSource);
 			}
 		} catch (ClassNotFoundException e) {
-			System.err.println("程序未发现jar包 《tomcat-jdbc》 ，springboot2之后默认数据源使用 “com.zaxxer.hikari.HikariDataSource”，使用其他数据源需要单独引入包");
+			logger.error("程序未发现jar包 《tomcat-jdbc》 ，springboot2之后默认数据源使用 “com.zaxxer.hikari.HikariDataSource”，使用其他数据源需要单独引入包", LogsClearScheduled.class);
 		}
 		return map;
 	}
@@ -109,7 +114,7 @@ public class MultiDatasourceConfig {
 				}
 				return DataSourceBuilder.create().driverClassName(driverClassName).url(url).username(sysZhcxAddr.getUsername()).password(sysZhcxAddr.getPassword()).type(type).build();
 			} catch (ClassNotFoundException e) {
-				System.err.println("程序未发现jar包 《tomcat-jdbc》 ，springboot2之后默认数据源使用 “com.zaxxer.hikari.HikariDataSource”，使用其他数据源需要单独引入包");
+				logger.error("程序未发现jar包 《tomcat-jdbc》 ，springboot2之后默认数据源使用 “com.zaxxer.hikari.HikariDataSource”，使用其他数据源需要单独引入包", LogsClearScheduled.class);
 			}
 		}
 		return null;

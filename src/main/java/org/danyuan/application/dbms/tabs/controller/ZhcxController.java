@@ -42,31 +42,30 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 @RestController
 @RequestMapping("/zhcx")
 public class ZhcxController {
-	
+
 	private static final Logger			logger	= LoggerFactory.getLogger(ZhcxController.class);
-	
+
 	//
 	@Autowired
 	private SysDbmsTabsTypeInfoService	sysDbmsTabsTypeInfoService;
-	
+
 	//
 	@Autowired
 	private SysDbmsTabsInfoService		sysDbmsTabsInfoService;
-	
+
 	//
 	@Autowired
 	private SysDbmsTabsColsInfoService	sysDbmsTabsColsInfoService;
 	@Autowired
 	SysDbmsUserIndexInfoService			sysDbmsUserIndexInfoService;
-	
+
 	@Autowired
 	private ZhcxService					zhcxService;
-	
+
 	@RequestMapping(path = "/findAllTableRow", method = { RequestMethod.GET, RequestMethod.POST })
 	public Map<String, Object> findAllTableRow(@RequestBody SysDbmsTabsColsInfoVo vo) throws JsonParseException, JsonMappingException, IOException {
 		logger.info("findAllTableRow", ZhcxController.class);
 		Map<String, Object> map = new HashMap<>();
-		System.err.println(vo.toString());
 		if ("oracle".equals(vo.getDbType()) || "mysql".equals(vo.getDbType())) {
 			// if ("单表多条件查询".equals(vo.getType())) {
 			// map = zhcxService.findAllSigleTableByMulteityParam(vo);
@@ -80,7 +79,7 @@ public class ZhcxController {
 		}
 		return map;
 	}
-	
+
 	@RequestMapping(path = "/forwardYjcx", method = RequestMethod.POST)
 	public ModelAndView forwardYjcx(SysDbmsTabsInfoVo vo) {
 		logger.info("forwardYjcx", ZhcxController.class);
@@ -91,21 +90,21 @@ public class ZhcxController {
 		view.addObject("paramString", vo.getParamString());
 		return view;
 	}
-	
+
 	@RequestMapping(path = "/findAllTypeByUser", method = RequestMethod.POST)
 	public List<SysDbmsTabsTypeInfo> findAllTypeByUser(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("findAllType", ZhcxController.class);
 		List<SysDbmsTabsTypeInfo> list = sysDbmsTabsTypeInfoService.findAllTypeByUser(vo.getUsername());
 		return list;
 	}
-
+	
 	@RequestMapping(path = "/findAllType", method = RequestMethod.POST)
 	public List<SysDbmsTabsTypeInfo> findAllType(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("findAllType", ZhcxController.class);
 		List<SysDbmsTabsTypeInfo> list = sysDbmsTabsTypeInfoService.findAll();
 		return list;
 	}
-	
+
 	@RequestMapping(path = "/findAllTable", method = RequestMethod.POST)
 	public List<SysDbmsTabsInfo> findAllTable(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("findAllTable", ZhcxController.class);
@@ -116,7 +115,7 @@ public class ZhcxController {
 			return new ArrayList<>();
 		}
 	}
-	
+
 	@RequestMapping(path = "/findAllTableByUser", method = RequestMethod.POST)
 	public List<SysDbmsTabsInfo> findAllTableByUser(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("findAllTable", ZhcxController.class);
@@ -127,7 +126,7 @@ public class ZhcxController {
 			return new ArrayList<>();
 		}
 	}
-	
+
 	@RequestMapping(path = "/findAllTableByTypeUuid", method = RequestMethod.POST)
 	public List<SysDbmsTabsInfo> findAllTableByTypeUuid(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("findAllTableByTypeUuid", ZhcxController.class);
@@ -137,7 +136,7 @@ public class ZhcxController {
 		}
 		return list;
 	}
-	
+
 	@RequestMapping(path = "/findAllTableByTypeUuidAndUsername", method = RequestMethod.POST)
 	public List<SysDbmsTabsInfo> findAllTableByTypeUuidAndUsername(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("findAllTableByTypeUuidAndUsername", ZhcxController.class);
@@ -147,14 +146,14 @@ public class ZhcxController {
 		}
 		return list;
 	}
-	
+
 	@RequestMapping(path = "/findAllColumn", method = RequestMethod.POST)
 	public List<SysDbmsTabsColsInfo> findAllColumn(@RequestBody SysDbmsTabsColsInfoVo vo) {
 		logger.info("findAllColumn", ZhcxController.class);
 		List<SysDbmsTabsColsInfo> list = sysDbmsTabsColsInfoService.findAll(vo.getInfo());
 		return list;
 	}
-	
+
 	@RequestMapping(path = "/forwardZhlb", method = RequestMethod.POST)
 	public ModelAndView forwardZhlb(SysDbmsTabsInfoVo vo) {
 		logger.info("forwardZhlb", ZhcxController.class);
@@ -170,7 +169,7 @@ public class ZhcxController {
 		view.addObject("paramString", vo.getParamString());
 		return view;
 	}
-	
+
 	@RequestMapping(path = "/forwardZhxx", method = RequestMethod.POST)
 	public ModelAndView forwardZhxx(SysDbmsTabsColsInfoVo vo) {
 		logger.info("forwardZhxx", ZhcxController.class);
@@ -181,7 +180,7 @@ public class ZhcxController {
 		view.addObject("paramString", vo.getParamString());
 		return view;
 	}
-	
+
 	@RequestMapping(path = "/forwardChart", method = RequestMethod.POST)
 	public ModelAndView forwardChart(SysDbmsTabsColsInfoVo vo) {
 		logger.info("forwardChart", ZhcxController.class);
@@ -189,5 +188,5 @@ public class ZhcxController {
 		view.addObject("paramString", vo.getParamString());
 		return view;
 	}
-	
+
 }

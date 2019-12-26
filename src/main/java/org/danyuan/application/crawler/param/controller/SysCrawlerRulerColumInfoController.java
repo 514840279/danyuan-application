@@ -7,6 +7,8 @@ import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.crawler.param.po.SysCrawlerRulerColumInfo;
 import org.danyuan.application.crawler.param.po.SysCrawlerRulerInfo;
 import org.danyuan.application.crawler.param.service.SysCrawlerRulerColumInfoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,16 +28,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sysCrawlerRulerColumInfo")
 public class SysCrawlerRulerColumInfoController {
+
+	private static final Logger		logger	= LoggerFactory.getLogger(SysCrawlerRulerColumInfoController.class);
 	
 	@Autowired
-	SysCrawlerRulerColumInfoService sysCrawlerRulerColumInfoService;
-	
+	SysCrawlerRulerColumInfoService	sysCrawlerRulerColumInfoService;
+
 	@RequestMapping("/findParent")
 	public List<SysCrawlerRulerColumInfo> findParent(@RequestBody SysCrawlerRulerInfo info) {
-		System.err.println(info.toString());
+		logger.error("/findParent", SysCrawlerRulerColumInfoController.class);
 		return sysCrawlerRulerColumInfoService.findParent(info);
 	}
-	
+
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -48,7 +52,7 @@ public class SysCrawlerRulerColumInfoController {
 	public Page<SysCrawlerRulerColumInfo> page(@RequestBody Pagination<SysCrawlerRulerColumInfo> vo) {
 		return sysCrawlerRulerColumInfoService.page(vo);
 	}
-	
+
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -61,7 +65,7 @@ public class SysCrawlerRulerColumInfoController {
 	public List<SysCrawlerRulerColumInfo> findAll(@RequestBody SysCrawlerRulerColumInfo info) {
 		return sysCrawlerRulerColumInfoService.findAll(info);
 	}
-	
+
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -74,7 +78,7 @@ public class SysCrawlerRulerColumInfoController {
 	public SysCrawlerRulerColumInfo findOne(@RequestBody SysCrawlerRulerColumInfo info) {
 		return sysCrawlerRulerColumInfoService.findOne(info);
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -91,7 +95,7 @@ public class SysCrawlerRulerColumInfoController {
 		sysCrawlerRulerColumInfoService.save(info);
 		return "1";
 	}
-	
+
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -105,7 +109,7 @@ public class SysCrawlerRulerColumInfoController {
 		sysCrawlerRulerColumInfoService.saveAll(vo.getList());
 		return "1";
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -119,7 +123,7 @@ public class SysCrawlerRulerColumInfoController {
 		sysCrawlerRulerColumInfoService.deleteAll(vo.getList());
 		return "1";
 	}
-	
+
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -133,7 +137,7 @@ public class SysCrawlerRulerColumInfoController {
 		sysCrawlerRulerColumInfoService.delete(info);
 		return "1";
 	}
-	
+
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -146,5 +150,5 @@ public class SysCrawlerRulerColumInfoController {
 		sysCrawlerRulerColumInfoService.trunc();
 		return "1";
 	}
-	
+
 }

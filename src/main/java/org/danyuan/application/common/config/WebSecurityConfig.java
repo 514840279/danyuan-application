@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,14 +36,16 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 开启security注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+	
+	private static final Logger	logger	= LoggerFactory.getLogger(WebSecurityConfig.class);
+	
 	@Autowired
-	private DataSource dataSource;
+	private DataSource			dataSource;
 //	@Autowired
 //	private MyLoginSuccessHandler	myLoginSuccessHandler;
 //	@Autowired
 //	private MyLoginFailureHandler	myLoginFailureHandler;
-
+	
 	@Bean
 	public PersistentTokenRepository tokenRepository() {
 		JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
@@ -50,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		jdbcTokenRepository.setCreateTableOnStartup(false);
 		return jdbcTokenRepository;
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		/** JWT拦截器 */
@@ -94,22 +98,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		        .userDetailsService(userDetailsService) // 设置userDetailsService，用来获取username;
 		;
 	}
-	
+
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) {
 		try {
 			auth.userDetailsService(customUserDetailsService()).passwordEncoder(passwordEncoder());
 		} catch (Exception e) {
-			System.err.println(e);
+			logger.error(e.getMessage(), WebSecurityConfig.class);
 		}
-		
+
 	}
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
-	
+
 	/**
 	 * 自定义UserDetailsService，从数据库中读取用户信息
 	 *
@@ -119,7 +123,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public CustomUserDetailsService customUserDetailsService() {
 		return new CustomUserDetailsService();
 	}
-	
+
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();

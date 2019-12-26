@@ -39,10 +39,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysDbmsChartDimensionGroupService extends BaseServiceImpl<SysDbmsChartDimensionGroup> implements BaseService<SysDbmsChartDimensionGroup> {
-
+	
 	@Autowired
 	SysDbmsChartDimensionGroupDao sysDbmsChartDimensionGroupDao;
-
+	
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -51,10 +51,9 @@ public class SysDbmsChartDimensionGroupService extends BaseServiceImpl<SysDbmsCh
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public SysDbmsChartDimensionGroup findOne(SysDbmsChartDimensionGroup info) {
-		System.err.println(info.toString());
 		Example<SysDbmsChartDimensionGroup> example = Example.of(info);
 		Optional<SysDbmsChartDimensionGroup> group = sysDbmsChartDimensionGroupDao.findOne(example);
 		if (group.isPresent()) {
@@ -62,7 +61,7 @@ public class SysDbmsChartDimensionGroupService extends BaseServiceImpl<SysDbmsCh
 		}
 		return null;
 	}
-
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -71,13 +70,13 @@ public class SysDbmsChartDimensionGroupService extends BaseServiceImpl<SysDbmsCh
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public List<SysDbmsChartDimensionGroup> findAll(SysDbmsChartDimensionGroup info) {
 		Example<SysDbmsChartDimensionGroup> example = Example.of(info);
 		return sysDbmsChartDimensionGroupDao.findAll(example);
 	}
-
+	
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -90,7 +89,7 @@ public class SysDbmsChartDimensionGroupService extends BaseServiceImpl<SysDbmsCh
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#page(int, int, java.lang.Object, java.util.Map, org.springframework.data.domain.Sort.Order[])
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public Page<SysDbmsChartDimensionGroup> page(Pagination<SysDbmsChartDimensionGroup> vo) {
 		List<Order> orders = new ArrayList<>();
@@ -109,23 +108,23 @@ public class SysDbmsChartDimensionGroupService extends BaseServiceImpl<SysDbmsCh
 		if (vo.getInfo() == null) {
 			vo.setInfo(new SysDbmsChartDimensionGroup());
 		}
-
+		
 		Sort sort = Sort.by(orders);
 		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		return sysDbmsChartDimensionGroupDao.findAll(new Specification<SysDbmsChartDimensionGroup>() {
-
+			
 			/**
 			 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
 			 */
 			private static final long serialVersionUID = 1L;
-
+			
 			@Override
 			public Predicate toPredicate(Root<SysDbmsChartDimensionGroup> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				return cb.like(root.get("title"), "%" + vo.getInfo().getTitle() + "%");
 			}
 		}, request);
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -133,12 +132,12 @@ public class SysDbmsChartDimensionGroupService extends BaseServiceImpl<SysDbmsCh
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void saveAll(List<SysDbmsChartDimensionGroup> list) {
 		sysDbmsChartDimensionGroupDao.saveAll(list);
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -146,12 +145,12 @@ public class SysDbmsChartDimensionGroupService extends BaseServiceImpl<SysDbmsCh
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void delete(SysDbmsChartDimensionGroup info) {
 		sysDbmsChartDimensionGroupDao.delete(info);
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -159,12 +158,12 @@ public class SysDbmsChartDimensionGroupService extends BaseServiceImpl<SysDbmsCh
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#delete(java.util.List)
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void deleteAll(List<SysDbmsChartDimensionGroup> list) {
 		sysDbmsChartDimensionGroupDao.deleteAll(list);
 	}
-
+	
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -172,10 +171,10 @@ public class SysDbmsChartDimensionGroupService extends BaseServiceImpl<SysDbmsCh
 	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#trunc()
 	 * 作 者 ： Administrator
 	 */
-
+	
 	@Override
 	public void trunc() {
 		sysDbmsChartDimensionGroupDao.deleteAllInBatch();
 	}
-
+	
 }

@@ -15,6 +15,8 @@ import org.danyuan.application.common.config.MultiDatasourceConfig;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
 import org.danyuan.application.dbms.tabs.vo.MulteityParam;
 import org.danyuan.application.dbms.tabs.vo.SysDbmsTabsColsInfoVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -31,15 +33,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ZhcxService {
-	@Autowired
-	JdbcTemplate			jdbcTemplate;
 
+	private static final Logger	logger	= LoggerFactory.getLogger(ZhcxService.class);
+	
+	@Autowired
+	JdbcTemplate				jdbcTemplate;
+	
 //	@Value("${spring.jpa.database}")
 //	private String	database;
-	
+
 	@Autowired
-	MultiDatasourceConfig	multiDatasourceConfig;
-	
+	MultiDatasourceConfig		multiDatasourceConfig;
+
 	/**
 	 * 方法名： findAllSigleTableByMulitityParam
 	 * 功 能： 单表多条件查询
@@ -89,13 +94,13 @@ public class ZhcxService {
 				}
 			}
 		}
-		
+
 		resultMap(sql.toString(), null, vo, map);
 		return map;
 	}
-	
+
 	private void resultMap(String sqlString, Map<String, String> params, SysDbmsTabsColsInfoVo vo, Map<String, Object> resultMap) {
-		
+
 		StringBuilder pageSql = new StringBuilder();
 		if ("ORACLE".equals(vo.dbType.toUpperCase())) {
 			pageSql.append(" select *  ");
@@ -114,7 +119,7 @@ public class ZhcxService {
 		if (params != null) {
 			Set<String> set = params.keySet();
 			Iterator<String> iterable = set.iterator();
-
+			
 			while (iterable.hasNext()) {
 				String nameString = iterable.next();
 				pageSqlstr = pageSqlstr.replace(":" + nameString, "'" + params.get(nameString) + "'");
@@ -124,14 +129,14 @@ public class ZhcxService {
 			Connection connection = multiDatasourceConfig.getConnection(vo.getJdbcUuid());
 			Statement statement = connection.createStatement();
 //			Map<String, DataSource> multiDatasource = multiDatasourceConfig.multiDatasource();
-			System.out.println(pageSqlstr);
 			// List<Map<String, Object>> list = jdbcTemplate.queryForList(pageSql.toString());
 //			NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(multiDatasource.get(vo.getJdbcUuid()));
 //			List<Map<String, Object>> list = template.queryForList(pageSql.toString(), param);
+			logger.debug(pageSqlstr, ZhcxService.class);
 			ResultSet resultSet = statement.executeQuery(pageSqlstr);
 			List<Map<String, Object>> list = new ArrayList<>();
 			ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-			
+
 			while (resultSet.next()) {
 				Map<String, Object> map = new HashMap<>();
 				for (int i = 0; i < resultSetMetaData.getColumnCount(); i++) {
@@ -165,10 +170,12 @@ public class ZhcxService {
 					statement = connection.createStatement();
 					// Map<String, Object> total = jdbcTemplate.queryForMap(countsql);
 //					long count = template.queryForObject(countsql, param, Long.class);
+					logger.debug(countsql, ZhcxService.class);
 					resultSet = statement.executeQuery(countsql);
 					resultSet.next();
-
+					
 					resultMap.put("total", resultSet.getLong(1));
+					statement.close();
 				} else {
 					resultMap.put("total", vo.getTotal().intValue());
 				}
@@ -178,7 +185,7 @@ public class ZhcxService {
 		} catch (Exception e) {
 		}
 	}
-	
+
 	/**
 	 * 方法名： findBySingleTableByMulteityParam
 	 * 功 能： 单表多条件分组查询
@@ -218,10 +225,9 @@ public class ZhcxService {
 		}
 		// 求结果
 		resultMap(sql.toString(), params, vo, map);
-		System.err.println(sql.toString());
 		return map;
 	}
-	
+
 	/**
 	 * 方法名： searchSqlByParams
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -275,11 +281,11 @@ public class ZhcxService {
 			if (exists) {
 				sql.append(" and (  ").append(sqltem.toString()).append(" )");
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	/**
 	 * @param paramList
 	 * 方法名： sortByUserIndex
@@ -319,5 +325,5 @@ public class ZhcxService {
 		}
 		return listlist;
 	}
-	
+
 }

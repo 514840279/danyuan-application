@@ -54,7 +54,6 @@ public class SysPlantPieStatisticsChartService {
 
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
 		List<Map<String, Object>> listMap = template.queryForList(sql.toString(), param);
-		// System.err.println(sql.toString());
 		for (Map<String, Object> map2 : listMap) {
 			legend_data.add(map2.get("aks").toString());
 			// {value:92503371, name:'男'}
@@ -96,7 +95,6 @@ public class SysPlantPieStatisticsChartService {
 		
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
 		List<Map<String, Object>> listMap = template.queryForList(sql.toString(), param);
-		// System.err.println(sql.toString());
 		for (Map<String, Object> map2 : listMap) {
 			legend_data.add(map2.get("AKS").toString());
 			// {value:92503371, name:'男'}

@@ -113,9 +113,9 @@ public class LogsClearScheduled {
 		try {
 			multiDatasourceConfig.destroyMultiDatasource(multiDatasource);
 		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+			logger.error(e.getMessage(), LogsClearScheduled.class);
 		}
-		System.err.println("本次处理配置表信息执行完毕！");
+		logger.info("本次处理配置表信息执行完毕！", LogsClearScheduled.class);
 	}
 	
 	public long getDatePoor(Date endDate, Date nowDate) {

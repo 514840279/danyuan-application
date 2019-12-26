@@ -64,7 +64,6 @@ public class SysPlantPieStatisticsChartByElasticsearchService {
 		SearchResponse response = requestBuilder.execute().actionGet();
 		
 		Terms aggregation = response.getAggregations().get(type1 + "_count");
-		// System.err.println(response.toString());
 		List<String> legend_data = new ArrayList<>();
 		List<Map<String, Object>> series_data = new ArrayList<>();
 		for (Terms.Bucket bucket : aggregation.getBuckets()) {
@@ -106,7 +105,6 @@ public class SysPlantPieStatisticsChartByElasticsearchService {
 		SearchResponse response = requestBuilder.get();
 		
 		Terms aggregation = response.getAggregations().get(type1 + "_count");
-		// System.err.println(response.toString());
 		List<String> legend_data = new ArrayList<>();
 		List<Map<String, Object>> series_data = new ArrayList<>();
 		for (Terms.Bucket bucket : aggregation.getBuckets()) {

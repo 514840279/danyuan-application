@@ -34,7 +34,7 @@ public class SysDbmsChartDimensionDataController {
 	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsChartDimensionDataController.class);
 	@Autowired
 	SysDbmsChartDimensionDataService	sysDbmsChartDimensionDataService;
-
+	
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -46,9 +46,9 @@ public class SysDbmsChartDimensionDataController {
 	public Page<SysDbmsChartDimensionData> page(Pagination<SysDbmsChartDimensionData> vo) {
 		logger.info("page", SysDbmsChartDimensionDataController.class);
 		return sysDbmsChartDimensionDataService.page(vo);
-
+		
 	}
-
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -61,7 +61,7 @@ public class SysDbmsChartDimensionDataController {
 		logger.info("findAll", SysDbmsChartDimensionDataController.class);
 		return sysDbmsChartDimensionDataService.findAll(info);
 	}
-
+	
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -74,7 +74,7 @@ public class SysDbmsChartDimensionDataController {
 		logger.info("findOne", SysDbmsChartDimensionDataController.class);
 		return sysDbmsChartDimensionDataService.findOne(info);
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -91,7 +91,7 @@ public class SysDbmsChartDimensionDataController {
 		sysDbmsChartDimensionDataService.save(info);
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -105,7 +105,7 @@ public class SysDbmsChartDimensionDataController {
 		sysDbmsChartDimensionDataService.saveAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -115,14 +115,11 @@ public class SysDbmsChartDimensionDataController {
 	 */
 	@RequestMapping(path = "/deleteAll", method = RequestMethod.POST)
 	public String delete(@RequestBody Pagination<SysDbmsChartDimensionData> vo) {
-		for (SysDbmsChartDimensionData data : vo.getList()) {
-			System.err.println(data.toString());
-		}
 		logger.info("delete", SysDbmsChartDimensionDataController.class);
 		sysDbmsChartDimensionDataService.deleteAll(vo.getList());
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -136,7 +133,7 @@ public class SysDbmsChartDimensionDataController {
 		sysDbmsChartDimensionDataService.delete(info);
 		return "1";
 	}
-
+	
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)

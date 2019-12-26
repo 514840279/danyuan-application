@@ -62,8 +62,6 @@ public class SysDepartmentController {
 	@RequestMapping(path = "/sysDepartmentAdd", method = RequestMethod.POST)
 	@ResponseBody
 	public String save(@RequestBody SysDepartmentInfo info) {
-		logger.info("sysDepartmentAdd", SysDepartmentController.class);
-		System.out.println(info.toString());
 		sysDepartmentService.save(info);
 		return "1";
 	}

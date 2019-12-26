@@ -50,7 +50,9 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: update
-      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      show_sql: true
+      #naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      naming-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
@@ -82,7 +84,13 @@ jwt:
 logging:
   level:
     root: INFO
-    org.hibernate: INFO
-#    org.hibernate.type.descriptor.sql.BasicBinder: trace
-#    org.hibernate.type.descriptor.sql.BasicExtractor: trace
-    org.danyuan: DEBUG
+    org.springframework.web: DEBUG
+    org.danyuan.application: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    #org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+  file: log.log
+  pattern:
+    level: info
+    #console: "%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n"
+    file: "%d{yyyy-MM-dd HH24mmss} === [%thread] === %-5level === %logger{50} ==== %msg%n"

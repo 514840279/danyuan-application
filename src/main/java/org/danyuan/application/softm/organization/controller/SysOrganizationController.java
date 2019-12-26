@@ -59,8 +59,6 @@ public class SysOrganizationController {
 	@RequestMapping(path = "/sysOrganizationAdd", method = RequestMethod.POST)
 	@ResponseBody
 	public String sysOrganizationAdd(@RequestBody SysOrganizationInfo info) {
-		System.out.println(info.toString());
-		logger.info("sysOrganizationAdd", SysOrganizationController.class);
 		try {
 			sysOrganizationService.sysOrganizationAdd(info);
 			return "1";
@@ -130,8 +128,6 @@ public class SysOrganizationController {
 	@RequestMapping(path = "/sysOrganizationEdit", method = RequestMethod.POST)
 	@ResponseBody
 	public String sysOrganizationEdit(@RequestBody SysOrganizationInfo info) {
-		System.out.println(info.toString());
-		logger.info("sysOrganizationEdit", SysOrganizationController.class);
 		try {
 			sysOrganizationService.sysOrganizationEdit(info);
 			return "1";
