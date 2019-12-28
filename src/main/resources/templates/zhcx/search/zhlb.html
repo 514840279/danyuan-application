@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="/plugins/bootstrap/tab/css/bootstrap-tab.css" />
 <link rel="stylesheet" href="/plugins/bootstrap/table/bootstrap-table.min.css" />
 <link rel="stylesheet" href="/plugins/toastr/toastr.min.css" />
+<link rel="stylesheet" href="/plugins/select2/select2.min.css"/>
 
 <link rel="stylesheet" href="/dist/css/style.css" />
 
@@ -172,7 +173,9 @@
 						<label for="update_config_column_colsSort">排序</label> <input type="number" class="form-control" id="update_config_column_colsSort" placeholder="数据排序">
 					</div>
 					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
-						<label for="update_config_column_userIndex">用户索引</label> <input type="text" class="form-control" id="update_config_column_userIndex" placeholder="用户索引">
+						<label for="update_config_column_userIndex">用户索引</label> 
+<!-- 						<input type="text" class="form-control" id="update_config_column_userIndex" placeholder="用户索引"> -->
+						<select style="width: 100%;" id="search_table_userindex"></select>
 					</div>
 					<div class="col-lg-6   col-md-6 col-sm-12 form-group">
 						<label for="update_config_column_userIcon">小图标</label>
@@ -273,6 +276,7 @@
 	<script type="text/javascript" src="/plugins/bootstrap/table/extensions/editable/bootstrap-table-editable.min.js"></script>
 	<script type="text/javascript" src="/plugins/bootstrap/table/extensions/contextmenu/bootstrap-table-contextmenu.min.js"></script>
 	<script type="text/javascript" src="/plugins/bootstrap/table/locale/bootstrap-table-zh-CN.min.js"></script>
+	<script type="text/javascript" src="/plugins/select2/select2.min.js"></script>
 
 	<script type="text/javascript" src="/plugins/toastr/toastr.min.js"></script>
 

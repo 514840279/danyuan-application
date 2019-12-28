@@ -6,6 +6,8 @@ $(function() {
 	// 表类型列表下拉
 	ajaxPost('/sysDbmsTabsTypeInfo/findAll', null, successSearchTableTypeInfoindex, null, findError);
 
+	// 表类型列表下拉
+	ajaxPost('/sysDbmsUserIndexInfo/findAll', null, successSearchUserIndexInfoindex);
 	
 	$("#search_table_tabsName").select2({
 		tags: true,
@@ -27,6 +29,25 @@ $(function() {
 	});
 	
 });
+
+function successSearchUserIndexInfoindex(result){
+	var data =[{id:'请选择',text:'请选择'}];
+	$.each(result,function(index,value){
+		data.push({id:value.uuid,text: value.userIndex});
+	});
+	
+	$("#search_table_userindex").select2({
+		tags: true,
+		placeholder: "请选择",
+		data: data
+	}).on('select2:select', function (evt) {
+		_userIndex = evt.params.data.text;
+		if(_userIndex == "请选择"){
+			_userIndex = null;
+		}
+	});
+}
+
 var search_table_addrName = null;
 var search_table_typeName = null;
 function reloadTabsnameSelect(){
@@ -40,6 +61,7 @@ function reloadTabsnameSelect(){
 	
 	ajaxPost(url, param, successreloadTabsnameSelect);
 }
+
 function successreloadTabsnameSelect(result){
 	var data =[{id:'请选择',text:'请选择'}];
 	$.each(result,function(index,value){
@@ -300,6 +322,7 @@ function reset(tabsName,column,sysColumn,dbType,jdbcUuid) {
 				$("#update_config_column_colsDesc").val(d.colsDesc);
 				$("#update_config_column_colsOrder").val(d.colsOrder);
 				$("#update_config_column_userIndex").val(d.userIndex);
+				_userIndex = d.userIndex;
 				$("#update_config_column_userIcon").val(d.userIcon);
 				$("#update_config_column_colsWidth").val(d.colsWidth);
 				$("input[name='deleteFlag'][value='"+(d.deleteFlag==null?"0":d.deleteFlag)+"']").prop("checked",true);
@@ -322,7 +345,7 @@ function reset(tabsName,column,sysColumn,dbType,jdbcUuid) {
 		d.colsDesc=$("#update_config_column_colsDesc").val();
 		d.colsOrder=$("#update_config_column_colsOrder").val();
 		d.colsSort=$("input[name='colsSort']:checked").val();
-		d.userIndex=$("#update_config_column_userIndex").val();
+		d.userIndex=_userIndex;
 		d.userIcon=$("#update_config_column_userIcon").val();
 		d.colsWidth=$("#update_config_column_colsWidth").val();
 		d.deleteFlag = $("input[name='deleteFlag']:checked").val();
