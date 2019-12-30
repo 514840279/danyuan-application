@@ -53,7 +53,10 @@ $(function() {
 //	var url = '/zhcx/findAllType';
 	var url = '/zhcx/findAllTypeByUser';
 	ajaxPost(url, {"username":username}, findAllType_Sucess, 1000, findError);
+	
 });
+
+
 // 分类别添加
 function findAllType_Sucess(result){
 	$.each(result,function(index,value){

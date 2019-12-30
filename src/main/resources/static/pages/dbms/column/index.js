@@ -19,6 +19,7 @@ $(function() {
 			$("#update_config_column_colsDesc").val(d.colsDesc);
 			$("#update_config_column_colsOrder").val(d.colsOrder);
 			$("#update_config_column_userIndex").val(d.userIndex);
+			_userIndex = d.userIndex;
 			$("#update_config_column_userIcon").val(d.userIcon);
 			$("#update_config_column_colsWidth").val(d.colsWidth);
 			
@@ -63,7 +64,7 @@ $(function() {
 		d.colsDesc=$("#update_config_column_colsDesc").val();
 		d.colsOrder=$("#update_config_column_colsOrder").val();
 		d.colsSort=$("input[name='colsSort']:checked").val();
-		d.userIndex=$("#update_config_column_userIndex").val();
+		d.userIndex=_userIndex;
 		d.userIcon=$("#update_config_column_userIcon").val();
 		d.colsWidth=$("#update_config_column_colsWidth").val();
 		d.deleteFlag = $("input[name='deleteFlag']:checked").val();
@@ -88,9 +89,30 @@ $(function() {
 	
 	var url = "/sysDbmsTabsJdbcInfo/findAll";
 	ajaxPost(url, null, addSelectedAddrSuccess, 5000, findError);
+	
+	// 表类型列表下拉
+	ajaxPost('/sysDbmsUserIndexInfo/findAll', null, successSearchUserIndexInfoindex);
 
 });
 
+
+function successSearchUserIndexInfoindex(result){
+	var data =[{id:'请选择',text:'请选择'}];
+	$.each(result,function(index,value){
+		data.push({id:value.uuid,text: value.userIndex});
+	});
+	
+	$("#search_table_userindex").select2({
+		tags: true,
+		placeholder: "请选择",
+		data: data
+	}).on('select2:select', function (evt) {
+		_userIndex = evt.params.data.text;
+		if(_userIndex == "请选择"){
+			_userIndex = null;
+		}
+	});
+}
 
 function add_select_icon(){
 	winId="add_icon_modal";
