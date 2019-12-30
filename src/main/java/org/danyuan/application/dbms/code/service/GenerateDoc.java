@@ -30,7 +30,7 @@ import org.springframework.core.io.ClassPathResource;
  * @版本 V1.0
  */
 public class GenerateDoc {
-	
+
 	/**
 	 * @throws IOException
 	 * @throws FileNotFoundException
@@ -45,6 +45,7 @@ public class GenerateDoc {
 	 * @author Administrator
 	 * @throws
 	 */
+	@SuppressWarnings({ "resource", "deprecation" })
 	public static void generate(SysDbmsGenerateCodeInfo sysDbmsGenerateCodeInfo, SysDbmsTabsInfo tabsInfo, List<SysDbmsTabsColsInfo> colsInfos, String username, String pathString) throws IOException {
 		File file = new File(pathString);
 		HSSFWorkbook wb = null;
@@ -61,16 +62,16 @@ public class GenerateDoc {
 			FileInputStream fins = new FileInputStream(file);
 			POIFSFileSystem fs = new POIFSFileSystem(fins);
 			wb = new HSSFWorkbook(fs);
-			
+
 		}
 		HSSFSheet demoSheet = wb.getSheet("demo");
 		HSSFSheet newSheet = wb.createSheet(tabsInfo.getTabsDesc());
-		
+
 		newSheet = copySheet(demoSheet, newSheet);
-		
+
 		// 日期
 		newSheet.getRow(1).getCell(42).setCellValue(new Date());
-		
+
 		// 作成者
 		newSheet.getRow(1).getCell(52).setCellValue(sysDbmsGenerateCodeInfo.getCreateUser());
 		// 数据库选择
@@ -104,7 +105,7 @@ public class GenerateDoc {
 				newSheet.addMergedRegion(CellRangeAddress.valueOf("AM" + (18 + 1 + index) + ":AP" + (18 + 1 + index)));
 				newSheet.addMergedRegion(CellRangeAddress.valueOf("AQ" + (18 + 1 + index) + ":AU" + (18 + 1 + index)));
 				newSheet.addMergedRegion(CellRangeAddress.valueOf("AV" + (18 + 1 + index) + ":BJ" + (18 + 1 + index)));
-
+				
 				Cell cellFrom = null;
 				Cell cellTo = null;
 				newSheet.setDefaultColumnStyle(18 + index, newSheet.getColumnStyle(13));
@@ -115,10 +116,10 @@ public class GenerateDoc {
 					newSheet.setColumnWidth(intCol, newSheet.getColumnWidth(intCol));
 					cellFrom = rowFrom.getCell(intCol);
 					cellTo = rowTo.createCell(intCol);
-
+					
 					// セルスタイルとタイプのコピー
 					cellTo.setCellStyle(cellFrom.getCellStyle());
-					
+
 					// タイトル内容のコピー
 					// 不同数据类型处理
 					int cellFromType = cellFrom.getCellType();
@@ -141,9 +142,9 @@ public class GenerateDoc {
 						cellTo.setCellFormula(cellFrom.getCellFormula());
 					} else { // nothing29
 					}
-					
-				}
 
+				}
+				
 				// 字段名
 				newSheet.getRow(18 + index).getCell(2).setCellValue(cols.getColsName());
 				// 字段含义
@@ -161,16 +162,16 @@ public class GenerateDoc {
 				// 描述信息
 				newSheet.getRow(18 + index).getCell(47).setCellValue(cols.getDiscription() == null ? "" : cols.getDiscription());
 			}
-			
+
 		}
-		
+
 		// 设置打印区域
 //		wb.setPrintArea(wb.getSheetIndex(tabsInfo.getTabsDesc()), "$A$1:$BO$" + colsInfos.size() + 13);
 		FileOutputStream fout = new FileOutputStream(pathString);
 		wb.write(fout);
 		fout.close();
 	}
-	
+
 	/**
 	 * @方法名 copySheet
 	 * @功能 复制sheet
@@ -181,8 +182,9 @@ public class GenerateDoc {
 	 * @author Administrator
 	 * @throws
 	 */
+	@SuppressWarnings("deprecation")
 	private static HSSFSheet copySheet(HSSFSheet sheetFrom, HSSFSheet sheetTo) {
-		
+
 		// 初期化
 		CellRangeAddress region = null;
 		Row rowFrom = null;
@@ -192,12 +194,12 @@ public class GenerateDoc {
 		// セル結合のコピー
 		for (int i = 0; i < sheetFrom.getNumMergedRegions(); i++) {
 			region = sheetFrom.getMergedRegion(i);
-			
+
 			if ((region.getFirstColumn() >= sheetFrom.getFirstRowNum()) && (region.getLastRow() <= sheetFrom.getLastRowNum())) {
 				sheetTo.addMergedRegion(region);
 			}
 		}
-		
+
 		// セルのコピー
 		for (int intRow = sheetFrom.getFirstRowNum(); intRow <= sheetFrom.getLastRowNum(); intRow++) {
 			rowFrom = sheetFrom.getRow(intRow);
@@ -242,7 +244,7 @@ public class GenerateDoc {
 				}
 			}
 		}
-		
+
 		// 枠線の設定
 		sheetTo.setDisplayGridlines(false);
 //		sheetTo.setDisplayGuts(true);
@@ -251,10 +253,10 @@ public class GenerateDoc {
 		// sheetTo.shiftRows(13, 15, 31, false, false, false);
 		// Excelのズーム設定
 		sheetTo.setZoom(85, 100);
-		
+
 		// シートを戻る。
 		return sheetTo;
-		
+
 	}
-	
+
 }
