@@ -21,54 +21,106 @@
 	<!-- Main content -->
 	<section class="content">
 		<div class="row">
-			<div class="col-xs-4">
+			<div class="col-md-4 col-xs-12">
 				<div class="box box-default">
 					<div class="box-header with-border">
 						<h3 class="box-title">表1</h3>
-<!-- 						<div class="box-tools pull-right"> -->
-<!-- 							<button type="button" class="btn btn-box-tool" data-widget="collapse"> -->
-<!-- 								<i class="fa fa-minus"></i> -->
-<!-- 							</button> -->
-<!-- 							<button type="button" class="btn btn-box-tool" data-widget="remove"> -->
-<!-- 								<i class="fa fa-remove"></i> -->
-<!-- 							</button> -->
-<!-- 						</div> -->
 					</div>
-					<div class="box-body"></div>
+					<div class="box-body">
+						<div class="col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-left">数据库:</label>
+							<div class="col-sm-9">
+								<select style="width: 100%;" id="search_config_table_addrUuid"></select>
+							</div>
+						</div>
+						<div class="col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-left">类型:</label>
+							<div class="col-sm-9">
+								<select style="width: 100%;" id="search_config_table_typeUuid"></select>
+							</div>
+						</div>
+						<div class="col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-left">表名称:</label>
+							<div class="col-sm-9">
+								<select style="width: 100%;" id="search_config_table_tableUuid"></select>
+							</div>
+						</div>
+						<table class="table table-striped table-bordered" id="dbm_config_column_datagrid1" data-toggle="dbm_config_table_datagrid1"></table>
+					</div>
 				</div>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-md-4 col-xs-12">
 				<div class="box box-default">
 					<div class="box-header with-border">
 						<h3 class="box-title">表2</h3>
-<!-- 						<div class="box-tools pull-right"> -->
-<!-- 							<button type="button" class="btn btn-box-tool" data-widget="collapse"> -->
-<!-- 								<i class="fa fa-minus"></i> -->
-<!-- 							</button> -->
-<!-- 							<button type="button" class="btn btn-box-tool" data-widget="remove"> -->
-<!-- 								<i class="fa fa-remove"></i> -->
-<!-- 							</button> -->
-<!-- 						</div> -->
 					</div>
-					<div class="box-body"></div>
+					<div class="box-body">
+						<div class="col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-left">数据库:</label>
+							<div class="col-sm-9">
+								<select style="width: 100%;" id="search_config_table_addrUuid2"></select>
+							</div>
+						</div>
+						<div class="col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-left">类型:</label>
+							<div class="col-sm-9">
+								<select style="width: 100%;" id="search_config_table_typeUuid2"></select>
+							</div>
+						</div>
+						<div class="col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-left">表名称:</label>
+							<div class="col-sm-9">
+								<select style="width: 100%;" id="search_config_table_tableUuid2"></select>
+							</div>
+						</div>
+						<table class="table table-striped table-bordered" id="dbm_config_column_datagrid2" data-toggle="dbm_config_table_datagrid1"></table>
+					
+					</div>
 				</div>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-md-4 col-xs-12">
 
 
 				<div class="box box-default">
 					<div class="box-header with-border">
-						<h3 class="box-title">合并</h3>
-<!-- 						<div class="box-tools pull-right"> -->
-<!-- 							<button type="button" class="btn btn-box-tool" data-widget="collapse"> -->
-<!-- 								<i class="fa fa-minus"></i> -->
-<!-- 							</button> -->
-<!-- 							<button type="button" class="btn btn-box-tool" data-widget="remove"> -->
-<!-- 								<i class="fa fa-remove"></i> -->
-<!-- 							</button> -->
-<!-- 						</div> -->
+						<h3 class="box-title">合并:表1=>>表2</h3>
 					</div>
-					<div class="box-body"></div>
+					<div class="box-body">
+						<div class="col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-left">表1:</label>
+							<div class="col-sm-9" id="tablename1">
+								
+							</div>
+						</div>
+						<div class="col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-left">表2:</label>
+							<div class="col-sm-9" id="tablename2">
+								
+							</div>
+						</div>
+						<div class="col-sm-12 form-group">
+							<label class="col-sm-3 control-label text-left">类型:</label>
+							<div class="col-sm-9">
+								表合并
+							</div>
+						</div>
+						
+						<div id="dbm_config_column_toolbar" >
+							<div class="btn-group">
+								<button type="button" class="btn btn-default" id="editold_column_table" title="匹配">
+									<i class="glyphicon glyphicon-random"></i>
+								</button>
+								<button type="button" class="btn btn-default" id="addnew_column_table" title="新增">
+									<i class="fa fa-plus"></i>
+								</button>
+								<button type="button" class="btn btn-default" id="deleteold_column_table" title="删除">
+									<i class="fa fa-remove"></i>
+								</button>
+							</div>
+						</div>
+						<table class="table table-striped table-bordered" id="dbm_config_column_datagrid3" data-toggle="dbm_config_table_datagrid1"></table>
+					
+					</div>
 				</div>
 			</div>
 		</div>
