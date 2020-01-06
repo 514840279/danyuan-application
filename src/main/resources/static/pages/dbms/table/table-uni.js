@@ -39,6 +39,45 @@ function addSelectedTypeSuccess(result){
 		search_config_table_typeUuid2 = evt.params.data.id;
 		searchtableNames2();
 	});
+	
+	
+	$("#editold_column_table").bind("click",function(){
+		var url="/sysDbmsTabsMergeInfo/merge";
+		ajaxPost(url,{info:{tableUuid1: _tableUuid1,tableUuid2: _tableUuid2}},refreshTable)
+	});
+	
+	$("#addnew_column_table").bind("click",function(){
+		var url="/sysDbmsTabsMergeInfo/save";
+		var data1 =$('#dbm_config_column_datagrid1').bootstrapTable('getAllSelections')[0];
+		var data2 =$('#dbm_config_column_datagrid2').bootstrapTable('getAllSelections')[0];
+		console.log(data1);
+		ajaxPost(url,{
+			tableUuid1: _tableUuid1,
+			colsName1:data1.colsName,
+			colsUuid1:data1.uuid,
+			colsDesc1:data1.colsDesc,
+			tableUuid2: _tableUuid2,
+			colsName2:data2.colsName,
+			colsUuid2:data2.uuid,
+			colsDesc2:data2.colsDesc,
+			},refreshTable)
+	});
+	
+	$("#deleteold_column_table").bind("click",function(){
+		var data3 =$('#dbm_config_column_datagrid3').bootstrapTable('getAllSelections');
+		ajaxPost("/sysDbmsTabsMergeInfo/deleteAll",{list:data3},refreshTable)
+	})
+}
+
+function refreshTable(){
+	$('#dbm_config_column_datagrid1').bootstrapTable("refresh");
+	$('#dbm_config_column_datagrid2').bootstrapTable("refresh");
+	$('#dbm_config_column_datagrid3').bootstrapTable("refresh");
+	ajaxPost("/sysDbmsTabsMergeInfo/loadSql",{tableUuid1: _tableUuid1,tableUuid2: _tableUuid2},reloadSQL);
+	function reloadSQL(result){
+		$("#sql-content").empty();
+		$("#sql-content").append(result.data.replaceAll("\r\n","<br />"));
+	}
 }
 
 function searchtableNames(){
@@ -100,7 +139,7 @@ function addSelectedTableSuccess(result){
 	}).on('select2:select', function (evt) {
 		_tableUuid1 = evt.params.data.id;
 		$("#tablename1").text(evt.params.data.text);
-		$('#dbm_config_column_datagrid1').bootstrapTable("refresh");
+		refreshTable()
 	});
 }
 
@@ -117,7 +156,7 @@ function addSelectedTableSuccess2(result){
 	}).on('select2:select', function (evt) {
 		_tableUuid2 = evt.params.data.id;
 		$("#tablename2").text(evt.params.data.text);
-		$('#dbm_config_column_datagrid2').bootstrapTable("refresh");
+		refreshTable()
 	});
 }
 
@@ -126,7 +165,7 @@ function addSelectedTableSuccess2(result){
 function showClomnTable(){
 	// bootstrap table
 	$('#dbm_config_column_datagrid1').bootstrapTable({
-		url : "/sysDbmsTabsColsInfo/page",
+		url : "/sysDbmsTabsMergeInfo/page1",
 		dataType : "json",
 //		toolbar : '#dbm_config_column_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -153,7 +192,7 @@ function showClomnTable(){
 		singleSelect : true,
 		locales : "zh-CN", // 表格汉化
 //		search : true, // 显示搜索框
-		sidePagination: "server", // 服务端处理分页 server
+//		sidePagination: "client", // 服务端处理分页 server
 		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
 		//设置为limit可以获取limit, offset, search, sort, order  
 		queryParamsType : "undefined",
@@ -165,7 +204,7 @@ function showClomnTable(){
 					pageSize: params.pageSize,
 					sortOrder:params.sortOrder,
 					sortName:params.sortName,
-					info:{tabsUuid: _tableUuid1}
+					info:{tableUuid1: _tableUuid1,tableUuid2: _tableUuid2}
 			}; 
 			return param;
 		},
@@ -194,7 +233,7 @@ function showClomnTable(){
 			{title : '更新人',field : 'updateUser',sortable : true,align : 'left',valign : 'middle',visible:false},
 		],
 		responseHandler: function(result){  // 成功时执行
-			return {rows:result.content,total:result.totalElements};
+			return {rows:result,total:result.lenth};
 		}, 
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
     }).on('click-row.bs.table', function (e, row, ele,field) {
@@ -208,7 +247,7 @@ function showClomnTable(){
 function showClomnTable2(){
 	// bootstrap table
 	$('#dbm_config_column_datagrid2').bootstrapTable({
-		url : "/sysDbmsTabsColsInfo/page",
+		url : "/sysDbmsTabsMergeInfo/page2",
 		dataType : "json",
 //		toolbar : '#dbm_config_column_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -235,7 +274,7 @@ function showClomnTable2(){
 		singleSelect : true,
 		locales : "zh-CN", // 表格汉化
 //		search : true, // 显示搜索框
-		sidePagination: "server", // 服务端处理分页 server
+//		sidePagination: "server", // 服务端处理分页 server
 		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
 		//设置为limit可以获取limit, offset, search, sort, order  
 		queryParamsType : "undefined",
@@ -247,7 +286,7 @@ function showClomnTable2(){
 					pageSize: params.pageSize,
 					sortOrder:params.sortOrder,
 					sortName:params.sortName,
-					info:{tabsUuid: _tableUuid2}
+					info:{tableUuid1: _tableUuid1,tableUuid2: _tableUuid2}
 			}; 
 			return param;
 		},
@@ -276,7 +315,7 @@ function showClomnTable2(){
 			{title : '更新人',field : 'updateUser',sortable : true,align : 'left',valign : 'middle',visible:false},
 		],
 		responseHandler: function(result){  // 成功时执行
-			return {rows:result.content,total:result.totalElements};
+			return {rows:result,total:result.lenth};
 		}, 
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
     }).on('click-row.bs.table', function (e, row, ele,field) {
@@ -296,7 +335,7 @@ function showClomnTable3(){
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
-		sortName : "colsOrder", // 排序名
+//		sortName : "colsOrder", // 排序名
 		pagination : true, // 分页
 		pageNumber : 1, // 初始化加载第一页，默认第一页
 		pageSize : 10, // 每页的记录行数（*）
@@ -314,7 +353,7 @@ function showClomnTable3(){
 //		showExport: true,                    
 //        exportDataType: 'all',
 //        exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],  //导出文件类型
-		singleSelect : true,
+//		singleSelect : true,
 		locales : "zh-CN", // 表格汉化
 //		search : true, // 显示搜索框
 		sidePagination: "server", // 服务端处理分页 server
@@ -329,7 +368,7 @@ function showClomnTable3(){
 					pageSize: params.pageSize,
 					sortOrder:params.sortOrder,
 					sortName:params.sortName,
-					info:{tableUuid1: _tableUuid2,tableUuid2: _tableUuid1}
+					info:{tableUuid1: _tableUuid1,tableUuid2: _tableUuid2}
 			}; 
 			return param;
 		},
@@ -346,7 +385,7 @@ function showClomnTable3(){
 			{title : '更新人',field : 'updateUser',sortable : true,align : 'left',valign : 'middle',visible:false},
 		],
 		responseHandler: function(result){  // 成功时执行
-			return {rows:result.content,total:result.totalElements};
+			return {rows:result.data.content,total:result.data.totalElements};
 		}, 
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
     }).on('click-row.bs.table', function (e, row, ele,field) {
