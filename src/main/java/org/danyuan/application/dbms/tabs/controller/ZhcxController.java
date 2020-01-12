@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
@@ -63,7 +64,7 @@ public class ZhcxController {
 	private ZhcxService					zhcxService;
 
 	@RequestMapping(path = "/findAllTableRow", method = { RequestMethod.GET, RequestMethod.POST })
-	public Map<String, Object> findAllTableRow(@RequestBody SysDbmsTabsColsInfoVo vo) throws JsonParseException, JsonMappingException, IOException {
+	public @JsonIgnore Map<String, Object> findAllTableRow(@RequestBody SysDbmsTabsColsInfoVo vo) throws JsonParseException, JsonMappingException, IOException {
 		logger.info("findAllTableRow", ZhcxController.class);
 		Map<String, Object> map = new HashMap<>();
 		if ("oracle".equals(vo.getDbType()) || "mysql".equals(vo.getDbType())) {

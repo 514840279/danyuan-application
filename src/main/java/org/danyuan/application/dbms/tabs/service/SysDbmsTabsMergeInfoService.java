@@ -159,11 +159,12 @@ public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMerg
 		}
 		sBuilder.append(" from " + tabsInfo1.getTabsName());
 		sBuilder.append("; \r\n");
-		sBuilder.append("commit; \r\n");
+		sBuilder.append("commit; \r\n \r\n");
+		sBuilder.append("drop table " + tabsInfo1.getTabsName() + " purge; \r\n\r\n");
 		sBuilder.append("-- 删除配置表信息 \r\n");
 		sBuilder.append("delete from sys_dbms_tabs_info where uuid='" + tabsInfo1.getUuid() + "'; \r\n");
 		sBuilder.append("delete from sys_dbms_tabs_cols_info where tabs_uuid='" + tabsInfo1.getUuid() + "'; \r\n");
-		sBuilder.append("delete from sys_roles_tabs_info where tabs_uuid='" + tabsInfo1.getUuid() + "'; \r\n");
+		sBuilder.append("delete from sys_roles_tabs_info where tabs_id='" + tabsInfo1.getUuid() + "'; \r\n");
 		sBuilder.append("delete from sys_dbms_tabs_merge_info where table_uuid_1='" + tabsInfo1.getUuid() + "'; \r\n");
 		sBuilder.append("delete from sys_dbms_tabs_merge_info where table_uuid_2='" + tabsInfo1.getUuid() + "'; \r\n");
 		sBuilder.append("commit; \r\n");

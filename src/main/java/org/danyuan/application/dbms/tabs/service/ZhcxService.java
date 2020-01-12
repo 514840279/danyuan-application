@@ -1,5 +1,7 @@
 package org.danyuan.application.dbms.tabs.service;
 
+import java.io.BufferedReader;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -144,6 +146,22 @@ public class ZhcxService {
 					switch (resultSetMetaData.getColumnType(i + 1)) {
 						case java.sql.Types.TIMESTAMP:
 							map.put(metadata, resultSet.getDate(i + 1));
+							break;
+						case java.sql.Types.CLOB:
+							try {
+								Reader is = resultSet.getClob(i + 1).getCharacterStream();
+								BufferedReader buff = new BufferedReader(is);// 得到流
+								String line = buff.readLine();
+								StringBuffer sb = new StringBuffer();
+								while (line != null) {// 执行循环将字符串全部取出付值给StringBuffer由StringBuffer转成STRING
+									sb.append(line);
+									line = buff.readLine();
+								}
+								map.put(metadata, sb.toString());
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+
 							break;
 						default:
 							map.put(metadata, resultSet.getObject(i + 1));

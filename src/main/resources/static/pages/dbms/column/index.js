@@ -18,7 +18,14 @@ $(function() {
 			$("#update_config_column_colsName").text(d.colsName);
 			$("#update_config_column_colsDesc").val(d.colsDesc);
 			$("#update_config_column_colsOrder").val(d.colsOrder);
-			$("#update_config_column_userIndex").val(d.userIndex);
+//			$("#update_config_column_userIndex").val(d.userIndex);
+			if(d.userIndex == null){
+				$("#update_config_column_userIndex").val(d.userIndex).trigger("change");
+				_userIndex = "";
+			}else{
+				$("#update_config_column_userIndex option:contains('"+(d.userIndex==null?"请选择":d.userIndex)+"')").attr("selected", true).trigger("change");
+				_userIndex = d.userIndex;
+			}
 			_userIndex = d.userIndex;
 			$("#update_config_column_userIcon").val(d.userIcon);
 			$("#update_config_column_colsWidth").val(d.colsWidth);

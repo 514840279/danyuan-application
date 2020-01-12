@@ -321,8 +321,13 @@ function reset(tabsName,column,sysColumn,dbType,jdbcUuid) {
 				$("#update_config_column_colsName").text(d.colsName);
 				$("#update_config_column_colsDesc").val(d.colsDesc);
 				$("#update_config_column_colsOrder").val(d.colsOrder);
-				$("#update_config_column_userIndex").val(d.userIndex);
-				_userIndex = d.userIndex;
+				if(d.userIndex == null){
+					$("#search_table_userindex").val(d.userIndex).trigger("change");
+					_userIndex = "";
+				}else{
+					$("#search_table_userindex option:contains('"+(d.userIndex==null?"请选择":d.userIndex)+"')").attr("selected", true).trigger("change");
+					_userIndex = d.userIndex;
+				}
 				$("#update_config_column_userIcon").val(d.userIcon);
 				$("#update_config_column_colsWidth").val(d.colsWidth);
 				$("input[name='deleteFlag'][value='"+(d.deleteFlag==null?"0":d.deleteFlag)+"']").prop("checked",true);
