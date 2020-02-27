@@ -98,7 +98,6 @@ public class SysUserBaseServiceImpl extends BaseServiceImpl<SysUserBaseInfo> imp
 		if ("000".equals(uuid)) {
 			return sysRolesDao.findAll();
 		} else {
-			
 			return sysUserBaseDao.getRoleByUser(uuid);
 		}
 	}
@@ -307,6 +306,27 @@ public class SysUserBaseServiceImpl extends BaseServiceImpl<SysUserBaseInfo> imp
 	public void savec(String uuid, String userName, String email, String phone, String organization, String department) {
 		sysUserBaseDao.savec(uuid, userName, email, phone, organization, department);
 		
+	}
+
+	@Override
+	public void saveBaseinfo(SysUserBaseInfo info) {
+		SysUserBaseInfo baseInfo = findByUuid(info.getUuid());
+		baseInfo.setPersionName(info.getPersionName());
+		baseInfo.setSex(info.getSex());
+		baseInfo.setAge(info.getAge());
+		baseInfo.setAddr(info.getAddr());
+		baseInfo.setUniversity(info.getUniversity());
+		baseInfo.setEducation(info.getEducation());
+		baseInfo.setMajor(info.getMajor());
+		baseInfo.setPhone(info.getPhone());
+		baseInfo.setEmail(info.getEmail());
+		baseInfo.setQq(info.getQq());
+		baseInfo.setPosition(info.getPosition());
+		baseInfo.setExpectedSalary(info.getExpectedSalary());
+		baseInfo.setExpectedPlace(info.getExpectedPlace());
+		baseInfo.setWorkNature(info.getWorkNature());
+		baseInfo.setStatue(info.getStatue());
+		save(baseInfo);
 	}
 	
 }

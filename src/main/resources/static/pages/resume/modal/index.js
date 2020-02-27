@@ -10,7 +10,7 @@ function init() {
 		$("#resume_modal_sysModalInfo_uuid").val("");
 		$("#resume_modal_sysModalInfo_deleteFlag").val("");
 		$("#resume_modal_sysModalInfo_discription").val("");
-		$("#resume_modal_sysModalInfo_filePaht").val("");
+		$("#resume_modal_sysModalInfo_modalFilePath").val("");
 		$("#resume_modal_sysModalInfo_uuid").val("");
 		$("#resume_modal_sysModalInfo_major").val("");
 		$("#resume_modal_sysModalInfo_fromUser").val("");
@@ -28,7 +28,7 @@ function init() {
 			$("#resume_modal_sysModalInfo_uuid").val(data[0].uuid);
 			$("#resume_modal_sysModalInfo_deleteFlag").val(data[0].deleteFlag);
 			$("#resume_modal_sysModalInfo_discription").val(data[0].discription);
-			$("#resume_modal_sysModalInfo_filePaht").val(data[0].filePaht);
+			$("#resume_modal_sysModalInfo_modalFilePath").val(data[0].modalFilePath);
 			$("#resume_modal_sysModalInfo_uuid").val(data[0].uuid);
 			$("#resume_modal_sysModalInfo_major").val(data[0].major);
 			$("#resume_modal_sysModalInfo_fromUser").val(data[0].fromUser);
@@ -68,7 +68,7 @@ function init() {
 		var url = "/sysModalInfo/save";
 		var	info={
 			uuid:$("#resume_modal_sysModalInfo_uuid").val(),
-			filePaht:$("#resume_modal_sysModalInfo_filePaht").val(),
+			modalFilePath:$("#resume_modal_sysModalInfo_modalFilePath").val(),
 			uuid:$("#resume_modal_sysModalInfo_uuid").val(),
 			major:$("#resume_modal_sysModalInfo_major").val(),
 			fromUser:$("#resume_modal_sysModalInfo_fromUser").val(),
@@ -129,7 +129,7 @@ function init() {
 		columns : [ 
 			{title : '全选',	checkbox : true,align : 'center',valign : 'middle'}, 
 			{title : 'id',field : 'uuid',align : 'left',sortable : true,valign : 'middle',switchable:true,visible:false},
-			{title : 'filePaht',	field : 'filePaht','width':150,align : 'left',sortable : true,valign : 'middle',switchable:true},
+			{title : 'modalFilePath',	field : 'modalFilePath','width':150,align : 'left',sortable : true,valign : 'middle',switchable:true},
 			{title : 'uuid',	field : 'uuid','width':150,align : 'left',sortable : true,valign : 'middle',switchable:true},
 			{title : 'major',	field : 'major','width':150,align : 'left',sortable : true,valign : 'middle',switchable:true},
 			{title : 'fromUser',	field : 'fromUser','width':150,align : 'left',sortable : true,valign : 'middle',switchable:true},

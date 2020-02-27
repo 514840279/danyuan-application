@@ -32,7 +32,7 @@ public class SysUserSkill extends BaseEntity implements Serializable {
 	@Column(name = "skill")
 	private  String 	skill;
 
-	// 
+	// 熟练
 	@Column(name = "proficiency")
 	private  String 	proficiency;
 

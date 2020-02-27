@@ -1,10 +1,24 @@
-
+var userUuid =null;
+var resumePath =null;
 window.operateEvents = {
 	// 修改
 	'click #clickA ': function (e, value, row, index) {	
-		var userUuid = row.uuid;
+		userUuid = row.uuid;
+		resumePath= row.resumePath;
+		modals.openWin({
+	    	winId:"upd_userinfo_",
+	    	title:'修改用户档案',
+	    	width:'95%',
+	    	url:"/pages/softm/userbase/update/index.html"
+	    });
 	},
 	'click #clickB ': function (e, value, row, index) {
+		resumePath = row.resumePath;
+		if(resumePath==null){
+			toastr.info("沒有生成過簡歷信息，請先生成簡歷！！")
+		}else{
+			window.open(resumePath.replace("/file",""));
+		}
 	},
 	'click #clickC ': function (e, value, row, index) {
 	},
@@ -359,10 +373,11 @@ $(function() {
 		  	{title : '联系邮箱',field : 'email',align : 'left',sortable : true,valign : 'middle',visible:false  }, 
 //		  	{title : '记录时间',field : 'createTime',align : 'center',sortable : true,valign : 'middle'  },
 		  	{title : '更新时间',field : 'updateTime',sortable : true,align : 'center' ,visible:false }, 
-//		  	{title : '查看',field : 'flag',sortable : true,align : 'center' ,events: operateEvents,formatter : function(value, row, index) {
-//				var A = "<i  type='button' id='clickA'  class=' btn btn-default fa fa-edit' title='查看档案' ></i> ";
-//				return A ;
-//			}} 
+		  	{title : '查看',field : 'flag',sortable : true,align : 'center' ,events: operateEvents,formatter : function(value, row, index) {
+				var A = "<i  type='button' id='clickA'  class=' btn btn-default fa fa-edit' title='编辑信息' >信息补全</i> ";
+				var B = "<i  type='button' id='clickB'  class=' btn btn-default fa fa-search' title='查看档案' >档案查看</i> ";
+				return A+B ;
+			}} 
     	] ,
 	    onClickRow:function(index){
 	    	$("#admin_userBase_role_datagrid").bootstrapTable("destroy");

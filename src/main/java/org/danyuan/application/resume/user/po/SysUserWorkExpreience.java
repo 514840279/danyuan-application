@@ -33,25 +33,37 @@ public class SysUserWorkExpreience extends BaseEntity implements Serializable {
 	private String				unit;
 
 	//
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "end_date")
-	private Date				endDate;
+	private String				endDate;
 
 	//
 	@Column(name = "working_life")
-	private BigDecimal			workingLife;
+	private String			workingLife;
 
 	//
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "start_date")
-	private Date				startDate;
+	private String				startDate;
 
 	//
 	@Column(name = "position")
 	private String				position;
 
+	//
+	@Column(name = "nature_of_the_firm")
+	private String				natureOfTheFirm;
+	
+	//
+	@Column(name = "firm_asset_size")
+	private String				firmAssetSize;
+
+	//
+	@Column(name = "working_range")
+	private String				workingRange;
+	
+	//
+	@Column(name = "salary_range")
+	private String				salaryRange;
+	
 	//
 	@Column(name = "user_uuid")
 	private String				userUuid;
@@ -66,6 +78,14 @@ public class SysUserWorkExpreience extends BaseEntity implements Serializable {
 	public SysUserWorkExpreience() {
 		super();
 	}
+	
+	
+
+	public SysUserWorkExpreience(String uuid) {
+		super(uuid);
+	}
+
+
 
 	/**
 	 * 方法名 ： getUnit
@@ -83,60 +103,6 @@ public class SysUserWorkExpreience extends BaseEntity implements Serializable {
 	 */
 	public void setUnit(String unit) {
 		this.unit = unit;
-	}
-
-	/**
-	 * 方法名 ： getEndDate
-	 * 功 能 ： 返回变量 endDate 的值
-	 *
-	 * @return: String
-	 */
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	/**
-	 * 方法名 ： setEndDate
-	 * 功 能 ： 设置变量 endDate 的值
-	 */
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-
-	/**
-	 * 方法名 ： getWorkingLife
-	 * 功 能 ： 返回变量 workingLife 的值
-	 *
-	 * @return: String
-	 */
-	public BigDecimal getWorkingLife() {
-		return workingLife;
-	}
-
-	/**
-	 * 方法名 ： setWorkingLife
-	 * 功 能 ： 设置变量 workingLife 的值
-	 */
-	public void setWorkingLife(BigDecimal workingLife) {
-		this.workingLife = workingLife;
-	}
-
-	/**
-	 * 方法名 ： getStartDate
-	 * 功 能 ： 返回变量 startDate 的值
-	 *
-	 * @return: String
-	 */
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	/**
-	 * 方法名 ： setStartDate
-	 * 功 能 ： 设置变量 startDate 的值
-	 */
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
 	}
 
 	/**
@@ -166,6 +132,134 @@ public class SysUserWorkExpreience extends BaseEntity implements Serializable {
 	public String getUserUuid() {
 		return userUuid;
 	}
+	
+	
+
+	/**
+	 * @return the endDate
+	 */
+	public String getEndDate() {
+		return endDate;
+	}
+
+
+
+	/**
+	 * @param endDate the endDate to set
+	 */
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+
+
+	/**
+	 * @return the workingLife
+	 */
+	public String getWorkingLife() {
+		return workingLife;
+	}
+
+
+
+	/**
+	 * @return the salaryRange
+	 */
+	public String getSalaryRange() {
+		return salaryRange;
+	}
+
+
+
+	/**
+	 * @param salaryRange the salaryRange to set
+	 */
+	public void setSalaryRange(String salaryRange) {
+		this.salaryRange = salaryRange;
+	}
+
+
+
+	/**
+	 * @param workingLife the workingLife to set
+	 */
+	public void setWorkingLife(String workingLife) {
+		this.workingLife = workingLife;
+	}
+
+
+
+	/**
+	 * @return the startDate
+	 */
+	public String getStartDate() {
+		return startDate;
+	}
+
+
+
+	/**
+	 * @param startDate the startDate to set
+	 */
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+
+
+	/**
+	 * @return the natureOfTheFirm
+	 */
+	public String getNatureOfTheFirm() {
+		return natureOfTheFirm;
+	}
+
+
+
+	/**
+	 * @param natureOfTheFirm the natureOfTheFirm to set
+	 */
+	public void setNatureOfTheFirm(String natureOfTheFirm) {
+		this.natureOfTheFirm = natureOfTheFirm;
+	}
+
+
+
+	/**
+	 * @return the firmAssetSize
+	 */
+	public String getFirmAssetSize() {
+		return firmAssetSize;
+	}
+
+
+
+	/**
+	 * @param firmAssetSize the firmAssetSize to set
+	 */
+	public void setFirmAssetSize(String firmAssetSize) {
+		this.firmAssetSize = firmAssetSize;
+	}
+
+
+
+	/**
+	 * @return the workingRange
+	 */
+	public String getWorkingRange() {
+		return workingRange;
+	}
+
+
+
+	/**
+	 * @param workingRange the workingRange to set
+	 */
+	public void setWorkingRange(String workingRange) {
+		this.workingRange = workingRange;
+	}
+
+
 
 	/**
 	 * 方法名 ： setUserUuid

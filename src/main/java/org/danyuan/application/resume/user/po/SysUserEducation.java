@@ -36,18 +36,20 @@ public class SysUserEducation extends BaseEntity implements Serializable {
 	private String				education;
 	
 	//
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "graduation_time")
-	private Date				graduationTime;
+	private String				graduationTime;
 	
 	//
 	@Column(name = "graduation_school")
 	private String				graduationSchool;
 	
-	//
+	// 学制
 	@Column(name = "length_of_schooling")
 	private String				lengthOfSchooling;
+	
+	// 统招
+	@Column(name = "unified_strategy")
+	private String				unifiedStrategy;
 	
 	//
 	@Column(name = "user_uuid")
@@ -106,7 +108,7 @@ public class SysUserEducation extends BaseEntity implements Serializable {
 	 *
 	 * @return: String
 	 */
-	public Date getGraduationTime() {
+	public String getGraduationTime() {
 		return graduationTime;
 	}
 	
@@ -114,7 +116,7 @@ public class SysUserEducation extends BaseEntity implements Serializable {
 	 * 方法名 ： setGraduationTime
 	 * 功 能 ： 设置变量 graduationTime 的值
 	 */
-	public void setGraduationTime(Date graduationTime) {
+	public void setGraduationTime(String graduationTime) {
 		this.graduationTime = graduationTime;
 	}
 	
@@ -171,5 +173,14 @@ public class SysUserEducation extends BaseEntity implements Serializable {
 	public void setUserUuid(String userUuid) {
 		this.userUuid = userUuid;
 	}
+
+	public String getUnifiedStrategy() {
+		return unifiedStrategy;
+	}
+
+	public void setUnifiedStrategy(String unifiedStrategy) {
+		this.unifiedStrategy = unifiedStrategy;
+	}
+	
 	
 }

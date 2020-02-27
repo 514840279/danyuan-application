@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.danyuan.application.common.base.BaseControllerImpl;
+import org.danyuan.application.common.base.BaseResult;
+import org.danyuan.application.common.base.ResultUtil;
 import org.danyuan.application.softm.roles.po.SysUserBaseInfo;
 import org.danyuan.application.softm.roles.service.SysUserBaseService;
 import org.danyuan.application.softm.roles.vo.SysUserBaseVo;
@@ -55,6 +58,12 @@ public class SysUserBaseController {
 		logger.info("sysUserBaseList", SysUserBaseController.class);
 		return sysUserBaseService.findAll();
 	}
+	
+	@RequestMapping(path = "/findByUuid", method = RequestMethod.POST)
+	public SysUserBaseInfo findByUuid(@RequestBody SysUserBaseInfo info) {
+		logger.info("findAllBySearchText", SysUserBaseController.class);
+		return sysUserBaseService.findByUuid(info.getUuid());
+	}
 
 	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
 	public Page<SysUserBaseInfo> findAllBySearchText(int pageNumber, int pageSize, SysUserBaseInfo sysUserBaseInfo) {
@@ -79,6 +88,19 @@ public class SysUserBaseController {
 		} catch (Exception e) {
 			return "0";
 		}
+	}
+	
+	@RequestMapping(path = "/saveBaseinfo", method = RequestMethod.POST)
+	public BaseResult<SysUserBaseInfo> saveBaseinfo(@RequestBody SysUserBaseInfo info) {
+		logger.info("save", SysUserBaseController.class);
+		try {
+			sysUserBaseService.saveBaseinfo(info);
+			
+			return ResultUtil.success();
+		} catch (Exception e) {
+			return ResultUtil.error(e.getMessage());
+		}
+		
 	}
 
 	@RequestMapping(path = "/saveu", method = RequestMethod.POST)

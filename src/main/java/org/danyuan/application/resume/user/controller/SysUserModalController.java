@@ -7,6 +7,8 @@ import java.util.List;
 import org.danyuan.application.common.base.BaseController;
 import org.danyuan.application.common.base.BaseControllerImpl;
 import org.danyuan.application.common.base.BaseResult;
+import org.danyuan.application.resume.modal.po.SysModalInfo;
+import org.danyuan.application.resume.modal.service.SysModalInfoService;
 import org.danyuan.application.resume.user.po.SysUserEducation;
 import org.danyuan.application.resume.user.po.SysUserEvaluate;
 import org.danyuan.application.resume.user.po.SysUserModal;
@@ -63,6 +65,9 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 	
 	@Autowired
 	SysUserEvaluateService			sysUserEvaluateService;			// 评价信息
+	
+	@Autowired
+	SysModalInfoService sysModalInfoService;
 
 	@RequestMapping(path = "/writeResume", method = RequestMethod.POST)
 	public BaseResult<String> writeResume(@RequestBody SysUserModal info) throws IllegalArgumentException, IllegalAccessException {
@@ -72,6 +77,7 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 			ClassLoaderTemplateResolver resolver = new ClassLoaderTemplateResolver();
 			resolver.setPrefix("templates/");// 模板所在目录，相对于当前classloader的classpath。
 			resolver.setSuffix(".html");// 模板文件后缀
+//			resolver.setTemplateMode("HTML5");
 			TemplateEngine templateEngine = new TemplateEngine();
 			templateEngine.setTemplateResolver(resolver);
 
@@ -91,12 +97,12 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 			List<SysUserSkill> skills = sysUserSkillService.findAll(skill);
 			context.setVariable("skills", skills);
 
-			// 技能
+			// 工作经验
 			SysUserWorkExpreience workExpreience = new SysUserWorkExpreience();
 			workExpreience.setUserUuid(info.getUserUuid());
 			List<SysUserWorkExpreience> workExpreiences = sysUserWorkExpreienceService.findAll(workExpreience);
 			context.setVariable("workExpreiences", workExpreiences);
-			// 技能
+			// 项目经验
 			SysUserProject project = new SysUserProject();
 			project.setUserUuid(info.getUserUuid());
 			List<SysUserProject> projects = sysUserProjectService.findAll(project);
@@ -112,12 +118,16 @@ public class SysUserModalController extends BaseControllerImpl<SysUserModal> imp
 			// 渲染模板
 			String dirString = System.getProperty("user.dir");
 			FileWriter write = new FileWriter(dirString + "/file/" + info.getUserUuid() + ".html");
-			templateEngine.process("resume/modal/" + info.getModalUuid(), context, write);
+			SysModalInfo sysModalInfo =sysModalInfoService.findOne(new SysModalInfo(info.getModalUuid()));
+			
+			templateEngine.process("resume/modal/" + sysModalInfo.getModalFilePath(), context, write);
 			// 保存简历路径
 			base.setResumePath("/file/" + info.getUserUuid() + ".html");
 			sysUserBaseService.save(base);
+			result.setData("/"+info.getUserUuid() + ".html");
 			result.setCode(200);
 		} catch (IOException e) {
+			System.err.println(e.getMessage());
 			result.setCode(-100);
 			result.setMsg(e.getMessage());
 		}

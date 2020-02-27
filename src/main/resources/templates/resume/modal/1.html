@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdn.bootcss.com/admin-lte/2.3.8/css/AdminLTE.min.css" />
 <!-- <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css"/> -->
+<link rel="icon" type="image/x-icon" href="/dist/img/favicon_32x32.ico" />
 <link rel="stylesheet" href="/dist/css/resume.css" />
 <title>个人简历</title>
 <meta charset="UTF-8" />
@@ -151,7 +152,7 @@
 						<div class="bdblue text-center">自我评价</div>
 						<div class="row">
 							<div class="col-xs-12">
-								<span th:text="${evaluate.content}">姓名</span>
+								<span th:if="${evaluate} != null" th:text="${evaluate.content}">姓名</span>
 							</div>
 						</div>
 					</div>

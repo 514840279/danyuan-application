@@ -12,7 +12,7 @@ import org.danyuan.application.common.base.BaseEntity;
 /**
  * @文件名 SysUserModal.java
  * @包名 org.danyuan.application.resume.user.po
- * @描述 sys_user_modal的实体类
+ * @描述 sys_user_modal的实体类  用于记录用户采用的简历模板，
  * @时间 2019年02月28日 17:42:26
  * @author test
  * @版本 V1.0

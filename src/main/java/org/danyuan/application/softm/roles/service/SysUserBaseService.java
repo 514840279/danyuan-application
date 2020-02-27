@@ -100,5 +100,7 @@ public interface SysUserBaseService extends BaseService<SysUserBaseInfo> {
 	 * @throws
 	 */
 	void savec(String uuid, String userName, String email, String phone, String organization, String department);
+
+	void saveBaseinfo(SysUserBaseInfo info);
 	
 }

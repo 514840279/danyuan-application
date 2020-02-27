@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="UTF-8">
+</head>
+<body id="body">
+	<!-- Main content -->
+	<section class="content">
+		<div class="col-xs-12">
+			 <div id="show_user_upd_workexpreience_id" class="row">
+				<div id="row-text-content" class="col-xs-12" style="display: none;">
+					<div class="col-lg-2"><span id="startDate" ></span>-<span id="endDate" ></span></div>
+					<div class="col-lg-10">	
+						<span id="unit" ></span>
+						<span id="workingLife" ></span>
+						<span id="position" ></span>
+						<span id="salaryRange" ></span>
+						<button class="btn btn-sm btn-danger" id="delete_user_upd_workexpreience_row_btn_id" >删除</button>
+					</div>
+					<div class="col-lg-10 col-lg-ofset-2">
+						<span  id="natureOfTheFirm"></span>
+						<span  id="firmAssetSize"></span>
+						<span  id="workingRange"> </span> 
+					</div>
+					<div class="col-lg-10 col-lg-ofset-2">
+						<span  id="workingContent" ></span>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="add_user_upd_workexpreience_id" >
+				<div class="row">
+					<div class="col-lg-12">
+						<input type="text" name="startDate" placeholder="开始时间" />
+						<input type="text" name="endDate" placeholder="结束时间" />
+						<input type="text" name="unit" placeholder="单位" />
+						<input type="text" name="workingLife" placeholder="工作时长" />
+						<input type="text" name="position" placeholder="职务" />
+						<input type="text" name="salaryRange" placeholder="薪资范围" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<input type="text" name="natureOfTheFirm" placeholder="企业性质" />
+						<input type="text" name="firmAssetSize" placeholder="企业规模" />
+						<input type="text" name="workingRange" placeholder="工作服务范围" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">	
+						<textarea name="workingContent" placeholder="工作内容"  rows="5" style="width: 85%;" ></textarea> 
+						<button class="btn btn-sm btn-primary" id="add_user_upd_workexpreience_row_btn_id">添加</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<script type="text/javascript" src="/pages/softm/userbase/update/user_upd_workexpreience.js"></script>
+</body>
+</html>

@@ -67,6 +67,11 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
+		<dependency>
+		    <groupId>ognl</groupId>
+		    <artifactId>ognl</artifactId>
+		    <version>3.1.12</version>
+		</dependency>
 		<!-- JdbcTemplate -->
 
 		<!-- JPA操作数据库. -->

@@ -1,7 +1,6 @@
 package org.danyuan.application.resume.modal.po;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
@@ -13,7 +12,7 @@ import org.danyuan.application.common.base.BaseEntity;
  * @文件名 SysModalInfo.java
  * @包名 org.danyuan.application.resume.modal.po
  * @描述 sys_modal_info的实体类
- * @时间 2019年02月28日 17:42:26
+ * @时间 2020年02月25日 12:07:40
  * @author test
  * @版本 V1.0
  */
@@ -25,20 +24,20 @@ public class SysModalInfo extends BaseEntity implements Serializable {
 
 
 	// 
-	@Column(name = "file_paht")
-	private  String 	filePaht;
+	@Column(name = "modal_file_path", columnDefinition = " VARCHAR(255) COMMENT '模板路径'")
+	private  String 	modalFilePath;
 
 	// 
-	@Column(name = "major")
+	@Column(name = "major", columnDefinition = " VARCHAR(30) COMMENT '是否主要'")
 	private  String 	major;
 
-	// 
-	@Column(name = "from_user")
-	private  String 	fromUser;
-
 	// 姓名
-	@Column(name = "name")
+	@Column(name = "name", columnDefinition = " VARCHAR(50) COMMENT '姓名'")
 	private  String 	name;
+
+	// 
+	@Column(name = "from_user", columnDefinition = " VARCHAR(50) COMMENT '由谁提交'")
+	private  String 	fromUser;
 
 	/**  
 	*  构造方法： 
@@ -50,24 +49,26 @@ public class SysModalInfo extends BaseEntity implements Serializable {
 	public SysModalInfo() {
 		super();
 	}
-
-
-	/**
-	 * 方法名 ： getFilePaht
-	 * 功 能 ： 返回变量 filePaht  的值
-	 *
-	 * @return: String 
-	 */
-	public  String  getFilePaht() {
-		return filePaht;
+	
+	/**  
+	*  构造方法： 
+	*  描    述： 构造函数  
+	*  参    数： 
+	*  作    者 ： test  
+	*  @throws  
+	*/
+	public SysModalInfo(String uuid) {
+		super(uuid);
 	}
 
-	/**
-	 * 方法名 ： setFilePaht
-	 * 功 能 ： 设置变量 filePaht  的值
-	 */
-	public void setFilePaht( String  filePaht) {
-		this.filePaht = filePaht;
+
+
+	public String getModalFilePath() {
+		return modalFilePath;
+	}
+
+	public void setModalFilePath(String modalFilePath) {
+		this.modalFilePath = modalFilePath;
 	}
 
 	/**
@@ -89,24 +90,6 @@ public class SysModalInfo extends BaseEntity implements Serializable {
 	}
 
 	/**
-	 * 方法名 ： getFromUser
-	 * 功 能 ： 返回变量 fromUser  的值
-	 *
-	 * @return: String 
-	 */
-	public  String  getFromUser() {
-		return fromUser;
-	}
-
-	/**
-	 * 方法名 ： setFromUser
-	 * 功 能 ： 设置变量 fromUser  的值
-	 */
-	public void setFromUser( String  fromUser) {
-		this.fromUser = fromUser;
-	}
-
-	/**
 	 * 方法名 ： getName
 	 * 功 能 ： 返回变量 name 姓名 的值
 	 *
@@ -122,6 +105,24 @@ public class SysModalInfo extends BaseEntity implements Serializable {
 	 */
 	public void setName( String  name) {
 		this.name = name;
+	}
+
+	/**
+	 * 方法名 ： getFromUser
+	 * 功 能 ： 返回变量 fromUser  的值
+	 *
+	 * @return: String 
+	 */
+	public  String  getFromUser() {
+		return fromUser;
+	}
+
+	/**
+	 * 方法名 ： setFromUser
+	 * 功 能 ： 设置变量 fromUser  的值
+	 */
+	public void setFromUser( String  fromUser) {
+		this.fromUser = fromUser;
 	}
 
 

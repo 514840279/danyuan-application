@@ -193,4 +193,15 @@ public class BaseEntity {
 		this.deleteFlag = deleteFlag;
 	}
 
+	public BaseEntity() {
+		super();
+	}
+
+	public BaseEntity(String uuid) {
+		super();
+		this.uuid = uuid;
+	}
+	
+	
+
 }
