@@ -25,7 +25,7 @@ public class SysUserEvaluate extends BaseEntity implements Serializable {
 
 
 	// 
-	@Column(name = "type")
+	@Column(name = "`type`")
 	private  String 	type;
 
 	// 

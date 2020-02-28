@@ -8,10 +8,27 @@
 	<!-- Main content -->
 	<section class="content">
 		<div class="col-xs-12">
-			<div id="user_update_tab_id" > </div>
+			<div id="show_user_upd_evaluate_id" class="row">
+				<div id="row-text-content" class="col-xs-12" style="display: none;">
+					<div class="col-lg-12">
+						<h4 id="type" class="col-lg-12"></h4>
+						<span  id="content" class="col-lg-12"></span>
+						<button class="btn btn-sm btn-danger" id="delete_user_upd_evaluate_btn_id" >删除</button>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="add_user_upd_evaluate_id" >
+				<div class="col-xs-12">
+					<div class="col-lg-12">
+						<input type="text" name="type" placeholder="名称"   style="width: 85%;"/>
+						<textarea name="content" placeholder="内容" style="width: 85%;"></textarea>
+						<button class="btn btn-sm btn-primary" id="add_user_upd_evaluate_btn_id">添加</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 	
-	<script type="text/javascript" src="/pages/softm/userbase/update/index.js"></script>
+	<script type="text/javascript" src="/pages/softm/userbase/update/user_upd_evaluate.js"></script>
 </body>
 </html>

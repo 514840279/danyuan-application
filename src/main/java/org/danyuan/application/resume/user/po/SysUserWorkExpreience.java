@@ -61,6 +61,10 @@ public class SysUserWorkExpreience extends BaseEntity implements Serializable {
 	private String				workingRange;
 	
 	//
+	@Column(name = "working_content")
+	private String				workingContent;
+	
+	//
 	@Column(name = "salary_range")
 	private String				salaryRange;
 	
@@ -268,5 +272,25 @@ public class SysUserWorkExpreience extends BaseEntity implements Serializable {
 	public void setUserUuid(String userUuid) {
 		this.userUuid = userUuid;
 	}
+
+
+
+	/**
+	 * @return the workingContent
+	 */
+	public String getWorkingContent() {
+		return workingContent;
+	}
+
+
+
+	/**
+	 * @param workingContent the workingContent to set
+	 */
+	public void setWorkingContent(String workingContent) {
+		this.workingContent = workingContent;
+	}
+	
+	
 
 }

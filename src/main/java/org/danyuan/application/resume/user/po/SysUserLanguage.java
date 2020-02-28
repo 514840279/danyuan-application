@@ -28,7 +28,7 @@ public class SysUserLanguage extends BaseEntity implements Serializable {
 	private  String 	userUuid;
 
 	// 语言
-	@Column(name = "language", columnDefinition = " varchar(20) COMMENT '语言'")
+	@Column(name = "`language`", columnDefinition = " varchar(20) COMMENT '语言'")
 	private  String 	language;
 
 	// 听力
@@ -36,8 +36,8 @@ public class SysUserLanguage extends BaseEntity implements Serializable {
 	private  String 	hearing;
 
 
-	// 听力
-	@Column(name = "read_write", columnDefinition = " varchar(20) COMMENT '读写'")
+	// 读写
+	@Column(name = "`read_write`", columnDefinition = " varchar(20) COMMENT '读写'")
 	private  String 	readWrite;
 
 	
@@ -107,5 +107,22 @@ public class SysUserLanguage extends BaseEntity implements Serializable {
 		this.hearing = hearing;
 	}
 
+
+	/**
+	 * @return the readWrite
+	 */
+	public String getReadWrite() {
+		return readWrite;
+	}
+
+
+	/**
+	 * @param readWrite the readWrite to set
+	 */
+	public void setReadWrite(String readWrite) {
+		this.readWrite = readWrite;
+	}
+
+	
 
 }

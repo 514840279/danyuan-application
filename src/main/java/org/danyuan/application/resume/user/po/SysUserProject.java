@@ -27,35 +27,50 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class SysUserProject extends BaseEntity implements Serializable {
 	private static final long	serialVersionUID	= 1L;
 	
-	//
+	// 项目简介
 	@Column(name = "project_content")
 	private String				projectContent;
 	
-	//
+	// 用户id
 	@Column(name = "user_uuid")
 	private String				userUuid;
 	
-	//
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
+	// 开始时间
 	@Column(name = "start_date")
-	private Date				startDate;
+	private String				startDate;
 	
-	//
+	// 职务
 	@Column(name = "position")
 	private String				position;
 	
-	//
+	// 项目名
 	@Column(name = "project_name")
 	private String				projectName;
 	
-	//
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	@Column(name = "end_date")
-	private Date				endDate;
 	
-	//
+	// 软件环境
+	@Column(name = "software_environment")
+	private String	softwareEnvironment;
+	
+	// 硬件环境
+	@Column(name = "hardware_environment")
+	private String	hardwareEnvironment;
+	
+	// 开发工具
+	@Column(name = "developer_kits")
+	private String	developerKits;
+	
+	// 责任描述
+	@Column(name = "responsibility_description")
+	private String	responsibilityDescription;
+	
+	
+	// 结束日期
+	@Column(name = "end_date")
+	private String				endDate;
+	
+	
+	// 结束日期
 	@Column(name = "unit")
 	private String				unit;
 	
@@ -112,7 +127,7 @@ public class SysUserProject extends BaseEntity implements Serializable {
 	 *
 	 * @return: String
 	 */
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 	
@@ -120,7 +135,7 @@ public class SysUserProject extends BaseEntity implements Serializable {
 	 * 方法名 ： setStartDate
 	 * 功 能 ： 设置变量 startDate 的值
 	 */
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 	
@@ -166,7 +181,7 @@ public class SysUserProject extends BaseEntity implements Serializable {
 	 *
 	 * @return: String
 	 */
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 	
@@ -174,26 +189,81 @@ public class SysUserProject extends BaseEntity implements Serializable {
 	 * 方法名 ： setEndDate
 	 * 功 能 ： 设置变量 endDate 的值
 	 */
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 	
+
 	/**
-	 * 方法名 ： getUnit
-	 * 功 能 ： 返回变量 unit 的值
-	 *
-	 * @return: String
+	 * @return the softwareEnvironment
+	 */
+	public String getSoftwareEnvironment() {
+		return softwareEnvironment;
+	}
+
+	/**
+	 * @param softwareEnvironment the softwareEnvironment to set
+	 */
+	public void setSoftwareEnvironment(String softwareEnvironment) {
+		this.softwareEnvironment = softwareEnvironment;
+	}
+
+	/**
+	 * @return the hardwareEnvironment
+	 */
+	public String getHardwareEnvironment() {
+		return hardwareEnvironment;
+	}
+
+	/**
+	 * @param hardwareEnvironment the hardwareEnvironment to set
+	 */
+	public void setHardwareEnvironment(String hardwareEnvironment) {
+		this.hardwareEnvironment = hardwareEnvironment;
+	}
+
+	/**
+	 * @return the developerKits
+	 */
+	public String getDeveloperKits() {
+		return developerKits;
+	}
+
+	/**
+	 * @param developerKits the developerKits to set
+	 */
+	public void setDeveloperKits(String developerKits) {
+		this.developerKits = developerKits;
+	}
+
+	/**
+	 * @return the responsibilityDescription
+	 */
+	public String getResponsibilityDescription() {
+		return responsibilityDescription;
+	}
+
+	/**
+	 * @param responsibilityDescription the responsibilityDescription to set
+	 */
+	public void setResponsibilityDescription(String responsibilityDescription) {
+		this.responsibilityDescription = responsibilityDescription;
+	}
+
+	/**
+	 * @return the unit
 	 */
 	public String getUnit() {
 		return unit;
 	}
-	
+
 	/**
-	 * 方法名 ： setUnit
-	 * 功 能 ： 设置变量 unit 的值
+	 * @param unit the unit to set
 	 */
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
+	
+	
 	
 }

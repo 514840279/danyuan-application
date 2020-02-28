@@ -19,7 +19,7 @@ $(function() {
 			natureOfTheFirm:row.find("input[name='natureOfTheFirm']").val(),
 			firmAssetSize:row.find("input[name='firmAssetSize']").val(),
 			workingRange:row.find("input[name='workingRange']").val(),
-			workingContent:row.find("input[name='workingContent']").val(),
+			workingContent:row.find("textarea[name='workingContent']").val(),
 			userUuid:userUuid
 		};
 		ajaxPost("/sysUserWorkExpreience/save",info,successAddEducation);
@@ -33,7 +33,7 @@ $(function() {
 			row.find("input[name='natureOfTheFirm']").val("");
 			row.find("input[name='firmAssetSize']").val("");
 			row.find("input[name='workingRange']").val("");
-			row.find("input[name='workingContent']").val("");
+			row.find("textarea[name='workingContent']").val("");
 			appendWorkExpreience(result.data);
 		}
 	});
@@ -41,7 +41,7 @@ $(function() {
 
 function appendWorkExpreience(data){
 	var row=$("#show_user_upd_workexpreience_id");
-	var context = row.find("#row-text-content").clone(false);
+	var context = row.find("#row-text-content:eq(0)").clone(false);
 	context.css({"display":""});
 	context.find("#startDate").text(data.startDate);
 	context.find("#endDate").text(data.endDate);
@@ -49,10 +49,10 @@ function appendWorkExpreience(data){
 	context.find("#workingLife").text(data.workingLife);
 	context.find("#position").text(data.position);
 	context.find("#salaryRange").text(data.salaryRange);
-	context.find("#natureOfTheFirm").text(data.natureOfTheFirm);
-	context.find("#firmAssetSize").text(data.firmAssetSize);
+	context.find("#natureOfTheFirm").text("企业性质："+data.natureOfTheFirm);
+	context.find("#firmAssetSize").text("规模："+data.firmAssetSize);
 	context.find("#workingRange").text(data.workingRange);
-	context.find("#workingContent").text(data.workingContent);
+	context.find("#workingContent").text("工作描述："+data.workingContent);
 	
 	context.find("#delete_user_upd_workexpreience_row_btn_id").unbind("click").bind("click",function(){
 		ajaxPost("/sysUserWorkExpreience/delete",data,successDelWorkExpreience);
