@@ -36,16 +36,16 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 开启security注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	private static final Logger	logger	= LoggerFactory.getLogger(WebSecurityConfig.class);
-	
+
 	@Autowired
 	private DataSource			dataSource;
 //	@Autowired
 //	private MyLoginSuccessHandler	myLoginSuccessHandler;
 //	@Autowired
 //	private MyLoginFailureHandler	myLoginFailureHandler;
-	
+
 	@Bean
 	public PersistentTokenRepository tokenRepository() {
 		JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		jdbcTokenRepository.setCreateTableOnStartup(false);
 		return jdbcTokenRepository;
 	}
-
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		/** JWT拦截器 */
@@ -64,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// 允许所有用户访问"/"和"/home"
 		http.csrf().disable().authorizeRequests()
 		        // 不需要验证就可以访问的路径
-		        .antMatchers("/dist/*/**", "/plugins/*/**", "/pages/*/js/**", "/register.html", "/sysUserBase/save", "/login", "/*/**.md").permitAll()
+		        .antMatchers("/dist/*/**", "/plugins/*/**", "/pages/*/js/**", "/register.html", "/sysUserBase/save", "/login", "/*/**.md", "/*.pdf").permitAll()
 		        // 限制所有请求都需要验证
 		        .anyRequest().authenticated()
 		        // form 登录
@@ -98,7 +98,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		        .userDetailsService(userDetailsService) // 设置userDetailsService，用来获取username;
 		;
 	}
-
+	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) {
 		try {
@@ -106,14 +106,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		} catch (Exception e) {
 			logger.error(e.getMessage(), WebSecurityConfig.class);
 		}
-
+		
 	}
-
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
-
+	
 	/**
 	 * 自定义UserDetailsService，从数据库中读取用户信息
 	 *
@@ -123,7 +123,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public CustomUserDetailsService customUserDetailsService() {
 		return new CustomUserDetailsService();
 	}
-
+	
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
