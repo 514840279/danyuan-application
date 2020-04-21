@@ -1,12 +1,13 @@
 package org.danyuan.application;
 
-import org.apache.catalina.connector.Connector;
-import org.apache.tomcat.util.descriptor.web.SecurityCollection;
-import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -25,45 +26,26 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableJpaAuditing
 @EnableScheduling
 @EnableJpaRepositories(basePackages = "org.danyuan.application")
-public class App {
-
+public class App implements CommandLineRunner {
+	private static ApplicationContext ctx;
+	
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(App.class, args);
+		ctx = SpringApplication.run(App.class, args);
 	}
 	
-	// 下面是2.0的配置，1.x请搜索对应的设置
-	// @Bean
-	// public ServletWebServerFactory servletContainer() {
-	// TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
-	// tomcat.addAdditionalTomcatConnectors(createHTTPConnector());
-	// return tomcat;
-	// }
-	
-	// @Bean
-	public ServletWebServerFactory servletContainer() {
-		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
-			@Override
-			protected void postProcessContext(org.apache.catalina.Context context) {
-				SecurityConstraint constraint = new SecurityConstraint();
-				constraint.setUserConstraint("CONFIDENTIAL");
-				SecurityCollection collection = new SecurityCollection();
-				collection.addPattern("/*");
-				constraint.addCollection(collection);
-				context.addConstraint(constraint);
-			}
-		};
-		tomcat.addAdditionalTomcatConnectors(createHTTPConnector());
-		return tomcat;
+	@Override
+	public void run(String... args) throws Exception {
+		try {
+			String host = InetAddress.getLocalHost().getHostAddress();
+			TomcatServletWebServerFactory tomcatServletWebServerFactory = (TomcatServletWebServerFactory) ctx.getBean("tomcatServletWebServerFactory");
+			int port = tomcatServletWebServerFactory.getPort();
+			String contextPath = tomcatServletWebServerFactory.getContextPath();
+			System.out.println("http://" + host + ":" + port + contextPath + "/");
+			Runtime.getRuntime().exec("cmd /c start http://" + host + ":" + port + contextPath + "/"); // 打开一个批处理文件
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
-	private Connector createHTTPConnector() {
-		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-		// 同时启用http（8080）、https（8443）两个端口
-		connector.setScheme("http");
-		connector.setSecure(false);
-		connector.setPort(80);
-		connector.setRedirectPort(8443);
-		return connector;
-	}
-
 }

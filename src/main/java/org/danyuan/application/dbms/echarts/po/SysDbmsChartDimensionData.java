@@ -5,11 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.danyuan.application.common.base.BaseEntity;
 
 /**
  * The persistent class for the sys_plant_chart_dimension_data database table.
@@ -17,12 +16,8 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "sys_dbms_chart_dimension_data")
 @NamedQuery(name = "SysDbmsChartDimensionData.findAll", query = "SELECT s FROM SysDbmsChartDimensionData s")
-public class SysDbmsChartDimensionData implements Serializable {
+public class SysDbmsChartDimensionData extends BaseEntity implements Serializable {
 	private static final long	serialVersionUID	= 1L;
-	
-	@Id
-	@Column(name = "UUID", columnDefinition = " varchar(36) COMMENT '主键'")
-	private String				uuid;
 	
 	@Column(name = "cols_uuid")
 	private String				colsUuid;
@@ -31,28 +26,6 @@ public class SysDbmsChartDimensionData implements Serializable {
 	private String				colsDesc;
 	
 	private String				conditions;
-	
-	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.CreationTimestamp
-	private Date				createTime;					// create_time
-	
-	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String				createUser;					// create_user
-	
-	@Column(name = "update_time", updatable = false, insertable = false, columnDefinition = " timestamp  default CURRENT_TIMESTAMP  COMMENT '更新时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.UpdateTimestamp
-	private Date				updateTime;					// updata_time
-	
-	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
-	private String				updateUser;					// updata_user
-	
-	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer				deleteFlag;
-	
-	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
-	private String				discription;
 	
 	@Column(name = "dime_uuid")
 	private String				dimeUuid;
@@ -81,7 +54,6 @@ public class SysDbmsChartDimensionData implements Serializable {
 	/**
 	 * 方法名 ： getConditions
 	 * 功 能 ： 返回变量 conditions 的值
-	 *
 	 * @return: String
 	 */
 	public String getConditions() {
@@ -99,7 +71,6 @@ public class SysDbmsChartDimensionData implements Serializable {
 	/**
 	 * 方法名 ： getDeleteFlag
 	 * 功 能 ： 返回变量 deleteFlag 的值
-	 *
 	 * @return: Integer
 	 */
 	public Integer getDeleteFlag() {
@@ -141,7 +112,6 @@ public class SysDbmsChartDimensionData implements Serializable {
 	/**
 	 * 方法名 ： getCreateTime
 	 * 功 能 ： 返回变量 createTime 的值
-	 *
 	 * @return: Date
 	 */
 	public Date getCreateTime() {
@@ -159,7 +129,6 @@ public class SysDbmsChartDimensionData implements Serializable {
 	/**
 	 * 方法名 ： getUpdateTime
 	 * 功 能 ： 返回变量 updateTime 的值
-	 *
 	 * @return: Date
 	 */
 	public Date getUpdateTime() {
@@ -193,7 +162,6 @@ public class SysDbmsChartDimensionData implements Serializable {
 	/**
 	 * 方法名 ： getColsDesc
 	 * 功 能 ： 返回变量 colsDesc 的值
-	 *
 	 * @return: String
 	 */
 	public String getColsDesc() {

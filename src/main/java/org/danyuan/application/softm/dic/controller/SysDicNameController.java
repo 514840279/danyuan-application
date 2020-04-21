@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 /**
  * 文件名 ： SysDicNameController.java
@@ -36,7 +34,6 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping("/sysDicName")
-@Api(value = "/SysDicName", description = "字典名称数据")
 public class SysDicNameController {
 	//
 	private static final Logger	logger	= LoggerFactory.getLogger(SysDicNameController.class);
@@ -51,7 +48,6 @@ public class SysDicNameController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "查询全部信息", notes = "")
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<SysDicName> page(@RequestBody Pagination<SysDicName> vo) {
 		logger.info("page", SysDicNameController.class);
@@ -66,7 +62,6 @@ public class SysDicNameController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "查询全部信息", notes = "")
 	@RequestMapping(path = "/findAll", method = RequestMethod.GET)
 	public List<SysDicName> findAll(SysDicName info) {
 		logger.info("page", SysDicNameController.class);
@@ -80,7 +75,6 @@ public class SysDicNameController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "查询信息", notes = "")
 	@RequestMapping(path = "/findOne", method = RequestMethod.POST)
 	public SysDicName findOne(SysDicName info) {
 		logger.info("findOne", SysDicNameController.class);
@@ -94,7 +88,6 @@ public class SysDicNameController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "保存信息", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	public String save(@RequestBody SysDicName info) {
 		logger.info("save", SysDicNameController.class);
@@ -112,7 +105,6 @@ public class SysDicNameController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "保存全部信息", notes = "")
 	@RequestMapping(path = "/saveAll", method = RequestMethod.POST)
 	public String save(Pagination<SysDicName> vo) {
 		logger.info("save", SysDicNameController.class);
@@ -127,7 +119,6 @@ public class SysDicNameController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "删除全部信息", notes = "")
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestBody Pagination<SysDicName> vo) {
 		logger.info("delete", SysDicNameController.class);
@@ -142,7 +133,6 @@ public class SysDicNameController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "删除信息", notes = "")
 	@RequestMapping(path = "/deleteAll", method = RequestMethod.POST)
 	public String delete(SysDicName info) {
 		logger.info("delete", SysDicNameController.class);
@@ -157,7 +147,6 @@ public class SysDicNameController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "清空表", notes = "")
 	@RequestMapping(path = "/trunc", method = RequestMethod.POST)
 	public String trunc() {
 		logger.info("page", SysDicNameController.class);
@@ -165,7 +154,6 @@ public class SysDicNameController {
 		return "1";
 	}
 
-	@ApiOperation(value = "检查代码重复", notes = "")
 	@RequestMapping(path = "/checkCode", method = RequestMethod.POST)
 	public Map<String, Boolean> checkCode(String code) {
 		logger.info("checkCode", SysDicNameController.class);
@@ -175,7 +163,6 @@ public class SysDicNameController {
 		return map;
 	}
 
-	@ApiOperation(value = "根据代码查列表值", notes = "")
 	@RequestMapping(path = "/findkeyList", method = RequestMethod.POST)
 	public List<SysDicKeyList> findkeyList(@RequestBody SysDicName info) {
 		logger.info("findkeyList", SysDicNameController.class);

@@ -5,11 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.danyuan.application.common.base.BaseEntity;
 
 /**
  * The persistent class for the sys_plant_chart_dimension database table.
@@ -17,12 +16,8 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "sys_dbms_chart_dimension")
 @NamedQuery(name = "SysDbmsChartDimension.findAll", query = "SELECT s FROM SysDbmsChartDimension s")
-public class SysDbmsChartDimension implements Serializable {
+public class SysDbmsChartDimension extends BaseEntity implements Serializable {
 	private static final long	serialVersionUID	= 1L;
-	
-	@Id
-	@Column(name = "UUID", columnDefinition = " varchar(36) COMMENT '主键'")
-	private String				uuid;
 	
 	@Column(name = "chart_type")
 	private String				chartType;
@@ -32,10 +27,13 @@ public class SysDbmsChartDimension implements Serializable {
 	
 	@Column(name = "db_uuid")
 	private String				dbUuid;
+	
 	@Column(name = "table_type_uuid")
 	private String				tableTypeUuid;
+	
 	@Column(name = "table_uuid")
 	private String				tableUuid;
+	
 	@Column(name = "lable_uuid")
 	private String				lableUuid;
 	
@@ -50,6 +48,7 @@ public class SysDbmsChartDimension implements Serializable {
 	@Column(name = "lable_uuid4")
 	private String				lableUuid4;
 	// 树图，旭日图 允许有4个
+	
 	@Column(name = "group_uuid")
 	private String				groupUuid;
 	
@@ -57,36 +56,18 @@ public class SysDbmsChartDimension implements Serializable {
 	private Integer				startNum;
 	
 	private String				title;
+	
 	@Column(name = "dime_order")
 	private Integer				dimeOrder;
+	
 	@Column(name = "count_type")
 	private String				countType;
 	
 	private String				theme;
+	
 	private String				width;
+	
 	private String				height;
-	
-	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.CreationTimestamp
-	private Date				createTime;					// create_time
-	
-	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String				createUser;					// create_user
-	
-	@Column(name = "update_time", updatable = false, insertable = false, columnDefinition = " timestamp  default CURRENT_TIMESTAMP  COMMENT '更新时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.UpdateTimestamp
-	private Date				updateTime;					// updata_time
-	
-	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
-	private String				updateUser;					// updata_user
-	
-	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer				deleteFlag;
-	
-	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
-	private String				discription;
 	
 	public SysDbmsChartDimension() {
 	}
@@ -158,7 +139,6 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getCountType
 	 * 功 能 ： 返回变量 countType 的值
-	 *
 	 * @return: String
 	 */
 	public String getCountType() {
@@ -184,7 +164,6 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getCreateTime
 	 * 功 能 ： 返回变量 createTime 的值
-	 *
 	 * @return: Date
 	 */
 	public Date getCreateTime() {
@@ -202,7 +181,6 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getUpdateTime
 	 * 功 能 ： 返回变量 updateTime 的值
-	 *
 	 * @return: Date
 	 */
 	public Date getUpdateTime() {
@@ -220,7 +198,6 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getDeleteFlag
 	 * 功 能 ： 返回变量 deleteFlag 的值
-	 *
 	 * @return: Integer
 	 */
 	public Integer getDeleteFlag() {
@@ -238,7 +215,6 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getDimeOrder
 	 * 功 能 ： 返回变量 dimeOrder 的值
-	 *
 	 * @return: Integer
 	 */
 	public Integer getDimeOrder() {
@@ -256,7 +232,6 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getTheme
 	 * 功 能 ： 返回变量 theme 的值
-	 *
 	 * @return: String
 	 */
 	public String getTheme() {
@@ -274,7 +249,6 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getWidth
 	 * 功 能 ： 返回变量 width 的值
-	 *
 	 * @return: String
 	 */
 	public String getWidth() {
@@ -309,7 +283,6 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getLableUuid2
 	 * 功 能 ： 返回变量 lableUuid2 的值
-	 *
 	 * @return: String
 	 */
 	public String getLableUuid2() {
@@ -327,7 +300,6 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getLableUuid3
 	 * 功 能 ： 返回变量 lableUuid3 的值
-	 *
 	 * @return: String
 	 */
 	public String getLableUuid3() {
@@ -345,7 +317,6 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getLableUuid4
 	 * 功 能 ： 返回变量 lableUuid4 的值
-	 *
 	 * @return: String
 	 */
 	public String getLableUuid4() {
@@ -363,7 +334,6 @@ public class SysDbmsChartDimension implements Serializable {
 	/**
 	 * 方法名 ： getGroupUuid
 	 * 功 能 ： 返回变量 groupUuid 的值
-	 *
 	 * @return: String
 	 */
 	public String getGroupUuid() {
@@ -390,7 +360,7 @@ public class SysDbmsChartDimension implements Serializable {
 	public String toString() {
 		return "SysPlantChartDimension [uuid=" + uuid + ", chartType=" + chartType + ", endNum=" + endNum + ", lableUuid=" + lableUuid + ", lableUuid2=" + lableUuid2 + ", lableUuid3=" + lableUuid3 + ", lableUuid4=" + lableUuid4 + ", groupUuid=" + groupUuid + ", startNum=" + startNum + ", title=" + title + ", dimeOrder=" + dimeOrder + ", countType=" + countType + ", theme=" + theme + ", width=" + width + ", height=" + height + ", createTime=" + createTime + ", createUser=" + createUser + ", updateTime=" + updateTime + ", updateUser=" + updateUser + ", deleteFlag=" + deleteFlag + ", discription=" + discription + "]";
 	}
-
+	
 	/**
 	 * @方法名 getDbUuid
 	 * @功能 返回变量 dbUuid 的值
@@ -399,7 +369,7 @@ public class SysDbmsChartDimension implements Serializable {
 	public String getDbUuid() {
 		return dbUuid;
 	}
-
+	
 	/**
 	 * @方法名 setDbUuid
 	 * @功能 设置变量 dbUuid 的值
@@ -407,7 +377,7 @@ public class SysDbmsChartDimension implements Serializable {
 	public void setDbUuid(String dbUuid) {
 		this.dbUuid = dbUuid;
 	}
-
+	
 	/**
 	 * @方法名 getTableTypeUuid
 	 * @功能 返回变量 tableTypeUuid 的值
@@ -416,7 +386,7 @@ public class SysDbmsChartDimension implements Serializable {
 	public String getTableTypeUuid() {
 		return tableTypeUuid;
 	}
-
+	
 	/**
 	 * @方法名 setTableTypeUuid
 	 * @功能 设置变量 tableTypeUuid 的值
@@ -424,7 +394,7 @@ public class SysDbmsChartDimension implements Serializable {
 	public void setTableTypeUuid(String tableTypeUuid) {
 		this.tableTypeUuid = tableTypeUuid;
 	}
-
+	
 	/**
 	 * @方法名 getTableUuid
 	 * @功能 返回变量 tableUuid 的值
@@ -433,7 +403,7 @@ public class SysDbmsChartDimension implements Serializable {
 	public String getTableUuid() {
 		return tableUuid;
 	}
-
+	
 	/**
 	 * @方法名 setTableUuid
 	 * @功能 设置变量 tableUuid 的值
@@ -441,5 +411,5 @@ public class SysDbmsChartDimension implements Serializable {
 	public void setTableUuid(String tableUuid) {
 		this.tableUuid = tableUuid;
 	}
-
+	
 }

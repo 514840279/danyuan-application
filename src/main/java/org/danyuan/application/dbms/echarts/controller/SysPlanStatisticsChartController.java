@@ -33,8 +33,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 /**
  * 文件名 ： SysPlanStatisticsChartController.java
@@ -48,7 +46,6 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping("/sysPlanStatisticsChart")
-@Api(value = "/SysPlanStatisticsChart", description = "平台管理")
 public class SysPlanStatisticsChartController {
 	//
 	private static final Logger				logger	= LoggerFactory.getLogger(SysPlanStatisticsChartController.class);
@@ -70,7 +67,6 @@ public class SysPlanStatisticsChartController {
 	@Autowired
 	SysDbmsTabsInfoService					sysDbmsTabsInfoService;
 	
-	@ApiOperation(value = "构建图形数据", notes = "")
 	@RequestMapping(path = "/build", method = RequestMethod.POST)
 	public Map<String, Object> build(@RequestBody SysDbmsChartDimension info) {
 		logger.info("build", SysPlanStatisticsChartController.class);

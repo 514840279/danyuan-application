@@ -18,7 +18,7 @@ import org.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
  * @版本 V1.0
  */
 public class GenerateEntity {
-
+	
 	/**
 	 * @方法名 generate
 	 * @功能 生成实体类文件
@@ -95,15 +95,15 @@ public class GenerateEntity {
 		// 拼接get，set
 		stringBuilder.append(stringBuilderMethod);
 		stringBuilder.append("\r\n");
-
+		
 		// TODO 构造
 		
 		// TODO tostring
-
+		
 		// ...
 		stringBuilder.append("\r\n");
 		stringBuilder.append("}");
-
+		
 		// 文件写入
 		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName() + ".java";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
@@ -153,17 +153,17 @@ public class GenerateEntity {
 			}
 			
 			// 拼写属性
-			spellProperties(stringBuilderProperties, propertiesName, propertiesType, colsDesc, colsType, colsName);
-
+			spellProperties(stringBuilderProperties, propertiesName, propertiesType, colsDesc, colsType, colsName, sysDbmsTabsColsInfo.getColsLength());
+			
 			// 拼写get，set
 			spellMethod(stringBuilderMethod, propertiesName, propertiesType, colsDesc, colsType, colsName);
 		}
 		if (stringBuilderImport.toString().length() > 0) {
 			stringBuilderImport.append("\r\n");
 		}
-
+		
 	}
-
+	
 	/**
 	 * 方法名： spellMethod
 	 * 功 能： 拼写get，set
@@ -200,8 +200,9 @@ public class GenerateEntity {
 		stringBuilderMethod.append("		this." + propertiesName + " = " + propertiesName + ";\r\n");
 		stringBuilderMethod.append("	}\r\n");
 	}
-
+	
 	/**
+	 * @param integer
 	 * 方法名： spellProperties
 	 * 功 能： 拼写属性
 	 * 参 数： @param stringBuilderProperties
@@ -214,7 +215,7 @@ public class GenerateEntity {
 	 * 作 者 ： wang
 	 * @throws
 	 */
-	private static void spellProperties(StringBuilder stringBuilderProperties, String propertiesName, String propertiesType, String colsDesc, String colsType, String colsName) {
+	private static void spellProperties(StringBuilder stringBuilderProperties, String propertiesName, String propertiesType, String colsDesc, String colsType, String colsName, Integer length) {
 		stringBuilderProperties.append("\r\n");
 		stringBuilderProperties.append("	// " + colsDesc + "\r\n");
 		if ("date".equals(colsType.toLowerCase())) {
@@ -234,10 +235,12 @@ public class GenerateEntity {
 			stringBuilderProperties.append("	@DateTimeFormat(style = \"yyyy-MM-dd HH:mm:ss\")\r\n");
 			stringBuilderProperties.append("	@JsonFormat(locale = \"zh\", timezone = \"GMT+8\", pattern = \"yyyy-MM-dd HH:mm:ss\")\r\n");
 		}
-		stringBuilderProperties.append("	@Column(name = \"" + colsName + "\", columnDefinition = \" COMMENT '" + colsDesc + "'\")\r\n");
+		stringBuilderProperties.append("	// " + colsDesc + "\r\n");
+		// length ,notnull,update,insert 需要配置
+		stringBuilderProperties.append("	@Column(name = \"" + colsName + "\", length=" + length + ")\r\n");
 		stringBuilderProperties.append("	private " + propertiesType + "	" + propertiesName + ";\r\n");
 	}
-
+	
 	/**
 	 * 方法名： makeProperties
 	 * 功 能： 属性生成
@@ -259,5 +262,5 @@ public class GenerateEntity {
 		}
 		return propertiesName;
 	}
-
+	
 }

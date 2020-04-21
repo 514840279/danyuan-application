@@ -21,59 +21,67 @@ import org.danyuan.application.common.base.BaseEntity;
 @Entity
 @Table(name = "sys_user_base_info")
 public class SysUserBaseInfo extends BaseEntity {
-
+	
+	// 逐渐
 	@Id
-	@Column(name = "UUID", updatable = false, columnDefinition = "varchar(36) COMMENT '主键'")
+	@Column(name = "UUID", updatable = false)
 	private String	uuid;
-
+	
+	// 用户名
 	@NotNull
-	@Column(name = "user_name", updatable = false, unique = true, columnDefinition = "varchar(50) COMMENT '用户名'")
+	@Column(name = "user_name", updatable = false, unique = true)
 	private String	userName;
-
-	@Column(name = "password", columnDefinition = "varchar(128) COMMENT '密码'")
+	
+	// 密码
+	@Column(name = "password")
 	@NotNull
 	private String	password;
-
+	
+	// 姓名
 	@NotNull
-	@Column(name = "persion_name", columnDefinition = "varchar(50) COMMENT '姓名'")
+	@Column(name = "persion_name")
 	private String	persionName;
-
-	@Column(name = "sex", columnDefinition = "varchar(2) COMMENT '性别'")
+	
+	// 性别
+	@Column(name = "sex")
 	private String	sex;
-
-	@Column(name = "email", columnDefinition = "varchar(100) COMMENT '邮箱'")
+	
+	// 邮箱
+	@Column(name = "email")
 	private String	email;
-
+	
 	// 电话
-	@Column(name = "phone", columnDefinition = "varchar(18) COMMENT '电话'")
+	@Column(name = "phone")
 	private String	phone;
-
-	@Column(name = "age", columnDefinition = "varchar(2) COMMENT '年龄'")
+	
+	// 年龄
+	@Column(name = "age")
 	private Integer	age;
-
-	@Column(name = "head_pic", columnDefinition = "varchar(1024) COMMENT '头像'")
+	
+	// 头像
+	@Column(name = "head_pic")
 	private String	headPic;
-
+	
 	//
 	@Column(name = "major")
 	private String	major;
-
+	
 	//
 	@Column(name = "education")
 	private String	education;
-
+	
 	//
 	@Column(name = "university")
 	private String	university;
-
+	
 	// QQ
 	@Column(name = "qq")
 	private String	qq;
-
+	
 	//
 	@Column(name = "ancestral_address")
 	private String	ancestralAddress;
-
+	
 	//
 	@Column(name = "addr")
 	private String	addr;
@@ -98,13 +106,13 @@ public class SysUserBaseInfo extends BaseEntity {
 	@Column(name = "expected_salary")
 	private String	expectedSalary;
 	
+	//
 	@Column(name = "resume_path")
 	private String	resumePath;
 	
 	/**
 	 * 方法名 ： getPosition
 	 * 功 能 ： 返回变量 position 的值
-	 *
 	 * @return: String
 	 */
 	public String getPosition() {
@@ -122,7 +130,6 @@ public class SysUserBaseInfo extends BaseEntity {
 	/**
 	 * 方法名 ： getStatue
 	 * 功 能 ： 返回变量 statue 的值
-	 *
 	 * @return: String
 	 */
 	public String getStatue() {
@@ -140,7 +147,6 @@ public class SysUserBaseInfo extends BaseEntity {
 	/**
 	 * 方法名 ： getExpectedPlace
 	 * 功 能 ： 返回变量 expectedPlace 的值
-	 *
 	 * @return: String
 	 */
 	public String getExpectedPlace() {
@@ -158,7 +164,6 @@ public class SysUserBaseInfo extends BaseEntity {
 	/**
 	 * 方法名 ： getWorkNature
 	 * 功 能 ： 返回变量 workNature 的值
-	 *
 	 * @return: String
 	 */
 	public String getWorkNature() {
@@ -176,7 +181,6 @@ public class SysUserBaseInfo extends BaseEntity {
 	/**
 	 * 方法名 ： getExpectedSalary
 	 * 功 能 ： 返回变量 expectedSalary 的值
-	 *
 	 * @return: String
 	 */
 	public String getExpectedSalary() {
@@ -211,14 +215,13 @@ public class SysUserBaseInfo extends BaseEntity {
 	/**
 	 * 方法名 ： getUuid
 	 * 功 能 ： 返回变量 uuid 的值
-	 *
 	 * @return: String
 	 */
 	@Override
 	public String getUuid() {
 		return uuid;
 	}
-
+	
 	/**
 	 * 方法名 ： setUuid
 	 * 功 能 ： 设置变量 uuid 的值
@@ -227,17 +230,16 @@ public class SysUserBaseInfo extends BaseEntity {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-
+	
 	/**
 	 * 方法名 ： getUserName
 	 * 功 能 ： 返回变量 userName 的值
-	 *
 	 * @return: String
 	 */
 	public String getUserName() {
 		return userName;
 	}
-
+	
 	/**
 	 * 方法名 ： setUserName
 	 * 功 能 ： 设置变量 userName 的值
@@ -245,17 +247,16 @@ public class SysUserBaseInfo extends BaseEntity {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
+	
 	/**
 	 * 方法名 ： getPassword
 	 * 功 能 ： 返回变量 password 的值
-	 *
 	 * @return: String
 	 */
 	public String getPassword() {
 		return password;
 	}
-
+	
 	/**
 	 * 方法名 ： setPassword
 	 * 功 能 ： 设置变量 password 的值
@@ -263,17 +264,16 @@ public class SysUserBaseInfo extends BaseEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	/**
 	 * 方法名 ： getPersionName
 	 * 功 能 ： 返回变量 persionName 的值
-	 *
 	 * @return: String
 	 */
 	public String getPersionName() {
 		return persionName;
 	}
-
+	
 	/**
 	 * 方法名 ： setPersionName
 	 * 功 能 ： 设置变量 persionName 的值
@@ -281,17 +281,16 @@ public class SysUserBaseInfo extends BaseEntity {
 	public void setPersionName(String persionName) {
 		this.persionName = persionName;
 	}
-
+	
 	/**
 	 * 方法名 ： getSex
 	 * 功 能 ： 返回变量 sex 的值
-	 *
 	 * @return: String
 	 */
 	public String getSex() {
 		return sex;
 	}
-
+	
 	/**
 	 * 方法名 ： setSex
 	 * 功 能 ： 设置变量 sex 的值
@@ -299,17 +298,16 @@ public class SysUserBaseInfo extends BaseEntity {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-
+	
 	/**
 	 * 方法名 ： getAge
 	 * 功 能 ： 返回变量 age 的值
-	 *
 	 * @return: Integer
 	 */
 	public Integer getAge() {
 		return age;
 	}
-
+	
 	/**
 	 * 方法名 ： setAge
 	 * 功 能 ： 设置变量 age 的值
@@ -321,13 +319,12 @@ public class SysUserBaseInfo extends BaseEntity {
 	/**
 	 * 方法名 ： getEmail
 	 * 功 能 ： 返回变量 email 的值
-	 *
 	 * @return: String
 	 */
 	public String getEmail() {
 		return email;
 	}
-
+	
 	/**
 	 * 方法名 ： setEmail
 	 * 功 能 ： 设置变量 email 的值
@@ -335,11 +332,10 @@ public class SysUserBaseInfo extends BaseEntity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
 	/**
 	 * 方法名 ： getPhone
 	 * 功 能 ： 返回变量 phone 的值
-	 *
 	 * @return: String
 	 */
 	public String getPhone() {
@@ -353,17 +349,16 @@ public class SysUserBaseInfo extends BaseEntity {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
+	
 	/**
 	 * 方法名 ： getHeadPic
 	 * 功 能 ： 返回变量 headPic 的值
-	 *
 	 * @return: String
 	 */
 	public String getHeadPic() {
 		return headPic;
 	}
-
+	
 	/**
 	 * 方法名 ： setHeadPic
 	 * 功 能 ： 设置变量 headPic 的值
@@ -371,7 +366,7 @@ public class SysUserBaseInfo extends BaseEntity {
 	public void setHeadPic(String headPic) {
 		this.headPic = headPic;
 	}
-
+	
 	/**
 	 * 构造方法：
 	 * 描 述： TODO(这里用一句话描述这个方法的作用)
@@ -382,7 +377,7 @@ public class SysUserBaseInfo extends BaseEntity {
 	public SysUserBaseInfo() {
 		super();
 	}
-
+	
 	/**
 	 * 构造方法：
 	 * 描 述： TODO(这里用一句话描述这个方法的作用)
@@ -506,7 +501,6 @@ public class SysUserBaseInfo extends BaseEntity {
 	
 	/**
 	 * TODO(这里用一句话描述这个方法的作用)
-	 *
 	 * @方法名 toString
 	 * @参数 @return
 	 * @参考 @see java.lang.Object#toString()
@@ -517,5 +511,5 @@ public class SysUserBaseInfo extends BaseEntity {
 	public String toString() {
 		return "SysUserBaseInfo [uuid=" + uuid + ", userName=" + userName + ", password=" + password + ", persionName=" + persionName + ", sex=" + sex + ", email=" + email + ", phone=" + phone + ", age=" + age + ", headPic=" + headPic + ", major=" + major + ", education=" + education + ", university=" + university + ", qq=" + qq + ", ancestralAddress=" + ancestralAddress + ", addr=" + addr + ", discription=" + discription + ", position=" + position + ", statue=" + statue + ", expectedPlace=" + expectedPlace + ", workNature=" + workNature + ", expectedSalary=" + expectedSalary + ", resumePath=" + resumePath + "]";
 	}
-
+	
 }

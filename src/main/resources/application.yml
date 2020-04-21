@@ -36,7 +36,7 @@ spring:
       pool-name: DatebookHikariCP
       max-lifetime: 1800000
       connection-timeout: 18000000
-      connection-test-query: SELECT 1
+      connection-test-query: SELECT 1 from dual
   servlet:
     multipart:
       max-file-size: 100000000
@@ -46,7 +46,7 @@ spring:
     joda-date-time-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   jpa:
-    database: MYSQL
+    database: ORACLE
     open-in-view: false
     hibernate:
       ddl-auto: update
@@ -55,7 +55,7 @@ spring:
       naming-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.Oracle10gDialect
         show_sql: true
         format_sql: true
         use_sql_comments: true

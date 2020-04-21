@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.ApiOperation;
 
 /**
  * 文件名 ： SysDbmsUserIndexInfoController.java
@@ -63,7 +62,6 @@ public class SysDbmsUserIndexInfoController {
 		return "1";
 	}
 
-	@ApiOperation(value = "查询图表信息", notes = "")
 	@RequestMapping(path = "/chartList", method = RequestMethod.POST)
 	public List<SysDbmsUserIndexInfo> chartList() {
 		logger.info("findAll", SysDbmsUserIndexInfoController.class);

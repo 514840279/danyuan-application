@@ -5,11 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.danyuan.application.common.base.BaseEntity;
 
 /**
  * The persistent class for the sys_plant_chart_dimension database table.
@@ -17,40 +16,14 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "sys_dbms_chart_dimension_group")
 @NamedQuery(name = "SysDbmsChartDimensionGroup.findAll", query = "SELECT s FROM SysDbmsChartDimensionGroup s")
-public class SysDbmsChartDimensionGroup implements Serializable {
+public class SysDbmsChartDimensionGroup extends BaseEntity implements Serializable {
 	private static final long	serialVersionUID	= 1L;
-	
-	@Id
-	@Column(name = "UUID", columnDefinition = " varchar(36) COMMENT '主键'")
-	private String				uuid;
 	
 	private String				title;
 	@Column(name = "group_order")
 	private Integer				groupOrder;
 	
 	private String				theme;
-	
-	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.CreationTimestamp
-	private Date				createTime;					// create_time
-	
-	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String				createUser;					// create_user
-	
-	@Column(name = "update_time", updatable = false, insertable = false, columnDefinition = " timestamp  default CURRENT_TIMESTAMP  COMMENT '更新时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.UpdateTimestamp
-	private Date				updateTime;					// updata_time
-	
-	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
-	private String				updateUser;					// updata_user
-	
-	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer				deleteFlag;
-	
-	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
-	private String				discription;
 	
 	public SysDbmsChartDimensionGroup() {
 	}
@@ -66,7 +39,6 @@ public class SysDbmsChartDimensionGroup implements Serializable {
 	/**
 	 * 方法名 ： getTitle
 	 * 功 能 ： 返回变量 title 的值
-	 *
 	 * @return: String
 	 */
 	public String getTitle() {
@@ -84,7 +56,6 @@ public class SysDbmsChartDimensionGroup implements Serializable {
 	/**
 	 * 方法名 ： getGroupOrder
 	 * 功 能 ： 返回变量 groupOrder 的值
-	 *
 	 * @return: Integer
 	 */
 	public Integer getGroupOrder() {
@@ -102,7 +73,6 @@ public class SysDbmsChartDimensionGroup implements Serializable {
 	/**
 	 * 方法名 ： getTheme
 	 * 功 能 ： 返回变量 theme 的值
-	 *
 	 * @return: String
 	 */
 	public String getTheme() {
@@ -120,7 +90,6 @@ public class SysDbmsChartDimensionGroup implements Serializable {
 	/**
 	 * 方法名 ： getCreateTime
 	 * 功 能 ： 返回变量 createTime 的值
-	 *
 	 * @return: Date
 	 */
 	public Date getCreateTime() {
@@ -138,7 +107,6 @@ public class SysDbmsChartDimensionGroup implements Serializable {
 	/**
 	 * 方法名 ： getCreateUser
 	 * 功 能 ： 返回变量 createUser 的值
-	 *
 	 * @return: String
 	 */
 	public String getCreateUser() {
@@ -156,7 +124,6 @@ public class SysDbmsChartDimensionGroup implements Serializable {
 	/**
 	 * 方法名 ： getUpdateTime
 	 * 功 能 ： 返回变量 updateTime 的值
-	 *
 	 * @return: Date
 	 */
 	public Date getUpdateTime() {
@@ -174,7 +141,6 @@ public class SysDbmsChartDimensionGroup implements Serializable {
 	/**
 	 * 方法名 ： getUpdateUser
 	 * 功 能 ： 返回变量 updateUser 的值
-	 *
 	 * @return: String
 	 */
 	public String getUpdateUser() {
@@ -192,7 +158,6 @@ public class SysDbmsChartDimensionGroup implements Serializable {
 	/**
 	 * 方法名 ： getDeleteFlag
 	 * 功 能 ： 返回变量 deleteFlag 的值
-	 *
 	 * @return: Integer
 	 */
 	public Integer getDeleteFlag() {
@@ -210,7 +175,6 @@ public class SysDbmsChartDimensionGroup implements Serializable {
 	/**
 	 * 方法名 ： getDiscription
 	 * 功 能 ： 返回变量 discription 的值
-	 *
 	 * @return: String
 	 */
 	public String getDiscription() {

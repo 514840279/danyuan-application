@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 /**
  * 文件名 ： SysDicKeyListController.java
@@ -33,7 +31,6 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping("/sysDicKeyList")
-@Api(value = "/SysDicKeyList", description = "字典数据")
 public class SysDicKeyListController {
 
 	//
@@ -49,7 +46,6 @@ public class SysDicKeyListController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "查询全部信息", notes = "")
 	@RequestMapping(path = "/page", method = RequestMethod.POST)
 	public Page<SysDicKeyList> page(@RequestBody Pagination<SysDicKeyList> vo) {
 		logger.info("page", SysDicKeyListController.class);
@@ -63,7 +59,6 @@ public class SysDicKeyListController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "查询全部信息", notes = "")
 	@RequestMapping(path = "/findAll", method = RequestMethod.POST)
 	public List<SysDicKeyList> findAll(@RequestBody SysDicKeyList info) {
 		logger.info("findAll", SysDicKeyListController.class);
@@ -77,7 +72,6 @@ public class SysDicKeyListController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "查询信息", notes = "")
 	@RequestMapping(path = "/findOne", method = RequestMethod.POST)
 	public SysDicKeyList findOne(SysDicKeyList info) {
 		logger.info("findOne", SysDicKeyListController.class);
@@ -91,7 +85,6 @@ public class SysDicKeyListController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "保存信息", notes = "")
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	public String save(@RequestBody SysDicKeyList info) {
 		logger.info("save", SysDicKeyListController.class);
@@ -109,7 +102,6 @@ public class SysDicKeyListController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "保存全部信息", notes = "")
 	@RequestMapping(path = "/saveAll", method = RequestMethod.POST)
 	public String save(Pagination<SysDicKeyList> vo) {
 		logger.info("save", SysDicKeyListController.class);
@@ -124,7 +116,6 @@ public class SysDicKeyListController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "删除全部信息", notes = "")
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestBody Pagination<SysDicKeyList> vo) {
 		logger.info("delete", SysDicKeyListController.class);
@@ -139,7 +130,6 @@ public class SysDicKeyListController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "删除信息", notes = "")
 	@RequestMapping(path = "/deleteAll", method = RequestMethod.POST)
 	public String delete(SysDicKeyList info) {
 		logger.info("delete", SysDicKeyListController.class);
@@ -153,7 +143,6 @@ public class SysDicKeyListController {
 	 * 参 数 ： @return
 	 * 作 者 ： Administrator
 	 */
-	@ApiOperation(value = "清空表", notes = "")
 	@RequestMapping(path = "/trunc", method = RequestMethod.POST)
 	public String trunc() {
 		logger.info("delete", SysDicKeyListController.class);

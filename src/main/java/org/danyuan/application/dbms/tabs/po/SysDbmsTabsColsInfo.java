@@ -5,13 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import org.danyuan.application.common.base.BaseEntity;
 
 /**
  * The persistent class for the sys_column_info database table.
@@ -19,12 +16,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "sys_dbms_tabs_cols_info")
 @NamedQuery(name = "SysColumnInfo.findAll", query = "SELECT s FROM SysDbmsTabsColsInfo s")
-public class SysDbmsTabsColsInfo implements Serializable {
+public class SysDbmsTabsColsInfo extends BaseEntity implements Serializable {
 	private static final long	serialVersionUID	= 1L;
-
-	@Id
-	@Column(unique = true, nullable = false, columnDefinition = " varchar(36) COMMENT '主键'")
-	private String				uuid;
 	
 	@Column(name = "tabs_uuid", columnDefinition = " varchar(36) COMMENT '表id'")
 	private String				tabsUuid;
@@ -37,13 +30,13 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	
 	@Column(name = "cols_type", columnDefinition = " varchar(30) COMMENT '字段类型（varchar,number,text）'")
 	private String				colsType;
-
+	
 	@Column(name = "cols_length", columnDefinition = " int COMMENT '字段长度'")
 	private Integer				colsLength;
 	
 	@Column(name = "cols_order", columnDefinition = " int COMMENT '字段顺序'")
 	private Integer				colsOrder;
-
+	
 	@Column(name = "cols_sort", columnDefinition = " varchar(4) COMMENT '数据排序 '")
 	private String				colsSort;
 	
@@ -55,78 +48,31 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	
 	@Column(name = "cols_width", columnDefinition = " int default 150 COMMENT '每列的宽度'")
 	private Integer				colsWidth;
-
+	
 	@Column(name = "cols_visible", columnDefinition = " tinyint(2) default 1 COMMENT '默认为true显示该列，设为false则隐藏该列'")
 	private Boolean				colsVisible;
-
+	
 	@Column(name = "cols_switchable", columnDefinition = "  tinyint(2) default 1 COMMENT '默认为true显示该列，设为false则禁用列项目的选项卡。'")
 	private Boolean				colsSwitchable;
 	
 	@Column(name = "dime_flag", columnDefinition = "  tinyint(2) default 0 COMMENT '默认为true显示该列，设为false则禁用列项目的选项卡。'")
 	private Boolean				dimeFlag;
-
+	
 	@Column(name = "user_index", columnDefinition = " varchar(10) COMMENT '用户查询列配置'")
 	private String				userIndex;
 	
 	@Column(name = "user_icon", columnDefinition = " varchar(20) COMMENT '用户查询显示图标'")
 	private String				userIcon;
-
+	
 	@Column(name = "useful", columnDefinition = " int default 0 COMMENT '停用标记'")
 	private Integer				useful;
-
-	@Column(columnDefinition = "varchar(200) COMMENT '资源功能描述'")
-	private String				discription;
-
-	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.CreationTimestamp
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date				createTime;					// create_time
-	// 插入时间
-
-	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String				createUser;					// create_user
-	// 插入人
-
-	@Column(name = "update_time", updatable = false, insertable = false, columnDefinition = " timestamp  default CURRENT_TIMESTAMP  COMMENT '更新时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.UpdateTimestamp
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date				updateTime;					// updata_time
-	// 更新时间
-
-	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
-	private String				updateUser;					// updata_user
-	// 更新人
-
-	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer				deleteFlag;
 	
 	public SysDbmsTabsColsInfo() {
 	}
 	
 	/**
-	 * 方法名 ： getUuid
-	 * 功 能 ： 返回变量 uuid 的值
-	 *
-	 * @return: String
-	 */
-	public String getUuid() {
-		return uuid;
-	}
-	
-	/**
-	 * 方法名 ： setUuid
-	 * 功 能 ： 设置变量 uuid 的值
-	 */
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
-	
-	/**
 	 * 方法名 ： getColsLength
 	 * 功 能 ： 返回变量 colsLength 的值
-	 *
 	 * @return: Integer
 	 */
 	public Integer getColsLength() {
@@ -144,7 +90,6 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	/**
 	 * 方法名 ： getColsDesc
 	 * 功 能 ： 返回变量 colsDesc 的值
-	 *
 	 * @return: String
 	 */
 	public String getColsDesc() {
@@ -162,7 +107,6 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	/**
 	 * 方法名 ： getColsName
 	 * 功 能 ： 返回变量 colsName 的值
-	 *
 	 * @return: String
 	 */
 	public String getColsName() {
@@ -180,7 +124,6 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	/**
 	 * 方法名 ： getColsOrder
 	 * 功 能 ： 返回变量 colsOrder 的值
-	 *
 	 * @return: Integer
 	 */
 	public Integer getColsOrder() {
@@ -198,7 +141,6 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	/**
 	 * 方法名 ： getColsType
 	 * 功 能 ： 返回变量 colsType 的值
-	 *
 	 * @return: String
 	 */
 	public String getColsType() {
@@ -216,7 +158,6 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	/**
 	 * 方法名 ： getCreateTime
 	 * 功 能 ： 返回变量 createTime 的值
-	 *
 	 * @return: Date
 	 */
 	public Date getCreateTime() {
@@ -234,7 +175,6 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	/**
 	 * 方法名 ： getCreateUser
 	 * 功 能 ： 返回变量 createUser 的值
-	 *
 	 * @return: String
 	 */
 	public String getCreateUser() {
@@ -252,7 +192,6 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	/**
 	 * 方法名 ： getDeleteFlag
 	 * 功 能 ： 返回变量 deleteFlag 的值
-	 *
 	 * @return: Integer
 	 */
 	public Integer getDeleteFlag() {
@@ -270,7 +209,6 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	/**
 	 * 方法名 ： getDiscription
 	 * 功 能 ： 返回变量 discription 的值
-	 *
 	 * @return: String
 	 */
 	public String getDiscription() {
@@ -284,17 +222,16 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	public void setDiscription(String discription) {
 		this.discription = discription;
 	}
-
+	
 	/**
 	 * 方法名 ： getTabsUuid
 	 * 功 能 ： 返回变量 tabsUuid 的值
-	 *
 	 * @return: String
 	 */
 	public String getTabsUuid() {
 		return tabsUuid;
 	}
-
+	
 	/**
 	 * 方法名 ： setTabsUuid
 	 * 功 能 ： 设置变量 tabsUuid 的值
@@ -302,11 +239,10 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	public void setTabsUuid(String tabsUuid) {
 		this.tabsUuid = tabsUuid;
 	}
-
+	
 	/**
 	 * 方法名 ： getUpdateTime
 	 * 功 能 ： 返回变量 updateTime 的值
-	 *
 	 * @return: Date
 	 */
 	public Date getUpdateTime() {
@@ -324,7 +260,6 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	/**
 	 * 方法名 ： getUpdateUser
 	 * 功 能 ： 返回变量 updateUser 的值
-	 *
 	 * @return: String
 	 */
 	public String getUpdateUser() {
@@ -342,29 +277,28 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	public String getColsAlign() {
 		return colsAlign;
 	}
-
+	
 	public void setColsAlign(String colsAlign) {
 		this.colsAlign = colsAlign;
 	}
-
+	
 	public String getColsValign() {
 		return colsValign;
 	}
-
+	
 	public void setColsValign(String colsValign) {
 		this.colsValign = colsValign;
 	}
-
+	
 	/**
 	 * 方法名 ： getColsWidth
 	 * 功 能 ： 返回变量 colsWidth 的值
-	 *
 	 * @return: Integer
 	 */
 	public Integer getColsWidth() {
 		return colsWidth;
 	}
-
+	
 	/**
 	 * 方法名 ： setColsWidth
 	 * 功 能 ： 设置变量 colsWidth 的值
@@ -372,33 +306,32 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	public void setColsWidth(Integer colsWidth) {
 		this.colsWidth = colsWidth;
 	}
-
+	
 	public Boolean getColsVisible() {
 		return colsVisible;
 	}
-
+	
 	public void setColsVisible(Boolean colsVisible) {
 		this.colsVisible = colsVisible;
 	}
-
+	
 	public Boolean getColsSwitchable() {
 		return colsSwitchable;
 	}
-
+	
 	public void setColsSwitchable(Boolean colsSwitchable) {
 		this.colsSwitchable = colsSwitchable;
 	}
-
+	
 	/**
 	 * 方法名 ： getUserIndex
 	 * 功 能 ： 返回变量 userIndex 的值
-	 *
 	 * @return: String
 	 */
 	public String getUserIndex() {
 		return userIndex;
 	}
-
+	
 	/**
 	 * 方法名 ： setUserIndex
 	 * 功 能 ： 设置变量 userIndex 的值
@@ -406,11 +339,10 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	public void setUserIndex(String userIndex) {
 		this.userIndex = userIndex;
 	}
-
+	
 	/**
 	 * 方法名 ： getUserIcon
 	 * 功 能 ： 返回变量 userIcon 的值
-	 *
 	 * @return: String
 	 */
 	public String getUserIcon() {
@@ -424,7 +356,7 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	public void setUserIcon(String userIcon) {
 		this.userIcon = userIcon;
 	}
-
+	
 	/**
 	 * 构造方法：
 	 * 描 述： TODO(这里用一句话描述这个方法的作用)
@@ -474,7 +406,7 @@ public class SysDbmsTabsColsInfo implements Serializable {
 		this.updateUser = updateUser;
 		this.deleteFlag = deleteFlag;
 	}
-
+	
 	/**
 	 * 构造方法：
 	 * 描 述： TODO(这里用一句话描述这个方法的作用)
@@ -514,7 +446,6 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	/**
 	 * 方法名 ： getColsSort
 	 * 功 能 ： 返回变量 colsSort 的值
-	 *
 	 * @return: Integer
 	 */
 	public String getColsSort() {
@@ -528,7 +459,7 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	public void setColsSort(String colsSort) {
 		this.colsSort = colsSort;
 	}
-
+	
 	/**
 	 * @方法名 getDimeFlag
 	 * @功能 返回变量 dimeFlag 的值
@@ -537,7 +468,7 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	public Boolean getDimeFlag() {
 		return dimeFlag;
 	}
-
+	
 	/**
 	 * @方法名 setDimeFlag
 	 * @功能 设置变量 dimeFlag 的值
@@ -545,7 +476,7 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	public void setDimeFlag(Boolean dimeFlag) {
 		this.dimeFlag = dimeFlag;
 	}
-
+	
 	/**
 	 * @方法名 getUseful
 	 * @功能 返回变量 useful 的值
@@ -554,7 +485,7 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	public Integer getUseful() {
 		return useful;
 	}
-
+	
 	/**
 	 * @方法名 setUseful
 	 * @功能 设置变量 useful 的值
@@ -562,5 +493,5 @@ public class SysDbmsTabsColsInfo implements Serializable {
 	public void setUseful(Integer useful) {
 		this.useful = useful;
 	}
-
+	
 }
