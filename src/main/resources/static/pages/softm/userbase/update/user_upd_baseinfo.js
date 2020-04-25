@@ -1,5 +1,5 @@
 $(function() {
-	ajaxPost("/sysUserBase/findByUuid",{uuid:userUuid},loadBaseinfo);
+	ajaxPost("/sysUserBaseInfo/findByUuid",{uuid:userUuid},loadBaseinfo);
 	function loadBaseinfo(result){
 		$("#user_upd_baseinfo_persionName").val(result.persionName);
 		$("#user_upd_baseinfo_sex").val(result.sex);
@@ -38,7 +38,7 @@ $(function() {
 			statue:$("#user_upd_baseinfo_statue").val()
 		};
 		
-		ajaxPost("/sysUserBase/saveBaseinfo",baseinfo,saveInofOk);
+		ajaxPost("/sysUserBaseInfo/saveBaseinfo",baseinfo,saveInofOk);
 		function saveInofOk(result){
 			toastr.info(result.msg);
 		}

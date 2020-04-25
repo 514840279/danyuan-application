@@ -17,9 +17,9 @@ $(function() {
 	});
 	
 	// 数据库列表下拉
-	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', null, successSearchDatabaseInfo, null, findError);
+	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', {}, successSearchDatabaseInfo, null, findError);
 	// 表类型列表下拉
-	ajaxPost('/sysDbmsTabsTypeInfo/findAll', null, successSearchTableTypeInfo, null, findError);
+	ajaxPost('/sysDbmsTabsTypeInfo/findAll', {}, successSearchTableTypeInfo, null, findError);
 
 });
 
@@ -36,7 +36,7 @@ function successSaveSysTableInfo(result){
 //数据库列表下拉
 function successSearchDatabaseInfo(result){
 	var data =[{id:'请选择',text:'请选择'}];
-	$.each(result,function(index,value){
+	$.each(result.data,function(index,value){
 		data.push({id:value.uuid,text: value.databaseName});
 	})
 	

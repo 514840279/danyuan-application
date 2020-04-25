@@ -59,7 +59,7 @@ public class SysComnLogsService {
 			 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
 			 */
 			private static final long serialVersionUID = 1L;
-
+			
 			@Override
 			public Predicate toPredicate(Root<SysComnLogs> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				List<Predicate> list = new ArrayList<>();
@@ -87,12 +87,12 @@ public class SysComnLogsService {
 			 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
 			 */
 			private static final long serialVersionUID = 1L;
-
+			
 			@Override
 			public Predicate toPredicate(Root<SysComnLogs> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				List<Predicate> list = new ArrayList<>();
 				list.add(cb.gt((root.get("requestLong").as(Long.class)), 1000));
-				list.add(cb.equal((root.get("url").as(String.class)), "/zhcx/findAllTableRow"));
+				// list.add(cb.equal((root.get("url").as(String.class)), "/zhcx/findAllTableRow"));
 				// list.add(cb.equal((root.get("classMethod").as(String.class)), "findAllTableRow"));
 				return cb.and(list.toArray(new Predicate[list.size()]));
 			}

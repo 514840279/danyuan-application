@@ -2,12 +2,12 @@ $(function() {
 
 	
 	// 数据库列表下拉
-	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', null, successSearchDatabaseInfoindex, null, findError);
+	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', {}, successSearchDatabaseInfoindex, null, findError);
 	// 表类型列表下拉
-	ajaxPost('/sysDbmsTabsTypeInfo/findAll', null, successSearchTableTypeInfoindex, null, findError);
+	ajaxPost('/sysDbmsTabsTypeInfo/findAll', {}, successSearchTableTypeInfoindex, null, findError);
 
 	// 表类型列表下拉
-	ajaxPost('/sysDbmsUserIndexInfo/findAll', null, successSearchUserIndexInfoindex);
+	ajaxPost('/sysDbmsUserIndexInfo/findAll', {}, successSearchUserIndexInfoindex);
 	
 	$("#search_table_tabsName").select2({
 		tags: true,
@@ -75,7 +75,7 @@ function successreloadTabsnameSelect(result){
 function successSearchDatabaseInfoindex(result){
 	var data =[{id:'请选择',text:'请选择'}];
 	search_table_addrName = null;
-	$.each(result,function(index,value){
+	$.each(result.data,function(index,value){
 		data.push({id:value.uuid,text: value.databaseName});
 	})
 	

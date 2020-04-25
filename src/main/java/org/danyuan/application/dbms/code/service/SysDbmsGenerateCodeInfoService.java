@@ -25,9 +25,9 @@ import org.springframework.stereotype.Service;
 /**
  * @文件名 SysDbmsGenerateCodeInfoService.java
  * @包名 org.danyuan.application.dbms.code.service
- * @描述 代码生成服务
- * @时间 2019年1月16日 下午1:25:04
- * @author Administrator
+ * @描述 service层
+ * @时间 2020年04月25日 11:26:55
+ * @author test
  * @版本 V1.0
  */
 @Service
@@ -64,10 +64,10 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 			colsInfo.setTabsUuid(sysDbmsGenerateCodeInfo.getUuid());
 			Example<SysDbmsTabsColsInfo> example = Example.of(colsInfo);
 			List<SysDbmsTabsColsInfo> colsInfos = sysDbmsTabsColsInfoDao.findAll(example);
-
+			
 			SysDbmsTabsInfo tabsInfo = new SysDbmsTabsInfo();
 			tabsInfo = sysDbmsTabsInfoDao.findById(sysDbmsGenerateCodeInfo.getUuid()).get();
-
+			
 			// 实体类生成
 			if (sysDbmsGenerateCodeInfo.getGenerateEntity() == 1) {
 				file = new File(pathtempString + "/po");
@@ -139,7 +139,7 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 				}
 				GenerateJs.generateDetail(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString);
 			}
-
+			
 			// Sql 语句
 			if (sysDbmsGenerateCodeInfo.getGenerateSql() == 1) {
 				// sql 脚本文件路径
@@ -150,6 +150,8 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 				}
 				// Sql ddl 语句
 				GenerateSql.generate(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString);
+				// Sql ddl 语句
+				GenerateSql.generateOracle(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString);
 				// Sql 管理员权限 语句
 				GenerateSql.generateConfig(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString);
 			}
@@ -157,9 +159,11 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 			// 数据文当 接口文档 功能介绍
 			if (sysDbmsGenerateCodeInfo.getGenerateDoc() == 1) {
 				// sql 脚本文件路径
-				pathtempString = path + "/数据结构.xls";
 				try {
-					GenerateDoc.generate(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString);
+					pathtempString = path + "/数据结构.xlsx";
+					GenerateDoc.generateXlsx(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString);
+					pathtempString = path + "/数据结构.xls";
+					GenerateDoc.generateXls(sysDbmsGenerateCodeInfo, tabsInfo, colsInfos, username, pathtempString);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -199,6 +203,9 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 		stringBuilder.append("import " + thirdString + "common.base.BaseControllerImpl;\r\n");
 		stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".po." + sysDbmsGenerateCodeInfo.getClassName() + ";\r\n");
 		stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".service." + sysDbmsGenerateCodeInfo.getClassName() + "Service;\r\n");
+		
+		stringBuilder.append("import org.slf4j.Logger;\r\n");
+		stringBuilder.append("import org.slf4j.LoggerFactory;\r\n");
 		stringBuilder.append("import org.springframework.beans.factory.annotation.Autowired;\r\n");
 		stringBuilder.append("import org.springframework.web.bind.annotation.GetMapping;\r\n");
 		stringBuilder.append("import org.springframework.web.bind.annotation.PathVariable;\r\n");
@@ -220,11 +227,14 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 		stringBuilder.append("@RequestMapping(\"/" + subServiceNameString + "\")\r\n");
 		stringBuilder.append("public class " + sysDbmsGenerateCodeInfo.getClassName() + "Controller extends BaseControllerImpl<" + sysDbmsGenerateCodeInfo.getClassName() + "> implements BaseController<" + sysDbmsGenerateCodeInfo.getClassName() + "> {\r\n");
 		stringBuilder.append("\r\n");
+		stringBuilder.append("	private static final Logger		logger	= LoggerFactory.getLogger(" + sysDbmsGenerateCodeInfo.getClassName() + "Controller.class);\r\n");
+		stringBuilder.append("\r\n");
 		stringBuilder.append("	@Autowired\r\n");
 		stringBuilder.append("	" + sysDbmsGenerateCodeInfo.getClassName() + "Service " + subServiceNameString + "Service;\r\n");
 		stringBuilder.append("\r\n");
 		stringBuilder.append("	@GetMapping(\"/detail/{uuid}\")\r\n");
 		stringBuilder.append("	public ModelAndView name(@PathVariable(\"uuid\") String uuid) {\r\n");
+		stringBuilder.append("	    logger.info(\"detail\", " + sysDbmsGenerateCodeInfo.getClassName() + "Controller.class);\r\n");
 		stringBuilder.append("		ModelAndView modelAndView = new ModelAndView(\"" + sysDbmsGenerateCodeInfo.getClassPath().replace(thirdString, "").replace(".", "/") + "/" + subServiceNameString.toLowerCase() + "detail\");\r\n");
 		stringBuilder.append("		" + sysDbmsGenerateCodeInfo.getClassName() + " info = new " + sysDbmsGenerateCodeInfo.getClassName() + "();\r\n");
 		stringBuilder.append("		info.setUuid(uuid);\r\n");
@@ -263,7 +273,7 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 		stringBuilder.append("import " + thirdString + "common.base.BaseService;\r\n");
 		stringBuilder.append("import " + thirdString + "common.base.BaseServiceImpl;\r\n");
 		stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".po." + sysDbmsGenerateCodeInfo.getClassName() + ";\r\n");
-//		stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".dao." + sysDbmsGenerateCodeInfo.getClassName() + "Dao;\r\n");
+		// stringBuilder.append("import " + sysDbmsGenerateCodeInfo.getClassPath() + ".dao." + sysDbmsGenerateCodeInfo.getClassName() + "Dao;\r\n");
 		stringBuilder.append("import org.springframework.beans.factory.annotation.Autowired;\r\n");
 		stringBuilder.append("import org.springframework.stereotype.Service;\r\n");
 		stringBuilder.append("\r\n");
@@ -278,8 +288,8 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 		stringBuilder.append(" */\r\n");
 		stringBuilder.append("@Service\r\n");
 		stringBuilder.append("public class " + sysDbmsGenerateCodeInfo.getClassName() + "Service extends BaseServiceImpl<" + sysDbmsGenerateCodeInfo.getClassName() + "> implements BaseService<" + sysDbmsGenerateCodeInfo.getClassName() + "> {\r\n");
-//		stringBuilder.append("	@Autowired\r\n");
-//		stringBuilder.append("	private " + sysDbmsGenerateCodeInfo.getClassName() + "Dao	" + sysDbmsGenerateCodeInfo.getClassName().substring(0, 1).toLowerCase() + sysDbmsGenerateCodeInfo.getClassName().substring(1) + "Dao;\r\n");
+		// stringBuilder.append(" @Autowired\r\n");
+		// stringBuilder.append(" private " + sysDbmsGenerateCodeInfo.getClassName() + "Dao " + sysDbmsGenerateCodeInfo.getClassName().substring(0, 1).toLowerCase() + sysDbmsGenerateCodeInfo.getClassName().substring(1) + "Dao;\r\n");
 		stringBuilder.append("\r\n");
 		stringBuilder.append("}\r\n");
 		stringBuilder.append("");
@@ -332,7 +342,7 @@ public class SysDbmsGenerateCodeInfoService extends BaseServiceImpl<SysDbmsGener
 		// 文件写入
 		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName() + "Dao.java";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
-
+		
 	}
 	
 }

@@ -2,9 +2,13 @@ package org.danyuan.application.softm.organization.controller;
 
 import java.util.List;
 
+import org.danyuan.application.common.base.BaseController;
+import org.danyuan.application.common.base.BaseControllerImpl;
+import org.danyuan.application.common.base.BaseResult;
+import org.danyuan.application.common.base.Pagination;
+import org.danyuan.application.common.base.ResultUtil;
 import org.danyuan.application.softm.organization.po.SysRolesJurisdictionInfo;
-import org.danyuan.application.softm.organization.service.SysRolesJurisdictionService;
-import org.danyuan.application.softm.organization.vo.SysRolesJurisdictionVo;
+import org.danyuan.application.softm.organization.service.SysRolesJurisdictionInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +31,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/sysRolesJurisdiction")
-public class SysRolesJurisdictionController {
+public class SysRolesJurisdictionController extends BaseControllerImpl<SysRolesJurisdictionInfo> implements BaseController<SysRolesJurisdictionInfo> {
 	//
-	private static final Logger			logger	= LoggerFactory.getLogger(SysRolesJurisdictionController.class);
+	private static final Logger				logger	= LoggerFactory.getLogger(SysRolesJurisdictionController.class);
 	
 	//
 	@Autowired
-	private SysRolesJurisdictionService	sysRolesJurisdictionService;
+	private SysRolesJurisdictionInfoService	sysRolesJurisdictionInfoService;
 	
 	/**
 	 * 方法名： findAll
@@ -46,50 +50,25 @@ public class SysRolesJurisdictionController {
 	@RequestMapping(path = "/sysRolesJurisdictionList", method = RequestMethod.GET)
 	public List<SysRolesJurisdictionInfo> findAll() {
 		logger.info("sysRolesJurisdictionList", SysRolesJurisdictionController.class);
-		return sysRolesJurisdictionService.findAll();
+		return sysRolesJurisdictionInfoService.findAll();
 	}
 	
 	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
 	public Page<SysRolesJurisdictionInfo> findAllBySearchText(int pageNumber, int pageSize, SysRolesJurisdictionInfo sysRolesJurisdictionInfo) {
 		logger.info("findAllBySearchText", SysRolesJurisdictionController.class);
-		return sysRolesJurisdictionService.findAllBySearchText(pageNumber, pageSize, sysRolesJurisdictionInfo);
+		return sysRolesJurisdictionInfoService.findAllBySearchText(pageNumber, pageSize, sysRolesJurisdictionInfo);
 	}
 	
-	@RequestMapping(path = "/save", method = RequestMethod.POST)
-	@ResponseBody
-	public String save(@RequestBody SysRolesJurisdictionInfo info) {
-		logger.info("save", SysRolesJurisdictionController.class);
-		try {
-			sysRolesJurisdictionService.save(info);
-			return "1";
-		} catch (Exception e) {
-			return "0";
-		}
-	}
-	
+	@Override
 	@RequestMapping(path = "/saveAll", method = RequestMethod.POST)
 	@ResponseBody
-	public String save(@RequestBody SysRolesJurisdictionVo vo) {
+	public BaseResult<SysRolesJurisdictionInfo> saveAll(@RequestBody Pagination<SysRolesJurisdictionInfo> vo) {
 		logger.info("saveAll", SysRolesJurisdictionController.class);
 		try {
-			for (SysRolesJurisdictionInfo info : vo.getSysRolesJurisdictionInfolist()) {
-				sysRolesJurisdictionService.save(info);
-			}
-			return "1";
+			sysRolesJurisdictionInfoService.saveAll(vo.getList());
+			return ResultUtil.success();
 		} catch (Exception e) {
-			return "0";
-		}
-	}
-	
-	@RequestMapping(path = "/delete", method = RequestMethod.POST)
-	@ResponseBody
-	public String delete(@RequestBody SysRolesJurisdictionInfo info) {
-		logger.info("delete", SysRolesJurisdictionController.class);
-		try {
-			sysRolesJurisdictionService.delete(info);
-			return "1";
-		} catch (Exception e) {
-			return "0";
+			return ResultUtil.error(e.getMessage());
 		}
 	}
 }

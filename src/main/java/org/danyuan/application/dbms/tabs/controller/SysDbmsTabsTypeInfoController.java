@@ -10,11 +10,14 @@ import org.danyuan.application.dbms.tabs.vo.SysDbmsTabsTypeInfoVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 文件名 ： SysDbmsTabsTypeInfoController.java
@@ -34,7 +37,7 @@ public class SysDbmsTabsTypeInfoController extends BaseControllerImpl<SysDbmsTab
 	//
 	@Autowired
 	private SysDbmsTabsTypeInfoService	sysDbmsTabsTypeInfoService;
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -60,5 +63,15 @@ public class SysDbmsTabsTypeInfoController extends BaseControllerImpl<SysDbmsTab
 			return "0";
 		}
 	}
-
+	
+	@GetMapping("/detail/{uuid}")
+	public ModelAndView name(@PathVariable("uuid") String uuid) {
+		logger.info("detail", SysDbmsTabsTypeInfo.class);
+		ModelAndView modelAndView = new ModelAndView("dbms/tabs/sysdbmstabstypeinfodetail");
+		SysDbmsTabsTypeInfo info = new SysDbmsTabsTypeInfo();
+		info.setUuid(uuid);
+		modelAndView.addObject("sysDbmsTabsTypeInfo", sysDbmsTabsTypeInfoService.findOne(info));
+		return modelAndView;
+	}
+	
 }

@@ -8,16 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-/**    
-*  文件名 ： SysCrawlerRulerColumInfoDao.java  
-*  包    名 ： org.danyuan.application.crawler.param.dao  
-*  描    述 ： TODO(用一句话描述该文件做什么)  
-*  机能名称：
-*  技能ID ：
-*  作    者 ： wang  
-*  时    间 ： 2018年11月1日 下午9:10:16  
-*  版    本 ： V1.0    
-*/
+/**
+ * @文件名 SysCrawlerRulerColumInfoDao.java
+ * @包名 org.danyuan.application.crawler.param.dao
+ * @描述 dao层
+ * @时间 2020年04月25日 08:00:23
+ * @author test
+ * @版本 V1.0
+ */
 @Repository
 public interface SysCrawlerRulerColumInfoDao extends BaseDao<SysCrawlerRulerColumInfo> {
 	
@@ -34,3 +32,4 @@ public interface SysCrawlerRulerColumInfoDao extends BaseDao<SysCrawlerRulerColu
 	List<SysCrawlerRulerColumInfo> findParent(@Param("rulerUuid") String uuid);
 	
 }
+

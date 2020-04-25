@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.danyuan.application.common.base.BaseController;
+import org.danyuan.application.common.base.BaseControllerImpl;
 import org.danyuan.application.softm.sysmenu.po.SysMenuInfo;
-import org.danyuan.application.softm.sysmenu.service.SysMenuService;
+import org.danyuan.application.softm.sysmenu.service.SysMenuInfoService;
 import org.danyuan.application.softm.sysmenu.vo.AuthorityzTreeVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,14 +29,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/sysMenuInfo")
-public class SysMenuController {
+public class SysMenuController extends BaseControllerImpl<SysMenuInfo> implements BaseController<SysMenuInfo> {
 	//
 	private static final Logger	logger	= LoggerFactory.getLogger(SysMenuController.class);
-
+	
 	//
 	@Autowired
-	private SysMenuService		sysMenuService;
-
+	private SysMenuInfoService	sysMenuInfoService;
+	
 	/**
 	 * 方法名： addbatch
 	 * 功 能： 批量添加
@@ -48,7 +50,7 @@ public class SysMenuController {
 	public void addbatch(@RequestBody List<SysMenuInfo> sysMenuInfoList) {
 		logger.info(sysMenuInfoList.toString());
 		for (SysMenuInfo authority : sysMenuInfoList) {
-			sysMenuService.save(authority);
+			sysMenuInfoService.save(authority);
 		}
 	}
 	
@@ -62,45 +64,19 @@ public class SysMenuController {
 	 */
 	@RequestMapping(path = "/findzTree", method = RequestMethod.POST)
 	public List<AuthorityzTreeVO> findzTree() {
-		return sysMenuService.findzTreeByF_ParentId("0");
+		return sysMenuInfoService.findzTreeByF_ParentId("0");
 	}
 	
 	@RequestMapping(path = "/findzTreeRole", method = RequestMethod.POST)
 	public List<AuthorityzTreeVO> findzTreeRole(@RequestBody String roleUuid) {
-		return sysMenuService.findzTreeRole("0", roleUuid.replace("\"", ""));
+		return sysMenuInfoService.findzTreeRole("0", roleUuid.replace("\"", ""));
 	}
 	
 	@RequestMapping(path = "/findzTreeByUser", method = RequestMethod.POST)
 	public List<AuthorityzTreeVO> findzTreeByUser(@RequestBody String username) {
-		return sysMenuService.findzTreeByUser("0", username.replace("\"", ""));
+		return sysMenuInfoService.findzTreeByUser("0", username.replace("\"", ""));
 	}
-
-	/**
-	 * 方法名： addzTree
-	 * 功 能： 增加节点
-	 * 参 数： @return
-	 * 返 回： List<AuthorityVO>
-	 * 作 者 ： wang
-	 * @throws
-	 */
-	@RequestMapping(path = "/addSysMenuInfo", method = RequestMethod.POST)
-	public AuthorityzTreeVO addzTree(@RequestBody SysMenuInfo sysMenuInfo) {
-		return sysMenuService.save(sysMenuInfo);
-	}
-
-	/**
-	 * 方法名： findAuthorityByUuid
-	 * 功 能： 增加节点
-	 * 参 数： @return
-	 * 返 回： List<AuthorityVO>
-	 * 作 者 ： wang
-	 * @throws
-	 */
-	@RequestMapping(path = "/findSysMenuInfoByUuid", method = RequestMethod.POST)
-	public SysMenuInfo findAuthorityByUuid(@RequestBody SysMenuInfo sysMenuInfo) {
-		return sysMenuService.findAuthorityByUuid(sysMenuInfo);
-	}
-
+	
 	/**
 	 * 方法名： deleteAuthority
 	 * 功 能： 删除
@@ -111,12 +87,12 @@ public class SysMenuController {
 	 */
 	@RequestMapping(path = "/deleteSysMenuInfo", method = RequestMethod.POST)
 	public Map<String, String> deleteAuthority(@RequestBody SysMenuInfo sysMenuInfo) {
-		sysMenuService.deleteAuthority(sysMenuInfo);
+		sysMenuInfoService.deleteAuthority(sysMenuInfo);
 		Map<String, String> map = new HashMap<>();
 		map.put("code", "0");
 		return map;
 	}
-
+	
 	/**
 	 * 方法名： updateAuthorityName
 	 * 功 能： 更新名称
@@ -128,9 +104,9 @@ public class SysMenuController {
 	 */
 	@RequestMapping(path = "/updateSysMenuInfoName", method = RequestMethod.POST)
 	public AuthorityzTreeVO updateAuthorityName(@RequestBody SysMenuInfo sysMenuInfo) {
-		return sysMenuService.updateAuthorityName(sysMenuInfo);
+		return sysMenuInfoService.updateAuthorityName(sysMenuInfo);
 	}
-
+	
 	/**
 	 * 方法名： onDropAuthority
 	 * 功 能： 拖拽排序
@@ -142,7 +118,7 @@ public class SysMenuController {
 	 */
 	@RequestMapping(path = "/onDropSysMenuInfo", method = RequestMethod.POST)
 	public AuthorityzTreeVO onDropAuthority(@RequestBody SysMenuInfo sysMenuInfo) {
-		return sysMenuService.onDropAuthority(sysMenuInfo);
+		return sysMenuInfoService.onDropAuthority(sysMenuInfo);
 	}
-
+	
 }

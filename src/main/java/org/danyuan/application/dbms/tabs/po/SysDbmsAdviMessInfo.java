@@ -1,86 +1,62 @@
 package org.danyuan.application.dbms.tabs.po;
 
-import java.util.Date;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import org.danyuan.application.common.base.BaseEntity;
 
 /**
- * 文件名 ： SysAdviceMess.java
- * 包 名 ： com.shumeng.application.application.zhcx.po
- * 描 述 ： TODO(用一句话描述该文件做什么)
- * 机能名称：
- * 技能ID ：
- * 作 者 ： Administrator
- * 时 间 ： 2018年4月26日 下午3:30:40
- * 版 本 ： V1.0
+ * @文件名 SysDbmsAdviMessInfo.java
+ * @包名 org.danyuan.application.dbms.tabs.po
+ * @描述 sys_dbms_advi_mess_info的实体类
+ * @时间 2020年04月25日 16:33:03
+ * @author test
+ * @版本 V1.0
  */
 @Entity
 @Table(name = "sys_dbms_advi_mess_info")
 @NamedQuery(name = "SysDbmsAdviMessInfo.findAll", query = "SELECT s FROM SysDbmsAdviMessInfo s")
-public class SysDbmsAdviMessInfo {
-	@Id
-	@Column(name = "uuid", columnDefinition = " varchar(36) COMMENT '主键'")
-	private String	uuid;
-
-	@Column(name = "type")
-	private String	type;
-	@Column(name = "message", columnDefinition = " varchar(500) COMMENT '消息'")
-	private String	message;
-	@Column(name = "execute_sql")
-	private String	executeSql;
+public class SysDbmsAdviMessInfo extends BaseEntity implements Serializable {
+	private static final long	serialVersionUID	= 1L;
 	
+	//
+	@Column(name = "message")
+	private String				message;
+	
+	//
 	@Column(name = "table_desc")
-	private String	tableDesc;
+	private String				tableDesc;
 	
+	//
 	@Column(name = "table_name")
-	private String	tableName;
+	private String				tableName;
 	
+	//
+	@Column(name = "type")
+	private String				type;
+	
+	//
 	@Column(name = "jdbc_uuid")
-	private String	jdbcUuid;
+	private String				jdbcUuid;
 	
-	@Column(columnDefinition = " varchar(200) COMMENT '资源功能描述'")
-	private String	discription;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
-	private Date	createTime;
-	
-	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String	createUser;
-	
-	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer	deleteFlag;
-
-	/**
-	 * 方法名 ： getUuid
-	 * 功 能 ： 返回变量 uuid 的值
-	 *
-	 * @return: String
-	 */
-	public String getUuid() {
-		return uuid;
-	}
+	//
+	@Column(name = "execute_sql")
+	private String				executeSql;
 	
 	/**
 	 * 构造方法：
-	 * 描 述： TODO(这里用一句话描述这个方法的作用)
+	 * 描 述： 默认构造函数
 	 * 参 数：
-	 * 作 者 ： Administrator
+	 * 作 者 ： test
 	 * @throws
 	 */
 	public SysDbmsAdviMessInfo() {
 		super();
 	}
-	
 	/**
 	 * 构造方法：
 	 * 描 述： TODO(这里用一句话描述这个方法的作用)
@@ -100,73 +76,9 @@ public class SysDbmsAdviMessInfo {
 		this.tableName = tableName;
 		this.jdbcUuid = jdbcUuid;
 	}
-	
-	/**
-	 * 方法名 ： setUuid
-	 * 功 能 ： 设置变量 uuid 的值
-	 */
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
-	
-	/**
-	 * 方法名 ： getCreateTime
-	 * 功 能 ： 返回变量 createTime 的值
-	 *
-	 * @return: Date
-	 */
-	public Date getCreateTime() {
-		return createTime;
-	}
-	
-	/**
-	 * 方法名 ： setCreateTime
-	 * 功 能 ： 设置变量 createTime 的值
-	 */
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-	
-	/**
-	 * 方法名 ： getExecuteSql
-	 * 功 能 ： 返回变量 executeSql 的值
-	 *
-	 * @return: String
-	 */
-	public String getExecuteSql() {
-		return executeSql;
-	}
-	
-	/**
-	 * 方法名 ： setExecuteSql
-	 * 功 能 ： 设置变量 executeSql 的值
-	 */
-	public void setExecuteSql(String executeSql) {
-		this.executeSql = executeSql;
-	}
-	
-	/**
-	 * 方法名 ： getType
-	 * 功 能 ： 返回变量 type 的值
-	 *
-	 * @return: String
-	 */
-	public String getType() {
-		return type;
-	}
-	
-	/**
-	 * 方法名 ： setType
-	 * 功 能 ： 设置变量 type 的值
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
-	
 	/**
 	 * 方法名 ： getMessage
 	 * 功 能 ： 返回变量 message 的值
-	 *
 	 * @return: String
 	 */
 	public String getMessage() {
@@ -184,7 +96,6 @@ public class SysDbmsAdviMessInfo {
 	/**
 	 * 方法名 ： getTableDesc
 	 * 功 能 ： 返回变量 tableDesc 的值
-	 *
 	 * @return: String
 	 */
 	public String getTableDesc() {
@@ -202,7 +113,6 @@ public class SysDbmsAdviMessInfo {
 	/**
 	 * 方法名 ： getTableName
 	 * 功 能 ： 返回变量 tableName 的值
-	 *
 	 * @return: String
 	 */
 	public String getTableName() {
@@ -218,15 +128,31 @@ public class SysDbmsAdviMessInfo {
 	}
 	
 	/**
+	 * 方法名 ： getType
+	 * 功 能 ： 返回变量 type 的值
+	 * @return: String
+	 */
+	public String getType() {
+		return type;
+	}
+	
+	/**
+	 * 方法名 ： setType
+	 * 功 能 ： 设置变量 type 的值
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	/**
 	 * 方法名 ： getJdbcUuid
 	 * 功 能 ： 返回变量 jdbcUuid 的值
-	 *
 	 * @return: String
 	 */
 	public String getJdbcUuid() {
 		return jdbcUuid;
 	}
-
+	
 	/**
 	 * 方法名 ： setJdbcUuid
 	 * 功 能 ： 设置变量 jdbcUuid 的值
@@ -234,59 +160,22 @@ public class SysDbmsAdviMessInfo {
 	public void setJdbcUuid(String jdbcUuid) {
 		this.jdbcUuid = jdbcUuid;
 	}
-
+	
 	/**
-	 * 方法名 ： getDiscription
-	 * 功 能 ： 返回变量 discription 的值
-	 *
+	 * 方法名 ： getExecuteSql
+	 * 功 能 ： 返回变量 executeSql 的值
 	 * @return: String
 	 */
-	public String getDiscription() {
-		return discription;
+	public String getExecuteSql() {
+		return executeSql;
 	}
-
+	
 	/**
-	 * 方法名 ： setDiscription
-	 * 功 能 ： 设置变量 discription 的值
+	 * 方法名 ： setExecuteSql
+	 * 功 能 ： 设置变量 executeSql 的值
 	 */
-	public void setDiscription(String discription) {
-		this.discription = discription;
-	}
-
-	/**
-	 * 方法名 ： getCreateUser
-	 * 功 能 ： 返回变量 createUser 的值
-	 *
-	 * @return: String
-	 */
-	public String getCreateUser() {
-		return createUser;
-	}
-
-	/**
-	 * 方法名 ： setCreateUser
-	 * 功 能 ： 设置变量 createUser 的值
-	 */
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
-	}
-
-	/**
-	 * 方法名 ： getDeleteFlag
-	 * 功 能 ： 返回变量 deleteFlag 的值
-	 *
-	 * @return: Integer
-	 */
-	public Integer getDeleteFlag() {
-		return deleteFlag;
-	}
-
-	/**
-	 * 方法名 ： setDeleteFlag
-	 * 功 能 ： 设置变量 deleteFlag 的值
-	 */
-	public void setDeleteFlag(Integer deleteFlag) {
-		this.deleteFlag = deleteFlag;
+	public void setExecuteSql(String executeSql) {
+		this.executeSql = executeSql;
 	}
 
 	/**
@@ -301,5 +190,4 @@ public class SysDbmsAdviMessInfo {
 	public String toString() {
 		return "SysAdviceMess [uuid=" + uuid + ", createTime=" + createTime + ", deleteFlag=" + deleteFlag + ", type=" + type + ", message=" + message + ", executeSql=" + executeSql + "]";
 	}
-	
 }

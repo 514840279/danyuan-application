@@ -24,16 +24,16 @@ $(function() {
 	});
 	
 	// 数据库列表下拉
-	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', null, successSearchDatabaseInfo, null, findError);
+	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', {}, successSearchDatabaseInfo, null, findError);
 	// 表类型列表下拉
-	ajaxPost('/sysDbmsTabsTypeInfo/findAll', null, successSearchTableTypeInfo, null, findError);
+	ajaxPost('/sysDbmsTabsTypeInfo/findAll', {}, successSearchTableTypeInfo, null, findError);
 
 });
 
 // 创建表成功
 function successSaveSysTableInfo(result){
 	$("#upd_tabs_id").on("hidden.bs.modal", function() {
-		if(_table != undefined && _table != null){
+		if(typeof(_table) != "undefined"  && _table != null){
 			_table.text(result.tabsDesc);
 			_table = null;
 		}
@@ -46,7 +46,7 @@ function successSaveSysTableInfo(result){
 //数据库列表下拉
 function successSearchDatabaseInfo(result){
 	var data =[{id:'请选择',text:'请选择'}];
-	$.each(result,function(index,value){
+	$.each(result.data,function(index,value){
 		data.push({id:value.uuid,text: value.databaseName});
 	})
 	

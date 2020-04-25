@@ -1,7 +1,6 @@
 package org.danyuan.application.resume.user.po;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
@@ -12,8 +11,8 @@ import org.danyuan.application.common.base.BaseEntity;
 /**
  * @文件名 SysUserModal.java
  * @包名 org.danyuan.application.resume.user.po
- * @描述 sys_user_modal的实体类  用于记录用户采用的简历模板，
- * @时间 2019年02月28日 17:42:26
+ * @描述 sys_user_modal的实体类
+ * @时间 2020年04月25日 16:38:11
  * @author test
  * @版本 V1.0
  */
@@ -24,16 +23,16 @@ public class SysUserModal extends BaseEntity implements Serializable {
 	private static final long	serialVersionUID	= 1L;
 
 
-	// 
-	@Column(name = "user_uuid")
-	private  String 	userUuid;
-
-	// 
+	// 模板id
 	@Column(name = "modal_uuid")
 	private  String 	modalUuid;
 
-	// 
-	@Column(name = "`use`",columnDefinition=" int ")
+	// 用户id
+	@Column(name = "user_uuid")
+	private  String 	userUuid;
+
+	// 用户
+	@Column(name = "use",precision=10)
 	private  Integer 	use;
 
 	/**  
@@ -49,26 +48,8 @@ public class SysUserModal extends BaseEntity implements Serializable {
 
 
 	/**
-	 * 方法名 ： getUserUuid
-	 * 功 能 ： 返回变量 userUuid  的值
-	 *
-	 * @return: String 
-	 */
-	public  String  getUserUuid() {
-		return userUuid;
-	}
-
-	/**
-	 * 方法名 ： setUserUuid
-	 * 功 能 ： 设置变量 userUuid  的值
-	 */
-	public void setUserUuid( String  userUuid) {
-		this.userUuid = userUuid;
-	}
-
-	/**
 	 * 方法名 ： getModalUuid
-	 * 功 能 ： 返回变量 modalUuid  的值
+	 * 功 能 ： 返回变量 modalUuid 模板id 的值
 	 *
 	 * @return: String 
 	 */
@@ -78,15 +59,33 @@ public class SysUserModal extends BaseEntity implements Serializable {
 
 	/**
 	 * 方法名 ： setModalUuid
-	 * 功 能 ： 设置变量 modalUuid  的值
+	 * 功 能 ： 设置变量 modalUuid 模板id 的值
 	 */
 	public void setModalUuid( String  modalUuid) {
 		this.modalUuid = modalUuid;
 	}
 
 	/**
+	 * 方法名 ： getUserUuid
+	 * 功 能 ： 返回变量 userUuid 用户id 的值
+	 *
+	 * @return: String 
+	 */
+	public  String  getUserUuid() {
+		return userUuid;
+	}
+
+	/**
+	 * 方法名 ： setUserUuid
+	 * 功 能 ： 设置变量 userUuid 用户id 的值
+	 */
+	public void setUserUuid( String  userUuid) {
+		this.userUuid = userUuid;
+	}
+
+	/**
 	 * 方法名 ： getUse
-	 * 功 能 ： 返回变量 use  的值
+	 * 功 能 ： 返回变量 use 用户 的值
 	 *
 	 * @return: String 
 	 */
@@ -96,7 +95,7 @@ public class SysUserModal extends BaseEntity implements Serializable {
 
 	/**
 	 * 方法名 ： setUse
-	 * 功 能 ： 设置变量 use  的值
+	 * 功 能 ： 设置变量 use 用户 的值
 	 */
 	public void setUse( Integer  use) {
 		this.use = use;

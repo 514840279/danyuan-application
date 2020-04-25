@@ -61,7 +61,7 @@ public class SysComnLogs implements Serializable {
 	@Column(name = "discription", columnDefinition = " varchar(200) COMMENT '资源功能描述'")
 	private String				discription;
 	
-	@Column(name = "message", columnDefinition = " varchar(2000) COMMENT '请求参数'")
+	@Column(name = "message")
 	private String				message;
 	
 	@Column(name = "param_list", columnDefinition = " varchar(2000)  COMMENT '请求参数'")
@@ -84,7 +84,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getUuid
 	 * 功 能 ： 返回变量 uuid 的值
-	 *
 	 * @return: String
 	 */
 	public String getUuid() {
@@ -102,7 +101,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getUrl
 	 * 功 能 ： 返回变量 url 的值
-	 *
 	 * @return: String
 	 */
 	public String getUrl() {
@@ -120,7 +118,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getMethod
 	 * 功 能 ： 返回变量 method 的值
-	 *
 	 * @return: String
 	 */
 	public String getMethod() {
@@ -138,7 +135,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getIp
 	 * 功 能 ： 返回变量 ip 的值
-	 *
 	 * @return: String
 	 */
 	public String getIp() {
@@ -156,7 +152,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getClassMethod
 	 * 功 能 ： 返回变量 classMethod 的值
-	 *
 	 * @return: String
 	 */
 	public String getClassMethod() {
@@ -174,7 +169,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getClassName
 	 * 功 能 ： 返回变量 className 的值
-	 *
 	 * @return: String
 	 */
 	public String getClassName() {
@@ -192,7 +186,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getArgs
 	 * 功 能 ： 返回变量 args 的值
-	 *
 	 * @return: String
 	 */
 	public String getArgs() {
@@ -210,7 +203,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getRequestLong
 	 * 功 能 ： 返回变量 requestLong 的值
-	 *
 	 * @return: Integer
 	 */
 	public Long getRequestLong() {
@@ -228,7 +220,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getCreateTime
 	 * 功 能 ： 返回变量 createTime 的值
-	 *
 	 * @return: Date
 	 */
 	public Date getCreateTime() {
@@ -246,7 +237,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getCreateUser
 	 * 功 能 ： 返回变量 createUser 的值
-	 *
 	 * @return: String
 	 */
 	public String getCreateUser() {
@@ -264,7 +254,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getDiscription
 	 * 功 能 ： 返回变量 discription 的值
-	 *
 	 * @return: String
 	 */
 	public String getDiscription() {
@@ -282,7 +271,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getMessage
 	 * 功 能 ： 返回变量 message 的值
-	 *
 	 * @return: String
 	 */
 	public String getMessage() {
@@ -300,7 +288,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getParamList
 	 * 功 能 ： 返回变量 paramList 的值
-	 *
 	 * @return: String
 	 */
 	public String getParamList() {
@@ -318,7 +305,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getTableName
 	 * 功 能 ： 返回变量 tableName 的值
-	 *
 	 * @return: String
 	 */
 	public String getTableName() {
@@ -336,7 +322,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getBrowser <br />
 	 * 功 能 ： 返回变量 browser 的值 <br />
-	 *
 	 * @return: String
 	 */
 	public String getBrowser() {
@@ -354,7 +339,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getBrowserType <br />
 	 * 功 能 ： 返回变量 browserType 的值 <br />
-	 *
 	 * @return: String
 	 */
 	public String getBrowserType() {
@@ -373,7 +357,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getOs <br />
 	 * 功 能 ： 返回变量 os 的值 <br />
-	 *
 	 * @return: String
 	 */
 	public String getOs() {
@@ -391,7 +374,6 @@ public class SysComnLogs implements Serializable {
 	/**
 	 * 方法名 ： getModel <br />
 	 * 功 能 ： 返回变量 model 的值 <br />
-	 *
 	 * @return: String
 	 */
 	public String getModel() {

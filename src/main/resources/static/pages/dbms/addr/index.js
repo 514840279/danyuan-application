@@ -47,7 +47,7 @@ $(function() {
 								"list":data,
 						};
 						// 重载
-						var url = "/sysDbmsTabsJdbcInfo/delete";
+						var url = "/sysDbmsTabsJdbcInfo/deleteAll";
 						ajaxPost(url, param, successDeleteSysDatabaseInfo, 1000, findError);
 					}
 				}
@@ -80,7 +80,17 @@ $(function() {
 		singleSelect : true,
 		locales : "zh-CN", // 表格汉化
 		search : true, // 显示搜索框
-		sidePagination: "client", // 服务端处理分页
+        queryParamsType : "undefined",
+        contentType: "application/json",
+		method: "post",  //使用get请求到服务器获取数据
+		ueryParams: function queryParams(params) {  
+		    var param = {  
+                 info:{
+                	 
+                 }
+             }; 
+             return param;
+		},
 		columns : [
 			{title : '全选',	checkbox : true,align : 'center',valign : 'middle'},
 			{title : 'id',	field : 'uuid',	align : 'center',sortable : true,valign : 'middle',visible:false},
@@ -92,7 +102,10 @@ $(function() {
 //			{title : '密码',field : 'password',sortable : true,align : 'center',valign : 'middle',visible:false},
 			{title : '描述',field : 'discription',sortable : true,align : 'center',valign : 'middle'},
 			{title : '状态',field : 'deleteFlag',sortable : true,align : 'center',valign : 'middle'},
-		]
+		],
+		responseHandler: function(result){  // 成功时执行
+			return {rows:result.data,total:result.data.length};
+		},
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
     }).on('click-row.bs.table', function (e, row, ele,field) {
     	$(".info").removeClass("info");

@@ -17,27 +17,33 @@ import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.common.base.ResultUtil;
 import org.danyuan.application.dbms.code.po.SysDbmsGenerateCodeInfo;
 import org.danyuan.application.dbms.code.service.SysDbmsGenerateCodeInfoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @文件名 SysDbmsGenerateCodeInfoController.java
  * @包名 org.danyuan.application.dbms.code.controller
- * @描述 代码生成controller
- * @时间 2019年1月16日 下午1:26:24
- * @author Administrator
+ * @描述 controller层
+ * @时间 2020年04月25日 11:26:55
+ * @author test
  * @版本 V1.0
  */
 @RestController
 @RequestMapping("/sysDbmsGenerateCodeInfo")
 public class SysDbmsGenerateCodeInfoController extends BaseControllerImpl<SysDbmsGenerateCodeInfo> implements BaseController<SysDbmsGenerateCodeInfo> {
 	
+	private static final Logger		logger	= LoggerFactory.getLogger(SysDbmsGenerateCodeInfoController.class);
+	
 	@Autowired
-	SysDbmsGenerateCodeInfoService sysDbmsGenerateCodeInfoService;
+	SysDbmsGenerateCodeInfoService	sysDbmsGenerateCodeInfoService;
 	
 	@RequestMapping("/generate")
 	public BaseResult<String> generate(@RequestBody Pagination<SysDbmsGenerateCodeInfo> vo) {
@@ -53,7 +59,7 @@ public class SysDbmsGenerateCodeInfoController extends BaseControllerImpl<SysDbm
 	}
 	
 	public String OUTPUTFILE = "outputfile";
-
+	
 	@RequestMapping(value = "/downloadCode/{path}", method = RequestMethod.GET)
 	public void downloadCode(HttpServletResponse response, @PathVariable("path") String path) throws IOException {
 		// 根据参数进行导出xml 并打包返回zip文件路径
@@ -87,4 +93,15 @@ public class SysDbmsGenerateCodeInfoController extends BaseControllerImpl<SysDbm
 		file.delete();
 		
 	}
+	
+	@GetMapping("/detail/{uuid}")
+	public ModelAndView name(@PathVariable("uuid") String uuid) {
+		logger.info("detail", SysDbmsGenerateCodeInfoController.class);
+		ModelAndView modelAndView = new ModelAndView("dbms/code/sysdbmsgeneratecodeinfodetail");
+		SysDbmsGenerateCodeInfo info = new SysDbmsGenerateCodeInfo();
+		info.setUuid(uuid);
+		modelAndView.addObject("sysDbmsGenerateCodeInfo", sysDbmsGenerateCodeInfoService.findOne(info));
+		return modelAndView;
+	}
+	
 }

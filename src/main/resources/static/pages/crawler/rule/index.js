@@ -122,7 +122,7 @@ function bindClick(){
 			callback : function(result) {
 					if (result) {
 						var submiturl = "/sysCrawlerRulerInfo/deleteAll";
-						ajaxPost(submiturl, {list:rows}, refreshGroupTable, 5000, findError);
+						ajaxPost(submiturl, {list:rows}, refreshGroupTable);
 					}
 				}
 			});
@@ -152,7 +152,7 @@ function bindClick(){
 			callback : function(result) {
 					if (result) {
 						var submiturl = "/sysCrawlerRulerColumInfo/deleteAll";
-						ajaxPost(submiturl, {list:rows}, refreshRuleTable, 5000, findError);
+						ajaxPost(submiturl, {list:rows}, refreshRuleTable);
 					}
 				}
 			});

@@ -42,27 +42,27 @@ import org.springframework.web.servlet.ModelAndView;
 public class SysDbmsTabsInfoController {
 	//
 	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsTabsInfoController.class);
-
+	
 	//
 	@Autowired
 	private SysDbmsTabsInfoService		sysDbmsTabsInfoService;
 	@Autowired
 	private SysDbmsTabsJdbcInfoService	sysDbmsTabsJdbcInfoService;
-
+	
 	@Autowired
 	MultiDatasourceConfig				multiDatasourceConfig;
-
+	
 	@RequestMapping(path = "/pagev", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<SysDbmsTabsInfo> pagev(@RequestBody SysDbmsTabsJdbcInfoVo vo) throws SQLException {
 		logger.info("pagev", SysDbmsTabsInfoController.class);
-//		Map<String, DataSource> multiDatasource = multiDatasourceConfig.multiDatasource();
+		// Map<String, DataSource> multiDatasource = multiDatasourceConfig.multiDatasource();
 		List<SysDbmsTabsInfo> list = null;
 		SysDbmsTabsJdbcInfo info = sysDbmsTabsJdbcInfoService.findOne(vo.getInfo());
 		Connection connection = multiDatasourceConfig.getConnection(info.getUuid());
 		Statement statement = connection.createStatement();
-//			JdbcTemplate template = new JdbcTemplate(dataSource);
+		// JdbcTemplate template = new JdbcTemplate(dataSource);
 		RowMapperResultSetExtractor<SysDbmsTabsInfo> rse = new RowMapperResultSetExtractor<>(new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
-//		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(connection);
+		// NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(connection);
 		
 		if (info != null && info.getType().equals("mysql")) {
 			// List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
@@ -75,14 +75,15 @@ public class SysDbmsTabsInfoController {
 			pageSql.append(" 'mysql'  AS db_type, ");
 			pageSql.append(" T.`TABLE_ROWS` AS tabs_rows ");
 			pageSql.append(" FROM `INFORMATION_SCHEMA`.`TABLES` T ");
-			pageSql.append(" WHERE T.`TABLE_SCHEMA` = '" + ("".equals(vo.getSearchText()) ? info.getDatabaseName() : vo.getSearchText().toUpperCase()) + "'");
+			pageSql.append(" WHERE T.`TABLE_SCHEMA` = '" + info.getDatabaseName() + "'");
+			pageSql.append(" and T.`TABLE_NAME` like '%" + ("".equals(vo.getSearchText()) ? "" : vo.getSearchText().toUpperCase()) + "%'");
 			pageSql.append(" AND NOT EXISTS ( ");
 			pageSql.append("	SELECT 1 FROM application.`sys_dbms_tabs_info` a ");
 			pageSql.append("	WHERE CONCAT(    T.`TABLE_SCHEMA`,    '.',    T.`TABLE_NAME`  ) = a.`tabs_name` ");
 			pageSql.append(" )");
 			pageSql.append(" order by CONCAT(T.`TABLE_SCHEMA`,'.' ,T.`TABLE_NAME`),TABLE_ROWS desc");
 			
-//				list = template.query(pageSql.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
+			// list = template.query(pageSql.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
 			logger.debug(pageSql.toString(), SysDbmsTabsInfoController.class);
 			list = rse.extractData(statement.executeQuery(pageSql.toString()));
 		} else {
@@ -105,6 +106,7 @@ public class SysDbmsTabsInfoController {
 			sBuilder.append("  from all_tables  t ");
 			sBuilder.append(" left join all_tab_comments  t1   on t1.owner = t.owner   and t1.table_name=t.table_name ");
 			sBuilder.append("  where  t.owner = '" + info.getUsername().toUpperCase() + "' ");
+			sBuilder.append("  and  t.table_name  like '%" + ("".equals(vo.getSearchText()) ? "" : vo.getSearchText().toUpperCase()) + "%'");
 			sBuilder.append("  and t.owner||'.'||t.table_name not in('");
 			for (int i = 0; i < list2.size(); i++) {
 				sBuilder.append(list2.get(i).getTabsName());
@@ -114,17 +116,17 @@ public class SysDbmsTabsInfoController {
 			}
 			sBuilder.append("') ");
 			
-//				list = template.query(sBuilder.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
+			// list = template.query(sBuilder.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
 			logger.debug(statement.toString(), SysDbmsTabsInfoController.class);
 			list = rse.extractData(statement.executeQuery(sBuilder.toString()));
-
+			
 		}
 		statement.close();
 		connection.close();
 		
 		return list;
 	}
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -138,7 +140,7 @@ public class SysDbmsTabsInfoController {
 		logger.info("page", SysDbmsTabsInfoController.class);
 		return sysDbmsTabsInfoService.page(vo);
 	}
-
+	
 	/**
 	 * 方法名： findAll
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -150,20 +152,18 @@ public class SysDbmsTabsInfoController {
 	@RequestMapping(path = "/findAll", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<SysDbmsTabsInfo> findAll() {
 		logger.info("findAll", SysDbmsTabsInfoController.class);
-
+		
 		return sysDbmsTabsInfoService.findAll();
 	}
-
+	
 	@RequestMapping(path = "/findAllBySysTableInfo", method = RequestMethod.POST)
 	public List<SysDbmsTabsInfo> findAllBySysTableInfo(@RequestBody SysDbmsTabsInfo sysDbmsTabsInfo) {
-		logger.error(sysDbmsTabsInfo.toString());
 		logger.info("findAll", SysDbmsTabsInfoController.class);
 		return sysDbmsTabsInfoService.findAll(sysDbmsTabsInfo);
 	}
-
+	
 	@RequestMapping(path = "/findAllBySysTableInfoAndUsername", method = RequestMethod.POST)
 	public List<SysDbmsTabsInfo> findAllBySysTableInfoAndUsername(@RequestBody SysDbmsTabsInfo sysDbmsTabsInfo) {
-		logger.error(sysDbmsTabsInfo.toString());
 		logger.info("findAll", SysDbmsTabsInfoController.class);
 		return sysDbmsTabsInfoService.findAllBySysTableInfoAndUsername(sysDbmsTabsInfo);
 	}
@@ -177,14 +177,14 @@ public class SysDbmsTabsInfoController {
 		sysDbmsTabsInfoService.save(sysDbmsTabsInfo);
 		return "1";
 	}
-
+	
 	@RequestMapping(path = "/change", method = RequestMethod.POST)
 	public SysDbmsTabsInfo change(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("save", SysDbmsTabsInfoController.class);
 		sysDbmsTabsInfoService.change(vo);
 		return vo.getNow();
 	}
-
+	
 	@RequestMapping(path = "/savev", method = RequestMethod.POST)
 	public String save(@RequestBody SysDbmsTabsInfoVo vo) throws SQLException {
 		logger.info("savev", SysDbmsTabsInfoController.class);
@@ -202,28 +202,28 @@ public class SysDbmsTabsInfoController {
 		}
 		return "1";
 	}
-
+	
 	@RequestMapping(path = "/drop", method = RequestMethod.POST)
 	public String drop(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("drop", SysDbmsTabsInfoController.class);
 		sysDbmsTabsInfoService.drop(vo.getList());
 		return "1";
 	}
-
+	
 	@RequestMapping(path = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("delete", SysDbmsTabsInfoController.class);
 		sysDbmsTabsInfoService.deleteAll(vo.getList());
 		return "1";
 	}
-
+	
 	@RequestMapping(path = "/updateSysTableInfo", method = RequestMethod.POST)
 	public String updateSysTableInfo(@RequestBody SysDbmsTabsInfoVo vo) {
 		logger.info("updateSysTableInfo", SysDbmsTabsInfoController.class);
 		sysDbmsTabsInfoService.saveAll(vo.getList());
 		return "1";
 	}
-
+	
 	@RequestMapping(path = "/updBefor", method = RequestMethod.GET)
 	public ModelAndView updBefor(HttpServletRequest request) {
 		logger.info("updBefor", SysDbmsTabsInfoController.class);
@@ -234,7 +234,7 @@ public class SysDbmsTabsInfoController {
 		view.addObject("sysTableInfo", info);
 		return view;
 	}
-
+	
 	@RequestMapping(path = "/updBeforEdit", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView updBeforEdit(HttpServletRequest request) {
 		logger.info("updBeforEdit", SysDbmsTabsInfoController.class);
@@ -247,5 +247,5 @@ public class SysDbmsTabsInfoController {
 		view.addObject("sysTableInfo", info);
 		return view;
 	}
-
+	
 }

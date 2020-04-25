@@ -1,16 +1,17 @@
 $(function(){
 	var url = "/sysPlantChartDimensionGroup/findAll";
 	var param={};
-	ajaxPost(url, param, loadGroupSelectSuccess, 5000, findError);
+	ajaxPost(url, param, loadGroupSelectSuccess);
 })
 
 var change_sysPlantChartDimension_groupUuid = null;
 
 function loadGroupSelectSuccess(result){
-	var data=[{id:'0',text:'请选择'}]
-	$.each(result,function(index,value){
+	var data=[{id:'0',text:'请选择'}];
+	$.each(result.data,function(index,value){
 		data.push({id:value.uuid,text:value.title})
-	})
+	});
+	console.log(data)
 	$('#change_sysPlantChartDimension_groupUuid').select2({
 //		placeholder: "请选择",
 	    tags: true,
@@ -29,7 +30,7 @@ function submit_change(){
 			groupUuid:change_sysPlantChartDimension_groupUuid
 	}
 	var url = "/sysPlantChartDimension/changeGroup";
-	ajaxPost(url, param, changegroupSuccess, 5000, findError);
+	ajaxPost(url, param, changegroupSuccess);
 }
 
 function changegroupSuccess(result){

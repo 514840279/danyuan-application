@@ -16,32 +16,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 版 本 ： V1.0
  */
 public interface BaseController<T> {
-
+	
 	@RequestMapping("/page")
 	BaseResult<Page<T>> page(Pagination<T> vo);
-
+	
 	@RequestMapping("/findAll")
 	BaseResult<List<T>> findAll(T info);
-
+	
 	@RequestMapping("/findOne")
 	BaseResult<T> findOne(T info);
-
+	
 	@RequestMapping("/save")
 	BaseResult<T> save(T info);
-
+	
 	@RequestMapping("/saveAll")
 	BaseResult<T> saveAll(Pagination<T> vo);
-
+	
 	@RequestMapping("/deleteAll")
 	BaseResult<T> deleteAll(Pagination<T> vo);
-
+	
 	@RequestMapping("/delete")
 	BaseResult<T> delete(T info);
-
+	
 	@RequestMapping("/count")
 	BaseResult<Long> count(T info);
-
+	
 	@RequestMapping("/trunc")
 	BaseResult<T> trunc();
-
+	
 }

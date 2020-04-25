@@ -4,10 +4,10 @@ var _tableUuid2=null;
 $(function() {
 
 	var url = "/sysDbmsTabsTypeInfo/findAll";
-	ajaxPost(url, null, addSelectedTypeSuccess, 5000, findError);
+	ajaxPost(url, null, addSelectedTypeSuccess);
 	
 	var url = "/sysDbmsTabsJdbcInfo/findAll";
-	ajaxPost(url, null, addSelectedAddrSuccess, 5000, findError);
+	ajaxPost(url, null, addSelectedAddrSuccess);
 	
 	showClomnTable();
 	showClomnTable2();
@@ -86,7 +86,7 @@ function searchtableNames(){
 		jdbcUuid:search_config_table_addrUuid,
 	}
 	var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
-	ajaxPost(url, param, addSelectedTableSuccess, 5000, findError);
+	ajaxPost(url, param, addSelectedTableSuccess);
 }
 
 function searchtableNames2(){
@@ -95,7 +95,7 @@ function searchtableNames2(){
 		jdbcUuid:search_config_table_addrUuid2,
 	}
 	var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
-	ajaxPost(url, param, addSelectedTableSuccess2, 5000, findError);
+	ajaxPost(url, param, addSelectedTableSuccess2);
 }
 
 search_config_table_addrUuid="";

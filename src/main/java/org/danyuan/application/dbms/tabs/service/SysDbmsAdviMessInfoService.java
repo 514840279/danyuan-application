@@ -4,11 +4,9 @@ import java.util.List;
 
 import org.danyuan.application.common.base.BaseService;
 import org.danyuan.application.common.base.BaseServiceImpl;
-import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsAdviMessInfoDao;
 import org.danyuan.application.dbms.tabs.po.SysDbmsAdviMessInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,21 +25,6 @@ public class SysDbmsAdviMessInfoService extends BaseServiceImpl<SysDbmsAdviMessI
 	SysDbmsAdviMessInfoDao sysDbmsAdviMessInfoDao;
 	
 	/**
-	 * 方法名 ： findOne
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param info
-	 * 参 数 ： @return
-	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#findOne(java.lang.Object)
-	 * 作 者 ： Administrator
-	 */
-	
-	@Override
-	public SysDbmsAdviMessInfo findOne(SysDbmsAdviMessInfo info) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
 	 * 参 数 ： @param info
@@ -52,70 +35,7 @@ public class SysDbmsAdviMessInfoService extends BaseServiceImpl<SysDbmsAdviMessI
 	
 	@Override
 	public List<SysDbmsAdviMessInfo> findAll(SysDbmsAdviMessInfo info) {
-		
 		return sysDbmsAdviMessInfoDao.findByDeleteFlag(0);
-	}
-	
-	/**
-	 * 方法名 ： save
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param list
-	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#save(java.util.List)
-	 * 作 者 ： Administrator
-	 */
-	
-	@Override
-	public void saveAll(List<SysDbmsAdviMessInfo> list) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/**
-	 * 方法名 ： delete
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param info
-	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#delete(java.lang.Object)
-	 * 作 者 ： Administrator
-	 */
-	
-	@Override
-	public void delete(SysDbmsAdviMessInfo info) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/**
-	 * 方法名 ： delete
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param list
-	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#delete(java.util.List)
-	 * 作 者 ： Administrator
-	 */
-	
-	@Override
-	public void deleteAll(List<SysDbmsAdviMessInfo> list) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	/**
-	 * 方法名 ： trunc
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ：
-	 * 参 考 ： @see com.shumeng.application.common.base.BaseService#trunc()
-	 * 作 者 ： Administrator
-	 */
-	
-	@Override
-	public void trunc() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public Page<SysDbmsAdviMessInfo> page(Pagination<SysDbmsAdviMessInfo> vo) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 }

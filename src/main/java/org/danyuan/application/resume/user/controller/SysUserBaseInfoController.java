@@ -7,7 +7,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,19 +19,25 @@ import org.apache.poi.poifs.filesystem.OfficeXmlFileException;
 import org.danyuan.application.common.base.BaseController;
 import org.danyuan.application.common.base.BaseControllerImpl;
 import org.danyuan.application.common.base.BaseResult;
+import org.danyuan.application.common.base.ResultUtil;
 import org.danyuan.application.common.utils.MailVo;
 import org.danyuan.application.common.utils.SimapleMailRegist;
 import org.danyuan.application.common.utils.excel.WordToHtml;
 import org.danyuan.application.common.utils.files.TxtFilesReader;
 import org.danyuan.application.common.utils.files.TxtFilesWriter;
 import org.danyuan.application.common.utils.string.StringUtils;
-import org.danyuan.application.softm.roles.po.SysUserBaseInfo;
-import org.danyuan.application.softm.roles.service.SysUserBaseService;
+import org.danyuan.application.resume.user.po.SysUserBaseInfo;
+import org.danyuan.application.resume.user.service.SysUserBaseService;
+import org.danyuan.application.softm.roles.vo.SysUserBaseVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -47,8 +55,13 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInfo> implements BaseController<SysUserBaseInfo> {
 	
 	@Autowired
+	PasswordEncoder				passwordEncoder;
+	//
+	private static final Logger	logger	= LoggerFactory.getLogger(SysUserBaseInfoController.class);
+	
+	@Autowired
 	private SysUserBaseService	sysUserBaseService;
-
+	
 	@Autowired
 	SimapleMailRegist			mailRegist;
 	
@@ -84,7 +97,7 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 		// 文件保存
 		request.setCharacterEncoding("UTF-8");
 		String emailString = request.getParameter("email");
-//		String username = request.getParameter("username");
+		// String username = request.getParameter("username");
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		List<MultipartFile> files = multipartHttpServletRequest.getFiles("file");
 		for (MultipartFile multipartFile : files) {
@@ -104,7 +117,7 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 				}
 				path = path + "/" + filename;
 				FileOutputStream fos = new FileOutputStream(path);
-
+				
 				byte[] b = new byte[1024];
 				while ((inputStream.read(b)) != -1) {
 					fos.write(b);
@@ -131,7 +144,7 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 					replaceImgPath(path.replace("\\", "/"), filename.substring(0, filename.lastIndexOf(".")) + ".html", imgPathString);
 					result.setData(simpleDateFormat.format(new Date()) + "/" + URLEncoder.encode(filename.substring(0, filename.lastIndexOf(".")), "utf-8") + ".html");
 				}
-
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -147,9 +160,9 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 			SysUserBaseInfo info = new SysUserBaseInfo();
 			info.setUuid(UUID.randomUUID().toString());
 			info.setEmail(emailString);
-//			info.setDeleteFlag(0);
-//			info.setCreateUser(username);
-//			info.setUpdateUser(username);
+			// info.setDeleteFlag(0);
+			// info.setCreateUser(username);
+			// info.setUpdateUser(username);
 			info.setUserName(emailString);
 			info.setPersionName(emailString);
 			String codeString = StringUtils.genRandomNumByLen(8);
@@ -158,7 +171,7 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 			encryptPassword(info);
 			sysUserBaseService.save(info);
 			//
-
+			
 			sBuilder.append("欢迎您使用《初学者》《简历管理系统》：");
 			sBuilder.append("\n 已为您创建好简历 并在系统中为您注册新的账户 ");
 			sBuilder.append("\n 账号： " + info.getUserName());
@@ -168,7 +181,7 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 			sBuilder.append("\n 请妥善保管好，不要发送给任何人，谢谢合作！");
 			sBuilder.append("\n 初学者：http://www.danyuan.wang");
 			sBuilder.append("\n 一个致力于使用代码改变生活的网站！");
-
+			
 		} else {
 			
 			sBuilder.append("欢迎您使用《初学者》《简历管理系统》：");
@@ -181,17 +194,17 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 			entity.setResumePath(result.getData());
 			sysUserBaseService.save(entity);
 		}
-
+		
 		mailMessage.setMessage(sBuilder.toString());
 		mailMessage.setTitle("简历注册");
 		mailMessage.setMail(emailString);
 		// 发送邮件
 		mailRegist.SendMailToCustom(mailMessage);
 		// 生成简历二维码，个人名片信息
-
+		
 		return result;
 	}
-
+	
 	/**
 	 * @方法名 replaceImgPath
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -210,16 +223,89 @@ public class SysUserBaseInfoController extends BaseControllerImpl<SysUserBaseInf
 		}
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), path + "/" + filename);
 	}
-
-	/**
-	 * 加密密码
-	 */
-	@Autowired
-	PasswordEncoder passwordEncoder;
 	
-	private void encryptPassword(org.danyuan.application.softm.roles.po.SysUserBaseInfo userEntity) {
+	private void encryptPassword(SysUserBaseInfo userEntity) {
 		String password = userEntity.getPassword();
 		password = passwordEncoder.encode(password);
 		userEntity.setPassword(password);
+	}
+	
+	@RequestMapping(path = "/findByUuid", method = RequestMethod.POST)
+	public SysUserBaseInfo findByUuid(@RequestBody SysUserBaseInfo info) {
+		logger.info("findAllBySearchText", SysUserBaseInfoController.class);
+		return sysUserBaseService.findByUuid(info.getUuid());
+	}
+	
+	@RequestMapping(path = "/findAllBySearchText", method = RequestMethod.POST)
+	public Page<SysUserBaseInfo> findAllBySearchText(int pageNumber, int pageSize, SysUserBaseInfo sysUserBaseInfo) {
+		logger.info("findAllBySearchText", SysUserBaseInfoController.class);
+		return sysUserBaseService.findAllBySearchText(pageNumber, pageSize, sysUserBaseInfo);
+	}
+	
+	@RequestMapping(path = "/save", method = RequestMethod.POST)
+	@ResponseBody
+	public BaseResult<SysUserBaseInfo> save(@RequestBody SysUserBaseInfo info) {
+		logger.info("save", SysUserBaseInfoController.class);
+		try {
+			SysUserBaseInfo baseInfo = sysUserBaseService.findByName(info.getUserName());
+			if (baseInfo == null) {
+				info.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
+				encryptPassword(info);
+				sysUserBaseService.save(info);
+			} else {
+				return ResultUtil.error("用户名已存在");
+			}
+			return ResultUtil.success();
+		} catch (Exception e) {
+			return ResultUtil.error(0, e.getMessage());
+		}
+	}
+	
+	@RequestMapping(path = "/saveBaseinfo", method = RequestMethod.POST)
+	public BaseResult<SysUserBaseInfo> saveBaseinfo(@RequestBody SysUserBaseInfo info) {
+		logger.info("save", SysUserBaseInfoController.class);
+		try {
+			sysUserBaseService.saveBaseinfo(info);
+			
+			return ResultUtil.success();
+		} catch (Exception e) {
+			return ResultUtil.error(e.getMessage());
+		}
+		
+	}
+	
+	@RequestMapping(path = "/saveu", method = RequestMethod.POST)
+	@ResponseBody
+	public String saveu(@RequestBody SysUserBaseInfo info) {
+		logger.info("saveu", SysUserBaseInfoController.class);
+		try {
+			sysUserBaseService.saveu(info);
+			return "1";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return e.toString();
+		}
+	}
+	
+	@RequestMapping(path = "/checkUserName", method = RequestMethod.POST)
+	public Map<String, Boolean> checkUserName(String userName) {
+		logger.info("checkUserName", SysUserBaseInfoController.class);
+		boolean boo = sysUserBaseService.checkUserName(userName);
+		Map<String, Boolean> map = new HashMap<>();
+		map.put("valid", boo);
+		return map;
+	}
+	
+	@RequestMapping(path = "/changePassword", method = RequestMethod.POST)
+	@ResponseBody
+	public String changePassword(@RequestBody SysUserBaseVo vo) {
+		logger.info("changePassword", SysUserBaseInfoController.class);
+		try {
+			encryptPassword(vo.getInfo());
+			sysUserBaseService.changePassword(vo.getInfo());
+			return "1";
+		} catch (Exception e) {
+			return "0";
+		}
 	}
 }

@@ -1,17 +1,16 @@
 package org.danyuan.application.dbms.tabs.controller;
 
-import java.util.List;
-import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
 
+import org.danyuan.application.common.base.BaseController;
+import org.danyuan.application.common.base.BaseControllerImpl;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsJdbcInfo;
 import org.danyuan.application.dbms.tabs.service.SysDbmsTabsJdbcInfoService;
-import org.danyuan.application.dbms.tabs.vo.SysDbmsTabsJdbcInfoVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,36 +28,13 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @RestController
 @RequestMapping("/sysDbmsTabsJdbcInfo")
-public class SysDbmsTabsJdbcInfoController {
+public class SysDbmsTabsJdbcInfoController extends BaseControllerImpl<SysDbmsTabsJdbcInfo> implements BaseController<SysDbmsTabsJdbcInfo> {
+	
 	//
 	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsTabsJdbcInfoController.class);
 	
 	@Autowired
 	private SysDbmsTabsJdbcInfoService	sysDbmsTabsJdbcInfoService;
-	
-	/**
-	 * 方法名： findAll
-	 * 功 能： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数： @return
-	 * 返 回： List<SysSeedInfo>
-	 * 作 者 ： Tenghui.Wang
-	 * @throws
-	 */
-	@RequestMapping(path = "/findAll", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<SysDbmsTabsJdbcInfo> findAll() {
-		logger.info("findAll", SysDbmsTabsJdbcInfoController.class);
-		return sysDbmsTabsJdbcInfoService.findAll();
-	}
-	
-	@RequestMapping(path = "/save", method = RequestMethod.POST)
-	public String save(@RequestBody SysDbmsTabsJdbcInfo sysDbmsTabsJdbcInfo) {
-		logger.info("findAll", SysDbmsTabsJdbcInfoController.class);
-		if (sysDbmsTabsJdbcInfo.getUuid() == null || "".equals(sysDbmsTabsJdbcInfo.getUuid())) {
-			sysDbmsTabsJdbcInfo.setUuid(UUID.randomUUID().toString());
-		}
-		sysDbmsTabsJdbcInfoService.save(sysDbmsTabsJdbcInfo);
-		return "1";
-	}
 	
 	@RequestMapping(path = "/addBefor", method = RequestMethod.GET)
 	public ModelAndView addBefor(HttpServletRequest request) {
@@ -73,12 +49,13 @@ public class SysDbmsTabsJdbcInfoController {
 		return view;
 	}
 	
-	@RequestMapping(path = "/delete", method = RequestMethod.POST)
-	public String delete(@RequestBody SysDbmsTabsJdbcInfoVo vo) {
-		logger.error(vo.getList().get(0).toString());
-		logger.info("delete", SysDbmsTabsJdbcInfoController.class);
-		sysDbmsTabsJdbcInfoService.deleteAll(vo.getList());
-		return "1";
+	@GetMapping("/detail/{uuid}")
+	public ModelAndView name(@PathVariable("uuid") String uuid) {
+		logger.info("detail", SysDbmsTabsJdbcInfoController.class);
+		ModelAndView modelAndView = new ModelAndView("dbms/tabs/sysdbmstabsjdbcinfodetail");
+		SysDbmsTabsJdbcInfo info = new SysDbmsTabsJdbcInfo();
+		info.setUuid(uuid);
+		modelAndView.addObject("sysDbmsTabsJdbcInfo", sysDbmsTabsJdbcInfoService.findOne(info));
+		return modelAndView;
 	}
-	
 }

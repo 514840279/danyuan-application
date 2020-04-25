@@ -19,7 +19,7 @@ window.groupoperateEvents = {
 					if (result) {
 						var url = "/sysDbmsChartDimensionGroup/deleteAll";
 						var param={list:[row]};
-						ajaxPost(url, param, deleteInfoSuccess, 5000, findError);
+						ajaxPost(url, param, deleteInfoSuccess);
 					}
 				}
 			});

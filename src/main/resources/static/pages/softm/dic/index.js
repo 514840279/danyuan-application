@@ -117,7 +117,7 @@ $(function() {
 							"list":data,
 						};
 						// 重载
-						var url = "/sysDicName/delete";
+						var url = "/sysDicName/deleteAll";
 						ajaxPost(url, param, successDelete, 1000, findError);
 					}
 				}
@@ -193,7 +193,7 @@ $(function() {
 							"list":data,
 						};
 						// 重载
-						var url = "/sysDicKeyList/delete";
+						var url = "/sysDicKeyList/deleteAll";
 						ajaxPost(url, param, successDeletekey, 1000, findError);
 					}
 				}
@@ -294,7 +294,7 @@ $(function() {
 		  	{title : '更新时间',field : 'updateTime',align : 'center' ,visible:false }, 
     	] ,
     	responseHandler: function(result){  // 成功时执行
-			return {rows:result.content,total:result.totalElements};
+			return {rows:result.data.content,total:result.data.totalElements};
 		},
 	    onClickRow:function(row){
 	    	$("#admin_dicKeyList_datagrid").bootstrapTable("destroy");
@@ -387,7 +387,7 @@ function InitSubRoleTable(row) {
 //			{title : '标记',	field : 'deleteFlag',	sortable : true,align : 'center'}
 		],
         responseHandler: function(result){  // 成功时执行
-			return {rows:result.content,total:result.totalElements};
+			return {rows:result.data.content,total:result.data.totalElements};
 		}, 
         onLoadSuccess: function(){  //加载成功时执行  
 	    },  

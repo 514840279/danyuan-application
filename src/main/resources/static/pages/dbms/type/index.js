@@ -28,7 +28,7 @@ $(function() {
 		var data = $('#dbm_type_datagrid').bootstrapTable('getAllSelections');
 		var url = "/sysDbmsTabsTypeInfo/sysTableTypeDeleteAll";
 		var param={list:data};
-		ajaxPost(url, param, addSysTableTypeInfoSuccess, 5000, findError);
+		ajaxPost(url, param, addSysTableTypeInfoSuccess);
 	});
 	
 	$('#dbm_type_add_button').click(function() {
@@ -43,7 +43,7 @@ $(function() {
 			deleteFlag:$('#dbm_type_add_deleteFlag:checked').val(),
 		}
 		console.log(sysTableTypeInfo);
-		ajaxPost(url, sysTableTypeInfo, addSysTableTypeInfoSuccess, 5000, findError);
+		ajaxPost(url, sysTableTypeInfo, addSysTableTypeInfoSuccess);
 		$('#dbm_type_add_modal').modal("hide");
 	});
 	

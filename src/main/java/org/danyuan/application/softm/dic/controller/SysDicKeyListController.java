@@ -3,23 +3,20 @@
  */
 package org.danyuan.application.softm.dic.controller;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.danyuan.application.common.base.Pagination;
+import org.danyuan.application.common.base.BaseController;
+import org.danyuan.application.common.base.BaseControllerImpl;
 import org.danyuan.application.softm.dic.po.SysDicKeyList;
 import org.danyuan.application.softm.dic.service.SysDicKeyListService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 /**
  * 文件名 ： SysDicKeyListController.java
@@ -34,131 +31,20 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/sysDicKeyList")
 @Api(value = "/SysDicKeyList", description = "字典数据")
-public class SysDicKeyListController {
-
-	//
-	private static final Logger		logger	= LoggerFactory.getLogger(SysDicKeyListController.class);
-	//
+public class SysDicKeyListController extends BaseControllerImpl<SysDicKeyList> implements BaseController<SysDicKeyList> {
+	private static final Logger	logger	= LoggerFactory.getLogger(SysDicKeyListController.class);
+	
 	@Autowired
-	private SysDicKeyListService	sysDicKeyListService;
-
-	/**
-	 * 方法名 ： page
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param vo
-	 * 参 数 ： @return
-	 * 作 者 ： Administrator
-	 */
-	@ApiOperation(value = "查询全部信息", notes = "")
-	@RequestMapping(path = "/page", method = RequestMethod.POST)
-	public Page<SysDicKeyList> page(@RequestBody Pagination<SysDicKeyList> vo) {
-		logger.info("page", SysDicKeyListController.class);
-		return sysDicKeyListService.page(vo);
+	SysDicKeyListService		sysDicKeyListService;
+	
+	@GetMapping("/detail/{uuid}")
+	public ModelAndView name(@PathVariable("uuid") String uuid) {
+		logger.info("detail", SysDicKeyListController.class);
+		ModelAndView modelAndView = new ModelAndView("softm/dic/sysdickeylistdetail");
+		SysDicKeyList info = new SysDicKeyList();
+		info.setUuid(uuid);
+		modelAndView.addObject("sysDicKeyList", sysDicKeyListService.findOne(info));
+		return modelAndView;
 	}
-
-	/**
-	 * 方法名 ： findAll
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param info
-	 * 参 数 ： @return
-	 * 作 者 ： Administrator
-	 */
-	@ApiOperation(value = "查询全部信息", notes = "")
-	@RequestMapping(path = "/findAll", method = RequestMethod.POST)
-	public List<SysDicKeyList> findAll(@RequestBody SysDicKeyList info) {
-		logger.info("findAll", SysDicKeyListController.class);
-		return sysDicKeyListService.findAll(info);
-	}
-
-	/**
-	 * 方法名 ： findOne
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param info
-	 * 参 数 ： @return
-	 * 作 者 ： Administrator
-	 */
-	@ApiOperation(value = "查询信息", notes = "")
-	@RequestMapping(path = "/findOne", method = RequestMethod.POST)
-	public SysDicKeyList findOne(SysDicKeyList info) {
-		logger.info("findOne", SysDicKeyListController.class);
-		return sysDicKeyListService.findOne(info);
-	}
-
-	/**
-	 * 方法名 ： save
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param info
-	 * 参 数 ： @return
-	 * 作 者 ： Administrator
-	 */
-	@ApiOperation(value = "保存信息", notes = "")
-	@RequestMapping(path = "/save", method = RequestMethod.POST)
-	public String save(@RequestBody SysDicKeyList info) {
-		logger.info("save", SysDicKeyListController.class);
-		if (info.getUuid() == null || "".equals(info.getUuid())) {
-			info.setUuid(UUID.randomUUID().toString());
-		}
-		sysDicKeyListService.save(info);
-		return "1";
-	}
-
-	/**
-	 * 方法名 ： save
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param vo
-	 * 参 数 ： @return
-	 * 作 者 ： Administrator
-	 */
-	@ApiOperation(value = "保存全部信息", notes = "")
-	@RequestMapping(path = "/saveAll", method = RequestMethod.POST)
-	public String save(Pagination<SysDicKeyList> vo) {
-		logger.info("save", SysDicKeyListController.class);
-		sysDicKeyListService.saveAll(vo.getList());
-		return "1";
-	}
-
-	/**
-	 * 方法名 ： delete
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param vo
-	 * 参 数 ： @return
-	 * 作 者 ： Administrator
-	 */
-	@ApiOperation(value = "删除全部信息", notes = "")
-	@RequestMapping(path = "/delete", method = RequestMethod.POST)
-	public String delete(@RequestBody Pagination<SysDicKeyList> vo) {
-		logger.info("delete", SysDicKeyListController.class);
-		sysDicKeyListService.deleteAll(vo.getList());
-		return "1";
-	}
-
-	/**
-	 * 方法名 ： delete
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @param info
-	 * 参 数 ： @return
-	 * 作 者 ： Administrator
-	 */
-	@ApiOperation(value = "删除信息", notes = "")
-	@RequestMapping(path = "/deleteAll", method = RequestMethod.POST)
-	public String delete(SysDicKeyList info) {
-		logger.info("delete", SysDicKeyListController.class);
-		sysDicKeyListService.delete(info);
-		return "1";
-	}
-
-	/**
-	 * 方法名 ： trunc
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @return
-	 * 作 者 ： Administrator
-	 */
-	@ApiOperation(value = "清空表", notes = "")
-	@RequestMapping(path = "/trunc", method = RequestMethod.POST)
-	public String trunc() {
-		logger.info("delete", SysDicKeyListController.class);
-		sysDicKeyListService.trunc();
-		return "1";
-	}
-
+	
 }

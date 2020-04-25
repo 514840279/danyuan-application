@@ -1,186 +1,127 @@
 package org.danyuan.application.softm.dic.po;
 
 import java.io.Serializable;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.danyuan.application.common.base.BaseEntity;
 
 /**
- * The persistent class for the sys_dic_key_list database table.
- * sss
+ * @文件名 SysDicKeyList.java
+ * @包名 org.danyuan.application.softm.dic.po
+ * @描述 sys_dic_key_list的实体类
+ * @时间 2020年04月25日 16:38:20
+ * @author test
+ * @版本 V1.0
  */
 @Entity
 @Table(name = "sys_dic_key_list")
 @NamedQuery(name = "SysDicKeyList.findAll", query = "SELECT s FROM SysDicKeyList s")
-public class SysDicKeyList implements Serializable {
+public class SysDicKeyList extends BaseEntity implements Serializable {
 	private static final long	serialVersionUID	= 1L;
-	
-	@Id
-	@Column(name = "UUID", columnDefinition = "varchar(36) COMMENT '主键'")
-	private String				uuid;
-	
-	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
-	private String				discription;				// discription
-	// 描述
-	
-	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '录入时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.CreationTimestamp
-	private Date				createTime;					// create_time
-	// 插入时间
-	
-	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String				createUser;					// create_user
-	// 插入人
-	
-	@Column(name = "update_time", updatable = false, insertable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP  COMMENT '更新时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.UpdateTimestamp
-	private Date				updateTime;					// updata_time
-	// 更新时间
-	
-	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
-	private String				updateUser;					// updata_user
-	// 更新人
-	
-	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer				deleteFlag;
-	
-	private String				keyword;
-	
-	@Column(name = "name_uuid")
-	private String				nameUuid;
+
+
+	// 排序
+	@Column(name = "key_order",precision=10)
+	private  Integer 	keyOrder;
+
+	// 关键字
+	@Column(name = "keyword")
+	private  String 	keyword;
+
+	// 列表value
 	@Column(name = "key_value")
-	private String				keyValue;
-	
-	@Column(name = "key_order")
-	private Integer				keyOrder;
-	
+	private  String 	keyValue;
+
+	// 外键
+	@Column(name = "name_uuid")
+	private  String 	nameUuid;
+
+	/**  
+	*  构造方法： 
+	*  描    述： 默认构造函数  
+	*  参    数： 
+	*  作    者 ： test  
+	*  @throws  
+	*/
 	public SysDicKeyList() {
+		super();
 	}
-	
-	public String getUuid() {
-		return this.uuid;
-	}
-	
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
-	
-	public Date getCreateTime() {
-		return this.createTime;
-	}
-	
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-	
-	public String getCreateUser() {
-		return this.createUser;
-	}
-	
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
-	}
-	
-	public Integer getDeleteFlag() {
-		return this.deleteFlag;
-	}
-	
-	public void setDeleteFlag(Integer deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}
-	
-	public String getDiscription() {
-		return this.discription;
-	}
-	
-	public void setDiscription(String discription) {
-		this.discription = discription;
-	}
-	
+
+
 	/**
-	 * 方法名 ： getKeyword <br />
-	 * 功 能 ： 返回变量 keyword 的值 <br />
+	 * 方法名 ： getKeyOrder
+	 * 功 能 ： 返回变量 keyOrder 排序 的值
 	 *
-	 * @return: String
+	 * @return: String 
 	 */
-	public String getKeyword() {
-		return keyword;
-	}
-	
-	/**
-	 * 方法名 ： setKeyword <br />
-	 * 功 能 ： 设置变量 keyword 的值
-	 */
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-	
-	public String getNameUuid() {
-		return this.nameUuid;
-	}
-	
-	public void setNameUuid(String nameUuid) {
-		this.nameUuid = nameUuid;
-	}
-	
-	public Date getUpdateTime() {
-		return this.updateTime;
-	}
-	
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-	
-	public String getUpdateUser() {
-		return this.updateUser;
-	}
-	
-	public void setUpdateUser(String updateUser) {
-		this.updateUser = updateUser;
-	}
-	
-	/**
-	 * 方法名 ： getKeyValue <br />
-	 * 功 能 ： 返回变量 keyValue 的值 <br />
-	 *
-	 * @return: String
-	 */
-	public String getKeyValue() {
-		return keyValue;
-	}
-	
-	/**
-	 * 方法名 ： setKeyValue <br />
-	 * 功 能 ： 设置变量 keyValue 的值
-	 */
-	public void setKeyValue(String keyValue) {
-		this.keyValue = keyValue;
-	}
-	
-	/**
-	 * 方法名 ： getKeyOrder <br />
-	 * 功 能 ： 返回变量 keyOrder 的值 <br />
-	 *
-	 * @return: Integer
-	 */
-	public Integer getKeyOrder() {
+	public  Integer  getKeyOrder() {
 		return keyOrder;
 	}
-	
+
 	/**
-	 * 方法名 ： setKeyOrder <br />
-	 * 功 能 ： 设置变量 keyOrder 的值
+	 * 方法名 ： setKeyOrder
+	 * 功 能 ： 设置变量 keyOrder 排序 的值
 	 */
-	public void setKeyOrder(Integer keyOrder) {
+	public void setKeyOrder( Integer  keyOrder) {
 		this.keyOrder = keyOrder;
 	}
-	
+
+	/**
+	 * 方法名 ： getKeyword
+	 * 功 能 ： 返回变量 keyword 关键字 的值
+	 *
+	 * @return: String 
+	 */
+	public  String  getKeyword() {
+		return keyword;
+	}
+
+	/**
+	 * 方法名 ： setKeyword
+	 * 功 能 ： 设置变量 keyword 关键字 的值
+	 */
+	public void setKeyword( String  keyword) {
+		this.keyword = keyword;
+	}
+
+	/**
+	 * 方法名 ： getKeyValue
+	 * 功 能 ： 返回变量 keyValue 列表value 的值
+	 *
+	 * @return: String 
+	 */
+	public  String  getKeyValue() {
+		return keyValue;
+	}
+
+	/**
+	 * 方法名 ： setKeyValue
+	 * 功 能 ： 设置变量 keyValue 列表value 的值
+	 */
+	public void setKeyValue( String  keyValue) {
+		this.keyValue = keyValue;
+	}
+
+	/**
+	 * 方法名 ： getNameUuid
+	 * 功 能 ： 返回变量 nameUuid 外键 的值
+	 *
+	 * @return: String 
+	 */
+	public  String  getNameUuid() {
+		return nameUuid;
+	}
+
+	/**
+	 * 方法名 ： setNameUuid
+	 * 功 能 ： 设置变量 nameUuid 外键 的值
+	 */
+	public void setNameUuid( String  nameUuid) {
+		this.nameUuid = nameUuid;
+	}
+
+
 }

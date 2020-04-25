@@ -32,12 +32,12 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/sysDbmsTabsMergeInfo")
 public class SysDbmsTabsMergeInfoController extends BaseControllerImpl<SysDbmsTabsMergeInfo> implements BaseController<SysDbmsTabsMergeInfo> {
-
+	
 	private static final Logger	logger	= LoggerFactory.getLogger(SysDbmsTabsMergeInfoController.class);
-
+	
 	@Autowired
 	SysDbmsTabsMergeInfoService	sysDbmsTabsMergeInfoService;
-
+	
 	@GetMapping("/detail/{uuid}")
 	public ModelAndView name(@PathVariable("uuid") String uuid) {
 		ModelAndView modelAndView = new ModelAndView("dbms/tabs/sysdbmstabsmergeinfodetail");
@@ -46,29 +46,29 @@ public class SysDbmsTabsMergeInfoController extends BaseControllerImpl<SysDbmsTa
 		modelAndView.addObject("sysDbmsTabsMergeInfo", sysDbmsTabsMergeInfoService.findOne(info));
 		return modelAndView;
 	}
-
+	
 	@RequestMapping(path = "/page1", method = RequestMethod.POST)
 	public List<SysDbmsTabsColsInfo> page1(@RequestBody Pagination<SysDbmsTabsMergeInfo> vo) {
 		logger.info("page1", SysDbmsTabsMergeInfoController.class);
 		return sysDbmsTabsMergeInfoService.page1(vo);
 	}
-
+	
 	@RequestMapping(path = "/page2", method = RequestMethod.POST)
 	public List<SysDbmsTabsColsInfo> page2(@RequestBody Pagination<SysDbmsTabsMergeInfo> vo) {
 		logger.info("page2", SysDbmsTabsMergeInfoController.class);
 		return sysDbmsTabsMergeInfoService.page2(vo);
 	}
-
+	
 	@RequestMapping(path = "/merge", method = RequestMethod.POST)
 	public String merge(@RequestBody Pagination<SysDbmsTabsMergeInfo> vo) {
 		logger.info("merge", SysDbmsTabsMergeInfoController.class);
 		return sysDbmsTabsMergeInfoService.merge(vo);
 	}
-
+	
 	@RequestMapping(path = "/loadSql", method = RequestMethod.POST)
 	public BaseResult<String> loadSql(@RequestBody SysDbmsTabsMergeInfo vo) {
 		logger.info("loadSql", SysDbmsTabsMergeInfoController.class);
 		return ResultUtil.success(sysDbmsTabsMergeInfoService.loadSql(vo));
 	}
-
+	
 }

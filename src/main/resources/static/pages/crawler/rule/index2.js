@@ -66,7 +66,7 @@ function bindClick(){
 			callback : function(result) {
 					if (result) {
 						var submiturl = "/sysCrawlerRulerInfo/deleteAll";
-						ajaxPost(submiturl, {list:rows}, refreshGroupTable, 5000, findError);
+						ajaxPost(submiturl, {list:rows}, refreshGroupTable);
 					}
 				}
 			});
@@ -90,7 +90,7 @@ function bindClick(){
 			callback : function(result) {
 					if (result) {
 						var submiturl = "/sysCrawlerRulerInfo/start";
-						ajaxPost(submiturl, {list:rows}, refreshGroupTable, 5000, findError);
+						ajaxPost(submiturl, {list:rows}, refreshGroupTable);
 					}
 				}
 			});
@@ -109,7 +109,7 @@ function bindClick(){
 			callback : function(result) {
 					if (result) {
 						var submiturl = "/sysCrawlerRulerInfo/stop";
-						ajaxPost(submiturl, {list:rows}, refreshGroupTable, 5000, findError);
+						ajaxPost(submiturl, {list:rows}, refreshGroupTable);
 					}
 				}
 			});

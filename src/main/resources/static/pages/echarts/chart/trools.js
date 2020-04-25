@@ -124,7 +124,7 @@ function submit_add_group(){
 // 分组下拉显示加载
 function loadChartGroupSelect(result){
 	var data = [{id:"选择分组",text:"选择分组"}];
-	$.each(result,function(index,value){
+	$.each(result.data,function(index,value){
 		data.push({id:value.uuid,text:value.title})
 	})
 	$("#chart_group_select_id").empty();

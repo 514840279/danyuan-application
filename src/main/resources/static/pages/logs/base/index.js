@@ -13,7 +13,7 @@ $(function() {
         forceParse: 0
     }).on('changeDate',resetDate);
 	// search_table_logs_createUser
-	var url = '/sysUserBase/sysUserBaseList';
+	var url = '/sysUserBaseInfo/sysUserBaseList';
 	ajaxPost(url, null, sucessLoadsysUserBaseListSelect2, 1000, findError);
 	
 	

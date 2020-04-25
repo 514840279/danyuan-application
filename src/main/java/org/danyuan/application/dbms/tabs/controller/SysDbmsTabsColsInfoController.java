@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
+import org.danyuan.application.common.base.BaseController;
+import org.danyuan.application.common.base.BaseControllerImpl;
 import org.danyuan.application.common.base.Pagination;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
 import org.danyuan.application.dbms.tabs.service.SysDbmsTabsColsInfoService;
@@ -13,7 +15,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,35 +36,25 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @RestController
 @RequestMapping("/sysDbmsTabsColsInfo")
-public class SysDbmsTabsColsInfoController {
+public class SysDbmsTabsColsInfoController extends BaseControllerImpl<SysDbmsTabsColsInfo> implements BaseController<SysDbmsTabsColsInfo> {
 	//
 	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsTabsColsInfoController.class);
 	
 	//
 	@Autowired
 	private SysDbmsTabsColsInfoService	sysDbmsTabsColsInfoService;
-
+	
 	@Autowired
 	JdbcTemplate						jdbcTemplate;
 	
-	/**
-	 * 方法名： findAll
-	 * 功 能： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数： @return
-	 * 返 回： List<SysSeedInfo>
-	 * 作 者 ： Tenghui.Wang
-	 * @throws
-	 */
-	@RequestMapping(path = "/findAll", method = RequestMethod.POST)
-	public Page<SysDbmsTabsColsInfo> findAll(int pageNumber, int pageSize, String searchText, String uuid) {
-		logger.info("findAll", SysDbmsTabsColsInfoController.class);
-		return sysDbmsTabsColsInfoService.findAllByTableUuid(pageNumber, pageSize, searchText, uuid);
-	}
-	
-	@RequestMapping(path = "/page", method = RequestMethod.POST)
-	public Page<SysDbmsTabsColsInfo> page(@RequestBody Pagination<SysDbmsTabsColsInfo> vo) {
-		logger.info("page", SysDbmsTabsColsInfoController.class);
-		return sysDbmsTabsColsInfoService.page(vo);
+	@GetMapping("/detail/{uuid}")
+	public ModelAndView name(@PathVariable("uuid") String uuid) {
+		logger.info("detail", SysDbmsTabsColsInfoController.class);
+		ModelAndView modelAndView = new ModelAndView("dbms/tabs/sysdbmstabscolsinfodetail");
+		SysDbmsTabsColsInfo info = new SysDbmsTabsColsInfo();
+		info.setUuid(uuid);
+		modelAndView.addObject("sysDbmsTabsColsInfo", sysDbmsTabsColsInfoService.findOne(info));
+		return modelAndView;
 	}
 	
 	@RequestMapping(path = "/pagev", method = RequestMethod.POST)
@@ -69,12 +63,6 @@ public class SysDbmsTabsColsInfoController {
 		
 		return sysDbmsTabsColsInfoService.pagev(vo.getInfo().getTabsUuid());
 		
-	}
-	
-	@RequestMapping(path = "/findAll1", method = RequestMethod.POST)
-	public Page<SysDbmsTabsColsInfo> findAll1(@RequestBody SysDbmsTabsColsInfoVo vo) {
-		logger.info("findAll", SysDbmsTabsColsInfoController.class);
-		return sysDbmsTabsColsInfoService.findAllByTableUuid(vo.getPageNumber(), vo.getPageSize(), vo.getSearchText(), vo.getUuid());
 	}
 	
 	@RequestMapping(path = "/findAllBySysDbmsTabsColsInfo", method = RequestMethod.POST)
@@ -96,14 +84,6 @@ public class SysDbmsTabsColsInfoController {
 		logger.info("saveSysDbmsTabsColsInfo", SysDbmsTabsColsInfoController.class);
 		sysDbmsTabsColsInfoService.change(info);
 		return sysDbmsTabsColsInfoService.findAllByTableUuid(1, 10, "", info.getTabsUuid());
-		
-	}
-	
-	@RequestMapping(path = "/save", method = RequestMethod.POST)
-	public String save(@RequestBody SysDbmsTabsColsInfo info) {
-		logger.info("saveSysDbmsTabsColsInfo", SysDbmsTabsColsInfoController.class);
-		sysDbmsTabsColsInfoService.save(info);
-		return "1";
 		
 	}
 	
@@ -131,14 +111,6 @@ public class SysDbmsTabsColsInfoController {
 			sysDbmsTabsColsInfoService.save(info);
 		}
 		return "1";
-	}
-	
-	@RequestMapping(path = "/delete", method = RequestMethod.POST)
-	public String delete(@RequestBody SysDbmsTabsColsInfoVo vo) {
-		logger.info("delete", SysDbmsTabsColsInfoController.class);
-		sysDbmsTabsColsInfoService.deleteAll(vo.getList());
-		return "1";
-		
 	}
 	
 }

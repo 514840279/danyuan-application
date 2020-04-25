@@ -1,18 +1,17 @@
 package org.danyuan.application.softm.organization.controller;
 
-import java.util.List;
-
-import org.danyuan.application.common.base.Pagination;
+import org.danyuan.application.common.base.BaseController;
+import org.danyuan.application.common.base.BaseControllerImpl;
 import org.danyuan.application.softm.organization.po.SysOrganizationInfo;
-import org.danyuan.application.softm.organization.service.SysOrganizationService;
+import org.danyuan.application.softm.organization.service.SysOrganizationInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 文件名 ： SysOrganizationController.java
@@ -26,114 +25,21 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/sysOrganization")
-public class SysOrganizationController {
+public class SysOrganizationController extends BaseControllerImpl<SysOrganizationInfo> implements BaseController<SysOrganizationInfo> {
 	//
-	private static final Logger		logger	= LoggerFactory.getLogger(SysOrganizationController.class);
+	private static final Logger			logger	= LoggerFactory.getLogger(SysOrganizationController.class);
 	
 	//
 	@Autowired
-	private SysOrganizationService	sysOrganizationService;
+	private SysOrganizationInfoService	sysOrganizationInfoService;
 	
-	/**
-	 * 方法名： findAll
-	 * 功 能：查询所有数据
-	 * 参 数： @return
-	 * 返 回： List<SysRolesJurisdictionInfo>
-	 * 作 者 ： Tenghui.Wang
-	 * @throws
-	 */
-	@RequestMapping(path = "/sysOrganizationList", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<SysOrganizationInfo> findAll() {
-		logger.info("sysOrganizationList", SysOrganizationController.class);
-		return sysOrganizationService.findAll();
+	@GetMapping("/detail/{uuid}")
+	public ModelAndView name(@PathVariable("uuid") String uuid) {
+		logger.info("detail", SysOrganizationController.class);
+		ModelAndView modelAndView = new ModelAndView("softm/organization/sysorganizationinfodetail");
+		SysOrganizationInfo info = new SysOrganizationInfo();
+		info.setUuid(uuid);
+		modelAndView.addObject("sysOrganizationInfo", sysOrganizationInfoService.findOne(info));
+		return modelAndView;
 	}
-	
-	/**
-	 * 方法名： findAll
-	 * 功 能： 添加数据
-	 * 参 数： @return
-	 * 返 回： List<SysRolesJurisdictionInfo>
-	 * 作 者 ： Tenghui.Wang
-	 * @throws
-	 */
-	@RequestMapping(path = "/sysOrganizationAdd", method = RequestMethod.POST)
-	@ResponseBody
-	public String sysOrganizationAdd(@RequestBody SysOrganizationInfo info) {
-		try {
-			sysOrganizationService.sysOrganizationAdd(info);
-			return "1";
-		} catch (Exception e) {
-			return "0";
-		}
-	}
-	
-	/**
-	 * 方法名： sysOrganizationDelete
-	 * 功 能： 删除
-	 * 参 数： @param info
-	 * 参 数： @return
-	 * 返 回： String
-	 * 作 者 ： Tenghui.Wang
-	 * @throws
-	 */
-	@RequestMapping(path = "/sysOrganizationDelete", method = RequestMethod.POST)
-	@ResponseBody
-	public String sysOrganizationDelete(@RequestBody SysOrganizationInfo info) {
-		logger.info("sysOrganizationDelete", SysOrganizationController.class);
-		try {
-			sysOrganizationService.sysOrganizationDelete(info);
-			return "1";
-		} catch (Exception e) {
-			return "0";
-		}
-	}
-	
-	@RequestMapping(path = "/delete", method = RequestMethod.POST)
-	@ResponseBody
-	public String delete(@RequestBody Pagination<SysOrganizationInfo> vo) {
-		logger.info("delete", SysOrganizationController.class);
-		try {
-			sysOrganizationService.delete(vo.getList());
-			return "1";
-		} catch (Exception e) {
-			return "0";
-		}
-	}
-	
-	/**
-	 * 方法名： findSysOrganization
-	 * 功 能：根据uuid查询一条数据
-	 * 参 数： @param info
-	 * 参 数： @return
-	 * 返 回： SysOrganizationInfo
-	 * 作 者 ： Tenghui.Wang
-	 * @throws
-	 */
-	@RequestMapping(path = "/findSysOrganization", method = RequestMethod.POST)
-	@ResponseBody
-	public SysOrganizationInfo findSysOrganization(@RequestBody SysOrganizationInfo info) {
-		logger.info("findSysOrganization", SysOrganizationController.class);
-		return sysOrganizationService.findSysOrganization(info.getUuid());
-	}
-	
-	/**
-	 * 方法名： sysOrganizationEdit
-	 * 功 能： 修改数据
-	 * 参 数： @param info
-	 * 参 数： @return
-	 * 返 回： String
-	 * 作 者 ： Tenghui.Wang
-	 * @throws
-	 */
-	@RequestMapping(path = "/sysOrganizationEdit", method = RequestMethod.POST)
-	@ResponseBody
-	public String sysOrganizationEdit(@RequestBody SysOrganizationInfo info) {
-		try {
-			sysOrganizationService.sysOrganizationEdit(info);
-			return "1";
-		} catch (Exception e) {
-			return "0";
-		}
-	}
-	
 }

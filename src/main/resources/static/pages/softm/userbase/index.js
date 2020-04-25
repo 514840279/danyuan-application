@@ -83,7 +83,7 @@ function userAddFormValidator(){
 	                } ,
 	                remote: {
 	                    message: '已经注册过了',
-	                    url: '/sysUserBase/checkUserName',
+	                    url: '/sysUserBaseInfo/checkUserName',
 	                    type: 'POST',//请求方式
 //	                    data : '',//这里默认会传递该验证字段的值到后端
 	                    delay:2000 //这里特别要说明，必须要加此属性，否则用户输入一个字就会访问后台一次，会消耗大量的系统资源，
@@ -222,7 +222,7 @@ $(function() {
 							"list":data,
 						};
 						// 重载
-						var url = "/sysUserBase/delete";
+						var url = "/sysUserBaseInfo/deleteAll";
 						ajaxPost(url, param, successDelete, 1000, findError);
 					}
 				}
@@ -277,7 +277,7 @@ $(function() {
 //				headPic:$('#upd_userBase_headPic').val(),
 				discription:$('#upd_userBase_discription').val(),
 			};
-			ajaxPost("/sysUserBase/saveu", params, successUpdsysuser, 1000, findError);
+			ajaxPost("/sysUserBaseInfo/saveu", params, successUpdsysuser, 1000, findError);
 		}
 	});
 	
@@ -297,7 +297,7 @@ $(function() {
 				phone:$('#add_userBase_phone').val(),
 				discription:$('#add_userBase_discription').val(),
 			};
-			ajaxPost("/sysUserBase/save", params, successAddsysuser, 10000, findError);
+			ajaxPost("/sysUserBaseInfo/save", params, successAddsysuser, 10000, findError);
 		}
 	});
 	
@@ -326,14 +326,14 @@ $(function() {
 				password:$('#change_userBase_password').val(),
 				}
 			};
-			ajaxPost("/sysUserBase/changePassword", params, successchangesysuser, 10000, findError);
+			ajaxPost("/sysUserBaseInfo/changePassword", params, successchangesysuser, 10000, findError);
 		}
 	})
 	
 	
 	// bootstrap table
 	$('#admin_userBase_datagrid').bootstrapTable({
-	    url : "/sysUserBase/sysUserBaseList",
+	    url : "/sysUserBaseInfo/page",
 	    dataType : "json",
 	    toolbar : '#userBase_toolbar', // 工具按钮用哪个容器
 	    cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -360,7 +360,20 @@ $(function() {
 	    search : true, // 显示搜索框
 	    refresh : true,
 	    striped : true, // 是否显示行间隔色
-	    // sidePagination: "server", // 服务端处理分页
+		sidePagination: "server", // 服务端处理分页 server
+		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
+        //设置为limit可以获取limit, offset, search, sort, order  
+        queryParamsType : "undefined",
+        contentType: "application/json",
+		method: "post",  //使用get请求到服务器获取数据  
+		queryParams: function queryParams(params) {  
+		    var param = {  
+		    	 pageNumber: params.pageNumber,    
+	             pageSize: params.pageSize,
+                 info:{},
+             }; 
+             return param;
+		},
 	    columns : [ 
 	    	{title : '全选',checkbox : true,     align : 'center',valign : 'middle'  },
 //	    	{title : 'id',field : 'uuid',align : 'center',sortable : true,valign : 'middle'  },
@@ -378,7 +391,10 @@ $(function() {
 				var B = "<i  type='button' id='clickB'  class=' btn btn-default fa fa-search' title='查看档案' >档案查看</i> ";
 				return A+B ;
 			}} 
-    	] ,
+    	],
+        responseHandler: function(result){  // 成功时执行
+			return {rows:result.data.content,total:result.data.totalElements};
+		},
 	    onClickRow:function(index){
 	    	$("#admin_userBase_role_datagrid").bootstrapTable("destroy");
 	    	InitSubRoleTable(index);
@@ -417,6 +433,7 @@ $('#change_user_password_modal').on('hidden.bs.modal', function() {
 
 
 function InitSubRoleTable(index) { 
+	console.log(index)
     $("#admin_userBase_role_datagrid").bootstrapTable({  
         url:'/sysRoles/findAllRoleBySearchText',  
         dataType : "json",
@@ -441,11 +458,11 @@ function InitSubRoleTable(index) {
 		singleSelect : false,
 		locales : "zh-CN", // 表格汉化
 //		search : true, // 显示搜索框
-		sidePagination: "client", // 服务端处理分页 server
+		sidePagination: "server", // 服务端处理分页 client
 		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
         //设置为limit可以获取limit, offset, search, sort, order  
         queryParamsType : "undefined",
-        contentType: "application/x-www-form-urlencoded",
+        contentType: "application/json",
 		method: "post",  //使用get请求到服务器获取数据  
 		queryParams: function queryParams(params) {  
 		    var param = {  
@@ -463,10 +480,9 @@ function InitSubRoleTable(index) {
 //			{title : '更新时间',field : 'updataTime',sortable : true,align : 'center'},
 //			{title : '标记',	field : 'deleteFlag',	sortable : true,align : 'center'}
 		],
-//        responseHandler: function(result){  // 成功时执行
-//        	console.log(result);
-//			return {rows:result.content,total:result.totalElements};
-//		}, 
+        responseHandler: function(result){  // 成功时执行
+			return {rows:result,total:result.length};
+		}, 
         onLoadSuccess: function(){  //加载成功时执行  
 	    },  
 	    onLoadError: function(){  //加载失败时执行  

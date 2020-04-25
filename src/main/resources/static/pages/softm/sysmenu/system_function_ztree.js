@@ -285,7 +285,7 @@ function addMenusubmit() {
 			insertUser : username,
 			homePage:$("input[name='homePage']:checked").val()
 		}
-		var url = "/sysMenuInfo/addSysMenuInfo";
+		var url = "/sysMenuInfo/save";
 		console.log(param);
 		// 重载
 		ajaxPost(url, param, sucessAddMenu, 1000, findError);
@@ -294,9 +294,9 @@ function addMenusubmit() {
 
 function sucessAddMenu(result) {
 	var newNode = {
-	id : result.id,
-	name : result.name,
-	icon : result.icon
+		id : result.data.id,
+		name : result.data.name,
+		icon : result.data.icon
 	};
 	if (zTree.getSelectedNodes()[0] != null) {
 		newNode.checked = zTree.getSelectedNodes()[0].checked;
@@ -313,11 +313,12 @@ function updateTreeNode() {
 	var param = {
 		uuid : zTree.getSelectedNodes()[0].id
 	};
-	var url = "/sysMenuInfo/findSysMenuInfoByUuid";
+	var url = "/sysMenuInfo/findOne";
 	ajaxPost(url, param, loadUpdateMenu, 1000, findError);
 }
 
-function loadUpdateMenu(result) {
+function loadUpdateMenu(data) {
+	result = data.data;
 	$("#upd_menu_uuid").val(result.uuid);
 	$("#upd_menu_name").val(result.name);
 	$("#upd_menu_icon").val(result.icon);
@@ -326,6 +327,7 @@ function loadUpdateMenu(result) {
 	$("#upd_menu_parentId").val(result.parentsId);
 	$("#upd_menu_sort").val(result.sort);
 	$("#upd_menu_deleteFlag").val(result.deleteFlag);
+	
 	if(result.homePage==false||result.homePage==null){
 		$("input[name='upd_homePage'][value='false']").prop("checked", "checked");
 	}else if(result.homePage=="1"){
@@ -399,16 +401,16 @@ function updatesubmitMenu() {
 			updateUser : username,
 			homePage:$("input[name='upd_homePage']:checked").val()
 		}
-		var url = "/sysMenuInfo/addSysMenuInfo";
+		var url = "/sysMenuInfo/save";
 		// 重载
 		ajaxPost(url, param, successUpdateMenu, 1000, findError);
 	}
 }
 
 function successUpdateMenu(result) {
-	zTree.getSelectedNodes()[0].id = result.id;
-	zTree.getSelectedNodes()[0].name = result.name;
-	zTree.getSelectedNodes()[0].icon = result.icon;
+	zTree.getSelectedNodes()[0].id = result.data.id;
+	zTree.getSelectedNodes()[0].name = result.data.name;
+	zTree.getSelectedNodes()[0].icon = result.data.icon;
 	zTree.updateNode(zTree.getSelectedNodes()[0]);
 	
 	$("#updateMenuModal").modal("hide");

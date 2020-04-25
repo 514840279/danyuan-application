@@ -1,4 +1,4 @@
-window.operateEvents = {
+	window.operateEvents = {
 		// 修改
         'click #clickA ': function (e, value, row, index) {
         	getEditsuccess(row);
@@ -11,7 +11,7 @@ window.operateEvents = {
 				title : "系统提示",
 				callback : function(result) {
 						if (result) {
-							var submiturl = "/sysOrganization/sysOrganizationDelete";
+							var submiturl = "/sysOrganization/delete";
 							ajaxPost(submiturl, row, success, 5000, error);
 						}
 					}
@@ -37,7 +37,7 @@ $(function() {
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var submiturl = "/sysOrganization/delete";
+						var submiturl = "/sysOrganization/deleteAll";
 						ajaxPost(submiturl, {list:data}, success, 5000, error);
 					}
 				}
@@ -56,7 +56,7 @@ $(function() {
 
 	// bootstrap table
 	$('#admin_organization_datagrid').bootstrapTable({
-		url : "/sysOrganization/sysOrganizationList",
+		url : "/sysOrganization/page",
 		dataType : "json",
 		toolbar : '#organization_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -83,6 +83,20 @@ $(function() {
 		search : true, // 显示搜索框
 		refresh : true,
 		striped : true, // 是否显示行间隔色
+		sidePagination: "server", // 服务端处理分页 server
+		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
+        //设置为limit可以获取limit, offset, search, sort, order  
+        queryParamsType : "undefined",
+        contentType: "application/json",
+		method: "post",  //使用get请求到服务器获取数据  
+		queryParams: function queryParams(params) {  
+		    var param = {  
+		    	 pageNumber: params.pageNumber,    
+	             pageSize: params.pageSize,
+                 info:{},
+             }; 
+             return param;
+		},
 		// sidePagination: "server", // 服务端处理分页
 		columns : [
 			{title : '全选',checkbox : true,	align : 'center',valign : 'middle'},
@@ -102,7 +116,10 @@ $(function() {
 					return e + d;
 				}
 			} 
-		]
+		],
+        responseHandler: function(result){  // 成功时执行
+			return {rows:result.data.content,total:result.data.totalElements};
+		},
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
     }).on('click-row.bs.table', function (e, row, ele,field) {
     	$(".info").removeClass("info");
@@ -158,18 +175,18 @@ function add(){
 	var flag = $('#admin_organization_add_form').data("bootstrapValidator").isValid();
 	if (flag) {
 		var info={
-				uuid:getUuid(),
-				organizationCode:$('#add_organizationCode').val(),
-				organizationName:$('#add_organizationName').val(),
-				discription:$('#add_organizationDiscription').val(),
+			uuid:getUuid(),
+			organizationCode:$('#add_organizationCode').val(),
+			organizationName:$('#add_organizationName').val(),
+			discription:$('#add_organizationDiscription').val(),
 //				deleteFlag:$('#add_flag:checked').val()
-				organizationAddress:$('#add_organizationAddress').val(),
-				organizationPhone:$('#add_organizationPhone').val(),
-				organizationEmail:$('#add_organizationEmail').val(),
+			organizationAddress:$('#add_organizationAddress').val(),
+			organizationPhone:$('#add_organizationPhone').val(),
+			organizationEmail:$('#add_organizationEmail').val(),
 		};
 		
-		var submiturl = "/sysOrganization/sysOrganizationAdd";
-		ajaxPost(submiturl, info, success, 5000, error);
+		var submiturl = "/sysOrganization/save";
+		ajaxPost(submiturl, info, success);
 	}
 };
 
@@ -241,17 +258,17 @@ function edit(){
 	var flag = $('#admin_organization_edit_form').data("bootstrapValidator").isValid();
 	if (flag) {
 		var info={
-				uuid:$('#edit_uuid').text(),	
-				organizationCode:$('#edit_organizationCode').val(),
-				organizationName:$('#edit_organizationName').val(),
-				discription:$('#edit_organizationDiscription').val(),
-				organizationAddress:$('#edit_organizationAddress').val(),
-				organizationPhone:$('#edit_organizationPhone').val(),
-				organizationEmail:$('#edit_organizationEmail').val(),
+			uuid:$('#edit_uuid').text(),	
+			organizationCode:$('#edit_organizationCode').val(),
+			organizationName:$('#edit_organizationName').val(),
+			discription:$('#edit_organizationDiscription').val(),
+			organizationAddress:$('#edit_organizationAddress').val(),
+			organizationPhone:$('#edit_organizationPhone').val(),
+			organizationEmail:$('#edit_organizationEmail').val(),
 //				deleteFlag:$('#edit_flag:checked').val()
 		};
 		console.log(info);
-		var submiturl = "/sysOrganization/sysOrganizationEdit";
+		var submiturl = "/sysOrganization/save";
 		ajaxPost(submiturl, info, success, 5000, error);
 	}
 };
@@ -277,7 +294,7 @@ function stateFormatter(value,row,index){
 
 // success
 function success(result){
-	if(result=="1"){
+	if(result.code == 200){
 		// 添加表单清空
 		document.getElementById('admin_organization_add_form').reset();
 		// 编辑表单清空
@@ -287,7 +304,7 @@ function success(result){
 		// 隐藏模态框
 		$('#admin_organization_edit_modal').modal("hide");
 		// 重载table
-		$('#admin_organization_datagrid').bootstrapTable('refresh',"/sysOrganization/sysOrganizationList");
+		$('#admin_organization_datagrid').bootstrapTable('refresh');
 		// 模态框提示
 //		toastr.success("成功修改");
 	}else{

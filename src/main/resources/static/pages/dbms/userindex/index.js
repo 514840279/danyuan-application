@@ -50,9 +50,9 @@ $(function() {
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var url = "/sysDbmsUserIndexInfo/delete";
+						var url = "/sysDbmsUserIndexInfo/deleteAll";
 						var param={list:data};
-						ajaxPost(url, param, addSysDicUserIndexCodeSuccess, 5000, findError);
+						ajaxPost(url, param, addSysDicUserIndexCodeSuccess);
 					}
 				}
 			});
@@ -75,7 +75,7 @@ $(function() {
 			updateUser:username,
 		}
 		console.log(SysDicUserIndexCode);
-		ajaxPost(url, SysDicUserIndexCode, addSysDicUserIndexCodeSuccess, 5000, findError);
+		ajaxPost(url, SysDicUserIndexCode, addSysDicUserIndexCodeSuccess);
 		$('#dbm_userindex_add_modal').modal("hide");
 	});
 	
@@ -143,7 +143,7 @@ $(function() {
 			{title : '标记',field : 'deleteFlag',align : 'left',valign : 'middle'}
 		],
 		responseHandler: function(result){  // 成功时执行
-			return {rows:result.content,total:result.totalElements};
+			return {rows:result.data.content,total:result.data.totalElements};
 		}, 
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
     }).on('click-row.bs.table', function (e, row, ele,field) {

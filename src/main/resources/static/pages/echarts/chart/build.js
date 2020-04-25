@@ -104,7 +104,7 @@ function init(){
 					if (result) {
 						var url = "/sysDbmsChartDimension/delete";
 						var param={uuid:uuid};
-						ajaxPost(url, param, deleteSuccess, 5000, findError);
+						ajaxPost(url, param, deleteSuccess);
 					}
 				}
 			});

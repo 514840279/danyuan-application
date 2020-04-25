@@ -1,206 +1,171 @@
 package org.danyuan.application.crawler.config.po;
 
 import java.io.Serializable;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import org.danyuan.application.common.base.BaseEntity;
 
 /**
- * The persistent class for the sys_seed_result_ruler_info database table.
+ * @文件名 SysCrawlerResultRulerInfo.java
+ * @包名 org.danyuan.application.crawler.config.po
+ * @描述 sys_crawler_result_ruler_info的实体类
+ * @时间 2020年04月25日 08:00:23
+ * @author test
+ * @版本 V1.0
  */
 @Entity
 @Table(name = "sys_crawler_result_ruler_info")
 @NamedQuery(name = "SysCrawlerResultRulerInfo.findAll", query = "SELECT s FROM SysCrawlerResultRulerInfo s")
-public class SysCrawlerResultRulerInfo implements Serializable {
-	
-	/**
-	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
-	 */
-	private static final long	serialVersionUID	= -8550950330729844126L;
-	
-	@Id
-	@Column(name = "uuid", unique = true, nullable = false, columnDefinition = " varchar(36) COMMENT '主键'")
-	private String				uuid;
-	
-	@Column(name = "cols_name", columnDefinition = "varchar(30) COMMENT '表字段名'")
-	private String				colsName;
-	
-	@Column(name = "cols_uuid", columnDefinition = "varchar(36) COMMENT '表字段id'")
-	private String				colsUuid;
-	
-	@Column(name = "ruler_colum_name", columnDefinition = "varchar(30) COMMENT '规则字段名'")
-	private String				rulerColumName;
-	
-	@Column(name = "ruler_colum_uuid", columnDefinition = "varchar(36) COMMENT '规则字段id'")
-	private String				rulerColumUuid;
-	
-	@Column(name = "ruler_uuid", columnDefinition = "varchar(36) COMMENT '规则id'")
-	private String				rulerUuid;
-	
-	@Column(name = "table_uuid", columnDefinition = "varchar(36) COMMENT '表id'")
-	private String				tableUuid;
-	
-	@Column(name = "discription", columnDefinition = "varchar(200) COMMENT '资源功能描述'")
-	private String				discription;								// discription
-	// 描述
-	
-	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				createTime;									// create_time
-	// 插入时间
-	
-	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String				createUser;									// create_user
-	// 插入人
-	
-	@Column(name = "update_time", updatable = false, insertable = false, columnDefinition = " timestamp  default CURRENT_TIMESTAMP  COMMENT '更新时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date				updateTime;									// updata_time
-	// 更新时间
-	
-	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
-	private String				updateUser;									// updata_user
-	// 更新人
-	
-	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer				deleteFlag;									// delete_flag
-	// 标记
-	
+public class SysCrawlerResultRulerInfo extends BaseEntity implements Serializable {
+	private static final long	serialVersionUID	= 1L;
+
+
+	// 表字段名
+	@Column(name = "cols_name")
+	private  String 	colsName;
+
+	// 规则字段名
+	@Column(name = "ruler_colum_name")
+	private  String 	rulerColumName;
+
+	// 表id
+	@Column(name = "table_uuid")
+	private  String 	tableUuid;
+
+	// 规则字段id
+	@Column(name = "ruler_colum_uuid")
+	private  String 	rulerColumUuid;
+
+	// 表字段id
+	@Column(name = "cols_uuid")
+	private  String 	colsUuid;
+
+	// 规则id
+	@Column(name = "ruler_uuid")
+	private  String 	rulerUuid;
+
+	/**  
+	*  构造方法： 
+	*  描    述： 默认构造函数  
+	*  参    数： 
+	*  作    者 ： test  
+	*  @throws  
+	*/
 	public SysCrawlerResultRulerInfo() {
+		super();
 	}
-	
-	public String getUuid() {
-		return this.uuid;
+
+
+	/**
+	 * 方法名 ： getColsName
+	 * 功 能 ： 返回变量 colsName 表字段名 的值
+	 *
+	 * @return: String 
+	 */
+	public  String  getColsName() {
+		return colsName;
 	}
-	
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
-	
-	public String getColsName() {
-		return this.colsName;
-	}
-	
-	public void setColsName(String colsName) {
+
+	/**
+	 * 方法名 ： setColsName
+	 * 功 能 ： 设置变量 colsName 表字段名 的值
+	 */
+	public void setColsName( String  colsName) {
 		this.colsName = colsName;
 	}
-	
-	public String getColsUuid() {
-		return this.colsUuid;
+
+	/**
+	 * 方法名 ： getRulerColumName
+	 * 功 能 ： 返回变量 rulerColumName 规则字段名 的值
+	 *
+	 * @return: String 
+	 */
+	public  String  getRulerColumName() {
+		return rulerColumName;
 	}
-	
-	public void setColsUuid(String colsUuid) {
-		this.colsUuid = colsUuid;
-	}
-	
-	public Date getCreateTime() {
-		return this.createTime;
-	}
-	
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-	
-	public String getCreateUser() {
-		return this.createUser;
-	}
-	
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
-	}
-	
-	public Integer getDeleteFlag() {
-		return this.deleteFlag;
-	}
-	
-	public void setDeleteFlag(Integer deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}
-	
-	public String getDiscription() {
-		return this.discription;
-	}
-	
-	public void setDiscription(String discription) {
-		this.discription = discription;
-	}
-	
-	public String getRulerColumName() {
-		return this.rulerColumName;
-	}
-	
-	public void setRulerColumName(String rulerColumName) {
+
+	/**
+	 * 方法名 ： setRulerColumName
+	 * 功 能 ： 设置变量 rulerColumName 规则字段名 的值
+	 */
+	public void setRulerColumName( String  rulerColumName) {
 		this.rulerColumName = rulerColumName;
 	}
-	
-	public String getRulerColumUuid() {
-		return this.rulerColumUuid;
+
+	/**
+	 * 方法名 ： getTableUuid
+	 * 功 能 ： 返回变量 tableUuid 表id 的值
+	 *
+	 * @return: String 
+	 */
+	public  String  getTableUuid() {
+		return tableUuid;
 	}
-	
-	public void setRulerColumUuid(String rulerColumUuid) {
-		this.rulerColumUuid = rulerColumUuid;
-	}
-	
-	public String getRulerUuid() {
-		return this.rulerUuid;
-	}
-	
-	public void setRulerUuid(String rulerUuid) {
-		this.rulerUuid = rulerUuid;
-	}
-	
-	public String getTableUuid() {
-		return this.tableUuid;
-	}
-	
-	public void setTableUuid(String tableUuid) {
+
+	/**
+	 * 方法名 ： setTableUuid
+	 * 功 能 ： 设置变量 tableUuid 表id 的值
+	 */
+	public void setTableUuid( String  tableUuid) {
 		this.tableUuid = tableUuid;
 	}
-	
+
 	/**
-	 * 方法名 ： getUpdateTime
-	 * 功 能 ： 返回变量 updateTime 的值
+	 * 方法名 ： getRulerColumUuid
+	 * 功 能 ： 返回变量 rulerColumUuid 规则字段id 的值
 	 *
-	 * @return: Date
+	 * @return: String 
 	 */
-	public Date getUpdateTime() {
-		return updateTime;
+	public  String  getRulerColumUuid() {
+		return rulerColumUuid;
 	}
-	
+
 	/**
-	 * 方法名 ： setUpdateTime
-	 * 功 能 ： 设置变量 updateTime 的值
+	 * 方法名 ： setRulerColumUuid
+	 * 功 能 ： 设置变量 rulerColumUuid 规则字段id 的值
 	 */
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
+	public void setRulerColumUuid( String  rulerColumUuid) {
+		this.rulerColumUuid = rulerColumUuid;
 	}
-	
+
 	/**
-	 * 方法名 ： getUpdateUser
-	 * 功 能 ： 返回变量 updateUser 的值
+	 * 方法名 ： getColsUuid
+	 * 功 能 ： 返回变量 colsUuid 表字段id 的值
 	 *
-	 * @return: String
+	 * @return: String 
 	 */
-	public String getUpdateUser() {
-		return updateUser;
+	public  String  getColsUuid() {
+		return colsUuid;
 	}
-	
+
 	/**
-	 * 方法名 ： setUpdateUser
-	 * 功 能 ： 设置变量 updateUser 的值
+	 * 方法名 ： setColsUuid
+	 * 功 能 ： 设置变量 colsUuid 表字段id 的值
 	 */
-	public void setUpdateUser(String updateUser) {
-		this.updateUser = updateUser;
+	public void setColsUuid( String  colsUuid) {
+		this.colsUuid = colsUuid;
 	}
-	
+
+	/**
+	 * 方法名 ： getRulerUuid
+	 * 功 能 ： 返回变量 rulerUuid 规则id 的值
+	 *
+	 * @return: String 
+	 */
+	public  String  getRulerUuid() {
+		return rulerUuid;
+	}
+
+	/**
+	 * 方法名 ： setRulerUuid
+	 * 功 能 ： 设置变量 rulerUuid 规则id 的值
+	 */
+	public void setRulerUuid( String  rulerUuid) {
+		this.rulerUuid = rulerUuid;
+	}
+
+
 }

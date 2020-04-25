@@ -2,6 +2,8 @@ package org.danyuan.application.dbms.tabs.service;
 
 import java.util.List;
 
+import org.danyuan.application.common.base.BaseService;
+import org.danyuan.application.common.base.BaseServiceImpl;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsUserIndexInfoDao;
 import org.danyuan.application.dbms.tabs.po.SysDbmsUserIndexInfo;
 import org.danyuan.application.dbms.tabs.vo.SysDbmsUserIndexInfoVo;
@@ -25,7 +27,7 @@ import org.springframework.stereotype.Service;
  * 版 本 ： V1.0
  */
 @Service
-public class SysDbmsUserIndexInfoService {
+public class SysDbmsUserIndexInfoService extends BaseServiceImpl<SysDbmsUserIndexInfo> implements BaseService<SysDbmsUserIndexInfo> {
 	@Autowired
 	private SysDbmsUserIndexInfoDao sysDbmsUserIndexInfoDao;
 	
@@ -67,30 +69,6 @@ public class SysDbmsUserIndexInfoService {
 		return sourceCodes;
 	}
 	
-	/**
-	 * 方法名： save
-	 * 功 能： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数： @param info
-	 * 返 回： void
-	 * 作 者 ： Administrator
-	 * @throws
-	 */
-	public void save(SysDbmsUserIndexInfo info) {
-		sysDbmsUserIndexInfoDao.save(info);
-	}
-	
-	/**
-	 * 方法名： delete
-	 * 功 能： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数： @param list
-	 * 返 回： void
-	 * 作 者 ： Administrator
-	 * @throws
-	 */
-	public void delete(List<SysDbmsUserIndexInfo> list) {
-		sysDbmsUserIndexInfoDao.deleteAll(list);
-	}
-
 	/**
 	 * 方法名： chartList
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)

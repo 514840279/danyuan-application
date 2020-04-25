@@ -176,9 +176,9 @@ $(function() {
 	});
 	
 	// 数据库列表下拉
-	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', null, successSearchDatabaseInfoindex, null, findError);
+	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', {}, successSearchDatabaseInfoindex, null, findError);
 	// 表类型列表下拉
-	ajaxPost('/sysDbmsTabsTypeInfo/findAll', null, successSearchTableTypeInfoindex, null, findError);
+	ajaxPost('/sysDbmsTabsTypeInfo/findAll', {}, successSearchTableTypeInfoindex, null, findError);
 
 });
 function successDeleteSysTableInfo(reslut){
@@ -188,7 +188,7 @@ function successDeleteSysTableInfo(reslut){
 //数据库列表下拉
 function successSearchDatabaseInfoindex(result){
 	var data =[{id:'请选择',text:'请选择'}];
-	$.each(result,function(index,value){
+	$.each(result.data,function(index,value){
 		data.push({id:value.uuid,text: value.databaseName});
 	})
 

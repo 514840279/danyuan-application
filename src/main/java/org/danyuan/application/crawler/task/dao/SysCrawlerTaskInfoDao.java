@@ -7,16 +7,14 @@ import org.danyuan.application.crawler.task.po.SysCrawlerTaskInfo;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-/**    
-*  文件名 ： SysCrawlerTaskInfoDao.java  
-*  包    名 ： org.danyuan.application.crawler.task.dao  
-*  描    述 ： TODO(用一句话描述该文件做什么)  
-*  机能名称：
-*  技能ID ：
-*  作    者 ： wang  
-*  时    间 ： 2018年11月1日 下午9:34:02  
-*  版    本 ： V1.0    
-*/
+/**
+ * @文件名 SysCrawlerTaskInfoDao.java
+ * @包名 org.danyuan.application.crawler.task.dao
+ * @描述 dao层
+ * @时间 2020年04月25日 11:27:02
+ * @author test
+ * @版本 V1.0
+ */
 @Repository
 public interface SysCrawlerTaskInfoDao extends BaseDao<SysCrawlerTaskInfo> {
 	
@@ -43,3 +41,4 @@ public interface SysCrawlerTaskInfoDao extends BaseDao<SysCrawlerTaskInfo> {
 	List<String> findTaskName();
 	
 }
+

@@ -1,266 +1,171 @@
 package org.danyuan.application.dbms.tabs.po;
 
 import java.io.Serializable;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import org.danyuan.application.common.base.BaseEntity;
 
 /**
- * The persistent class for the sys_dic_user_index_code database table.
+ * @文件名 SysDbmsUserIndexInfo.java
+ * @包名 org.danyuan.application.dbms.tabs.po
+ * @描述 sys_dbms_user_index_info的实体类
+ * @时间 2020年04月25日 12:15:39
+ * @author test
+ * @版本 V1.0
  */
 @Entity
 @Table(name = "sys_dbms_user_index_info")
 @NamedQuery(name = "SysDbmsUserIndexInfo.findAll", query = "SELECT s FROM SysDbmsUserIndexInfo s")
-public class SysDbmsUserIndexInfo implements Serializable {
+public class SysDbmsUserIndexInfo extends BaseEntity implements Serializable {
 	private static final long	serialVersionUID	= 1L;
 
-	@Id
-	@Column(name = "UUID", columnDefinition = " varchar(36) COMMENT '主键'")
-	private String				uuid;
 
-	@Column(name = "user_desc")
-	private String				userDesc;
+	// 
+	@Column(name = "user_order",precision=10)
+	private  Integer 	userOrder;
 
-	@Column(name = "user_index")
-	private String				userIndex;
-	
+	// 
 	@Column(name = "user_placeholder")
-	private String				userPlaceholder;
+	private  String 	userPlaceholder;
 
-	@Column(name = "user_order")
-	private Integer				userOrder;
+	// 
+	@Column(name = "multeity",precision=10)
+	private  Integer 	multeity;
 
-	@Column(name = "multeity")
-	private Integer				multeity;
+	// 
+	@Column(name = "user_index")
+	private  String 	userIndex;
 
-	@Column(name = "chart")
-	private Integer				chart;
-	
-	@Column(columnDefinition = "varchar(200) COMMENT '资源功能描述'")
-	private String				discription;
+	// 
+	@Column(name = "user_desc")
+	private  String 	userDesc;
 
-	@Column(name = "create_time", updatable = false, columnDefinition = " timestamp default CURRENT_TIMESTAMP COMMENT '录入时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.CreationTimestamp
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date				createTime;					// create_time
-	// 插入时间
+	// 
+	@Column(name = "chart",precision=10)
+	private  Integer 	chart;
 
-	@Column(name = "create_user", updatable = false, columnDefinition = " varchar(50) default 'system' COMMENT '录入人员'")
-	private String				createUser;					// create_user
-	// 插入人
-
-	@Column(name = "update_time", updatable = false, insertable = false, columnDefinition = " timestamp  default CURRENT_TIMESTAMP  COMMENT '更新时间'")
-	@Temporal(TemporalType.TIMESTAMP)
-	@org.hibernate.annotations.UpdateTimestamp
-	@DateTimeFormat(style = "yyyy-MM-dd HH:mm:ss")
-	private Date				updateTime;					// updata_time
-	// 更新时间
-
-	@Column(name = "update_user", insertable = false, columnDefinition = " varchar(50) default 'system'  COMMENT '更新人员'")
-	private String				updateUser;					// updata_user
-	// 更新人
-
-	@Column(name = "delete_flag", columnDefinition = " int default 0 COMMENT '停用标记'")
-	private Integer				deleteFlag;
-	// 标记
-
+	/**  
+	*  构造方法： 
+	*  描    述： 默认构造函数  
+	*  参    数： 
+	*  作    者 ： test  
+	*  @throws  
+	*/
 	public SysDbmsUserIndexInfo() {
+		super();
 	}
 
-	public String getUuid() {
-		return uuid;
+
+	/**
+	 * 方法名 ： getUserOrder
+	 * 功 能 ： 返回变量 userOrder  的值
+	 *
+	 * @return: String 
+	 */
+	public  Integer  getUserOrder() {
+		return userOrder;
 	}
 
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
+	/**
+	 * 方法名 ： setUserOrder
+	 * 功 能 ： 设置变量 userOrder  的值
+	 */
+	public void setUserOrder( Integer  userOrder) {
+		this.userOrder = userOrder;
+	}
+
+	/**
+	 * 方法名 ： getUserPlaceholder
+	 * 功 能 ： 返回变量 userPlaceholder  的值
+	 *
+	 * @return: String 
+	 */
+	public  String  getUserPlaceholder() {
+		return userPlaceholder;
+	}
+
+	/**
+	 * 方法名 ： setUserPlaceholder
+	 * 功 能 ： 设置变量 userPlaceholder  的值
+	 */
+	public void setUserPlaceholder( String  userPlaceholder) {
+		this.userPlaceholder = userPlaceholder;
+	}
+
+	/**
+	 * 方法名 ： getMulteity
+	 * 功 能 ： 返回变量 multeity  的值
+	 *
+	 * @return: String 
+	 */
+	public  Integer  getMulteity() {
+		return multeity;
+	}
+
+	/**
+	 * 方法名 ： setMulteity
+	 * 功 能 ： 设置变量 multeity  的值
+	 */
+	public void setMulteity( Integer  multeity) {
+		this.multeity = multeity;
+	}
+
+	/**
+	 * 方法名 ： getUserIndex
+	 * 功 能 ： 返回变量 userIndex  的值
+	 *
+	 * @return: String 
+	 */
+	public  String  getUserIndex() {
+		return userIndex;
+	}
+
+	/**
+	 * 方法名 ： setUserIndex
+	 * 功 能 ： 设置变量 userIndex  的值
+	 */
+	public void setUserIndex( String  userIndex) {
+		this.userIndex = userIndex;
 	}
 
 	/**
 	 * 方法名 ： getUserDesc
-	 * 功 能 ： 返回变量 userDesc 的值
+	 * 功 能 ： 返回变量 userDesc  的值
 	 *
-	 * @return: String
+	 * @return: String 
 	 */
-	public String getUserDesc() {
+	public  String  getUserDesc() {
 		return userDesc;
 	}
 
 	/**
 	 * 方法名 ： setUserDesc
-	 * 功 能 ： 设置变量 userDesc 的值
+	 * 功 能 ： 设置变量 userDesc  的值
 	 */
-	public void setUserDesc(String userDesc) {
+	public void setUserDesc( String  userDesc) {
 		this.userDesc = userDesc;
 	}
 
-	public String getUserIndex() {
-		return this.userIndex;
-	}
-
-	public void setUserIndex(String userIndex) {
-		this.userIndex = userIndex;
-	}
-
-	public Integer getUserOrder() {
-		return this.userOrder;
-	}
-
-	public void setUserOrder(Integer userOrder) {
-		this.userOrder = userOrder;
-	}
-
 	/**
-	 * 方法名 ： getCreateTime
-	 * 功 能 ： 返回变量 createTime 的值
+	 * 方法名 ： getChart
+	 * 功 能 ： 返回变量 chart  的值
 	 *
-	 * @return: Date
+	 * @return: String 
 	 */
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	/**
-	 * 方法名 ： setCreateTime
-	 * 功 能 ： 设置变量 createTime 的值
-	 */
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	/**
-	 * 方法名 ： getCreateUser
-	 * 功 能 ： 返回变量 createUser 的值
-	 *
-	 * @return: String
-	 */
-	public String getCreateUser() {
-		return createUser;
-	}
-
-	/**
-	 * 方法名 ： setCreateUser
-	 * 功 能 ： 设置变量 createUser 的值
-	 */
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
-	}
-
-	/**
-	 * 方法名 ： getUpdateTime
-	 * 功 能 ： 返回变量 updateTime 的值
-	 *
-	 * @return: Date
-	 */
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	/**
-	 * 方法名 ： setUpdateTime
-	 * 功 能 ： 设置变量 updateTime 的值
-	 */
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-
-	/**
-	 * 方法名 ： getUpdateUser
-	 * 功 能 ： 返回变量 updateUser 的值
-	 *
-	 * @return: String
-	 */
-	public String getUpdateUser() {
-		return updateUser;
-	}
-
-	/**
-	 * 方法名 ： setUpdateUser
-	 * 功 能 ： 设置变量 updateUser 的值
-	 */
-	public void setUpdateUser(String updateUser) {
-		this.updateUser = updateUser;
-	}
-
-	public Integer getMulteity() {
-		return multeity;
-	}
-
-	public void setMulteity(Integer multeity) {
-		this.multeity = multeity;
-	}
-
-	public String getUserPlaceholder() {
-		return userPlaceholder;
-	}
-
-	public void setUserPlaceholder(String userPlaceholder) {
-		this.userPlaceholder = userPlaceholder;
-	}
-
-	public Integer getChart() {
+	public  Integer  getChart() {
 		return chart;
 	}
 
-	public void setChart(Integer chart) {
+	/**
+	 * 方法名 ： setChart
+	 * 功 能 ： 设置变量 chart  的值
+	 */
+	public void setChart( Integer  chart) {
 		this.chart = chart;
 	}
-	
-	/**
-	 * 方法名 ： getDiscription
-	 * 功 能 ： 返回变量 discription 的值
-	 *
-	 * @return: String
-	 */
-	public String getDiscription() {
-		return discription;
-	}
-	
-	/**
-	 * 方法名 ： setDiscription
-	 * 功 能 ： 设置变量 discription 的值
-	 */
-	public void setDiscription(String discription) {
-		this.discription = discription;
-	}
-	
-	/**
-	 * 方法名 ： getDeleteFlag
-	 * 功 能 ： 返回变量 deleteFlag 的值
-	 *
-	 * @return: Integer
-	 */
-	public Integer getDeleteFlag() {
-		return deleteFlag;
-	}
-	
-	/**
-	 * 方法名 ： setDeleteFlag
-	 * 功 能 ： 设置变量 deleteFlag 的值
-	 */
-	public void setDeleteFlag(Integer deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}
 
-	/**
-	 * 方法名 ： toString
-	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数 ： @return
-	 * 参 考 ： @see java.lang.Object#toString()
-	 * 作 者 ： Administrator
-	 */
-	
-	@Override
-	public String toString() {
-		return "SysDicUserIndexCode [uuid=" + uuid + ", userDesc=" + userDesc + ", userIndex=" + userIndex + ", userPlaceholder=" + userPlaceholder + ", userOrder=" + userOrder + ", multeity=" + multeity + ", chart=" + chart + ", discription=" + discription + ", createTime=" + createTime + ", createUser=" + createUser + ", updateTime=" + updateTime + ", updateUser=" + updateUser + ", deleteFlag=" + deleteFlag + "]";
-	}
 
 }

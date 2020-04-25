@@ -1,8 +1,8 @@
 var select2_departmentName=null;
 $(function() {
 	
-	var url = '/sysOrganization/sysOrganizationList';
-	ajaxPost(url, null, sucessLoadSysOrganizationListSelect2, 1000, findError);
+	var url = '/sysOrganization/findAll';
+	ajaxPost(url, {info:{}}, sucessLoadSysOrganizationListSelect2, 1000, findError);
 	
 	$('#addnew_department').click(function() {
 		if(select2_departmentName !=null && select2_departmentName!=""){
@@ -50,8 +50,8 @@ $(function() {
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var submiturl = "/sysDepartment/sysDepartmentDelete";
-						ajaxPost(submiturl, {list:data}, addDepartmentSuccess, 5000, findError);
+						var submiturl = "/sysDepartment/deleteAll";
+						ajaxPost(submiturl, {list:data}, addDepartmentSuccess);
 					}
 				}
 			});
@@ -62,7 +62,7 @@ $(function() {
 	 
 	// bootstrap table
 	$('#admin_department_datagrid').bootstrapTable({
-		url : "/sysDepartment/findAllBySearchText",
+		url : "/sysDepartment/page",
 		dataType : "json",
 		toolbar : '#department_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -89,13 +89,15 @@ $(function() {
 		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
         //设置为limit可以获取limit, offset, search, sort, order  
         queryParamsType : "undefined",
-        contentType: "application/x-www-form-urlencoded",
+        contentType: "application/json",
 		method: "post",  //使用get请求到服务器获取数据  
 		queryParams: function queryParams(params) {  
 		    var param = {  
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
-                 organizationId:select2_departmentName
+                 info:{
+                	 organizationId:select2_departmentName
+                 }
              }; 
              return param;
 		},
@@ -110,7 +112,7 @@ $(function() {
 //			{title : '标记',	field : 'deleteFlag',sortable : true,	align : 'center'}
 		],  
 		responseHandler: function(result){  // 成功时执行
-			return {rows:result.content,total:result.totalElements};
+			return {rows:result.data.content,total:result.data.totalElements};
 		}, 
         onLoadSuccess: function(){  //加载成功时执行  
 	    },  
@@ -132,13 +134,12 @@ $(function() {
 	$(window).resize(function() {
 		$('#admin_department_datagrid').bootstrapTable('resetView');
 	});
-	$('#admin_department_datagrid').bootstrapTable('refresh');
 });
 
 function InitSubTable(index) { 
 	
     $("#admin_roles_datagrid").bootstrapTable({  
-        url:'/sysRoles/findAllBySearchText',  
+        url:'/sysRoles/page',  
         dataType : "json",
 		toolbar : '#roles_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -165,13 +166,15 @@ function InitSubTable(index) {
 		//设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder  
         //设置为limit可以获取limit, offset, search, sort, order  
         queryParamsType : "undefined",
-        contentType: "application/x-www-form-urlencoded",
+        contentType: "application/json",
 		method: "post",  //使用get请求到服务器获取数据  
 		queryParams: function queryParams(params) {  
 		    var param = {  
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
-                 departmentId:index.uuid
+                 info:{
+                	 departmentId:index.uuid
+            	 }
              }; 
              return param;
 		},
@@ -186,7 +189,7 @@ function InitSubTable(index) {
 //			{title : '标记',	field : 'deleteFlag',	sortable : true,align : 'center'}
 		],
         responseHandler: function(result){  // 成功时执行
-			return {rows:result.content,total:result.totalElements};
+			return {rows:result.data.content,total:result.data.totalElements};
 		}, 
         onLoadSuccess: function(){  //加载成功时执行  
 	    },  
@@ -242,7 +245,7 @@ function InitSubTable(index) {
 				if (result) {
 					var temp =$("#admin_roles_datagrid").bootstrapTable('getAllSelections');
 					var submiturl = "/sysRoles/delete";
-					ajaxPost(submiturl, {list:temp}, addRolesSuccess, 5000, findError);
+					ajaxPost(submiturl, {list:temp}, addRolesSuccess);
 				}
 			}
 		});
@@ -376,7 +379,7 @@ function saveDepartment(){
 			departmentName:$('#add_department_departmentName').val(),
 			discription: $('#add_department_departmentDiscription').val(),
 		};
-		var submiturl = "/sysDepartment/sysDepartmentAdd";
+		var submiturl = "/sysDepartment/save";
 		ajaxPost(submiturl, info, addDepartmentSuccess, null, findError);
 	}
 }
@@ -397,7 +400,7 @@ function addDepartmentSuccess(result){
 // 组织名称下拉选项
 function sucessLoadSysOrganizationListSelect2(result){
 	var data = [{id:"请选择",text:"请选择"}];
-	$.each(result,function(index,value){
+	$.each(result.data,function(index,value){
 		data.push({id:value.uuid,text:value.organizationName});
 	});
 	$('#search_table_organization_name').select2({

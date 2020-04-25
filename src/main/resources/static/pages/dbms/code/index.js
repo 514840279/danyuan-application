@@ -2,9 +2,9 @@ var blockclassPathtips = false;
 $(function() {
 	
 	// 数据库列表下拉
-	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', null, successSearchDatabaseInfoindex, null, findError);
+	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', {}, successSearchDatabaseInfoindex, null, findError);
 	// 表类型列表下拉
-	ajaxPost('/sysDbmsTabsTypeInfo/findAll', null, successSearchTableTypeInfoindex, null, findError);
+	ajaxPost('/sysDbmsTabsTypeInfo/findAll', {}, successSearchTableTypeInfoindex, null, findError);
 
 	
 	$('#search_config_table_tabsUuid').select2({
@@ -78,7 +78,7 @@ $(function() {
 
 					var url = "/sysDbmsGenerateCodeInfo/deleteAll";
 					var param={list:data};
-					ajaxPost(url, param, addSysTableTypeInfoSuccess, 5000, findError);
+					ajaxPost(url, param, addSysTableTypeInfoSuccess);
 				}
 			}
 		});
@@ -120,6 +120,7 @@ $(function() {
 			generateService: $("#add_generate_service:checked").val()==null?0:1,
 			generateController: $("#add_generate_controller:checked").val()==null?0:1,
 			generateHtml: $("#add_generate_html:checked").val()==null?0:1,
+			generateJs: $("#add_generate_html:checked").val()==null?0:1,
 			generateDetail: $("#add_generate_detail:checked").val()==null?0:1,
 			generateSql: $("#add_generate_sql:checked").val()==null?0:1,
 			generateDoc: $("#add_generate_doc:checked").val()==null?0:1,
@@ -128,7 +129,7 @@ $(function() {
 			updateUser:username,
 		}
 		console.log(sysTableTypeInfo);
-		ajaxPost(url, sysTableTypeInfo, addSysTableTypeInfoSuccess, 5000, findError);
+		ajaxPost(url, sysTableTypeInfo, addSysTableTypeInfoSuccess);
 		$('#dbm_type_add_modal').modal("hide");
 	});
 	
@@ -307,7 +308,7 @@ function searchtableNames(){
 		jdbcUuid:search_config_table_addrUuid,
 	}
 	var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
-	ajaxPost(url, param, addSelectedTableSuccess, 5000, findError);
+	ajaxPost(url, param, addSelectedTableSuccess);
 }
 
 function addSelectedTableSuccess(result){

@@ -2,7 +2,7 @@ $(function() {
 	$("#search-2-box").css({"display":"none"});
 	// search bar 数据
 	var url = '/sysDbmsUserIndexInfo/findAll';
-	ajaxPost(url, null, add_user_index_sucess, 1000, findError);
+	ajaxPost(url, {}, add_user_index_sucess, 1000, findError);
 	$("#search-1-box-button-show").click(function(){
 		$("#search-2-box").css({"display":"none"});
 		$("#search-1-box").css({"display":""});
@@ -82,7 +82,7 @@ function searchButtonClick(){
 }
 // search bar
 function add_user_index_sucess(result){
-	$.each(result, function(index, value) {
+	$.each(result.data, function(index, value) {
 		if(value.deleteFlag == 0){
 			// 加载数据
 			var li = '<li userIndex="'+value.userIndex+'" userPlaceholder="'+value.userPlaceholder+'"><a href="#">'+value.userDesc+'</a></li>'

@@ -1,7 +1,7 @@
 package org.danyuan.application.softm.sysmenu.dao;
 
+import org.danyuan.application.common.base.BaseDao;
 import org.danyuan.application.softm.sysmenu.po.SysSystemInfo;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Repository;
  * 版 本 ： V1.0
  */
 @Repository("sysSystemDao")
-public interface SysSystemDao extends JpaRepository<SysSystemInfo, String> {
+public interface SysSystemDao extends BaseDao<SysSystemInfo> {
 	
 }

@@ -9,7 +9,7 @@ window.operateEvents = {
 				if (result) {
 					var url = "/sysDbmsChartDimensionData/deleteAll";
 					var param={list:[row]};
-					ajaxPost(url, param, deleteDataSuccess, 5000, findError);
+					ajaxPost(url, param, deleteDataSuccess);
 				}
 			}
 		});
@@ -54,22 +54,22 @@ function init(){
 	// 图表类型
 	var url = "/sysDicName/findkeyList";
 	var param={code:"chartType"};
-	ajaxPost(url, param, addchartTypeSuccess, 5000, findError);
+	ajaxPost(url, param, addchartTypeSuccess);
 	// 选择数据库
 	var url = "/sysDbmsTabsJdbcInfo/findAll";
-	ajaxPost(url, null, addSelectedAddrSuccess, 5000, findError);
+	ajaxPost(url, null, addSelectedAddrSuccess);
 	// 选择数据类型
 	var url = "/sysDbmsTabsTypeInfo/findAll";
-	ajaxPost(url, null, addSelectedTypeSuccess, 5000, findError);
+	ajaxPost(url, null, addSelectedTypeSuccess);
 
 	// 分组
 	var url = "/sysDbmsChartDimensionGroup/findAll";
 	var param={};
-	ajaxPost(url, param, addGroupSelectSuccess, 5000, findError);
+	ajaxPost(url, param, addGroupSelectSuccess);
 	// 横坐标
 	var url = "/sysDicName/findkeyList";
 	var param={code:"chart_date_type"};
-	ajaxPost(url, param, addchartDateTypeSuccess, 5000, findError);
+	ajaxPost(url, param, addchartDateTypeSuccess);
 	// 默认选中的
 	sysPlantChartDimension.deleteFlag==null?$('input[name="deleteFlag"]:first').parent().click():$('input[name="deleteFlag"][value="'+sysPlantChartDimension.deleteFlag+'"]').parent().click()
 	
@@ -132,7 +132,7 @@ function searchtableNames(){
 			jdbcUuid:search_config_table_addrUuid,
 	}
 	var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
-	ajaxPost(url, param, addSelectedTableSuccess, 5000, findError);
+	ajaxPost(url, param, addSelectedTableSuccess);
 }
 
 function addSelectedTableSuccess(result){
@@ -163,7 +163,7 @@ function loadheng(_tableUuid){
 	}
 	// 纬度类型
 	var url = "/sysDbmsTabsColsInfo/findAllBySysDbmsTabsColsInfo";
-	ajaxPost(url, {"tabsUuid":_tableUuid}, addPlantBindSuccess, 5000, findError);
+	ajaxPost(url, {"tabsUuid":_tableUuid}, addPlantBindSuccess);
 
 }
 
@@ -345,7 +345,7 @@ function submit_add_addr(){
 //修改dime 成功 重载图表预览
 function addSuccess(result){
 	alert("修改属性成功！");
-	$("#add_sysPlantChartDimension_uuid").val(result.uuid);
+	$("#add_sysPlantChartDimension_uuid").val(result.data.uuid);
 	loadCharts();
 //	$('#add_config_table').modal('hide');
 }

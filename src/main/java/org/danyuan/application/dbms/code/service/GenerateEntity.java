@@ -18,7 +18,7 @@ import org.danyuan.application.dbms.tabs.po.SysDbmsTabsInfo;
  * @版本 V1.0
  */
 public class GenerateEntity {
-
+	
 	/**
 	 * @方法名 generate
 	 * @功能 生成实体类文件
@@ -95,15 +95,15 @@ public class GenerateEntity {
 		// 拼接get，set
 		stringBuilder.append(stringBuilderMethod);
 		stringBuilder.append("\r\n");
-
+		
 		// TODO 构造
 		
 		// TODO tostring
-
+		
 		// ...
 		stringBuilder.append("\r\n");
 		stringBuilder.append("}");
-
+		
 		// 文件写入
 		String fineName = pathString + "/" + sysDbmsGenerateCodeInfo.getClassName() + ".java";
 		TxtFilesWriter.writeToFile(stringBuilder.toString(), fineName);
@@ -130,9 +130,13 @@ public class GenerateEntity {
 			String propertiesName = makeProperties(colsName);
 			String colsDesc = sysDbmsTabsColsInfo.getColsDesc();
 			String colsType = sysDbmsTabsColsInfo.getColsType().toLowerCase();
+			Integer length = sysDbmsTabsColsInfo.getColsLength();
+			String nullable = sysDbmsTabsColsInfo.getNullable();
+			Integer dataprecision = sysDbmsTabsColsInfo.getDataPrecision();
+			Integer datascale = sysDbmsTabsColsInfo.getDataScale();
 			// 确定 对应的数据类型
 			String propertiesType = "";
-			if (colsType.contains("varchar") || colsType.contains("text")) {
+			if (colsType.contains("char") || colsType.contains("text")) {
 				propertiesType = " String ";
 			} else if (colsType.contains("int") || colsType.contains("number") || colsType.contains("boolean")) {
 				if (colsType.contains("number") && colsType.contains(",")) {
@@ -153,17 +157,17 @@ public class GenerateEntity {
 			}
 			
 			// 拼写属性
-			spellProperties(stringBuilderProperties, propertiesName, propertiesType, colsDesc, colsType, colsName);
-
+			spellProperties(stringBuilderProperties, propertiesName, propertiesType, colsDesc, colsType, colsName, length, nullable, dataprecision, datascale);
+			
 			// 拼写get，set
 			spellMethod(stringBuilderMethod, propertiesName, propertiesType, colsDesc, colsType, colsName);
 		}
 		if (stringBuilderImport.toString().length() > 0) {
 			stringBuilderImport.append("\r\n");
 		}
-
+		
 	}
-
+	
 	/**
 	 * 方法名： spellMethod
 	 * 功 能： 拼写get，set
@@ -200,7 +204,7 @@ public class GenerateEntity {
 		stringBuilderMethod.append("		this." + propertiesName + " = " + propertiesName + ";\r\n");
 		stringBuilderMethod.append("	}\r\n");
 	}
-
+	
 	/**
 	 * 方法名： spellProperties
 	 * 功 能： 拼写属性
@@ -214,30 +218,43 @@ public class GenerateEntity {
 	 * 作 者 ： wang
 	 * @throws
 	 */
-	private static void spellProperties(StringBuilder stringBuilderProperties, String propertiesName, String propertiesType, String colsDesc, String colsType, String colsName) {
+	private static void spellProperties(StringBuilder stringBuilderProperties, String propertiesName, String propertiesType, String colsDesc, String colsType, String colsName, Integer length, String nullable, Integer dataprecision, Integer scale) {
 		stringBuilderProperties.append("\r\n");
 		stringBuilderProperties.append("	// " + colsDesc + "\r\n");
 		if ("date".equals(colsType.toLowerCase())) {
 			stringBuilderProperties.append("	@Temporal(TemporalType.DATE)\r\n");
 			stringBuilderProperties.append("	@DateTimeFormat(style = \"yyyy-MM-dd\")\r\n");
 			stringBuilderProperties.append("	@JsonFormat(locale = \"zh\", timezone = \"GMT+8\", pattern = \"yyyy-MM-dd\")\r\n");
+			stringBuilderProperties.append("	@Column(name = \"" + colsName + "\",nullable =" + ("Y".equals(nullable) ? "true" : "false") + ")\r\n");
 		} else if ("time".equals(colsType.toLowerCase())) {
 			stringBuilderProperties.append("	@Temporal(TemporalType.TIME)\r\n");
 			stringBuilderProperties.append("	@DateTimeFormat(style = \"HH:mm:ss\")\r\n");
 			stringBuilderProperties.append("	@JsonFormat(locale = \"zh\", timezone = \"GMT+8\", pattern = \"HH:mm:ss\")\r\n");
-		} else if ("timestamp".equals(colsType.toLowerCase())) {
+			stringBuilderProperties.append("	@Column(name = \"" + colsName + "\",nullable =" + ("Y".equals(nullable) ? "true" : "false") + ")\r\n");
+		} else if ("timestamp".equals(colsType.toLowerCase()) || colsType.toLowerCase().contains("timestamp")) {
 			stringBuilderProperties.append("	@Temporal(TemporalType.TIMESTAMP)\r\n");
 			stringBuilderProperties.append("	@DateTimeFormat(style = \"yyyy-MM-dd HH:mm:ss\")\r\n");
 			stringBuilderProperties.append("	@JsonFormat(locale = \"zh\", timezone = \"GMT+8\", pattern = \"yyyy-MM-dd HH:mm:ss\")\r\n");
+			stringBuilderProperties.append("	@Column(name = \"" + colsName + "\",nullable =" + ("Y".equals(nullable) ? "true" : "false") + ")\r\n");
 		} else if ("datetime".equals(colsType.toLowerCase())) {
 			stringBuilderProperties.append("	@Temporal(TemporalType.DATE)\r\n");
 			stringBuilderProperties.append("	@DateTimeFormat(style = \"yyyy-MM-dd HH:mm:ss\")\r\n");
 			stringBuilderProperties.append("	@JsonFormat(locale = \"zh\", timezone = \"GMT+8\", pattern = \"yyyy-MM-dd HH:mm:ss\")\r\n");
+			stringBuilderProperties.append("	@Column(name = \"" + colsName + "\",nullable =" + ("Y".equals(nullable) ? "true" : "false") + ")\r\n");
+		} else if ("int".equals(colsType.toLowerCase()) || "long".equals(colsType.toLowerCase()) || "tinyint".equals(colsType.toLowerCase())) {
+			stringBuilderProperties.append("	@Column(name = \"" + colsName + "\"" + (dataprecision == null ? "" : ",precision=" + dataprecision) + ")\r\n");
+		} else if ("number".equals(colsType.toLowerCase()) || "float".equals(colsType.toLowerCase()) || "double".equals(colsType.toLowerCase()) || "decimal".equals(colsType.toLowerCase())) {
+			stringBuilderProperties.append("	@Column(name = \"" + colsName + "\"" + (dataprecision == null ? "" : ",precision=" + dataprecision) + (scale == null ? "" : ",scale=" + scale) + ")\r\n");
+		} else if ("char".equals(colsType.toLowerCase()) || "varchar".equals(colsType.toLowerCase()) || "text".equals(colsType.toLowerCase()) || "varchar2".equals(colsType.toLowerCase())) {
+			stringBuilderProperties.append("	@Column(name = \"" + colsName + "\"" + (dataprecision == null ? "" : ",precision=" + dataprecision) + (scale == null ? "" : ",scale=" + scale) + ")\r\n");
+			
+		} else {
+			stringBuilderProperties.append("	@Column(name = \"" + colsName + "\")\r\n");
 		}
-		stringBuilderProperties.append("	@Column(name = \"" + colsName + "\", columnDefinition = \" COMMENT '" + colsDesc + "'\")\r\n");
+		
 		stringBuilderProperties.append("	private " + propertiesType + "	" + propertiesName + ";\r\n");
 	}
-
+	
 	/**
 	 * 方法名： makeProperties
 	 * 功 能： 属性生成
@@ -259,5 +276,5 @@ public class GenerateEntity {
 		}
 		return propertiesName;
 	}
-
+	
 }

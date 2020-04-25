@@ -1,9 +1,5 @@
 package org.danyuan.application.common.config;
 
-import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +8,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.danyuan.application.dbms.tabs.vo.MulteityParam;
 import org.danyuan.application.softm.syslog.dao.SysComnLogsDao;
 import org.danyuan.application.softm.syslog.po.SysComnLogs;
 import org.slf4j.Logger;
@@ -40,13 +35,13 @@ public class HttpAspect {
 	public static String		noDevice	= "未知设备";
 	@Autowired
 	SysComnLogsDao				sysComnLogsDao;
-
+	
 	private final static Logger	logger		= LoggerFactory.getLogger(HttpAspect.class);// 参数为当前使用的类名
-
+	
 	@Pointcut("execution(public * org.danyuan.application.*.*.controller.*.*(..))") // 要处理的方法，包名+类名+方法名
 	public void cut() {
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Around("cut()") // 在调用上面 @Pointcut标注的方法前执行以下方法
 	public Object doBefore(ProceedingJoinPoint joinPoint) throws IllegalArgumentException, IllegalAccessException {// 用于获取类方法
@@ -66,41 +61,9 @@ public class HttpAspect {
 		// 用户
 		String user = ((User) ((SecurityContextImpl) request.getSession().getAttribute("SPRING_SECURITY_CONTEXT")).getAuthentication().getPrincipal()).getUsername();
 		logs.setCreateUser(user);
-
-		Map<String, Object> map = new HashMap<>();
+		
 		String paramList = "";
-		if ("/zhcx/findAllTableRow".equals(logs.getUrl())) {
-			Object[] obj = joinPoint.getArgs();
-			for (Object object : obj) {
-				try {
-					Class<?> classz = object.getClass();
-					for (Field field : classz.getDeclaredFields()) {
-						field.setAccessible(true);
-						String fieldName = field.getName();
-						Object value = field.get(object);
-						// if (isEmpty(value)) {
-						// map.put(fieldName, value);
-						// }
-						if ("paramList".equals(fieldName)) {
-							if (value != null) {
-								for (MulteityParam multeityParam : (List<MulteityParam>) value) {
-									paramList += (multeityParam.getUserDesc() == null ? multeityParam.getUserIndex() : multeityParam.getUserDesc()) + ":" + multeityParam.getValue() + ";";
-
-								}
-							}
-						}
-						if ("tableName".equals(fieldName)) {
-							logs.setTableName(value.toString());
-						}
-
-					}
-					logs.setArgs(map.toString());
-				} catch (Exception e) {
-
-				}
-			}
-
-		}
+		
 		// 参数
 		ObjectMapper mapper = new ObjectMapper();
 		String ss = "";
@@ -124,10 +87,10 @@ public class HttpAspect {
 			result = joinPoint.proceed();
 		} catch (Throwable e) {
 			logger.error("exception:" + e.getMessage(), HttpAspect.class);
-			logs.setMessage(e.getMessage());
+			logs.setMessage(e.getMessage().length() > 2000 ? e.getMessage().substring(0, 2000) : e.getMessage());
 			// TODO
 		}
-
+		
 		logs.setRequestLong(System.currentTimeMillis() - logs.getRequestLong());
 		String[] mods = { "iPhone", "Windows Phone", "iPad", "Nokia" };
 		for (String string : mods) {
@@ -161,7 +124,6 @@ public class HttpAspect {
 	
 	/**
 	 * 获取登录用户远程主机ip地址
-	 *
 	 * @param request
 	 * @return
 	 */
@@ -178,5 +140,5 @@ public class HttpAspect {
 		}
 		return ip.equals("0:0:0:0:0:0:0:1") ? "127.0.0.1" : ip;
 	}
-
+	
 }

@@ -1,7 +1,6 @@
 package org.danyuan.application.file.upload.po;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
@@ -13,7 +12,7 @@ import org.danyuan.application.common.base.BaseEntity;
  * @文件名 SysFileUploadInfo.java
  * @包名 org.danyuan.application.file.upload.po
  * @描述 sys_file_upload_info的实体类
- * @时间 2019年07月16日 15:09:15
+ * @时间 2020年04月25日 16:38:22
  * @author test
  * @版本 V1.0
  */
@@ -24,19 +23,19 @@ public class SysFileUploadInfo extends BaseEntity implements Serializable {
 	private static final long	serialVersionUID	= 1L;
 
 
-	// 
-	@Column(name = "type")
-	private  String 	type;
-
-	// 
-	@Column(name = "size")
-	private  Integer 	size;
-
-	// 姓名
+	// 文件名
 	@Column(name = "name")
 	private  String 	name;
 
-	// 
+	// 文件大小
+	@Column(name = "size",precision=10)
+	private  Integer 	size;
+
+	// 文件类型
+	@Column(name = "type")
+	private  String 	type;
+
+	// 路径
 	@Column(name = "path")
 	private  String 	path;
 
@@ -53,44 +52,8 @@ public class SysFileUploadInfo extends BaseEntity implements Serializable {
 
 
 	/**
-	 * 方法名 ： getType
-	 * 功 能 ： 返回变量 type  的值
-	 *
-	 * @return: String 
-	 */
-	public  String  getType() {
-		return type;
-	}
-
-	/**
-	 * 方法名 ： setType
-	 * 功 能 ： 设置变量 type  的值
-	 */
-	public void setType( String  type) {
-		this.type = type;
-	}
-
-	/**
-	 * 方法名 ： getSize
-	 * 功 能 ： 返回变量 size  的值
-	 *
-	 * @return: String 
-	 */
-	public  Integer  getSize() {
-		return size;
-	}
-
-	/**
-	 * 方法名 ： setSize
-	 * 功 能 ： 设置变量 size  的值
-	 */
-	public void setSize( Integer  size) {
-		this.size = size;
-	}
-
-	/**
 	 * 方法名 ： getName
-	 * 功 能 ： 返回变量 name 姓名 的值
+	 * 功 能 ： 返回变量 name 文件名 的值
 	 *
 	 * @return: String 
 	 */
@@ -100,15 +63,51 @@ public class SysFileUploadInfo extends BaseEntity implements Serializable {
 
 	/**
 	 * 方法名 ： setName
-	 * 功 能 ： 设置变量 name 姓名 的值
+	 * 功 能 ： 设置变量 name 文件名 的值
 	 */
 	public void setName( String  name) {
 		this.name = name;
 	}
 
 	/**
+	 * 方法名 ： getSize
+	 * 功 能 ： 返回变量 size 文件大小 的值
+	 *
+	 * @return: String 
+	 */
+	public  Integer  getSize() {
+		return size;
+	}
+
+	/**
+	 * 方法名 ： setSize
+	 * 功 能 ： 设置变量 size 文件大小 的值
+	 */
+	public void setSize( Integer  size) {
+		this.size = size;
+	}
+
+	/**
+	 * 方法名 ： getType
+	 * 功 能 ： 返回变量 type 文件类型 的值
+	 *
+	 * @return: String 
+	 */
+	public  String  getType() {
+		return type;
+	}
+
+	/**
+	 * 方法名 ： setType
+	 * 功 能 ： 设置变量 type 文件类型 的值
+	 */
+	public void setType( String  type) {
+		this.type = type;
+	}
+
+	/**
 	 * 方法名 ： getPath
-	 * 功 能 ： 返回变量 path  的值
+	 * 功 能 ： 返回变量 path 路径 的值
 	 *
 	 * @return: String 
 	 */
@@ -118,7 +117,7 @@ public class SysFileUploadInfo extends BaseEntity implements Serializable {
 
 	/**
 	 * 方法名 ： setPath
-	 * 功 能 ： 设置变量 path  的值
+	 * 功 能 ： 设置变量 path 路径 的值
 	 */
 	public void setPath( String  path) {
 		this.path = path;

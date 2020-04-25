@@ -57,9 +57,9 @@ $(function() {
 			title : "系统提示",
 			callback : function(result) {
 					if (result) {
-						var url = "/sysDbmsTabsColsInfo/delete";
+						var url = "/sysDbmsTabsColsInfo/deleteAll";
 						var param={list:data};
-						ajaxPost(url, param, addSysColumnInfoSuccess, 5000, findError);
+						ajaxPost(url, param, addSysColumnInfoSuccess);
 					}
 				}
 			});
@@ -85,27 +85,27 @@ $(function() {
 		var url ='/sysDbmsTabsColsInfo/save';
 		d.createTime=null;
 		d.updateTime=null;
-		ajaxPost(url, d, addSysColumnInfoSuccess, 5000, findError);
+		ajaxPost(url, d, addSysColumnInfoSuccess);
 	})
 	
 	
 	showClomnTable();
 
 	var url = "/sysDbmsTabsTypeInfo/findAll";
-	ajaxPost(url, null, addSelectedTypeSuccess, 5000, findError);
+	ajaxPost(url, {}, addSelectedTypeSuccess);
 	
 	var url = "/sysDbmsTabsJdbcInfo/findAll";
-	ajaxPost(url, null, addSelectedAddrSuccess, 5000, findError);
+	ajaxPost(url, {}, addSelectedAddrSuccess);
 	
 	// 表类型列表下拉
-	ajaxPost('/sysDbmsUserIndexInfo/findAll', null, successSearchUserIndexInfoindex);
+	ajaxPost('/sysDbmsUserIndexInfo/findAll', {}, successSearchUserIndexInfoindex);
 
 });
 
 
 function successSearchUserIndexInfoindex(result){
 	var data =[{id:'请选择',text:'请选择'}];
-	$.each(result,function(index,value){
+	$.each(result.data,function(index,value){
 		data.push({id:value.uuid,text: value.userIndex});
 	});
 	
@@ -166,13 +166,13 @@ function searchtableNames(){
 		jdbcUuid:search_config_table_addrUuid,
 	}
 	var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
-	ajaxPost(url, param, addSelectedTableSuccess, 5000, findError);
+	ajaxPost(url, param, addSelectedTableSuccess);
 }
 
 search_config_table_addrUuid="";
 function addSelectedAddrSuccess(result){
 	var data = [{id:"",text:"请选择"}];
-	$.each(result,function(index,value){
+	$.each(result.data,function(index,value){
 		data.push({id:value.uuid,text:value.databaseName});
 	});
 	
@@ -236,7 +236,7 @@ function showClomnTable(){
 //		showExport: true,                    
 //        exportDataType: 'all',
 //        exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],  //导出文件类型
-		singleSelect : true,
+		singleSelect : false,
 		locales : "zh-CN", // 表格汉化
 //		search : true, // 显示搜索框
 		sidePagination: "server", // 服务端处理分页 server
@@ -280,7 +280,7 @@ function showClomnTable(){
 			{title : '更新人',field : 'updateUser',sortable : true,align : 'left',valign : 'middle',visible:false},
 		],
 		responseHandler: function(result){  // 成功时执行
-			return {rows:result.content,total:result.totalElements};
+			return {rows:result.data.content,total:result.data.totalElements};
 		}, 
 	}).on('dbl-click-row.bs.table', function (e, row, ele,field) {
     }).on('click-row.bs.table', function (e, row, ele,field) {

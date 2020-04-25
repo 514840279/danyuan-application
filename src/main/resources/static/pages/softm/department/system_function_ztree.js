@@ -217,30 +217,31 @@ function zTreeOnCheck(event, treeId, treeNode) {
 	// 父集
 	while(temp.getParentNode()!=null ){
 		 temp = temp.getParentNode();
-		 param.push({id:{"roleId":_role_uuid,"menuId":treeNode.id},"checked":ifnottrue(temp.checked)});
+		 param.push({"roleId":_role_uuid,"menuId":treeNode.id,"checked":ifnottrue(temp.checked)});
 	}
 	
 	// 子集
 	temp = treeNode;
 	eachNode(temp,param);
 	// 自身
-	param.push({id:{"roleId":_role_uuid,"menuId":treeNode.id},"checked":ifnottrue(treeNode.checked)});
+	param.push({"roleId":_role_uuid,"menuId":treeNode.id,"checked":ifnottrue(treeNode.checked)});
 	
 	var url = "/sysRolesJurisdiction/saveAll";
 	console.log(param);
 	// 更新配置信息
-	ajaxPost(url, {"sysRolesJurisdictionInfolist":param}, successUpdateRoleMenu, 1000, findError);
+	ajaxPost(url, {list:param}, successUpdateRoleMenu);
 	
 	
 };
 function successUpdateRoleMenu(result){
+	
 	
 }
 //子集
 function eachNode(temp,param){
 	for (var i = 0; i < temp.children.length; i++) {
 		temp1 = temp.children[i];
-		param.push({id:{"roleId":_role_uuid,"menuId":temp1.id},"checked":ifnottrue(temp1.checked)});
+		param.push({"roleId":_role_uuid,"menuId":temp1.id,"checked":ifnottrue(temp1.checked)});
 		eachNode(temp1,param);
 	}
 }
@@ -401,17 +402,17 @@ function fillBackIconName(icon_name){
 }
 function addMenusubmit() {
 	var param = {
-	uuid : $("#add_menu_uuid").val(),
-	name : $("#add_menu_name").val(),
-	icon : $("#add_menu_icon").val(),
-	discription : $("#add_menu_discription").val(),
-	uri : $("#add_menu_uri").val(),
-	parentsId : $("#add_menu_parentId").val(),
-	sort : $("#add_menu_sort").val(),
-	deleteFlag : $("#add_menu_deleteFlag").val(),
-	insertUser : $("#add_menu_insertUser").val()
+		uuid : $("#add_menu_uuid").val(),
+		name : $("#add_menu_name").val(),
+		icon : $("#add_menu_icon").val(),
+		discription : $("#add_menu_discription").val(),
+		uri : $("#add_menu_uri").val(),
+		parentsId : $("#add_menu_parentId").val(),
+		sort : $("#add_menu_sort").val(),
+		deleteFlag : $("#add_menu_deleteFlag").val(),
+		insertUser : $("#add_menu_insertUser").val()
 	}
-	var url = "/sysMenuInfo/addSysMenuInfo";
+	var url = "/sysMenuInfo/save";
 	// 重载
 	ajaxPost(url, param, sucessAddMenu, 1000, findError);
 }
@@ -437,7 +438,7 @@ function updateTreeNode() {
 	var param = {
 		uuid : zTree.getSelectedNodes()[0].id
 	};
-	var url = "/sysMenuInfo/findSysMenuInfoByUuid";
+	var url = "/sysMenuInfo/findById";
 	ajaxPost(url, param, loadUpdateMenu, 1000, findError);
 }
 
@@ -468,17 +469,17 @@ function upd_select_icon(){
 }
 function updatesubmitMenu() {
 	var param = {
-	uuid : $("#upd_menu_uuid").val(),
-	name : $("#upd_menu_name").val(),
-	icon : $("#upd_menu_icon").val(),
-	discription : $("#upd_menu_discription").val(),
-	uri : $("#upd_menu_uri").val(),
-	parentsId : $("#upd_menu_parentId").val(),
-	sort : $("#upd_menu_sort").val(),
-	deleteFlag : $("#upd_menu_deleteFlag").val(),
-	updateUser : $("#upd_menu_updateUser").val()
+		uuid : $("#upd_menu_uuid").val(),
+		name : $("#upd_menu_name").val(),
+		icon : $("#upd_menu_icon").val(),
+		discription : $("#upd_menu_discription").val(),
+		uri : $("#upd_menu_uri").val(),
+		parentsId : $("#upd_menu_parentId").val(),
+		sort : $("#upd_menu_sort").val(),
+		deleteFlag : $("#upd_menu_deleteFlag").val(),
+		updateUser : $("#upd_menu_updateUser").val()
 	}
-	var url = "/sysMenuInfo/addSysMenuInfo";
+	var url = "/sysMenuInfo/save";
 	// 重载
 	ajaxPost(url, param, successUpdateMenu, 1000, findError);
 }

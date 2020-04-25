@@ -1,12 +1,12 @@
-package org.danyuan.application.softm.roles.dao;
+package org.danyuan.application.resume.user.dao;
 
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.danyuan.application.common.base.BaseDao;
+import org.danyuan.application.resume.user.po.SysUserBaseInfo;
 import org.danyuan.application.softm.roles.po.SysRolesInfo;
-import org.danyuan.application.softm.roles.po.SysUserBaseInfo;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Repository;
  * 版 本 ： V1.0
  */
 @Repository("sysUserBaseDao")
-public interface SysUserBaseDao  extends BaseDao<SysUserBaseInfo> {
+public interface SysUserBaseDao extends BaseDao<SysUserBaseInfo> {
 	
 	@Query("   select t from  SysRolesInfo t where t.uuid in ( " + " select a.rolesId from SysUserRolesInfo a where a.userId =:uuid) ")
 	List<SysRolesInfo> getRoleByUser(@Param("uuid") String uuid);
@@ -40,7 +40,7 @@ public interface SysUserBaseDao  extends BaseDao<SysUserBaseInfo> {
 	@Modifying
 	@Query(" update SysUserBaseInfo t set userName =:userName,persionName =:persionName,sex=:sex,email=:email,phone=:phone,age=:age,discription=:discription,updateTime = CURRENT_TIMESTAMP  where uuid =:uuid")
 	void saveu(@Param("uuid") String uuid, @Param("persionName") String persionName, @Param("age") Integer age, @Param("userName") String userName, @Param("email") String email, @Param("phone") String phone, @Param("sex") String sex, @Param("discription") String discription);
-
+	
 	/**
 	 * 方法名： changePassword <br />
 	 * 功 能： TODO(这里用一句话描述这个方法的作用) <br />
@@ -54,7 +54,7 @@ public interface SysUserBaseDao  extends BaseDao<SysUserBaseInfo> {
 	@Modifying
 	@Query("update SysUserBaseInfo t set t.password = :password where t.uuid = :uuid")
 	void changePassword(@Param("password") String password, @Param("uuid") String uuid);
-
+	
 	/**
 	 * 方法名： savec
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)

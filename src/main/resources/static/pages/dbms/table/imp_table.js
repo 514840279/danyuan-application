@@ -2,7 +2,7 @@ var imp_table_typeName = "0";
 $(function() {
 	// 新建表
 	// 数据库列表下拉
-	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', null, impSearchDatabaseInfo, null, findError);
+	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', {}, impSearchDatabaseInfo, null, findError);
 	
 	// bootstrap table
 	$('#imp_table_datagrid').bootstrapTable({
@@ -92,7 +92,7 @@ function addSysDbmsTabsInfoSuccess(result){
 //数据库列表下拉
 function impSearchDatabaseInfo(result){
 	var data =[{id:'请选择',text:'请选择'}];
-	$.each(result,function(index,value){
+	$.each(result.data,function(index,value){
 		data.push({id:value.uuid,text: value.databaseName});
 	})
 	
