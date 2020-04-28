@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * 文件名 ： BaseController.java
@@ -17,31 +18,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 public interface BaseController<T> {
 	
-	@RequestMapping("/page")
+	@RequestMapping(value = "/page", method = RequestMethod.POST)
 	BaseResult<Page<T>> page(Pagination<T> vo);
 	
-	@RequestMapping("/findAll")
+	@RequestMapping(value = "/findAll", method = RequestMethod.POST)
 	BaseResult<List<T>> findAll(T info);
 	
-	@RequestMapping("/findOne")
+	@RequestMapping(value = "/findOne", method = RequestMethod.POST)
 	BaseResult<T> findOne(T info);
 	
-	@RequestMapping("/save")
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	BaseResult<T> save(T info);
 	
-	@RequestMapping("/saveAll")
+	@RequestMapping(value = "/saveAll", method = RequestMethod.POST)
 	BaseResult<T> saveAll(Pagination<T> vo);
 	
-	@RequestMapping("/deleteAll")
+	@RequestMapping(value = "/deleteAll", method = RequestMethod.POST)
 	BaseResult<T> deleteAll(Pagination<T> vo);
 	
-	@RequestMapping("/delete")
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	BaseResult<T> delete(T info);
 	
-	@RequestMapping("/count")
+	@RequestMapping(value = "/count", method = RequestMethod.POST)
 	BaseResult<Long> count(T info);
 	
-	@RequestMapping("/trunc")
+	@RequestMapping(value = "/trunc", method = RequestMethod.POST)
 	BaseResult<T> trunc();
+	
+	@RequestMapping(value = "/findAllById", method = RequestMethod.POST)
+	BaseResult<List<T>> findAllById(Pagination<T> vo);
+	
+	@RequestMapping(value = "/deleteById", method = RequestMethod.POST)
+	BaseResult<T> deleteById(Pagination<T> vo);
 	
 }

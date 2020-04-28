@@ -13,25 +13,25 @@ import org.springframework.data.domain.Page;
  * 版 本 ： V1.0
  */
 public interface BaseService<T> {
-
+	
 	T findOne(T entity);
-
-	T findById(String id);
-
+	
+	T findById(String uuid);
+	
 	List<T> findAll(T entity);
-
+	
 	List<T> findAll(Pagination<T> vo);
-
+	
 	Page<T> page(Pagination<T> vo);
-
+	
 	T save(T entity);
-
+	
 	void saveAll(List<T> entities);
-
+	
 	void delete(T entity);
-
+	
 	void deleteAll(List<T> entities);
-
+	
 	void trunc();
 	
 	/**
@@ -44,4 +44,9 @@ public interface BaseService<T> {
 	 * @throws
 	 */
 	Long count(T info);
+	
+	List<T> findAllById(List<String> list);
+	
+	void deleteById(String uuid);
+	
 }

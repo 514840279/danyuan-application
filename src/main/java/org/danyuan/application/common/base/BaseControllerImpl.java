@@ -191,4 +191,24 @@ public class BaseControllerImpl<T> implements BaseController<T> {
 		}
 	}
 	
+	@Override
+	public BaseResult<List<T>> findAllById(Pagination<T> vo) {
+		try {
+			List<T> list = baseService.findAllById(vo.getUuidList());
+			return ResultUtil.success(list);
+		} catch (Exception e) {
+			return ResultUtil.error(-1, e.getMessage());
+		}
+	}
+	
+	@Override
+	public BaseResult<T> deleteById(Pagination<T> vo) {
+		try {
+			baseService.deleteById(vo.getUuid());
+			return ResultUtil.success();
+		} catch (Exception e) {
+			return ResultUtil.error(-1, e.getMessage());
+		}
+	}
+	
 }
