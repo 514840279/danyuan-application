@@ -1,7 +1,5 @@
 package org.danyuan.application.common.base;
 
-import javax.persistence.criteria.CriteriaQuery;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -15,6 +13,6 @@ import org.springframework.data.repository.NoRepositoryBean;
  * 版 本 ： V1.0
  */
 @NoRepositoryBean
-public interface BaseDao<T> extends JpaRepository<T, String>, CriteriaQuery<T>, JpaSpecificationExecutor<T> {
+public interface BaseDao<T> extends JpaRepository<T, String>, JpaSpecificationExecutor<T> {
 	
 }

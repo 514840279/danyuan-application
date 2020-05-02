@@ -1,7 +1,5 @@
 package org.danyuan.application.dbms.tabs.controller;
 
-import java.util.List;
-
 import org.danyuan.application.common.base.BaseController;
 import org.danyuan.application.common.base.BaseControllerImpl;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsTypeInfo;
@@ -37,20 +35,6 @@ public class SysDbmsTabsTypeInfoController extends BaseControllerImpl<SysDbmsTab
 	//
 	@Autowired
 	private SysDbmsTabsTypeInfoService	sysDbmsTabsTypeInfoService;
-	
-	/**
-	 * 方法名： findAll
-	 * 功 能： TODO(这里用一句话描述这个方法的作用)
-	 * 参 数： @return
-	 * 返 回： List<SysSeedInfo>
-	 * 作 者 ： Tenghui.Wang
-	 * @throws
-	 */
-	@RequestMapping(path = "/findAll", method = RequestMethod.POST)
-	public List<SysDbmsTabsTypeInfo> findAll() {
-		logger.info("findAll", SysDbmsTabsTypeInfoController.class);
-		return sysDbmsTabsTypeInfoService.findAll();
-	}
 	
 	@RequestMapping(path = "/sysTableTypeDeleteAll", method = RequestMethod.POST)
 	@ResponseBody
