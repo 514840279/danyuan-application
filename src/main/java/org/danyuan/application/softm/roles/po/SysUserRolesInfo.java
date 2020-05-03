@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import org.danyuan.application.common.base.BaseEntity;
@@ -21,7 +19,6 @@ import org.danyuan.application.common.base.BaseEntity;
  * 版 本 ： V1.0
  */
 @Entity
-@IdClass(SysUserRolesPk.class)
 @Table(name = "sys_user_roles_info")
 public class SysUserRolesInfo extends BaseEntity implements Serializable {
 	
@@ -30,15 +27,13 @@ public class SysUserRolesInfo extends BaseEntity implements Serializable {
 	 */
 	private static final long	serialVersionUID	= 1L;
 	
-	@Id
-	@Column(name = "user_id", columnDefinition = "varchar(36) COMMENT '用户id'")
+	@Column(name = "user_id")
 	private String				userId;
 	
-	@Column(name = "checked", columnDefinition = "boolean COMMENT '选中'")
+	@Column(name = "checked")
 	private Boolean				checked;
 	
-	@Id
-	@Column(name = "roles_id", columnDefinition = "varchar(36) COMMENT '角色id'")
+	@Column(name = "roles_id")
 	private String				rolesId;
 	
 	/**

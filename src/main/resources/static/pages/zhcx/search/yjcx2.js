@@ -37,7 +37,7 @@ function searchButtonClick(){
 		paramString = JSON.stringify(paramList);
 //		var url = '/zhcx/findAllType';
 		var url = '/zhcx/findAllTypeByUser';
-		ajaxPost(url, {"username":username}, findAllTypeSucess, null, findError);
+		ajaxPost(url, {}, findAllTypeSucess, null, findError);
 	})
 }
 
@@ -82,7 +82,6 @@ function findAllTypeSucess(result){
 //		var url_table = '/zhcx/findAllTable';
 		var url_table = '/zhcx/findAllTableByUser';
 		var param_table ={
-				"username":username,
 				paramList:paramList,
 				typeUuid:typeUuid
 		}
@@ -138,7 +137,6 @@ function findAllTypeSucess(result){
 					// 列查询
 					var url_column = "/zhcx/findAllColumn";
 					var param_column={
-							"username":username,
 							info:{tabsUuid:tabsId}
 					};
 					ajaxPost(url_column,param_column,columnFunction);
@@ -328,7 +326,6 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName,jdbcUui
 			var param = {
 					pageNumber: 1,    
 					pageSize: 8,
-					"username":username,
 					tabsName : tabsName,
 					dbType:dbType,
 					jdbcUuid:jdbcUuid,

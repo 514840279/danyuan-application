@@ -1,13 +1,7 @@
 package org.danyuan.application;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -26,26 +20,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableJpaAuditing
 @EnableScheduling
 @EnableJpaRepositories(basePackages = "org.danyuan.application")
-public class App implements CommandLineRunner {
-	private static ApplicationContext ctx;
+public class App {
 	
 	public static void main(String[] args) throws Exception {
-		ctx = SpringApplication.run(App.class, args);
-	}
-	
-	@Override
-	public void run(String... args) throws Exception {
-		try {
-			String host = InetAddress.getLocalHost().getHostAddress();
-			TomcatServletWebServerFactory tomcatServletWebServerFactory = (TomcatServletWebServerFactory) ctx.getBean("tomcatServletWebServerFactory");
-			int port = tomcatServletWebServerFactory.getPort();
-			String contextPath = tomcatServletWebServerFactory.getContextPath();
-			System.out.println("http://" + host + ":" + port + contextPath + "/");
-			Runtime.getRuntime().exec("cmd /c start http://" + host + ":" + port + contextPath + "/"); // 打开一个批处理文件
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-		
+		SpringApplication.run(App.class, args);
 	}
 	
 }

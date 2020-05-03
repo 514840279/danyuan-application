@@ -6,7 +6,7 @@ _history = [];
 	// 请求数据地址
 	var url = "/sysMenuInfo/findzTreeByUser";
 	// 请求数据
-	ajaxPost(url, username, loadMenu, null, findError);
+	ajaxPost(url, null, loadMenu, null, findError);
 	// 加载menu
 	function loadMenu(result) {
 		// 遍历结果集

@@ -1,8 +1,7 @@
 var imp_table_typeName = "0";
 $(function() {
 	// 新建表
-	// 数据库列表下拉
-	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', null, impSearchDatabaseInfo, null, findError);
+
 	
 	// bootstrap table
 	$('#imp_table_datagrid').bootstrapTable({
@@ -37,10 +36,7 @@ $(function() {
 		    var param = {  
                  pageNumber: params.pageNumber,    
                  pageSize: params.pageSize,
-                 "searchText":$("#search_sheam_id").val(),
-                 info:{
-                	 uuid:imp_table_typeName,
-                 }
+
              }; 
              return param;
 		},
@@ -71,7 +67,7 @@ $(function() {
 				if (result) {
 					var data =$('#imp_table_datagrid').bootstrapTable('getAllSelections');
 					var url = "/sysDbmsTabsInfo/savev";
-					var param={list:data,username:username};
+					var param={list:data};
 					ajaxPost(url, param, addSysDbmsTabsInfoSuccess);
 				}
 			}
@@ -88,25 +84,4 @@ $(function() {
 function addSysDbmsTabsInfoSuccess(result){
 	$('#imp_table_datagrid').bootstrapTable('refresh');
 	
-}
-//数据库列表下拉
-function impSearchDatabaseInfo(result){
-	var data =[{id:'请选择',text:'请选择'}];
-	$.each(result,function(index,value){
-		data.push({id:value.uuid,text: value.databaseName});
-	})
-	
-	$("#imp_table_typeName").select2({
-	    tags: true,
-	    placeholder: "请选择",
-	    data: data
-	});
-	imp_table_typeName = "0";
-	$('#imp_table_typeName').on('select2:select', function (evt) {
-		imp_table_typeName = evt.params.data.id;
-		if(imp_table_typeName == "请选择"){
-			imp_table_typeName = "0";
-		}
-		$('#imp_table_datagrid').bootstrapTable('refresh');
-	});
 }

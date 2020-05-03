@@ -67,21 +67,7 @@
 		</dependency>
 		
 		
-		<!--安全框架 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-jwt</artifactId>
-			<version>1.0.9.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt</artifactId>
-			<version>0.9.0</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
@@ -105,59 +91,6 @@
 			<version>1.1.31</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.hankcs</groupId>
-			<artifactId>hanlp</artifactId>
-			<version>${hanlp-version}</version>
-		</dependency>
-
-		<!-- 支持Word文档的操作 -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-scratchpad</artifactId>
-			<version>${poi-version}</version>
-		</dependency>
-		<!-- 加入POI核心依赖 -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>${poi-version}</version>
-		</dependency>
-		<!-- 为POI支持Office Open XML -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>${poi-version}</version>
-		</dependency>
-		<!-- 加入CXF依赖包 -->
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxws</artifactId>
-			<version>2.7.7</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-transports-http</artifactId>
-			<version>2.7.7</version>
-		</dependency>
-
-		<dependency>
-			<groupId>fr.opensagres.xdocreport</groupId>
-			<artifactId>fr.opensagres.poi.xwpf.converter.xhtml</artifactId>
-			<version>2.0.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.xmlbeans</groupId>
-			<artifactId>xmlbeans</artifactId>
-			<version>2.6.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>fr.opensagres.xdocreport</groupId>
-			<artifactId>xdocreport</artifactId>
-			<version>1.0.6</version>
-		</dependency>
 
 	</dependencies>
 	<build>

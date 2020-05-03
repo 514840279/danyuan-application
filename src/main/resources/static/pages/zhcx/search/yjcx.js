@@ -22,7 +22,7 @@ $(function() {
 	// search bar 数据
 	var url = '/zhcx/findAllTypeByUser';
 //	var url = '/zhcx/findAllType';
-	ajaxPost(url, {"username":username}, findAllType_Sucess, null, findError);
+	ajaxPost(url, {}, findAllType_Sucess, null, findError);
 	$("#search_grep_button").bind("click",function(){
 		$("#right-aside").removeClass("control-sidebar-open");
 		var paramsNode=[];
@@ -62,7 +62,6 @@ function findAllType_Sucess(result){
 			var url_table = '/zhcx/findAllTableByUser';
 	//		var url_table = '/zhcx/findAllTable';
 			var param_table ={
-				"username":username,
 				paramList:paramList,
 				typeUuid:typeUuid
 			}
@@ -121,7 +120,6 @@ function findAllType_Sucess(result){
 						// 列查询
 						var url_column = "/zhcx/findAllColumn";
 						var param_column={
-								"username":username,
 								info:{tabsUuid:tabsId}
 						};
 						ajaxPost(url_column,param_column,columnFunction);
@@ -289,7 +287,6 @@ function reset(id,tabsName,column,sysColumn,table,tabsDesc,dbType,esName,jdbcUui
 			var param = {
 					pageNumber: 1,    
 					pageSize: 8,
-					"username":username,
 					tabsName : tabsName,
 					dbType:dbType,
 					jdbcUuid:jdbcUuid,

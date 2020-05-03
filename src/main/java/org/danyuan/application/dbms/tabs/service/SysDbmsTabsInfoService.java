@@ -10,12 +10,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.sql.DataSource;
 
 import org.danyuan.application.common.base.BaseService;
 import org.danyuan.application.common.base.BaseServiceImpl;
 import org.danyuan.application.common.base.Pagination;
-import org.danyuan.application.common.config.MultiDatasourceConfig;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsColsInfoDao;
 import org.danyuan.application.dbms.tabs.dao.SysDbmsTabsInfoDao;
 import org.danyuan.application.dbms.tabs.po.SysDbmsTabsColsInfo;
@@ -49,9 +47,7 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysDbmsTabsInfoService")
 public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> implements BaseService<SysDbmsTabsInfo> {
-	@Autowired
-	MultiDatasourceConfig				multiDatasourceConfig;
-
+	
 	private static final Logger			logger	= LoggerFactory.getLogger(SysDbmsTabsInfoService.class);
 	//
 	@Autowired
@@ -62,11 +58,11 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 	private SysDbmsTabsColsInfoService	sysDbmsTabsColsInfoService;
 	@Autowired
 	JdbcTemplate						jdbcTemplate;
-
+	
 	public List<SysDbmsTabsInfo> findAll() {
 		return sysDbmsTabsInfoDao.findAll();
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -83,9 +79,9 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 		sBuilder.append("CREATE TABLE ");
 		sBuilder.append(info.getTabsName());
 		sBuilder.append("(md5 varchar(36) comment 'url的md5值' )");
-
+		
 		jdbcTemplate.execute(sBuilder.toString());
-
+		
 		// 保存列的配置信息
 		sysDbmsTabsColsInfoDao.save(new SysDbmsTabsColsInfo(UUID.randomUUID().toString(), info.getUuid(), "md5", "md5值", "VARCHAR", 0, 1, 1, "center", "middle", 150, true, true, 0));
 		// sysDbmsTabsColsInfoDao.save(new SysDbmsTabsColsInfo(UUID.randomUUID().toString(), 2000, "url地址", "url", 2, "VARCHAR", "url地址", info.getUuid()));
@@ -94,16 +90,16 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 		// 返回表配置信息
 		return info;
 	}
-
+	
 	public SysDbmsTabsInfo findSysDbmsTabsInofByUuid(String uuid) {
 		return sysDbmsTabsInfoDao.findSysDbmsTabsInfoByUuid(uuid);
 	}
-
+	
 	public List<SysDbmsTabsInfo> updateSysTableInfo(SysDbmsTabsInfoVo vo) {
 		// 旧数据
 		SysDbmsTabsInfo info = vo.getOld();
 		SysDbmsTabsInfo sysDbmsTabsInfo = vo.getNow();
-
+		
 		if (!info.getTabsName().equals(sysDbmsTabsInfo.getTabsName())) {
 			// 修改表名
 			String sql = "ALTER TABLE " + info.getTabsName() + "  RENAME TO  " + sysDbmsTabsInfo.getTabsName();
@@ -116,10 +112,10 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 		}
 		// 修改配置信息
 		sysDbmsTabsInfoDao.save(sysDbmsTabsInfo);
-
+		
 		return sysDbmsTabsInfoDao.findAll();
 	}
-
+	
 	/**
 	 * 方法名 ： findOne
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -128,7 +124,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#findOne(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public SysDbmsTabsInfo findOne(SysDbmsTabsInfo info) {
 		Example<SysDbmsTabsInfo> example = Example.of(info);
@@ -138,33 +134,31 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 		}
 		return null;
 	}
-
+	
 	public List<String> findAllSchema(SysDbmsTabsInfo info) throws ClassNotFoundException, SQLException {
-		DataSource dataSource = multiDatasourceConfig.getDataSource(info.getJdbcUuid());
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String databaseProductNameString = jdbcTemplate.getDataSource().getConnection().getMetaData().getDatabaseProductName();
 		List<String> list = new ArrayList<>();
 		StringBuilder sBuilder = new StringBuilder();
 		switch (databaseProductNameString.toLowerCase()) {
 			case ("oracle"):
 				sBuilder.append(" select username from all_users where username not like '%$%' " + " and username not in('SYS','SYSTEM','DBSNMP','CTXSYS','MDSYS'\r\n" + ",'FLOWS_020100','FLOWS_FILES','TSMSYS','XDB','OUTLN','APEX_030200','SYSMAN','ORDSYS','TOAD','ORDSYS'\r\n" + ",'ORDDATA','OLAPSYS','APPQOSSYS','OWBSYS') ");
-
+				
 				break;
 			case ("mysql"):
-
+				
 				break;
 		}
 		logger.debug(sBuilder.toString(), SysDbmsTabsInfoService.class);
 		list = jdbcTemplate.queryForList(sBuilder.toString(), String.class);
 		return list;
 	}
-
+	
 	public void savev(SysDbmsTabsInfo info) throws SQLException {
 		sysDbmsTabsInfoDao.save(info);
-
-//		SysDbmsTabsColsInfo vCol = new SysDbmsTabsColsInfo();
-//		vCol.setTabsUuid(info.getUuid());
-
+		
+		// SysDbmsTabsColsInfo vCol = new SysDbmsTabsColsInfo();
+		// vCol.setTabsUuid(info.getUuid());
+		
 		List<SysDbmsTabsColsInfo> list = sysDbmsTabsColsInfoService.pagev(info.getUuid());
 		for (SysDbmsTabsColsInfo vSysZhxCol : list) {
 			SysDbmsTabsColsInfo col = new SysDbmsTabsColsInfo();
@@ -337,7 +331,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 			sysDbmsTabsColsInfoService.save(col);
 		}
 	}
-
+	
 	/**
 	 * 方法名 ： page
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -350,11 +344,11 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#page(int, int, java.lang.Object, java.util.Map, org.springframework.data.domain.Sort.Order[])
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public Page<SysDbmsTabsInfo> page(Pagination<SysDbmsTabsInfo> vo) {
 		List<Order> orders = new ArrayList<>();
-
+		
 		if (vo.getSortName() != null) {
 			Order order;
 			if (vo.getSortOrder().equals("desc")) {
@@ -372,7 +366,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 		if (vo.getInfo() == null) {
 			vo.setInfo(new SysDbmsTabsInfo());
 		}
-
+		
 		Sort sort = Sort.by(orders);
 		PageRequest request = PageRequest.of(vo.getPageNumber() - 1, vo.getPageSize(), sort);
 		Page<SysDbmsTabsInfo> page = sysDbmsTabsInfoDao.findAll(new Specification<SysDbmsTabsInfo>() {
@@ -381,7 +375,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 			 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)
 			 */
 			private static final long serialVersionUID = 1L;
-
+			
 			@Override
 			public Predicate toPredicate(Root<SysDbmsTabsInfo> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 				List<Predicate> list = new ArrayList<>();
@@ -402,7 +396,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 		}, request);
 		return page;
 	}
-
+	
 	/**
 	 * 方法名 ： save
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -410,13 +404,13 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#save(java.util.List)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public void saveAll(List<SysDbmsTabsInfo> list) {
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -424,13 +418,13 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#delete(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public void delete(SysDbmsTabsInfo info) {
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 	/**
 	 * 方法名 ： delete
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -438,7 +432,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#delete(java.util.List)
 	 * 作 者 ： wang
 	 */
-
+	
 	public void drop(List<SysDbmsTabsInfo> list) {
 		for (SysDbmsTabsInfo info : list) {
 			try {
@@ -453,7 +447,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 			}
 		}
 	}
-
+	
 	@Override
 	public void deleteAll(List<SysDbmsTabsInfo> list) {
 		for (SysDbmsTabsInfo info : list) {
@@ -461,7 +455,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 			sysDbmsTabsInfoDao.delete(info);
 		}
 	}
-
+	
 	/**
 	 * 方法名 ： trunc
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -469,13 +463,13 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#trunc()
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public void trunc() {
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 	/**
 	 * 方法名 ： findAll
 	 * 功 能 ： TODO(这里用一句话描述这个方法的作用)
@@ -484,7 +478,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 	 * 参 考 ： @see tk.ainiyue.danyuan.application.common.base.BaseService#findAll(java.lang.Object)
 	 * 作 者 ： wang
 	 */
-
+	
 	@Override
 	public List<SysDbmsTabsInfo> findAll(SysDbmsTabsInfo info) {
 		Example<SysDbmsTabsInfo> example = Example.of(info);
@@ -503,7 +497,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 	 * @throws
 	 */
 	public List<SysDbmsTabsInfo> findAllTable(SysDbmsTabsInfoVo vo) {
-
+		
 		if (vo.getParamList() == null || vo.getParamList().size() == 0) {
 			// 无条件查询
 			return sysDbmsTabsInfoDao.findAllByUserIndexAndTypeUuid(vo.getUserindex(), vo.getTypeUuid());
@@ -533,12 +527,12 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 					}
 				}
 			}
-
+			
 			// 多条件查询
 			return minusList;
 		}
 	}
-
+	
 	/**
 	 * 方法名： change
 	 * 功 能： TODO(这里用一句话描述这个方法的作用)
@@ -569,7 +563,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 		} catch (Exception e) {
 			logger.error(e.getMessage(), SysDbmsTabsInfoService.class);
 		}
-
+		
 	}
 	
 	/**
@@ -587,16 +581,18 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 		for (MulteityParam val : vo.getParamList()) {
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append("select distinct * from sys_dbms_tabs_info a ");
-			stringBuilder.append("  where a.uuid in ( ");
-			stringBuilder.append("   select b.tabs_id from sys_roles_tabs_info b ");
-			stringBuilder.append("    where b.role_id in (");
-			stringBuilder.append("     select c.roles_id from sys_user_roles_info c");
-			stringBuilder.append("      where c.user_id in ( ");
-			stringBuilder.append("       select d.uuid from sys_user_base_info d");
-			stringBuilder.append("        where d.user_name = '" + vo.getUsername() + "'");
-			stringBuilder.append("      ) and c.checked = 1");
-			stringBuilder.append("    ) ");
-			stringBuilder.append("  ) and a.delete_flag = 0");
+			stringBuilder.append("where a.delete_flag = 0 ");
+			
+			// stringBuilder.append(" where a.uuid in ( ");
+			// stringBuilder.append(" select b.tabs_id from sys_roles_tabs_info b ");
+			// stringBuilder.append(" where b.role_id in (");
+			// stringBuilder.append(" select c.roles_id from sys_user_roles_info c");
+			// stringBuilder.append(" where c.user_id in ( ");
+			// stringBuilder.append(" select d.uuid from sys_user_base_info d");
+			// stringBuilder.append(" where d.user_name = '" + vo.getUsername() + "'");
+			// stringBuilder.append(" ) and c.checked = 1");
+			// stringBuilder.append(" ) ");
+			// stringBuilder.append(" ) and a.delete_flag = 0");
 			stringBuilder.append("  and a.type_uuid='" + vo.getTypeUuid() + "' ");
 			stringBuilder.append("  and a.uuid in  ( ");
 			stringBuilder.append("  select c.tabs_uuid from sys_dbms_tabs_cols_info c ");
@@ -606,8 +602,8 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 			stringBuilder.append("  order by a.tabs_order ");
 			NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
 			List<SysDbmsTabsInfo> tabsList = template.query(stringBuilder.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsInfo.class));
-
-//			List<SysDbmsTabsInfo> tabsList = sysDbmsTabsInfoDao.findAllByUserIndexAndTypeUuid(val.getUserIndex(), vo.getTypeUuid());
+			
+			// List<SysDbmsTabsInfo> tabsList = sysDbmsTabsInfoDao.findAllByUserIndexAndTypeUuid(val.getUserIndex(), vo.getTypeUuid());
 			if (tabsList == null) {
 				return null;
 			}
@@ -629,11 +625,11 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 				}
 			}
 		}
-
+		
 		// 多条件查询
 		return minusList;
 	}
-
+	
 	public List<SysDbmsTabsInfo> findAllTableByTypeUuidAndUsername(SysDbmsTabsInfoVo vo) {
 		// 多条件时循环查询并找出userindex都有的表
 		StringBuilder stringBuilder = new StringBuilder();
@@ -655,7 +651,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 		// 多条件查询
 		return tabsList;
 	}
-
+	
 	/**
 	 * @方法名 findAllBySysTableInfoAndUsername
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -692,5 +688,5 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 		// 多条件查询
 		return tabsList;
 	}
-
+	
 }

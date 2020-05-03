@@ -24,22 +24,21 @@ import org.danyuan.application.common.base.BaseEntity;
 public class SysRolesInfo extends BaseEntity {
 	
 	@Id
-	@Column(name = "UUID", columnDefinition = "varchar(36) COMMENT '主键'")
+	@Column(name = "UUID")
 	private String	uuid;
 	
-	@Column(name = "department_id", columnDefinition = "varchar(36) COMMENT '部门id'")
+	@Column(name = "department_id")
 	private String	departmentId;
 	
-	@Column(name = "role_name", columnDefinition = "varchar(36) COMMENT '角色名称'")
+	@Column(name = "role_name")
 	private String	roleName;
 	
-	@Column(name = "checked", columnDefinition = "boolean COMMENT '选中'")
+	@Column(name = "checked")
 	private Boolean	checked;
-
+	
 	/**
 	 * 方法名 ： getUuid
 	 * 功 能 ： 返回变量 uuid 的值
-	 *
 	 * @return: String
 	 */
 	@Override
@@ -59,7 +58,6 @@ public class SysRolesInfo extends BaseEntity {
 	/**
 	 * 方法名 ： getDepartmentId
 	 * 功 能 ： 返回变量 departmentId 的值
-	 *
 	 * @return: String
 	 */
 	public String getDepartmentId() {
@@ -77,7 +75,6 @@ public class SysRolesInfo extends BaseEntity {
 	/**
 	 * 方法名 ： getRoleName
 	 * 功 能 ： 返回变量 roleName 的值
-	 *
 	 * @return: String
 	 */
 	public String getRoleName() {
@@ -118,7 +115,6 @@ public class SysRolesInfo extends BaseEntity {
 	/**
 	 * 方法名 ： getUpdateTime
 	 * 功 能 ： 返回变量 updateTime 的值
-	 *
 	 * @return: Date
 	 */
 	@Override
@@ -138,7 +134,6 @@ public class SysRolesInfo extends BaseEntity {
 	/**
 	 * 方法名 ： getUpdateUser
 	 * 功 能 ： 返回变量 updateUser 的值
-	 *
 	 * @return: String
 	 */
 	@Override

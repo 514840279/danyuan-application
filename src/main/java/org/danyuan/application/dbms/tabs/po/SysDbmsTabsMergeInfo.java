@@ -24,34 +24,34 @@ public class SysDbmsTabsMergeInfo extends BaseEntity implements Serializable {
 	private static final long	serialVersionUID	= 1L;
 	
 	//
-	@Column(name = "cols_name_2", columnDefinition = " varchar(30) COMMENT '表2列名'")
+	@Column(name = "cols_name_2")
 	private String				colsName2;
 	
 	//
-	@Column(name = "cols_uuid_2", columnDefinition = " varchar(36) COMMENT '表2列id'")
+	@Column(name = "cols_uuid_2")
 	private String				colsUuid2;
-
+	
 	//
-	@Column(name = "table_uuid_2", columnDefinition = " varchar(36) COMMENT '表二id'")
+	@Column(name = "table_uuid_2")
 	private String				tableUuid2;
 	
 	//
-	@Column(name = "cols_desc_2", columnDefinition = " varchar(50) COMMENT '表2列含义'")
+	@Column(name = "cols_desc_2")
 	private String				colsDesc2;
 	
 	//
-	@Column(name = "cols_name_1", columnDefinition = " varchar(30) COMMENT '表一列名'")
+	@Column(name = "cols_name_1")
 	private String				colsName1;
 	
 	//
-	@Column(name = "cols_desc_1", columnDefinition = " varchar(50) COMMENT '表1列含义'")
+	@Column(name = "cols_desc_1")
 	private String				colsDesc1;
 	//
-	@Column(name = "cols_uuid_1", columnDefinition = " varchar(36) COMMENT '表1列id'")
+	@Column(name = "cols_uuid_1")
 	private String				colsUuid1;
-
+	
 	//
-	@Column(name = "table_uuid_1", columnDefinition = " varchar(36) COMMENT '表1id'")
+	@Column(name = "table_uuid_1")
 	private String				tableUuid1;
 	
 	/**
@@ -68,7 +68,6 @@ public class SysDbmsTabsMergeInfo extends BaseEntity implements Serializable {
 	/**
 	 * 方法名 ： getColsName2
 	 * 功 能 ： 返回变量 colsName2 的值
-	 *
 	 * @return: String
 	 */
 	public String getColsName2() {
@@ -86,7 +85,6 @@ public class SysDbmsTabsMergeInfo extends BaseEntity implements Serializable {
 	/**
 	 * 方法名 ： getTableUuid2
 	 * 功 能 ： 返回变量 tableUuid2 的值
-	 *
 	 * @return: String
 	 */
 	public String getTableUuid2() {
@@ -104,7 +102,6 @@ public class SysDbmsTabsMergeInfo extends BaseEntity implements Serializable {
 	/**
 	 * 方法名 ： getColsDesc2
 	 * 功 能 ： 返回变量 colsDesc2 的值
-	 *
 	 * @return: String
 	 */
 	public String getColsDesc2() {
@@ -122,7 +119,6 @@ public class SysDbmsTabsMergeInfo extends BaseEntity implements Serializable {
 	/**
 	 * 方法名 ： getColsName1
 	 * 功 能 ： 返回变量 colsName1 的值
-	 *
 	 * @return: String
 	 */
 	public String getColsName1() {
@@ -140,7 +136,6 @@ public class SysDbmsTabsMergeInfo extends BaseEntity implements Serializable {
 	/**
 	 * 方法名 ： getColsDesc1
 	 * 功 能 ： 返回变量 colsDesc1 的值
-	 *
 	 * @return: String
 	 */
 	public String getColsDesc1() {
@@ -158,7 +153,6 @@ public class SysDbmsTabsMergeInfo extends BaseEntity implements Serializable {
 	/**
 	 * 方法名 ： getTableUuid1
 	 * 功 能 ： 返回变量 tableUuid1 的值
-	 *
 	 * @return: String
 	 */
 	public String getTableUuid1() {

@@ -12,7 +12,7 @@ $(function() {
 			callback : function(result) {
 					if (result) {
 						var url = "/sysDbmsTabsColsInfo/savev";
-						var param={list:data,username:username};
+						var param={list:data};
 						ajaxPost(url, param, addSysColumnInfoSuccess, 5000, findError);
 					}
 				}
@@ -21,11 +21,8 @@ $(function() {
 	});
 	showClomnTable();
 	
-	var url = "/sysDbmsTabsJdbcInfo/findAll";
-	ajaxPost(url, null, addSelectedAddrSuccess, 5000, findError);
-	
 	var url = "/sysDbmsTabsInfo/findAll";
-	ajaxPost(url, null, addSelectedTabsSuccess, 5000, findError);
+	ajaxPost(url, {}, addSelectedTabsSuccess);
 });
 
 function addSysColumnInfoSuccess(){
@@ -48,25 +45,6 @@ function addSelectedTabsSuccess(result){
 	});	
 }
 dbm_view_column_tableName=null;
-function addSelectedAddrSuccess(result){
-	var data = [{id:"",text:"请选择"}];
-	$.each(result,function(index,value){
-		data.push({id:value.uuid,text:value.databaseName});
-	});
-	$('#dbm_view_column_addrUuid').select2({
-	    tags: true,
-	    data:data,
-	    placeholder: "请选择",
-	});
-	$('#dbm_view_column_addrUuid').on('select2:select', function (evt) {
-		dbm_view_column_addrUuid = evt.params.data.id;
-		var param={
-				jdbcUuid:dbm_view_column_addrUuid
-		}
-		var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
-		ajaxPost(url, param, addSelectedTabsSuccess, 5000, findError);
-	});
-}
 
 dbm_view_column_addrUuid = null;
 function showClomnTable(){

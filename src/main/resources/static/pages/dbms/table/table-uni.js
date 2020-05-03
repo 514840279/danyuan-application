@@ -6,8 +6,7 @@ $(function() {
 	var url = "/sysDbmsTabsTypeInfo/findAll";
 	ajaxPost(url, null, addSelectedTypeSuccess, 5000, findError);
 	
-	var url = "/sysDbmsTabsJdbcInfo/findAll";
-	ajaxPost(url, null, addSelectedAddrSuccess, 5000, findError);
+
 	
 	showClomnTable();
 	showClomnTable2();
@@ -83,7 +82,6 @@ function refreshTable(){
 function searchtableNames(){
 	var param ={
 		typeUuid:search_config_table_typeUuid,
-		jdbcUuid:search_config_table_addrUuid,
 	}
 	var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
 	ajaxPost(url, param, addSelectedTableSuccess, 5000, findError);
@@ -92,38 +90,11 @@ function searchtableNames(){
 function searchtableNames2(){
 	var param ={
 		typeUuid:search_config_table_typeUuid2,
-		jdbcUuid:search_config_table_addrUuid2,
 	}
 	var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
 	ajaxPost(url, param, addSelectedTableSuccess2, 5000, findError);
 }
 
-search_config_table_addrUuid="";
-search_config_table_addrUuid2="";
-function addSelectedAddrSuccess(result){
-	var data = [{id:"",text:"请选择"}];
-	$.each(result,function(index,value){
-		data.push({id:value.uuid,text:value.databaseName});
-	});
-	
-	$('#search_config_table_addrUuid').select2({
-		tags: true,
-		data:data,
-		placeholder: "请选择",
-	}).on('select2:select', function (evt) {
-		search_config_table_addrUuid = evt.params.data.id;
-		searchtableNames();
-	});
-	
-	$('#search_config_table_addrUuid2').select2({
-		tags: true,
-		data:data,
-		placeholder: "请选择",
-	}).on('select2:select', function (evt) {
-		search_config_table_addrUuid2 = evt.params.data.id;
-		searchtableNames2();
-	});
-}
 
 
 function addSelectedTableSuccess(result){

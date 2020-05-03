@@ -1,8 +1,6 @@
 $(function() {
 
 	
-	// 数据库列表下拉
-	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', null, successSearchDatabaseInfoindex, null, findError);
 	// 表类型列表下拉
 	ajaxPost('/sysDbmsTabsTypeInfo/findAll', null, successSearchTableTypeInfoindex, null, findError);
 
@@ -53,10 +51,7 @@ var search_table_typeName = null;
 function reloadTabsnameSelect(){
 	var url ='/sysDbmsTabsInfo/findAllBySysTableInfoAndUsername';
 	var param={
-		jdbcUuid:search_table_addrName,
 		typeUuid:search_table_typeName,
-		createUser:username,
-		updateUser:username,
 	};
 	
 	ajaxPost(url, param, successreloadTabsnameSelect);
@@ -117,7 +112,6 @@ function searchColumns(search_table_tabsName,tabsName,dbType,jdbcUuid){
 	// 列查询
 	var url_column = "/zhcx/findAllColumn";
 	var param_column={
-			"username":username,
 			info:{tabsUuid:search_table_tabsName}
 	};
 	jQuery.ajax({
@@ -246,7 +240,6 @@ function reset(tabsName,column,sysColumn,dbType,jdbcUuid) {
 			var param = {
 				pageNumber: params.pageNumber,    
 				pageSize: params.pageSize,
-				"username":username,
 				tabsName : tabsName,
 				jdbcUuid:jdbcUuid,
 				dbType:dbType,

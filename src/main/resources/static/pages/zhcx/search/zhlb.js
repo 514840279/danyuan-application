@@ -12,7 +12,6 @@ $(function() {
 	var url_column = "/zhcx/findAllColumn";
 	var param_column={
 			info:{
-				"username":username,
 				tabsUuid:tabsuuid,
 			}
 	};
@@ -226,7 +225,6 @@ function reset(id,tabsName,column,sysColumn) {
 				"type":_type,
 				pageNumber: params.pageNumber,    
 				pageSize: params.pageSize,
-				"username":username,
 				tabsName : tabsName,
 				dbType:dbType,
 				esName:esName,
@@ -328,7 +326,6 @@ function reset(id,tabsName,column,sysColumn) {
 		var url_column = "/zhcx/findAllColumn";
 		var param_column={
 			info:{
-				"username":username,
 				tabsUuid:tabsuuid,
 			}
 		};

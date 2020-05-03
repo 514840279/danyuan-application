@@ -50,9 +50,9 @@ window.onload = function () {
 
 $(function() {
 	// search bar 数据
-//	var url = '/zhcx/findAllType';
-	var url = '/zhcx/findAllTypeByUser';
-	ajaxPost(url, {"username":username}, findAllType_Sucess, 1000, findError);
+	var url = '/zhcx/findAllType';
+//	var url = '/zhcx/findAllTypeByUser';
+	ajaxPost(url, {}, findAllType_Sucess, 1000, findError);
 	
 });
 
@@ -71,7 +71,6 @@ function findAllType_Sucess(result){
 			info:{	
 				typeUuid:typeUuid
 			},
-			"username":username
 		};
 		
 		jQuery.ajax({

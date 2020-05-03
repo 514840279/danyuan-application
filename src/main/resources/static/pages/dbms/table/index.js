@@ -146,7 +146,6 @@ $(function() {
 					tabsName : $("#search_table_tabsName").val(),
 					tabsDesc : $("#search_table_tabsDesc").val(),
 				},
-				username : username
 			};
 			return param;
 		},
@@ -175,8 +174,6 @@ $(function() {
 		$('#db_table_datagrid').bootstrapTable('resetView');
 	});
 	
-	// 数据库列表下拉
-	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', null, successSearchDatabaseInfoindex, null, findError);
 	// 表类型列表下拉
 	ajaxPost('/sysDbmsTabsTypeInfo/findAll', null, successSearchTableTypeInfoindex, null, findError);
 
@@ -185,27 +182,6 @@ function successDeleteSysTableInfo(reslut){
 	$('#db_table_datagrid').bootstrapTable('refresh');
 }
 
-//数据库列表下拉
-function successSearchDatabaseInfoindex(result){
-	var data =[{id:'请选择',text:'请选择'}];
-	$.each(result,function(index,value){
-		data.push({id:value.uuid,text: value.databaseName});
-	})
-
-	$("#search_table_addrName").select2({
-		tags : true,
-		placeholder : "请选择",
-		data : data
-	});
-	search_table_addrName = null;
-	$('#search_table_addrName').on('select2:select', function (evt) {
-		search_table_addrName = evt.params.data.id;
-		if(search_table_addrName == "请选择"){
-			search_table_addrName = null;
-		}
-		$('#db_table_datagrid').bootstrapTable('refresh');
-	});
-}
 
 //表类型列表下拉
 function successSearchTableTypeInfoindex(result){

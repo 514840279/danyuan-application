@@ -13,7 +13,6 @@ $(function() {
 				uuid: $("#add_table_uuid").val(),
 				tabsName: $("#add_table_tableName").val(),
 				tabsDesc:$("#add_table_tableDesc").val(),
-				jdbcUuid:add_table_addrName,
 				typeUuid:add_table_typeName
 			},
 			username:username
@@ -22,9 +21,7 @@ $(function() {
 		var url = "/sysDbmsTabsInfo/change";
 		ajaxPost(url, param, successSaveSysTableInfo, 1000, findError);
 	});
-	
-	// 数据库列表下拉
-	ajaxPost('/sysDbmsTabsJdbcInfo/findAll', null, successSearchDatabaseInfo, null, findError);
+
 	// 表类型列表下拉
 	ajaxPost('/sysDbmsTabsTypeInfo/findAll', null, successSearchTableTypeInfo, null, findError);
 
@@ -41,28 +38,6 @@ function successSaveSysTableInfo(result){
 	modals.hideWin("upd_tabs_id");
 	$('#db_table_datagrid').bootstrapTable('refresh');
 	
-}
-
-//数据库列表下拉
-function successSearchDatabaseInfo(result){
-	var data =[{id:'请选择',text:'请选择'}];
-	$.each(result,function(index,value){
-		data.push({id:value.uuid,text: value.databaseName});
-	})
-	
-	$("#add_table_addrName").select2({
-	    tags: true,
-	    placeholder: "请选择",
-	    data: data
-	});
-	add_table_addrName = sysTableInfo.jdbcUuid;
-	$("#add_table_addrName").val(sysTableInfo.jdbcUuid).trigger("change");
-	$('#add_table_addrName').on('select2:select', function (evt) {
-		add_table_addrName = evt.params.data.id;
-		if(add_table_addrName == "请选择"){
-			add_table_addrName = null;
-		}
-	});
 }
 
 //表类型列表下拉

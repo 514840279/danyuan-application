@@ -73,13 +73,7 @@ spring:
     web-application-type: servlet
     allow-bean-definition-overriding: true
     
-jwt:
-  tokenHeader: Authorization
-  tokenPrefix: Bearer
-  secret: lanjwt
-  expiration: 3600
-  rememberExpiration: 604800
-  
+
   
 logging:
   level:

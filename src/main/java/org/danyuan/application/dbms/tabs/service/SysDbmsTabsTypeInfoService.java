@@ -27,7 +27,7 @@ public class SysDbmsTabsTypeInfoService extends BaseServiceImpl<SysDbmsTabsTypeI
 	//
 	@Autowired
 	private SysDbmsTabsTypeInfoDao	sysDbmsTabsTypeInfoDao;
-
+	
 	@Autowired
 	JdbcTemplate					jdbcTemplate;
 	
@@ -50,22 +50,23 @@ public class SysDbmsTabsTypeInfoService extends BaseServiceImpl<SysDbmsTabsTypeI
 		stringBuilder.append("select * from sys_dbms_tabs_type_info t ");
 		stringBuilder.append(" where t.uuid in (");
 		stringBuilder.append(" select a.type_uuid from sys_dbms_tabs_info a ");
-		stringBuilder.append("  where a.uuid in ( ");
-		stringBuilder.append("   select b.tabs_id from sys_roles_tabs_info b ");
-		stringBuilder.append("    where b.role_id in (");
-		stringBuilder.append("     select c.roles_id from sys_user_roles_info c");
-		stringBuilder.append("      where c.user_id in ( ");
-		stringBuilder.append("       select d.uuid from sys_user_base_info d");
-		stringBuilder.append("        where d.user_name = '" + username + "'");
-		stringBuilder.append("      ) and c.checked = 1");
-		stringBuilder.append("    ) ");
-		stringBuilder.append("  ) and a.delete_flag = 0");
+		stringBuilder.append(" where 1=1");
+		// stringBuilder.append(" where a.uuid in ( ");
+		// stringBuilder.append(" select b.tabs_id from sys_roles_tabs_info b ");
+		// stringBuilder.append(" where b.role_id in (");
+		// stringBuilder.append(" select c.roles_id from sys_user_roles_info c");
+		// stringBuilder.append(" where c.user_id in ( ");
+		// stringBuilder.append(" select d.uuid from sys_user_base_info d");
+		// stringBuilder.append(" where d.user_name = '" + username + "'");
+		// stringBuilder.append(" ) and c.checked = 1");
+		// stringBuilder.append(" ) ");
+		stringBuilder.append("   and a.delete_flag = 0");
 		stringBuilder.append(" ) and t.delete_flag = 0");
 		stringBuilder.append(" order by t.type_order");
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
 		List<SysDbmsTabsTypeInfo> list = template.query(stringBuilder.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsTypeInfo.class));
 		return list;
-
+		
 	}
 	
 }

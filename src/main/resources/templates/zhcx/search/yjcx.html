@@ -51,13 +51,13 @@
 
 					<ul class="nav navbar-nav">
 						<!-- User Account: style can be found in dropdown.less -->
-						<li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image" /> <span class="hidden-xs" th:text="${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}"></span>
+						<li class="dropdown user user-menu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image" /> <span class="hidden-xs" ></span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- User image -->
 								<li class="user-header"><img src="/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
 
-									<p th:text="${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}">
+									<p >
 										Alexander Pierce - Web Developer <small>Member since Nov. 2012</small>
 									</p></li>
 								<!-- Menu Body -->
@@ -244,8 +244,6 @@
 	}
 	var userindexList = [[*{list}]];
 	console.log(paramList);
-	var username = [[${session.SPRING_SECURITY_CONTEXT.Authentication.Principal.Username}]];
-    console.log("欢迎用户{{"+username+"}}登录本系统！\n 	");
     
 	</script>
 	<!-- 	<script type="text/javascript" src="/pages/index.js">	</script> -->
