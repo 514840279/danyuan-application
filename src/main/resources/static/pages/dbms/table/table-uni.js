@@ -1,5 +1,7 @@
 var _tableUuid1=null;
 var _tableUuid2=null;
+var _tabsName1=null;
+var _tabsName2=null;
 
 $(function() {
 
@@ -42,7 +44,7 @@ function addSelectedTypeSuccess(result){
 	
 	$("#editold_column_table").bind("click",function(){
 		var url="/sysDbmsTabsMergeInfo/merge";
-		ajaxPost(url,{info:{tableUuid1: _tableUuid1,tableUuid2: _tableUuid2}},refreshTable)
+		ajaxPost(url,{info:{tableUuid1: _tableUuid1,tableUuid2: _tableUuid2,tabsName1: _tabsName1,tabsName2: _tabsName2}},refreshTable)
 	});
 	
 	$("#addnew_column_table").bind("click",function(){
@@ -52,10 +54,12 @@ function addSelectedTypeSuccess(result){
 		console.log(data1);
 		ajaxPost(url,{
 			tableUuid1: _tableUuid1,
+			tabsName1: _tabsName1,
 			colsName1:data1.colsName,
 			colsUuid1:data1.uuid,
 			colsDesc1:data1.colsDesc,
 			tableUuid2: _tableUuid2,
+			tabsName2: _tabsName2,
 			colsName2:data2.colsName,
 			colsUuid2:data2.uuid,
 			colsDesc2:data2.colsDesc,
@@ -100,7 +104,7 @@ function searchtableNames2(){
 function addSelectedTableSuccess(result){
 	var data = [{id:"",text:"请选择"}];
 	$.each(result,function(index,value){
-		data.push({id:value.uuid,text:value.tabsName + ((value.tabsDesc==""||value.tabsDesc==null)?"":"("+value.tabsDesc+")")});
+		data.push({id:value.uuid,text:value.tabsName + ((value.tabsDesc==""||value.tabsDesc==null)?"":"("+value.tabsDesc+")"),tabsName:value.tabsName});
 	});
 	$('#search_config_table_tableUuid').empty();   
 	$('#search_config_table_tableUuid').select2({
@@ -109,6 +113,7 @@ function addSelectedTableSuccess(result){
 		placeholder: "请选择",
 	}).on('select2:select', function (evt) {
 		_tableUuid1 = evt.params.data.id;
+		_tabsName1 = evt.params.data.tabsName;
 		$("#tablename1").text(evt.params.data.text);
 		refreshTable()
 	});
@@ -117,7 +122,7 @@ function addSelectedTableSuccess(result){
 function addSelectedTableSuccess2(result){
 	var data = [{id:"",text:"请选择"}];
 	$.each(result,function(index,value){
-		data.push({id:value.uuid,text:value.tabsName + ((value.tabsDesc==""||value.tabsDesc==null)?"":"("+value.tabsDesc+")")});
+		data.push({id:value.uuid,text:value.tabsName + ((value.tabsDesc==""||value.tabsDesc==null)?"":"("+value.tabsDesc+")"),tabsName:value.tabsName});
 	});
 	$('#search_config_table_tableUuid2').empty();   
 	$('#search_config_table_tableUuid2').select2({
@@ -126,6 +131,7 @@ function addSelectedTableSuccess2(result){
 		placeholder: "请选择",
 	}).on('select2:select', function (evt) {
 		_tableUuid2 = evt.params.data.id;
+		_tabsName2 = evt.params.data.tabsName;
 		$("#tablename2").text(evt.params.data.text);
 		refreshTable()
 	});

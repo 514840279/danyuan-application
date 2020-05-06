@@ -36,6 +36,10 @@ public class SysDbmsTabsMergeInfo extends BaseEntity implements Serializable {
 	private String				tableUuid2;
 	
 	//
+	@Column(name = "tabs_name_2")
+	private String				tabsName2;
+	
+	//
 	@Column(name = "cols_desc_2")
 	private String				colsDesc2;
 	
@@ -53,6 +57,10 @@ public class SysDbmsTabsMergeInfo extends BaseEntity implements Serializable {
 	//
 	@Column(name = "table_uuid_1")
 	private String				tableUuid1;
+	
+	//
+	@Column(name = "tabs_name_1")
+	private String				tabsName1;
 	
 	/**
 	 * 构造方法：
@@ -199,6 +207,36 @@ public class SysDbmsTabsMergeInfo extends BaseEntity implements Serializable {
 	 */
 	public void setColsUuid1(String colsUuid1) {
 		this.colsUuid1 = colsUuid1;
+	}
+	
+	/**
+	 * @return the tabsName2
+	 */
+	public String getTabsName2() {
+		return tabsName2;
+	}
+	
+	/**
+	 * 方法名 ： setTabsName2
+	 * 功 能 ： 设置变量 tabsName2 的值
+	 */
+	public void setTabsName2(String tabsName2) {
+		this.tabsName2 = tabsName2;
+	}
+	
+	/**
+	 * @return the tabsName1
+	 */
+	public String getTabsName1() {
+		return tabsName1;
+	}
+	
+	/**
+	 * 方法名 ： setTabsName1
+	 * 功 能 ： 设置变量 tabsName1 的值
+	 */
+	public void setTabsName1(String tabsName1) {
+		this.tabsName1 = tabsName1;
 	}
 	
 }

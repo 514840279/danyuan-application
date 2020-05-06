@@ -28,7 +28,7 @@ import org.springframework.stereotype.Service;
 public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMergeInfo> implements BaseService<SysDbmsTabsMergeInfo> {
 	@Autowired
 	JdbcTemplate			jdbcTemplate;
-
+	
 	@Autowired
 	SysDbmsTabsMergeInfoDao	sysDbmsTabsMergeInfoDao;
 	
@@ -62,7 +62,7 @@ public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMerg
 		List<SysDbmsTabsColsInfo> list = template.query(stringBuilder.toString(), new BeanPropertyRowMapper<>(SysDbmsTabsColsInfo.class));
 		return list;
 	}
-
+	
 	/**
 	 * @方法名 page2
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -108,11 +108,13 @@ public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMerg
 				if (sysDbmsTabsColsInfo1.getColsName().equals(sysDbmsTabsColsInfo2.getColsName()) || (sysDbmsTabsColsInfo1.getColsDesc() != null && !"".equals(sysDbmsTabsColsInfo1.getColsDesc()) && sysDbmsTabsColsInfo2.getColsDesc() != null && sysDbmsTabsColsInfo1.getColsDesc().equals(sysDbmsTabsColsInfo2.getColsDesc()))) {
 					SysDbmsTabsMergeInfo merge = new SysDbmsTabsMergeInfo();
 					merge.setTableUuid1(vo.getInfo().getTableUuid1());
+					merge.setTabsName1(vo.getInfo().getTabsName1());
 					merge.setColsName1(sysDbmsTabsColsInfo1.getColsName());
 					merge.setColsDesc1(sysDbmsTabsColsInfo1.getColsDesc());
 					merge.setColsUuid1(sysDbmsTabsColsInfo1.getUuid());
-
+					
 					merge.setTableUuid2(vo.getInfo().getTableUuid2());
+					merge.setTabsName2(vo.getInfo().getTabsName2());
 					merge.setColsName2(sysDbmsTabsColsInfo2.getColsName());
 					merge.setColsDesc2(sysDbmsTabsColsInfo2.getColsDesc());
 					merge.setColsUuid2(sysDbmsTabsColsInfo2.getUuid());
@@ -124,7 +126,7 @@ public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMerg
 		}
 		return "1";
 	}
-
+	
 	/**
 	 * @方法名 loadSql
 	 * @功能 TODO(这里用一句话描述这个方法的作用)
@@ -170,5 +172,5 @@ public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMerg
 		sBuilder.append("commit; \r\n");
 		return sBuilder.toString();
 	}
-
+	
 }
