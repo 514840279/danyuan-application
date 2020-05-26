@@ -15,7 +15,6 @@ $(function() {
 				tabsDesc:$("#add_table_tableDesc").val(),
 				typeUuid:add_table_typeName
 			},
-			username:username
 		};
 		// 重载
 		var url = "/sysDbmsTabsInfo/change";
@@ -29,12 +28,12 @@ $(function() {
 
 // 创建表成功
 function successSaveSysTableInfo(result){
-	$("#upd_tabs_id").on("hidden.bs.modal", function() {
-		if(_table != undefined && _table != null){
-			_table.text(result.tabsDesc);
-			_table = null;
-		}
-	});
+//	$("#upd_tabs_id").on("hidden.bs.modal", function() {
+//		if(_table != undefined && _table != null){
+//			_table.text(result.tabsDesc);
+//			_table = null;
+//		}
+//	});
 	modals.hideWin("upd_tabs_id");
 	$('#db_table_datagrid').bootstrapTable('refresh');
 	

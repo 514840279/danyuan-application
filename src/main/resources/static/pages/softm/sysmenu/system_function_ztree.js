@@ -282,7 +282,6 @@ function addMenusubmit() {
 			parentsId : $("#add_menu_parentId").val(),
 			sort : $("#add_menu_sort").val(),
 			deleteFlag : $("#add_menu_deleteFlag").val(),
-			insertUser : username,
 			homePage:$("input[name='homePage']:checked").val()
 		}
 		var url = "/sysMenuInfo/addSysMenuInfo";
@@ -396,7 +395,6 @@ function updatesubmitMenu() {
 			parentsId : $("#upd_menu_parentId").val(),
 			sort : $("#upd_menu_sort").val(),
 			deleteFlag : $("#upd_menu_deleteFlag").val(),
-			updateUser : username,
 			homePage:$("input[name='upd_homePage']:checked").val()
 		}
 		var url = "/sysMenuInfo/addSysMenuInfo";

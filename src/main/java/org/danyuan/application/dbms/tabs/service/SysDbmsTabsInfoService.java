@@ -482,7 +482,7 @@ public class SysDbmsTabsInfoService extends BaseServiceImpl<SysDbmsTabsInfo> imp
 	@Override
 	public List<SysDbmsTabsInfo> findAll(SysDbmsTabsInfo info) {
 		Example<SysDbmsTabsInfo> example = Example.of(info);
-		return sysDbmsTabsInfoDao.findAll(example);
+		return sysDbmsTabsInfoDao.findAll(example, Sort.by(Order.asc("tabsRows")));
 	}
 	
 	/**

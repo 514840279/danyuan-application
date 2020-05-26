@@ -71,8 +71,6 @@ $(function() {
 			deleteFlag:$("input[name='deleteFlag']:checked").val(),
 			multeity:$("input[name='multeity']:checked").val(),
 			chart:$("input[name='chart']:checked").val(),
-			createUser:username,
-			updateUser:username,
 		}
 		console.log(SysDicUserIndexCode);
 		ajaxPost(url, SysDicUserIndexCode, addSysDicUserIndexCodeSuccess, 5000, findError);

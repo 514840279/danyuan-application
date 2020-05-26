@@ -2,7 +2,6 @@ _history = [];
 (function($) {
 	var hasHome=false;
 	var menu_data = [];
-	// console.log(username);
 	// 请求数据地址
 	var url = "/sysMenuInfo/findzTreeByUser";
 	// 请求数据

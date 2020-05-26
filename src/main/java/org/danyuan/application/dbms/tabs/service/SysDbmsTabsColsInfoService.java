@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
 import org.danyuan.application.common.base.BaseService;
 import org.danyuan.application.common.base.BaseServiceImpl;
 import org.danyuan.application.common.base.Pagination;
@@ -73,8 +74,8 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 	public void change(SysDbmsTabsColsInfo info) {
 		try {
 			SysDbmsTabsInfo tab = sysDbmsTabsInfoDao.findById(info.getTabsUuid()).get();
-			Optional<SysDbmsTabsColsInfo> old = sysDbmsTabsColsInfoDao.findById(info.getUuid());
-			if (old != null && old.isPresent()) {
+			if (!StringUtils.isEmpty(info.getUuid())) {
+				Optional<SysDbmsTabsColsInfo> old = sysDbmsTabsColsInfoDao.findById(info.getUuid());
 				String sql = "alter table " + tab.getTabsName() + " CHANGE " + old.get().getColsName() + " " + info.getColsName() + " " + info.getColsType() + "(" + info.getColsLength() + ")";
 				jdbcTemplate.execute(sql);
 			} else {
@@ -83,6 +84,9 @@ public class SysDbmsTabsColsInfoService extends BaseServiceImpl<SysDbmsTabsColsI
 				jdbcTemplate.execute(sql);
 			}
 		} finally {
+			if (StringUtils.isEmpty(info.getUuid())) {
+				info.setUuid(UUID.randomUUID().toString());
+			}
 			sysDbmsTabsColsInfoDao.save(info);
 			
 		}

@@ -13,7 +13,41 @@ $(function() {
 	showClomnTable();
 	showClomnTable2();
 	showClomnTable3();
+	
+	$("#addnewcolumn").bind("click",function(){
+		
+		$("#dbm_column_add_modal").modal({show:true});
+		
+	});
+	
+	$("#dbm_column_add_button").bind("click",function(){
+		if($("#add_table_column").val()==""){
+			return;
+		}
+		var col={
+				tabsUuid:_tableUuid2,
+				colsName:$("#add_table_column").val(),
+				colsType:"varchar2",
+				colsLength: 255
+		}
+		ajaxPost("/sysDbmsTabsColsInfo/saveSysDbmsTabsColsInfo",col,successAddColumnInfo);
+	});
+	
+	$('#addnew_column_table').click(function() {
+		modals.openWin({
+			winId:"addnew_column_show_view_table",
+			title:'列选择',
+			width:'1000px',
+			url:"templates/dbms/column/add_column"
+		});
+		
+	});
 });
+
+function successAddColumnInfo(result){
+	$("#dbm_column_add_modal").modal('hide');
+	$('#dbm_config_column_datagrid2').bootstrapTable('refresh');
+}
 
 search_config_table_typeUuid=null;
 search_config_table_typeUuid2=null;
@@ -42,12 +76,13 @@ function addSelectedTypeSuccess(result){
 	});
 	
 	
+	
 	$("#editold_column_table").bind("click",function(){
 		var url="/sysDbmsTabsMergeInfo/merge";
 		ajaxPost(url,{info:{tableUuid1: _tableUuid1,tableUuid2: _tableUuid2,tabsName1: _tabsName1,tabsName2: _tabsName2}},refreshTable)
 	});
 	
-	$("#addnew_column_table").bind("click",function(){
+	$("#addnew_merge_column_table").bind("click",function(){
 		var url="/sysDbmsTabsMergeInfo/save";
 		var data1 =$('#dbm_config_column_datagrid1').bootstrapTable('getAllSelections')[0];
 		var data2 =$('#dbm_config_column_datagrid2').bootstrapTable('getAllSelections')[0];
@@ -63,6 +98,7 @@ function addSelectedTypeSuccess(result){
 			colsName2:data2.colsName,
 			colsUuid2:data2.uuid,
 			colsDesc2:data2.colsDesc,
+			deleteFlag:0,
 			},refreshTable)
 	});
 	
@@ -76,10 +112,14 @@ function refreshTable(){
 	$('#dbm_config_column_datagrid1').bootstrapTable("refresh");
 	$('#dbm_config_column_datagrid2').bootstrapTable("refresh");
 	$('#dbm_config_column_datagrid3').bootstrapTable("refresh");
+	loadSql();
+}
+
+function loadSql(){
 	ajaxPost("/sysDbmsTabsMergeInfo/loadSql",{tableUuid1: _tableUuid1,tableUuid2: _tableUuid2},reloadSQL);
 	function reloadSQL(result){
 		$("#sql-content").empty();
-		$("#sql-content").append(result.data.replaceAll("\r\n","<br />"));
+		$("#sql-content").append("<code>"+result.data.replaceAll("\r\n","<br />")+"</code>");
 	}
 }
 
@@ -144,7 +184,7 @@ function showClomnTable(){
 	$('#dbm_config_column_datagrid1').bootstrapTable({
 		url : "/sysDbmsTabsMergeInfo/page1",
 		dataType : "json",
-//		toolbar : '#dbm_config_column_toolbar', // 工具按钮用哪个容器
+		toolbar : '#db_table1_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式
@@ -226,7 +266,7 @@ function showClomnTable2(){
 	$('#dbm_config_column_datagrid2').bootstrapTable({
 		url : "/sysDbmsTabsMergeInfo/page2",
 		dataType : "json",
-//		toolbar : '#dbm_config_column_toolbar', // 工具按钮用哪个容器
+		toolbar : '#db_table2_toolbar', // 工具按钮用哪个容器
 		cache : true, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 		sortable : true, // 是否启用排序
 		sortOrder : "asc", // 排序方式

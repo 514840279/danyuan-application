@@ -81,8 +81,8 @@ logging:
     org.springframework.web: DEBUG
     org.danyuan.application: DEBUG
     org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+   # org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+   # org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
   file: log.log
   pattern:
     level: info
