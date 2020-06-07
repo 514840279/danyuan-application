@@ -154,32 +154,32 @@ public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMerg
 		SysDbmsTabsInfo tabsInfo1 = sysDbmsTabsInfoService.findById(vo.getTableUuid1());
 		SysDbmsTabsInfo tabsInfo2 = sysDbmsTabsInfoService.findById(vo.getTableUuid2());
 		StringBuilder sBuilder = new StringBuilder();
-		sBuilder.append("-- 合并表语句 \r\n");
-		sBuilder.append(" insert into " + tabsInfo2.getTabsName() + "(");
-		for (int i = 0; i < mergeInfos.size(); i++) {
-			if (i > 0) {
-				sBuilder.append(",");
-			}
-			sBuilder.append(mergeInfos.get(i).getColsName2());
-		}
-		sBuilder.append(") select ");
-		for (int i = 0; i < mergeInfos.size(); i++) {
-			if (i > 0) {
-				sBuilder.append(",");
-			}
-			sBuilder.append(mergeInfos.get(i).getColsName1() + " as " + mergeInfos.get(i).getColsName2());
-		}
-		sBuilder.append(" from " + tabsInfo1.getTabsName());
-		sBuilder.append("; \r\n");
-		sBuilder.append("commit; \r\n \r\n");
-		sBuilder.append("drop table " + tabsInfo1.getTabsName() + " purge; \r\n\r\n");
-		sBuilder.append("-- 删除配置表信息 \r\n");
-		sBuilder.append("delete from sys_dbms_tabs_info where uuid='" + tabsInfo1.getUuid() + "'; \r\n");
-		sBuilder.append("delete from sys_dbms_tabs_cols_info where tabs_uuid='" + tabsInfo1.getUuid() + "'; \r\n");
-		sBuilder.append("delete from sys_roles_tabs_info where tabs_id='" + tabsInfo1.getUuid() + "'; \r\n");
-		sBuilder.append("delete from sys_dbms_tabs_merge_info where table_uuid_1='" + tabsInfo1.getUuid() + "'; \r\n");
-		sBuilder.append("delete from sys_dbms_tabs_merge_info where table_uuid_2='" + tabsInfo1.getUuid() + "'; \r\n");
-		sBuilder.append("commit; \r\n");
+		// sBuilder.append("-- 合并表语句 \r\n");
+		// sBuilder.append(" insert into " + tabsInfo2.getTabsName() + "(");
+		// for (int i = 0; i < mergeInfos.size(); i++) {
+		// if (i > 0) {
+		// sBuilder.append(",");
+		// }
+		// sBuilder.append(mergeInfos.get(i).getColsName2());
+		// }
+		// sBuilder.append(") select ");
+		// for (int i = 0; i < mergeInfos.size(); i++) {
+		// if (i > 0) {
+		// sBuilder.append(",");
+		// }
+		// sBuilder.append(mergeInfos.get(i).getColsName1() + " as " + mergeInfos.get(i).getColsName2());
+		// }
+		// sBuilder.append(" from " + tabsInfo1.getTabsName());
+		// sBuilder.append("; \r\n");
+		// sBuilder.append("commit; \r\n \r\n");
+		// sBuilder.append("drop table " + tabsInfo1.getTabsName() + " purge; \r\n\r\n");
+		// sBuilder.append("-- 删除配置表信息 \r\n");
+		// sBuilder.append("delete from sys_dbms_tabs_info where uuid='" + tabsInfo1.getUuid() + "'; \r\n");
+		// sBuilder.append("delete from sys_dbms_tabs_cols_info where tabs_uuid='" + tabsInfo1.getUuid() + "'; \r\n");
+		// sBuilder.append("delete from sys_roles_tabs_info where tabs_id='" + tabsInfo1.getUuid() + "'; \r\n");
+		// sBuilder.append("delete from sys_dbms_tabs_merge_info where table_uuid_1='" + tabsInfo1.getUuid() + "'; \r\n");
+		// sBuilder.append("delete from sys_dbms_tabs_merge_info where table_uuid_2='" + tabsInfo1.getUuid() + "'; \r\n");
+		// sBuilder.append("commit; \r\n");
 		
 		sBuilder.append("-- 合并信息脚本 \r\n");
 		
@@ -212,27 +212,27 @@ public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMerg
 			// 有身份证那个配置的处理身份证号
 			if ("SFZH".equals(sysDbmsTabsColsInfo.getUserIndex())) {
 				sfzhNameString = sysDbmsTabsColsInfo.getColsName();
-				sBuilder.append("-- 处理身份证号 \r\n");
-				sBuilder.append("alter table " + tabsInfo1.getTabsName() + " add SFZH18 varchar2(20);  \r\n");
-				sBuilder.append("alter table " + tabsInfo1.getTabsName() + " add chksfzh18 varchar2(2);  \r\n");
-				sBuilder.append("alter table " + tabsInfo1.getTabsName() + " add id_出生日期  varchar2(20);  \r\n");
-				sBuilder.append("alter table " + tabsInfo1.getTabsName() + " add id_星座 varchar2(20);  \r\n");
-				sBuilder.append("alter table " + tabsInfo1.getTabsName() + " add id_性别 varchar2(20);  \r\n");
-				sBuilder.append("alter table " + tabsInfo1.getTabsName() + " add id_生肖 varchar2(20);  \r\n");
-				sBuilder.append("  \r\n");
-				sBuilder.append("update　" + tabsInfo1.getTabsName() + "  \r\n");
-				sBuilder.append("set sfzh18 = idcard15to18(" + sysDbmsTabsColsInfo.getColsName() + ")　 \r\n ");
-				sBuilder.append("where lengthb(" + sysDbmsTabsColsInfo.getColsName() + ") = 15 or lengthb(" + sysDbmsTabsColsInfo.getColsName() + ") =18;\r\n");
-				sBuilder.append(" commit;  \r\n");
-				
-				sBuilder.append("update " + tabsInfo1.getTabsName() + "\r\n");
-				sBuilder.append("set chksfzh18 = fun_checkidcard(sfzh18) \r\n");
-				sBuilder.append(",id_出生日期 = id_britherday(sfzh18)\r\n");
-				sBuilder.append(",id_星座 = id_xingzuo(sfzh18)\r\n");
-				sBuilder.append(",id_性别 = id_sex(sfzh18) \r\n");
-				sBuilder.append(",id_生肖 = id_shengxiao(sfzh18) \r\n");
-				sBuilder.append("where sfzh18 is not null;\r\n");
-				sBuilder.append(" commit;  \r\n");
+				// sBuilder.append("-- 处理身份证号 \r\n");
+				// sBuilder.append("alter table " + tabsInfo1.getTabsName() + " add SFZH18 varchar2(20); \r\n");
+				// sBuilder.append("alter table " + tabsInfo1.getTabsName() + " add chksfzh18 varchar2(2); \r\n");
+				// sBuilder.append("alter table " + tabsInfo1.getTabsName() + " add id_出生日期 varchar2(20); \r\n");
+				// sBuilder.append("alter table " + tabsInfo1.getTabsName() + " add id_星座 varchar2(20); \r\n");
+				// sBuilder.append("alter table " + tabsInfo1.getTabsName() + " add id_性别 varchar2(20); \r\n");
+				// sBuilder.append("alter table " + tabsInfo1.getTabsName() + " add id_生肖 varchar2(20); \r\n");
+				// sBuilder.append(" \r\n");
+				// sBuilder.append("update " + tabsInfo1.getTabsName() + " \r\n");
+				// sBuilder.append("set sfzh18 = idcard15to18(" + sysDbmsTabsColsInfo.getColsName() + ") \r\n ");
+				// sBuilder.append("where lengthb(" + sysDbmsTabsColsInfo.getColsName() + ") = 15 or lengthb(" + sysDbmsTabsColsInfo.getColsName() + ") =18;\r\n");
+				// sBuilder.append(" commit; \r\n");
+				//
+				// sBuilder.append("update " + tabsInfo1.getTabsName() + "\r\n");
+				// sBuilder.append("set chksfzh18 = fun_checkidcard(sfzh18) \r\n");
+				// sBuilder.append(",id_出生日期 = id_britherday(sfzh18)\r\n");
+				// sBuilder.append(",id_星座 = id_xingzuo(sfzh18)\r\n");
+				// sBuilder.append(",id_性别 = id_sex(sfzh18) \r\n");
+				// sBuilder.append(",id_生肖 = id_shengxiao(sfzh18) \r\n");
+				// sBuilder.append("where sfzh18 is not null;\r\n");
+				// sBuilder.append(" commit; \r\n");
 			}
 			
 		}
@@ -242,6 +242,7 @@ public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMerg
 			sBuilder.append("　alter　table " + tabsInfo1.getTabsName() + " add uuid varchar2(36); \r\n");
 			
 			sBuilder.append("　update " + tabsInfo1.getTabsName() + " set uuid=SYS_GUID(); \r\n");
+			sBuilder.append("　create index  idx_" + UUID.randomUUID().toString().replace("-", "").substring(0, 18) + " on " + tabsInfo1.getTabsName() + "(UUID) tablespace WTH_INDEX; \r\n");
 			sBuilder.append("　 commit;\r\n\r\n");
 		}
 		
@@ -269,6 +270,9 @@ public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMerg
 		for (SysDbmsTabsMergeInfo sysDbmsTabsMergeInfo : mergeInfos) {
 			// 如果有电话邮箱等信息需要,合并到对应表中
 			sBuilder.append("  p_" + sysDbmsTabsMergeInfo.getColsName2() + " varchar2(2000); \r\n");
+			if (sfzhNameString == null && sysDbmsTabsMergeInfo.getColsName2().equals("SFZH18")) {
+				sfzhNameString = sysDbmsTabsMergeInfo.getColsName1();
+			}
 		}
 		if (!sfzh18flag) {
 			// sBuilder.append(" p_SFZH18 varchar2(20); \r\n");
@@ -277,6 +281,8 @@ public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMerg
 			sBuilder.append("  p_id_星座  varchar2(20); \r\n");
 			sBuilder.append("  p_id_性别  varchar2(20); \r\n");
 			sBuilder.append("  p_id_生肖  varchar2(20); \r\n");
+		}
+		if (uuidflag) {
 			sBuilder.append("  p_uuid varchar2(36); \r\n");
 		}
 		sBuilder.append("   \r\n");
@@ -302,19 +308,20 @@ public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMerg
 		sBuilder.append("    --输出 \r\n");
 		sBuilder.append("    --DBMS_OUTPUT.PUT_LINE(rowdata.sfzh18);\r\n");
 		sBuilder.append("   \r\n");
+		sBuilder.append("   begin \r\n");
 		if (!sfzh18flag) {
 			
 			sBuilder.append("   p_sfzh18 := idcard15to18(rowdata." + sfzhNameString + "); \r\n");
 			sBuilder.append("   p_chksfzh18 := fun_checkidcard(p_sfzh18); \r\n");
-			sBuilder.append("   IF(p_chksfzh18 =1) THEN \r\n");
+			sBuilder.append("   IF(p_chksfzh18 is not null and p_chksfzh18 =1) THEN \r\n");
 			sBuilder.append("     p_id_出生日期 := id_britherday(p_sfzh18);\r\n");
 			sBuilder.append("     p_id_星座  := id_xingzuo(p_sfzh18);\r\n");
 			sBuilder.append("     p_id_性别  := id_sex(p_sfzh18); \r\n");
 			sBuilder.append("     p_id_生肖  := id_shengxiao(p_sfzh18); \r\n");
 			sBuilder.append("     p_uuid  := md5(trim(p_sfzh18)); \r\n");
 		} else {
-			sBuilder.append("   IF(rowdata.CHKSFZH18 =1) THEN \r\n");
-			sBuilder.append("     p_uuid  := md5(trim(rowdata." + sfzhNameString + ")); \r\n");
+			sBuilder.append("   IF(rowdata.CHKSFZH18 is not null and rowdata.CHKSFZH18 =1) THEN \r\n");
+			sBuilder.append("     p_uuid  := md5(trim(rowdata.sfzh18)); \r\n");
 		}
 		// sBuilder.append(" --用 execute immediate 动态执行 SQL 语句 \r\n");
 		// sBuilder.append(" --注意其后的 into 字段值到变量的写法，还有 using 来代入参数 \r\n");
@@ -441,11 +448,15 @@ public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMerg
 		sBuilder.append("     delete from " + tabsInfo1.getTabsName() + " where uuid =rowdata.uuid ;\r\n");
 		sBuilder.append("   END;\r\n");
 		
-		sBuilder.append("   if mod(r_num, 1000) =0 then   \r\n");
+		sBuilder.append("   if mod(r_num, 100000) =0 then   \r\n");
 		sBuilder.append("      commit;\r\n");
 		sBuilder.append("   end if ;   \r\n");
 		
 		sBuilder.append("   END IF;\r\n");
+		sBuilder.append("--EXCEPTION \r\n");
+		sBuilder.append("  --WHEN OTHERS THEN \r\n");
+		sBuilder.append("   -- DBMS_OUTPUT.PUT_LINE('证件号或者checkid为空');  \r\n");
+		sBuilder.append("END; \r\n");
 		sBuilder.append("  --结束循环 \r\n");
 		sBuilder.append("  END LOOP; \r\n");
 		sBuilder.append("      commit;\r\n");
@@ -462,7 +473,8 @@ public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMerg
 		sBuilder.append("    ROLLBACK; \r\n");
 		sBuilder.append("    --记录日志 \r\n");
 		sBuilder.append("    SP_LOG('SP_TABLE_TASK', V_LOGID, TO_CHAR(V_SQLCODE) || ' ' || V_SQLERRM); \r\n");
-		sBuilder.append("    DBMS_OUTPUT.PUT_LINE(' err where sfzh=' || p_SFZH18||' and uuid='||p_uuid);  \r\n");
+		sBuilder.append("    DBMS_OUTPUT.PUT_LINE(' err where sfzh=''' || p_SFZH18||''' and uuid='''||p_uuid||'''');  \r\n");
+		
 		sBuilder.append("END; \r\n");
 		sBuilder.append("      \r\n");
 		sBuilder.append("-- 调用    \r\n");
@@ -474,11 +486,18 @@ public class SysDbmsTabsMergeInfoService extends BaseServiceImpl<SysDbmsTabsMerg
 		sBuilder.append("      \r\n");
 		if (sfzh18flag) {
 			sBuilder.append(" alter table " + tabsInfo1.getTabsName() + " DROP COLUMN SFZH18;     \r\n");
-			sBuilder.append(" alter table " + tabsInfo1.getTabsName() + " DROP COLUMN chksfzh18;     \r\n");
-			sBuilder.append(" alter table " + tabsInfo1.getTabsName() + " DROP COLUMN id_出生日期;     \r\n");
-			sBuilder.append(" alter table " + tabsInfo1.getTabsName() + " DROP COLUMN id_星座;     \r\n");
-			sBuilder.append(" alter table " + tabsInfo1.getTabsName() + " DROP COLUMN id_性别;     \r\n");
-			sBuilder.append(" alter table " + tabsInfo1.getTabsName() + " DROP COLUMN id_生肖;     \r\n");
+			sBuilder.append(" alter table " + tabsInfo1.getTabsName() + " DROP COLUMN CHKSFZH18;     \r\n");
+			sBuilder.append(" alter table " + tabsInfo1.getTabsName() + " DROP COLUMN ID_出生日期;     \r\n");
+			sBuilder.append(" alter table " + tabsInfo1.getTabsName() + " DROP COLUMN ID_星座;     \r\n");
+			sBuilder.append(" alter table " + tabsInfo1.getTabsName() + " DROP COLUMN ID_性别;     \r\n");
+			sBuilder.append(" alter table " + tabsInfo1.getTabsName() + " DROP COLUMN ID_生肖;     \r\n");
+			sBuilder.append("      \r\n");
+			sBuilder.append(" delete from  sys_dbms_tabs_cols_info where tabs_uuid = '" + tabsInfo1.getUuid() + "'  and cols_name='SFZH18' ;     \r\n");
+			sBuilder.append(" delete from  sys_dbms_tabs_cols_info where tabs_uuid = '" + tabsInfo1.getUuid() + "'  and cols_name='CHKSFZH18' ;     \r\n");
+			sBuilder.append(" delete from  sys_dbms_tabs_cols_info where tabs_uuid = '" + tabsInfo1.getUuid() + "'  and cols_name='ID_出生日期' ;     \r\n");
+			sBuilder.append(" delete from  sys_dbms_tabs_cols_info where tabs_uuid = '" + tabsInfo1.getUuid() + "'  and cols_name='ID_星座' ;     \r\n");
+			sBuilder.append(" delete from  sys_dbms_tabs_cols_info where tabs_uuid = '" + tabsInfo1.getUuid() + "'  and cols_name='ID_性别' ;     \r\n");
+			sBuilder.append(" delete from  sys_dbms_tabs_cols_info where tabs_uuid = '" + tabsInfo1.getUuid() + "'  and cols_name='ID_生肖' ;     \r\n");
 		}
 		sBuilder.append("      \r\n");
 		sBuilder.append("      \r\n");

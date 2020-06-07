@@ -42,7 +42,20 @@ $(function() {
 		});
 		
 	});
+	
+	
 });
+
+function selectText(element) {  
+	var text = document.getElementById(element);  
+	var selection = window.getSelection();   //返回一个  Selection 对象，表示用户选择的文本范围或光标的当前位置
+	var range = document.createRange();  //创建一个范围对象
+	range.selectNodeContents(text);  //text中的子节点放入range对象里
+	selection.removeAllRanges();   //清除其他所有的被选中的节点
+	selection.addRange(range);   //将范围中的数据选中
+    document.execCommand("Copy")   //调用复制功能
+    selection.removeAllRanges();  	 //清除所有选中的节点
+}
 
 function successAddColumnInfo(result){
 	$("#dbm_column_add_modal").modal('hide');
@@ -126,6 +139,7 @@ function loadSql(){
 function searchtableNames(){
 	var param ={
 		typeUuid:search_config_table_typeUuid,
+		deleteFlag:0,
 	}
 	var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
 	ajaxPost(url, param, addSelectedTableSuccess, 5000, findError);
@@ -134,6 +148,7 @@ function searchtableNames(){
 function searchtableNames2(){
 	var param ={
 		typeUuid:search_config_table_typeUuid2,
+		deleteFlag:0,
 	}
 	var url = "/sysDbmsTabsInfo/findAllBySysTableInfo";
 	ajaxPost(url, param, addSelectedTableSuccess2, 5000, findError);
