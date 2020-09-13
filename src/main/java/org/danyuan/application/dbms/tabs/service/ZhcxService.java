@@ -120,9 +120,9 @@ public class ZhcxService {
 			if ("单表多条件查询".equals(vo.getType()) || "单表多条件更多查询".equals(vo.getType())) {
 				String countsql = "";
 				if ("ORACLE".equals(vo.dbType.toUpperCase())) {
-					countsql = "select count(1) as total from (" + sqlString.toString() + "  and rownum < 500  ) count";
+					countsql = "select count(1) as total from (" + sqlString.toString() + "  and rownum < 50000  ) count";
 				} else {
-					countsql = "select count(1) as total from (" + sqlString.toString() + "  limit 0, 500  ) count";
+					countsql = "select count(1) as total from (" + sqlString.toString() + "  limit 0, 50000  ) count";
 				}
 				if ((vo.getTotal() == null || "0".equals(vo.getTotal().toString()))) {
 					Long total = jdbcTemplate.queryForObject(countsql, Long.class);
