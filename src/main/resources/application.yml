@@ -83,7 +83,7 @@ logging:
     org.hibernate.SQL: DEBUG
    # org.hibernate.type.descriptor.sql.BasicBinder: TRACE
    # org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
-  file: log.log
+  file: log
   pattern:
     level: info
     #console: "%d{yyyy-MM-dd} [%thread] %-5level %logger{50} - %msg%n"
